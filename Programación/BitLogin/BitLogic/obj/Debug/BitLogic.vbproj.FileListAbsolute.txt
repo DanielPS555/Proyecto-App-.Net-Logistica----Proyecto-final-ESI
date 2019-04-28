@@ -1,0 +1,9 @@
+C:\Users\darkfm\source\repos\BitLogin\BitLogic\bin\Debug\BitLogic.dll
+C:\Users\darkfm\source\repos\BitLogin\BitLogic\bin\Debug\BitLogic.pdb
+C:\Users\darkfm\source\repos\BitLogin\BitLogic\bin\Debug\BitLogic.xml
+C:\Users\darkfm\source\repos\BitLogin\BitLogic\obj\Debug\BitLogic.Resources.resources
+C:\Users\darkfm\source\repos\BitLogin\BitLogic\obj\Debug\BitLogic.vbproj.GenerateResource.cache
+C:\Users\darkfm\source\repos\BitLogin\BitLogic\obj\Debug\BitLogic.vbproj.CoreCompileInputs.cache
+C:\Users\darkfm\source\repos\BitLogin\BitLogic\obj\Debug\BitLogic.dll
+C:\Users\darkfm\source\repos\BitLogin\BitLogic\obj\Debug\BitLogic.xml
+C:\Users\darkfm\source\repos\BitLogin\BitLogic\obj\Debug\BitLogic.pdb
