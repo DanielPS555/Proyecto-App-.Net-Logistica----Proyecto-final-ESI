@@ -70,11 +70,11 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.vb">
+    <Compile Include="Principal.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.vb">
-      <DependentUpon>Form1.vb</DependentUpon>
+    <Compile Include="Principal.Designer.vb">
+      <DependentUpon>Principal.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -92,16 +92,43 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Vetanas\Login.Designer.vb">
+      <DependentUpon>Login.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Vetanas\Login.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vetanas\patio\MarcoPatio.Designer.vb">
+      <DependentUpon>MarcoPatio.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Vetanas\patio\MarcoPatio.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vetanas\puerto\MarcoPuerto.Designer.vb">
+      <DependentUpon>MarcoPuerto.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Vetanas\puerto\MarcoPuerto.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.vb</DependentUpon>
+    <EmbeddedResource Include="Principal.resx">
+      <DependentUpon>Principal.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vetanas\Login.resx">
+      <DependentUpon>Login.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vetanas\patio\MarcoPatio.resx">
+      <DependentUpon>MarcoPatio.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vetanas\puerto\MarcoPuerto.resx">
+      <DependentUpon>MarcoPuerto.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -136,5 +163,6 @@
   <ItemGroup>
     <None Include="Resources\ojo_no.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

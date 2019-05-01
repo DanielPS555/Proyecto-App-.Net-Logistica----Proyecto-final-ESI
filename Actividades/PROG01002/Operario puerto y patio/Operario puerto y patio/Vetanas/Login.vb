@@ -1,8 +1,7 @@
-﻿Public Class Form1
+﻿Public Class Login
     Private contraseñaVisible As Boolean = False
-
-    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles tiempo.Tick, user.TextChanged 'se ejecuta un reloj cada 0.5 segundos
-        fecha.Text = DateTime.Now.Day & "/" & DateTime.Now.Month & "/" & DateTime.Now.Day 'Ingresa la fecha
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Tiempo.Tick, user.TextChanged 'se ejecuta un reloj cada 0.5 segundos
+        fecha.Text = DateTime.Now.Day & "/" & DateTime.Now.Month & "/" & DateTime.Now.Year 'Ingresa la fecha
         If DateTime.Now.Second < 10 Then
             hora.Text = DateTime.Now.Hour & ":" & DateTime.Now.Minute & ":0" & DateTime.Now.Second 'Ingresa la hora
         Else
@@ -84,7 +83,19 @@
 
     Private Sub login()
         'AQUI SE REALIZA EL LOGIN, VERIFICAMOS SI EL USUARIO EXSISTE EN LA BBDD, SI ES ASI BUSCAMOS A QUE ROL PERTENECE Y ABRIMOS SU VENTANA
-        MsgBox("Login")
+
+        'POR EL MOMENTO, HASTA QUE NO SEPAMOS DONDE ESTARA LA BBDD ENTREMOS DOS USUARIOS, UNO PARA PATIO Y OTRO PARA PUERTO, si quieen lo podemos hacer con un CSV, los demas datos capas los
+        ' guardamos en la fachada hasta no tener un BBDD 
+        'USUARIO DEL PUERTO 
+        If user.Text.ToUpper = "PUERTO" And pass.Text = "123" Then 'esto luego se motifica por la verficacion real 
+            Principal.getInstancia.cargarPanel(Of MarcoPuerto)()
+        ElseIf user.Text.ToUpper = "PATIO" And pass.Text = "123" Then
+            Principal.getInstancia.cargarPanel(Of MarcoPatio)()
+        Else
+            estado.ForeColor = Color.FromArgb(178, 8, 20)
+        End If
+
+
     End Sub
 
 
@@ -92,5 +103,9 @@
         If e.KeyData = Keys.Enter Then
             login()
         End If
+    End Sub
+
+    Private Sub panelLogin_Paint(sender As Object, e As PaintEventArgs) Handles panelLogin.Paint
+
     End Sub
 End Class
