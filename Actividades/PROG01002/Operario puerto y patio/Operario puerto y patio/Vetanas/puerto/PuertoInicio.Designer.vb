@@ -37,8 +37,13 @@ Partial Class PuertoInicio
         Me.Label14 = New System.Windows.Forms.Label()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Label8 = New System.Windows.Forms.Label()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.Button4 = New System.Windows.Forms.Button()
+        Me.Label30 = New System.Windows.Forms.Label()
+        Me.Label29 = New System.Windows.Forms.Label()
+        Me.Label9 = New System.Windows.Forms.Label()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.Label17 = New System.Windows.Forms.Label()
@@ -53,11 +58,6 @@ Partial Class PuertoInicio
         Me.Label26 = New System.Windows.Forms.Label()
         Me.Label27 = New System.Windows.Forms.Label()
         Me.Label28 = New System.Windows.Forms.Label()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.Label9 = New System.Windows.Forms.Label()
-        Me.Label29 = New System.Windows.Forms.Label()
-        Me.Label30 = New System.Windows.Forms.Label()
-        Me.Button4 = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.SuspendLayout()
@@ -223,10 +223,20 @@ Partial Class PuertoInicio
         Me.Panel1.Controls.Add(Me.Label13)
         Me.Panel1.Controls.Add(Me.Label14)
         Me.Panel1.Controls.Add(Me.Label15)
-        Me.Panel1.Location = New System.Drawing.Point(18, 68)
+        Me.Panel1.Location = New System.Drawing.Point(18, 56)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(470, 499)
+        Me.Panel1.Size = New System.Drawing.Size(470, 488)
         Me.Panel1.TabIndex = 2
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label8.Location = New System.Drawing.Point(5, 157)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(293, 23)
+        Me.Label8.TabIndex = 14
+        Me.Label8.Text = "Numero de accesos al sistema"
         '
         'Button2
         '
@@ -237,7 +247,7 @@ Partial Class PuertoInicio
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button2.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button2.ForeColor = System.Drawing.Color.White
-        Me.Button2.Location = New System.Drawing.Point(12, 589)
+        Me.Button2.Location = New System.Drawing.Point(12, 562)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(211, 36)
         Me.Button2.TabIndex = 14
@@ -264,10 +274,56 @@ Partial Class PuertoInicio
         Me.Panel2.Controls.Add(Me.Label26)
         Me.Panel2.Controls.Add(Me.Label27)
         Me.Panel2.Controls.Add(Me.Label28)
-        Me.Panel2.Location = New System.Drawing.Point(598, 68)
+        Me.Panel2.Location = New System.Drawing.Point(598, 56)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(470, 499)
+        Me.Panel2.Size = New System.Drawing.Size(470, 488)
         Me.Panel2.TabIndex = 15
+        '
+        'Button4
+        '
+        Me.Button4.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.Button4.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.Button4.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.Button4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button4.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button4.ForeColor = System.Drawing.Color.White
+        Me.Button4.Location = New System.Drawing.Point(360, 443)
+        Me.Button4.Name = "Button4"
+        Me.Button4.Size = New System.Drawing.Size(65, 36)
+        Me.Button4.TabIndex = 17
+        Me.Button4.Text = "ver"
+        Me.Button4.UseVisualStyleBackColor = False
+        '
+        'Label30
+        '
+        Me.Label30.AutoSize = True
+        Me.Label30.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label30.Location = New System.Drawing.Point(4, 449)
+        Me.Label30.Name = "Label30"
+        Me.Label30.Size = New System.Drawing.Size(228, 23)
+        Me.Label30.TabIndex = 16
+        Me.Label30.Text = "Lotes creados por usted"
+        '
+        'Label29
+        '
+        Me.Label29.AutoSize = True
+        Me.Label29.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label29.Location = New System.Drawing.Point(2, 329)
+        Me.Label29.Name = "Label29"
+        Me.Label29.Size = New System.Drawing.Size(259, 23)
+        Me.Label29.TabIndex = 15
+        Me.Label29.Text = "el ultimo ingreso al sistema"
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label9.Location = New System.Drawing.Point(4, 247)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(96, 23)
+        Me.Label9.TabIndex = 14
+        Me.Label9.Text = "por usted"
         '
         'Button3
         '
@@ -278,7 +334,7 @@ Partial Class PuertoInicio
         Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button3.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button3.ForeColor = System.Drawing.Color.White
-        Me.Button3.Location = New System.Drawing.Point(361, 379)
+        Me.Button3.Location = New System.Drawing.Point(360, 379)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(65, 36)
         Me.Button3.TabIndex = 3
@@ -289,7 +345,7 @@ Partial Class PuertoInicio
         '
         Me.Label16.AutoSize = True
         Me.Label16.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label16.Location = New System.Drawing.Point(373, 319)
+        Me.Label16.Location = New System.Drawing.Point(372, 319)
         Me.Label16.Name = "Label16"
         Me.Label16.Size = New System.Drawing.Size(40, 22)
         Me.Label16.TabIndex = 13
@@ -299,7 +355,7 @@ Partial Class PuertoInicio
         '
         Me.Label17.AutoSize = True
         Me.Label17.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label17.Location = New System.Drawing.Point(373, 235)
+        Me.Label17.Location = New System.Drawing.Point(372, 235)
         Me.Label17.Name = "Label17"
         Me.Label17.Size = New System.Drawing.Size(40, 22)
         Me.Label17.TabIndex = 12
@@ -309,7 +365,7 @@ Partial Class PuertoInicio
         '
         Me.Label18.AutoSize = True
         Me.Label18.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label18.Location = New System.Drawing.Point(373, 157)
+        Me.Label18.Location = New System.Drawing.Point(372, 157)
         Me.Label18.Name = "Label18"
         Me.Label18.Size = New System.Drawing.Size(40, 22)
         Me.Label18.TabIndex = 11
@@ -319,7 +375,7 @@ Partial Class PuertoInicio
         '
         Me.Label19.AutoSize = True
         Me.Label19.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label19.Location = New System.Drawing.Point(373, 97)
+        Me.Label19.Location = New System.Drawing.Point(372, 97)
         Me.Label19.Name = "Label19"
         Me.Label19.Size = New System.Drawing.Size(40, 22)
         Me.Label19.TabIndex = 10
@@ -329,7 +385,7 @@ Partial Class PuertoInicio
         '
         Me.Label20.AutoSize = True
         Me.Label20.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label20.Location = New System.Drawing.Point(373, 53)
+        Me.Label20.Location = New System.Drawing.Point(372, 53)
         Me.Label20.Name = "Label20"
         Me.Label20.Size = New System.Drawing.Size(40, 22)
         Me.Label20.TabIndex = 9
@@ -339,7 +395,7 @@ Partial Class PuertoInicio
         '
         Me.Label21.AutoSize = True
         Me.Label21.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label21.Location = New System.Drawing.Point(4, 168)
+        Me.Label21.Location = New System.Drawing.Point(3, 168)
         Me.Label21.Name = "Label21"
         Me.Label21.Size = New System.Drawing.Size(138, 23)
         Me.Label21.TabIndex = 8
@@ -349,7 +405,7 @@ Partial Class PuertoInicio
         '
         Me.Label22.AutoSize = True
         Me.Label22.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label22.Location = New System.Drawing.Point(4, 144)
+        Me.Label22.Location = New System.Drawing.Point(3, 144)
         Me.Label22.Name = "Label22"
         Me.Label22.Size = New System.Drawing.Size(242, 23)
         Me.Label22.TabIndex = 7
@@ -359,7 +415,7 @@ Partial Class PuertoInicio
         '
         Me.Label23.AutoSize = True
         Me.Label23.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label23.Location = New System.Drawing.Point(5, 385)
+        Me.Label23.Location = New System.Drawing.Point(4, 385)
         Me.Label23.Name = "Label23"
         Me.Label23.Size = New System.Drawing.Size(260, 23)
         Me.Label23.TabIndex = 6
@@ -369,7 +425,7 @@ Partial Class PuertoInicio
         '
         Me.Label24.AutoSize = True
         Me.Label24.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label24.Location = New System.Drawing.Point(4, 306)
+        Me.Label24.Location = New System.Drawing.Point(3, 306)
         Me.Label24.Name = "Label24"
         Me.Label24.Size = New System.Drawing.Size(237, 23)
         Me.Label24.TabIndex = 5
@@ -379,7 +435,7 @@ Partial Class PuertoInicio
         '
         Me.Label25.AutoSize = True
         Me.Label25.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label25.Location = New System.Drawing.Point(4, 224)
+        Me.Label25.Location = New System.Drawing.Point(3, 224)
         Me.Label25.Name = "Label25"
         Me.Label25.Size = New System.Drawing.Size(281, 23)
         Me.Label25.TabIndex = 4
@@ -389,7 +445,7 @@ Partial Class PuertoInicio
         '
         Me.Label26.AutoSize = True
         Me.Label26.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label26.Location = New System.Drawing.Point(4, 97)
+        Me.Label26.Location = New System.Drawing.Point(3, 97)
         Me.Label26.Name = "Label26"
         Me.Label26.Size = New System.Drawing.Size(242, 23)
         Me.Label26.TabIndex = 3
@@ -409,74 +465,18 @@ Partial Class PuertoInicio
         '
         Me.Label28.AutoSize = True
         Me.Label28.Font = New System.Drawing.Font("Century Gothic", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label28.Location = New System.Drawing.Point(3, 9)
+        Me.Label28.Location = New System.Drawing.Point(2, 9)
         Me.Label28.Name = "Label28"
         Me.Label28.Size = New System.Drawing.Size(223, 28)
         Me.Label28.TabIndex = 1
         Me.Label28.Text = "Datos importantes"
-        '
-        'Label8
-        '
-        Me.Label8.AutoSize = True
-        Me.Label8.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label8.Location = New System.Drawing.Point(5, 157)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(293, 23)
-        Me.Label8.TabIndex = 14
-        Me.Label8.Text = "Numero de accesos al sistema"
-        '
-        'Label9
-        '
-        Me.Label9.AutoSize = True
-        Me.Label9.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.Location = New System.Drawing.Point(5, 247)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(96, 23)
-        Me.Label9.TabIndex = 14
-        Me.Label9.Text = "por usted"
-        '
-        'Label29
-        '
-        Me.Label29.AutoSize = True
-        Me.Label29.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label29.Location = New System.Drawing.Point(3, 329)
-        Me.Label29.Name = "Label29"
-        Me.Label29.Size = New System.Drawing.Size(259, 23)
-        Me.Label29.TabIndex = 15
-        Me.Label29.Text = "el ultimo ingreso al sistema"
-        '
-        'Label30
-        '
-        Me.Label30.AutoSize = True
-        Me.Label30.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label30.Location = New System.Drawing.Point(5, 449)
-        Me.Label30.Name = "Label30"
-        Me.Label30.Size = New System.Drawing.Size(228, 23)
-        Me.Label30.TabIndex = 16
-        Me.Label30.Text = "Lotes creados por usted"
-        '
-        'Button4
-        '
-        Me.Button4.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Me.Button4.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Me.Button4.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Me.Button4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button4.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button4.ForeColor = System.Drawing.Color.White
-        Me.Button4.Location = New System.Drawing.Point(361, 443)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(65, 36)
-        Me.Button4.TabIndex = 17
-        Me.Button4.Text = "ver"
-        Me.Button4.UseVisualStyleBackColor = False
         '
         'PuertoInicio
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(1100, 640)
+        Me.ClientSize = New System.Drawing.Size(1100, 610)
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Label1)

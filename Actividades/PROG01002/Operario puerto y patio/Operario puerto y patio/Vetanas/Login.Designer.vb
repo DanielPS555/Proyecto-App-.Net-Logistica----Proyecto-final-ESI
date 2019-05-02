@@ -24,19 +24,19 @@ Partial Class Login
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.panelLogin = New System.Windows.Forms.Panel()
+        Me.estado = New System.Windows.Forms.Label()
+        Me.ver = New System.Windows.Forms.PictureBox()
         Me.e2 = New System.Windows.Forms.Panel()
         Me.e1 = New System.Windows.Forms.Panel()
         Me.pass = New System.Windows.Forms.TextBox()
+        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.hora = New System.Windows.Forms.Label()
         Me.fecha = New System.Windows.Forms.Label()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.user = New System.Windows.Forms.TextBox()
         Me.Tiempo = New System.Windows.Forms.Timer(Me.components)
-        Me.ver = New System.Windows.Forms.PictureBox()
-        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.estado = New System.Windows.Forms.Label()
         Me.panelLogin.SuspendLayout()
         CType(Me.ver, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -58,11 +58,35 @@ Partial Class Login
         Me.panelLogin.Controls.Add(Me.PictureBox1)
         Me.panelLogin.Controls.Add(Me.Button1)
         Me.panelLogin.Controls.Add(Me.user)
+        Me.panelLogin.Dock = System.Windows.Forms.DockStyle.Fill
         Me.panelLogin.Font = New System.Drawing.Font("Century Gothic", 18.0!, System.Drawing.FontStyle.Bold)
         Me.panelLogin.Location = New System.Drawing.Point(0, 0)
         Me.panelLogin.Name = "panelLogin"
-        Me.panelLogin.Size = New System.Drawing.Size(1100, 600)
+        Me.panelLogin.Size = New System.Drawing.Size(1100, 650)
         Me.panelLogin.TabIndex = 2
+        '
+        'estado
+        '
+        Me.estado.AutoSize = True
+        Me.estado.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.estado.ForeColor = System.Drawing.Color.White
+        Me.estado.Location = New System.Drawing.Point(388, 438)
+        Me.estado.Name = "estado"
+        Me.estado.Size = New System.Drawing.Size(308, 22)
+        Me.estado.TabIndex = 13
+        Me.estado.Text = "Usuario o contraseña incorrecta "
+        '
+        'ver
+        '
+        Me.ver.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.ver.Image = Global.Operario_puerto_y_patio.My.Resources.Resources.ojo
+        Me.ver.Location = New System.Drawing.Point(751, 354)
+        Me.ver.Name = "ver"
+        Me.ver.Size = New System.Drawing.Size(34, 37)
+        Me.ver.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.ver.TabIndex = 12
+        Me.ver.TabStop = False
         '
         'e2
         '
@@ -97,11 +121,21 @@ Partial Class Login
         Me.pass.TabIndex = 1
         Me.pass.Text = "Contraseña"
         '
+        'PictureBox2
+        '
+        Me.PictureBox2.Image = Global.Operario_puerto_y_patio.My.Resources.Resources.texto
+        Me.PictureBox2.Location = New System.Drawing.Point(579, 620)
+        Me.PictureBox2.Name = "PictureBox2"
+        Me.PictureBox2.Size = New System.Drawing.Size(35, 21)
+        Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox2.TabIndex = 7
+        Me.PictureBox2.TabStop = False
+        '
         'Label3
         '
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(461, 565)
+        Me.Label3.Location = New System.Drawing.Point(467, 620)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(117, 21)
         Me.Label3.TabIndex = 6
@@ -125,6 +159,18 @@ Partial Class Login
         Me.fecha.Size = New System.Drawing.Size(0, 39)
         Me.fecha.TabIndex = 4
         '
+        'PictureBox1
+        '
+        Me.PictureBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.PictureBox1.Image = Global.Operario_puerto_y_patio.My.Resources.Resources.logo
+        Me.PictureBox1.Location = New System.Drawing.Point(435, 12)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(235, 194)
+        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox1.TabIndex = 3
+        Me.PictureBox1.TabStop = False
+        '
         'Button1
         '
         Me.Button1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
@@ -133,7 +179,7 @@ Partial Class Login
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button1.Font = New System.Drawing.Font("Century Gothic", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button1.ForeColor = System.Drawing.Color.White
-        Me.Button1.Location = New System.Drawing.Point(402, 484)
+        Me.Button1.Location = New System.Drawing.Point(402, 518)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(281, 75)
         Me.Button1.TabIndex = 2
@@ -157,56 +203,11 @@ Partial Class Login
         '
         Me.Tiempo.Interval = 500
         '
-        'ver
-        '
-        Me.ver.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.ver.Image = Global.Operario_puerto_y_patio.My.Resources.Resources.ojo
-        Me.ver.Location = New System.Drawing.Point(751, 354)
-        Me.ver.Name = "ver"
-        Me.ver.Size = New System.Drawing.Size(34, 37)
-        Me.ver.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.ver.TabIndex = 12
-        Me.ver.TabStop = False
-        '
-        'PictureBox2
-        '
-        Me.PictureBox2.Image = Global.Operario_puerto_y_patio.My.Resources.Resources.texto
-        Me.PictureBox2.Location = New System.Drawing.Point(572, 565)
-        Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(35, 21)
-        Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox2.TabIndex = 7
-        Me.PictureBox2.TabStop = False
-        '
-        'PictureBox1
-        '
-        Me.PictureBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.PictureBox1.Image = Global.Operario_puerto_y_patio.My.Resources.Resources.logo
-        Me.PictureBox1.Location = New System.Drawing.Point(435, 12)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(235, 194)
-        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox1.TabIndex = 3
-        Me.PictureBox1.TabStop = False
-        '
-        'estado
-        '
-        Me.estado.AutoSize = True
-        Me.estado.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.estado.ForeColor = System.Drawing.Color.White
-        Me.estado.Location = New System.Drawing.Point(388, 438)
-        Me.estado.Name = "estado"
-        Me.estado.Size = New System.Drawing.Size(308, 22)
-        Me.estado.TabIndex = 13
-        Me.estado.Text = "Usuario o contraseña incorrecta "
-        '
         'Login
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1100, 600)
+        Me.ClientSize = New System.Drawing.Size(1100, 650)
         Me.Controls.Add(Me.panelLogin)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "Login"
