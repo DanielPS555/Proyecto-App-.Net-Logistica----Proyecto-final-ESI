@@ -63,6 +63,16 @@ Namespace My.Resources
         '''<summary>
         '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property car() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("car", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property cerrar() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("cerrar", resourceCulture)
@@ -106,6 +116,16 @@ Namespace My.Resources
         Friend ReadOnly Property ojo_no() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("ojo_no", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property SUV() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("SUV", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property

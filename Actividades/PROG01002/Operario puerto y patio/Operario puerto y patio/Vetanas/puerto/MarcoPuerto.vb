@@ -17,14 +17,9 @@
         End If
     End Sub
 
-    Private Sub Veiculos_Click(sender As Object, e As EventArgs)
-        cargarPanel(Of PuertoInicio)()
-    End Sub
-
     Private Sub MarcoPuerto_Load(sender As Object, e As EventArgs) Handles Me.Load
         cargarPanel(Of PuertoInicio)()
         inicio.Font = New Font("Century Gothic", 15.75!, FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
-
     End Sub
 
     Private Sub botones_Click(sender As Object, e As EventArgs) Handles inicio.Click, lotes.Click, veiculos.Click
@@ -38,9 +33,14 @@
             End If
         Next
 
-        If selec.Equals(lotes) Then
-            cargarPanel(Of PuertoInicio)()
-        End If
+        Select Case selec.Name
+            Case "inicio"
+                cargarPanel(Of PuertoInicio)()
+            Case "veiculos"
+                cargarPanel(Of PuertosVeiculos)()
+            Case "lotes"
+                cargarPanel(Of PuertoLotes)()
+        End Select
 
     End Sub
 

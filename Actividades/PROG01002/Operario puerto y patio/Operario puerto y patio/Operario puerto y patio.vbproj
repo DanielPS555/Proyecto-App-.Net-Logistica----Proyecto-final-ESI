@@ -110,6 +110,30 @@
     <Compile Include="Vetanas\puerto\MarcoPuerto.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Vetanas\puerto\PuertoInicio.Designer.vb">
+      <DependentUpon>PuertoInicio.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Vetanas\puerto\PuertoInicio.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vetanas\puerto\PuertoLotes.Designer.vb">
+      <DependentUpon>PuertoLotes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Vetanas\puerto\PuertoLotes.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vetanas\puerto\PuertosVeiculos.Designer.vb">
+      <DependentUpon>PuertosVeiculos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Vetanas\puerto\PuertosVeiculos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vetanas\Ventanas comunes\ChromaPicture.Designer.vb">
+      <DependentUpon>ChromaPicture.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Vetanas\Ventanas comunes\ChromaPicture.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Principal.resx">
@@ -129,6 +153,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Vetanas\puerto\MarcoPuerto.resx">
       <DependentUpon>MarcoPuerto.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vetanas\puerto\PuertoInicio.resx">
+      <DependentUpon>PuertoInicio.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vetanas\puerto\PuertoLotes.resx">
+      <DependentUpon>PuertoLotes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vetanas\puerto\PuertosVeiculos.resx">
+      <DependentUpon>PuertosVeiculos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vetanas\Ventanas comunes\ChromaPicture.resx">
+      <DependentUpon>ChromaPicture.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -163,6 +199,9 @@
   <ItemGroup>
     <None Include="Resources\ojo_no.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Resources\car.png" />
+    <Content Include="Resources\SUV.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
