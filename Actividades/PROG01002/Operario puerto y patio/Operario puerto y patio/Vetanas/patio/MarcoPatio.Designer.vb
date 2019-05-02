@@ -41,14 +41,14 @@ Partial Class MarcoPatio
         Me.contenedorPaneles.Dock = System.Windows.Forms.DockStyle.Fill
         Me.contenedorPaneles.Location = New System.Drawing.Point(0, 38)
         Me.contenedorPaneles.Name = "contenedorPaneles"
-        Me.contenedorPaneles.Size = New System.Drawing.Size(1100, 562)
+        Me.contenedorPaneles.Size = New System.Drawing.Size(1100, 642)
         Me.contenedorPaneles.TabIndex = 2
         '
         'MarcoPatio
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1100, 600)
+        Me.ClientSize = New System.Drawing.Size(1100, 680)
         Me.Controls.Add(Me.contenedorPaneles)
         Me.Controls.Add(Me.Panel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
