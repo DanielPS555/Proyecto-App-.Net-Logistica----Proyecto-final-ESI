@@ -1,6 +1,0 @@
-mkdir_root_SistemaServidor
-cd SistemaServidor
-mkdir Backups Temp Registro
-cd Registro
-touch FechasUsuario
-#echo ":UID:FechaCreacion:FechaEliminacion">>FechasUsuario#
