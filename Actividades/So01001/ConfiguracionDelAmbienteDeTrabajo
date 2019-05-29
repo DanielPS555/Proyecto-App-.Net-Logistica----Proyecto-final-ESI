@@ -1,5 +1,5 @@
 #!/bin/bash
-carpeta="/srv/automotora"
+carpeta="/var/automotora"
 echo "Ingrese la ruta de la carpeta base de instalacion o presione enter para usar la por defecto"
 read vartemp
 if [ -n "$vartemp" ]
@@ -15,4 +15,5 @@ echo ":UID:FechaCreacion:FechaEliminacion">>FechasUsuario
 
 #Variables del entorno
 echo "export carpetaBase=$carpeta">>/etc/profile
+source /etc/profile
 
