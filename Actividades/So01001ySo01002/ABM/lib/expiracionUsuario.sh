@@ -13,8 +13,15 @@ do
 	read dato #Ingreso de informacion
 	if test -z $dato 
 	then
-		respuesta="POR DEFECTO" #salida por defecto 
-		verif=1
+		if test $1 -eq 1 #si el 1° parametro es 1 se habilitara la salida por defecto, de lo contrario estara bloqueada
+		then
+			respuesta="POR DEFECTO" #salida por defecto 
+			verif=1
+		else
+			error "No se puede usar la salida por defecto, debe ingresar un valor"
+		fi
+		
+		
 	else			
 		if test $(echo "$dato" | grep -e "^[0-9]\{1,2\}-[0-9]\{1,2\}-[1-9][0-9]\+$"|wc -l) -eq 1 #Solo permite ingresar aquelas fechas las cuales tengan el sigiente formato day-month-year
 		then

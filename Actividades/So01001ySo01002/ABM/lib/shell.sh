@@ -12,8 +12,14 @@ do
 	read dato #Ingreso de informacion
 	if test -z $dato 
 	then
-		respuesta="POR DEFECTO" #salida por defecto
-		verif=1 #rompe el bucle 
+		if test $1 -eq 1 #si el 1° parametro es 1 se habilitara la salida por defecto, de lo contrario estara bloqueada
+		then
+			respuesta="POR DEFECTO" #salida por defecto
+			verif=1 #rompe el bucle 
+		else
+			error "No se puede usar la salida por defecto, debe ingresar un valor"
+		fi		
+		
 	else
 		if test -f $dato #verifica que la ruta del archivo exista y ademas sea un archivo regular 
 		then

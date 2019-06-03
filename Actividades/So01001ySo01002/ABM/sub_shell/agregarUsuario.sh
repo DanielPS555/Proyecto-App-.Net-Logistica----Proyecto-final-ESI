@@ -37,34 +37,34 @@ do
 		error "Formato no valido " 
 	fi	
 done
-cambiarUDI #Utiliza el metodo cambiarUDI de la lib 'lib/UDI.sh' El mismo se encarga de devolvernos por medio de la variable respuesta un valor valido para el UID
-comando[0]=$respuesta #Se almacena dicho valor
+cambiarUDI '1' #Utiliza el metodo cambiarUDI de la lib 'lib/UDI.sh' El mismo se encarga de devolvernos por medio de la variable respuesta un valor valido para el UID
+comando[0]=$respuesta  #Se almacena dicho valor
 
-cambiarDT #Utiliza el metodo cambiarDT de la lib 'lib/DT.sh'. Este nos devuelve una direcion valida para la carpeta personal de usuario a crear. Se devuelve dicho valor por medio de la variable respuesta
-comando[1]=$respuesta	
+cambiarDT '1' #Utiliza el metodo cambiarDT de la lib 'lib/DT.sh'. Este nos devuelve una direcion valida para la carpeta personal de usuario a crear. Se devuelve dicho valor por medio de la variable respuesta
+comando[1]=$respuesta 	
 
-cambiarGPNuevo #Nos devuelve un grupo principal valido para el usuario
-comando[2]=$respuesta
+cambiarGPNuevo '1' #Nos devuelve un grupo principal valido para el usuario
+comando[2]=$respuesta 
 
-cambiarGS "${comando[2]}" "grS[@]" #Nos devuelve el conjunto de grupos secundarios a los que el usuario pertenece (los antiguos y los viejos)
-comando[3]=$respuesta
+cambiarGS "${comando[2]}" "grS[@]" '1' #Nos devuelve el conjunto de grupos secundarios a los que el usuario pertenece (los antiguos y los viejos)
+comando[3]=$respuesta 
 
-cambiarShell #Nos devuelve una direcion de un archivo que suponemos que es un shell 
+cambiarShell '1' #Nos devuelve una direcion de un archivo que suponemos que es un shell 
 comando[4]=$respuesta
 
-cambiarExUser #Nos devuelve una fecha valida y posterior a la actual para que el usuario expire 
+cambiarExUser '1' #Nos devuelve una fecha valida y posterior a la actual para que el usuario expire 
 comando[5]=$respuesta
 
-verifNumDias '1' #Nos devuelve el numero de dias luego de la expiracion de la cuenta previo al bloqueo en este caso (por parametro 1) 				
+verifNumDias '1' '1' #Nos devuelve el numero de dias luego de la expiracion de la cuenta previo al bloqueo en este caso (por parametro 1) 				
 comando[6]=$respuesta
 
-cambiarPass #Nos devuelve una contraseña valida (8-20 dijitos, una o mas mayusculas, etc)
+cambiarPass '1' #Nos devuelve una contraseña valida (8-20 dijitos, una o mas mayusculas, etc)
 comando[7]=$respuesta
 
-verifNumDias '2' #Nos devuelve el numero de dias por el cual la password sea valida 
+verifNumDias '2' '1' #Nos devuelve el numero de dias por el cual la password sea valida 
 comando[8]=$respuesta
 
-verifNumDias '3' #Nos devuelve el numero de dias luego de que la password expire para el bloqueo de la cuenta
+verifNumDias '3' '1' #Nos devuelve el numero de dias luego de que la password expire para el bloqueo de la cuenta
 comando[9]=$respuesta				 
 		
 echo "Lista de datos ingrezados" #Se nos lista un conjunto de datos ingrezados para la creacion del usuario 
@@ -94,16 +94,17 @@ then
 			comandoFinal="$comandoFinal ${opci[$var3]} ${comando[$var3]}" #Agrega al comando el nuevo parametro y su respectiva informacion 
 		fi	
 	done
-	useradd $(echo "$comandoFinal $usuario") >/dev/null #Crea al usuario 
+	useradd $(echo "$comandoFinal $usuario") 2> /dev/null #Crea al usuario 
 
+	passwd -x ${comando[8]} $usuario 2> /dev/null #Se establese el tipo de valides de la password 
+	passwd -i ${comando[9]} $usuario 2> /dev/null #Se establese el numero de dias luego que las password expire antes que se bloque la cuenta 
 	if ! test $(echo ${comando[7]}|grep "POR DEFECTO"|wc -l) -eq 1	#Se le asigna contraseña solamente a los usuario que la hayan ingresado y no la hayan dejado por defecto 
 	then		
 		echo "${comando[7]}" | passwd --stdin $usuario > /dev/null #Se le asigna la contraseña
  	else
 		passwd -d $usuario > /dev/null	#Se deja al usuario sin contraseña
 	fi
-	passwd -x ${comando[8]} $usuario > /dev/null #Se establese el tipo de valides de la password 
-	passwd -i ${comando[9]} $usuario > /dev/null #Se establese el numero de dias luego que las password expire antes que se bloque la cuenta 
+	
 	echo "Usuario creado con exito, resive en 'lista usuario' para comprobarlo, Toque cualquier boton para continuar" 
 	read fff 
 fi

@@ -20,17 +20,29 @@ do
 	if test -z $dato #se ejecuta si no ingreso nada 
 	then
 		if test ${#gs[@]} -eq 0 
-		then			
-			respuesta="POR DEFECTO" #si no se ha ingresado hasta ahora ningun grupo secundario se le permite ingresar el por defecto rapdiamente 
-			verif=1 #Rompe el bucle
-		else
-			error "ya ha comenzado a cargar grupos, ¿Desea dejalo por defecto?[s/n]"
-			read se
-			if test $se == 's' #Si ya a ingresado algun grupo se le pedira confirmacion antes de dejarlo por defecto
+		then	
+			if test $3 -eq 1 #si el 3° parametro es 1 se habilitara la salida por defecto, de lo contrario estara bloqueada
 			then
-				respuesta="POR DEFECTO"	
-				verif=1
+				respuesta="POR DEFECTO" #si no se ha ingresado hasta ahora ningun grupo secundario se le permite ingresar el por defecto rapdiamente 
+				verif=1 #Rompe el bucle
+			else
+				error "No se puede usar la salida por defecto, debe ingresar un valor"
+			fi			
+		else
+			if test $3 -eq 1 #si el 1° parametro es 1 se habilitara la salida por defecto, de lo contrario estara bloqueada
+			then
+				error "ya ha comenzado a cargar grupos, ¿Desea dejalo por defecto?[s/n]"
+				read se
+				if test $se == 's' #Si ya a ingresado algun grupo se le pedira confirmacion antes de dejarlo por defecto
+				then
+					respuesta="POR DEFECTO"	
+					verif=1
+				fi
+			else
+				error "Para continuar ingrese otro grupo o guardelos con 0"
 			fi
+		
+			
 		fi 
 
 	else		

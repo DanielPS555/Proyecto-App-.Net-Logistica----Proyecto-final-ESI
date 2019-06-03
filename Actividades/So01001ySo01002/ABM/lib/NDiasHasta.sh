@@ -36,8 +36,14 @@ do
 		fi
 
 	 else 		
-		respuesta="POR DEFECTO" #Salida por defecto
-		verif=1	#Se rompe el bucle 
+		if test $2 -eq 1 #si el 1° parametro es 1 se habilitara la salida por defecto, de lo contrario estara bloqueada
+		then
+			respuesta="POR DEFECTO" #Salida por defecto
+			verif=1	#Se rompe el bucle 
+		else
+			error "No se puede usar la salida por defecto, debe ingresar un valor"
+		fi		
+		
 	 fi 	
 
 done

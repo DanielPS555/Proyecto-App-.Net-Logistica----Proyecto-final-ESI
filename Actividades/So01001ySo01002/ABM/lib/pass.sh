@@ -14,8 +14,14 @@ do
 	read dato
 	if test -z $dato
 	then
-		respuesta="POR DEFECTO" #salida por defecto
-		verif=1	#Se rompe el bucle 
+		if test $1 -eq 1 #si el 1° parametro es 1 se habilitara la salida por defecto, de lo contrario estara bloqueada
+		then
+			respuesta="POR DEFECTO" #salida por defecto
+			verif=1	#Se rompe el bucle 
+		else
+			error "No se puede usar la salida por defecto, debe ingresar un valor"
+		fi
+		
 	else
 		if test $(echo $dato | grep -ie "^[a-z][a-z0-9]\{7,19\}$") && test $(echo $dato | grep -e "[A-Z]") #Solo permite ingrezar aquelos valores que tengan entre 8 a 20 caracteres, comiencen por una letra y algun caracter tengan mayuscula 
 		then
