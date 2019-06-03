@@ -9,8 +9,8 @@ ary2=($(echo ${!2}))
 
 if test ${#ary1[@]} -eq ${#ary2[@]} #Debo comrpobar el numero de elementos que tengan ambos array sea los mismos 
 then 
-	verif=0
-	while test $verif -eq 0 #Este bucle se repetira hasta que no se haya salido del menu 
+	verifMenu=0
+	while test $verifMenu -eq 0 #Este bucle se repetira hasta que no se haya salido del menu 
 	do	
 		for var1 in $(seq 0 1 $[${#ary1[@]}-1])	
 		do
@@ -23,7 +23,7 @@ then
 		then
 			if test $opcion -eq 0
 			then			
-				verif=1 # Si el numero es 0 significa que se va a salir del menu, por ende 'rompe' el while 
+				verifMenu=1 # Si el numero es 0 significa que se va a salir del menu, por ende 'rompe' el while 
 			else
 				source "${ary2[$[$opcion-1]]}" # Llama al shell script corespondiente a la opcion ingresada, no crea otro proseso 
 
