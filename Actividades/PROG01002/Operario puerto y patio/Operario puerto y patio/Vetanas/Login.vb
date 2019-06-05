@@ -73,15 +73,6 @@
     Private Sub login()
         'AQUI SE REALIZA EL LOGIN, VERIFICAMOS SI EL USUARIO EXSISTE EN LA BBDD, SI ES ASI BUSCAMOS A QUE ROL PERTENECE Y ABRIMOS SU VENTANA
 
-        'POR EL MOMENTO, HASTA QUE NO SEPAMOS DONDE ESTARA LA BBDD ENTREMOS DOS USUARIOS, UNO PARA PATIO Y OTRO PARA PUERTO, si quieen lo podemos hacer con un CSV, los demas datos capas los
-        'guardamos en la fachada hasta no tener un BBDD
-        'USUARIO DEL PUERTO 
-        If user.Text.ToUpper = "PUERTO" And pass.Text = "123" Then 'esto luego se motifica por la verficacion real 
-            Principal.getInstancia.cargarPanel(Of MarcoPuerto)()
-        ElseIf user.Text.ToUpper = "PATIO" And pass.Text = "123" Then
-            Principal.getInstancia.cargarPanel(Of MarcoPatio)()
-        Else
-            estado.ForeColor = Color.FromArgb(178, 8, 20)
-        End If
+
     End Sub
 End Class
