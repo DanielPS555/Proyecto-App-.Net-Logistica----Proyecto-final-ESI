@@ -46,8 +46,8 @@ CREATE
 CREATE
 	table trabajaen(
 	LogID_TE serial primary key,
-	Lugar integer,
-	Usuario integer,
+	Lugar integer not null,
+	Usuario integer not null,
 	Desde date NOT null,
 	Hasta date,
 	foreign key(Lugar) references lugar(IDLugar),

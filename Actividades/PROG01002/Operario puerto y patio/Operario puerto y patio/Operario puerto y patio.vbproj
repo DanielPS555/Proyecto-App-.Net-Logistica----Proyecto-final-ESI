@@ -147,6 +147,15 @@
     <Compile Include="Vetanas\Ventanas comunes\ChromaPicture.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Vetanas\Ventanas comunes\SeleccionLugar.Designer.vb">
+      <DependentUpon>SeleccionLugar.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Vetanas\Ventanas comunes\SeleccionLugar.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vetanas\Ventanas comunes\SeleccionPuerto.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Principal.resx">
@@ -187,6 +196,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Vetanas\Ventanas comunes\ChromaPicture.resx">
       <DependentUpon>ChromaPicture.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vetanas\Ventanas comunes\SeleccionLugar.resx">
+      <DependentUpon>SeleccionLugar.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

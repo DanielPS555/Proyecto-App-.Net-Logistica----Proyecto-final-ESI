@@ -43,6 +43,7 @@ Partial Class Registrar
         Me.sexCombo = New System.Windows.Forms.ComboBox()
         Me.roleList = New System.Windows.Forms.ListBox()
         Me.OkButton = New System.Windows.Forms.Button()
+        Me.CheckedListBox1 = New System.Windows.Forms.CheckedListBox()
         Me.SuspendLayout()
         '
         'userBox
@@ -77,8 +78,8 @@ Partial Class Registrar
         '
         'datePicker
         '
-        resources.ApplyResources(Me.datePicker, "datePicker")
         Me.datePicker.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        resources.ApplyResources(Me.datePicker, "datePicker")
         Me.datePicker.Name = "datePicker"
         '
         'dateLabel
@@ -133,16 +134,16 @@ Partial Class Registrar
         '
         'sexCombo
         '
-        resources.ApplyResources(Me.sexCombo, "sexCombo")
         Me.sexCombo.FormattingEnabled = True
         Me.sexCombo.Items.AddRange(New Object() {resources.GetString("sexCombo.Items"), resources.GetString("sexCombo.Items1"), resources.GetString("sexCombo.Items2")})
+        resources.ApplyResources(Me.sexCombo, "sexCombo")
         Me.sexCombo.Name = "sexCombo"
         '
         'roleList
         '
-        resources.ApplyResources(Me.roleList, "roleList")
         Me.roleList.FormattingEnabled = True
         Me.roleList.Items.AddRange(New Object() {resources.GetString("roleList.Items"), resources.GetString("roleList.Items1"), resources.GetString("roleList.Items2"), resources.GetString("roleList.Items3")})
+        resources.ApplyResources(Me.roleList, "roleList")
         Me.roleList.Name = "roleList"
         '
         'OkButton
@@ -151,10 +152,17 @@ Partial Class Registrar
         Me.OkButton.Name = "OkButton"
         Me.OkButton.UseVisualStyleBackColor = True
         '
+        'CheckedListBox1
+        '
+        Me.CheckedListBox1.FormattingEnabled = True
+        resources.ApplyResources(Me.CheckedListBox1, "CheckedListBox1")
+        Me.CheckedListBox1.Name = "CheckedListBox1"
+        '
         'Registrar
         '
         resources.ApplyResources(Me, "$this")
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.Controls.Add(Me.CheckedListBox1)
         Me.Controls.Add(Me.OkButton)
         Me.Controls.Add(Me.roleList)
         Me.Controls.Add(Me.sexCombo)
@@ -202,4 +210,5 @@ Partial Class Registrar
     Friend WithEvents sexCombo As ComboBox
     Friend WithEvents roleList As ListBox
     Friend WithEvents OkButton As Button
+    Friend WithEvents CheckedListBox1 As CheckedListBox
 End Class

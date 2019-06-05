@@ -17,7 +17,7 @@
         Return initi
     End Function
 
-    Public Sub cargarPanel(Of T As {Form, New})()
+    Public Function cargarPanel(Of T As {Form, New})() As T
 
         Dim f As Form = contenedorDePaneles.Controls.OfType(Of T).FirstOrDefault 'Nos devuelve el panel si ya estaba dentro del control del panel
 
@@ -33,8 +33,8 @@
         Else
             f.BringToFront()
         End If
-
-    End Sub
+        Return f
+    End Function
 
 
 End Class

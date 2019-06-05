@@ -23,7 +23,7 @@
         End If
     End Function
 
-    Public Function UserRegister(__ As User, ___ As String, ____ As String) As Boolean Implements ILogin.UserRegister
+    Public Function UserRegister(__ As User, ___ As String, ____ As String, _____ As List(Of Integer)) As Boolean Implements ILogin.UserRegister
         Throw New NotImplementedException()
     End Function
 End Class

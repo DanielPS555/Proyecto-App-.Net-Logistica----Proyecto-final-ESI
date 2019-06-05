@@ -2,14 +2,15 @@
 
 Public Module ODBCStuff
     <Runtime.CompilerServices.Extension()>
-    Public Sub CrearParametro(comando As Odbc.OdbcCommand, tipo As Odbc.OdbcType, nombre As String, valor As Object, nullable As Boolean)
+    Public Function CrearParametro(comando As Odbc.OdbcCommand, tipo As Odbc.OdbcType, nombre As String, valor As Object, nullable As Boolean) As Odbc.OdbcParameter
         Dim param = New Odbc.OdbcParameter With {
             .OdbcType = tipo,
             .Value = If(IsNothing(valor), DBNull.Value, valor),
             .IsNullable = nullable
         }
         comando.Parameters.Add(param)
-    End Sub
+        Return param
+    End Function
     <Runtime.CompilerServices.Extension()>
     Public Function ToInformix(bool As Boolean) As String
         Return If(bool, "'t'", "'f'")
@@ -49,7 +50,7 @@ Public Class ODBCLogin
         Dim c = Connection ' forzar a que se abra la conexión cuando se crea el primer ODBCLogin
     End Sub
 
-    Public Function UserRegister(user As User, pregunta As String, respuesta As String) As Boolean Implements ILogin.UserRegister
+    Public Function UserRegister(user As User, pregunta As String, respuesta As String, listaLugares As List(Of Integer)) As Boolean Implements ILogin.UserRegister
         Dim InsertCommand = New Odbc.OdbcCommand($"insert into usuario(nombredeusuario, hash_contra, email, fechanac, telefono, primernombre, segundonombre, primerapellido, segundoapellido, preguntasecreta, respuestasecreta, sexo, rol) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, (select idrol from rol where nombre='{User.StringFromRol(user.Rol)}'));") With {
             .Connection = Connection,
             .CommandType = CommandType.Text
@@ -67,7 +68,20 @@ Public Class ODBCLogin
         InsertCommand.CrearParametro(Odbc.OdbcType.VarChar, "preguntasecreta", pregunta, False)
         InsertCommand.CrearParametro(Odbc.OdbcType.VarChar, "respuestasecreta", respuesta, False)
         InsertCommand.CrearParametro(Odbc.OdbcType.VarChar, "sexo", user.sexo, False)
-        Return InsertCommand.ExecuteNonQuery = 1
+        If InsertCommand.ExecuteNonQuery <> 1 Then
+            Return False
+        End If
+        Dim trabajaCommand = New Odbc.OdbcCommand($"insert into trabajaen(lugar, usuario, desde) values(?, (select idusuario from usuario where nombredeusuario=?), ?);", ODBCLogin.Connection)
+        Dim lParam = trabajaCommand.CrearParametro(Odbc.OdbcType.Int, "lugar", 0, False)
+        trabajaCommand.CrearParametro(Odbc.OdbcType.VarChar, "nombre", user.Nombre, False)
+        trabajaCommand.CrearParametro(Odbc.OdbcType.Date, "desde", New Date(), False)
+        For Each i In listaLugares
+            lParam.Value = i
+            If trabajaCommand.ExecuteNonQuery() <> 1 Then
+                Return False
+            End If
+        Next
+        Return True
     End Function
 
     Public Function UserLogin(uname As String, pwd As String) As User Implements ILogin.UserLogin

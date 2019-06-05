@@ -2,7 +2,7 @@
 
 Public Interface ILogin
     Function UserLogin(uname As String, pwd As String) As User
-    Function UserRegister(user As User, pregunta As String, respuesta As String) As Boolean
+    Function UserRegister(user As User, pregunta As String, respuesta As String, lugaresTrabaja As List(Of Integer)) As Boolean
 End Interface
 
 Public Class User

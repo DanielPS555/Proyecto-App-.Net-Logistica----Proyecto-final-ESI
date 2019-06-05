@@ -75,7 +75,12 @@
         If userObj Is Nothing Then
             MsgBox("Credenciales incorrectas, intente nuevamente")
         Else
-            MsgBox($"{userObj.Nombre}, {userObj.Rol}")
+            Select Case userObj.Rol
+                Case userObj.Type.OperadorPuerto
+                    Principal.getInstancia.cargarPanel(Of SeleccionPuerto)().Usuario = userObj
+                Case Else
+                    MsgBox("No implementado aún")
+            End Select
         End If
     End Sub
 
