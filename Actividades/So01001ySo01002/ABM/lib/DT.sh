@@ -4,24 +4,18 @@
 
 cambiarDT() #Esta funcion tendra como funcion brindar una direcion valida para el directorio de trabajo la cual es ingresada por el usuario 
 {
-source lib/lib_error.sh
 verif=0
 while test $verif -eq 0
 do
-	echo "Ingrese la direccion del directorio de trabajo (Se usara el por defecto si no ingresa ninguna y esta creando un usuario)"
+	echo "Ingrese la direccion del directorio de trabajo (Si esta creando un usuaio puede dejar vacio para usar la por defecto, si esta modificandolo si lo deja vacio no se haran cambios)"
 	echo "Debe estar en /home por politicas de los administradores"
 	echo "Use una ruta absoluta" 
 	read dato
 	if test -z $dato #Ingreso de la informacion 
 	then
-		if test $1 -eq 1 #si el 1° parametro es 1 se habilitara la salida por defecto, de lo contrario estara bloqueada
-		then
-			echo "Se usara la direcion por defecto"
-			respuesta="POR DEFECTO"
-			verif=1
-		else
-			error "No se puede usar la salida por defecto, debe ingresar un valor"
-		fi
+		echo "Se usara la direcion por defecto"
+		respuesta="POR DEFECTO"
+		verif=1
 	else 		
 		if test $(echo $dato|grep '^/home'|wc -l) -eq 1 && test $(echo "$dato" | grep '^[a-zA-Z/][a-zA-Z/0-9]\+$'| wc -l ) -eq 1  #Solo se dejaran pasar aquelos directorios que esten en /home y no tengan caracteres extraños 
 		then
@@ -62,3 +56,13 @@ do
 	fi
 done
 }
+
+
+mostrarDT()
+{
+	respuesta=$(grep -e "^$1:" '/etc/passwd'|cut -d: -f6)
+}
+
+
+
+

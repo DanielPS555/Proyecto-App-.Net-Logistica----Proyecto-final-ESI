@@ -1,0 +1,6 @@
+
+listarGrupos()
+{
+	echo "lista grupos" 
+}
+

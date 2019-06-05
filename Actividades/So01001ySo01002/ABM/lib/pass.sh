@@ -4,7 +4,6 @@
 
 cambiarPass() #Verifica y devuelve una contraseña valida para el usuario 
 {
-source lib/lib_error.sh
 verif=0
 while test $verif -eq 0
 do
@@ -14,14 +13,8 @@ do
 	read dato
 	if test -z $dato
 	then
-		if test $1 -eq 1 #si el 1° parametro es 1 se habilitara la salida por defecto, de lo contrario estara bloqueada
-		then
-			respuesta="POR DEFECTO" #salida por defecto
-			verif=1	#Se rompe el bucle 
-		else
-			error "No se puede usar la salida por defecto, debe ingresar un valor"
-		fi
-		
+		respuesta="POR DEFECTO" #salida por defecto
+		verif=1	#Se rompe el bucle 
 	else
 		if test $(echo $dato | grep -ie "^[a-z][a-z0-9]\{7,19\}$") && test $(echo $dato | grep -e "[A-Z]") #Solo permite ingrezar aquelos valores que tengan entre 8 a 20 caracteres, comiencen por una letra y algun caracter tengan mayuscula 
 		then
@@ -33,4 +26,9 @@ do
 	fi 
 done
 
+}
+
+estadoPass()
+{
+	respuesta=$(passwd -S $1 | cut -d' ' -f2)
 }

@@ -8,7 +8,6 @@
 cambiarGS() 
 {
 
-source lib/lib_error.sh #carga dicha lib para usar la funcion error
 gs=($(echo ${!2})) #Array con todos los grupos secundarios 
 verif=0 #Variable para controlar el bucle while
 while test $verif -eq 0
@@ -21,28 +20,17 @@ do
 	then
 		if test ${#gs[@]} -eq 0 
 		then	
-			if test $3 -eq 1 #si el 3° parametro es 1 se habilitara la salida por defecto, de lo contrario estara bloqueada
-			then
-				respuesta="POR DEFECTO" #si no se ha ingresado hasta ahora ningun grupo secundario se le permite ingresar el por defecto rapdiamente 
-				verif=1 #Rompe el bucle
-			else
-				error "No se puede usar la salida por defecto, debe ingresar un valor"
-			fi			
+			respuesta="POR DEFECTO" #si no se ha ingresado hasta ahora ningun grupo secundario se le permite ingresar el por defecto rapdiamente 
+			verif=1 #Rompe el bucle
+						
 		else
-			if test $3 -eq 1 #si el 1° parametro es 1 se habilitara la salida por defecto, de lo contrario estara bloqueada
+			error "ya ha comenzado a cargar grupos, ¿Desea dejalo por defecto?[s/n]"
+			read se
+			if test $se == 's' #Si ya a ingresado algun grupo se le pedira confirmacion antes de dejarlo por defecto
 			then
-				error "ya ha comenzado a cargar grupos, ¿Desea dejalo por defecto?[s/n]"
-				read se
-				if test $se == 's' #Si ya a ingresado algun grupo se le pedira confirmacion antes de dejarlo por defecto
-				then
-					respuesta="POR DEFECTO"	
-					verif=1
-				fi
-			else
-				error "Para continuar ingrese otro grupo o guardelos con 0"
-			fi
-		
-			
+				respuesta="POR DEFECTO"	
+				verif=1
+			fi			
 		fi 
 
 	else		
@@ -98,6 +86,43 @@ do
 	fi
 
 done
+}
 
+mostrarGS()
+{
+	mostrarGP $1
+	cGP=$respuesta
+	gsp=()
+	cont=0
+	for var1 in $(cat /etc/gshadow)
+	do
+		if test $(echo "$var1" | cut -d: -f4 | grep -e ",$1\|$1,\|^$1$" | wc -l) -eq 1
+		then	
+			temp1="$(echo "$var1" | cut -d: -f1)"
+			if test $(echo $temp1| grep -x "$cGP"| wc -l) -eq 0
+			then
+				gsp[$cont]=$temp1
+				cont=$[$cont+1]
+			fi
+			cont=$[$cont+1]
+	
+		fi
+	
+	
+	done
+	respuesta="${gsp[@]}"
+}
+
+
+admin()
+{
+	if test $(grep -e "^$1:" /etc/gshadow | grep ":$2:"| wc -l) -eq 1
+	then
+		respuesta='s'
+	else
+		respuesta='n'
+	fi	
 
 }
+
+

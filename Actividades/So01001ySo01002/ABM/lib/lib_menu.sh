@@ -4,6 +4,7 @@
 
 menu()     #Solisita dos array, el primero con el nombre de la opcion y el segundo con la dirrecion del sub shell a llamar desde el menu 
 {
+
 ary1=($(echo ${!1})) #Pasamos el array que del parametro de la funcion a un array local 
 ary2=($(echo ${!2}))
 
@@ -18,15 +19,15 @@ then
 		done
 		echo "0) Salir"
 		echo "Ingrese la opcion: " 	
-		read opcion
-		if test $opcion -ge 0 2>/dev/null && test $opcion -le ${#ary1[@]} 2>/dev/null #Verifica que el numero ingresado sea un numero el cual este entre el 0 y el numero de elemenos de array 
+		read opcionM
+		if test $opcionM -ge 0 2>/dev/null && test $opcionM -le ${#ary1[@]} 2>/dev/null #Verifica que el numero ingresado sea un numero el cual este entre el 0 y el numero de elemenos de array 
 		then
-			if test $opcion -eq 0
+			if test $opcionM -eq 0
 			then			
 				verifMenu=1 # Si el numero es 0 significa que se va a salir del menu, por ende 'rompe' el while 
-			else
-				source "${ary2[$[$opcion-1]]}" # Llama al shell script corespondiente a la opcion ingresada, no crea otro proseso 
-
+			else					
+				${ary2[$[$opcionM-1]]} #llama a la funcion
+				verifMenu=0			
 			fi		
 		else 
 
@@ -34,6 +35,7 @@ then
 			read ff
 			clear
 		fi
+		clear
 	done 
 else
 	echo "Excepcion, los dos array tiene que tener el mismo numero de elementos" 

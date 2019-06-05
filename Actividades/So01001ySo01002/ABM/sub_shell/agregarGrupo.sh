@@ -1,2 +1,6 @@
 #!/bin/bash 
-echo "Agregar grupo"  
+
+agregarGrupo()
+{
+	echo "Agregar grupo"  
+}

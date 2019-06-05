@@ -1,0 +1,5 @@
+
+Preferencias()
+{
+	echo "preferencias" 
+}

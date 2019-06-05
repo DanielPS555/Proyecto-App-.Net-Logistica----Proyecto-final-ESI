@@ -4,7 +4,6 @@
 
 cambiarUDI() #encargado de la verificacion y devolver un codigo UDI valido 
 {
-source lib/lib_error.sh
 verif=0
 while test $verif -eq 0 
 do
@@ -22,22 +21,19 @@ do
 				error "Formato del numero invalido (debe ser de 4 cifras)"
 			fi
 		else
-				error "Ese UID ya existe, toque enter para continuar" 
-			fi
-		else 
-			if test $1 -eq 1 #si el 1° parametro es 1 se habilitara la salida por defecto, de lo contrario estara bloqueada
-			then
-				respuesta="POR DEFECTO" #Salida por defecto 
-				verif=1 #rompe el bucle 
-			else
-				error "No se puede usar la salida por defecto, debe ingresar un valor"
-			fi						
+			error "Ese UID ya existe, toque enter para continuar" 
+		fi
+		else 			
+			respuesta="POR DEFECTO" #Salida por defecto 
+			verif=1 #rompe el bucle 
+									
 	fi
 
 done
 }
 
+
 mostrarUDI() 
 {
-echo "falta" 
+	respuesta=$(grep "$1:" '/etc/passwd'|cut -d: -f3)
 }

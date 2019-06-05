@@ -4,7 +4,6 @@
 
 cambiarExUser() #Funcion encargada de devolvernos una fecha para la expiracion del usuario la cual sea valida 
 {
-source lib/lib_error.sh
 verif=0
 while test $verif -eq 0
 do
@@ -12,16 +11,9 @@ do
 	echo "El formato de la fecha a ingresar es el sigiente: day-month-year"
 	read dato #Ingreso de informacion
 	if test -z $dato 
-	then
-		if test $1 -eq 1 #si el 1° parametro es 1 se habilitara la salida por defecto, de lo contrario estara bloqueada
-		then
-			respuesta="POR DEFECTO" #salida por defecto 
-			verif=1
-		else
-			error "No se puede usar la salida por defecto, debe ingresar un valor"
-		fi
-		
-		
+	then	
+		respuesta="POR DEFECTO" #salida por defecto 
+		verif=1		
 	else			
 		if test $(echo "$dato" | grep -e "^[0-9]\{1,2\}-[0-9]\{1,2\}-[1-9][0-9]\+$"|wc -l) -eq 1 #Solo permite ingresar aquelas fechas las cuales tengan el sigiente formato day-month-year
 		then
@@ -32,7 +24,7 @@ do
 			then 					
 				if test $(date +%s) -lt $(date -d "$year-$month-$day" +%s) #Con date +%s imprime un numero unico para cada fecha el cual se puede comprar la saber si una fecha es mejor o mayor
 				then
-					respuesta="$day-$month-$year" #salida de la informacion
+					respuesta="$year-$month-$day" #salida de la informacion
 					verif=1 #Romple bucle 
 				else
 					error "Esa fecha ya paso, debera elegir una posterior a la actual" 
@@ -48,3 +40,9 @@ do
 done
 
 }
+
+mostrarExUser()
+{				
+	respuesta=$(date -d "1970-1-1 $(grep -e "^$1:" /etc/shadow|cut -d: -f8) days" +%'Y'-'%m'-'%d') 
+}
+

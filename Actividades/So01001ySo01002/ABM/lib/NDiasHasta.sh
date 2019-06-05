@@ -4,13 +4,12 @@
 
 verifNumDias() #Verifica que un numero el cual sera utilizado como numero de dias hasta un evento sea realmente un numero de no mas de 4 cifras 
 {
-source lib/lib_error.sh 
 verif=0
 while test $verif -eq 0
 do 
 	case $1	in #puede tener multiples propositos, por eso mismo se pasa dicho proposito por parametros
 	1)
-		echo "Ingrese el numero de dias luego de que expire la cuenta antes que la misma sea eliminada (No mas de 4 digitos)" 
+		echo "Ingrese el numero de dias que el sistema avisa antes que la contraseña caduque(No mas de 4 digitos)" 
 		echo "No ingrese ninguna para que use la predeterminada" 
 	;;
 
@@ -36,15 +35,29 @@ do
 		fi
 
 	 else 		
-		if test $2 -eq 1 #si el 1° parametro es 1 se habilitara la salida por defecto, de lo contrario estara bloqueada
-		then
-			respuesta="POR DEFECTO" #Salida por defecto
-			verif=1	#Se rompe el bucle 
-		else
-			error "No se puede usar la salida por defecto, debe ingresar un valor"
-		fi		
-		
+		respuesta="POR DEFECTO" #Salida por defecto
+		verif=1	#Se rompe el bucle 		
 	 fi 	
 
 done
 }
+
+mostrarNumD()
+{
+case $1 in
+	2)
+		respuesta=$(grep -e "^$2:" /etc/shadow|cut -d: -f5)
+	;;
+
+	1)
+		respuesta=$(grep -e "^$2:" /etc/shadow|cut -d: -f6)
+	;;
+
+	3)
+		respuesta=$(grep -e "^$2:" /etc/shadow|cut -d: -f7)
+	;;
+esac
+}
+
+
+
