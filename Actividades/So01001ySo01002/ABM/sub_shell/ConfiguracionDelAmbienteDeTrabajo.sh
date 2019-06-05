@@ -1,4 +1,7 @@
 #!/bin/bash
+
+ConfiguracionDelAmbienteDeTrabajo()
+{
 if test $USER = "root"
 then
 	carpeta="/var/automotora"
@@ -85,3 +88,5 @@ then
 else
 	echo "Solo el root puede realizar la instalacion " 
 fi
+
+}
