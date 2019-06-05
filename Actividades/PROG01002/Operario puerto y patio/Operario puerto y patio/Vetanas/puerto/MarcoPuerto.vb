@@ -5,9 +5,10 @@
         Dim f As Form = contenedorPaneles.Controls.OfType(Of T).FirstOrDefault 'Nos devuelve el panel si ya estaba dentro del control del panel
 
         If f Is Nothing Then 'si no existe ningun panel de este tipo ingresado, nos devuelve nada, en cuyo caso se crea uno nuevo 
-            f = New T()
-            f.TopLevel = False
-            f.FormBorderStyle = FormBorderStyle.None
+            f = New T With {
+                .TopLevel = False,
+                .FormBorderStyle = FormBorderStyle.None
+            }
             contenedorPaneles.Controls.Add(f)
             contenedorPaneles.Tag = f
             f.Show()

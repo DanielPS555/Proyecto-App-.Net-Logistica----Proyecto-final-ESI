@@ -2,7 +2,7 @@
 
 Public Interface ILogin
     Function UserLogin(uname As String, pwd As String) As User
-    Function UserRegister(user As User) As Boolean
+    Function UserRegister(user As User, pregunta As String, respuesta As String) As Boolean
 End Interface
 
 Public Class User
@@ -12,11 +12,11 @@ Public Class User
         Transportista
         Administrador
     End Enum
-    Public Function StringFromRol(rol As Type) As String
+    Public Shared Function StringFromRol(rol As Type) As String
         Dim strings As String = {"OpTrans", "OpPatio", "OpPuerto", "Admin"}.Where(Function(x) rol.Equals(RolFromString(x)))(0)
         Return strings
     End Function
-    Public Function RolFromString(rol As String) As Type
+    Public Shared Function RolFromString(rol As String) As Type
         Select Case rol
             Case "OpTrans"
                 Return Type.Transportista

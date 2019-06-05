@@ -20,9 +20,9 @@ truncate lugar;
 truncate usuario;
 
 INSERT INTO
-	usuario (nombredeusuario, hash_contra, salt, email, fechanac, telefono, primernombre, primerapellido, preguntasecreta, respuestasecreta, sexo, rol)
+	usuario (nombredeusuario, hash_contra, email, fechanac, telefono, primernombre, primerapellido, preguntasecreta, respuestasecreta, sexo, rol)
 VALUES
-	("fluffycat", "no", "no", "mmacri@presidencia.gub.ar", TO_DATE("1/1/1962", "%d/%m/%Y"), "911", "Mauricio", "Macri", "Miau?", "Miau", "M", (select idrol from rol where nombre="Admin"));
+	("fluffycat", "no", "mmacri@presidencia.gub.ar", TO_DATE("1/1/1962", "%d/%m/%Y"), "911", "Mauricio", "Macri", "Miau?", "Miau", "M", (select idrol from rol where nombre="Admin"));
 
 INSERT INTO
 	lugar (nombre, geox, geoy, creadorid, capacidad, tipo)

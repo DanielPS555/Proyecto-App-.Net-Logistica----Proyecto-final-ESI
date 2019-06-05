@@ -71,8 +71,15 @@
     End Sub
 
     Private Sub login()
-        'AQUI SE REALIZA EL LOGIN, VERIFICAMOS SI EL USUARIO EXSISTE EN LA BBDD, SI ES ASI BUSCAMOS A QUE ROL PERTENECE Y ABRIMOS SU VENTANA
+        Dim userObj = Data.Login.UserLogin(user.Text, pass.Text)
+        If userObj Is Nothing Then
+            MsgBox("Credenciales incorrectas, intente nuevamente")
+        Else
+            MsgBox($"{userObj.Nombre}, {userObj.Rol}")
+        End If
+    End Sub
 
-
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        Principal.getInstancia.cargarPanel(Of Registrar)()
     End Sub
 End Class
