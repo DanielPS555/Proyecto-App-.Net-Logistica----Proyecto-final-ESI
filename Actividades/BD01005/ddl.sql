@@ -11,10 +11,9 @@ CREATE
 	table usuario(
 	IDUsuario serial primary key,
 	NombreDeUsuario varchar(20),
-	Hash_Contra char(192) NOT null,
-	/* La contrasenia será hasheada con bcrypt */ Salt char(16) NOT null,
-	/* a ser usada al momento de hashear la contrasenia con bcrypt y cada vez 
-	que es verificada */ Email varchar(255) NOT null,
+	Hash_Contra char(60) NOT null,
+	/* La contrasenia será hasheada con bcrypt */ 
+	Email varchar(255) NOT null,
 	FechaNac date,
 	Telefono varchar(15) NOT null,
 	/* según E.164 los números telefónicos internacionales pueden ser de hasta 
@@ -47,8 +46,8 @@ CREATE
 CREATE
 	table trabajaen(
 	LogID_TE serial primary key,
-	Lugar integer,
-	Usuario integer,
+	Lugar integer not null,
+	Usuario integer not null,
 	Desde date NOT null,
 	Hasta date,
 	foreign key(Lugar) references lugar(IDLugar),

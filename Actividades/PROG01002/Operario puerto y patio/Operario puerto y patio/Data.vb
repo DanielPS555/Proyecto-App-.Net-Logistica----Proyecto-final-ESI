@@ -3,7 +3,7 @@
     Public Shared ReadOnly Property Login As ILogin
         Get
             If IsNothing(_login) Then
-                _login = New CSVLogin
+                _login = New ODBCLogin
             End If
             Return _login
         End Get

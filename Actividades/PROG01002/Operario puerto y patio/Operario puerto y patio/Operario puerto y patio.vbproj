@@ -135,11 +135,26 @@
     <Compile Include="Vetanas\puerto\PuertosVeiculos.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Vetanas\Registrar.Designer.vb">
+      <DependentUpon>Registrar.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Vetanas\Registrar.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Vetanas\Ventanas comunes\ChromaPicture.Designer.vb">
       <DependentUpon>ChromaPicture.vb</DependentUpon>
     </Compile>
     <Compile Include="Vetanas\Ventanas comunes\ChromaPicture.vb">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vetanas\Ventanas comunes\SeleccionLugar.Designer.vb">
+      <DependentUpon>SeleccionLugar.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Vetanas\Ventanas comunes\SeleccionLugar.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vetanas\Ventanas comunes\SeleccionPuerto.vb">
+      <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -170,8 +185,20 @@
     <EmbeddedResource Include="Vetanas\puerto\PuertosVeiculos.resx">
       <DependentUpon>PuertosVeiculos.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Vetanas\Registrar.en.resx">
+      <DependentUpon>Registrar.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vetanas\Registrar.es.resx">
+      <DependentUpon>Registrar.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vetanas\Registrar.resx">
+      <DependentUpon>Registrar.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Vetanas\Ventanas comunes\ChromaPicture.resx">
       <DependentUpon>ChromaPicture.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vetanas\Ventanas comunes\SeleccionLugar.resx">
+      <DependentUpon>SeleccionLugar.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

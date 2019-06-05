@@ -1,7 +1,4 @@
-﻿Imports BitLogic
-Imports Operario_puerto_y_patio
-
-Public Class CSVLogin
+﻿Public Class CSVLogin
     Implements ILogin
     Private data As New Dictionary(Of String, User)
     Public Sub New()
@@ -12,7 +9,7 @@ Public Class CSVLogin
             line = reader.ReadLine
             If line IsNot Nothing Then
                 Dim columns() As String = line.Split(",")
-                data(columns(0)) = New User(columns(0), columns(1), Integer.Parse(columns(2)))
+                data(columns(0)) = New User(columns(0), columns(1), Integer.Parse(columns(2)), "", New Date(), "", "", "", "", "", "")
             End If
         Loop
         reader.Close()
@@ -26,7 +23,7 @@ Public Class CSVLogin
         End If
     End Function
 
-    Public Function UserRegister(user As User) As Boolean Implements ILogin.UserRegister
+    Public Function UserRegister(__ As User, ___ As String, ____ As String, _____ As List(Of Integer)) As Boolean Implements ILogin.UserRegister
         Throw New NotImplementedException()
     End Function
 End Class
