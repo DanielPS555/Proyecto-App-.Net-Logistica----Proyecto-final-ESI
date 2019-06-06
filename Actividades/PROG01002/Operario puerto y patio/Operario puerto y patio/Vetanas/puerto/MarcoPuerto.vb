@@ -1,13 +1,29 @@
-﻿Public Class MarcoPuerto
+﻿Public Interface IHandlesUsers
+    Property Usuario As User
+End Interface
 
+Public Class MarcoPuerto
+    Implements IHandlesUsers
 
-    Public Sub cargarPanel(Of T As {Form, New})()
+    Private _usuario As User
+    Public Lugar As Integer
+    Public Property Usuario As User Implements IHandlesUsers.Usuario
+        Get
+            Return _usuario
+        End Get
+        Set(value As User)
+            _usuario = value
+        End Set
+    End Property
+
+    Public Function cargarPanel(Of T As {Form, New})() As T
         Dim f As Form = contenedorPaneles.Controls.OfType(Of T).FirstOrDefault 'Nos devuelve el panel si ya estaba dentro del control del panel
 
         If f Is Nothing Then 'si no existe ningun panel de este tipo ingresado, nos devuelve nada, en cuyo caso se crea uno nuevo 
-            f = New T()
-            f.TopLevel = False
-            f.FormBorderStyle = FormBorderStyle.None
+            f = New T With {
+                .TopLevel = False,
+                .FormBorderStyle = FormBorderStyle.None
+            }
             contenedorPaneles.Controls.Add(f)
             contenedorPaneles.Tag = f
             f.Show()
@@ -15,10 +31,10 @@
         Else
             f.BringToFront()
         End If
-    End Sub
+        Return f
+    End Function
 
     Private Sub MarcoPuerto_Load(sender As Object, e As EventArgs) Handles Me.Load
-        cargarPanel(Of PuertoInicio)()
         inicio.Font = New Font("Century Gothic", 15.75!, FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
     End Sub
 
@@ -35,7 +51,9 @@
 
         Select Case selec.Name
             Case "inicio"
-                cargarPanel(Of PuertoInicio)()
+                Dim pInicio = cargarPanel(Of PuertoInicio)()
+                pInicio.Lugar = Lugar
+                pInicio.Usuario = Usuario
             Case "veiculos"
                 cargarPanel(Of PuertosVeiculos)()
             Case "lotes"

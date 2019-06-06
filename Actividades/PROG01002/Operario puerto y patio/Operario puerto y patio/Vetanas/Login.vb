@@ -71,17 +71,20 @@
     End Sub
 
     Private Sub login()
-        'AQUI SE REALIZA EL LOGIN, VERIFICAMOS SI EL USUARIO EXSISTE EN LA BBDD, SI ES ASI BUSCAMOS A QUE ROL PERTENECE Y ABRIMOS SU VENTANA
-
-        'POR EL MOMENTO, HASTA QUE NO SEPAMOS DONDE ESTARA LA BBDD ENTREMOS DOS USUARIOS, UNO PARA PATIO Y OTRO PARA PUERTO, si quieen lo podemos hacer con un CSV, los demas datos capas los
-        'guardamos en la fachada hasta no tener un BBDD
-        'USUARIO DEL PUERTO 
-        If user.Text.ToUpper = "PUERTO" And pass.Text = "123" Then 'esto luego se motifica por la verficacion real 
-            Principal.getInstancia.cargarPanel(Of MarcoPuerto)()
-        ElseIf user.Text.ToUpper = "PATIO" And pass.Text = "123" Then
-            Principal.getInstancia.cargarPanel(Of MarcoPatio)()
+        Dim userObj = Data.Login.UserLogin(user.Text, pass.Text)
+        If userObj Is Nothing Then
+            MsgBox("Credenciales incorrectas, intente nuevamente")
         Else
-            estado.ForeColor = Color.FromArgb(178, 8, 20)
+            Select Case userObj.Rol
+                Case userObj.Type.OperadorPuerto
+                    Principal.getInstancia.cargarPanel(Of SeleccionPuerto)().Usuario = userObj
+                Case Else
+                    MsgBox("No implementado aún")
+            End Select
         End If
+    End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        Principal.getInstancia.cargarPanel(Of Registrar)()
     End Sub
 End Class

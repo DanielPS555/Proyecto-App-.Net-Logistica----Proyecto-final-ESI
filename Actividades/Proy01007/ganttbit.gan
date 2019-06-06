@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="PROY01007" company="" webLink="http://" view-date="2019-05-07" view-index="0" gantt-divider-location="296" resource-divider-location="367" version="2.8.10" locale="es">
+<?xml version="1.0" encoding="UTF-8"?><project name="PROY01007" company="" webLink="http://" view-date="2019-05-01" view-index="0" gantt-divider-location="296" resource-divider-location="367" version="2.8.10" locale="es">
     <description/>
-    <view zooming-state="default:3" id="gantt-chart">
+    <view zooming-state="default:2" id="gantt-chart">
         <field id="tpd4" name="Fecha de inicio" width="83" order="0"/>
         <field id="tpd3" name="Nombre" width="112" order="1"/>
         <field id="tpd5" name="Fecha de fin" width="82" order="2"/>
-        <option id="color.recent"><![CDATA[#33cc00 #cccc00 #cc0033 #33ffff]]></option>
+        <option id="color.recent"><![CDATA[#cccc00 #6699ff #cc0033 #33cc00 #006699 #33ffff]]></option>
     </view>
     <view id="resource-table">
         <field id="0" name="Nombre" width="188" order="0"/>
@@ -34,41 +34,26 @@
             <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
             <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
         </taskproperties>
-        <task id="0" name="ADA01001" color="#8cb6ce" meeting="false" start="2019-06-05" duration="4" complete="0" thirdDate="2019-04-24" thirdDate-constraint="0" expand="true"/>
+        <task id="0" name="ADA01001" color="#cccc00" meeting="false" start="2019-06-05" duration="3" complete="0" thirdDate="2019-04-24" thirdDate-constraint="0" expand="true"/>
         <task id="2" name="ADA01002" color="#33cc00" meeting="false" start="2019-04-25" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true">
             <depend id="0" type="2" difference="28" hardness="Strong"/>
         </task>
         <task id="3" name="ADA01003" color="#33cc00" meeting="false" start="2019-05-08" duration="8" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
         <task id="5" name="ADA01004" color="#33cc00" meeting="false" start="2019-04-22" duration="20" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true">
             <depend id="13" type="2" difference="6" hardness="Strong"/>
-            <depend id="16" type="2" difference="8" hardness="Strong"/>
+            <depend id="16" type="2" difference="15" hardness="Strong"/>
             <depend id="39" type="2" difference="0" hardness="Strong"/>
-            <depend id="170" type="2" difference="6" hardness="Strong"/>
+            <depend id="170" type="2" difference="16" hardness="Strong"/>
         </task>
-        <task id="13" name="ADA01005" color="#cccc00" meeting="false" start="2019-05-28" duration="2" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
-        <task id="170" name="ADA01006" color="#cccc00" meeting="false" start="2019-05-28" duration="6" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
-        <task id="16" name="ADA01007" color="#8cb6ce" meeting="false" start="2019-05-30" duration="3" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
-        <task id="17" name="ADA02008" color="#8cb6ce" meeting="false" start="2019-06-25" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
-        <task id="18" name="ADA02009" color="#8cb6ce" meeting="false" start="2019-06-25" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
-        <task id="19" name="ADA02010" color="#8cb6ce" meeting="false" start="2019-06-25" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
-        <task id="25" name="ADA02011" color="#8cb6ce" meeting="false" start="2019-06-25" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
-        <task id="26" name="ADA02012" color="#8cb6ce" meeting="false" start="2019-06-25" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
-        <task id="27" name="ADA03013" color="#8cb6ce" meeting="false" start="2019-09-04" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
-        <task id="28" name="ADA03014" color="#8cb6ce" meeting="false" start="2019-09-04" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
-        <task id="29" name="ADA03015" color="#8cb6ce" meeting="false" start="2019-09-04" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
-        <task id="36" name="ADA03016" color="#8cb6ce" meeting="false" start="2019-09-04" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
-        <task id="30" name="ADA03017" color="#8cb6ce" meeting="false" start="2019-09-04" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
-        <task id="31" name="ADA03018" color="#8cb6ce" meeting="false" start="2019-09-04" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
-        <task id="32" name="ADA03019" color="#8cb6ce" meeting="false" start="2019-09-04" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
-        <task id="33" name="ADA03020" color="#8cb6ce" meeting="false" start="2019-09-04" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
-        <task id="37" name="ADA03021" color="#8cb6ce" meeting="false" start="2019-09-04" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
-        <task id="38" name="ADA03022" color="#8cb6ce" meeting="false" start="2019-09-04" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
-        <task id="39" name="BD01001" color="#cccc00" meeting="false" start="2019-05-20" duration="10" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true">
+        <task id="13" name="ADA01005" color="#33cc00" meeting="false" start="2019-05-28" duration="2" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="170" name="ADA01006" color="#cccc00" meeting="false" start="2019-06-11" duration="6" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="16" name="ADA01007" color="#8cb6ce" meeting="false" start="2019-06-10" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="39" name="BD01001" color="#33cc00" meeting="false" start="2019-05-20" duration="10" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true">
             <depend id="40" type="2" difference="0" hardness="Strong"/>
             <depend id="41" type="2" difference="3" hardness="Strong"/>
             <depend id="57" type="2" difference="0" hardness="Strong"/>
         </task>
-        <task id="40" name="BD01002" color="#8cb6ce" meeting="false" start="2019-06-03" duration="3" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true">
+        <task id="40" name="BD01002" color="#33cc00" meeting="false" start="2019-06-03" duration="3" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true">
             <depend id="42" type="2" difference="0" hardness="Strong"/>
             <depend id="43" type="2" difference="0" hardness="Strong"/>
         </task>
@@ -76,33 +61,15 @@
             <depend id="43" type="2" difference="0" hardness="Strong"/>
         </task>
         <task id="42" name="BD01004" color="#8cb6ce" meeting="false" start="2019-06-06" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
-        <task id="43" name="BD01005" color="#8cb6ce" meeting="false" start="2019-06-07" duration="2" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true">
+        <task id="43" name="BD01005" color="#6699ff" meeting="false" start="2019-06-07" duration="2" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true">
             <depend id="44" type="2" difference="0" hardness="Strong"/>
         </task>
-        <task id="44" name="BD01006" color="#cc0033" meeting="false" start="2019-06-11" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
-        <task id="45" name="BD02007" color="#8cb6ce" meeting="false" start="2019-06-25" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
-        <task id="46" name="BD02008" color="#8cb6ce" meeting="false" start="2019-06-25" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
-        <task id="47" name="BD02009" color="#8cb6ce" meeting="false" start="2019-06-25" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
-        <task id="48" name="BD02010" color="#8cb6ce" meeting="false" start="2019-06-25" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
-        <task id="49" name="BD02011" color="#8cb6ce" meeting="false" start="2019-06-25" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
-        <task id="50" name="BD02012" color="#8cb6ce" meeting="false" start="2019-06-25" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
-        <task id="51" name="BD02013" color="#8cb6ce" meeting="false" start="2019-06-25" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
-        <task id="52" name="BD03014" color="#8cb6ce" meeting="false" start="2019-09-04" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
-        <task id="53" name="BD03015" color="#8cb6ce" meeting="false" start="2019-09-04" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
-        <task id="54" name="BD03016" color="#8cb6ce" meeting="false" start="2019-09-04" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
-        <task id="55" name="BD03017" color="#8cb6ce" meeting="false" start="2019-09-04" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="44" name="BD01006" color="#6699ff" meeting="false" start="2019-06-11" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
         <task id="56" name="PROG01001" color="#33cc00" meeting="false" start="2019-04-22" duration="2" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
-        <task id="57" name="PROG01002" color="#8cb6ce" meeting="false" start="2019-06-03" duration="13" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
-        <task id="58" name="PROG02003" color="#8cb6ce" meeting="false" start="2019-06-25" duration="4" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
-        <task id="59" name="PROG02004" color="#8cb6ce" meeting="false" start="2019-06-25" duration="8" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
-        <task id="60" name="PROG02005" color="#8cb6ce" meeting="false" start="2019-06-25" duration="8" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
-        <task id="61" name="PROG02006" color="#8cb6ce" meeting="false" start="2019-06-25" duration="2" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
-        <task id="62" name="PROG03007" color="#8cb6ce" meeting="false" start="2019-09-04" duration="4" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
-        <task id="63" name="PROG03008" color="#8cb6ce" meeting="false" start="2019-09-04" duration="2" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
-        <task id="64" name="PROG03009" color="#8cb6ce" meeting="false" start="2019-09-04" duration="2" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="57" name="PROG01002" color="#cccc00" meeting="false" start="2019-06-03" duration="13" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
         <task id="65" name="PROY01001" color="#33cc00" meeting="false" start="2019-05-01" duration="3" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
         <task id="66" name="PROY01002" color="#33cc00" meeting="false" start="2019-04-24" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
-        <task id="67" name="PROY01003" color="#8cb6ce" meeting="false" start="2019-05-09" duration="4" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="67" name="PROY01003" color="#33cc00" meeting="false" start="2019-05-28" duration="6" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
         <task id="68" name="PROY01004" color="#33ffff" meeting="false" start="2019-04-22" duration="135" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
         <task id="69" name="PROY01005" color="#33cc00" meeting="false" start="2019-04-22" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true">
             <depend id="71" type="2" difference="0" hardness="Strong"/>
@@ -116,52 +83,20 @@
         </task>
         <task id="72" name="PROY01008" color="#33cc00" meeting="false" start="2019-05-07" duration="2" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
         <task id="184" name="PROY01009" color="#33ffff" meeting="false" start="2019-04-24" duration="131" complete="0" thirdDate="2019-04-01" thirdDate-constraint="0" expand="true"/>
-        <task id="73" name="PROY02009" color="#8cb6ce" meeting="false" start="2019-06-25" duration="2" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
-        <task id="74" name="PROY02010" color="#8cb6ce" meeting="false" start="2019-06-25" duration="2" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
-        <task id="75" name="PROY02011" color="#8cb6ce" meeting="false" start="2019-06-25" duration="2" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
-        <task id="76" name="PROY02012" color="#8cb6ce" meeting="false" start="2019-06-25" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true">
-            <depend id="78" type="2" difference="0" hardness="Strong"/>
-        </task>
-        <task id="77" name="PROY02013" color="#8cb6ce" meeting="false" start="2019-06-25" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
-        <task id="78" name="PROY02014" color="#8cb6ce" meeting="false" start="2019-06-26" duration="3" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
-        <task id="81" name="PROY03016" color="#8cb6ce" meeting="false" start="2019-09-04" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true">
-            <depend id="84" type="2" difference="0" hardness="Strong"/>
-        </task>
-        <task id="82" name="PROY03017" color="#8cb6ce" meeting="false" start="2019-09-04" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
-        <task id="84" name="PROY03019" color="#8cb6ce" meeting="false" start="2019-09-05" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
-        <task id="85" name="PROY03020" color="#8cb6ce" meeting="false" start="2019-09-04" duration="2" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
-        <task id="86" name="PROY03021" color="#8cb6ce" meeting="false" start="2019-09-04" duration="2" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
         <task id="87" name="SO01001" color="#33cc00" meeting="false" start="2019-05-15" duration="2" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true">
-            <depend id="89" type="2" difference="14" hardness="Strong"/>
+            <depend id="89" type="2" difference="7" hardness="Strong"/>
         </task>
-        <task id="89" name="SO01002" color="#8cb6ce" meeting="false" start="2019-06-06" duration="6" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true">
+        <task id="89" name="SO01002" color="#cccc00" meeting="false" start="2019-05-28" duration="10" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true">
             <depend id="92" type="2" difference="0" hardness="Strong"/>
         </task>
         <task id="90" name="SO01003" color="#33cc00" meeting="false" start="2019-04-23" duration="3" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
         <task id="91" name="SO01004" color="#33cc00" meeting="false" start="2019-04-26" duration="3" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
-        <task id="92" name="SO01005" color="#8cb6ce" meeting="false" start="2019-06-14" duration="4" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
-        <task id="88" name="SO01006" color="#8cb6ce" meeting="false" start="2019-06-14" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
-        <task id="93" name="SO02007" color="#8cb6ce" meeting="false" start="2019-06-25" duration="2" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
-        <task id="94" name="SO02008" color="#8cb6ce" meeting="false" start="2019-06-25" duration="2" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
-        <task id="95" name="SO02009" color="#8cb6ce" meeting="false" start="2019-06-25" duration="2" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
-        <task id="96" name="SO02010" color="#8cb6ce" meeting="false" start="2019-06-25" duration="2" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
-        <task id="97" name="SO02011" color="#8cb6ce" meeting="false" start="2019-06-25" duration="2" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
-        <task id="98" name="SO03012" color="#8cb6ce" meeting="false" start="2019-09-04" duration="2" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
-        <task id="99" name="SO03013" color="#8cb6ce" meeting="false" start="2019-09-04" duration="2" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
-        <task id="100" name="SO03014" color="#8cb6ce" meeting="false" start="2019-09-04" duration="2" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
-        <task id="101" name="SO03015" color="#8cb6ce" meeting="false" start="2019-09-04" duration="2" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
-        <task id="102" name="SO03016" color="#8cb6ce" meeting="false" start="2019-09-04" duration="2" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="92" name="SO01005" color="#8cb6ce" meeting="false" start="2019-06-11" duration="4" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="88" name="SO01006" color="#8cb6ce" meeting="false" start="2019-06-17" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
         <task id="103" name="FEMP01001" color="#cc0033" meeting="false" start="2019-04-22" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
         <task id="104" name="FEMP01002" color="#cc0033" meeting="false" start="2019-04-22" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
         <task id="105" name="FEMP01003" color="#cc0033" meeting="false" start="2019-04-22" duration="3" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
         <task id="106" name="FEMP01004" color="#cc0033" meeting="false" start="2019-04-22" duration="2" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
-        <task id="107" name="FEMP02005" color="#8cb6ce" meeting="false" start="2019-06-25" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
-        <task id="109" name="FEMP02006" color="#8cb6ce" meeting="false" start="2019-06-25" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
-        <task id="110" name="FEMP02007" color="#8cb6ce" meeting="false" start="2019-06-25" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
-        <task id="111" name="FEMP02008" color="#8cb6ce" meeting="false" start="2019-06-25" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
-        <task id="112" name="FEMP03009" color="#8cb6ce" meeting="false" start="2019-09-04" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
-        <task id="113" name="FEMP03010" color="#8cb6ce" meeting="false" start="2019-09-04" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
-        <task id="114" name="FEMP03011" color="#8cb6ce" meeting="false" start="2019-09-04" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
         <task id="115" name="TALLER01001" color="#33cc00" meeting="false" start="2019-04-24" duration="5" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true">
             <depend id="123" type="2" difference="0" hardness="Strong"/>
         </task>
@@ -170,14 +105,48 @@
             <depend id="123" type="2" difference="0" hardness="Strong"/>
         </task>
         <task id="118" name="TALLER01003" color="#33cc00" meeting="false" start="2019-05-08" duration="5" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true">
-            <depend id="121" type="2" difference="3" hardness="Strong"/>
+            <depend id="121" type="2" difference="18" hardness="Strong"/>
         </task>
-        <task id="121" name="TALLER01004" color="#33cc00" meeting="false" start="2019-05-20" duration="5" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true">
+        <task id="121" name="TALLER01004" color="#cccc00" meeting="false" start="2019-06-10" duration="5" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true">
             <depend id="122" type="2" difference="0" hardness="Strong"/>
-            <depend id="123" type="2" difference="0" hardness="Strong"/>
+            <depend id="123" type="2" difference="1" hardness="Strong"/>
         </task>
-        <task id="122" name="TALLER01005" color="#33cc00" meeting="false" start="2019-05-27" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
-        <task id="123" name="TALLER01006" color="#cc0033" meeting="false" start="2019-05-27" duration="2" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="122" name="TALLER01005" color="#cccc00" meeting="false" start="2019-06-17" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="123" name="TALLER01006" color="#6699ff" meeting="false" start="2019-06-18" duration="2" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="185" name="1º ENTREGA" color="#cc0033" meeting="true" start="2019-06-25" duration="0" complete="0" thirdDate="2019-04-23" thirdDate-constraint="0" expand="true"/>
+        <task id="17" name="ADA02008" color="#8cb6ce" meeting="false" start="2019-06-25" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="18" name="ADA02009" color="#8cb6ce" meeting="false" start="2019-06-25" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="19" name="ADA02010" color="#8cb6ce" meeting="false" start="2019-06-25" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="25" name="ADA02011" color="#8cb6ce" meeting="false" start="2019-06-25" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="26" name="ADA02012" color="#8cb6ce" meeting="false" start="2019-06-25" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="45" name="BD02007" color="#8cb6ce" meeting="false" start="2019-06-25" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="46" name="BD02008" color="#8cb6ce" meeting="false" start="2019-06-25" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="47" name="BD02009" color="#8cb6ce" meeting="false" start="2019-06-25" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="48" name="BD02010" color="#8cb6ce" meeting="false" start="2019-06-25" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="49" name="BD02011" color="#8cb6ce" meeting="false" start="2019-06-25" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="50" name="BD02012" color="#8cb6ce" meeting="false" start="2019-06-25" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="51" name="BD02013" color="#8cb6ce" meeting="false" start="2019-06-25" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="58" name="PROG02003" color="#8cb6ce" meeting="false" start="2019-06-25" duration="4" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="59" name="PROG02004" color="#8cb6ce" meeting="false" start="2019-06-25" duration="8" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="60" name="PROG02005" color="#8cb6ce" meeting="false" start="2019-06-25" duration="8" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="61" name="PROG02006" color="#8cb6ce" meeting="false" start="2019-06-25" duration="2" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="73" name="PROY02009" color="#8cb6ce" meeting="false" start="2019-06-25" duration="2" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="74" name="PROY02010" color="#8cb6ce" meeting="false" start="2019-06-25" duration="2" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="75" name="PROY02011" color="#8cb6ce" meeting="false" start="2019-06-25" duration="2" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="76" name="PROY02012" color="#8cb6ce" meeting="false" start="2019-06-25" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true">
+            <depend id="78" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="77" name="PROY02013" color="#8cb6ce" meeting="false" start="2019-06-25" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="78" name="PROY02014" color="#8cb6ce" meeting="false" start="2019-06-26" duration="3" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="93" name="SO02007" color="#8cb6ce" meeting="false" start="2019-06-25" duration="2" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="94" name="SO02008" color="#8cb6ce" meeting="false" start="2019-06-25" duration="2" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="95" name="SO02009" color="#8cb6ce" meeting="false" start="2019-06-25" duration="2" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="96" name="SO02010" color="#8cb6ce" meeting="false" start="2019-06-25" duration="2" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="97" name="SO02011" color="#8cb6ce" meeting="false" start="2019-06-25" duration="2" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="107" name="FEMP02005" color="#8cb6ce" meeting="false" start="2019-06-25" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="109" name="FEMP02006" color="#8cb6ce" meeting="false" start="2019-06-25" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="110" name="FEMP02007" color="#8cb6ce" meeting="false" start="2019-06-25" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="111" name="FEMP02008" color="#8cb6ce" meeting="false" start="2019-06-25" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
         <task id="124" name="TALLER02007" color="#8cb6ce" meeting="false" start="2019-06-25" duration="2" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
         <task id="125" name="TALLER02008" color="#8cb6ce" meeting="false" start="2019-06-25" duration="2" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
         <task id="126" name="TALLER02009" color="#8cb6ce" meeting="false" start="2019-06-25" duration="2" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
@@ -187,6 +156,39 @@
         <task id="131" name="TALLER02013" color="#8cb6ce" meeting="false" start="2019-06-25" duration="2" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
         <task id="132" name="TALLER02014" color="#8cb6ce" meeting="false" start="2019-06-25" duration="2" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
         <task id="133" name="TALLER02015" color="#8cb6ce" meeting="false" start="2019-06-25" duration="2" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="189" name="2º ENTREGA" color="#cc0033" meeting="true" start="2019-09-04" duration="0" complete="0" thirdDate="2019-05-20" thirdDate-constraint="0" expand="true"/>
+        <task id="27" name="ADA03013" color="#8cb6ce" meeting="false" start="2019-09-04" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="28" name="ADA03014" color="#8cb6ce" meeting="false" start="2019-09-04" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="29" name="ADA03015" color="#8cb6ce" meeting="false" start="2019-09-04" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="36" name="ADA03016" color="#8cb6ce" meeting="false" start="2019-09-04" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="30" name="ADA03017" color="#8cb6ce" meeting="false" start="2019-09-04" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="31" name="ADA03018" color="#8cb6ce" meeting="false" start="2019-09-04" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="32" name="ADA03019" color="#8cb6ce" meeting="false" start="2019-09-04" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="33" name="ADA03020" color="#8cb6ce" meeting="false" start="2019-09-04" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="37" name="ADA03021" color="#8cb6ce" meeting="false" start="2019-09-04" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="38" name="ADA03022" color="#8cb6ce" meeting="false" start="2019-09-04" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="52" name="BD03014" color="#8cb6ce" meeting="false" start="2019-09-04" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="53" name="BD03015" color="#8cb6ce" meeting="false" start="2019-09-04" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="54" name="BD03016" color="#8cb6ce" meeting="false" start="2019-09-04" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="55" name="BD03017" color="#8cb6ce" meeting="false" start="2019-09-04" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="62" name="PROG03007" color="#8cb6ce" meeting="false" start="2019-09-04" duration="4" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="63" name="PROG03008" color="#8cb6ce" meeting="false" start="2019-09-04" duration="2" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="64" name="PROG03009" color="#8cb6ce" meeting="false" start="2019-09-04" duration="2" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="81" name="PROY03016" color="#8cb6ce" meeting="false" start="2019-09-04" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true">
+            <depend id="84" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="82" name="PROY03017" color="#8cb6ce" meeting="false" start="2019-09-04" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="84" name="PROY03019" color="#8cb6ce" meeting="false" start="2019-09-05" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="85" name="PROY03020" color="#8cb6ce" meeting="false" start="2019-09-04" duration="2" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="86" name="PROY03021" color="#8cb6ce" meeting="false" start="2019-09-04" duration="2" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="98" name="SO03012" color="#8cb6ce" meeting="false" start="2019-09-04" duration="2" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="99" name="SO03013" color="#8cb6ce" meeting="false" start="2019-09-04" duration="2" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="100" name="SO03014" color="#8cb6ce" meeting="false" start="2019-09-04" duration="2" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="101" name="SO03015" color="#8cb6ce" meeting="false" start="2019-09-04" duration="2" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="102" name="SO03016" color="#8cb6ce" meeting="false" start="2019-09-04" duration="2" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="112" name="FEMP03009" color="#8cb6ce" meeting="false" start="2019-09-04" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="113" name="FEMP03010" color="#8cb6ce" meeting="false" start="2019-09-04" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="114" name="FEMP03011" color="#8cb6ce" meeting="false" start="2019-09-04" duration="1" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
         <task id="134" name="TALLER03016" color="#8cb6ce" meeting="false" start="2019-09-04" duration="2" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
         <task id="135" name="TALLER03017" color="#8cb6ce" meeting="false" start="2019-09-04" duration="2" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
         <task id="136" name="TALLER03018" color="#8cb6ce" meeting="false" start="2019-09-04" duration="2" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
@@ -196,6 +198,7 @@
         <task id="140" name="TALLER03022" color="#8cb6ce" meeting="false" start="2019-09-04" duration="2" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
         <task id="141" name="TALLER03023" color="#8cb6ce" meeting="false" start="2019-09-04" duration="2" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
         <task id="142" name="TALLER03024" color="#8cb6ce" meeting="false" start="2019-09-04" duration="2" complete="0" thirdDate="2019-04-22" thirdDate-constraint="0" expand="true"/>
+        <task id="192" name="3º ENTREGA" color="#cc0033" meeting="true" start="2019-10-25" duration="0" complete="0" thirdDate="2019-04-17" thirdDate-constraint="0" expand="true"/>
     </tasks>
     <resources>
         <resource id="0" name="Leonardo Couto" function="Default:1" contacts="-" phone="-"/>
@@ -226,44 +229,43 @@
         <allocation task-id="115" resource-id="0" function="Default:1" responsible="true" load="100.0"/>
         <allocation task-id="116" resource-id="0" function="Default:1" responsible="true" load="100.0"/>
         <allocation task-id="118" resource-id="0" function="Default:1" responsible="true" load="100.0"/>
-        <allocation task-id="121" resource-id="0" function="Default:1" responsible="true" load="80.0"/>
-        <allocation task-id="122" resource-id="0" function="Default:1" responsible="true" load="100.0"/>
+        <allocation task-id="121" resource-id="0" function="Default:1" responsible="true" load="50.0"/>
+        <allocation task-id="122" resource-id="0" function="Default:1" responsible="true" load="50.0"/>
         <allocation task-id="0" resource-id="0" function="Default:1" responsible="true" load="50.0"/>
         <allocation task-id="16" resource-id="0" function="Default:1" responsible="false" load="20.0"/>
-        <allocation task-id="57" resource-id="0" function="Default:1" responsible="false" load="25.0"/>
         <allocation task-id="170" resource-id="0" function="Default:1" responsible="true" load="50.0"/>
+        <allocation task-id="13" resource-id="0" function="Default:1" responsible="false" load="50.0"/>
+        <allocation task-id="67" resource-id="0" function="Default:1" responsible="true" load="50.0"/>
+        <allocation task-id="123" resource-id="0" function="Default:1" responsible="true" load="50.0"/>
         <allocation task-id="3" resource-id="1" function="Default:1" responsible="true" load="100.0"/>
-        <allocation task-id="13" resource-id="1" function="Default:1" responsible="true" load="65.0"/>
+        <allocation task-id="13" resource-id="1" function="Default:1" responsible="true" load="50.0"/>
         <allocation task-id="16" resource-id="1" function="Default:1" responsible="true" load="20.0"/>
-        <allocation task-id="57" resource-id="1" function="Default:1" responsible="false" load="25.0"/>
         <allocation task-id="42" resource-id="1" function="Default:1" responsible="true" load="75.0"/>
         <allocation task-id="121" resource-id="1" function="Default:1" responsible="false" load="20.0"/>
         <allocation task-id="170" resource-id="1" function="Default:1" responsible="false" load="35.0"/>
         <allocation task-id="39" resource-id="2" function="Default:1" responsible="true" load="85.0"/>
         <allocation task-id="72" resource-id="2" function="Default:1" responsible="true" load="100.0"/>
-        <allocation task-id="170" resource-id="2" function="Default:1" responsible="false" load="15.0"/>
         <allocation task-id="90" resource-id="2" function="Default:1" responsible="true" load="100.0"/>
         <allocation task-id="91" resource-id="2" function="Default:1" responsible="true" load="100.0"/>
-        <allocation task-id="57" resource-id="2" function="Default:1" responsible="false" load="25.0"/>
-        <allocation task-id="89" resource-id="2" function="Default:1" responsible="false" load="25.0"/>
-        <allocation task-id="40" resource-id="2" function="Default:1" responsible="true" load="60.0"/>
-        <allocation task-id="41" resource-id="2" function="Default:1" responsible="true" load="50.0"/>
+        <allocation task-id="57" resource-id="2" function="Default:1" responsible="false" load="70.0"/>
+        <allocation task-id="40" resource-id="2" function="Default:1" responsible="true" load="30.0"/>
+        <allocation task-id="41" resource-id="2" function="Default:1" responsible="true" load="30.0"/>
         <allocation task-id="70" resource-id="2" function="Default:1" responsible="true" load="100.0"/>
         <allocation task-id="65" resource-id="2" function="Default:1" responsible="true" load="100.0"/>
-        <allocation task-id="67" resource-id="2" function="Default:1" responsible="true" load="100.0"/>
-        <allocation task-id="88" resource-id="2" function="Default:1" responsible="true" load="50.0"/>
+        <allocation task-id="43" resource-id="2" function="Default:1" responsible="true" load="20.0"/>
+        <allocation task-id="44" resource-id="2" function="Default:1" responsible="true" load="5.0"/>
         <allocation task-id="2" resource-id="3" function="Default:1" responsible="true" load="35.0"/>
         <allocation task-id="5" resource-id="3" function="Default:1" responsible="true" load="60.0"/>
         <allocation task-id="66" resource-id="3" function="Default:1" responsible="true" load="35.0"/>
         <allocation task-id="68" resource-id="3" function="Default:1" responsible="true" load="2.0"/>
         <allocation task-id="69" resource-id="3" function="Default:1" responsible="true" load="35.0"/>
         <allocation task-id="71" resource-id="3" function="Default:1" responsible="true" load="35.0"/>
-        <allocation task-id="92" resource-id="3" function="Default:1" responsible="true" load="70.0"/>
+        <allocation task-id="92" resource-id="3" function="Default:1" responsible="true" load="65.0"/>
         <allocation task-id="39" resource-id="3" function="Default:1" responsible="false" load="15.0"/>
         <allocation task-id="184" resource-id="3" function="Default:1" responsible="true" load="3.0"/>
-        <allocation task-id="57" resource-id="3" function="Default:1" responsible="true" load="25.0"/>
-        <allocation task-id="43" resource-id="3" function="Default:1" responsible="true" load="20.0"/>
+        <allocation task-id="57" resource-id="3" function="Default:1" responsible="true" load="30.0"/>
         <allocation task-id="89" resource-id="3" function="Default:1" responsible="true" load="50.0"/>
+        <allocation task-id="88" resource-id="3" function="Default:1" responsible="true" load="10.0"/>
         <allocation task-id="13" resource-id="4" function="1" responsible="false" load="1.0"/>
         <allocation task-id="39" resource-id="4" function="1" responsible="false" load="1.0"/>
         <allocation task-id="72" resource-id="4" function="1" responsible="false" load="1.0"/>
@@ -291,6 +293,7 @@
         <allocation task-id="70" resource-id="8" function="1" responsible="false" load="1.0"/>
         <allocation task-id="71" resource-id="9" function="1" responsible="false" load="1.0"/>
         <allocation task-id="57" resource-id="11" function="1" responsible="false" load="1.0"/>
+        <allocation task-id="123" resource-id="12" function="1" responsible="false" load="1.0"/>
         <allocation task-id="68" resource-id="13" function="1" responsible="false" load="1.0"/>
         <allocation task-id="69" resource-id="13" function="1" responsible="false" load="1.0"/>
         <allocation task-id="87" resource-id="14" function="1" responsible="false" load="1.0"/>
@@ -319,6 +322,7 @@
         <allocation task-id="122" resource-id="17" function="3" responsible="false" load="1.0"/>
         <allocation task-id="0" resource-id="17" function="3" responsible="false" load="1.0"/>
         <allocation task-id="16" resource-id="17" function="3" responsible="false" load="1.0"/>
+        <allocation task-id="123" resource-id="17" function="3" responsible="false" load="1.0"/>
         <allocation task-id="39" resource-id="18" function="3" responsible="false" load="1.0"/>
         <allocation task-id="72" resource-id="18" function="3" responsible="false" load="1.0"/>
         <allocation task-id="170" resource-id="18" function="3" responsible="false" load="1.0"/>
