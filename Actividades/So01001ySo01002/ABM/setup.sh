@@ -12,7 +12,7 @@ source lib/shell.sh
 source lib/UDI.sh
 source ./sub_shell/agregarUsuario.sh 
 source ./sub_shell/ModificarUsuario.sh 
-source ./sub_shell/eliminarUsuario.sh 
+source ./sub_shell/eliminarUsuario.sh
 source ./sub_shell/listarUsuarios.sh 
 source ./sub_shell/agregarGrupo.sh 
 source ./sub_shell/ModificarGrupo.sh 
@@ -22,6 +22,7 @@ source ./sub_shell/Preferencias.sh
 source ./sub_shell/ConfiguracionDelAmbienteDeTrabajo.sh 
 
 respuesta="" #El dato pasado por los return solo puede ser numerico, entonces utilizamos una variable externa donde se cargen las salidas, como si fuera un $? pero con mayor capasidad 
+#respuestaA=() #Lo mismo que en respuesta solo que para arrays
 
 echo "   _____________________________________________  "
 echo "   |                                           | "
@@ -34,6 +35,6 @@ echo ""
 		
 nombres=('Agregar_usuario' 'Modificar_usuarios' 'Eliminar_usuarios' 'Listar_usuarios' 'Agregar_grupo' 'editar_grupo' 'eliminar_grupo' 'Listar_grupo' 'Editar_preferencias' 'Instalar')
 
-direcionesSetUp=('agregarUsuario' 'ModificarUsuario' 'eliminarUsuario' 'listarUsuarios' 'agregarGrupo' 'ModificarGrupo' 'EliminarGrupo' 'listarGrupos' 'Preferencias' 'ConfiguracionDelAmbienteDeTrabajo')
+direcionesSetUp=('agregarUsuario' 'ModificarUsuario' 'eliminarUsuarios' 'listarUsuarios' 'agregarGrupo' 'ModificarGrupo' 'EliminarGrupo' 'listarGrupos' 'Preferencias' 'ConfiguracionDelAmbienteDeTrabajo')
 
 menu 'nombres[@]' 'direcionesSetUp[@]'

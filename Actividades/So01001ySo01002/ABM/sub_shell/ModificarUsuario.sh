@@ -430,20 +430,32 @@ ModificarUsuario(){
 	do
 		echo "Por favor ingrese el nombre del usuario que va a modificar"  
 		read dato
-		if test $(grep "^$dato:x:[1-9][0-9]\{3\}:*" '/etc/passwd'|wc -l) -ne 0 
-		then
-			ModUsuario=$dato
-			verifM=1
+		if ! test -z $dato
+			then
+			if test $(grep "^$dato:x:[1-9][0-9]\{3\}:*" '/etc/passwd'|wc -l) -ne 0 
+			then
+				ModUsuario=$dato
+				verifM=1
+			else
+				error "Dicho usuario no existe en el sistema" 
+			fi
 		else
-			error "Dicho usuario no existe en el sistema" 
+			verifM=2
 		fi
 	done
-	eu1=('Modificar_el_UID' 'Modificar_el_Directorio_de_trabajo' 'Modificar_los_Grupo_secundario' 'Modificar_el_shell_de_inicio' 'Modificar_la_fecha_de_expiracion_del_usuario' 'Modificar_el_N°_dias_de_advertencia' 'Modificar_la_password_del_usuario' 'Modificar_el_N°_dias_de_valides_de_la_password' 'Modificar_el_Ndias_antes_del_bloque_luego_que_expira_la_password' 'bloquear/desbloquear')
-	eu2=('Mod_UID' 'Mod_DT' 'Mod_GS' 'Mod_shell' 'Mod_ExU' 'Mod_NDias1' 'Mod_pass' 'Mod_NDias2' 'Mod_NDias3' 'Mod_BUlock')	
+	if test $verifM -eq 1
+	then
+		eu1=('Modificar_el_UID' 'Modificar_el_Directorio_de_trabajo' 'Modificar_los_Grupo_secundario' 'Modificar_el_shell_de_inicio' 'Modificar_la_fecha_de_expiracion_del_usuario' 'Modificar_el_N°_dias_de_advertencia' 'Modificar_la_password_del_usuario' 'Modificar_el_N°_dias_de_valides_de_la_password' 'Modificar_el_Ndias_antes_del_bloque_luego_que_expira_la_password' 'bloquear/desbloquear')
+		eu2=('Mod_UID' 'Mod_DT' 'Mod_GS' 'Mod_shell' 'Mod_ExU' 'Mod_NDias1' 'Mod_pass' 'Mod_NDias2' 'Mod_NDias3' 'Mod_BUlock')	
 	
-	menu 'eu1[@]' 'eu2[@]'	
+		menu 'eu1[@]' 'eu2[@]'	
+		
+	else
+		echo "Operacion cancelada,Toque cualquier boton para continuar"
+		read ff
+	fi
 	ary1=(${nombres[@]})
-	ary2=(${direcionesSetUp[@]})
+		ary2=(${direcionesSetUp[@]})
 }
 
 
