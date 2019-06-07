@@ -1,4 +1,6 @@
-﻿Public Class Registrar
+﻿Imports Operario_puerto_y_patio.Data
+
+Public Class Registrar
     Private Sub OkButton_Click(sender As Object, e As EventArgs) Handles OkButton.Click
         Dim nombres() As String = If(nombresBox.Text.Contains(" "), nombresBox.Text.Split(" "), {nombresBox.Text, Nothing})
         Dim apellidos() As String = If(apellidosBox.Text.Contains(" "), apellidosBox.Text.Split(" "), {apellidosBox.Text, Nothing})

@@ -1,4 +1,6 @@
-﻿Public Class PuertoInicio
+﻿Imports Operario_puerto_y_patio.Data
+
+Public Class PuertoInicio
     Implements IHandlesUsers
     Private _usuario As User
     Public Lugar As String

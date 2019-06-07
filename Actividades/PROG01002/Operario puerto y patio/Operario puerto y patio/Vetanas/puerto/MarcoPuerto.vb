@@ -1,4 +1,6 @@
-﻿Public Interface IHandlesUsers
+﻿Imports Operario_puerto_y_patio.Data
+
+Public Interface IHandlesUsers
     Property Usuario As User
 End Interface
 
@@ -55,7 +57,9 @@ Public Class MarcoPuerto
                 pInicio.Lugar = Lugar
                 pInicio.Usuario = Usuario
             Case "veiculos"
-                cargarPanel(Of PuertosVeiculos)()
+                Dim pVeiculos = cargarPanel(Of PuertosVeiculos)()
+                pVeiculos.lugar = Lugar
+                pVeiculos.usuario = Usuario
             Case "lotes"
                 cargarPanel(Of PuertoLotes)()
         End Select

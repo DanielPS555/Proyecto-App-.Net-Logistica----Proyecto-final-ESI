@@ -1,4 +1,5 @@
 ﻿Imports System.Windows.Forms
+Imports Operario_puerto_y_patio.Data
 
 Public Module ODBCStuff
     <Runtime.CompilerServices.Extension()>
@@ -49,6 +50,21 @@ Public Class ODBCLogin
     Public Sub New()
         Dim c = Connection ' forzar a que se abra la conexión cuando se crea el primer ODBCLogin
     End Sub
+
+    Public Function VehicleAdd(vehicle As Data.Vehiculo) As Boolean Implements ILogin.VehicleAdd
+        Dim insCommand = Connection.CreateCommand()
+        insCommand.CommandText = "insert into vehiculo(vin, marca, modelo, color, tipo, anio, fueradesistema, clientenombre, usuarioingresa, puertoarriba) values(?, ?, ?, ?, ?, ?, 'f', ?, (select idusuario from usuario where nombredeusuario=?), ?);"
+        insCommand.CrearParametro(Odbc.OdbcType.Char, "VIN", vehicle.VIN, False)
+        insCommand.CrearParametro(Odbc.OdbcType.VarChar, "Marca", vehicle.marca, False)
+        insCommand.CrearParametro(Odbc.OdbcType.VarChar, "Modelo", vehicle.modelo, False)
+        insCommand.CrearParametro(Odbc.OdbcType.Int, "color", vehicle.color.ToArgb, False)
+        insCommand.CrearParametro(Odbc.OdbcType.VarChar, "tipo", vehicle.tipo, False)
+        insCommand.CrearParametro(Odbc.OdbcType.Int, "anio", vehicle.año, False)
+        insCommand.CrearParametro(Odbc.OdbcType.VarChar, "cliente", vehicle.comprador, False)
+        insCommand.CrearParametro(Odbc.OdbcType.VarChar, "Usuario", vehicle.usuarioIngresa.Nombre, False)
+        insCommand.CrearParametro(Odbc.OdbcType.Int, "lugar", vehicle.lugar, False)
+        Return insCommand.ExecuteNonQuery = 1
+    End Function
 
     Public Function UserRegister(user As User, pregunta As String, respuesta As String, listaLugares As List(Of Integer)) As Boolean Implements ILogin.UserRegister
         Dim InsertCommand = New Odbc.OdbcCommand($"insert into usuario(nombredeusuario, hash_contra, email, fechanac, telefono, primernombre, segundonombre, primerapellido, segundoapellido, preguntasecreta, respuestasecreta, sexo, rol) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, (select idrol from rol where nombre='{User.StringFromRol(user.Rol)}'));") With {

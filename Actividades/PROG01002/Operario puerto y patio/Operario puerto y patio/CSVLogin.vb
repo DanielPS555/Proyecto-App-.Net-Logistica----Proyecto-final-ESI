@@ -1,4 +1,7 @@
-﻿Public Class CSVLogin
+﻿Imports Operario_puerto_y_patio
+Imports Operario_puerto_y_patio.Data
+
+Public Class CSVLogin
     Implements ILogin
     Private data As New Dictionary(Of String, User)
     Public Sub New()
@@ -24,6 +27,10 @@
     End Function
 
     Public Function UserRegister(__ As User, ___ As String, ____ As String, _____ As List(Of Integer)) As Boolean Implements ILogin.UserRegister
+        Throw New NotImplementedException()
+    End Function
+
+    Public Function VehicleAdd(vehiculo As Vehiculo) As Boolean Implements ILogin.VehicleAdd
         Throw New NotImplementedException()
     End Function
 End Class

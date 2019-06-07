@@ -33,8 +33,12 @@ Partial Class PuertosVeiculos
         Me.ColorButton = New System.Windows.Forms.Button()
         Me.typeComBox = New System.Windows.Forms.ComboBox()
         Me.tipoLabel = New System.Windows.Forms.Label()
-        Me.ChromaPicture1 = New Operario_puerto_y_patio.ChromaPicture()
         Me.Button1 = New System.Windows.Forms.Button()
+        Me.clienteImporta = New System.Windows.Forms.TextBox()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.ChromaPicture1 = New Operario_puerto_y_patio.ChromaPicture()
+        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'vinLabel
@@ -135,13 +139,6 @@ Partial Class PuertosVeiculos
         Me.tipoLabel.TabIndex = 10
         Me.tipoLabel.Text = "Tipo"
         '
-        'ChromaPicture1
-        '
-        Me.ChromaPicture1.Location = New System.Drawing.Point(399, 9)
-        Me.ChromaPicture1.Name = "ChromaPicture1"
-        Me.ChromaPicture1.Size = New System.Drawing.Size(500, 500)
-        Me.ChromaPicture1.TabIndex = 11
-        '
         'Button1
         '
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
@@ -153,12 +150,47 @@ Partial Class PuertosVeiculos
         Me.Button1.Text = "Agregar"
         Me.Button1.UseVisualStyleBackColor = True
         '
+        'clienteImporta
+        '
+        Me.clienteImporta.Location = New System.Drawing.Point(293, 84)
+        Me.clienteImporta.Name = "clienteImporta"
+        Me.clienteImporta.Size = New System.Drawing.Size(100, 20)
+        Me.clienteImporta.TabIndex = 13
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(206, 84)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(76, 23)
+        Me.Label1.TabIndex = 14
+        Me.Label1.Text = "Cliente"
+        '
+        'ChromaPicture1
+        '
+        Me.ChromaPicture1.Location = New System.Drawing.Point(399, 9)
+        Me.ChromaPicture1.Name = "ChromaPicture1"
+        Me.ChromaPicture1.Size = New System.Drawing.Size(500, 500)
+        Me.ChromaPicture1.TabIndex = 11
+        '
+        'DataGridView1
+        '
+        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView1.Location = New System.Drawing.Point(15, 206)
+        Me.DataGridView1.Name = "DataGridView1"
+        Me.DataGridView1.Size = New System.Drawing.Size(378, 292)
+        Me.DataGridView1.TabIndex = 15
+        '
         'PuertosVeiculos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(1100, 640)
+        Me.Controls.Add(Me.DataGridView1)
+        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.clienteImporta)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.ChromaPicture1)
         Me.Controls.Add(Me.tipoLabel)
@@ -175,6 +207,7 @@ Partial Class PuertosVeiculos
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "PuertosVeiculos"
         Me.Text = "PuertosVeiculos"
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -193,4 +226,7 @@ Partial Class PuertosVeiculos
     Friend WithEvents tipoLabel As Label
     Friend WithEvents ChromaPicture1 As ChromaPicture
     Friend WithEvents Button1 As Button
+    Friend WithEvents clienteImporta As TextBox
+    Friend WithEvents Label1 As Label
+    Friend WithEvents DataGridView1 As DataGridView
 End Class
