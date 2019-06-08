@@ -33,4 +33,8 @@ Public Class CSVLogin
     Public Function VehicleAdd(vehiculo As Vehiculo) As Boolean Implements ILogin.VehicleAdd
         Throw New NotImplementedException()
     End Function
+
+    Public Function UserDisconnect(user As User) As Boolean Implements ILogin.UserDisconnect
+        Throw New NotImplementedException()
+    End Function
 End Class

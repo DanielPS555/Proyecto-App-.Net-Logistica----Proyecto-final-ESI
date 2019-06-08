@@ -1,5 +1,10 @@
 ﻿Public Class Principal
     Private Shared initi As Principal
+    Public ReadOnly Property lobutton As ToolStripMenuItem
+        Get
+            Return LogoutToolStripMenuItem
+        End Get
+    End Property
 
     Private Sub New()
 
@@ -36,5 +41,11 @@
         Return f
     End Function
 
-
+    Private Sub LogoutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LogoutToolStripMenuItem.Click
+        For Each i In contenedorDePaneles.Controls.OfType(Of Form)()
+            i.Close()
+        Next
+        Data.Login.UserDisconnect(ODBCLogin.user)
+        LogoutToolStripMenuItem.Enabled = False
+    End Sub
 End Class

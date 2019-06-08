@@ -99,6 +99,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Vetanas\AnimationPlayer.Designer.vb">
+      <DependentUpon>AnimationPlayer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Vetanas\AnimationPlayer.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Vetanas\Login.Designer.vb">
       <DependentUpon>Login.vb</DependentUpon>
     </Compile>
@@ -153,6 +159,12 @@
     <Compile Include="Vetanas\Registrar.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Vetanas\RestablecerContraseña.Designer.vb">
+      <DependentUpon>RestablecerContraseña.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Vetanas\RestablecerContraseña.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Vetanas\Ventanas comunes\ChromaPicture.Designer.vb">
       <DependentUpon>ChromaPicture.vb</DependentUpon>
     </Compile>
@@ -168,6 +180,12 @@
     <Compile Include="Vetanas\Ventanas comunes\SeleccionPuerto.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Vetanas\Ventanas comunes\seleccionsubzonas.Designer.vb">
+      <DependentUpon>seleccionsubzonas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Vetanas\Ventanas comunes\seleccionsubzonas.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Principal.resx">
@@ -178,6 +196,9 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vetanas\AnimationPlayer.resx">
+      <DependentUpon>AnimationPlayer.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vetanas\Login.resx">
       <DependentUpon>Login.vb</DependentUpon>
@@ -212,11 +233,17 @@
     <EmbeddedResource Include="Vetanas\Registrar.resx">
       <DependentUpon>Registrar.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Vetanas\RestablecerContraseña.resx">
+      <DependentUpon>RestablecerContraseña.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Vetanas\Ventanas comunes\ChromaPicture.resx">
       <DependentUpon>ChromaPicture.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vetanas\Ventanas comunes\SeleccionLugar.resx">
       <DependentUpon>SeleccionLugar.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vetanas\Ventanas comunes\seleccionsubzonas.resx">
+      <DependentUpon>seleccionsubzonas.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

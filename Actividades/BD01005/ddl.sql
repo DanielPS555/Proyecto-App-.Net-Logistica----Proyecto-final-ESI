@@ -54,8 +54,9 @@ CREATE
 	foreign key(Usuario) references usuario(IDUsuario) );
 CREATE
 	table usuarioingresa(
-	ID_TE serial primary key,
-	FechaHoraInicio datetime year to minute,
+	LOGUI serial primary key,
+	ID_TE integer not null,
+	FechaHoraInicio datetime year to minute not null,
 	FechaHoraFin datetime year to minute,
 	foreign key(ID_TE) references trabajaen(LogID_TE)
 	);

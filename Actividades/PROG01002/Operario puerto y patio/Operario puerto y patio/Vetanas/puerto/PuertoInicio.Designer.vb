@@ -26,13 +26,11 @@ Partial Class PuertoInicio
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.Label11 = New System.Windows.Forms.Label()
-        Me.Label12 = New System.Windows.Forms.Label()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.Label15 = New System.Windows.Forms.Label()
@@ -102,21 +100,11 @@ Partial Class PuertoInicio
         '
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(373, 279)
+        Me.Label3.Location = New System.Drawing.Point(373, 181)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(40, 22)
         Me.Label3.TabIndex = 13
         Me.Label3.Text = "-----"
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(373, 214)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(40, 22)
-        Me.Label4.TabIndex = 12
-        Me.Label4.Text = "-----"
         '
         'Label5
         '
@@ -162,21 +150,11 @@ Partial Class PuertoInicio
         '
         Me.Label11.AutoSize = True
         Me.Label11.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label11.Location = New System.Drawing.Point(5, 278)
+        Me.Label11.Location = New System.Drawing.Point(5, 180)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(257, 23)
         Me.Label11.TabIndex = 5
         Me.Label11.Text = "Anterior ingreso al sistema "
-        '
-        'Label12
-        '
-        Me.Label12.AutoSize = True
-        Me.Label12.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label12.Location = New System.Drawing.Point(5, 213)
-        Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(207, 23)
-        Me.Label12.TabIndex = 4
-        Me.Label12.Text = "Creacion del usuario "
         '
         'Label13
         '
@@ -213,13 +191,11 @@ Partial Class PuertoInicio
         Me.Panel1.Controls.Add(Me.Label8)
         Me.Panel1.Controls.Add(Me.Button1)
         Me.Panel1.Controls.Add(Me.Label3)
-        Me.Panel1.Controls.Add(Me.Label4)
         Me.Panel1.Controls.Add(Me.Label5)
         Me.Panel1.Controls.Add(Me.Label6)
         Me.Panel1.Controls.Add(Me.Label7)
         Me.Panel1.Controls.Add(Me.Label10)
         Me.Panel1.Controls.Add(Me.Label11)
-        Me.Panel1.Controls.Add(Me.Label12)
         Me.Panel1.Controls.Add(Me.Label13)
         Me.Panel1.Controls.Add(Me.Label14)
         Me.Panel1.Controls.Add(Me.Label15)
@@ -498,13 +474,11 @@ Partial Class PuertoInicio
     Friend WithEvents Label2 As Label
     Friend WithEvents Button1 As Button
     Friend WithEvents Label3 As Label
-    Friend WithEvents Label4 As Label
     Friend WithEvents Label5 As Label
     Friend WithEvents Label6 As Label
     Friend WithEvents Label7 As Label
     Friend WithEvents Label10 As Label
     Friend WithEvents Label11 As Label
-    Friend WithEvents Label12 As Label
     Friend WithEvents Label13 As Label
     Friend WithEvents Label14 As Label
     Friend WithEvents Label15 As Label

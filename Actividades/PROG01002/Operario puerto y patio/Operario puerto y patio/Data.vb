@@ -21,6 +21,7 @@ Public Class Data
         Get
             If IsNothing(_login) Then
                 _login = New ODBCLogin
+                Principal.getInstancia.lobutton.Enabled = True
             End If
             Return _login
         End Get
@@ -56,6 +57,7 @@ Public Class Data
     End Class
 
     Public Class User
+        Public lugaractual As Integer = -1
         Public Enum Type
             OperadorPuerto = 0
             OperadorPlaza

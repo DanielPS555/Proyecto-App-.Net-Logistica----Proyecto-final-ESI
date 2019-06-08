@@ -87,4 +87,8 @@
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         Principal.getInstancia.cargarPanel(Of Registrar)()
     End Sub
+
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        Principal.getInstancia.cargarPanel(Of RestablecerContraseña)()
+    End Sub
 End Class

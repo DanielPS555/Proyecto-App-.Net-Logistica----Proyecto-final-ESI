@@ -24,6 +24,7 @@ Partial Class Login
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.panelLogin = New System.Windows.Forms.Panel()
+        Me.Button2 = New System.Windows.Forms.Button()
         Me.estado = New System.Windows.Forms.Label()
         Me.e2 = New System.Windows.Forms.Panel()
         Me.e1 = New System.Windows.Forms.Panel()
@@ -37,7 +38,7 @@ Partial Class Login
         Me.ver = New System.Windows.Forms.PictureBox()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.Button2 = New System.Windows.Forms.Button()
+        Me.Button3 = New System.Windows.Forms.Button()
         Me.panelLogin.SuspendLayout()
         CType(Me.ver, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -47,6 +48,7 @@ Partial Class Login
         'panelLogin
         '
         Me.panelLogin.BackColor = System.Drawing.Color.White
+        Me.panelLogin.Controls.Add(Me.Button3)
         Me.panelLogin.Controls.Add(Me.Button2)
         Me.panelLogin.Controls.Add(Me.estado)
         Me.panelLogin.Controls.Add(Me.ver)
@@ -66,6 +68,21 @@ Partial Class Login
         Me.panelLogin.Name = "panelLogin"
         Me.panelLogin.Size = New System.Drawing.Size(1100, 650)
         Me.panelLogin.TabIndex = 2
+        '
+        'Button2
+        '
+        Me.Button2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Button2.BackColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(115, Byte), Integer), CType(CType(201, Byte), Integer))
+        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button2.Font = New System.Drawing.Font("Century Gothic", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button2.ForeColor = System.Drawing.Color.White
+        Me.Button2.Location = New System.Drawing.Point(402, 437)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(281, 75)
+        Me.Button2.TabIndex = 14
+        Me.Button2.Text = "Registrar"
+        Me.Button2.UseVisualStyleBackColor = False
         '
         'estado
         '
@@ -205,20 +222,20 @@ Partial Class Login
         Me.PictureBox1.TabIndex = 3
         Me.PictureBox1.TabStop = False
         '
-        'Button2
+        'Button3
         '
-        Me.Button2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.Button3.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button2.BackColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(115, Byte), Integer), CType(CType(201, Byte), Integer))
-        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button2.Font = New System.Drawing.Font("Century Gothic", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button2.ForeColor = System.Drawing.Color.White
-        Me.Button2.Location = New System.Drawing.Point(402, 437)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(281, 75)
-        Me.Button2.TabIndex = 14
-        Me.Button2.Text = "Registrar"
-        Me.Button2.UseVisualStyleBackColor = False
+        Me.Button3.BackColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(115, Byte), Integer), CType(CType(201, Byte), Integer))
+        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button3.Font = New System.Drawing.Font("Century Gothic", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button3.ForeColor = System.Drawing.Color.White
+        Me.Button3.Location = New System.Drawing.Point(23, 292)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(281, 75)
+        Me.Button3.TabIndex = 15
+        Me.Button3.Text = "Restaurar"
+        Me.Button3.UseVisualStyleBackColor = False
         '
         'Login
         '
@@ -253,4 +270,5 @@ Partial Class Login
     Friend WithEvents Tiempo As Timer
     Friend WithEvents estado As Label
     Friend WithEvents Button2 As Button
+    Friend WithEvents Button3 As Button
 End Class

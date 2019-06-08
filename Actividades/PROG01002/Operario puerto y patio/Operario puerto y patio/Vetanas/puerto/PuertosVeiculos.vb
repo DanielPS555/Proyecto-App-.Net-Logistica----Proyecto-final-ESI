@@ -40,6 +40,7 @@
         If Not Data.Login.VehicleAdd(vehiculo) Then
             MsgBox("No se pudo registrar el vehiculo")
         Else
+            Principal.getInstancia.cargarPanel(Of seleccionsubzonas)().Usuario = Usuario
             UpdateTable()
         End If
     End Sub

@@ -1,4 +1,5 @@
 ﻿Imports System.Windows.Forms
+Imports Operario_puerto_y_patio
 Imports Operario_puerto_y_patio.Data
 
 Public Module ODBCStuff
@@ -21,6 +22,7 @@ End Module
 Public Class ODBCLogin
     Implements ILogin
     Private Shared _connection As Odbc.OdbcConnection = Nothing
+    Public Shared user As User = Nothing
     Public Shared Property Connection As Odbc.OdbcConnection
         Get
             If _connection Is Nothing Then
@@ -90,7 +92,7 @@ Public Class ODBCLogin
         Dim trabajaCommand = New Odbc.OdbcCommand($"insert into trabajaen(lugar, usuario, desde) values(?, (select idusuario from usuario where nombredeusuario=?), ?);", ODBCLogin.Connection)
         Dim lParam = trabajaCommand.CrearParametro(Odbc.OdbcType.Int, "lugar", 0, False)
         trabajaCommand.CrearParametro(Odbc.OdbcType.VarChar, "nombre", user.Nombre, False)
-        trabajaCommand.CrearParametro(Odbc.OdbcType.Date, "desde", New Date(), False)
+        trabajaCommand.CrearParametro(Odbc.OdbcType.Date, "desde", Date.Now, False)
         For Each i In listaLugares
             lParam.Value = i
             If trabajaCommand.ExecuteNonQuery() <> 1 Then
@@ -121,9 +123,18 @@ Public Class ODBCLogin
         If dt.Rows.Count > 0 Then
             Dim sn As String = If(IsDBNull(dt.Rows(0)("segundonombre")), Nothing, dt.Rows(0)("segundonombre"))
             Dim sa As String = If(IsDBNull(dt.Rows(0)("segundoapellido")), Nothing, dt.Rows(0)("segundoapellido"))
-            Return New User(uname, pwd, User.RolFromString(dt.Rows(0)("nombre")), dt.Rows(0)("email"), dt.Rows(0)("fechanac"), dt.Rows(0)("telefono"), dt.Rows(0)("primernombre"), sn, dt.Rows(0)("primerapellido"), sa, dt.Rows(0)("sexo"))
+            user = New User(uname, pwd, user.RolFromString(dt.Rows(0)("nombre")), dt.Rows(0)("email"), dt.Rows(0)("fechanac"), dt.Rows(0)("telefono"), dt.Rows(0)("primernombre"), sn, dt.Rows(0)("primerapellido"), sa, dt.Rows(0)("sexo"))
+            Return user
         Else
             Return Nothing
         End If
+    End Function
+
+    Public Function UserDisconnect(user As User) As Boolean Implements ILogin.UserDisconnect
+        Dim cmd = Connection.CreateCommand
+        cmd.CommandText = "update usuarioingresa set FechaHoraFin=? where ID_TE=(select logID_TE from trabajaen where usuario=(select idusuario from usuario where nombredeusuario=?)) and FechaHoraFin=NULL;"
+        cmd.CrearParametro(Odbc.OdbcType.Date, "fin", Date.Now, False)
+        cmd.CrearParametro(Odbc.OdbcType.VarChar, "usuario", user.Nombre, False)
+        Return cmd.ExecuteNonQuery = 1
     End Function
 End Class
