@@ -111,6 +111,18 @@
     <Compile Include="Vetanas\patio\MarcoPatio.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Vetanas\puerto\AgregarInspección.Designer.vb">
+      <DependentUpon>AgregarInspección.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Vetanas\puerto\AgregarInspección.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vetanas\puerto\ListarInspecciones.Designer.vb">
+      <DependentUpon>ListarInspecciones.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Vetanas\puerto\ListarInspecciones.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Vetanas\puerto\MarcoPuerto.Designer.vb">
       <DependentUpon>MarcoPuerto.vb</DependentUpon>
     </Compile>
@@ -172,6 +184,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Vetanas\patio\MarcoPatio.resx">
       <DependentUpon>MarcoPatio.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vetanas\puerto\AgregarInspección.resx">
+      <DependentUpon>AgregarInspección.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vetanas\puerto\ListarInspecciones.resx">
+      <DependentUpon>ListarInspecciones.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vetanas\puerto\MarcoPuerto.resx">
       <DependentUpon>MarcoPuerto.vb</DependentUpon>

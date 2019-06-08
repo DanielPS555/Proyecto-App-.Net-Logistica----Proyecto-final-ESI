@@ -36,8 +36,10 @@ Partial Class PuertosVeiculos
         Me.Button1 = New System.Windows.Forms.Button()
         Me.clienteImporta = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.ChromaPicture1 = New Operario_puerto_y_patio.ChromaPicture()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.ChromaPicture1 = New Operario_puerto_y_patio.ChromaPicture()
+        Me.Button3 = New System.Windows.Forms.Button()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -167,6 +169,32 @@ Partial Class PuertosVeiculos
         Me.Label1.TabIndex = 14
         Me.Label1.Text = "Cliente"
         '
+        'DataGridView1
+        '
+        Me.DataGridView1.AllowUserToAddRows = False
+        Me.DataGridView1.AllowUserToDeleteRows = False
+        Me.DataGridView1.AllowUserToResizeColumns = False
+        Me.DataGridView1.AllowUserToResizeRows = False
+        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView1.Location = New System.Drawing.Point(15, 206)
+        Me.DataGridView1.MultiSelect = False
+        Me.DataGridView1.Name = "DataGridView1"
+        Me.DataGridView1.ReadOnly = True
+        Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.DataGridView1.Size = New System.Drawing.Size(378, 292)
+        Me.DataGridView1.TabIndex = 15
+        '
+        'Button2
+        '
+        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button2.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Bold)
+        Me.Button2.Location = New System.Drawing.Point(15, 504)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(378, 49)
+        Me.Button2.TabIndex = 16
+        Me.Button2.Text = "Inspeccionar"
+        Me.Button2.UseVisualStyleBackColor = True
+        '
         'ChromaPicture1
         '
         Me.ChromaPicture1.Location = New System.Drawing.Point(399, 9)
@@ -174,13 +202,16 @@ Partial Class PuertosVeiculos
         Me.ChromaPicture1.Size = New System.Drawing.Size(500, 500)
         Me.ChromaPicture1.TabIndex = 11
         '
-        'DataGridView1
+        'Button3
         '
-        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Location = New System.Drawing.Point(15, 206)
-        Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.Size = New System.Drawing.Size(378, 292)
-        Me.DataGridView1.TabIndex = 15
+        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button3.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Bold)
+        Me.Button3.Location = New System.Drawing.Point(15, 559)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(378, 49)
+        Me.Button3.TabIndex = 17
+        Me.Button3.Text = "Ver inspecciones"
+        Me.Button3.UseVisualStyleBackColor = True
         '
         'PuertosVeiculos
         '
@@ -188,6 +219,8 @@ Partial Class PuertosVeiculos
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(1100, 640)
+        Me.Controls.Add(Me.Button3)
+        Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.DataGridView1)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.clienteImporta)
@@ -229,4 +262,6 @@ Partial Class PuertosVeiculos
     Friend WithEvents clienteImporta As TextBox
     Friend WithEvents Label1 As Label
     Friend WithEvents DataGridView1 As DataGridView
+    Friend WithEvents Button2 As Button
+    Friend WithEvents Button3 As Button
 End Class

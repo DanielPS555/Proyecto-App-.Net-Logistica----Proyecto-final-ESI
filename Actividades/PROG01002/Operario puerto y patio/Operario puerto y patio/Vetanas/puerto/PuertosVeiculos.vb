@@ -36,7 +36,7 @@
             MsgBox("El año debe ser numérico")
             Return
         End If
-        Dim vehiculo As New Data.Vehiculo(VINTextBox.Text, marcaTextBox.Text, modeloTextBox.Text, clienteImporta.Text, ColorButton.BackColor, resultado, typeComBox.SelectedItem, False, usuario, lugar)
+        Dim vehiculo As New Data.Vehiculo(VINTextBox.Text, marcaTextBox.Text, modeloTextBox.Text, clienteImporta.Text, ColorButton.BackColor, resultado, typeComBox.SelectedItem, False, Usuario, lugar)
         If Not Data.Login.VehicleAdd(vehiculo) Then
             MsgBox("No se pudo registrar el vehiculo")
         Else
@@ -63,5 +63,19 @@
         DataGridView1.DataSource = dt
     End Sub
 
+    Public padre As MarcoPuerto
+
     Public lugar As Integer
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+
+        Dim ai = padre.cargarPanel(Of AgregarInspección)()
+        Dim row = DataGridView1.SelectedRows.Item(0)
+        Dim vin = row.Cells.Item(0).Value
+        ai.vehiculo = vin
+    End Sub
+
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        padre.cargarPanel(Of ListarInspecciones)().vin = DataGridView1.SelectedRows.Item(0).Cells.Item(0).Value
+    End Sub
 End Class

@@ -98,14 +98,15 @@ CREATE
 CREATE
 	table registrodanios(
 	rd serial primary key,
-	informedanios integer,
-	nroenlista integer,
+	informedanios integer not null,
+	nroenlista integer not null,
+	descripcion varchar(255) not null,
 	foreign key(informedanios) references informedanios(ID) );
 CREATE
 	table imagenregistro (
 	rdid integer,
 	imgit integer,
-	imagen blob NOT null,
+	imagen BYTE NOT null,
 	primary key(rdid, imgit),
 	foreign key(rdid) references registrodanios(rd) );
 CREATE

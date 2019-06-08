@@ -59,7 +59,8 @@ Public Class MarcoPuerto
             Case "veiculos"
                 Dim pVeiculos = cargarPanel(Of PuertosVeiculos)()
                 pVeiculos.lugar = Lugar
-                pVeiculos.usuario = Usuario
+                pVeiculos.Usuario = Usuario
+                pVeiculos.padre = Me
             Case "lotes"
                 cargarPanel(Of PuertoLotes)()
         End Select
