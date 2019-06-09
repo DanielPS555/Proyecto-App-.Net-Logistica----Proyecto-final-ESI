@@ -30,6 +30,7 @@ eliminarUsuarios()
 					fi
 				fi			
 			else
+				echo "El usuario no existe "
 				verif5=1
 			fi
 		else

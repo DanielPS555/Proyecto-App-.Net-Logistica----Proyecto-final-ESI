@@ -7,7 +7,22 @@ cambiarExUser() #Funcion encargada de devolvernos una fecha para la expiracion d
 verif=0
 while test $verif -eq 0
 do
-	echo "Ingresar la fecha de expiracion del usuario (si no ingresa ninguna se podra la por defecto"
+	case $1 in 
+	1)
+		echo "Ingresar la fecha de expiracion del usuario (Si lo deja vacio se usara la por defecto )"
+	;;
+	2)
+		echo "Ingresar la fecha de expiracion del usuario (Si lo deja vacio no se realizaran cambios)"
+		
+	;;
+	3)
+		echo "Ingrese la primera fecha, si lo deja vacio se cancela la operacion"
+	;;
+
+	4)
+		echo "Ingrese la segunda fecha, si lo deja vacio se cancela la operacion"
+	;;
+	esac
 	echo "El formato de la fecha a ingresar es el sigiente: day-month-year"
 	read dato #Ingreso de informacion
 	if test -z $dato 
@@ -21,13 +36,19 @@ do
 			month=$(echo "$dato"| sed -e 's/^\([0-9]\+\)\-\([0-9]\+\)\-\([0-9]\+\)$/\2/')	#Nos devuelve el mes 
 			year=$(echo "$dato"| sed -e 's/^\([0-9]\+\)\-\([0-9]\+\)\-\([0-9]\+\)$/\3/')	#Nos devuelve el anio		
 			if test $(cal $day $month $year 2>/dev/null | wc -l) -ne 0 #Verifica la valides de la fecha con el comando cal, para ello si la fecha es invalida la salida sera 0 porque fue redirijida a /dev/null, sino intentara imprimir el calendario el cual esta conformado por las de 0 lineas, por eso mismo esa fecha sea valida 
-			then 					
-				if test $(date +%s) -lt $(date -d "$year-$month-$day" +%s) #Con date +%s imprime un numero unico para cada fecha el cual se puede comprar la saber si una fecha es mejor o mayor
+			then 	
+				if test $1 -eq 3 || test $1 -eq 4
 				then
 					respuesta="$year-$month-$day" #salida de la informacion
-					verif=1 #Romple bucle 
-				else
-					error "Esa fecha ya paso, debera elegir una posterior a la actual" 
+						verif=1 #Romple bucle 
+				else				
+					if test $(date +%s) -lt $(date -d "$year-$month-$day" +%s) #Con date +%s imprime un numero unico para cada fecha el cual se puede comprar la saber si una fecha es mejor o mayor
+					then
+						respuesta="$year-$month-$day" #salida de la informacion
+						verif=1 #Romple bucle 
+					else
+						error "Esa fecha ya paso, debera elegir una posterior a la actual" 
+					fi
 				fi
 			else 
 				error "Fecha invalida, no existe" 
@@ -43,6 +64,11 @@ done
 
 mostrarExUser()
 {				
-	respuesta=$(date -d "1970-1-1 $(grep -e "^$1:" /etc/shadow|cut -d: -f8) days" +%'Y'-'%m'-'%d') 
+	if ! test -z $(grep -e "^$1:" /etc/shadow|cut -d: -f8)
+	then
+		respuesta=$(date -d "1970-1-1 $(grep -e "^$1:" /etc/shadow|cut -d: -f8) days" +%'Y'-'%m'-'%d') 
+	else	
+		respuesta=""	
+	fi
 }
 

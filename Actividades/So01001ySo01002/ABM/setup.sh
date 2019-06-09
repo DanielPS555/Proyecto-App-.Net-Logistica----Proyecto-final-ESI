@@ -10,6 +10,8 @@ source lib/NDiasHasta.sh
 source lib/pass.sh
 source lib/shell.sh
 source lib/UDI.sh
+source lib/userE.sh
+source lib/fechacal.sh
 source ./sub_shell/agregarUsuario.sh 
 source ./sub_shell/ModificarUsuario.sh 
 source ./sub_shell/eliminarUsuario.sh

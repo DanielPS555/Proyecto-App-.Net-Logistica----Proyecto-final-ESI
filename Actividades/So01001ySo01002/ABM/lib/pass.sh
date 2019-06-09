@@ -32,3 +32,8 @@ estadoPass()
 {
 	respuesta=$(passwd -S $1 | cut -d' ' -f2)
 }
+
+FechModificacionPass()
+{				
+	respuesta=$(date -d "1970-1-1 $[$(grep -e "^$1:" /etc/shadow|cut -d: -f3)-1] days" +%'Y'-'%m'-'%d') 
+}

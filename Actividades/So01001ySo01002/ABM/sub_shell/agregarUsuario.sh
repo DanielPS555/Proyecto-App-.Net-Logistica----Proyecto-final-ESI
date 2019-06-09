@@ -54,7 +54,7 @@ then
 	verifNumDias '1'  #Nos devuelve el numero de dias luego de la expiracion de la cuenta previo al bloqueo en este caso (por parametro 1) 				
 	comando[5]=$respuesta
 
-	cambiarExUser  #Nos devuelve una fecha valida y posterior a la actual para que el usuario expire 
+	cambiarExUser '1'  #Nos devuelve una fecha valida y posterior a la actual para que el usuario expire 
 	comando[6]=$respuesta
 
 	cambiarPass  #Nos devuelve una contraseña valida (8-20 dijitos, una o mas mayusculas, etc)
@@ -83,7 +83,7 @@ then
 	echo "Desea crear al usuario [s/n]"
 	read confirme
 
-	if test $confirme = "s"
+	if test $confirme = "s" 2> /dev/null
 	then 
 		comandoFinal=""
 		for var3 in $(seq 0 1 4)
