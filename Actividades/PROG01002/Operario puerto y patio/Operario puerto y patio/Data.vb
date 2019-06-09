@@ -17,7 +17,7 @@ Public Class Data
         End If
     End Sub
     Private Shared _login As ILogin = Nothing
-    Public Shared ReadOnly Property Login As ILogin
+    Public Shared Property Login As ILogin
         Get
             If IsNothing(_login) Then
                 _login = New ODBCLogin
@@ -25,6 +25,9 @@ Public Class Data
             End If
             Return _login
         End Get
+        Set(value As ILogin)
+            _login = value
+        End Set
     End Property
 
     Public Class Vehiculo

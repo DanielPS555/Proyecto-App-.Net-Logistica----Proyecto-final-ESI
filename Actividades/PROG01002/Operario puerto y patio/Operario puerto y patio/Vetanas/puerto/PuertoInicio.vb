@@ -17,6 +17,8 @@ Public Class PuertoInicio
             connectioncount.CommandText = "select count(*) from usuarioingresa, usuario, trabajaen where usuario.nombredeusuario=? and trabajaen.usuario=usuario.idusuario and trabajaen.logID_TE=usuarioingresa.ID_TE;"
             connectioncount.CrearParametro(Odbc.OdbcType.VarChar, "Usuario", Usuario.Nombre, False)
             Label5.Text = $"{connectioncount.ExecuteScalar}"
+            connectioncount.CommandText = "select fechahorainicio from usuarioingresa, usuario, trabajaen order by trabajaen.fechahorasalida desc where usuario.nombrdeusuario=? and usuario.idusuario=trabajaen.usuario and usuarioingresa.id_te=trabajaen.logid_te and usuarioingresa.fechahorafin is not null;"
+            'Label3.Text = $"{DirectCast(connectioncount.ExecuteScalar, Date).ToShortDateString}"
         End Set
     End Property
     Private Sub PuertoInicio_Load(sender As Object, e As EventArgs) Handles MyBase.Load

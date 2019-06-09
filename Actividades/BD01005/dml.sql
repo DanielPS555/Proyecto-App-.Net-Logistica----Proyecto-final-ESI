@@ -25,6 +25,12 @@ VALUES
 	("fluffycat", "no", "mmacri@presidencia.gub.ar", TO_DATE("1/1/1962", "%d/%m/%Y"), "911", "Mauricio", "Macri", "Miau?", "Miau", "M", (select idrol from rol where nombre="Admin"));
 
 INSERT INTO
+	usuario (nombredeusuario, hash_contra, email, fechanac, telefono, primernombre, primerapellido, segundoapellido, preguntasecreta, respuestasecreta, sexo, rol)
+VALUES
+	("koutakun", "no", "darkfm@vera.com.uy", TO_DATE("03/05/2001", "%d/%m/%Y"), "0800", "Salvador", "Pardiñas", "Barros", "Miau?", "Miau", "M", (select idrol from rol where nombre="OpPuerto"));
+
+
+INSERT INTO
 	lugar (nombre, geox, geoy, creadorid, capacidad, tipo)
 VALUES
 	("Puerto de Malos Aires", -35, -32, (select IDUsuario from usuario where NombreDeUsuario = "fluffycat"), 3, "Puerto");

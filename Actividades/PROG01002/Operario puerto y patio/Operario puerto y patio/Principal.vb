@@ -42,10 +42,20 @@
     End Function
 
     Private Sub LogoutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LogoutToolStripMenuItem.Click
-        For Each i In contenedorDePaneles.Controls.OfType(Of Form)()
+        For Each i In contenedorDePaneles.Controls
             i.Close()
         Next
         Data.Login.UserDisconnect(ODBCLogin.user)
+        ODBCLogin.Connection.Close()
+        ODBCLogin.Connection = Nothing
+        Data.Login = Nothing
         LogoutToolStripMenuItem.Enabled = False
+        cargarPanel(Of Login)()
+    End Sub
+
+    Private Sub Principal_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        If ODBCLogin.user IsNot Nothing Then
+            Data.Login.UserDisconnect(ODBCLogin.user)
+        End If
     End Sub
 End Class

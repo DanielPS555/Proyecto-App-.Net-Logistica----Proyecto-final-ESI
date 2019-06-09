@@ -67,7 +67,7 @@
                                        AnimationPlayer1.frame = ceil(AnimationPlayer1.frame + 1, 25)
                                        If (AnimationPlayer1.frame = 25 AndAlso Not _tried) Then
                                            Dim pwd = BCrypt.Net.BCrypt.HashPassword(TextBox3.Text)
-                                           Dim updPwd = ODBCLogin.Connection.CreateCommand()
+                                           Dim updPwd = Data.Login.PConnection.CreateCommand()
                                            If Not _tried Then
                                                updPwd.CommandText = "update usuario set hash_contra=? where preguntasecreta=? and respuestasecreta=? and nombredeusuario=?;"
                                                updPwd.CrearParametro(Odbc.OdbcType.Char, "hash", pwd, False)

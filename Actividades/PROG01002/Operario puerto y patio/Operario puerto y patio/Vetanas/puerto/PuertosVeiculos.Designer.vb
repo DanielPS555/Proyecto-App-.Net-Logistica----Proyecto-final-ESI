@@ -38,9 +38,12 @@ Partial Class PuertosVeiculos
         Me.Label1 = New System.Windows.Forms.Label()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.Button2 = New System.Windows.Forms.Button()
-        Me.ChromaPicture1 = New Operario_puerto_y_patio.ChromaPicture()
         Me.Button3 = New System.Windows.Forms.Button()
+        Me.Button4 = New System.Windows.Forms.Button()
+        Me.ChromaPicture1 = New Operario_puerto_y_patio.ChromaPicture()
+        Me.DataGridView2 = New System.Windows.Forms.DataGridView()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'vinLabel
@@ -143,6 +146,7 @@ Partial Class PuertosVeiculos
         '
         'Button1
         '
+        Me.Button1.Enabled = False
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button1.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button1.Location = New System.Drawing.Point(293, 161)
@@ -195,13 +199,6 @@ Partial Class PuertosVeiculos
         Me.Button2.Text = "Inspeccionar"
         Me.Button2.UseVisualStyleBackColor = True
         '
-        'ChromaPicture1
-        '
-        Me.ChromaPicture1.Location = New System.Drawing.Point(399, 9)
-        Me.ChromaPicture1.Name = "ChromaPicture1"
-        Me.ChromaPicture1.Size = New System.Drawing.Size(500, 500)
-        Me.ChromaPicture1.TabIndex = 11
-        '
         'Button3
         '
         Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
@@ -213,12 +210,43 @@ Partial Class PuertosVeiculos
         Me.Button3.Text = "Ver inspecciones"
         Me.Button3.UseVisualStyleBackColor = True
         '
+        'Button4
+        '
+        Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button4.Location = New System.Drawing.Point(145, 161)
+        Me.Button4.Name = "Button4"
+        Me.Button4.Size = New System.Drawing.Size(137, 39)
+        Me.Button4.TabIndex = 18
+        Me.Button4.Text = "Seleccionar posicion"
+        Me.Button4.UseVisualStyleBackColor = True
+        '
+        'ChromaPicture1
+        '
+        Me.ChromaPicture1.Location = New System.Drawing.Point(399, 9)
+        Me.ChromaPicture1.Name = "ChromaPicture1"
+        Me.ChromaPicture1.Size = New System.Drawing.Size(300, 300)
+        Me.ChromaPicture1.TabIndex = 11
+        '
+        'DataGridView2
+        '
+        Me.DataGridView2.AllowUserToAddRows = False
+        Me.DataGridView2.AllowUserToDeleteRows = False
+        Me.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView2.Location = New System.Drawing.Point(705, 14)
+        Me.DataGridView2.Name = "DataGridView2"
+        Me.DataGridView2.ReadOnly = True
+        Me.DataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.DataGridView2.Size = New System.Drawing.Size(383, 594)
+        Me.DataGridView2.TabIndex = 19
+        '
         'PuertosVeiculos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(1100, 640)
+        Me.Controls.Add(Me.DataGridView2)
+        Me.Controls.Add(Me.Button4)
         Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.DataGridView1)
@@ -241,6 +269,7 @@ Partial Class PuertosVeiculos
         Me.Name = "PuertosVeiculos"
         Me.Text = "PuertosVeiculos"
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -264,4 +293,6 @@ Partial Class PuertosVeiculos
     Friend WithEvents DataGridView1 As DataGridView
     Friend WithEvents Button2 As Button
     Friend WithEvents Button3 As Button
+    Friend WithEvents Button4 As Button
+    Friend WithEvents DataGridView2 As DataGridView
 End Class

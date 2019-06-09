@@ -49,6 +49,12 @@
     End Sub
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        For Each i In registros
+            If i.imagen Is Nothing Then
+                MsgBox("Todos los registros deben tener imágenes")
+                Return
+            End If
+        Next
         Dim inform = ODBCLogin.Connection.CreateCommand
         inform.CommandText = "insert into informedanios(descripcion, fecha, tipo, vehiculosobre) values (?, ?, ?, ?);"
         inform.CrearParametro(Odbc.OdbcType.VarChar, "desc", InspectBox.Text, False)

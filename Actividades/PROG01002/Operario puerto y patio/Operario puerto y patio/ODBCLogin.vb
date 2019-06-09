@@ -1,4 +1,5 @@
-﻿Imports System.Windows.Forms
+﻿Imports System.Data.Odbc
+Imports System.Windows.Forms
 Imports Operario_puerto_y_patio
 Imports Operario_puerto_y_patio.Data
 
@@ -47,6 +48,12 @@ Public Class ODBCLogin
         Set(value As Odbc.OdbcConnection)
             _connection = value
         End Set
+    End Property
+
+    Public ReadOnly Property PConnection As OdbcConnection Implements ILogin.PConnection
+        Get
+            Return ODBCLogin.Connection
+        End Get
     End Property
 
     Public Sub New()
@@ -132,7 +139,7 @@ Public Class ODBCLogin
 
     Public Function UserDisconnect(user As User) As Boolean Implements ILogin.UserDisconnect
         Dim cmd = Connection.CreateCommand
-        cmd.CommandText = "update usuarioingresa set FechaHoraFin=? where ID_TE=(select logID_TE from trabajaen where usuario=(select idusuario from usuario where nombredeusuario=?)) and FechaHoraFin=NULL;"
+        cmd.CommandText = "update usuarioingresa set FechaHoraFin=? where ID_TE=(select logID_TE from trabajaen where usuario=(select idusuario from usuario where nombredeusuario=?)) and FechaHoraFin is null;"
         cmd.CrearParametro(Odbc.OdbcType.Date, "fin", Date.Now, False)
         cmd.CrearParametro(Odbc.OdbcType.VarChar, "usuario", user.Nombre, False)
         Return cmd.ExecuteNonQuery = 1

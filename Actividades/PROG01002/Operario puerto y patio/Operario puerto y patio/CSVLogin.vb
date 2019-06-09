@@ -18,6 +18,13 @@ Public Class CSVLogin
         reader.Close()
         file.Close()
     End Sub
+
+    Public ReadOnly Property PConnection As Odbc.OdbcConnection Implements ILogin.PConnection
+        Get
+            Throw New NotImplementedException()
+        End Get
+    End Property
+
     Public Function UserLogin(uname As String, pwd As String) As User Implements ILogin.UserLogin
         If data.ContainsKey(uname) AndAlso data(uname).Contra = pwd Then
             Return data(uname)
