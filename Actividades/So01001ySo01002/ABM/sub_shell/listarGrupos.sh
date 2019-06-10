@@ -1,4 +1,3 @@
-
 MenuListarGrupos()
 {
 	eu1=('Listar_todos_los_grupos' 'Panel_de_informcion_de_un_grupo' 'Buscar_Por_nombre')

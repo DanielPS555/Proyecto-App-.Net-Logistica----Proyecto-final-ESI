@@ -1,92 +1,96 @@
 #!/bin/bash
 ConfiguracionDelAmbienteDeTrabajo()
 {
-	carpeta="/var/automotora"
-	ex=0
-	if test -d $carpeta
+	echo "Desea comenzar el proseso de instalacion? (1= si 0=no)"
+	read de		
+	if test $de -eq 1 2> /dev/null
 	then
-		echo "La carpeta ya existe, ¿desea sobre escribir? (1= si 0=no)"
-		read d		
-		if test $d -eq 1
+		carpeta="/var"
+		ex=0
+		if test -d $carpeta/DataConfiguracionABMusuariosSO
 		then
-			rm -rf carpeta
-			ex=1			
+			echo "La carpeta ya existe, ¿desea sobre escribir? (1= si 0=no)"
+			read d		
+			if test $d -eq 1 2> /dev/null
+			then
+				rm -rf $carpeta/DataConfiguracionABMusuariosSO
+				rm -f /root/setup.sh
+				ex=1			
+			else
+				echo "Operacion cancelada"	
+			fi
 		else
-			echo "Operacion cancelada"	
+			ex=1
 		fi
-	else
-		ex=1
-	fi
 
-	if test $ex -eq 1
-	then
-		ruta=$(pwd)
-		cd $carpeta
-		git clone https://github.com/Daniel2242014/DataConfiguracionABMusuariosSO
+		if test $ex -eq 1
+		then
+			ruta=$(pwd)
+			cd $carpeta
+			git clone https://github.com/Daniel2242014/DataConfiguracionABMusuariosSO
 	
-		if test -f /etc/ArchivoConfiguracionAutomotora
-		then
-			touch '/etc/ArchivoConfiguracionAutomotora'
-		fi
+			if ! test -f /etc/ArchivoConfiguracionAutomotora
+			then
+				touch '/etc/ArchivoConfiguracionAutomotora'
+			fi
 
-		echo "$carpeta">/etc/ArchivoConfiguracionAutomotora
-		cd DataConfiguracionABMusuariosSO/
-		ln setup.sh /root/setup.sh
-		cd $ruta 
-		
-		if test $(grep -e "^Operario:" etc/passwd| wc -l) -eq 1
-		then
-			useradd Operario
-		fi
+			echo "$carpeta/DataConfiguracionABMusuariosSO">/etc/ArchivoConfiguracionAutomotora
+			cd DataConfiguracionABMusuariosSO/
+			rm -f $ruta/setup.sh
+			ln setup.sh /root/setup.sh
+			mkdir Backup Temp
+			cd $ruta 
+			if test $(grep -e "^Operario:" /etc/passwd| wc -l) -eq 0
+			then
+				useradd Operario
+			fi
 
-		if test $(grep -e "^Trasportista:" etc/passwd| wc -l) -eq 1
-		then
-			useradd Trasportista
-		fi	
+			if test $(grep -e "^Trasportista:" /etc/passwd| wc -l) -eq 0
+			then
+				useradd Trasportista
+			fi	
 
-		if test $(grep -e "^Administrador:" etc/passwd| wc -l) -eq 1
-		then
-			useradd Administrador
+			if test $(grep -e "^Administrador:" /etc/passwd| wc -l) -eq 0
+			then
+				useradd Administrador
+			fi
+			echo "Proseso terminado con exito, revise la carpeta /root para acceder al panel setup de la aplicacion"
+			
+			exit
 		fi
-		echo "Proseso terminado con exito, revise la carpeta /root para acceder al panel setup de la aplicacion"
 	fi
 
-
 }
 
-FInstalar()
-{
-	echo "Primero debe instalar el software, toque enter para continuar"
-	read ff
-}
 
 if test $USER = "root"
 then
 	if test -f '/etc/ArchivoConfiguracionAutomotora'
 	then
+		carpetaBase=$(cat /etc/ArchivoConfiguracionAutomotora)
 		clear
-		source ./lib/lib_menu.sh
-		source lib/lib_error.sh
-		source lib/DT.sh
-		source lib/expiracionUsuario.sh
-		source lib/GP.sh
-		source lib/GS.sh
-		source lib/NDiasHasta.sh
-		source lib/pass.sh
-		source lib/shell.sh
-		source lib/UDI.sh
-		source lib/userE.sh
-		source lib/fechacal.sh
-		source ./sub_shell/agregarUsuario.sh 
-		source ./sub_shell/ModificarUsuario.sh 
-		source ./sub_shell/eliminarUsuario.sh
-		source ./sub_shell/listarUsuarios.sh 
-		source ./sub_shell/agregarGrupo.sh 
-		source ./sub_shell/ModificarGrupo.sh 
-		source ./sub_shell/EliminarGrupo.sh 
-		source ./sub_shell/listarGrupos.sh 
-		source ./sub_shell/Preferencias.sh 
-		source ./sub_shell/ConfiguracionDelAmbienteDeTrabajo.sh 
+		source $carpetaBase/lib/lib_menu.sh
+		source $carpetaBase/lib/lib_error.sh
+		source $carpetaBase/lib/DT.sh
+		source $carpetaBase/lib/expiracionUsuario.sh
+		source $carpetaBase/lib/GP.sh
+		source $carpetaBase/lib/GS.sh
+		source $carpetaBase/lib/NDiasHasta.sh
+		source $carpetaBase/lib/pass.sh
+		source $carpetaBase/lib/shell.sh
+		source $carpetaBase/lib/UDI.sh
+		source $carpetaBase/lib/userE.sh
+		source $carpetaBase/lib/fechacal.sh
+		source $carpetaBase/sub_shell/agregarUsuario.sh 
+		source $carpetaBase/sub_shell/ModificarUsuario.sh 
+		source $carpetaBase/sub_shell/eliminarUsuario.sh
+		source $carpetaBase/sub_shell/listarUsuarios.sh 
+		source $carpetaBase/sub_shell/agregarGrupo.sh 
+		source $carpetaBase/sub_shell/ModificarGrupo.sh 
+		source $carpetaBase/sub_shell/EliminarGrupo.sh 
+		source $carpetaBase/sub_shell/listarGrupos.sh 
+		source $carpetaBase/sub_shell/Preferencias.sh 
+
 
 		respuesta="" #El dato pasado por los return solo puede ser numerico, entonces utilizamos una variable externa donde se cargen las salidas, como si fuera un $? pero con mayor capasidad 
 
@@ -119,6 +123,7 @@ then
 
 		ConfiguracionDelAmbienteDeTrabajo
 	fi
+
 else
 	echo "Debe ser root para ejecutar este software"
 fi

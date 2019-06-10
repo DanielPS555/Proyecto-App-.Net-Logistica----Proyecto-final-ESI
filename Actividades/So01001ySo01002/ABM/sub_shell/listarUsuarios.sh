@@ -1,4 +1,3 @@
-
 listarUsuarios()
 {
 	eu1=('Listar_todos_los_usuarios' 'Panel_De_informacion_de_un_usuario' 'Buscador_multicriterio_de_usuarios')
