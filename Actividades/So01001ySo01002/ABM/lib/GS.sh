@@ -94,7 +94,7 @@ mostrarGS()
 	cGP=$respuesta
 	gsp=()
 	cont=0
-	for var1 in $(cat /etc/gshadow)
+	for var1 in $(grep "$1" /etc/gshadow)
 	do
 		if test $(echo "$var1" | cut -d: -f4 | grep -e ",$1\|$1,\|^$1$" | wc -l) -eq 1
 		then	

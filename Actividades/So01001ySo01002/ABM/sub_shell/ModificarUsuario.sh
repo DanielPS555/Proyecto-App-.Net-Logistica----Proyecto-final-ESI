@@ -3,6 +3,37 @@
 ModUsuario=""
 
 
+mod_nom()
+{
+	verif=0
+	while test $verif -eq 0 #Bucle que se repite hasta que se ingrese un nombre de usuario valido 
+	do	
+		echo "Ingrese el nuevo nombre de usuario (no el nombre real) (Dejelo vacio para cancelar la operacion)"	
+		read dato	
+		if ! test -z $dato
+		then 
+			if test $(echo "$dato" | grep -e '[a-zA-Z][a-zA-Z0-9]\+$'| wc -l ) -eq 1 #Comprueba que el nombre de usuario comienze con una letra, luego podra tener el numero de letras o numeros que dese
+			then
+				if ! test -z $dato && test $(cat '/etc/passwd'| cut -d: -f1| grep "$dato"| wc -l) -eq 0 #Comprueba que el usuario no exista en el sistema  
+				then			
+					usermod -l $dato $ModUsuario 2> /dev/null
+					ModUsuario=$dato #Carga el valor en la variable usuario 					
+					verif=1 #Rompe bucle 
+				else	
+					error "Usuario ya ingrezado" #Utiliza el metodo 'error' el cual pinta en rojo el error, de esta forma es mas facil diferenciarlo  
+				fi
+			else 
+				error "Formato no valido " 
+			fi	
+		else
+			echo "Operacion cancelada, toque cualquier boton para continuar"
+			read ff
+			verif=2
+		fi
+	done
+}
+
+
 Mod_UID()
 {
 	mostrarUDI $ModUsuario
@@ -429,8 +460,8 @@ ModificarUsuario(){
 	ModUsuario=$respuesta
 	if ! test -z $ModUsuario 
 	then
-		eu1=('Modificar_el_UID' 'Modificar_el_Directorio_de_trabajo' 'Modificar_los_Grupo_secundario' 'Modificar_el_shell_de_inicio' 'Modificar_la_fecha_de_expiracion_del_usuario' 'Modificar_el_N°_dias_de_advertencia' 'Modificar_la_password_del_usuario' 'Modificar_el_N°_dias_de_valides_de_la_password' 'Modificar_el_Ndias_antes_del_bloque_luego_que_expira_la_password' 'bloquear/desbloquear')
-		eu2=('Mod_UID' 'Mod_DT' 'Mod_GS' 'Mod_shell' 'Mod_ExU' 'Mod_NDias1' 'Mod_pass' 'Mod_NDias2' 'Mod_NDias3' 'Mod_BUlock')	
+		eu1=('Modificar_nombreDeUsuario' 'Modificar_el_UID' 'Modificar_el_Directorio_de_trabajo' 'Modificar_los_Grupo_secundario' 'Modificar_el_shell_de_inicio' 'Modificar_la_fecha_de_expiracion_del_usuario' 'Modificar_el_N°_dias_de_advertencia' 'Modificar_la_password_del_usuario' 'Modificar_el_N°_dias_de_valides_de_la_password' 'Modificar_el_Ndias_antes_del_bloque_luego_que_expira_la_password' 'bloquear/desbloquear')
+		eu2=('mod_nom' 'Mod_UID' 'Mod_DT' 'Mod_GS' 'Mod_shell' 'Mod_ExU' 'Mod_NDias1' 'Mod_pass' 'Mod_NDias2' 'Mod_NDias3' 'Mod_BUlock')	
 	
 		menu 'eu1[@]' 'eu2[@]'	
 		
