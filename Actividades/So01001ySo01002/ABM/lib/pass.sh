@@ -28,12 +28,12 @@ done
 
 }
 
-estadoPass()
+estadoPass() #a partir de un nombre de usuario nos devuelve el estado en que se encuentre la cuenta, activo, activo sin clave o bloqueado 
 {
 	respuesta=$(passwd -S $1 | cut -d' ' -f2)
 }
 
-FechModificacionPass()
+FechModificacionPass() #a partir de un nombre de usuario nos devuelve la ultima fecha de modificacion de la password de mismo 
 {				
 	respuesta=$(date -d "1970-1-1 $[$(grep -e "^$1:" /etc/shadow|cut -d: -f3)-1] days" +%'Y'-'%m'-'%d') 
 }

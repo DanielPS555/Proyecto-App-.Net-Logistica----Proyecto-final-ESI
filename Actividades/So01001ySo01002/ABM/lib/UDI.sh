@@ -33,7 +33,7 @@ done
 }
 
 
-mostrarUDI() 
+mostrarUDI() #A partir de un usuario pasado por parametros nos devuelve su UID 
 {
-	respuesta=$(grep "$1:" '/etc/passwd'|cut -d: -f3)
+	respuesta=$(grep "$1:" '/etc/passwd'|cut -d: -f3) 
 }

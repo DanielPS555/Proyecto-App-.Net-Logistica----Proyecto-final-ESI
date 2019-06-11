@@ -7,7 +7,7 @@ cambiarExUser() #Funcion encargada de devolvernos una fecha para la expiracion d
 verif=0
 while test $verif -eq 0
 do
-	case $1 in 
+	case $1 in #Nos permite mostrar multiples mensajes, dependiendo el proposito de esta verificacion de fecha
 	1)
 		echo "Ingresar la fecha de expiracion del usuario (Si lo deja vacio se usara la por defecto )"
 	;;
@@ -47,14 +47,14 @@ do
 						respuesta="$year-$month-$day" #salida de la informacion
 						verif=1 #Romple bucle 
 					else
-						error "Esa fecha ya paso, debera elegir una posterior a la actual" 
+						echo "Esa fecha ya paso, debera elegir una posterior a la actual" 
 					fi
 				fi
 			else 
-				error "Fecha invalida, no existe" 
+				echo "Fecha invalida, no existe" 
 			fi
 		else
-			error "El formato no es el correcto, este debe ser DD-MM-YYYY"	
+			echo "El formato no es el correcto, este debe ser DD-MM-YYYY"	
 		fi 
 	fi	
 	
@@ -64,11 +64,12 @@ done
 
 mostrarExUser()
 {				
-	if ! test -z $(grep -e "^$1:" /etc/shadow|cut -d: -f8)
+	if ! test -z $(grep -e "^$1:" /etc/shadow|cut -d: -f8) #Si el usuario tiene una fecha de expiracion ingresa al then
 	then
 		respuesta=$(date -d "1970-1-1 $(grep -e "^$1:" /etc/shadow|cut -d: -f8) days" +%'Y'-'%m'-'%d') 
+		#Hace los calculos con el comando date para calcular la fecha de expiracion (tengan presente que el dato que devuelve el grep es el numero de dias entre 1970-1-1 y la fecha de expiracion 
 	else	
-		respuesta=""	
+		respuesta="" #Si no existe fecha de expiracion devuelve nada 	
 	fi
 }
 

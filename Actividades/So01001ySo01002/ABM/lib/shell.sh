@@ -26,7 +26,7 @@ do
 done
 }
 
-mostrarShell()
+mostrarShell() #Nos devuelve la ubicacion del shell para el usuario pasado por parametros 
 {
 	respuesta=$(grep -e "^$1:" '/etc/passwd'| cut -d: -f7)
 }

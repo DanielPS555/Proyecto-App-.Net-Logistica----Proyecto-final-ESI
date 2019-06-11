@@ -31,7 +31,7 @@ do
 			respuesta="$dato" #Salida de datos
 			verif=1 #Se rompe el bucle 
 		else
-			error "Entrada invalida, debe ser solo numerica, y no mayor a 4 cifras" 
+			echo "Entrada invalida, debe ser solo numerica, y no mayor a 4 cifras" 
 		fi
 
 	 else 		
@@ -42,7 +42,7 @@ do
 done
 }
 
-mostrarNumD()
+mostrarNumD() #Nos devuelve el numero de dias que pueden ser de advertencia, de actividad luego que caduque la passwd y de valides de la password (no en orden como se cito aqui) 
 {
 case $1 in
 	2)

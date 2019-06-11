@@ -24,7 +24,7 @@ do
 			verif=1 #Rompe el bucle
 						
 		else
-			error "ya ha comenzado a cargar grupos, ¿Desea dejalo por defecto?[s/n]"
+			echo "ya ha comenzado a cargar grupos, ¿Desea dejalo por defecto?[s/n]"
 			read se
 			if test $se == 's' #Si ya a ingresado algun grupo se le pedira confirmacion antes de dejarlo por defecto
 			then
@@ -51,7 +51,7 @@ do
 			        respuesta=$yy #Se cargan los datos en la variable de salida
 				verif=1
 			else
-				error "Debe ingresar un grupo primero"
+				echo "Debe ingresar un grupo primero"
 			fi
 		else
 			if test $dato = "help"
@@ -75,11 +75,11 @@ do
 					then
 						gs[${#gs[@]}]="$dato"
 					else
-						error "Ese grupo ya ha sido cargado" 	
+						echo "Ese grupo ya ha sido cargado" 	
 					fi
 					
 				else
-					error "Ese grupo no exsiste, creelo o ingrese otro " 
+					echo "Ese grupo no exsiste, creelo o ingrese otro " 
 				fi
 			fi  
 		fi
@@ -88,20 +88,20 @@ do
 done
 }
 
-mostrarGS()
+mostrarGS() #Como su nombre lo dice es devolver el conjunto de grupo secundario a los que pertenece el usuario 
 {
-	mostrarGP $1
-	cGP=$respuesta
-	gsp=()
+	mostrarGP $1 #Para ello primero que nada deberemos saber el GP, de esta forma nos encargamos que no se repita 
+	cGP=$respuesta #Guardamos el resultado del anterior metodo en la variable cGP
+	gsp=() #En este array tendremos a todos los grupos secundario que encontremos 
 	cont=0
-	for var1 in $(grep "$1" /etc/gshadow)
+	for var1 in $(grep "$1" /etc/gshadow) #Recoremos las filas de que involucren a usuario a buscar gshadow
 	do
-		if test $(echo "$var1" | cut -d: -f4 | grep -e ",$1\|$1,\|^$1$" | wc -l) -eq 1
+		if test $(echo "$var1" | cut -d: -f4 | grep -e ",$1\|$1,\|^$1$" | wc -l) -eq 1 #los usuario de un grupo se encuentra almacenados entre ',' en la ultima fila. Buscamos al usuario alli 
 		then	
-			temp1="$(echo "$var1" | cut -d: -f1)"
-			if test $(echo $temp1| grep -x "$cGP"| wc -l) -eq 0
+			temp1="$(echo "$var1" | cut -d: -f1)" 
+			if test $(echo $temp1| grep -x "$cGP"| wc -l) -eq 0 #comparamos que el grupo encontrado no sea el mismo que el principal del usuario 
 			then
-				gsp[$cont]=$temp1
+				gsp[$cont]=$temp1 #Se carga el dato en el array 
 				cont=$[$cont+1]
 			fi
 			cont=$[$cont+1]
@@ -110,13 +110,13 @@ mostrarGS()
 	
 	
 	done
-	respuesta="${gsp[@]}"
+	respuesta="${gsp[@]}" #Se devuelven todos los grupos por respuesta 
 }
 
 
-admin()
+admin() #A partir de un usuario y el nombre de un grupo se nos informa si dicho usuario es o no es el administrador de dicho grupo
 {
-	if test $(grep -e "^$1:" /etc/gshadow | grep ":$2:"| wc -l) -eq 1
+	if test $(grep -e "^$1:" /etc/gshadow | grep ":$2:"| wc -l) -eq 1 #Los usuarios que se encuentren en la 3° fila del de gshadow son administradores del grupo
 	then
 		respuesta='s'
 	else

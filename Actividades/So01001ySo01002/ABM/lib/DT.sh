@@ -35,7 +35,7 @@ do
 						if ! test $opcion = "n"	
 						then
 							verif2=0	
-							error "Opcion incorrecta, ingrese otra" 
+							echo "Opcion incorrecta, ingrese otra" 
 							read fff						
 						fi
 					fi 
@@ -47,11 +47,11 @@ do
 			 		respuesta="$dato" #Salida de datos
 					verif=1
 				else	
-					error "El directorio donde quiere crear el directorio no existe, por favor cree el directorio $(echo "$dato"|sed -e 's/\(\/[a-zA-Z/]\+\/\)\(.\+\)/\1/')"
+					echo "El directorio donde quiere crear el directorio no existe, por favor cree el directorio $(echo "$dato"|sed -e 's/\(\/[a-zA-Z/]\+\/\)\(.\+\)/\1/')"
 				fi
 			fi 
 		else
-			error "Dirrecion incorrecta"		
+			echo "Dirrecion incorrecta"		
 		fi 
 	fi
 done
@@ -60,7 +60,7 @@ done
 
 mostrarDT()
 {
-	respuesta=$(grep -e "^$1:" '/etc/passwd'|cut -d: -f6)
+	respuesta=$(grep -e "^$1:" '/etc/passwd'|cut -d: -f6) #Muestra la 6| columa de passwd cuya fila es la del usuario igresado por parametros, osea la direcion del su directorio de trabajo 
 }
 
 
