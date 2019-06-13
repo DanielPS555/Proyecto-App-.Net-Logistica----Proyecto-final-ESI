@@ -27,7 +27,10 @@ then
 				verifMenu=1 # Si el numero es 0 significa que se va a salir del menu, por ende 'rompe' el while 
 			else					
 				${ary2[$[$opcionM-1]]} #llama a la funcion
-				verifMenu=0			
+				if ! test $verifMenu -eq -1
+				then
+					verifMenu=0
+				fi
 			fi		
 		else 
 

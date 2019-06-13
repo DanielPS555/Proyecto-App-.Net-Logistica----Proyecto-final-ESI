@@ -25,7 +25,7 @@ listaCompleta()
 	done
 	read f
 	less $carpetaBase/Temp/listar #Muestra la lista temp 
-	rm $carpetaBase/Temp/listar #elimina la lista 
+	rm -f $carpetaBase/Temp/listar #elimina la lista 
 	
 }
 

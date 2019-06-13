@@ -21,7 +21,7 @@ listarTodosLosGrupos() #Su funcion es listar a todos los usuarios del sistema en
 	done
 	read f
 	less $carpetaBase/Temp/listar #Muestra el archivo temporal 
-	rm $carpetaBase/Temp/listar #Elimina el archivo temporal 
+	rm -f $carpetaBase/Temp/listar #Elimina el archivo temporal 
 }
 
 
