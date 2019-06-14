@@ -9,4 +9,4 @@ echo " |                  por Bit                  |"
 echo " |                                           |"
 echo " |___________________________________________|"
 echo "  Usuario: $USER" #Muestra el nombre del usuario
-echo "  Ultimo Ingreso: $(lastlog  -u root |grep "$USER"| cut -c45-80)" #muestra el ultimo ingreso al sistema
+echo "  Ultimo Ingreso: $(lastlog  -u root |grep "$USER"| cut -c44-80)" #muestra el ultimo ingreso al sistema

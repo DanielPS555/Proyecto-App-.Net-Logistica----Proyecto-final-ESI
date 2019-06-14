@@ -57,7 +57,7 @@ agregarGrupo()
 			else 			
 				echo "Confirme la creacion del grupo cuyo nombre es $grupo [s/n]"
 				read e
-				if test $e=='s' 2> /dev/null #solamente si ingresa 's' se creara el grupo 
+				if test $e == 's' 2> /dev/null #solamente si ingresa 's' se creara el grupo 
 				then				
 					groupadd $grupo 2> /dev/null #Se crea el grupo pero sin GID
 					echo "Exito, toque enter para continuar "
