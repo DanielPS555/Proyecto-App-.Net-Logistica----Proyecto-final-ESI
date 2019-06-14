@@ -20,42 +20,41 @@ truncate lugar;
 truncate usuario;
 
 INSERT INTO
-	usuario (nombredeusuario, hash_contra, email, fechanac, telefono, primernombre, primerapellido, preguntasecreta, respuestasecreta, sexo, rol)
+	usuario (nombredeusuario, hash_contra, email, fechanac, telefono, primernombre, primerapellido, segundoapellido, preguntasecreta, respuestasecreta, sexo, rol)
 VALUES
-	("fluffycat", "no", "mmacri@presidencia.gub.ar", TO_DATE("1/1/1962", "%d/%m/%Y"), "911", "Mauricio", "Macri", "Miau?", "Miau", "M", (select idrol from rol where nombre="Admin"));
+	("diosito", "no", "mvolcan@aguadita.uy", TO_DATE("1/1/1962", "%d/%m/%Y"), "911", "Miguel", "Volcan", "Sanchez", "Miau?", "Miau", "M", (select idrol from rol where nombre="Admin"));
 
 INSERT INTO
 	usuario (nombredeusuario, hash_contra, email, fechanac, telefono, primernombre, primerapellido, segundoapellido, preguntasecreta, respuestasecreta, sexo, rol)
 VALUES
-	("koutakun", "no", "darkfm@vera.com.uy", TO_DATE("03/05/2001", "%d/%m/%Y"), "0800", "Salvador", "Pardiñas", "Barros", "Miau?", "Miau", "M", (select idrol from rol where nombre="OpPuerto"));
-
-
-INSERT INTO
-	lugar (nombre, geox, geoy, creadorid, capacidad, tipo)
-VALUES
-	("Puerto de Malos Aires", -35, -32, (select IDUsuario from usuario where NombreDeUsuario = "fluffycat"), 3, "Puerto");
+	("koutakun", "no", "darkfm@vera.com.uy", TO_DATE("03/05/2001", "%d/%m/%Y"), "0305", "Salvador", "Pardiñas", "Barros", "Miau?", "Miau", "M", (select idrol from rol where nombre="Operario"));
 
 INSERT INTO
 	lugar (nombre, geox, geoy, creadorid, capacidad, tipo)
 VALUES
-	("La loma del orto", -35, -20, (select IDUsuario from usuario where NombreDeUsuario = "fluffycat"), 500, "Patio");
+	("Puerto de Montevideo", -35, -32, (select IDUsuario from usuario where NombreDeUsuario = "diosito"), 3, "Puerto");
+
+INSERT INTO
+	lugar (nombre, geox, geoy, creadorid, capacidad, tipo)
+VALUES
+	("Patio de Rocha", -35, -20, (select IDUsuario from usuario where NombreDeUsuario = "diosito"), 500, "Patio");
 
 INSERT INTO
 	zona (nombre, lugar, capacidad)
 VALUES
-	("En el medio de moron", (select IDLugar from lugar where nombre="Puerto de Malos Aires"), 3);
+	("Rambla portuaria", (select IDLugar from lugar where nombre="Puerto de Montevideo"), 3);
 
 INSERT INTO
-	subzona (nombre, zona, capacidad)
+	subzona (nombre, idzona, idlugar, capacidad)
 VALUES
-	("La casa del tranza", (select IDZona from zona where nombre="En el medio de moron"), 3);
+	("SZ-A", (select IDZona from zona where nombre="Rambla portuaria"), (select IDLugar from zona where nombre="Rambla portuaria"), 3);
 
 INSERT INTO
 	zona (nombre, lugar, capacidad)
 VALUES
-	("La casa de Menem", (select IDLugar from lugar where nombre = "La loma del orto"), 500);
+	("Zona 1", (select IDLugar from lugar where nombre = "Patio de Rocha"), 500);
 insert into
-	subzona (nombre, zona, capacidad)
+	subzona (nombre, idzona, idlugar, capacidad)
 VALUES
 	("El cuarto con la mano de Peron", (select IDZona from zona where nombre="La casa de Menem"), 500);
 

@@ -1,12 +1,11 @@
 create table
 	rol(
 	idrol serial primary key,
-	nombre varchar(100) unique
+	nombre varchar(25) unique
 );
-insert into rol(nombre) values("OpTrans");
-insert into rol(nombre) values("OpPatio");
-insert into rol(nombre) values("OpPuerto");
-insert into rol(nombre) values("Admin");
+insert into rol(nombre) values("Operario");
+insert into rol(nombre) values("Transportista");
+insert into rol(nombre) values("Administrador");
 CREATE
 	table usuario(
 	IDUsuario serial primary key,
@@ -30,20 +29,24 @@ CREATE
 	'F',
 	'O')),
 	UNIQUE(NombreDeUsuario),
-	foreign key(rol) references rol(idrol));
+	foreign key(rol) references rol(idrol)
+);
+
 CREATE
 	table lugar(
 	IDLugar serial primary key,
 	Nombre varchar(100),
-	Capacidad INTEGER NOT null,
+	Capacidad INTEGER NOT null CHECK (Capacidad > 0),
 	GeoX FLOAT NOT null,
 	GeoY FLOAT NOT null,
 	UsuarioCreador integer NOT null,
-	Tipo varchar(10) NOT null,
+	Tipo char(5) NOT null,
     check (Tipo IN ("Patio",
 	"Puerto")),
 	foreign key(UsuarioCreador) references usuario(IDUsuario),
-	UNIQUE(Nombre) );
+	UNIQUE(Nombre)
+);
+
 CREATE
 	table trabajaen(
 	ID serial primary key,
@@ -52,7 +55,9 @@ CREATE
 	FechaInicio date NOT null,
 	FechaFin date,
 	foreign key(IDLugar) references lugar(IDLugar),
-	foreign key(IDUsuario) references usuario(IDUsuario) );
+	foreign key(IDUsuario) references usuario(IDUsuario)
+);
+
 CREATE
 	table conexion(
 	IDTrabajaEn integer,
@@ -60,13 +65,14 @@ CREATE
 	HoraSalida datetime year to minute,
 	foreign key(IDTrabajaEn) references trabajaen(ID),
 	primary key(IDTrabajaEn, HoraIngreso)
-	);
+);
+
 CREATE
 	table zona(
 	IDLugar integer,
 	IDZona serial,
 	Nombre varchar(100) not null,
-	Capacidad integer NOT null,
+	Capacidad integer NOT null check(Capacidad > 0),
 	foreign key(IDLugar) references lugar(IDLugar),
 	primary key(IDLugar, IDZona)
 	);
@@ -76,7 +82,7 @@ CREATE
 	IDZona integer,
 	IDSub serial,
 	Nombre varchar(50) not null,
-	Capacidad integer NOT null,
+	Capacidad integer NOT null check(Capacidad > 0),
 	foreign key(IDLugar, IDZona) references zona(IDLugar, IDZona),
 	primary key(IDLugar, IDZona, IDSub)
 	);
@@ -87,7 +93,7 @@ CREATE
 	Color integer NOT null,
 	/* representacion RGBA 8bits por canal corresponde a un integer 32bit */ 
 	Tipo varchar(25) NOT null,
-	Anio integer NOT null,
+	Anio integer NOT null check(Anio >= 1900 and Anio <= 10000),
 	FueraDeSistema boolean NOT null,
 	ClienteNombre varchar(50) NOT null,
 	PuertoArriba integer NOT null,
@@ -96,10 +102,10 @@ CREATE
 	foreign key(PuertoArriba) references lugar(IDLugar) );
 create table vehiculoIngresa(
 	VIN char(17),
-	Usuario integer,
-	TipoIngreso varchar(10) not null check (TipoIngreso in ('Precarga', 'Arribo')),
+	TipoIngreso varchar(10) not null check (TipoIngreso in ('Precarga', 'Alta', 'Baja')),
+	Usuario integer not null,
 	Fecha datetime year to day not null,
-	primary key(VIN, Usuario),
+	primary key(VIN, TipoIngreso),
 	foreign key(VIN) references Vehiculo(VIN),
 	foreign key(Usuario) references Usuario(IDUsuario)
 );
@@ -107,13 +113,13 @@ CREATE
 	table informedanios( ID serial primary key,
 	Descripcion varchar(255) NOT null,
 	Fecha datetime year to day NOT null,
-	Tipo varchar(50) NOT null,
+	Tipo varchar(50) NOT null check (Tipo in ('Total', 'Parcial')),
 	VIN char(17) NOT null,
 	foreign key(VIN) references vehiculo(VIN) );
 CREATE
 	table registrodanios(
 	informedanios integer not null,
-	nroenlista integer not null,
+	nroenlista integer not null check (nroenlista > 0),
 	descripcion varchar(255) not null,
 	foreign key(informedanios) references informedanios(ID),
 	primary key(informedanios, nroenlista)
@@ -133,7 +139,7 @@ CREATE
 	registro1 integer,
 	informe2 integer,
 	registro2 integer,
-	tipo varchar(10) NOT null check (tipo in ('Total', 'Parcial')),
+	tipo varchar(15) NOT null check (tipo in ('Anulacion', 'Correccion')),
 	foreign key(informe1, registro1) references registrodanios(informedanios, nroenlista),
 	foreign key(informe2, registro2) references registrodanios(informedanios, nroenlista),
 	primary key(informe1, registro1, informe2, registro2)
@@ -146,7 +152,7 @@ CREATE
 	VIN char(17),
 	desde datetime year to hour,
 	hasta datetime year to hour,
-	posicion integer NOT null,
+	posicion integer NOT null check (posicion > 0),
 	foreign key(VIN) references vehiculo(VIN),
 	foreign key(IDLugar, IDZona, IDSub) references subzona(IDLugar, IDZona, IDSub),
 	primary key(IDLugar, IDZona, IDSub, VIN, desde)
@@ -160,14 +166,13 @@ CREATE
 	primary key(VIN),
 	foreign key(UsuarioIngresa) references usuario(IDUsuario) );
 CREATE
-	table rampascamion( VIN char(17),
-	RampaIt integer,
-	CantCamiones integer NOT null,
-	CantAutos integer NOT null,
-	CantSUV integer NOT null,
-	CantMinivan integer NOT null,
-	primary key(VIN,
-	RampaIt),
+		table rampascamion( VIN char(17),
+	RampaIt integer check (RampaIt > 0),
+	CantCamiones integer NOT null check (CantCamiones > 0),
+	CantAutos integer NOT null check (CantAutos > 0),
+	CantSUV integer NOT null check(CantSUV > 0),
+	CantMinivan integer NOT null check (CantMinivan > 0),
+	primary key(VIN, RampaIt),
 	foreign key(VIN) references camion(VIN) );
 CREATE
 	table conduce( 
@@ -178,14 +183,14 @@ CREATE
 	foreign key(VIN) references camion(VIN),
 	foreign key(Usuario) references usuario(IDUsuario),
 	primary key(VIN, Usuario, Desde)
-	 );
+);
 CREATE
 	table lote( IDLote serial,
 	FechaPartida date NOT null,
 	Desde integer NOT null,
 	Hacia integer NOT null,
 	CreadorID integer NOT null,
-	Prioridad varchar(10) NOT null,
+	Prioridad varchar(10) NOT null check (Prioridad in ('Normal', 'Alta')),
 	primary key(IDLote),
 	foreign key(Desde) references lugar(IDLugar),
 	foreign key(Hacia) references lugar(IDLugar),
@@ -193,8 +198,7 @@ CREATE
 CREATE
 	table integra( VIN char(17),
 	Lote integer,
-	primary key(VIN,
-	Lote),
+	primary key(VIN, Lote),
 	foreign key(VIN) references vehiculo(VIN),
 	foreign key(Lote) references lote(IDLote) );
 CREATE
