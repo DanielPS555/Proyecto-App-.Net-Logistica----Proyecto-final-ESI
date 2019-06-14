@@ -15,7 +15,7 @@ verifUser() #Esta funcion de encarga del correcto ingreso del nombre de un usuar
 				respuesta=$dato #devuelve el dato
 				verifM=1 #rompe el bucle 
 			else
-				error "Dicho usuario no existe en el sistema" 
+				echo  "Dicho usuario no existe en el sistema" 
 			fi
 		else
 			verifM=2 

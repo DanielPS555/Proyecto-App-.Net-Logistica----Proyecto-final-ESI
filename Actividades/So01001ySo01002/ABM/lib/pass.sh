@@ -21,7 +21,7 @@ do
 			respuesta=$dato #salida de datos
 			verif=1 #Se rome el bucle
 		else
-			error "La contraseña no es valida" 
+			echo  "La contraseña no es valida" 
 		fi
 	fi 
 done

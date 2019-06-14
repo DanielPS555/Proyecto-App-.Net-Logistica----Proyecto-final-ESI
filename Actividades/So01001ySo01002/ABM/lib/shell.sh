@@ -20,7 +20,7 @@ do
 			respuesta=$dato #salida de la informacion
 			verif=1
 		else
-			error "Ese archivo no existe "
+			echo  "Ese archivo no existe "
 		fi
 	fi
 done

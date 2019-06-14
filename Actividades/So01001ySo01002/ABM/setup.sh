@@ -26,7 +26,7 @@ ConfiguracionDelAmbienteDeTrabajo() #Funcion encarga de la instalacion
 		cd $carpeta #Nos movemos a /var
 		git clone https://github.com/Daniel2242014/DataConfiguracionABMusuariosSO
 		#Subido en la direcion url que se puede ver en la linea anterior se tiene subido todos los shell script y funciones nesesarias para el correcto funcionamiento de la ABM. De esta forma el usuario no debera tener todos los archivos, solamente el shell setup para la instalacion
-		mv /var/DataConfiguracionABMusuariosSO/Titular.sh /etc/profile.d/Titular.sh 
+		mv /var/DataConfiguracionABMusuariosSO/Titular.sh /etc/profile.d/Titular.sh #Mueve el titular a profile.d, de esta forma se ejecuta al inicio del sistema
 		touch /etc/profile.d/z_ABMConfiguration.sh #Creamos un archivo de configuracion del PATH en /etc/profile.d
 		echo "export PATH=$PATH:/var/DataConfiguracionABMusuariosSO/" > /etc/profile.d/z_ABMConfiguration.sh
 		PATH="$PATH:/var/DataConfiguracionABMusuariosSO/" #cambia PATH, con SH no te permite hacerlo, por eso debe usar source el usuario 
@@ -52,7 +52,7 @@ ConfiguracionDelAmbienteDeTrabajo() #Funcion encarga de la instalacion
 		fi
 		
 		chmod 700 /var/DataConfiguracionABMusuariosSO 	
-		echo "Bienvenido al servidor del sistema SLTA" > /etc/issue
+		echo "Bienvenido al servidor del sistema SLTA" > /etc/issue #Cargamos issue para el aviso previo al logeo 
 		echo "Ingrese su usuario y contraseña" >> /etc/issue
 		echo "Proseso terminado con exito, ejecute setup.sh desde la consola"
 		rm -f ./setup.sh
@@ -94,7 +94,8 @@ desinstalar()
 		then
 			userdel Administrador #Elimina al administrador si exsiste 
 		fi
-		echo "" > /etc/issue	
+		echo "\S" > /etc/issue
+		echo "Kernel \r on an \m" >> /etc/issue	#Cargamos el contenido por defecto 
 		if test -z $1
 		then 
 			echo "Proseso terminado con exito"	
@@ -117,7 +118,6 @@ then
 				clear
 				#Se importan un conjunto de archivos llenos de metodos a utilizar en la ABM
 				source /var/DataConfiguracionABMusuariosSO/lib/lib_menu.sh
-				source /var/DataConfiguracionABMusuariosSO/lib/lib_error.sh
 				source /var/DataConfiguracionABMusuariosSO/lib/DT.sh
 				source /var/DataConfiguracionABMusuariosSO/lib/expiracionUsuario.sh
 				source /var/DataConfiguracionABMusuariosSO/lib/GP.sh

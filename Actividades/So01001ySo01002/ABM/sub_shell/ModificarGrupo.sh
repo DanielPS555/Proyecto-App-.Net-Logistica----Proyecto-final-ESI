@@ -61,10 +61,10 @@ MGNombre() #Funcion encargada de la modificacion del nombre de grupo
 					Mgrupo=$dato #Carga el valor en la variable Mgrupo 					
 					verif=1 #Rompe bucle 
 				else	
-					error "Usuario ya ingrezado" #Utiliza el metodo 'error' el cual pinta en rojo el error, de esta forma es mas facil diferenciarlo  
+					echo  "Usuario ya ingrezado" 
 				fi
 			else 
-				error "Formato no valido " 
+				echo  "Formato no valido " 
 			fi	
 		else
 			echo "Operacion cancelada, toque cualquier boton para continuar"
@@ -94,10 +94,10 @@ MGGID() #funcion encargada de la modificacion de la GID del grupo
 						echo "Operacion realizada, toque enter para continuar"
 						read f
 					else
-						error "Formato del numero invalido (debe ser de 4 cifras)"
+						echo  "Formato del numero invalido (debe ser de 4 cifras)"
 					fi
 				else
-					error "Ese GID ya existe, toque enter para continuar" 
+					echo  "Ese GID ya existe, toque enter para continuar" 
 				fi
 			else 			
 				echo "Se cancela el proseso, toque cualquier boton para continuar"

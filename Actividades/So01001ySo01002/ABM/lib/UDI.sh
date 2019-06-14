@@ -18,10 +18,10 @@ do
 				respuesta=$dato #salida de informacion
 				verif=1 #rompe el bucle 
 			else
-				error "Formato del numero invalido (debe ser de 4 cifras)"
+				echo  "Formato del numero invalido (debe ser de 4 cifras)"
 			fi
 		else
-			error "Ese UID ya existe, toque enter para continuar" 
+			echo  "Ese UID ya existe, toque enter para continuar" 
 		fi
 		else 			
 			respuesta="POR DEFECTO" #Salida por defecto 

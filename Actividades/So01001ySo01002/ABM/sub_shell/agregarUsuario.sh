@@ -23,10 +23,10 @@ do
 				usuario=$dato #Carga el valor en la variable usuario 
 				verif=1 #Rompe bucle 
 			else	
-				error "Usuario ya ingrezado" #Utiliza el metodo 'error' el cual pinta en rojo el error, de esta forma es mas facil diferenciarlo  
+				echo  "Usuario ya ingrezado"   
 			fi
 		else 
-			error "Formato no valido " 
+			echo  "Formato no valido " 
 		fi	
 	else
 		verif=2
