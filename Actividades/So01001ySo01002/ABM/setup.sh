@@ -54,6 +54,7 @@ ConfiguracionDelAmbienteDeTrabajo() #Funcion encarga de la instalacion
 		echo "Ingrese su usuario y contraseña" >> /etc/issue
 		echo "Proseso terminado con exito, ejecute setup.sh desde la consola"
 		rm -f ./setup.sh
+		verifMenu=-1
 	fi
 }
 
@@ -82,17 +83,17 @@ desinstalar()
 		export PATH
 		if test $(grep -e "^Operario:" /etc/passwd| wc -l) -eq 1 # si el usuario operario existe 
  		then
-			userdel Operario #Elimina al operario si exsiste 
+			userdel Operario 2> /dev/null #Elimina al operario si exsiste 
 		fi
 
 		if test $(grep -e "^Trasportista:" /etc/passwd| wc -l) -eq 1 #si el usuario trasportisa existe 
 		then
-			userdel Trasportista #Elimina al trasportista si exsiste 
+			userdel Trasportista 2> /dev/null #Elimina al trasportista si exsiste 
 		fi	
 
 		if test $(grep -e "^Administrador:" /etc/passwd| wc -l) -eq 1
 		then
-			userdel Administrador #Elimina al administrador si exsiste 
+			userdel Administrador 2> /dev/null #Elimina al administrador si exsiste 
 		fi
 		echo "\S" > /etc/issue
 		echo "Kernel \r on an \m" >> /etc/issue	#Cargamos el contenido por defecto 

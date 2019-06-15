@@ -1,6 +1,10 @@
 #!bin/bash
 
+
+
 # VERCION 1.0 - 25/6 PRIMERA ENTREGA desarrolado por Bit (3°BD 2019)
+
+
 
 cambiarShell() #encargado de verificar y devolver una direcion de un shell para un usuario, al poder tener muchos tipos de shell y estos al ser todos archivos regulares no hay muchas forma de verificar que realmente se trate de un shell 
 {
@@ -15,7 +19,7 @@ do
 		verif=1 #rompe el bucle 		
 		
 	else
-		if test $(grep -x "$dato" /etc/shells | wc -l) -eq 1 #verifica que el shell sea valido
+		if test $(grep -x "$dato" /etc/shells | wc -l) -eq 1 #verifica que el shell sea valido  
 		then
 			respuesta=$dato #salida de la informacion
 			verif=1
@@ -26,7 +30,10 @@ do
 done
 }
 
+
+
 mostrarShell() #Nos devuelve la ubicacion del shell para el usuario pasado por parametros 
+
 {
 	respuesta=$(grep -e "^$1:" '/etc/passwd'| cut -d: -f7)
 }

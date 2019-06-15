@@ -10,7 +10,7 @@ eliminarUsuarios() #Metodo encargado de la eliminacion de los usuarios
 		read dato #Ingreso de la informacion 
 		if ! test -z $dato #Comprueba que se haya ingresado informacion 
 		then 
-			if test $(grep -e "^$dato:" '/etc/passwd' | wc -l) -eq 1 #Comprueba que el usuario exista 
+			if test $(cut -d: -f1,3 '/etc/passwd' | grep -e "^$dato:[1-9][0-9]\{3\}$" | wc -l) -eq 1 #Comprueba que el usuario exista 
 			then
 				echo "¿Desea eliminar tambien el directorio de trabajo del usuario? [s/n]"
 				echo "Ingrese una opcion invalida para volver a ingresar el nombre"
