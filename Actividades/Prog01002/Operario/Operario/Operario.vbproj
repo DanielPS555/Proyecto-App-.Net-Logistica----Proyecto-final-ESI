@@ -73,7 +73,9 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Fachada\Repositorios.vb" />
     <Compile Include="Lógica\Clases.vb" />
+    <Compile Include="Persistencia\Repositorio.vb" />
     <Compile Include="Presentación\Login.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -120,8 +122,6 @@
     </None>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Persistencia\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
