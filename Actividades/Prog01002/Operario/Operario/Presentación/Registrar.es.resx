@@ -117,7 +117,56 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="Tiempo.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="usrLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>96, 13</value>
+  </data>
+  <data name="usrLabel.Text" xml:space="preserve">
+    <value>Nombre de usuario</value>
+  </data>
+  <data name="pwdLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>61, 13</value>
+  </data>
+  <data name="pwdLabel.Text" xml:space="preserve">
+    <value>Contraseña</value>
+  </data>
+  <data name="emailLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>38, 13</value>
+  </data>
+  <data name="emailLabel.Text" xml:space="preserve">
+    <value>Correo</value>
+  </data>
+  <data name="dateLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 96</value>
+  </data>
+  <data name="dateLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>106, 13</value>
+  </data>
+  <data name="dateLabel.Text" xml:space="preserve">
+    <value>Fecha de nacimiento</value>
+  </data>
+  <data name="telefonoLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>49, 13</value>
+  </data>
+  <data name="telefonoLabel.Text" xml:space="preserve">
+    <value>Teléfono</value>
+  </data>
+  <data name="nombresLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>49, 13</value>
+  </data>
+  <data name="nombresLabel.Text" xml:space="preserve">
+    <value>Nombres</value>
+  </data>
+  <data name="apellidosLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>49, 13</value>
+  </data>
+  <data name="apellidosLabel.Text" xml:space="preserve">
+    <value>Apellidos</value>
+  </data>
+  <data name="preguntaLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>150, 13</value>
+  </data>
+  <data name="preguntaLabel.Text" xml:space="preserve">
+    <value>Pregunta y respuesta secretas</value>
+  </data>
 </root>

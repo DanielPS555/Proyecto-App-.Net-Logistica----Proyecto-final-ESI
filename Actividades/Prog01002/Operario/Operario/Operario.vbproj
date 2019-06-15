@@ -98,6 +98,48 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Presentación\Principal.Designer.vb">
+      <DependentUpon>Principal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentación\Principal.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentación\puerto\MarcoPuerto.Designer.vb">
+      <DependentUpon>MarcoPuerto.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentación\puerto\MarcoPuerto.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentación\puerto\PuertoInicio.Designer.vb">
+      <DependentUpon>PuertoInicio.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentación\puerto\PuertoInicio.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentación\puerto\PuertoLotes.Designer.vb">
+      <DependentUpon>PuertoLotes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentación\puerto\PuertoLotes.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentación\puerto\PuertosVeiculos.Designer.vb">
+      <DependentUpon>PuertosVeiculos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentación\puerto\PuertosVeiculos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentación\Registrar.Designer.vb">
+      <DependentUpon>Registrar.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentación\Registrar.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentación\RestablecerContraseña.Designer.vb">
+      <DependentUpon>RestablecerContraseña.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentación\RestablecerContraseña.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Presentación\Login.resx">
@@ -108,6 +150,33 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentación\Principal.resx">
+      <DependentUpon>Principal.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentación\puerto\MarcoPuerto.resx">
+      <DependentUpon>MarcoPuerto.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentación\puerto\PuertoInicio.resx">
+      <DependentUpon>PuertoInicio.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentación\puerto\PuertoLotes.resx">
+      <DependentUpon>PuertoLotes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentación\puerto\PuertosVeiculos.resx">
+      <DependentUpon>PuertosVeiculos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentación\Registrar.en.resx">
+      <DependentUpon>Registrar.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentación\Registrar.es.resx">
+      <DependentUpon>Registrar.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentación\Registrar.resx">
+      <DependentUpon>Registrar.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentación\RestablecerContraseña.resx">
+      <DependentUpon>RestablecerContraseña.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -122,6 +191,26 @@
     </None>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\ojo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\texto.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logogrande.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logogrande.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ojo_no.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

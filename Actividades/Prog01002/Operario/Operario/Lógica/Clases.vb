@@ -3,12 +3,13 @@
     ' Clases "repositorio" desde donde se cargan y donde se guardan las entidades
     ' los "repositorios" tendrán métodos de actualización que guardarán los cambios
     Public Class Lugar
-        Private _nombre As String
+        Public ReadOnly Nombre As String
         Private _capacidad As UInteger
         Private _posicion As PointF
         Private _creador As Usuario
         Private _tipo As String
         Private _zonas As List(Of Zona)
+
     End Class
 
     Public Class Zona
@@ -112,23 +113,70 @@
         End Sub
     End Class
 
+    Public Class Conexion
+        Public ReadOnly FechaInicio As DateTime
+        Public FechaFin As DateTime?
+
+        Public Sub New(fechaInicio As Date, fechaFin As Date?)
+            Me.FechaInicio = fechaInicio
+            Me.FechaFin = fechaFin
+        End Sub
+    End Class
+
+    Public Class TrabajaEn
+        Public ReadOnly ID As Integer
+        Public ReadOnly Lugar As Lugar
+        Public ReadOnly Usuario As Usuario
+        Public ReadOnly FechaInicio As DateTime
+        Public FechaFin As DateTime?
+        Public Conexiones As List(Of Conexion)
+
+        Public Sub New(iD As Integer, lugar As Lugar, usuario As Usuario, fechaInicio As Date, fechaFin As Date?, conexiones As List(Of Conexion))
+            Me.ID = iD
+            Me.Lugar = lugar
+            Me.Usuario = usuario
+            Me.FechaInicio = fechaInicio
+            Me.FechaFin = fechaFin
+            Me.Conexiones = conexiones
+        End Sub
+    End Class
+
     Public Class Usuario
-        Private _trabajaen As List(Of Tuple(Of Lugar, DateTime, DateTime?))
+        Private _trabajaen As List(Of TrabajaEn)
         Private _dirty As Boolean
 
-        Private ReadOnly Property TrabajaEn As IReadOnlyList(Of Tuple(Of Lugar, DateTime, DateTime?))
+        Private ReadOnly Property TrabajaEn As IReadOnlyList(Of TrabajaEn)
             Get
                 Return _trabajaen
             End Get
         End Property
 
         Public Function Conectar(En As Lugar) As Boolean
-            If _trabajaen.Where(Function(x) x.Item3 Is Nothing).Any Then
+            Dim trabajaEnFind = _trabajaen.Where(Function(x) x.Lugar Is En)
+            If Not trabajaEnFind.Any Then
                 Return False
-            Else
-                _trabajaen.Add(New Tuple(Of Lugar, Date, Date?)(En, DateTime.Now, Nothing))
-                Return True
             End If
+            Dim trabajaEn = trabajaEnFind.First
+            If trabajaEn.Conexiones.Any(Function(x) x.FechaFin Is Nothing) Then
+                Return False
+            End If
+            trabajaEn.Conexiones.Add(New Conexion(Date.Now, Nothing))
+            Return True
+        End Function
+
+        Public Function Desconectar() As Boolean
+            Dim conexiones = _trabajaen.Select(Of List(Of Conexion))(Function(x) x.Conexiones).Aggregate(Of List(Of Conexion))(New List(Of Conexion), Function(x, y) x.Union(y))
+            Dim findDesconectado = conexiones.Where(Function(x) x.FechaFin Is Nothing)
+            If Not findDesconectado.Any Then
+                Return False
+            End If
+            If findDesconectado.Count <> 1 Then
+                MsgBox("Existe más de una conexión simultánea, por favor informe a su administrador de este suceso.")
+            End If
+            For Each i In findDesconectado
+                i.FechaFin = Date.Now
+            Next
+            Return True
         End Function
 
         Private _username As String
@@ -262,7 +310,7 @@
             End Get
         End Property
 
-        Public Sub New(trabajaen As List(Of Tuple(Of Lugar, DateTime, DateTime?)), username As String, password_hash As String, primer_nombre As String, segundo_nombre As String, primer_apellido As String, segundo_apellido As String, pregunta_secreta As String, fecha_nacimiento As DateTime, sexo As Char, email As String, telefono As String, rol As Role)
+        Public Sub New(trabajaen As List(Of TrabajaEn), username As String, password_hash As String, primer_nombre As String, segundo_nombre As String, primer_apellido As String, segundo_apellido As String, pregunta_secreta As String, fecha_nacimiento As DateTime, sexo As Char, email As String, telefono As String, rol As Role)
             _trabajaen = trabajaen
             _username = username
             _password_hash = password_hash
