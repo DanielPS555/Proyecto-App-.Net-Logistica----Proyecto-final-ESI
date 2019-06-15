@@ -15,7 +15,7 @@ do
 		verif=1 #rompe el bucle 		
 		
 	else
-		if test $(grep -x "$dato" /etc/shells | wc -l) -eq 1 #verifica que la ruta del archivo exista y ademas sea un archivo regular 
+		if test $(grep -x "$dato" /etc/shells | wc -l) -eq 1 #verifica que el shell sea valido
 		then
 			respuesta=$dato #salida de la informacion
 			verif=1
