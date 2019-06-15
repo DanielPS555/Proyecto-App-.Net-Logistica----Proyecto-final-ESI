@@ -13,7 +13,7 @@ verif=0 #Variable para controlar el bucle while
 while test $verif -eq 0
 do
 	echo "Ingrese un grupo secundario, puede dejarlo vacio. Cuando termine de seleccionar los grupos ingrese 0"
-	echo "Ingrese help para visualizar los grupos, para salir ingrese 'q'"
+	echo "Ingrese help para visualizar los grupos"
 	read dato #Ingreso de datos
 	
 	if test -z $dato #se ejecuta si no ingreso nada 
