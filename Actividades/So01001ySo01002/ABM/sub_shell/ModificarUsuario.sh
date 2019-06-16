@@ -35,6 +35,7 @@ mod_nom()
 }
 
 
+
 Mod_UID()
 {
 	mostrarUDI $ModUsuario #Muestra el UID del usuario 
@@ -228,7 +229,7 @@ Mod_GS() #Este metodo sea el encargado de la gestion de los grupos del usuario
 								then								
 									veee=1
 								else
-									echo  "Este usuario ya es administrador en este grupo" 
+									veee=2 
 								fi
 							fi
 						done
@@ -239,6 +240,13 @@ Mod_GS() #Este metodo sea el encargado de la gestion de los grupos del usuario
 						echo  "Toque enter para continuar"
 					else
 						echo  "El usuario no pertenece el grupo ingresado"
+						if test $veee -eq 2
+						then
+							echo "El usuario ya es administrador del grupo "
+						else
+							echo  "El usuario no pertenece el grupo ingresado"
+							
+						fi
 					fi
 				fi
 				read ff
