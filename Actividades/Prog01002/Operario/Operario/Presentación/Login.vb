@@ -1,5 +1,15 @@
 ﻿Public Class Login
     Private contraseñaVisible As Boolean = False
+
+    Public Sub New()
+
+        ' Esta llamada es exigida por el diseñador.
+        InitializeComponent()
+
+        ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
+
+    End Sub
+
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Tiempo.Tick 'se ejecuta un reloj cada 0.5 segundos
         Dim Tiempo As DateTime = DateTime.Now
         fecha.Text = Tiempo.ToString("dd MMMM yyyy") ' dd -> día en formato 01, 02, ..., 31. MMMM -> nombre completo del mes (enero, febrero, ..., diciembre). yyyy -> año en formato 1900, 1901, ..., 2019.
@@ -71,17 +81,17 @@
     End Sub
 
     Private Sub login()
-        Dim userObj = Nothing
-        If userObj Is Nothing Then
-            MsgBox("Credenciales incorrectas, intente nuevamente")
-        Else
-            Select Case userObj.Rol
-                Case userObj.Type.OperadorPuerto
-                    Principal.getInstancia.cargarPanel(Of MarcoPuerto)()
-                Case Else
-                    MsgBox("No implementado aún")
-            End Select
-        End If
+        'Dim userObj = Nothing
+        'If userObj Is Nothing Then
+        '    MsgBox("Credenciales incorrectas, intente nuevamente")
+        'Else
+        '    Select Case userObj.Rol
+        '        Case userObj.Type.OperadorPuerto
+        Principal.getInstancia.cargarPanel(Of MarcoPuerto)()
+        '        Case Else
+        '            MsgBox("No implementado aún")
+        '    End Select
+        'End If
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click

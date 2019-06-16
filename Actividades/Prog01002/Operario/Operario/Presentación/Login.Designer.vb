@@ -24,21 +24,21 @@ Partial Class Login
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.panelLogin = New System.Windows.Forms.Panel()
+        Me.Button3 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.estado = New System.Windows.Forms.Label()
+        Me.ver = New System.Windows.Forms.PictureBox()
         Me.e2 = New System.Windows.Forms.Panel()
         Me.e1 = New System.Windows.Forms.Panel()
         Me.pass = New System.Windows.Forms.TextBox()
+        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.hora = New System.Windows.Forms.Label()
         Me.fecha = New System.Windows.Forms.Label()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.user = New System.Windows.Forms.TextBox()
         Me.Tiempo = New System.Windows.Forms.Timer(Me.components)
-        Me.ver = New System.Windows.Forms.PictureBox()
-        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.Button3 = New System.Windows.Forms.Button()
         Me.panelLogin.SuspendLayout()
         CType(Me.ver, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -69,6 +69,21 @@ Partial Class Login
         Me.panelLogin.Size = New System.Drawing.Size(1100, 650)
         Me.panelLogin.TabIndex = 2
         '
+        'Button3
+        '
+        Me.Button3.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Button3.BackColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(115, Byte), Integer), CType(CType(201, Byte), Integer))
+        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button3.Font = New System.Drawing.Font("Century Gothic", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button3.ForeColor = System.Drawing.Color.White
+        Me.Button3.Location = New System.Drawing.Point(23, 292)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(281, 75)
+        Me.Button3.TabIndex = 15
+        Me.Button3.Text = "Restaurar"
+        Me.Button3.UseVisualStyleBackColor = False
+        '
         'Button2
         '
         Me.Button2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
@@ -94,6 +109,18 @@ Partial Class Login
         Me.estado.Size = New System.Drawing.Size(308, 22)
         Me.estado.TabIndex = 13
         Me.estado.Text = "Usuario o contraseña incorrecta "
+        '
+        'ver
+        '
+        Me.ver.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.ver.Image = Global.Operario.My.Resources.Resources.ojo
+        Me.ver.Location = New System.Drawing.Point(751, 354)
+        Me.ver.Name = "ver"
+        Me.ver.Size = New System.Drawing.Size(34, 37)
+        Me.ver.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.ver.TabIndex = 12
+        Me.ver.TabStop = False
         '
         'e2
         '
@@ -128,6 +155,16 @@ Partial Class Login
         Me.pass.TabIndex = 1
         Me.pass.Text = "Contraseña"
         '
+        'PictureBox2
+        '
+        Me.PictureBox2.Image = Global.Operario.My.Resources.Resources.texto
+        Me.PictureBox2.Location = New System.Drawing.Point(579, 620)
+        Me.PictureBox2.Name = "PictureBox2"
+        Me.PictureBox2.Size = New System.Drawing.Size(35, 21)
+        Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox2.TabIndex = 7
+        Me.PictureBox2.TabStop = False
+        '
         'Label3
         '
         Me.Label3.AutoSize = True
@@ -155,6 +192,18 @@ Partial Class Login
         Me.fecha.Name = "fecha"
         Me.fecha.Size = New System.Drawing.Size(0, 39)
         Me.fecha.TabIndex = 4
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.PictureBox1.Image = Global.Operario.My.Resources.Resources.logo
+        Me.PictureBox1.Location = New System.Drawing.Point(435, 12)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(235, 194)
+        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox1.TabIndex = 3
+        Me.PictureBox1.TabStop = False
         '
         'Button1
         '
@@ -187,55 +236,6 @@ Partial Class Login
         'Tiempo
         '
         Me.Tiempo.Interval = 500
-        '
-        'ver
-        '
-        Me.ver.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.ver.Image = Global.Operario.My.Resources.Resources.ojo
-        Me.ver.Location = New System.Drawing.Point(751, 354)
-        Me.ver.Name = "ver"
-        Me.ver.Size = New System.Drawing.Size(34, 37)
-        Me.ver.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.ver.TabIndex = 12
-        Me.ver.TabStop = False
-        '
-        'PictureBox2
-        '
-        Me.PictureBox2.Image = Global.Operario.My.Resources.Resources.texto
-        Me.PictureBox2.Location = New System.Drawing.Point(579, 620)
-        Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(35, 21)
-        Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox2.TabIndex = 7
-        Me.PictureBox2.TabStop = False
-        '
-        'PictureBox1
-        '
-        Me.PictureBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.PictureBox1.Image = Global.Operario.My.Resources.Resources.logo
-        Me.PictureBox1.Location = New System.Drawing.Point(435, 12)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(235, 194)
-        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox1.TabIndex = 3
-        Me.PictureBox1.TabStop = False
-        '
-        'Button3
-        '
-        Me.Button3.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button3.BackColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(115, Byte), Integer), CType(CType(201, Byte), Integer))
-        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button3.Font = New System.Drawing.Font("Century Gothic", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button3.ForeColor = System.Drawing.Color.White
-        Me.Button3.Location = New System.Drawing.Point(23, 292)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(281, 75)
-        Me.Button3.TabIndex = 15
-        Me.Button3.Text = "Restaurar"
-        Me.Button3.UseVisualStyleBackColor = False
         '
         'Login
         '

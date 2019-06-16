@@ -1,15 +1,15 @@
 ﻿Public Class MarcoPuerto
 
     Public Function cargarPanel(Of T As {Form, New})() As T
-        Dim f As Form = contenedorPaneles.Controls.OfType(Of T).FirstOrDefault 'Nos devuelve el panel si ya estaba dentro del control del panel
+        Dim f As Form = contenedor.Controls.OfType(Of T).FirstOrDefault 'Nos devuelve el panel si ya estaba dentro del control del panel
 
         If f Is Nothing Then 'si no existe ningun panel de este tipo ingresado, nos devuelve nada, en cuyo caso se crea uno nuevo 
             f = New T With {
                 .TopLevel = False,
                 .FormBorderStyle = FormBorderStyle.None
             }
-            contenedorPaneles.Controls.Add(f)
-            contenedorPaneles.Tag = f
+            contenedor.Controls.Add(f)
+            contenedor.Tag = f
             f.Show()
             f.BringToFront()
         Else
@@ -20,9 +20,10 @@
 
     Private Sub MarcoPuerto_Load(sender As Object, e As EventArgs) Handles Me.Load
         inicio.Font = New Font("Century Gothic", 15.75!, FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
+        Me.cargarPanel(Of PuertoInicio)()
     End Sub
 
-    Private Sub botones_Click(sender As Object, e As EventArgs) Handles inicio.Click, lotes.Click, veiculos.Click
+    Private Sub botones_Click(sender As Object, e As EventArgs)
         Dim botones() As Button = {inicio, lotes, veiculos}
         Dim selec As Button = DirectCast(sender, Button)
         For i As Integer = 0 To botones.Length - 1

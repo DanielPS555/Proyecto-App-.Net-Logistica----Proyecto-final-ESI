@@ -1,16 +1,10 @@
 ﻿Public Class Principal
     Private Shared initi As Principal
-    Public ReadOnly Property lobutton As ToolStripMenuItem
-        Get
-            Return LogoutToolStripMenuItem
-        End Get
-    End Property
 
     Private Sub New()
 
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
-
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
         cargarPanel(Of Login)()
     End Sub
@@ -40,14 +34,6 @@
         End If
         Return f
     End Function
-
-    Private Sub LogoutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LogoutToolStripMenuItem.Click
-        For Each i In contenedorDePaneles.Controls
-            i.Close()
-        Next
-        LogoutToolStripMenuItem.Enabled = False
-        cargarPanel(Of Login)()
-    End Sub
 
     Private Sub Principal_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
     End Sub
