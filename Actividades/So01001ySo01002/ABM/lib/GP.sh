@@ -10,15 +10,15 @@ do
 	case $1 in #Nos permite modificar su mensaje dependiendo del uso de la conprobacion 
 	1)
 		echo "Ingrese el nombre del grupo principal(sino ingresa ninguno se usara el por defecto)" 
-		echo "Ingrese 'help' para visualizar todos los grupos del sistema, ingrese 'q' para salir"
+		echo "Ingrese 'help' para visualizar todos los grupos del sistema"
 	;;
 	2)
 		echo "Ingrese el nombre del grupo principal(sino ingresa ningun no se realizaran cambios)" 
-		echo "Ingrese 'help' para visualizar todos los grupos del sistema, ingrese 'q' para salir"
+		echo "Ingrese 'help' para visualizar todos los grupos del sistema"
 	;;
 	3)
 		echo "Ingrese el nombre del grupo donde se agregara el usuario" 	
-		echo "Ingrese 'help' para visualizar todos los grupos del sistema, ingrese 'q' para salir"
+		echo "Ingrese 'help' para visualizar todos los grupos del sistema"
 	;;
 	esac
 	
