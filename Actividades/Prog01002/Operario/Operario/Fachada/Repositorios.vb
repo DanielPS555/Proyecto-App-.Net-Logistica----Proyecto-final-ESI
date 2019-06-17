@@ -21,13 +21,15 @@ Public MustInherit Class VehiculoRepo
 
     Public MustOverride ReadOnly Property Vehiculos As List(Of Logica.Vehiculo)
 
-    Public Function IngresarVehiculo(VIN As String, Marca As String, Modelo As String, Año As Integer, Color As Color, Cliente As String, Tipo As Logica.TipoVehiculo, PuertoLlegada As Logica.Lugar)
+    Public Function IngresarVehiculo(VIN As String, Marca As String, Modelo As String, Año As Integer, Color As Color, Cliente As String, Tipo As Logica.TipoVehiculo, PuertoLlegada As Logica.Lugar) As Logica.Vehiculo
         If PuertoLlegada.Tipo <> Logica.TipoLugar.Puerto Then
             Throw New InvalidOperationException("Sólo se pueden añadir vehículos en el puerto")
         End If
         If ExisteVIN(VIN) Then
             Throw New InvalidOperationException("El vehículo con ese VIN ya existe en el sistema")
         End If
-        Dim v = New Logica.Vehiculo(VIN, Marca, Modelo, Año, Color, Tipo, False, Cliente, )
+        Dim v = New Logica.Vehiculo(VIN, Marca, Modelo, Año, Color, Tipo, False, Cliente, PuertoLlegada, Nothing, New List(Of Logica.InformeDaños))
+        Vehiculos.Add(v)
+        Return v
     End Function
 End Class
