@@ -3,7 +3,9 @@
         Private _trabajaen As List(Of TrabajaEn)
         Private _dirty As Boolean
 
-        Private ReadOnly Property TrabajaEn As IReadOnlyList(Of TrabajaEn)
+        Public ReadOnly ID As Integer
+
+        Public ReadOnly Property TrabajaEn As List(Of TrabajaEn)
             Get
                 Return _trabajaen
             End Get
@@ -29,7 +31,7 @@
         End Property
 
         Public Function CrearLote(NumeroLote As Integer, Destino As Lugar, FechaSalida As Date) As Lote
-            Dim lotes = Constantes.UnionListas(Of Lote)(Constantes.LRepo.AllLugares.Select(Of List(Of Lote))(Function(x) x.LotesCreados))
+            Dim lotes = Constantes.UnionListas(Of Lote)(LRepo.AllLugares.Select(Of List(Of Lote))(Function(x) x.LotesCreados))
             If lotes.Where(Function(x) x.ID = NumeroLote).Count <> 0 Then
                 Throw New InvalidOperationException("Ya existe un lote con esa numeración")
             End If
@@ -85,9 +87,12 @@
         End Function
 
         Public Shared Function SelfPad(data As String, toLen As UInteger) As String
-            Dim returnString(toLen) As Char
-            For i As UInteger = 1 To toLen
-                returnString(i) = data(((i - 1) Mod data.Length) + 1)
+            If String.IsNullOrEmpty(data) Then
+                Throw New InvalidOperationException("Cannot selfpad an empty string")
+            End If
+            Dim returnString(toLen - 1) As Char
+            For i As UInteger = 0 To toLen - 1
+                returnString(i) = data(i Mod data.Length)
             Next
             Return returnString
         End Function
@@ -95,7 +100,7 @@
         Public Shared Function ContraseñaHash(password As String, usuario As String) As String
             Dim data = SelfPad(password, 60)
             Dim nkey = SelfPad(usuario, 60)
-            Return data.Select(Of Char)(Function(x As Char, i As Integer) ChrW(AscW(x) Xor AscW(nkey(i))))
+            Return data.Select(Of Char)(Function(x As Char, i As Integer) ChrW(AscW(x) Xor AscW(nkey(i)))).ToArray
         End Function
 
         Private _primer_nombre As String
@@ -159,15 +164,7 @@
             End Set
         End Property
 
-        Private _sexo As Char
-        Public Property Sexo As Char
-            Get
-                Return _sexo
-            End Get
-            Set(value As Char)
-                _sexo = value
-            End Set
-        End Property
+        Public sexo As Sexo
 
         Private _email As String
         Public Property Email As String
@@ -198,7 +195,8 @@
             End Get
         End Property
 
-        Public Sub New(trabajaen As List(Of TrabajaEn), username As String, password_hash As String, primer_nombre As String, segundo_nombre As String, primer_apellido As String, segundo_apellido As String, pregunta_secreta As String, fecha_nacimiento As DateTime, sexo As Char, email As String, telefono As String, rol As Role)
+        Public Sub New(ID As Integer, trabajaen As List(Of TrabajaEn), username As String, password_hash As String, primer_nombre As String, segundo_nombre As String, primer_apellido As String, segundo_apellido As String, pregunta_secreta As String, respuesta_secreta As String, fecha_nacimiento As DateTime, sexo As Sexo, email As String, telefono As String, rol As Role)
+            Me.ID = ID
             _trabajaen = trabajaen
             _username = username
             _password_hash = password_hash
@@ -208,10 +206,16 @@
             _segundo_apellido = segundo_apellido
             PreguntaSecreta = pregunta_secreta
             _fecha_nacimiento = fecha_nacimiento
-            _sexo = sexo
+            Me.sexo = sexo
             _email = email
             _telefono = telefono
             _rol = rol
+            Me.RespuestaSecreta = respuesta_secreta
         End Sub
     End Class
+    Public Enum Sexo
+        Masculino
+        Femenino
+        Otro
+    End Enum
 End Namespace

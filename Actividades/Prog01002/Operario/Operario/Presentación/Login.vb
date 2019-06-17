@@ -81,18 +81,12 @@
     End Sub
 
     Private Sub login()
-        'Dim userObj = Nothing
-        'If userObj Is Nothing Then
-        '    MsgBox("Credenciales incorrectas, intente nuevamente")
-        'Else
-        '    Select Case userObj.Rol
-        '        Case userObj.Type.OperadorPuerto
-
-        Principal.getInstancia.cargarPanel(Of LugarDeTrabajo)(New LugarDeTrabajo)
-        '        Case Else
-        '            MsgBox("No implementado aún")
-        '    End Select
-        'End If
+        Dim usuario = Constantes.URepo.Login(user.Text, pass.Text)
+        If usuario Is Nothing Then
+            MsgBox("Credenciales incorrectas. Intente nuevamente")
+        Else
+            Principal.getInstancia.cargarPanel(Of LugarDeTrabajo)(New LugarDeTrabajo)
+        End If
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click

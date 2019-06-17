@@ -7,6 +7,12 @@
                 Return _posicionados.Where(Function(x) x.Hasta Is Nothing)
             End Get
         End Property
+
+        Public Sub New(padre As Zona, posicionados As List(Of Posicionado))
+            Me.Padre = padre
+            _posicionados = posicionados
+        End Sub
+
         Protected Friend Function Posicionar(v As Vehiculo, Posicion As Integer) As Boolean
             If _posicionados.Where(Function(x) x.Posicion = Posicion And x.Hasta Is Nothing).Count <> 0 Then
                 Return False

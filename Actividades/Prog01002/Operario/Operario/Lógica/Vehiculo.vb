@@ -31,13 +31,13 @@
 
         Public ReadOnly Informes As List(Of InformeDaños)
         Public Shared Function AñadirVehiculo(NuevoVehiculo As Vehiculo, LoteInicial As Lote, Subzona As Subzona, Posicion As Integer, Creador As Usuario) As Boolean
-            If Not Constantes.VRepo.ExisteVIN(NuevoVehiculo.VIN) Then Return Nothing
+            If Not VRepo.ExisteVIN(NuevoVehiculo.VIN) Then Return Nothing
             'If NuevoVehiculo Then
 
             If Subzona.Padre.Padre IsNot Creador.ConectadoEn Then
                 Throw New InvalidOperationException("Intentando agregar vehículo en lugar donde no está conectado")
             End If
-            Dim sz_serch = Constantes.LRepo.AllLugares.Select(Of List(Of Subzona))(Function(sz) sz.Subzonas)
+            Dim sz_serch = LRepo.AllLugares.Select(Of List(Of Subzona))(Function(sz) sz.Subzonas)
             Dim p_search = Constantes.UnionListas(Of Subzona)(sz_serch).Select(Of List(Of Posicionado))(Function(x) x.Posicionados)
             If Constantes.UnionListas(Of Posicionado)(p_search).Where(Function(p) p.Vehiculo Is NuevoVehiculo AndAlso p.Hasta Is Nothing).Count <> 0 Then
                 Throw New InvalidOperationException("El lugar ya está posicionado")

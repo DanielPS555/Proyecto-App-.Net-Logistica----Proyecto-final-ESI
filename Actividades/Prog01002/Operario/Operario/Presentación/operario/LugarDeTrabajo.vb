@@ -9,6 +9,16 @@
     End Sub
 
     Private Sub lugares_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lugares.SelectedIndexChanged
-        'cuando haya objetos de tipo lugar se puede cargar la informacion de la derecha por cada uno en este metodo
+        If lugares.SelectedIndex < 0 Then
+            Return
+        End If
+        Dim lugar = LRepo.LugarPorNombre(lugares.SelectedItem)
+        nom.Text = lugar.Nombre
+        ubi.Text = $"{lugar.Posicion.X:F1}, {lugar.Posicion.Y:F1}"
+    End Sub
+
+    Private Sub LugarDeTrabajo_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        lugares.Items.Clear()
+        lugares.Items.AddRange(URepo.LugaresTrabaja.Select(Function(x) x.Nombre).ToArray)
     End Sub
 End Class

@@ -4,20 +4,28 @@
     Function Sincronizar() As Boolean
 
     Function Login(username As String, password As String) As Logica.Usuario
-    Function Restablecer(respuesta As String, newpass As String) As Boolean
-    Function Registrar(username As String, password As String, primer_nombre As String, segundo_nombre As String, primer_apellido As String, segundo_apellido As String, pregunta As String, respuesta As String) As Logica.Usuario
+    Function Restablecer(username As String, respuesta As String, newpass As String) As Boolean
+    Function Registrar(username As String, password As String, primer_nombre As String, segundo_nombre As String, primer_apellido As String, segundo_apellido As String, pregunta As String, respuesta As String, sexo As Logica.Sexo, email As String, telefono As String, rol As Logica.Role) As Logica.Usuario
 
+    Function LugaresTrabaja() As List(Of Logica.Lugar)
 End Interface
 
 Public Interface ILugarRepositorio
     Function AllLugares() As List(Of Logica.Lugar)
+    Function LugarPorNombre(nombre As String) As Logica.Lugar
 End Interface
+
+Public Module Constantes
+    Public URepo As IUsuarioRepositorio = Nothing
+    Public LRepo As ILugarRepositorio = Nothing
+    Public VRepo As VehiculoRepo = Nothing
+End Module
 
 Public MustInherit Class VehiculoRepo
     Public MustOverride Function VehiculoPorVIN(VIN As String) As Logica.Vehiculo
 
     Public MustOverride Function Sincronizar() As Boolean
-    Public MustOverride Function ExisteVIN(vin As String)
+    Public MustOverride Function ExisteVIN(vin As String) As Boolean
 
     Public MustOverride ReadOnly Property Vehiculos As List(Of Logica.Vehiculo)
 
