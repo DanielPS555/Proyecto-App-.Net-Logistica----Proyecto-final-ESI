@@ -1,146 +1,4 @@
 ﻿Namespace Logica
-    ' Funcionamiento a desarrollar:
-    ' Clases "repositorio" desde donde se cargan y donde se guardan las entidades
-    ' los "repositorios" tendrán métodos de actualización que guardarán los cambios
-    Public Class Lugar
-        Public ReadOnly Nombre As String
-        Private _capacidad As UInteger
-        Private _posicion As PointF
-        Private _creador As Usuario
-        Private _tipo As String
-        Private _zonas As List(Of Zona)
-
-    End Class
-
-    Public Class Zona
-        Private _subzonas As List(Of Subzona)
-    End Class
-    Public Class Subzona
-    End Class
-
-    Public Class Lote
-        Private _id As UInteger
-        Private _fecha_partida As DateTime
-        Private _desde As Lugar
-        Private _hacia As Lugar
-        Private _creador As Usuario
-        Private _prioridad As String
-        Private _integrantes As List(Of Vehiculo)
-    End Class
-
-    Public Class Vehiculo
-        Private _vin As String
-        Private _marca As String
-        Private _modelo As String
-        Private _año As Integer
-        Private _color As Color
-        Private _tipo As String
-        Private _fueradesistema As Boolean
-        Private _clientenombre As String
-        Private _puertoarriba As Lugar
-        Private _fechaarribo As DateTime?
-        Private _posicionactual As Tuple(Of Subzona, DateTime, DateTime?, UInteger)
-
-        Private _informes As List(Of InformeDaños)
-    End Class
-
-    Public Class InformeDaños
-        Private _dirty As Boolean
-        Public ReadOnly id As Integer
-        Private _descripcion As String
-        Public Property Descripcion As String
-            Get
-                Return _descripcion
-            End Get
-            Set(value As String)
-                Dim TimeDif As TimeSpan = (Date.Now - Fecha).Duration
-                If TimeDif.TotalHours > 4 Then
-                    Throw New InvalidOperationException($"Sólo puede modificar un informe 4 horas o menos antes de ser creado. Han pasado: {TimeDif.TotalHours:00}h:{TimeDif.Minutes:00}:{TimeDif.Seconds:00}")
-                End If
-                _descripcion = value
-            End Set
-        End Property
-        Public ReadOnly Property Fecha As DateTime
-        Public ReadOnly Tipo As String
-        Private _registros As List(Of RegistroDaños)
-        Private ReadOnly Property Registros As List(Of RegistroDaños)
-            Get
-                Return _registros
-            End Get
-        End Property
-    End Class
-
-    Public Class RegistroDaños
-        Private _dirty As Boolean
-        Private _descripcion As String
-        Public ReadOnly EnInforme As InformeDaños
-        Public Property Descripcion As String
-            Get
-                Return _descripcion
-            End Get
-            Set(value As String)
-                Dim TimeDif As TimeSpan = (Date.Now - EnInforme.Fecha).Duration
-                If TimeDif.TotalHours > 4 Then
-                    Throw New InvalidOperationException($"Sólo puede modificar un registro de informe 4 horas o menos antes de ser creado. Han pasado: {TimeDif.TotalHours:00}h:{TimeDif.Minutes:00}:{TimeDif.Seconds:00}")
-                End If
-                _descripcion = value
-                _dirty = _descripcion
-            End Set
-        End Property
-        Private _numeroenlista As UInteger
-        Public ReadOnly Property NumeroEnLista As UInteger
-            Get
-                Return _numeroenlista
-            End Get
-        End Property
-
-        Public ReadOnly Property Actualiza As RegistroDaños
-            Get
-                Return _actualiza
-            End Get
-        End Property
-
-        Private _actualiza As RegistroDaños
-        Private _imagenes As List(Of System.Drawing.Bitmap)
-        Public Sub AgregarImagen(imagen As System.Drawing.Bitmap)
-            Dim TimeDif As TimeSpan = (Date.Now - EnInforme.Fecha).Duration
-
-            If TimeDif.CompareTo(New TimeSpan(4, 0, 0)) < 0 Then
-                _imagenes.Add(imagen)
-            Else
-                Throw New InvalidOperationException($"Solo puede añadir imagenes si han pasado menos de 4 horas. Han pasado: {TimeDif.TotalHours}h:{TimeDif.Minutes:03}:{TimeDif.Seconds}")
-            End If
-        End Sub
-    End Class
-
-    Public Class Conexion
-        Public ReadOnly FechaInicio As DateTime
-        Public FechaFin As DateTime?
-
-        Public Sub New(fechaInicio As Date, fechaFin As Date?)
-            Me.FechaInicio = fechaInicio
-            Me.FechaFin = fechaFin
-        End Sub
-    End Class
-
-    Public Class TrabajaEn
-        Public ReadOnly ID As Integer
-        Public ReadOnly Lugar As Lugar
-        Public ReadOnly Usuario As Usuario
-        Public ReadOnly FechaInicio As DateTime
-        Public FechaFin As DateTime?
-        Public Conexiones As List(Of Conexion)
-
-        Public Sub New(iD As Integer, lugar As Lugar, usuario As Usuario, fechaInicio As Date, fechaFin As Date?, conexiones As List(Of Conexion))
-            Me.ID = iD
-            Me.Lugar = lugar
-            Me.Usuario = usuario
-            Me.FechaInicio = fechaInicio
-            Me.FechaFin = fechaFin
-            Me.Conexiones = conexiones
-        End Sub
-    End Class
-
     Public Class Usuario
         Private _trabajaen As List(Of TrabajaEn)
         Private _dirty As Boolean
@@ -150,6 +8,33 @@
                 Return _trabajaen
             End Get
         End Property
+
+        Public ReadOnly Property ConectadoEn As Lugar
+            Get
+                Dim _t_e = _trabajaen.Where(Function(x)
+                                                Return x.Conexiones.Where(Function(y) As Boolean
+                                                                              Return y.FechaFin Is Nothing
+                                                                          End Function).Count <> 0
+                                            End Function)
+                Try
+                    Return _t_e.Single.Lugar
+                Catch ex As InvalidOperationException
+                    If _t_e.Count = 0 Then
+                        Throw New InvalidOperationException("No está conectado")
+                    Else
+                        Throw New InvalidOperationException("Está conectado en más de un mismo lugar. Por favor informe a su administrador de este suceso.")
+                    End If
+                End Try
+            End Get
+        End Property
+
+        Public Function CrearLote(NumeroLote As Integer, Destino As Lugar, FechaSalida As Date) As Lote
+            Dim lotes = Constantes.UnionListas(Of Lote)(Constantes.LRepo.AllLugares.Select(Of List(Of Lote))(Function(x) x.LotesCreados))
+            If lotes.Where(Function(x) x.ID = NumeroLote).Count <> 0 Then
+                Throw New InvalidOperationException("Ya existe un lote con esa numeración")
+            End If
+            Return New Lote(NumeroLote, FechaSalida, Me.ConectadoEn, Destino, Me, EstadoLote.Abierto, PrioridadLote.Normal)
+        End Function
 
         Public Function Conectar(En As Lugar) As Boolean
             Dim trabajaEnFind = _trabajaen.Where(Function(x) x.Lugar Is En)
@@ -188,6 +73,14 @@
 
         Private _password_hash As String
         Public Function VerificarContraseña(password As String) As Boolean
+            Return ContraseñaHash(password, UserName).Equals(_password_hash)
+        End Function
+
+        Public Function RestablecerContraseña(Respuesta As String, NewPass As String) As Boolean
+            If Respuesta <> Me.RespuestaSecreta Then
+                Return False
+            End If
+            Me._password_hash = ContraseñaHash(NewPass, UserName)
             Return True
         End Function
 
@@ -248,13 +141,8 @@
             End Set
         End Property
 
-        Private _pregunta_secreta As String
-
-        Public ReadOnly Property PreguntaSecreta As String
-            Get
-                Return _pregunta_secreta
-            End Get
-        End Property
+        Public ReadOnly PreguntaSecreta As String
+        Private RespuestaSecreta As String
 
         Public Function VerificarPregunta(respuesta As String) As Boolean
             Return True
@@ -318,7 +206,7 @@
             _segundo_nombre = segundo_nombre
             _primer_apellido = primer_apellido
             _segundo_apellido = segundo_apellido
-            _pregunta_secreta = pregunta_secreta
+            PreguntaSecreta = pregunta_secreta
             _fecha_nacimiento = fecha_nacimiento
             _sexo = sexo
             _email = email
@@ -326,13 +214,4 @@
             _rol = rol
         End Sub
     End Class
-    Public Class Role
-        Public ReadOnly Nombre As String
-        Protected Friend Sub New(Nombre As String)
-            Me.Nombre = Nombre
-        End Sub
-    End Class
-    Public Module Constantes
-        Public Roles() As Role = {New Role("Operario")}
-    End Module
 End Namespace

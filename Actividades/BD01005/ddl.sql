@@ -53,7 +53,7 @@ CREATE
 	IDLugar integer not null,
 	IDUsuario integer not null,
 	FechaInicio date NOT null,
-	FechaFin date,
+	FechaFin date check (FechaFin > FechaInicio),
 	foreign key(IDLugar) references lugar(IDLugar),
 	foreign key(IDUsuario) references usuario(IDUsuario)
 );
@@ -151,7 +151,7 @@ CREATE
 	IDSub integer,
 	VIN char(17),
 	desde datetime year to hour,
-	hasta datetime year to hour,
+	hasta datetime year to hour check (hasta > desde),
 	posicion integer NOT null check (posicion > 0),
 	foreign key(VIN) references vehiculo(VIN),
 	foreign key(IDLugar, IDZona, IDSub) references subzona(IDLugar, IDZona, IDSub),
@@ -179,7 +179,7 @@ CREATE
 	VIN char(17),
 	Usuario integer,
 	Desde date,
-	Hasta date,
+	Hasta date check (Hasta > Desde),
 	foreign key(VIN) references camion(VIN),
 	foreign key(Usuario) references usuario(IDUsuario),
 	primary key(VIN, Usuario, Desde)
@@ -206,7 +206,7 @@ CREATE
 	transporteID serial primary key,
 	Usuario integer NOT NULL,
 	FechaHoraSalida datetime year to minute not null,
-	FechaHoraLlegada datetime year to minute not null,
+	FechaHoraLlegada datetime year to minute not null check (FechaHoraLlegada > FechaHoraSalida),
 	Estado varchar(10) NOT null,
 	foreign key(Usuario) references usuario(IDUsuario)
 	);
@@ -217,7 +217,8 @@ CREATE
 	foreign key(transporteID) references transporte(transporteID),
 	foreign key(IDLote) references lote(IDLote) );
 CREATE
-	table posicionestransporte( transporteID integer,
+	table posicionestransporte(
+	transporteID integer,
 	FechaHoraPosicion datetime year to second,
 	PosX float,
 	PosY float,
