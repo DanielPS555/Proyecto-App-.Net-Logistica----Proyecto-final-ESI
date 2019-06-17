@@ -7,7 +7,7 @@
             lugares.Add(i(0))
         Next
         '        If Data.Login.UserRegister(usuario, preguntaBox.Text, respuestaBox.Text, lugares) Then
-        Principal.getInstancia.cargarPanel(Of Login)()
+        Principal.getInstancia.cargarPanel(Of Login)(Nothing)
         'Else
         MsgBox("No se pudo registrar el usuario XDDDDDDDDDDDDD")
         'End If

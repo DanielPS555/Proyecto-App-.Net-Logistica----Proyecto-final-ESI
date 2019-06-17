@@ -73,13 +73,13 @@ Partial Class Login
         '
         Me.Button3.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button3.BackColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(115, Byte), Integer), CType(CType(201, Byte), Integer))
+        Me.Button3.BackColor = System.Drawing.Color.White
         Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button3.Font = New System.Drawing.Font("Century Gothic", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button3.ForeColor = System.Drawing.Color.White
-        Me.Button3.Location = New System.Drawing.Point(23, 292)
+        Me.Button3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(115, Byte), Integer), CType(CType(201, Byte), Integer))
+        Me.Button3.Location = New System.Drawing.Point(405, 533)
         Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(281, 75)
+        Me.Button3.Size = New System.Drawing.Size(281, 69)
         Me.Button3.TabIndex = 15
         Me.Button3.Text = "Restaurar"
         Me.Button3.UseVisualStyleBackColor = False
@@ -92,7 +92,7 @@ Partial Class Login
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button2.Font = New System.Drawing.Font("Century Gothic", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button2.ForeColor = System.Drawing.Color.White
-        Me.Button2.Location = New System.Drawing.Point(402, 437)
+        Me.Button2.Location = New System.Drawing.Point(3, 572)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(281, 75)
         Me.Button2.TabIndex = 14
@@ -213,7 +213,7 @@ Partial Class Login
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button1.Font = New System.Drawing.Font("Century Gothic", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button1.ForeColor = System.Drawing.Color.White
-        Me.Button1.Location = New System.Drawing.Point(402, 518)
+        Me.Button1.Location = New System.Drawing.Point(405, 452)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(281, 75)
         Me.Button1.TabIndex = 2

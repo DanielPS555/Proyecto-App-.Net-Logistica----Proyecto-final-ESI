@@ -87,7 +87,7 @@
         'Else
         '    Select Case userObj.Rol
         '        Case userObj.Type.OperadorPuerto
-        Principal.getInstancia.cargarPanel(Of MarcoPuerto)()
+        Principal.getInstancia.cargarPanel(Of MarcoPuerto)(MarcoPuerto.getInstancia)
         '        Case Else
         '            MsgBox("No implementado aún")
         '    End Select
@@ -95,10 +95,10 @@
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        Principal.getInstancia.cargarPanel(Of Registrar)()
+        Principal.getInstancia.cargarPanel(Of Registrar)(New Registrar)
     End Sub
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
-        Principal.getInstancia.cargarPanel(Of RestablecerContraseña)()
+        Principal.getInstancia.cargarPanel(Of RestablecerContraseña)(New RestablecerContraseña)
     End Sub
 End Class

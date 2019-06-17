@@ -75,6 +75,12 @@
   <ItemGroup>
     <Compile Include="Fachada\Repositorios.vb" />
     <Compile Include="Lógica\Clases.vb" />
+    <Compile Include="nuevoVehiculo.Designer.vb">
+      <DependentUpon>nuevoVehiculo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="nuevoVehiculo.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Persistencia\Repositorio.vb" />
     <Compile Include="Presentación\Login.vb">
       <SubType>Form</SubType>
@@ -104,28 +110,28 @@
     <Compile Include="Presentación\Principal.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Presentación\puerto\MarcoPuerto.Designer.vb">
+    <Compile Include="Presentación\operario\MarcoPuerto.Designer.vb">
       <DependentUpon>MarcoPuerto.vb</DependentUpon>
     </Compile>
-    <Compile Include="Presentación\puerto\MarcoPuerto.vb">
+    <Compile Include="Presentación\operario\MarcoPuerto.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Presentación\puerto\PuertoInicio.Designer.vb">
-      <DependentUpon>PuertoInicio.vb</DependentUpon>
+    <Compile Include="Presentación\operario\OperarioHome.Designer.vb">
+      <DependentUpon>OperarioHome.vb</DependentUpon>
     </Compile>
-    <Compile Include="Presentación\puerto\PuertoInicio.vb">
+    <Compile Include="Presentación\operario\OperarioHome.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Presentación\puerto\PuertoLotes.Designer.vb">
-      <DependentUpon>PuertoLotes.vb</DependentUpon>
+    <Compile Include="Presentación\operario\ListaLotes.Designer.vb">
+      <DependentUpon>ListaLotes.vb</DependentUpon>
     </Compile>
-    <Compile Include="Presentación\puerto\PuertoLotes.vb">
+    <Compile Include="Presentación\operario\ListaLotes.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Presentación\puerto\PuertosVeiculos.Designer.vb">
-      <DependentUpon>PuertosVeiculos.vb</DependentUpon>
+    <Compile Include="Presentación\operario\ListaVehiculos.Designer.vb">
+      <DependentUpon>ListaVehiculos.vb</DependentUpon>
     </Compile>
-    <Compile Include="Presentación\puerto\PuertosVeiculos.vb">
+    <Compile Include="Presentación\operario\ListaVehiculos.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Presentación\Registrar.Designer.vb">
@@ -142,6 +148,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="nuevoVehiculo.resx">
+      <DependentUpon>nuevoVehiculo.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentación\Login.resx">
       <DependentUpon>Login.vb</DependentUpon>
     </EmbeddedResource>
@@ -154,17 +163,17 @@
     <EmbeddedResource Include="Presentación\Principal.resx">
       <DependentUpon>Principal.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Presentación\puerto\MarcoPuerto.resx">
+    <EmbeddedResource Include="Presentación\operario\MarcoPuerto.resx">
       <DependentUpon>MarcoPuerto.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Presentación\puerto\PuertoInicio.resx">
-      <DependentUpon>PuertoInicio.vb</DependentUpon>
+    <EmbeddedResource Include="Presentación\operario\OperarioHome.resx">
+      <DependentUpon>OperarioHome.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Presentación\puerto\PuertoLotes.resx">
-      <DependentUpon>PuertoLotes.vb</DependentUpon>
+    <EmbeddedResource Include="Presentación\operario\ListaLotes.resx">
+      <DependentUpon>ListaLotes.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Presentación\puerto\PuertosVeiculos.resx">
-      <DependentUpon>PuertosVeiculos.vb</DependentUpon>
+    <EmbeddedResource Include="Presentación\operario\ListaVehiculos.resx">
+      <DependentUpon>ListaVehiculos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentación\Registrar.en.resx">
       <DependentUpon>Registrar.vb</DependentUpon>
