@@ -1,4 +1,9 @@
 ﻿Public Class nuevoVehiculo
+
+    'crear una entidad lote y hacer una propery publica para acceder a ella desde el panel nuevoLote y enviar el lote creado  
+
+
+
     Public Sub New()
 
         ' Esta llamada es exigida por el diseñador.
@@ -31,5 +36,10 @@
         If ColorDialog1.ShowDialog <> Windows.Forms.DialogResult.Cancel Then
             muestra_color.BackColor = ColorDialog1.Color
         End If
+    End Sub
+
+    Private Sub nuevoLote_Click(sender As Object, e As EventArgs)
+        Dim d As New NuevoLote
+        d.ShowDialog()
     End Sub
 End Class

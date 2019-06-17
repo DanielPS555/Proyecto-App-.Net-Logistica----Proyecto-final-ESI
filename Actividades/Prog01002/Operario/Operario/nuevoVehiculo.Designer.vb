@@ -353,6 +353,7 @@ Partial Class nuevoVehiculo
         nuevoLote.Text = "Crear un nuevo lote "
         nuevoLote.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         nuevoLote.UseVisualStyleBackColor = False
+        AddHandler nuevoLote.Click, AddressOf Me.nuevoLote_Click
         '
         'infoDaños
         '
