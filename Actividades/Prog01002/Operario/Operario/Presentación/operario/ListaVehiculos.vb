@@ -31,9 +31,10 @@
     End Sub
 
     Private Sub DataGridView2_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView2.CellClick
-        If e.ColumnIndex = 6 Then
+        If e.ColumnIndex = 5 Then
             ' con el e.RomIndex sabemos cual va a ser el vim del vehiculo (nos fijamos en la primera columna de el), luego encontramos el objeto vehiculo en la lista 
             ' a partir de ese vim, eso se lo pasamos al panel del vehiculo 
+            MarcoPuerto.getInstancia.cargarPanel(Of panelInfoVehiculo)(New panelInfoVehiculo)
         End If
     End Sub
 

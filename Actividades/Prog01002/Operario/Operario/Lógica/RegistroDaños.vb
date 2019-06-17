@@ -23,6 +23,16 @@
             End Get
         End Property
 
+        Public Sub New(dirty As Boolean, descripcion As String, enInforme As InformeDaños, de As String, numeroenlista As UInteger, actualiza As RegistroDaños, imagenes As List(Of Bitmap))
+            _dirty = dirty
+            Me.Descripcion = de
+            Me.EnInforme = enInforme
+            Me.Descripcion = de
+            _numeroenlista = numeroenlista
+            _actualiza = actualiza
+            _imagenes = imagenes
+        End Sub
+
         Public ReadOnly Property Actualiza As RegistroDaños
             Get
                 Return _actualiza
