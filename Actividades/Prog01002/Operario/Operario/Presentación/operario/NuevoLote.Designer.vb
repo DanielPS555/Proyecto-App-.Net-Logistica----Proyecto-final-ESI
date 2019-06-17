@@ -25,24 +25,70 @@ Partial Class NuevoLote
         Dim ingresar As System.Windows.Forms.Button
         Dim Button1 As System.Windows.Forms.Button
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.cp = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.idLote = New System.Windows.Forms.Label()
+        Me.Label4 = New System.Windows.Forms.Label()
         Me.descipt = New System.Windows.Forms.TextBox()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.nom = New System.Windows.Forms.TextBox()
         Me.l_descript = New System.Windows.Forms.Label()
         Me.l_nom = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.idLote = New System.Windows.Forms.Label()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.cp = New System.Windows.Forms.Label()
+        Me.l_destino = New System.Windows.Forms.Label()
+        Me.destino = New System.Windows.Forms.ComboBox()
         ingresar = New System.Windows.Forms.Button()
         Button1 = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
+        'ingresar
+        '
+        ingresar.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        ingresar.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        ingresar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        ingresar.FlatAppearance.BorderSize = 0
+        ingresar.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        ingresar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        ingresar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        ingresar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        ingresar.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        ingresar.ForeColor = System.Drawing.Color.White
+        ingresar.Location = New System.Drawing.Point(302, 507)
+        ingresar.Name = "ingresar"
+        ingresar.Size = New System.Drawing.Size(124, 35)
+        ingresar.TabIndex = 53
+        ingresar.Text = "Aceptar"
+        ingresar.UseVisualStyleBackColor = False
+        AddHandler ingresar.Click, AddressOf Me.ingresar_Click
+        '
+        'Button1
+        '
+        Button1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(183, Byte), Integer), CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer))
+        Button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Button1.FlatAppearance.BorderSize = 0
+        Button1.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        Button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Button1.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Button1.ForeColor = System.Drawing.Color.White
+        Button1.Location = New System.Drawing.Point(17, 507)
+        Button1.Name = "Button1"
+        Button1.Size = New System.Drawing.Size(123, 35)
+        Button1.TabIndex = 54
+        Button1.Text = "Cancelar"
+        Button1.UseVisualStyleBackColor = False
+        AddHandler Button1.Click, AddressOf Me.Button1_Click
+        '
         'Panel1
         '
         Me.Panel1.BackColor = System.Drawing.Color.White
+        Me.Panel1.Controls.Add(Me.destino)
+        Me.Panel1.Controls.Add(Me.l_destino)
         Me.Panel1.Controls.Add(Me.cp)
         Me.Panel1.Controls.Add(Me.Label5)
         Me.Panel1.Controls.Add(Me.idLote)
@@ -60,6 +106,46 @@ Partial Class NuevoLote
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(438, 554)
         Me.Panel1.TabIndex = 0
+        '
+        'cp
+        '
+        Me.cp.AutoSize = True
+        Me.cp.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cp.Location = New System.Drawing.Point(173, 473)
+        Me.cp.Name = "cp"
+        Me.cp.Size = New System.Drawing.Size(29, 17)
+        Me.cp.TabIndex = 58
+        Me.cp.Text = "255"
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.Location = New System.Drawing.Point(13, 473)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(159, 16)
+        Me.Label5.TabIndex = 57
+        Me.Label5.Text = "Caracteres disponibles"
+        '
+        'idLote
+        '
+        Me.idLote.AutoSize = True
+        Me.idLote.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.idLote.Location = New System.Drawing.Point(234, 26)
+        Me.idLote.Name = "idLote"
+        Me.idLote.Size = New System.Drawing.Size(52, 22)
+        Me.idLote.TabIndex = 56
+        Me.idLote.Text = "###"
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.Location = New System.Drawing.Point(195, 24)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(33, 23)
+        Me.Label4.TabIndex = 55
+        Me.Label4.Text = "id:"
         '
         'descipt
         '
@@ -116,86 +202,24 @@ Partial Class NuevoLote
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Crear Lote "
         '
-        'ingresar
+        'l_destino
         '
-        ingresar.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        ingresar.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        ingresar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        ingresar.FlatAppearance.BorderSize = 0
-        ingresar.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        ingresar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        ingresar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        ingresar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        ingresar.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        ingresar.ForeColor = System.Drawing.Color.White
-        ingresar.Location = New System.Drawing.Point(302, 507)
-        ingresar.Name = "ingresar"
-        ingresar.Size = New System.Drawing.Size(124, 35)
-        ingresar.TabIndex = 53
-        ingresar.Text = "Aceptar"
-        ingresar.UseVisualStyleBackColor = False
-        AddHandler ingresar.Click, AddressOf Me.ingresar_Click
+        Me.l_destino.AutoSize = True
+        Me.l_destino.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.l_destino.Location = New System.Drawing.Point(13, 126)
+        Me.l_destino.Name = "l_destino"
+        Me.l_destino.Size = New System.Drawing.Size(87, 22)
+        Me.l_destino.TabIndex = 59
+        Me.l_destino.Text = "Destino: "
         '
-        'Button1
+        'destino
         '
-        Button1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(183, Byte), Integer), CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer))
-        Button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Button1.FlatAppearance.BorderSize = 0
-        Button1.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        Button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Button1.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Button1.ForeColor = System.Drawing.Color.White
-        Button1.Location = New System.Drawing.Point(17, 507)
-        Button1.Name = "Button1"
-        Button1.Size = New System.Drawing.Size(123, 35)
-        Button1.TabIndex = 54
-        Button1.Text = "Cancelar"
-        Button1.UseVisualStyleBackColor = False
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(195, 24)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(33, 23)
-        Me.Label4.TabIndex = 55
-        Me.Label4.Text = "id:"
-        '
-        'idLote
-        '
-        Me.idLote.AutoSize = True
-        Me.idLote.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.idLote.Location = New System.Drawing.Point(234, 26)
-        Me.idLote.Name = "idLote"
-        Me.idLote.Size = New System.Drawing.Size(52, 22)
-        Me.idLote.TabIndex = 56
-        Me.idLote.Text = "###"
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(13, 473)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(159, 16)
-        Me.Label5.TabIndex = 57
-        Me.Label5.Text = "Caracteres disponibles"
-        '
-        'cp
-        '
-        Me.cp.AutoSize = True
-        Me.cp.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cp.Location = New System.Drawing.Point(173, 473)
-        Me.cp.Name = "cp"
-        Me.cp.Size = New System.Drawing.Size(29, 17)
-        Me.cp.TabIndex = 58
-        Me.cp.Text = "255"
+        Me.destino.Font = New System.Drawing.Font("Century Gothic", 15.0!)
+        Me.destino.FormattingEnabled = True
+        Me.destino.Location = New System.Drawing.Point(107, 122)
+        Me.destino.Name = "destino"
+        Me.destino.Size = New System.Drawing.Size(319, 31)
+        Me.destino.TabIndex = 60
         '
         'NuevoLote
         '
@@ -222,4 +246,6 @@ Partial Class NuevoLote
     Friend WithEvents Label5 As Label
     Friend WithEvents idLote As Label
     Friend WithEvents Label4 As Label
+    Friend WithEvents destino As ComboBox
+    Friend WithEvents l_destino As Label
 End Class

@@ -41,11 +41,9 @@
         Dim g As Graphics = e.Graphics
         g.DrawRectangle(New Pen(Color.FromArgb(35, 35, 35), 2), New Rectangle(criterios.Location, criterios.Size)) 'para dibujarle un rectangulo al combobox
     End Sub
+
+    Private Sub nuevo_Click(sender As Object, e As EventArgs)
+        MarcoPuerto.getInstancia.cargarPanel(Of nuevoVehiculo)(New nuevoVehiculo)
+    End Sub
 End Class
 
-Class BotonEnElDataGrid
-    Inherits DataGridViewCell
-
-
-
-End Class

@@ -5,6 +5,7 @@
 
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
+        StartPosition = FormStartPosition.CenterScreen
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
         cargarPanel(Of Login)(New Login)
     End Sub
@@ -24,7 +25,7 @@
 
             obj.TopLevel = False
             obj.FormBorderStyle = FormBorderStyle.None
-
+            obj.Dock = DockStyle.Fill
             contenedorDePaneles.Controls.Add(obj)
             contenedorDePaneles.Tag = obj
             obj.Show()
