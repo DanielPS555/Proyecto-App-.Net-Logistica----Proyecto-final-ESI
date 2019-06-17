@@ -133,11 +133,23 @@
     <Compile Include="Presentación\operario\NuevoLote.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Presentación\operario\panelInfoVehiculo.Designer.vb">
+      <DependentUpon>panelInfoVehiculo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentación\operario\panelInfoVehiculo.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Presentación\operario\RegistroDeDañoPanel.Designer.vb">
       <DependentUpon>RegistroDeDañoPanel.vb</DependentUpon>
     </Compile>
     <Compile Include="Presentación\operario\RegistroDeDañoPanel.vb">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentación\operario\verInformesDeDañosPanel.Designer.vb">
+      <DependentUpon>verInformesDeDañosPanel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentación\operario\verInformesDeDañosPanel.vb">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Presentación\Principal.Designer.vb">
       <DependentUpon>Principal.vb</DependentUpon>
@@ -203,6 +215,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentación\operario\NuevoLote.resx">
       <DependentUpon>NuevoLote.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentación\operario\panelInfoVehiculo.resx">
+      <DependentUpon>panelInfoVehiculo.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentación\operario\RegistroDeDañoPanel.resx">
       <DependentUpon>RegistroDeDañoPanel.vb</DependentUpon>
