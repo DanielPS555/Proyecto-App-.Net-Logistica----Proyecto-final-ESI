@@ -42,4 +42,8 @@
         Dim d As New NuevoLote
         d.ShowDialog()
     End Sub
+
+    Private Sub infoDaños_Click(sender As Object, e As EventArgs)
+        MarcoPuerto.getInstancia.cargarPanel(Of crearInformaDeDaños)(New crearInformaDeDaños)
+    End Sub
 End Class

@@ -87,7 +87,8 @@
         'Else
         '    Select Case userObj.Rol
         '        Case userObj.Type.OperadorPuerto
-        Principal.getInstancia.cargarPanel(Of MarcoPuerto)(MarcoPuerto.getInstancia)
+
+        Principal.getInstancia.cargarPanel(Of LugarDeTrabajo)(New LugarDeTrabajo)
         '        Case Else
         '            MsgBox("No implementado aún")
         '    End Select

@@ -101,6 +101,90 @@ Partial Class nuevoVehiculo
         Buscar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Buscar.UseVisualStyleBackColor = False
         '
+        'color
+        '
+        color.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        color.BackColor = System.Drawing.Color.White
+        color.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
+        color.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        color.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White
+        color.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White
+        color.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        color.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        color.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
+        color.Location = New System.Drawing.Point(634, 190)
+        color.Name = "color"
+        color.Size = New System.Drawing.Size(126, 35)
+        color.TabIndex = 48
+        color.Text = "Selecionar"
+        color.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        color.UseVisualStyleBackColor = False
+        AddHandler color.Click, AddressOf Me.color_Click
+        '
+        'nuevoLote
+        '
+        nuevoLote.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        nuevoLote.BackColor = System.Drawing.Color.White
+        nuevoLote.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
+        nuevoLote.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        nuevoLote.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White
+        nuevoLote.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White
+        nuevoLote.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        nuevoLote.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        nuevoLote.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
+        nuevoLote.Location = New System.Drawing.Point(244, 418)
+        nuevoLote.Name = "nuevoLote"
+        nuevoLote.Size = New System.Drawing.Size(239, 35)
+        nuevoLote.TabIndex = 50
+        nuevoLote.Text = "Crear un nuevo lote "
+        nuevoLote.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        nuevoLote.UseVisualStyleBackColor = False
+        AddHandler nuevoLote.Click, AddressOf Me.nuevoLote_Click
+        '
+        'infoDaños
+        '
+        infoDaños.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        infoDaños.BackColor = System.Drawing.Color.White
+        infoDaños.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
+        infoDaños.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        infoDaños.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White
+        infoDaños.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White
+        infoDaños.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        infoDaños.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        infoDaños.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
+        infoDaños.Location = New System.Drawing.Point(288, 516)
+        infoDaños.Name = "infoDaños"
+        infoDaños.Size = New System.Drawing.Size(331, 35)
+        infoDaños.TabIndex = 51
+        infoDaños.Text = "Realizar un informe de daños"
+        infoDaños.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        infoDaños.UseVisualStyleBackColor = False
+        AddHandler infoDaños.Click, AddressOf Me.infoDaños_Click
+        '
+        'ingresar
+        '
+        ingresar.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        ingresar.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        ingresar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        ingresar.FlatAppearance.BorderSize = 0
+        ingresar.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        ingresar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        ingresar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        ingresar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        ingresar.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        ingresar.ForeColor = System.Drawing.Color.White
+        ingresar.Location = New System.Drawing.Point(651, 591)
+        ingresar.Name = "ingresar"
+        ingresar.Size = New System.Drawing.Size(198, 35)
+        ingresar.TabIndex = 52
+        ingresar.Text = "Ingrezar vehiculo "
+        ingresar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        ingresar.UseVisualStyleBackColor = False
+        '
         'buscador
         '
         Me.buscador.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton
@@ -304,27 +388,6 @@ Partial Class nuevoVehiculo
         Me.l_lote.TabIndex = 47
         Me.l_lote.Text = "Lote"
         '
-        'color
-        '
-        color.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        color.BackColor = System.Drawing.Color.White
-        color.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
-        color.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        color.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White
-        color.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White
-        color.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        color.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        color.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
-        color.Location = New System.Drawing.Point(634, 190)
-        color.Name = "color"
-        color.Size = New System.Drawing.Size(126, 35)
-        color.TabIndex = 48
-        color.Text = "Selecionar"
-        color.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        color.UseVisualStyleBackColor = False
-        AddHandler color.Click, AddressOf Me.color_Click
-        '
         'lote
         '
         Me.lote.Font = New System.Drawing.Font("Century Gothic", 15.0!)
@@ -333,68 +396,6 @@ Partial Class nuevoVehiculo
         Me.lote.Name = "lote"
         Me.lote.Size = New System.Drawing.Size(160, 31)
         Me.lote.TabIndex = 49
-        '
-        'nuevoLote
-        '
-        nuevoLote.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        nuevoLote.BackColor = System.Drawing.Color.White
-        nuevoLote.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
-        nuevoLote.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        nuevoLote.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White
-        nuevoLote.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White
-        nuevoLote.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        nuevoLote.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        nuevoLote.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
-        nuevoLote.Location = New System.Drawing.Point(244, 418)
-        nuevoLote.Name = "nuevoLote"
-        nuevoLote.Size = New System.Drawing.Size(239, 35)
-        nuevoLote.TabIndex = 50
-        nuevoLote.Text = "Crear un nuevo lote "
-        nuevoLote.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        nuevoLote.UseVisualStyleBackColor = False
-        AddHandler nuevoLote.Click, AddressOf Me.nuevoLote_Click
-        '
-        'infoDaños
-        '
-        infoDaños.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        infoDaños.BackColor = System.Drawing.Color.White
-        infoDaños.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
-        infoDaños.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        infoDaños.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White
-        infoDaños.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White
-        infoDaños.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        infoDaños.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        infoDaños.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
-        infoDaños.Location = New System.Drawing.Point(288, 516)
-        infoDaños.Name = "infoDaños"
-        infoDaños.Size = New System.Drawing.Size(331, 35)
-        infoDaños.TabIndex = 51
-        infoDaños.Text = "Realizar un informe de daños"
-        infoDaños.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        infoDaños.UseVisualStyleBackColor = False
-        '
-        'ingresar
-        '
-        ingresar.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        ingresar.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        ingresar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        ingresar.FlatAppearance.BorderSize = 0
-        ingresar.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        ingresar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        ingresar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        ingresar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        ingresar.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        ingresar.ForeColor = System.Drawing.Color.White
-        ingresar.Location = New System.Drawing.Point(651, 591)
-        ingresar.Name = "ingresar"
-        ingresar.Size = New System.Drawing.Size(198, 35)
-        ingresar.TabIndex = 52
-        ingresar.Text = "Ingrezar vehiculo "
-        ingresar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        ingresar.UseVisualStyleBackColor = False
         '
         'muestra_color
         '
