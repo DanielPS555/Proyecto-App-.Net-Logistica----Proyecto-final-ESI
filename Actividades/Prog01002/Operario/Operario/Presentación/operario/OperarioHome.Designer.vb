@@ -23,7 +23,7 @@ Partial Class OperarioHome
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
+        Me.NombreCompleto = New System.Windows.Forms.Label()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Button4 = New System.Windows.Forms.Button()
         Me.Label30 = New System.Windows.Forms.Label()
@@ -48,10 +48,10 @@ Partial Class OperarioHome
         Me.Label13 = New System.Windows.Forms.Label()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
+        Me.nombreUsuario = New System.Windows.Forms.Label()
+        Me.rolUsuario = New System.Windows.Forms.Label()
+        Me.nAccesos = New System.Windows.Forms.Label()
+        Me.anteriorIngreso = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
@@ -70,15 +70,15 @@ Partial Class OperarioHome
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Bienvenido de nuevo "
         '
-        'Label2
+        'NombreCompleto
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Century Gothic", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(304, 9)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(318, 33)
-        Me.Label2.TabIndex = 1
-        Me.Label2.Text = "NombreRealDelUsuario"
+        Me.NombreCompleto.AutoSize = True
+        Me.NombreCompleto.Font = New System.Drawing.Font("Century Gothic", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.NombreCompleto.Location = New System.Drawing.Point(304, 9)
+        Me.NombreCompleto.Name = "NombreCompleto"
+        Me.NombreCompleto.Size = New System.Drawing.Size(318, 33)
+        Me.NombreCompleto.TabIndex = 1
+        Me.NombreCompleto.Text = "NombreRealDelUsuario"
         '
         'Panel2
         '
@@ -347,45 +347,45 @@ Partial Class OperarioHome
         Me.Label10.TabIndex = 6
         Me.Label10.Text = "Historial "
         '
-        'Label7
+        'nombreUsuario
         '
-        Me.Label7.AutoSize = True
-        Me.Label7.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.Location = New System.Drawing.Point(288, 53)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(40, 22)
-        Me.Label7.TabIndex = 9
-        Me.Label7.Text = "-----"
+        Me.nombreUsuario.AutoSize = True
+        Me.nombreUsuario.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.nombreUsuario.Location = New System.Drawing.Point(288, 53)
+        Me.nombreUsuario.Name = "nombreUsuario"
+        Me.nombreUsuario.Size = New System.Drawing.Size(40, 22)
+        Me.nombreUsuario.TabIndex = 9
+        Me.nombreUsuario.Text = "-----"
         '
-        'Label6
+        'rolUsuario
         '
-        Me.Label6.AutoSize = True
-        Me.Label6.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(288, 107)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(40, 22)
-        Me.Label6.TabIndex = 10
-        Me.Label6.Text = "-----"
+        Me.rolUsuario.AutoSize = True
+        Me.rolUsuario.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.rolUsuario.Location = New System.Drawing.Point(288, 107)
+        Me.rolUsuario.Name = "rolUsuario"
+        Me.rolUsuario.Size = New System.Drawing.Size(40, 22)
+        Me.rolUsuario.TabIndex = 10
+        Me.rolUsuario.Text = "-----"
         '
-        'Label5
+        'nAccesos
         '
-        Me.Label5.AutoSize = True
-        Me.Label5.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(288, 158)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(40, 22)
-        Me.Label5.TabIndex = 11
-        Me.Label5.Text = "-----"
+        Me.nAccesos.AutoSize = True
+        Me.nAccesos.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.nAccesos.Location = New System.Drawing.Point(288, 158)
+        Me.nAccesos.Name = "nAccesos"
+        Me.nAccesos.Size = New System.Drawing.Size(40, 22)
+        Me.nAccesos.TabIndex = 11
+        Me.nAccesos.Text = "-----"
         '
-        'Label3
+        'anteriorIngreso
         '
-        Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(288, 239)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(40, 22)
-        Me.Label3.TabIndex = 13
-        Me.Label3.Text = "-----"
+        Me.anteriorIngreso.AutoSize = True
+        Me.anteriorIngreso.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.anteriorIngreso.Location = New System.Drawing.Point(288, 239)
+        Me.anteriorIngreso.Name = "anteriorIngreso"
+        Me.anteriorIngreso.Size = New System.Drawing.Size(40, 22)
+        Me.anteriorIngreso.TabIndex = 13
+        Me.anteriorIngreso.Text = "-----"
         '
         'Button1
         '
@@ -418,10 +418,10 @@ Partial Class OperarioHome
         Me.Panel1.Controls.Add(Me.Button2)
         Me.Panel1.Controls.Add(Me.Label8)
         Me.Panel1.Controls.Add(Me.Button1)
-        Me.Panel1.Controls.Add(Me.Label3)
-        Me.Panel1.Controls.Add(Me.Label5)
-        Me.Panel1.Controls.Add(Me.Label6)
-        Me.Panel1.Controls.Add(Me.Label7)
+        Me.Panel1.Controls.Add(Me.anteriorIngreso)
+        Me.Panel1.Controls.Add(Me.nAccesos)
+        Me.Panel1.Controls.Add(Me.rolUsuario)
+        Me.Panel1.Controls.Add(Me.nombreUsuario)
         Me.Panel1.Controls.Add(Me.Label10)
         Me.Panel1.Controls.Add(Me.Label11)
         Me.Panel1.Controls.Add(Me.Label13)
@@ -448,7 +448,7 @@ Partial Class OperarioHome
         Me.Button2.Text = "Ver mas "
         Me.Button2.UseVisualStyleBackColor = False
         '
-        'PuertoInicio
+        'OperarioHome
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -457,9 +457,9 @@ Partial Class OperarioHome
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.Panel1)
-        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.NombreCompleto)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
-        Me.Name = "PuertoInicio"
+        Me.Name = "OperarioHome"
         Me.Text = "PuertoInicio"
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
@@ -471,7 +471,7 @@ Partial Class OperarioHome
     End Sub
 
     Friend WithEvents Label1 As Label
-    Friend WithEvents Label2 As Label
+    Friend WithEvents NombreCompleto As Label
     Friend WithEvents Panel2 As Panel
     Friend WithEvents Button3 As Button
     Friend WithEvents Label16 As Label
@@ -496,10 +496,10 @@ Partial Class OperarioHome
     Friend WithEvents Label13 As Label
     Friend WithEvents Label11 As Label
     Friend WithEvents Label10 As Label
-    Friend WithEvents Label7 As Label
-    Friend WithEvents Label6 As Label
-    Friend WithEvents Label5 As Label
-    Friend WithEvents Label3 As Label
+    Friend WithEvents nombreUsuario As Label
+    Friend WithEvents rolUsuario As Label
+    Friend WithEvents nAccesos As Label
+    Friend WithEvents anteriorIngreso As Label
     Friend WithEvents Button1 As Button
     Friend WithEvents Label8 As Label
     Friend WithEvents Panel1 As Panel

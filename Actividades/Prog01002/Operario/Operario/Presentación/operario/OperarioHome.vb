@@ -10,5 +10,10 @@
     End Sub
 
     Private Sub PuertoInicio_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        NombreCompleto.Text = URepo.NombreCompleto
+        nombreUsuario.Text = URepo.NombreDeUsuario
+        rolUsuario.Text = URepo.RolDeUsuario
+        nAccesos.Text = URepo.AccesosAlSistema.ToString
+        anteriorIngreso.Text = URepo.UltimoAcceso.DarFormato
     End Sub
 End Class

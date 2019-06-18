@@ -15,18 +15,9 @@
         DataGridView2.Columns(3).Width = 200
         DataGridView2.Columns(4).Width = 130
         DataGridView2.Columns(5).Width = 70
-
-        Dim c As New DataGridViewButtonColumn
-
-        'Datos de prueba
-        DataGridView2.Rows.Add("Juana", "pep", 3, 4, 5)
-        DataGridView2.Rows.Add("Juana", "pep", 3, 4, 5)
-        DataGridView2.Rows.Add("Juana", "pep", 3, 4, 5)
-
-
     End Sub
 
-    Public Sub AgregarVehiculoALaTabla() 'cuando la logia esta hecho se le carga un parametro de tipo vehiculo y se carga la informacion en la lista a la lista
+    Public Sub CargarDatos()
 
     End Sub
 

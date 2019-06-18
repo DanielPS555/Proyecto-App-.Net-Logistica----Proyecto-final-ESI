@@ -31,7 +31,7 @@ Partial Class LugarDeTrabajo
         Me.Label4 = New System.Windows.Forms.Label()
         Me.nom = New System.Windows.Forms.Label()
         Me.ubi = New System.Windows.Forms.Label()
-        Me.Label7 = New System.Windows.Forms.Label()
+        Me.uConn = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'Label1
@@ -75,6 +75,7 @@ Partial Class LugarDeTrabajo
         'Button2
         '
         Me.Button2.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.Button2.Enabled = False
         Me.Button2.FlatAppearance.BorderSize = 0
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button2.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -136,15 +137,15 @@ Partial Class LugarDeTrabajo
         Me.ubi.TabIndex = 8
         Me.ubi.Text = "Ubicacion"
         '
-        'Label7
+        'uConn
         '
-        Me.Label7.AutoSize = True
-        Me.Label7.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.Location = New System.Drawing.Point(797, 266)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(99, 24)
-        Me.Label7.TabIndex = 9
-        Me.Label7.Text = "uliConex"
+        Me.uConn.AutoSize = True
+        Me.uConn.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.uConn.Location = New System.Drawing.Point(797, 266)
+        Me.uConn.Name = "uConn"
+        Me.uConn.Size = New System.Drawing.Size(99, 24)
+        Me.uConn.TabIndex = 9
+        Me.uConn.Text = "uliConex"
         '
         'LugarDeTrabajo
         '
@@ -152,7 +153,7 @@ Partial Class LugarDeTrabajo
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(1100, 650)
-        Me.Controls.Add(Me.Label7)
+        Me.Controls.Add(Me.uConn)
         Me.Controls.Add(Me.ubi)
         Me.Controls.Add(Me.nom)
         Me.Controls.Add(Me.Label4)
@@ -179,5 +180,5 @@ Partial Class LugarDeTrabajo
     Friend WithEvents Label4 As Label
     Friend WithEvents nom As Label
     Friend WithEvents ubi As Label
-    Friend WithEvents Label7 As Label
+    Friend WithEvents uConn As Label
 End Class

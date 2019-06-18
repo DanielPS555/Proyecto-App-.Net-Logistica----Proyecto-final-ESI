@@ -5,20 +5,28 @@
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        Principal.getInstancia.cargarPanel(Of MarcoPuerto)(MarcoPuerto.getInstancia)
+        If Not URepo.ConectarEn(lugares.SelectedItem) Then
+            MsgBox("Hubo un error conectando al lugar.")
+        Else
+            Principal.getInstancia.cargarPanel(Of MarcoPuerto)(MarcoPuerto.getInstancia)
+            Principal.getInstancia.cerrarPanel(Of LugarDeTrabajo)()
+        End If
     End Sub
 
     Private Sub lugares_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lugares.SelectedIndexChanged
         If lugares.SelectedIndex < 0 Then
+            Button2.Enabled = False
             Return
         End If
+        Button2.Enabled = True
         Dim lugar = LRepo.LugarPorNombre(lugares.SelectedItem)
         nom.Text = lugar.Nombre
         ubi.Text = $"{lugar.Posicion.X:F1}, {lugar.Posicion.Y:F1}"
+        uConn.Text = URepo.UltimaConexionEn(lugar.Nombre).DarFormato
     End Sub
 
     Private Sub LugarDeTrabajo_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         lugares.Items.Clear()
-        lugares.Items.AddRange(URepo.LugaresTrabaja.Select(Function(x) x.Nombre).ToArray)
+        lugares.Items.AddRange(URepo.LugaresTrabaja.ToArray)
     End Sub
 End Class

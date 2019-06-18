@@ -43,6 +43,10 @@ Public Class FVehiculoRepo
     Public Overrides Function ExisteVIN(vin As String) As Boolean
         Return _vehiculos.Where(Function(x) x.VIN = vin).Count <> 0
     End Function
+
+    Public Overrides Function VehiculosEn(Lugar As String) As List(Of Vehiculo)
+        Return _vehiculos.Where(Function(x) )
+    End Function
 End Class
 
 Public Class FUsuarioRepo
@@ -96,7 +100,68 @@ Public Class FUsuarioRepo
         Return newUser
     End Function
 
-    Public Function LugaresTrabaja() As List(Of Lugar) Implements IUsuarioRepositorio.LugaresTrabaja
-        Return usuarioConectado?.TrabajaEn.Select(Function(x) x.Lugar).ToList
+    Public Function LugaresTrabaja() As List(Of String) Implements IUsuarioRepositorio.LugaresTrabaja
+        Return usuarioConectado?.TrabajaEn.Select(Function(x) x.Lugar.Nombre).ToList
+    End Function
+
+    Public Function UltimaConexionEn(lugar As String) As Date? Implements IUsuarioRepositorio.UltimaConexionEn
+        If usuarioConectado Is Nothing Then Return Nothing
+        If Not LugaresTrabaja.Contains(lugar) Then Return Nothing
+        Dim uC = usuarioConectado.TrabajaEn.Where(Function(x) x.Lugar.Nombre = lugar).Single.Conexiones.Select(Of Date)(Function(x) x.FechaInicio).ToList
+        If uC.Count = 0 Then Return Nothing
+        uC.Sort()
+        Return uC.Last
+    End Function
+
+    Public Function ConectarEn(lugar As String) As Boolean Implements IUsuarioRepositorio.ConectarEn
+        If usuarioConectado Is Nothing Then Return Nothing
+        If usuarioConectado.ConectadoEn IsNot Nothing Then
+            Return False
+        End If
+        If Not LugaresTrabaja.Contains(lugar) Then
+            Return False
+        End If
+        Return usuarioConectado.TrabajaEn.Where(Function(x) x.Lugar.Nombre = lugar).Select(Function(x) usuarioConectado.Conectar(x.Lugar)).Single
+    End Function
+
+    Public Function Desconectar() As Boolean Implements IUsuarioRepositorio.Desconectar
+        If usuarioConectado Is Nothing Then Return Nothing
+        Return usuarioConectado.Desconectar
+    End Function
+
+    Public Function NombreCompleto() As String Implements IUsuarioRepositorio.NombreCompleto
+        If usuarioConectado Is Nothing Then Return Nothing
+        Dim str = usuarioConectado.PrimerNombre
+        If usuarioConectado.SegundoNombre IsNot Nothing Then
+            str += $" {usuarioConectado.SegundoNombre}"
+        End If
+        str += $" {usuarioConectado.PrimerApellido}"
+        If usuarioConectado.SegundoApellido IsNot Nothing Then
+            str += $" {usuarioConectado.SegundoApellido}"
+        End If
+        Return str
+    End Function
+
+    Public Function NombreDeUsuario() As String Implements IUsuarioRepositorio.NombreDeUsuario
+        If usuarioConectado Is Nothing Then Return Nothing
+        Return usuarioConectado.UserName
+    End Function
+
+    Public Function RolDeUsuario() As String Implements IUsuarioRepositorio.RolDeUsuario
+        If usuarioConectado Is Nothing Then Return Nothing
+        Return usuarioConectado.Rol.Nombre
+    End Function
+
+    Public Function AccesosAlSistema() As Integer Implements IUsuarioRepositorio.AccesosAlSistema
+        If usuarioConectado Is Nothing Then Return Nothing
+        Return usuarioConectado.TrabajaEn.Select(Function(x) x.Conexiones).UnionListas.Count
+    End Function
+
+    Public Function UltimoAcceso() As Date? Implements IUsuarioRepositorio.UltimoAcceso
+        If usuarioConectado Is Nothing Then Return Nothing
+        Dim tmp = usuarioConectado.TrabajaEn.Select(Function(x) x.Conexiones).UnionListas
+        Dim tmp2 = tmp.Select(Function(x) x.FechaInicio).ToList
+        tmp2.Sort()
+        Return tmp2.Last
     End Function
 End Class

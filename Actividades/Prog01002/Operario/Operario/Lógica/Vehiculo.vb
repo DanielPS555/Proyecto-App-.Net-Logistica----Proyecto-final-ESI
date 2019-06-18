@@ -28,6 +28,30 @@
         Public ReadOnly ClienteNombre As String
         Public ReadOnly PuertoArriba As Lugar
         Public ReadOnly FechaArribo As DateTime?
+        Public ReadOnly Ingresos As List(Of Ingresos)
+
+        Public ReadOnly Property PosicionActual As Posicionado
+            Get
+                Try
+                    Return LRepo.AllLugares.Select(Function(x) x.Zonas).UnionListas.Select(Function(x) x.Subzonas).UnionListas.Select(Function(x) x.Posicionados).UnionListas.Where(Function(x) x.Vehiculo Is Me And x.Hasta Is Nothing).Single
+                Catch ex As InvalidOperationException
+                    Return Nothing
+                End Try
+            End Get
+        End Property
+
+        Private Shared ReadOnly DateOrder As Comparison(Of Lote) = Function(x, y) x.FechaPartida.CompareTo(y.FechaPartida)
+
+        Public ReadOnly Property LugarActual As Lugar
+            Get
+                Dim lotes = LRepo.AllLugares.Select(Function(x) x.LotesCreados).UnionListas.Where(Function(x) x.Estado = EstadoLote.Transportado And x.Integrantes.Contains(Me)).ToList
+                If lotes.Count = 0 Then
+                    Return PuertoArriba
+                End If
+                lotes.Sort(DateOrder)
+                Return lotes.Last.Hacia
+            End Get
+        End Property
 
         Public ReadOnly Informes As List(Of InformeDaños)
         Public Shared Function AñadirVehiculo(NuevoVehiculo As Vehiculo, LoteInicial As Lote, Subzona As Subzona, Posicion As Integer, Creador As Usuario) As Boolean
@@ -38,8 +62,8 @@
                 Throw New InvalidOperationException("Intentando agregar vehículo en lugar donde no está conectado")
             End If
             Dim sz_serch = LRepo.AllLugares.Select(Of List(Of Subzona))(Function(sz) sz.Subzonas)
-            Dim p_search = Constantes.UnionListas(Of Subzona)(sz_serch).Select(Of List(Of Posicionado))(Function(x) x.Posicionados)
-            If Constantes.UnionListas(Of Posicionado)(p_search).Where(Function(p) p.Vehiculo Is NuevoVehiculo AndAlso p.Hasta Is Nothing).Count <> 0 Then
+            Dim p_search = sz_serch.UnionListas.Select(Of List(Of Posicionado))(Function(x) x.Posicionados)
+            If p_search.UnionListas.Where(Function(p) p.Vehiculo Is NuevoVehiculo AndAlso p.Hasta Is Nothing).Count <> 0 Then
                 Throw New InvalidOperationException("El lugar ya está posicionado")
             End If
             Return Subzona.Posicionar(NuevoVehiculo, Posicion)

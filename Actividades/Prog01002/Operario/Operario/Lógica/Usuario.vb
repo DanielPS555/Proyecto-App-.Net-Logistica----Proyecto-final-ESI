@@ -11,6 +11,10 @@
             End Get
         End Property
 
+        Public Sub New(from As DataRow)
+            Me.New(from("IDUsuario"), New List(Of TrabajaEn), from("NombreDeUsuario"), from("hash_contra"), from("primernombre"), from("segundonombre"), from("primerapellido"), from("segundoapellido"), from("preguntasecreta"), from("respuestasecreta"), from("fechanac"), SexoFromString(from("sexo")), from("email"), from("telefono"), RoleFromID(from("rol")))
+        End Sub
+
         Public ReadOnly Property ConectadoEn As Lugar
             Get
                 Dim _t_e = _trabajaen.Where(Function(x)
@@ -22,7 +26,7 @@
                     Return _t_e.Single.Lugar
                 Catch ex As InvalidOperationException
                     If _t_e.Count = 0 Then
-                        Throw New InvalidOperationException("No está conectado")
+                        Return Nothing
                     Else
                         Throw New InvalidOperationException("Está conectado en más de un mismo lugar. Por favor informe a su administrador de este suceso.")
                     End If
@@ -31,7 +35,7 @@
         End Property
 
         Public Function CrearLote(NumeroLote As Integer, Destino As Lugar, FechaSalida As Date) As Lote
-            Dim lotes = Constantes.UnionListas(Of Lote)(LRepo.AllLugares.Select(Of List(Of Lote))(Function(x) x.LotesCreados))
+            Dim lotes = LRepo.AllLugares.Select(Of List(Of Lote))(Function(x) x.LotesCreados).UnionListas
             If lotes.Where(Function(x) x.ID = NumeroLote).Count <> 0 Then
                 Throw New InvalidOperationException("Ya existe un lote con esa numeración")
             End If
@@ -52,7 +56,7 @@
         End Function
 
         Public Function Desconectar() As Boolean
-            Dim conexiones = _trabajaen.Select(Of List(Of Conexion))(Function(x) x.Conexiones).Aggregate(Of List(Of Conexion))(New List(Of Conexion), Function(x, y) x.Union(y))
+            Dim conexiones = _trabajaen.Select(Of List(Of Conexion))(Function(x) x.Conexiones).UnionListas
             Dim findDesconectado = conexiones.Where(Function(x) x.FechaFin Is Nothing)
             If Not findDesconectado.Any Then
                 Return False

@@ -7,12 +7,25 @@
     Function Restablecer(username As String, respuesta As String, newpass As String) As Boolean
     Function Registrar(username As String, password As String, primer_nombre As String, segundo_nombre As String, primer_apellido As String, segundo_apellido As String, pregunta As String, respuesta As String, sexo As Logica.Sexo, email As String, telefono As String, rol As Logica.Role) As Logica.Usuario
 
-    Function LugaresTrabaja() As List(Of Logica.Lugar)
+    Function LugaresTrabaja() As List(Of String)
+    Function UltimaConexionEn(lugar As String) As Date?
+
+    Function ConectarEn(lugar As String) As Boolean
+    Function Desconectar() As Boolean
+
+    Function NombreCompleto() As String
+    Function NombreDeUsuario() As String
+    Function RolDeUsuario() As String
+
+    Function AccesosAlSistema() As Integer
+
+    Function UltimoAcceso() As Date?
 End Interface
 
 Public Interface ILugarRepositorio
     Function AllLugares() As List(Of Logica.Lugar)
     Function LugarPorNombre(nombre As String) As Logica.Lugar
+    Function LugarPorID(id As Integer) As Logica.Lugar
 End Interface
 
 Public Module Constantes
@@ -28,6 +41,8 @@ Public MustInherit Class VehiculoRepo
     Public MustOverride Function ExisteVIN(vin As String) As Boolean
 
     Public MustOverride ReadOnly Property Vehiculos As List(Of Logica.Vehiculo)
+
+    Public MustOverride Function VehiculosEn(Lugar As String) As List(Of Logica.Vehiculo)
 
     Public Function IngresarVehiculo(VIN As String, Marca As String, Modelo As String, Año As Integer, Color As Color, Cliente As String, Tipo As Logica.TipoVehiculo, PuertoLlegada As Logica.Lugar) As Logica.Vehiculo
         If PuertoLlegada.Tipo <> Logica.TipoLugar.Puerto Then

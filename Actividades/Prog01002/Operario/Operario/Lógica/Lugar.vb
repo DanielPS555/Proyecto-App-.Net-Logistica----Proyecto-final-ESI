@@ -39,7 +39,7 @@
 
         Public ReadOnly Property Subzonas As List(Of Subzona)
             Get
-                Return Constantes.UnionListas(Of Subzona)(Zonas.Select(Of List(Of Subzona))(Function(x) x.Subzonas))
+                Return Zonas.Select(Of List(Of Subzona))(Function(x) x.Subzonas).UnionListas
             End Get
         End Property
 

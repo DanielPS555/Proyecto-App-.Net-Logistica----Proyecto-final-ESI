@@ -35,16 +35,13 @@ CREATE
 CREATE
 	table lugar(
 	IDLugar serial primary key,
-	Nombre varchar(100),
+	Nombre varchar(100) not null unique,
 	Capacidad INTEGER NOT null CHECK (Capacidad > 0),
 	GeoX FLOAT NOT null,
 	GeoY FLOAT NOT null,
-	UsuarioCreador integer NOT null,
-	Tipo char(5) NOT null,
-    check (Tipo IN ("Patio",
-	"Puerto")),
-	foreign key(UsuarioCreador) references usuario(IDUsuario),
-	UNIQUE(Nombre)
+	UsuarioCreador integer NOT null references usuario(IDUsuario),
+	Tipo varchar(6) NOT null check (Tipo IN ("Patio",
+	"Puerto"))
 );
 
 CREATE
@@ -53,7 +50,7 @@ CREATE
 	IDLugar integer not null,
 	IDUsuario integer not null,
 	FechaInicio date NOT null,
-	FechaFin date check (FechaFin > FechaInicio),
+	FechaFin date,
 	foreign key(IDLugar) references lugar(IDLugar),
 	foreign key(IDUsuario) references usuario(IDUsuario)
 );
@@ -92,20 +89,20 @@ CREATE
 	Modelo varchar(50) NOT null,
 	Color integer NOT null,
 	/* representacion RGBA 8bits por canal corresponde a un integer 32bit */ 
-	Tipo varchar(25) NOT null,
+	Tipo varchar(25) NOT null check(Tipo in ('Auto', 'MiniVan', 'SUV', 'Camion')),
 	Anio integer NOT null check(Anio >= 1900 and Anio <= 10000),
-	FueraDeSistema boolean NOT null,
 	ClienteNombre varchar(50) NOT null,
 	PuertoArriba integer NOT null,
 	FechaArribo datetime year to day,
 	primary key(VIN),
 	foreign key(PuertoArriba) references lugar(IDLugar) );
+
 create table vehiculoIngresa(
 	VIN char(17),
+	Fecha datetime year to day not null,
 	TipoIngreso varchar(10) not null check (TipoIngreso in ('Precarga', 'Alta', 'Baja')),
 	Usuario integer not null,
-	Fecha datetime year to day not null,
-	primary key(VIN, TipoIngreso),
+	primary key(VIN, Fecha),
 	foreign key(VIN) references Vehiculo(VIN),
 	foreign key(Usuario) references Usuario(IDUsuario)
 );
@@ -151,7 +148,7 @@ CREATE
 	IDSub integer,
 	VIN char(17),
 	desde datetime year to hour,
-	hasta datetime year to hour check (hasta > desde),
+	hasta datetime year to hour,
 	posicion integer NOT null check (posicion > 0),
 	foreign key(VIN) references vehiculo(VIN),
 	foreign key(IDLugar, IDZona, IDSub) references subzona(IDLugar, IDZona, IDSub),
@@ -179,7 +176,7 @@ CREATE
 	VIN char(17),
 	Usuario integer,
 	Desde date,
-	Hasta date check (Hasta > Desde),
+	Hasta date,
 	foreign key(VIN) references camion(VIN),
 	foreign key(Usuario) references usuario(IDUsuario),
 	primary key(VIN, Usuario, Desde)
@@ -198,7 +195,9 @@ CREATE
 CREATE
 	table integra( VIN char(17),
 	Lote integer,
-	primary key(VIN, Lote),
+	Fecha datetime year to minute,
+	invalidado boolean not null,
+	primary key(VIN, Lote, Fecha),
 	foreign key(VIN) references vehiculo(VIN),
 	foreign key(Lote) references lote(IDLote) );
 CREATE
@@ -206,8 +205,8 @@ CREATE
 	transporteID serial primary key,
 	Usuario integer NOT NULL,
 	FechaHoraSalida datetime year to minute not null,
-	FechaHoraLlegada datetime year to minute not null check (FechaHoraLlegada > FechaHoraSalida),
-	Estado varchar(10) NOT null,
+	FechaHoraLlegada datetime year to minute not null,
+	Estado varchar(10) NOT null check (Estado in ("En proceso", "Fallo", "Exitoso")),
 	foreign key(Usuario) references usuario(IDUsuario)
 	);
 CREATE
@@ -220,9 +219,9 @@ CREATE
 	table posicionestransporte(
 	transporteID integer,
 	FechaHoraPosicion datetime year to second,
-	PosX float,
-	PosY float,
-	precision float,
+	PosX float not null,
+	PosY float not null,
+	precision float not null,
 	primary key(transporteID,
 	FechaHoraPosicion),
 	foreign key(transporteID) references transporte(transporteID) );

@@ -19,6 +19,10 @@
             usuario.TrabajaEn.Add(New TrabajaEn(GlobID, lugar, usuario, Date.Now, Nothing, New List(Of Conexion)))
         End Sub
 
+        Public Sub New(from As DataRow, usr As Usuario)
+            Me.New(from("id"), LRepo.LugarPorID(from("idlugar")), usr, from("fechainicio"), from("fechafin"), New List(Of Conexion))
+        End Sub
+
         Private Sub New(iD As Integer, lugar As Lugar, usuario As Usuario, fechaInicio As Date, fechaFin As Date?, conexiones As List(Of Conexion))
             Me.ID = iD
             Me.Lugar = lugar
