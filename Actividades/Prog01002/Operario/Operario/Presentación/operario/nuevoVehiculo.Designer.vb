@@ -25,7 +25,6 @@ Partial Class nuevoVehiculo
         Dim QR As System.Windows.Forms.Button
         Dim Buscar As System.Windows.Forms.Button
         Dim color As System.Windows.Forms.Button
-        Dim nuevoLote As System.Windows.Forms.Button
         Dim infoDaños As System.Windows.Forms.Button
         Dim ingresar As System.Windows.Forms.Button
         Me.buscador = New System.Windows.Forms.TextBox()
@@ -52,10 +51,10 @@ Partial Class nuevoVehiculo
         Me.lote = New System.Windows.Forms.ComboBox()
         Me.muestra_color = New System.Windows.Forms.Panel()
         Me.ColorDialog1 = New System.Windows.Forms.ColorDialog()
+        Me.LinkLabel2 = New System.Windows.Forms.LinkLabel()
         QR = New System.Windows.Forms.Button()
         Buscar = New System.Windows.Forms.Button()
         color = New System.Windows.Forms.Button()
-        nuevoLote = New System.Windows.Forms.Button()
         infoDaños = New System.Windows.Forms.Button()
         ingresar = New System.Windows.Forms.Button()
         Me.SuspendLayout()
@@ -121,27 +120,6 @@ Partial Class nuevoVehiculo
         color.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         color.UseVisualStyleBackColor = False
         AddHandler color.Click, AddressOf Me.color_Click
-        '
-        'nuevoLote
-        '
-        nuevoLote.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        nuevoLote.BackColor = System.Drawing.Color.White
-        nuevoLote.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
-        nuevoLote.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        nuevoLote.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White
-        nuevoLote.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White
-        nuevoLote.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        nuevoLote.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        nuevoLote.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
-        nuevoLote.Location = New System.Drawing.Point(244, 418)
-        nuevoLote.Name = "nuevoLote"
-        nuevoLote.Size = New System.Drawing.Size(239, 35)
-        nuevoLote.TabIndex = 50
-        nuevoLote.Text = "Crear un nuevo lote "
-        nuevoLote.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        nuevoLote.UseVisualStyleBackColor = False
-        AddHandler nuevoLote.Click, AddressOf Me.nuevoLote_Click
         '
         'infoDaños
         '
@@ -404,16 +382,29 @@ Partial Class nuevoVehiculo
         Me.muestra_color.Size = New System.Drawing.Size(17, 53)
         Me.muestra_color.TabIndex = 53
         '
+        'LinkLabel2
+        '
+        Me.LinkLabel2.ActiveLinkColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.LinkLabel2.AutoSize = True
+        Me.LinkLabel2.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LinkLabel2.LinkColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.LinkLabel2.Location = New System.Drawing.Point(234, 423)
+        Me.LinkLabel2.Name = "LinkLabel2"
+        Me.LinkLabel2.Size = New System.Drawing.Size(88, 21)
+        Me.LinkLabel2.TabIndex = 109
+        Me.LinkLabel2.TabStop = True
+        Me.LinkLabel2.Text = "Crear lote"
+        '
         'nuevoVehiculo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(880, 650)
+        Me.Controls.Add(Me.LinkLabel2)
         Me.Controls.Add(Me.muestra_color)
         Me.Controls.Add(ingresar)
         Me.Controls.Add(infoDaños)
-        Me.Controls.Add(nuevoLote)
         Me.Controls.Add(Me.lote)
         Me.Controls.Add(color)
         Me.Controls.Add(Me.l_lote)
@@ -470,4 +461,5 @@ Partial Class nuevoVehiculo
     Friend WithEvents lote As ComboBox
     Friend WithEvents muestra_color As Panel
     Friend WithEvents ColorDialog1 As ColorDialog
+    Friend WithEvents LinkLabel2 As LinkLabel
 End Class

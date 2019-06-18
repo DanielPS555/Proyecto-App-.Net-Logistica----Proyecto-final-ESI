@@ -146,11 +146,11 @@
     <Compile Include="Presentación\operario\RegistroDeDañoPanel.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Presentación\operario\verInformesDeDañosPanel.Designer.vb">
-      <DependentUpon>verInformesDeDañosPanel.vb</DependentUpon>
+    <Compile Include="Presentación\operario\trasladoInterno.Designer.vb">
+      <DependentUpon>trasladoInterno.vb</DependentUpon>
     </Compile>
-    <Compile Include="Presentación\operario\verInformesDeDañosPanel.vb">
-      <SubType>UserControl</SubType>
+    <Compile Include="Presentación\operario\trasladoInterno.vb">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Presentación\Principal.Designer.vb">
       <DependentUpon>Principal.vb</DependentUpon>
@@ -222,6 +222,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentación\operario\RegistroDeDañoPanel.resx">
       <DependentUpon>RegistroDeDañoPanel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentación\operario\trasladoInterno.resx">
+      <DependentUpon>trasladoInterno.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentación\Principal.resx">
       <DependentUpon>Principal.vb</DependentUpon>

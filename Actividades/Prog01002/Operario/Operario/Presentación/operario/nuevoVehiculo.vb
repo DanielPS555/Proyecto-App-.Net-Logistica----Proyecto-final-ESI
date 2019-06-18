@@ -44,7 +44,11 @@
         d.ShowDialog()
     End Sub
 
-    Private Sub infoDaños_Click(sender As Object, e As EventArgs)
+    Private Sub LinkLabel2_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel2.LinkClicked
         MarcoPuerto.getInstancia.cargarPanel(Of crearInformaDeDaños)(New crearInformaDeDaños)
+    End Sub
+
+    Private Sub infoDaños_Click(sender As Object, e As EventArgs)
+
     End Sub
 End Class

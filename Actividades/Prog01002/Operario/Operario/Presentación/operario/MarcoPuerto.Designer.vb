@@ -92,6 +92,7 @@ Partial Class MarcoPuerto
         '
         'contenedor
         '
+        Me.contenedor.AutoScroll = True
         Me.contenedor.Dock = System.Windows.Forms.DockStyle.Fill
         Me.contenedor.Location = New System.Drawing.Point(220, 0)
         Me.contenedor.Name = "contenedor"
