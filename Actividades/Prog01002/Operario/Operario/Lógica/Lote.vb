@@ -15,7 +15,16 @@
         Public ReadOnly Hacia As Lugar
         Public ReadOnly Creador As Usuario
         Public ReadOnly Integrantes As New List(Of Vehiculo)
-        Public Prioridad As PrioridadLote
+        Private _prioridad As PrioridadLote
+        Public Property Prioridad As PrioridadLote
+            Get
+                Return _prioridad
+            End Get
+            Set(value As PrioridadLote)
+                _prioridad = value
+                _dirty = True
+            End Set
+        End Property
         Private _estado As EstadoLote
         Public ReadOnly Property Estado As EstadoLote
             Get
@@ -23,11 +32,14 @@
             End Get
         End Property
 
+        Public _dirty As Boolean
+
         Public Sub CambiarEstado(NuevoEstado As EstadoLote)
             If NuevoEstado < _estado Then
                 Throw New InvalidOperationException("No puedes bajar el estado de un lote")
             End If
             _estado = NuevoEstado
+            _dirty = True
         End Sub
 
         Public Sub New(dr As DataRow, estado As EstadoLote)

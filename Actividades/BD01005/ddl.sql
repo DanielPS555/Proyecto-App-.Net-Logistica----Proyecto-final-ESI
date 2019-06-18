@@ -188,6 +188,7 @@ CREATE
 	Hacia integer NOT null,
 	CreadorID integer NOT null,
 	Prioridad varchar(10) NOT null check (Prioridad in ('Normal', 'Alta')),
+	Estado varchar(10) not null check (Estado in ('Abierto', 'Cerrado')),
 	primary key(IDLote),
 	foreign key(Desde) references lugar(IDLugar),
 	foreign key(Hacia) references lugar(IDLugar),

@@ -25,7 +25,8 @@ Public Class SQLRepo
 
     Public Overrides ReadOnly Property Vehiculos As List(Of Vehiculo)
         Get
-            Throw New NotImplementedException()
+            Sincronizar()
+            Return _vehiculos
         End Get
     End Property
 
@@ -192,10 +193,23 @@ Public Class SQLRepo
             Dim loteDt As New DataTable
             loteDt.Load(loteRdr)
             For Each l As DataRow In loteDt.Rows
-                Dim transporteCmd = New OdbcCommand("select * from transporte, transporta where transporte.transporteID=transporta.transporteID and transporta.IDLote=? ;")
+                Dim autos = New OdbcCommand("select * from integra where Lote=?;")
                 Dim lote = New Lote(l)
+                Dim param = autos.CreateParameter
+                param.DbType = DbType.Int64
+                param.Value = l("IDLote")
+                Dim aRdr = autos.ExecuteReader
+                Dim auDt = New DataTable
+                auDt.Load(aRdr)
+                For Each a As DataRow In auDt.Rows
+                    Dim v = VehiculoPorVIN(a("VIN"))
+                    lote.Integrantes.Add(v)
+                    v.Informes.Where(Function(x) x.Fecha)
+                Next
             Next
         End If
+        Sincronizar()
+        Return _lugares
     End Function
 
     Public Function LugarPorNombre(nombre As String) As Lugar Implements ILugarRepositorio.LugarPorNombre
