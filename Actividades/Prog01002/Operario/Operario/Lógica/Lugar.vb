@@ -7,7 +7,7 @@
         Patio
     End Enum
     Public Class Lugar
-
+        Public ReadOnly ID As Integer
         Public ReadOnly Nombre As String
         Public ReadOnly Capacidad As UInteger
         Public ReadOnly Posicion As PointF
@@ -21,7 +21,8 @@
         End Property
         Public ReadOnly LotesCreados As List(Of Lote)
 
-        Public Sub New(nombre As String, capacidad As UInteger, posicion As PointF, creador As Usuario, tipo As TipoLugar, zonas As List(Of Zona), lotesCreados As List(Of Lote))
+        Public Sub New(ID As Integer, nombre As String, capacidad As UInteger, posicion As PointF, creador As Usuario, tipo As TipoLugar, zonas As List(Of Zona), lotesCreados As List(Of Lote))
+            Me.ID = ID
             Me.Nombre = nombre
             Me.Capacidad = capacidad
             Me.Posicion = posicion
@@ -29,6 +30,10 @@
             Me.Tipo = tipo
             _zonas = zonas
             Me.LotesCreados = lotesCreados
+        End Sub
+
+        Public Sub New(dr As DataRow)
+            Me.New(dr("IDLugar"), dr("Nombre"), dr("Capacidad"), New PointF(dr("GeoX"), dr("GeoY")), URepo.UsuarioIncompletoPorID(dr("UsuarioCreador")), TipoFromString(dr("Tipo")), New List(Of Zona), New List(Of Lote))
         End Sub
 
         Public ReadOnly Property LotesPorPartir As List(Of Lote)

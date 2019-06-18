@@ -30,6 +30,10 @@
             _estado = NuevoEstado
         End Sub
 
+        Public Sub New(dr As DataRow, estado As EstadoLote)
+            Me.New(dr("IDLote"), dr("FechaPartida"), LRepo.LugarPorID(dr("Desde")), LRepo.LugarPorID(dr("Hacia")), URepo.UsuarioIncompletoPorID(dr("CreadorID")), dr("Prioridad"), estado)
+        End Sub
+
         Public Sub New(iD As UInteger, fechaPartida As Date, desde As Lugar, hacia As Lugar, creador As Usuario, prioridad As String, estado As String)
             Me.ID = iD
             Me.FechaPartida = fechaPartida

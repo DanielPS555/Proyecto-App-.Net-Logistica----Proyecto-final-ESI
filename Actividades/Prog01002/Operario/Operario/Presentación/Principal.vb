@@ -6,16 +6,6 @@
         ' Esta llamada es exigida por el diseñador.
         Constantes.LRepo = New FLugarRepo
         Constantes.URepo = New FUsuarioRepo
-        Constantes.URepo.Registrar("superadmin", "aaaxd",
-                                          "a", "b", "c", "d",
-                                          "no", "tampoco",
-                                          Logica.Sexo.Otro, "admin@sgla.com.uy",
-                                          "*911", Logica.Constantes.Roles.Where(Function(x) x.Nombre = "Admin").Single)
-        Constantes.LRepo.AllLugares.Add(New Logica.Lugar("Puerto de montevideo", 200, New PointF(-35, -35), Constantes.URepo.UsuarioPorNombre("superadmin"), Logica.TipoLugar.Puerto, New List(Of Logica.Zona), New List(Of Logica.Lote)))
-        Constantes.LRepo.AllLugares.First.Zonas.Add(New Logica.Zona(New List(Of Logica.Subzona), Constantes.LRepo.AllLugares.First))
-        Constantes.LRepo.AllLugares.First.Zonas.First.Subzonas.Add(New Logica.Subzona(Constantes.LRepo.AllLugares.First.Zonas.First, New List(Of Logica.Posicionado)))
-        Constantes.URepo.Registrar("usuarioprueba", "usrprueba", "Juan", "Ito", "Cho", "Talarga", "Si?", "Si", Logica.Sexo.Masculino, "darkfm@vera.com.uy", "N/A", Logica.Constantes.Roles.Where(Function(x) x.Nombre = "Operario").Single)
-        Logica.TrabajaEn.AgregarALugar(Constantes.URepo.UsuarioPorNombre("usuarioprueba"), LRepo.AllLugares.First)
         Constantes.VRepo = New FVehiculoRepo
         InitializeComponent()
         StartPosition = FormStartPosition.CenterScreen

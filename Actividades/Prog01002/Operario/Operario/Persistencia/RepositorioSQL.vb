@@ -29,7 +29,9 @@ Public Class SQLRepo
         End Get
     End Property
 
-    Public Function UsuarioIncompletoPorID(id As Integer) As Usuario
+    Private usuarioConectado As Usuario = Nothing
+
+    Public Function UsuarioIncompletoPorID(id As Integer) As Usuario Implements IUsuarioRepositorio.UsuarioIncompletoPorID
         Dim find = _users.Where(Function(x) x.ID = id)
         If find.Count <> 0 Then
             Return find.Single
@@ -41,7 +43,27 @@ Public Class SQLRepo
         Dim rdr = cmd.ExecuteReader()
         Dim dt As New DataTable
         dt.Load(rdr)
-        If dt.Rows.Count = 0 Then
+        If dt.Rows.Count <> 1 Then
+            Return Nothing
+        End If
+        Dim usr = New Usuario(dt.Rows()(0))
+        _users.Add(usr)
+        Return usr
+    End Function
+
+    Public Function UsuarioIncompletoPorNombre(nombre As String) As Usuario Implements IUsuarioRepositorio.UsuarioIncompletoPorNombre
+        Dim find = _users.Where(Function(x) x.UserName = nombre)
+        If find.Count <> 0 Then
+            Return find.Single
+        End If
+        Dim cmd = New OdbcCommand("select * from usuario where nombredeusuario=?;", _conn)
+        Dim nomparam = cmd.CreateParameter
+        nomparam.DbType = DbType.String
+        nomparam.Value = nombre
+        Dim rdr = cmd.ExecuteReader()
+        Dim dt As New DataTable
+        dt.Load(rdr)
+        If dt.Rows.Count <> 1 Then
             Return Nothing
         End If
         Dim usr = New Usuario(dt.Rows()(0))
@@ -51,6 +73,11 @@ Public Class SQLRepo
 
     Public Function UsuarioPorID(id As Integer) As Usuario Implements IUsuarioRepositorio.UsuarioPorID
         Dim usr = UsuarioIncompletoPorID(id)
+        CompletarUsuario(usr)
+        Return usr
+    End Function
+
+    Private Sub CompletarUsuario(usr As Usuario)
         Dim cmd = New OdbcCommand("select * from trabajaen where idusuario=?;", _conn)
         Dim uid = cmd.CreateParameter
         uid.DbType = DbType.Int64
@@ -72,65 +99,103 @@ Public Class SQLRepo
                 tmp.Conexiones.Add(New Conexion(_i("HoraIngreso"), _i("HoraSalida")))
             Next
         Next
+    End Sub
+
+    Public Function UsuarioPorNombre(nombre As String) As Usuario Implements IUsuarioRepositorio.UsuarioPorNombre
+        Dim usr = UsuarioIncompletoPorNombre(nombre)
+        CompletarUsuario(usr)
         Return usr
     End Function
 
-    Public Function UsuarioPorNombre(nombre As String) As Usuario Implements IUsuarioRepositorio.UsuarioPorNombre
-        Throw New NotImplementedException()
-    End Function
-
-
-
     Public Function Login(username As String, password As String) As Usuario Implements IUsuarioRepositorio.Login
-        Throw New NotImplementedException()
+        _users.Where(Function(x) x.UserName = username).Where(Function(x) x.VerificarContraseña(password)).ForEach(Sub(x)
+                                                                                                                       usuarioConectado = x
+                                                                                                                   End Sub)
+        Return usuarioConectado
     End Function
 
     Public Function Restablecer(username As String, respuesta As String, newpass As String) As Boolean Implements IUsuarioRepositorio.Restablecer
-        Throw New NotImplementedException()
-    End Function
-
-    Public Function Registrar(username As String, password As String, primer_nombre As String, segundo_nombre As String, primer_apellido As String, segundo_apellido As String, pregunta As String, respuesta As String, sexo As Sexo, email As String, telefono As String, rol As Role) As Usuario Implements IUsuarioRepositorio.Registrar
-        Throw New NotImplementedException()
+        Dim r = _users.Where(Function(x) x.UserName = username).Select(Function(x) x.RestablecerContraseña(respuesta, newpass))
+        If r.Count <> 0 Then
+            Return r.Single
+        Else
+            Return False
+        End If
     End Function
 
     Public Function LugaresTrabaja() As List(Of String) Implements IUsuarioRepositorio.LugaresTrabaja
-        Throw New NotImplementedException()
+        Return usuarioConectado?.TrabajaEn.Select(Function(x) x.Lugar.Nombre).ToList
     End Function
 
     Public Function UltimaConexionEn(lugar As String) As Date? Implements IUsuarioRepositorio.UltimaConexionEn
-        Throw New NotImplementedException()
+        If usuarioConectado Is Nothing Then Return Nothing
+        If Not LugaresTrabaja.Contains(lugar) Then Return Nothing
+        Dim uC = usuarioConectado.TrabajaEn.Where(Function(x) x.Lugar.Nombre = lugar).Single.Conexiones.Select(Of Date)(Function(x) x.FechaInicio).ToList
+        If uC.Count = 0 Then Return Nothing
+        uC.Sort()
+        Return uC.Last
     End Function
 
     Public Function ConectarEn(lugar As String) As Boolean Implements IUsuarioRepositorio.ConectarEn
-        Throw New NotImplementedException()
+        If usuarioConectado Is Nothing Then Return Nothing
+        If usuarioConectado.ConectadoEn IsNot Nothing Then
+            Return False
+        End If
+        If Not LugaresTrabaja.Contains(lugar) Then
+            Return False
+        End If
+        Return usuarioConectado.TrabajaEn.Where(Function(x) x.Lugar.Nombre = lugar).Select(Function(x) usuarioConectado.Conectar(x.Lugar)).Single
     End Function
 
     Public Function Desconectar() As Boolean Implements IUsuarioRepositorio.Desconectar
-        Throw New NotImplementedException()
+        If usuarioConectado Is Nothing Then Return Nothing
+        Return usuarioConectado.Desconectar
     End Function
 
     Public Function NombreCompleto() As String Implements IUsuarioRepositorio.NombreCompleto
-        Throw New NotImplementedException()
+        Return usuarioConectado?.NombreCompleto
     End Function
 
     Public Function NombreDeUsuario() As String Implements IUsuarioRepositorio.NombreDeUsuario
-        Throw New NotImplementedException()
+        Return usuarioConectado?.UserName
     End Function
 
     Public Function RolDeUsuario() As String Implements IUsuarioRepositorio.RolDeUsuario
-        Throw New NotImplementedException()
+        Return usuarioConectado?.Rol.Nombre
     End Function
 
     Public Function AccesosAlSistema() As Integer Implements IUsuarioRepositorio.AccesosAlSistema
-        Throw New NotImplementedException()
+        Return usuarioConectado?.TrabajaEn.Select(Function(x) x.Conexiones).UnionListas.Count
     End Function
 
     Public Function UltimoAcceso() As Date? Implements IUsuarioRepositorio.UltimoAcceso
-        Throw New NotImplementedException()
+        If usuarioConectado Is Nothing Then Return Nothing
+        Dim tmp = usuarioConectado.TrabajaEn.Select(Function(x) x.Conexiones).UnionListas
+        Dim tmp2 = tmp.Select(Function(x) x.FechaInicio).ToList
+        tmp2.Sort()
+        Return tmp2.Last
     End Function
 
     Public Function AllLugares() As List(Of Lugar) Implements ILugarRepositorio.AllLugares
-        Throw New NotImplementedException()
+        If _lugares Is Nothing Then
+            _lugares = New List(Of Lugar)
+            Dim cmd = New OdbcCommand("select * from lugar;", _conn)
+            Dim rdr = cmd.ExecuteReader
+            Dim dt As New DataTable
+            dt.Load(rdr)
+            For Each i As DataRow In dt.Rows
+                Dim lugar As New Lugar(i)
+                _lugares.Add(lugar)
+            Next
+            Dim loteCmd = New OdbcCommand("select * from lote;", _conn)
+            Dim loteRdr = loteCmd.ExecuteReader
+            Dim loteDt As New DataTable
+            loteDt.Load(loteRdr)
+            For Each l As DataRow In loteDt.Rows
+                Dim transporteCmd = New OdbcCommand("select * from transporte, transporta where transporte.transporteID=transporta.transporteID and transporta.IDLote=? ;")
+                Dim lote = New Lote(l)
+            Next
+        End If
     End Function
 
     Public Function LugarPorNombre(nombre As String) As Lugar Implements ILugarRepositorio.LugarPorNombre

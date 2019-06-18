@@ -7,6 +7,16 @@
             list.AddRange(B)
             Return list
         End Function
+        Public Function TipoFromString(tipo As String) As TipoLugar
+            Select Case tipo.ToLower
+                Case "puerto"
+                    Return TipoLugar.Puerto
+                Case "patio"
+                    Return TipoLugar.Patio
+                Case Else
+                    Return Nothing
+            End Select
+        End Function
         Public Function SexoFromString(sexo As String) As Sexo
             Select Case sexo
                 Case "m"
