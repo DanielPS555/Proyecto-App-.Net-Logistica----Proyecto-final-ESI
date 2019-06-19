@@ -38,7 +38,6 @@ insert into link values ("http://maps.com",(select idusuario from usuario where 
 insert into link values ("http://maps2.com",(select idusuario from usuario where primernombre = "Pedro"));
 
 	/*LUGAR*/
-
 insert into lugar values (0,"Deposito piedras blancas", 3500, -34.882456, -56.194172,1,"Patio");
 insert into lugar values (0,"Deposito de maldonado", 500, -34.948760, -54.924569,2,"Patio");
 insert into lugar values (0,"Puerto de montevideo", 1200, -34.987460, -56.254790,1,"Puerto");
@@ -58,7 +57,6 @@ insert into trabajaen values (0,(select IDLugar from lugar where Nombre="Deposit
 	(select idusuario from usuario where primernombre = "Juan"),"15/6/2019", "17/6/2019");
 
 	/*CONEXCION*/
-
 	insert into conexion values (1,"2019-6-27 8:02","2019-6-27 18:06");
 	insert into conexion values (1,"2019-6-28 23:02","2019-6-29 02:01");
 	insert into conexion values (1,"2019-6-30 10:20","2019-6-30 16:06");
@@ -80,7 +78,6 @@ insert into trabajaen values (0,(select IDLugar from lugar where Nombre="Deposit
 	insert into conexion values (5,"2019-7-2 9:20","2019-7-2 17:06");
 
 		/*ZONA*/
-
 	insert into zona values ((select IDLugar from lugar where Nombre="Deposito piedras blancas"),
 	0,"Zona A", 1500);
 	insert into zona values ((select IDLugar from lugar where Nombre="Deposito piedras blancas"),
@@ -101,8 +98,6 @@ insert into trabajaen values (0,(select IDLugar from lugar where Nombre="Deposit
 	0,"Zona C", 1000);
 
 	/*SUBZONA*/
-
-
 	insert into subzona values ((select IDLugar from lugar where Nombre="Deposito piedras blancas"),
 		(select IDZona from lugar,zona where lugar.nombre="Deposito piedras blancas"
 		and lugar.idlugar = zona.idlugar and zona.nombre = "Zona A"),0,"Zona A_1",1000);
@@ -156,7 +151,6 @@ insert into trabajaen values (0,(select IDLugar from lugar where Nombre="Deposit
 		and lugar.idlugar = zona.idlugar and zona.nombre = "Zona C"),0,"Zona C_2",500);
 
 		/*VEHIUCLO*/
-
 		insert into vehiculo values("1GH2J83LED0987547","Fiat","Cronos", "6ead26", "Auto", 2011, "Sevel"
 		,(select IDLugar from lugar where Nombre="Puerto de aguas profundas rocha"), "2019-6-27");
 		insert into vehiculo values("1HGYN4HTEL8372649","Fiat","Toro", "#cecece", "Auto", 2015, "Sevel"
@@ -168,7 +162,6 @@ insert into trabajaen values (0,(select IDLugar from lugar where Nombre="Deposit
 
 
 		/*vehiculoIngresa*/
-
 		insert into vehiculoIngresa values ("1GH2J83LED0987547", "2019-4-11", "Precarga",(select idusuario from usuario where primernombre = "Fernanda"));
 		insert into vehiculoIngresa values ("1GH2J83LED0987547", "2019-6-27", "Alta",(select idusuario from usuario where primernombre = "Pepe"));
 		insert into vehiculoIngresa values ("1HGYN4HTEL8372649", "2019-4-11", "Precarga",(select idusuario from usuario where primernombre = "Fernanda"));
@@ -180,7 +173,6 @@ insert into trabajaen values (0,(select IDLugar from lugar where Nombre="Deposit
 		insert into vehiculoIngresa values ("1GH2HGRLED0988472", "2019-7-25", "Baja",(select idusuario from usuario where primernombre = "Felipe"));
 
 		/*informedanios*/
-
 		insert into informedanios values ("0","Informe de ingreso","2019-6-28", "Parcial",
 			"1GH2J83LED0987547",(select IDLugar from lugar where Nombre="Puerto de aguas profundas rocha")
 		,(select idusuario from usuario where primernombre = "Pepe"));
@@ -221,11 +213,22 @@ insert into trabajaen values (0,(select IDLugar from lugar where Nombre="Deposit
 			"1GH2HGRLED0988472",(select IDLugar from lugar where Nombre="Deposito piedras blancas")
 		,(select idusuario from usuario where primernombre = "Juan"));
 
-
+		/*registrodanios*/
 		insert into registrodanios values (1,0,"Rayon");
 		insert into registrodanios values (2,0,"Roptura en la puerta");
 		insert into registrodanios values (3,0,"No se ha encontrado el rayon");
 		insert into registrodanios values (3,0,"La roptura de la puerta a aumentado");
+		insert into registrodanios values (5,0,"Daño en la rueda");
+		insert into registrodanios values (6,0,"Daño en el motor");
+		insert into registrodanios values (7,0,"No se encontraron daños en el motor");
+		insert into registrodanios values (9,0,"Agujero en el techo");
+		insert into registrodanios values (10,0,"Creio el agujero");
 
+			/*actualiza*/
+		insert into actualiza values (3,3,1,1,"Anulacion");
+		insert into actualiza values (3,4,2,2,"Correccion");
+		insert into actualiza values (7,7,6,6,"Anulacion");
+		insert into actualiza values (10,9,9,8,"Correccion");
 
-		
+		/*LA TABLA IMAGEN REGISTRO NO SE CARGA YA QUE NO SE PUEDE INGRESAR UNA imagen
+		EN BYTE DIRECTAMENTE POR AQUI, HAY QUE USAR EL ODBC, POR ESO SE INGREZAN DESDE EL PROGRAMA*/

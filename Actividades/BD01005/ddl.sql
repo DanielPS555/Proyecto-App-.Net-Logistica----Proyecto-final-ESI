@@ -164,8 +164,10 @@ CREATE table
 	desde datetime year to hour,
 	hasta datetime year to hour,
 	posicion integer NOT null check (posicion > 0),
+	IDUsuario integer NOT null,
 	foreign key(VIN) references vehiculo(VIN) ON DELETE CASCADE,
 	foreign key(IDLugar, IDZona, IDSub) references subzona(IDLugar, IDZona, IDSub) ON DELETE CASCADE,
+	foreign key (IDUsuario) references usuario(IDUsuario) ON DELETE CASCADE,
 	primary key(IDLugar, IDZona, IDSub, VIN, desde)
 	);
 CREATE table
