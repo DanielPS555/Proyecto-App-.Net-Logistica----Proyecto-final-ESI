@@ -1,11 +1,13 @@
-﻿Public Interface IUsuarioRepositorio
-    Function UsuarioPorID(id As Integer) As Logica.Usuario
-    Function UsuarioPorNombre(nombre As String) As Logica.Usuario
-    Function Sincronizar() As Boolean
+﻿Imports Operario.Logica
+
+Public Interface IUsuarioRepositorio
+    Function UsuarioIncompletoPorID(id As Integer) As Logica.Usuario 'Devuelve el usuario, pero si no ha sido buscado antes no busca sus lugares de trabajo. Se usa para llenar los lugares antes de hacer búsqueda completa de usuarios
+    Function UsuarioPorID(id As Integer) As Logica.Usuario 'Devuelve el usuario si existe
+    Function UsuarioPorNombre(nombre As String) As Logica.Usuario 'Idem
+    Function Sincronizar() As Boolean 'Sincroniza entre el estado local y el estado en el servidor
 
     Function Login(username As String, password As String) As Logica.Usuario
     Function Restablecer(username As String, respuesta As String, newpass As String) As Boolean
-    Function Registrar(username As String, password As String, primer_nombre As String, segundo_nombre As String, primer_apellido As String, segundo_apellido As String, pregunta As String, respuesta As String, sexo As Logica.Sexo, email As String, telefono As String, rol As Logica.Role) As Logica.Usuario
 
     Function LugaresTrabaja() As List(Of String)
     Function UltimaConexionEn(lugar As String) As Date?
@@ -20,6 +22,7 @@
     Function AccesosAlSistema() As Integer
 
     Function UltimoAcceso() As Date?
+    Function UsuarioIncompletoPorNombre(nombre As String) As Usuario
 End Interface
 
 Public Interface ILugarRepositorio

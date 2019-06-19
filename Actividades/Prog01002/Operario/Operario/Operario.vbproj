@@ -87,6 +87,7 @@
     <Compile Include="Lógica\Usuario.vb" />
     <Compile Include="Lógica\Vehiculo.vb" />
     <Compile Include="Lógica\Zona.vb" />
+    <Compile Include="Persistencia\RepositorioSQL.vb" />
     <Compile Include="Presentación\operario\crearInformaDeDaños.Designer.vb">
       <DependentUpon>crearInformaDeDaños.vb</DependentUpon>
     </Compile>
@@ -99,7 +100,6 @@
     <Compile Include="Presentación\operario\nuevoVehiculo.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Persistencia\Repositorio.vb" />
     <Compile Include="Presentación\Login.vb">
       <SubType>Form</SubType>
     </Compile>

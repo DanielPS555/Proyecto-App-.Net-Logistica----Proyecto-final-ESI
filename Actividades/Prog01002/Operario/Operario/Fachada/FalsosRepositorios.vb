@@ -9,11 +9,11 @@ Public Class FLugarRepo
     End Function
 
     Public Function LugarPorNombre(nombre As String) As Lugar Implements ILugarRepositorio.LugarPorNombre
-        Try
-            Return lugares.Where(Function(x) x.Nombre = nombre).Single
-        Catch e As InvalidOperationException
-            Return Nothing
-        End Try
+        Return lugares.Where(Function(x) x.Nombre = nombre).SingleOrDefault
+    End Function
+
+    Public Function LugarPorID(id As Integer) As Lugar Implements ILugarRepositorio.LugarPorID
+        Return lugares.Where(Function(x) x.ID = id).SingleOrDefault
     End Function
 End Class
 
@@ -45,7 +45,7 @@ Public Class FVehiculoRepo
     End Function
 
     Public Overrides Function VehiculosEn(Lugar As String) As List(Of Vehiculo)
-        Return _vehiculos.Where(Function(x) )
+        Return _vehiculos.Where(Function(x) x.LugarActual.Nombre = Lugar)
     End Function
 End Class
 
@@ -91,15 +91,6 @@ Public Class FUsuarioRepo
         Return userObj.RestablecerContraseña(respuesta, newpass)
     End Function
 
-    Public Function Registrar(username As String, password As String, primer_nombre As String, segundo_nombre As String, primer_apellido As String, segundo_apellido As String, pregunta As String, respuesta As String, sexo As Sexo, email As String, telefono As String, rol As Role) As Usuario Implements IUsuarioRepositorio.Registrar
-        If usuarios.Where(Function(x) x.UserName = username).Count <> 0 Then
-            Return Nothing
-        End If
-        Dim newUser As Usuario = New Usuario(usuarios.Count + 1, New List(Of TrabajaEn), username, Usuario.ContraseñaHash(password, username), primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, pregunta, respuesta, Nothing, sexo, email, telefono, rol)
-        usuarios.Add(newUser)
-        Return newUser
-    End Function
-
     Public Function LugaresTrabaja() As List(Of String) Implements IUsuarioRepositorio.LugaresTrabaja
         Return usuarioConectado?.TrabajaEn.Select(Function(x) x.Lugar.Nombre).ToList
     End Function
@@ -125,36 +116,23 @@ Public Class FUsuarioRepo
     End Function
 
     Public Function Desconectar() As Boolean Implements IUsuarioRepositorio.Desconectar
-        If usuarioConectado Is Nothing Then Return Nothing
-        Return usuarioConectado.Desconectar
+        Return usuarioConectado?.Desconectar
     End Function
 
     Public Function NombreCompleto() As String Implements IUsuarioRepositorio.NombreCompleto
-        If usuarioConectado Is Nothing Then Return Nothing
-        Dim str = usuarioConectado.PrimerNombre
-        If usuarioConectado.SegundoNombre IsNot Nothing Then
-            str += $" {usuarioConectado.SegundoNombre}"
-        End If
-        str += $" {usuarioConectado.PrimerApellido}"
-        If usuarioConectado.SegundoApellido IsNot Nothing Then
-            str += $" {usuarioConectado.SegundoApellido}"
-        End If
-        Return str
+        Return usuarioConectado?.NombreCompleto
     End Function
 
     Public Function NombreDeUsuario() As String Implements IUsuarioRepositorio.NombreDeUsuario
-        If usuarioConectado Is Nothing Then Return Nothing
-        Return usuarioConectado.UserName
+        Return usuarioConectado?.UserName
     End Function
 
     Public Function RolDeUsuario() As String Implements IUsuarioRepositorio.RolDeUsuario
-        If usuarioConectado Is Nothing Then Return Nothing
-        Return usuarioConectado.Rol.Nombre
+        Return usuarioConectado?.Rol.Nombre
     End Function
 
     Public Function AccesosAlSistema() As Integer Implements IUsuarioRepositorio.AccesosAlSistema
-        If usuarioConectado Is Nothing Then Return Nothing
-        Return usuarioConectado.TrabajaEn.Select(Function(x) x.Conexiones).UnionListas.Count
+        Return usuarioConectado?.TrabajaEn.Select(Function(x) x.Conexiones).UnionListas.Count
     End Function
 
     Public Function UltimoAcceso() As Date? Implements IUsuarioRepositorio.UltimoAcceso
@@ -163,5 +141,13 @@ Public Class FUsuarioRepo
         Dim tmp2 = tmp.Select(Function(x) x.FechaInicio).ToList
         tmp2.Sort()
         Return tmp2.Last
+    End Function
+
+    Public Function UsuarioIncompletoPorID(id As Integer) As Usuario Implements IUsuarioRepositorio.UsuarioIncompletoPorID
+        Return UsuarioPorID(id)
+    End Function
+
+    Public Function UsuarioIncompletoPorNombre(nombre As String) As Usuario Implements IUsuarioRepositorio.UsuarioIncompletoPorNombre
+        Return UsuarioPorNombre(nombre)
     End Function
 End Class

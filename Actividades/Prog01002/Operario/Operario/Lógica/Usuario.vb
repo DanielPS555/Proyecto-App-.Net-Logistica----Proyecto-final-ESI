@@ -1,7 +1,7 @@
 ﻿Namespace Logica
     Public Class Usuario
         Private _trabajaen As List(Of TrabajaEn)
-        Private _dirty As Boolean
+        Public _dirty As Boolean
 
         Public ReadOnly ID As Integer
 
@@ -52,6 +52,7 @@
                 Return False
             End If
             trabajaEn.Conexiones.Add(New Conexion(Date.Now, Nothing))
+            _dirty = True
             Return True
         End Function
 
@@ -67,6 +68,7 @@
             For Each i In findDesconectado
                 i.FechaFin = Date.Now
             Next
+            _dirty = True
             Return True
         End Function
 
@@ -87,6 +89,7 @@
                 Return False
             End If
             Me._password_hash = ContraseñaHash(NewPass, UserName)
+            _dirty = True
             Return True
         End Function
 
@@ -153,10 +156,6 @@
         Public ReadOnly PreguntaSecreta As String
         Private RespuestaSecreta As String
 
-        Public Function VerificarPregunta(respuesta As String) As Boolean
-            Return True
-        End Function
-
         Private _fecha_nacimiento As DateTime?
         Public Property FechaNacimiento As DateTime?
             Get
@@ -196,6 +195,20 @@
         Public ReadOnly Property Rol As Role
             Get
                 Return _rol
+            End Get
+        End Property
+
+        Public ReadOnly Property NombreCompleto As String
+            Get
+                Dim str = PrimerNombre
+                If SegundoNombre IsNot Nothing Then
+                    str += $" {SegundoNombre}"
+                End If
+                str += $" {PrimerApellido}"
+                If SegundoApellido IsNot Nothing Then
+                    str += $" {SegundoApellido}"
+                End If
+                Return str
             End Get
         End Property
 
