@@ -11,12 +11,12 @@ CREATE
 	IDUsuario serial primary key,
 	NombreDeUsuario varchar(20),
 	Hash_Contra char(60) NOT null,
-	/* La contrasenia será hasheada con bcrypt */ 
+	/* La contrasenia ser hasheada con bcrypt */ 
 	Email varchar(255) NOT null,
 	FechaNac date,
 	Telefono varchar(15) NOT null,
-	/* según E.164 los números telefónicos internacionales pueden ser de hasta 
-	15 dígitos incluyendo el codigo país */
+	/* segn E.164 los nmeros telefnicos internacionales pueden ser de hasta 
+	15 dgitos incluyendo el codigo pas */
 	PrimerNombre varchar(50) NOT null,
 	SegundoNombre varchar(50),
 	PrimerApellido varchar(50) NOT null,
@@ -216,13 +216,10 @@ CREATE
 	primary key(transporteID, IDLote),
 	foreign key(transporteID) references transporte(transporteID),
 	foreign key(IDLote) references lote(IDLote) );
-CREATE
-	table posicionestransporte(
-	transporteID integer,
-	FechaHoraPosicion datetime year to second,
-	PosX float not null,
-	PosY float not null,
-	precision float not null,
-	primary key(transporteID,
-	FechaHoraPosicion),
-	foreign key(transporteID) references transporte(transporteID) );
+
+create table link
+( 
+url varchar(255) not null,
+transportista integer primary key,
+foreign key(transportista) references usuario(idusuario)
+);
