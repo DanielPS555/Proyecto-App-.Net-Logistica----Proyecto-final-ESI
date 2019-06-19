@@ -232,3 +232,7 @@ insert into trabajaen values (0,(select IDLugar from lugar where Nombre="Deposit
 
 		/*LA TABLA IMAGEN REGISTRO NO SE CARGA YA QUE NO SE PUEDE INGRESAR UNA imagen
 		EN BYTE DIRECTAMENTE POR AQUI, HAY QUE USAR EL ODBC, POR ESO SE INGREZAN DESDE EL PROGRAMA*/
+
+
+		/*Posicionado*/
+			insert into posicionado values (4,7,10,"1GH2J83LED0987547","2019-6-27")

@@ -93,14 +93,14 @@ CREATE table
 	);
 CREATE table
 	vehiculo( VIN char(17),
-	Marca varchar(50) NOT null,
-	Modelo varchar(50) NOT null,
-	Color char(6) NOT null,
+	Marca varchar(50),
+	Modelo varchar(50),
+	Color char(6),
 	/* representacion del color por hexadecimal*/
 	Tipo varchar(25) NOT null check(Tipo in ('Auto', 'MiniVan', 'SUV', 'Camion', 'Van')),
-	Anio integer NOT null check(Anio >= 1900 and Anio <= 10000),
+	Anio integer check(Anio >= 1900 and Anio <= 10000),
 	ClienteNombre varchar(50) NOT null,
-	PuertoArriba integer NOT null,
+	PuertoArriba integer,
 	FechaArribo datetime year to day,
 	primary key(VIN),
 	foreign key(PuertoArriba) references lugar(IDLugar) ON DELETE CASCADE );
