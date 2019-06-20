@@ -4,8 +4,14 @@ Imports Operario.Logica
 Public Class FLugarRepo
     Implements ILugarRepositorio
     Private lugares As New List(Of Lugar)
-    Public Function AllLugares() As List(Of Lugar) Implements ILugarRepositorio.AllLugares
-        Return lugares
+    Public Function AllLugares(Optional patron As String = "%") As List(Of Lugar) Implements ILugarRepositorio.AllLugares
+        If patron = "%" Then
+            Return lugares
+        End If
+
+        Return New List(Of Lugar) From {
+            LugarPorNombre(patron)
+        }
     End Function
 
     Public Function LugarPorNombre(nombre As String) As Lugar Implements ILugarRepositorio.LugarPorNombre
@@ -14,6 +20,14 @@ Public Class FLugarRepo
 
     Public Function LugarPorID(id As Integer) As Lugar Implements ILugarRepositorio.LugarPorID
         Return lugares.Where(Function(x) x.ID = id).SingleOrDefault
+    End Function
+
+    Public Function TipoLugar(selectedItem As String) As String Implements ILugarRepositorio.TipoLugar
+        Throw New NotImplementedException()
+    End Function
+
+    Public Function CapacidadZonas(lugar As String) As DataTable Implements ILugarRepositorio.CapacidadZonas
+        Throw New NotImplementedException()
     End Function
 End Class
 
@@ -28,7 +42,7 @@ Public Class FVehiculoRepo
         End Get
     End Property
 
-    Public Overrides Function VehiculoPorVIN(VIN As String) As Vehiculo
+    Public Overrides Function VehiculoIncompleto(VIN As String) As Vehiculo
         Dim find = _vehiculos.Where(Function(x) x.VIN = VIN)
         If find.Count = 0 Then
             Return Nothing
@@ -47,16 +61,77 @@ Public Class FVehiculoRepo
     Public Overrides Function VehiculosEn(Lugar As String) As List(Of Vehiculo)
         Return _vehiculos.Where(Function(x) x.LugarActual.Nombre = Lugar)
     End Function
+
+    Public Overrides Function InformesVehiculo(VIN As String) As Vehiculo
+        Return VehiculoIncompleto(VIN)
+    End Function
+
+    Public Overrides Function Marca(vin As String) As String
+        Throw New NotImplementedException()
+    End Function
+
+    Public Overrides Function Modelo(vin As String) As String
+        Throw New NotImplementedException()
+    End Function
+
+    Public Overrides Function Año(vin As String) As String
+        Throw New NotImplementedException()
+    End Function
+
+    Public Overrides Function Cliente(vin As String) As String
+        Throw New NotImplementedException()
+    End Function
+
+    Public Overrides Function Tipo(vin As String) As String
+        Throw New NotImplementedException()
+    End Function
+
+    Public Overrides Function Color(vin As String) As Color
+        Throw New NotImplementedException()
+    End Function
+
+    Public Overrides Function Lugar(vin As String) As String
+        Throw New NotImplementedException()
+    End Function
+
+    Public Overrides Function Zona(vin As String) As String
+        Throw New NotImplementedException()
+    End Function
+
+    Public Overrides Function Subzona(vin As String) As String
+        Throw New NotImplementedException()
+    End Function
+
+    Public Overrides Function Posicion(vin As String) As Integer
+        Throw New NotImplementedException()
+    End Function
+
+    Public Overrides Function Lote(vin As String) As String
+        Throw New NotImplementedException()
+    End Function
+
+    Friend Overrides Function Inspecciones(vin As String) As DataTable
+        Throw New NotImplementedException()
+    End Function
+
+    Friend Overrides Function Registros(vin As String, inspeccion As Integer) As Tuple(Of DataTable, String, Integer, Date, String, Integer)
+        Throw New NotImplementedException()
+    End Function
+
+    Friend Overrides Function PosicionesEn(vin As String, conectadoEn As String) As DataTable
+        Throw New NotImplementedException()
+    End Function
 End Class
 
 Public Class FUsuarioRepo
     Implements IUsuarioRepositorio
 
-    Private usuarios As New List(Of Usuario)
+    Public usuarios As New List(Of Usuario)
 
     Public Function UsuarioPorID(id As Integer) As Usuario Implements IUsuarioRepositorio.UsuarioPorID
         Return usuarios.Find(Function(x) x.ID = id)
     End Function
+
 
     Public Function UsuarioPorNombre(nombre As String) As Usuario Implements IUsuarioRepositorio.UsuarioPorNombre
         Return usuarios.Find(Function(x) x.UserName = nombre)
@@ -149,5 +224,36 @@ Public Class FUsuarioRepo
 
     Public Function UsuarioIncompletoPorNombre(nombre As String) As Usuario Implements IUsuarioRepositorio.UsuarioIncompletoPorNombre
         Return UsuarioPorNombre(nombre)
+    End Function
+
+    Public Function ListaVehiculos(dt As DataTable) As DataTable Implements IUsuarioRepositorio.ListaVehiculos
+        If usuarioConectado Is Nothing Then
+            Throw New InvalidOperationException("No está conectado")
+        End If
+        usuarioConectado.ConectadoEn.Subzonas.Select(Function(x) x.Posicionados).UnionListas.ForEach(
+            Sub(posicionado As Posicionado)
+                Dim dr = dt.NewRow
+                dt.ImportRow(dr)
+                dr("Estado") = [Enum].GetName(GetType(EstadoVehiculo), posicionado.Vehiculo.Estado)
+                dr("VIN") = posicionado.Vehiculo.VIN
+                dr("Marca") = posicionado.Vehiculo.Marca
+                dr("Modelo") = posicionado.Vehiculo.Modelo
+                dr("VehiculoTipo") = [Enum].GetName(GetType(TipoVehiculo), posicionado.Vehiculo.Tipo)
+            End Sub
+            )
+        Return dt
+    End Function
+
+    Public Function ConectadoEn() As String Implements IUsuarioRepositorio.ConectadoEn
+        Return usuarioConectado?.ConectadoEn?.Nombre
+    End Function
+
+    Public Function AltaVehiculo(VIN As String, marca As String, modelo As String, año As Integer, zona As String, subzona As String, posicion As Integer, color As Color) As Boolean Implements IUsuarioRepositorio.AltaVehiculo
+        Dim ret = VRepo.VehiculoIncompleto(VIN)?.Alta(marca, modelo, año, color, usuarioConectado)
+        If ret Is Nothing Then
+            Return False
+        Else
+            Return ret
+        End If
     End Function
 End Class

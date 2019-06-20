@@ -10,7 +10,7 @@
     End Enum
     Public Class Lote
         Public ReadOnly ID As UInteger
-        Public ReadOnly FechaPartida As DateTime
+        Public ReadOnly FechaPartida As Date?
         Public ReadOnly Desde As Lugar
         Public ReadOnly Hacia As Lugar
         Public ReadOnly Creador As Usuario
@@ -35,18 +35,18 @@
         Public _dirty As Boolean
 
         Public Sub CambiarEstado(NuevoEstado As EstadoLote)
-            If NuevoEstado < _estado Then
-                Throw New InvalidOperationException("No puedes bajar el estado de un lote")
+            If _estado = EstadoLote.Transportado Then
+                Throw New InvalidOperationException("No puedes bajar el estado de un lote transportado")
             End If
             _estado = NuevoEstado
             _dirty = True
         End Sub
 
-        Public Sub New(dr As DataRow, estado As EstadoLote)
-            Me.New(dr("IDLote"), dr("FechaPartida"), LRepo.LugarPorID(dr("Desde")), LRepo.LugarPorID(dr("Hacia")), URepo.UsuarioIncompletoPorID(dr("CreadorID")), dr("Prioridad"), estado)
+        Public Sub New(dr As DataRow, lugar As Lugar, fecha As Date?)
+            Me.New(dr("IDLote"), fecha, lugar, LRepo.LugarPorID(dr("Hacia")), URepo.UsuarioIncompletoPorID(dr("CreadorID")), dr("Prioridad"), dr("Estado"))
         End Sub
 
-        Public Sub New(iD As UInteger, fechaPartida As Date, desde As Lugar, hacia As Lugar, creador As Usuario, prioridad As String, estado As String)
+        Public Sub New(iD As UInteger, fechaPartida As Date?, desde As Lugar, hacia As Lugar, creador As Usuario, prioridad As String, estado As String)
             Me.ID = iD
             Me.FechaPartida = fechaPartida
             Me.Desde = desde

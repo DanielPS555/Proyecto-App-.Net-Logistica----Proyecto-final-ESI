@@ -3,31 +3,25 @@
     Public Sub New()
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
-        EstableserEncabesadosTamaños()
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
+        CargarDatos()
+        DataGridView1.MultiSelect = False
 
-    End Sub
-
-    Public Sub EstableserEncabesadosTamaños()
-        DataGridView2.Columns(0).Width = 50
-        DataGridView2.Columns(1).Width = 200
-        DataGridView2.Columns(2).Width = 200
-        DataGridView2.Columns(3).Width = 200
-        DataGridView2.Columns(4).Width = 130
-        DataGridView2.Columns(5).Width = 70
     End Sub
 
     Public Sub CargarDatos()
-
+        Dim dt As New DataTable("Vehiculos")
+        Dim List = DirectCast(DataGridView1.Columns, IList)
+        For i1 = 0 To list.Count - 1
+            Dim i As DataGridViewColumn = DirectCast(list(i1), DataGridViewColumn)
+            dt.Columns.Add(i.Name)
+        Next
+        dt = URepo.ListaVehiculos(dt)
+        DataGridView1.Columns.Clear()
+        DataGridView1.DataSource = dt
+        DataGridView1.Columns()("VehiculoTipo").HeaderText = "Tipo"
     End Sub
 
-    Private Sub DataGridView2_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView2.CellClick
-        If e.ColumnIndex = 5 Then
-            ' con el e.RomIndex sabemos cual va a ser el vim del vehiculo (nos fijamos en la primera columna de el), luego encontramos el objeto vehiculo en la lista 
-            ' a partir de ese vim, eso se lo pasamos al panel del vehiculo 
-            MarcoPuerto.getInstancia.cargarPanel(Of panelInfoVehiculo)(New panelInfoVehiculo)
-        End If
-    End Sub
 
     Private Sub ListaVehiculos_Paint(sender As Object, e As PaintEventArgs) Handles MyBase.Paint
         Dim g As Graphics = e.Graphics
@@ -36,6 +30,12 @@
 
     Private Sub nuevo_Click(sender As Object, e As EventArgs)
         MarcoPuerto.getInstancia.cargarPanel(Of nuevoVehiculo)(New nuevoVehiculo)
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs)
+        For Each i As DataGridViewRow In DataGridView1.SelectedRows
+            MarcoPuerto.getInstancia.cargarPanel(Of panelInfoVehiculo)(New panelInfoVehiculo(i.Cells(1).Value))
+        Next
     End Sub
 End Class
 

@@ -12,12 +12,17 @@ Public Interface IUsuarioRepositorio
     Function LugaresTrabaja() As List(Of String)
     Function UltimaConexionEn(lugar As String) As Date?
 
+    Function AltaVehiculo(VIN As String, marca As String, modelo As String, año As Integer, zona As String, subzona As String, posicion As Integer, color As Color) As Boolean
+
     Function ConectarEn(lugar As String) As Boolean
     Function Desconectar() As Boolean
+    Function ConectadoEn() As String
 
     Function NombreCompleto() As String
     Function NombreDeUsuario() As String
     Function RolDeUsuario() As String
+
+    Function ListaVehiculos(dt As DataTable) As DataTable
 
     Function AccesosAlSistema() As Integer
 
@@ -25,10 +30,38 @@ Public Interface IUsuarioRepositorio
     Function UsuarioIncompletoPorNombre(nombre As String) As Usuario
 End Interface
 
+Public Module RepoUtils
+    <System.Runtime.CompilerServices.Extension>
+    Function PosicionOcupada([this] As ILugarRepositorio, subzona As String, zona As String, lugar As String, pos As Integer) As Boolean
+        Return this.LugarPorNombre(lugar)?.Zonas.Where(Function(x) x.Nombre = zona).SingleOrDefault?.Subzonas.Where(Function(x) x.Nombre = subzona).SingleOrDefault?.Posicionados.Where(Function(x) x.Posicion = pos).Count > 0
+    End Function
+    <System.Runtime.CompilerServices.Extension>
+    Function ZonasEnLugar([this] As ILugarRepositorio, lugar As String) As List(Of String)
+        Return this.LugarPorNombre(lugar)?.Zonas.Select(Function(x) x.Nombre).ToList
+    End Function
+
+    <System.Runtime.CompilerServices.Extension>
+    Function SubzonasEnLugar([this] As ILugarRepositorio, zona As String, lugar As String) As List(Of String)
+        Return this.LugarPorNombre(lugar)?.Zonas.Where(Function(x) x.Nombre = zona).SingleOrDefault?.Subzonas.Select(Function(x) x.Nombre)
+    End Function
+
+    <System.Runtime.CompilerServices.Extension>
+    Function CapacidadSubzona([this] As ILugarRepositorio, subzona As String, zona As String, lugar As String) As Integer
+        Return this.LugarPorNombre(lugar)?.Zonas.Where(Function(x) x.Nombre = zona).SingleOrDefault?.Subzonas.Where(Function(x) x.Nombre = subzona).SingleOrDefault?.Capacidad
+    End Function
+
+    <System.Runtime.CompilerServices.Extension>
+    Function LotesEnLugar([this] As ILugarRepositorio, lugar As String) As List(Of String)
+        Return this.LugarPorNombre(lugar)?.LotesPorPartir.Select(Function(x) x.ID.ToString)
+    End Function
+End Module
+
 Public Interface ILugarRepositorio
-    Function AllLugares() As List(Of Logica.Lugar)
+    Function AllLugares(Optional patron As String = "%") As List(Of Logica.Lugar)
     Function LugarPorNombre(nombre As String) As Logica.Lugar
     Function LugarPorID(id As Integer) As Logica.Lugar
+    Function TipoLugar(selectedItem As String) As String
+    Function CapacidadZonas(lugar As String) As DataTable
 End Interface
 
 Public Module Constantes
@@ -38,10 +71,23 @@ Public Module Constantes
 End Module
 
 Public MustInherit Class VehiculoRepo
-    Public MustOverride Function VehiculoPorVIN(VIN As String) As Logica.Vehiculo
+    Public MustOverride Function VehiculoIncompleto(VIN As String) As Logica.Vehiculo
+    Public MustOverride Function InformesVehiculo(VIN As String) As Logica.Vehiculo
 
     Public MustOverride Function Sincronizar() As Boolean
     Public MustOverride Function ExisteVIN(vin As String) As Boolean
+
+    Public MustOverride Function Marca(vin As String) As String
+    Public MustOverride Function Modelo(vin As String) As String
+    Public MustOverride Function Año(vin As String) As String
+    Public MustOverride Function Cliente(vin As String) As String
+    Public MustOverride Function Tipo(vin As String) As String
+    Public MustOverride Function Color(vin As String) As Color
+    Public MustOverride Function Lugar(vin As String) As String
+    Public MustOverride Function Zona(vin As String) As String
+    Public MustOverride Function Subzona(vin As String) As String
+    Public MustOverride Function Posicion(vin As String) As Integer
+    Public MustOverride Function Lote(vin As String) As String
 
     Public MustOverride ReadOnly Property Vehiculos As List(Of Logica.Vehiculo)
 
@@ -54,8 +100,12 @@ Public MustInherit Class VehiculoRepo
         If ExisteVIN(VIN) Then
             Throw New InvalidOperationException("El vehículo con ese VIN ya existe en el sistema")
         End If
-        Dim v = New Logica.Vehiculo(VIN, Marca, Modelo, Año, Color, Tipo, False, Cliente, PuertoLlegada, Nothing, New List(Of Logica.InformeDaños))
+        Dim v = New Logica.Vehiculo(VIN, Marca, Modelo, Año, Color, Tipo, False, Cliente, PuertoLlegada.ID, Nothing, New List(Of Logica.InformeDaños))
         Vehiculos.Add(v)
         Return v
     End Function
+
+    Friend MustOverride Function Inspecciones(vin As String) As DataTable
+    Friend MustOverride Function Registros(vin As String, inspeccion As Integer) As Tuple(Of DataTable, String, Integer, Date, String, Integer)
+    Friend MustOverride Function PosicionesEn(vin As String, conectadoEn As String) As DataTable
 End Class

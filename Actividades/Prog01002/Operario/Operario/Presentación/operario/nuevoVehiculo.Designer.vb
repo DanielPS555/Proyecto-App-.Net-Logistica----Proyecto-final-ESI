@@ -41,10 +41,10 @@ Partial Class nuevoVehiculo
         Me.l_tipo = New System.Windows.Forms.Label()
         Me.tipo = New System.Windows.Forms.ComboBox()
         Me.Label8 = New System.Windows.Forms.Label()
-        Me.sz = New System.Windows.Forms.ComboBox()
+        Me.subzonas = New System.Windows.Forms.ComboBox()
         Me.l_sz = New System.Windows.Forms.Label()
         Me.l_posDis = New System.Windows.Forms.Label()
-        Me.ComboBox4 = New System.Windows.Forms.ComboBox()
+        Me.zonas = New System.Windows.Forms.ComboBox()
         Me.l_zona = New System.Windows.Forms.Label()
         Me.posDis = New System.Windows.Forms.ComboBox()
         Me.l_lote = New System.Windows.Forms.Label()
@@ -99,6 +99,7 @@ Partial Class nuevoVehiculo
         Buscar.Text = "Buscar"
         Buscar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Buscar.UseVisualStyleBackColor = False
+        AddHandler Buscar.Click, AddressOf Me.Buscar_Click
         '
         'color
         '
@@ -162,6 +163,7 @@ Partial Class nuevoVehiculo
         ingresar.Text = "Ingrezar vehiculo "
         ingresar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         ingresar.UseVisualStyleBackColor = False
+        AddHandler ingresar.Click, AddressOf Me.ingresar_Click
         '
         'buscador
         '
@@ -299,14 +301,14 @@ Partial Class nuevoVehiculo
         Me.Label8.TabIndex = 40
         Me.Label8.Text = "Establaser ubicacion"
         '
-        'sz
+        'subzonas
         '
-        Me.sz.Font = New System.Drawing.Font("Century Gothic", 15.0!)
-        Me.sz.FormattingEnabled = True
-        Me.sz.Location = New System.Drawing.Point(364, 343)
-        Me.sz.Name = "sz"
-        Me.sz.Size = New System.Drawing.Size(160, 31)
-        Me.sz.TabIndex = 45
+        Me.subzonas.Font = New System.Drawing.Font("Century Gothic", 15.0!)
+        Me.subzonas.FormattingEnabled = True
+        Me.subzonas.Location = New System.Drawing.Point(364, 343)
+        Me.subzonas.Name = "subzonas"
+        Me.subzonas.Size = New System.Drawing.Size(160, 31)
+        Me.subzonas.TabIndex = 45
         '
         'l_sz
         '
@@ -328,14 +330,14 @@ Partial Class nuevoVehiculo
         Me.l_posDis.TabIndex = 43
         Me.l_posDis.Text = "Posiciones disponibles "
         '
-        'ComboBox4
+        'zonas
         '
-        Me.ComboBox4.Font = New System.Drawing.Font("Century Gothic", 15.0!)
-        Me.ComboBox4.FormattingEnabled = True
-        Me.ComboBox4.Location = New System.Drawing.Point(91, 343)
-        Me.ComboBox4.Name = "ComboBox4"
-        Me.ComboBox4.Size = New System.Drawing.Size(160, 31)
-        Me.ComboBox4.TabIndex = 42
+        Me.zonas.Font = New System.Drawing.Font("Century Gothic", 15.0!)
+        Me.zonas.FormattingEnabled = True
+        Me.zonas.Location = New System.Drawing.Point(91, 343)
+        Me.zonas.Name = "zonas"
+        Me.zonas.Size = New System.Drawing.Size(160, 31)
+        Me.zonas.TabIndex = 42
         '
         'l_zona
         '
@@ -409,10 +411,10 @@ Partial Class nuevoVehiculo
         Me.Controls.Add(color)
         Me.Controls.Add(Me.l_lote)
         Me.Controls.Add(Me.posDis)
-        Me.Controls.Add(Me.sz)
+        Me.Controls.Add(Me.subzonas)
         Me.Controls.Add(Me.l_sz)
         Me.Controls.Add(Me.l_posDis)
-        Me.Controls.Add(Me.ComboBox4)
+        Me.Controls.Add(Me.zonas)
         Me.Controls.Add(Me.l_zona)
         Me.Controls.Add(Me.Label8)
         Me.Controls.Add(Me.tipo)
@@ -451,10 +453,10 @@ Partial Class nuevoVehiculo
     Friend WithEvents l_tipo As Label
     Friend WithEvents tipo As ComboBox
     Friend WithEvents Label8 As Label
-    Friend WithEvents sz As ComboBox
+    Friend WithEvents subzonas As ComboBox
     Friend WithEvents l_sz As Label
     Friend WithEvents l_posDis As Label
-    Friend WithEvents ComboBox4 As ComboBox
+    Friend WithEvents zonas As ComboBox
     Friend WithEvents l_zona As Label
     Friend WithEvents posDis As ComboBox
     Friend WithEvents l_lote As Label

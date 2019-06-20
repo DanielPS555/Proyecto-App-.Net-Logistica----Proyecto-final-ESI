@@ -23,11 +23,14 @@
             End Get
         End Property
 
-        Public Sub New(dirty As Boolean, descripcion As String, enInforme As InformeDaños, de As String, numeroenlista As UInteger, actualiza As RegistroDaños, imagenes As List(Of Bitmap))
+        Public Sub New(dataRow As DataRow, enInforme As InformeDaños)
+            Me.New(False, dataRow("descripcion"), enInforme, dataRow("nroenlista"), Nothing, New List(Of Bitmap))
+        End Sub
+
+        Public Sub New(dirty As Boolean, descripcion As String, enInforme As InformeDaños, numeroenlista As UInteger, actualiza As RegistroDaños, imagenes As List(Of Bitmap))
             _dirty = dirty
-            Me.Descripcion = de
+            Me._descripcion = descripcion
             Me.EnInforme = enInforme
-            Me.Descripcion = de
             _numeroenlista = numeroenlista
             _actualiza = actualiza
             _imagenes = imagenes

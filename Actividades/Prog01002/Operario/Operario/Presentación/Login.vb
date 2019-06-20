@@ -96,4 +96,20 @@
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
         Principal.getInstancia.cargarPanel(Of RestablecerContraseña)(New RestablecerContraseña)
     End Sub
+
+    Private con As New Odbc.OdbcConnection
+
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+        Dim ofd As New OpenFileDialog With {
+            .Multiselect = False
+        }
+        ofd.ShowDialog()
+        con.ConnectionString = $"FileDsn={ofd.FileName};Uid={InputBox("nombre")}; Pwd={InputBox("contraseña")};"
+        con.Open()
+        Button1.Enabled = True
+        Button1.BackColor = Color.Aquamarine
+        URepo = New SQLRepo(con)
+        LRepo = URepo
+        VRepo = URepo
+    End Sub
 End Class

@@ -5,7 +5,9 @@
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        If Not URepo.ConectarEn(lugares.SelectedItem) Then
+        If LRepo.TipoLugar(lugares.SelectedItem) = "Patio" Then
+            MsgBox("Patio no implementado")
+        ElseIf Not URepo.ConectarEn(lugares.SelectedItem) Then
             MsgBox("Hubo un error conectando al lugar.")
         Else
             Principal.getInstancia.cargarPanel(Of MarcoPuerto)(MarcoPuerto.getInstancia)

@@ -39,6 +39,7 @@ Partial Class Login
         Me.Button1 = New System.Windows.Forms.Button()
         Me.user = New System.Windows.Forms.TextBox()
         Me.Tiempo = New System.Windows.Forms.Timer(Me.components)
+        Me.Button4 = New System.Windows.Forms.Button()
         Me.panelLogin.SuspendLayout()
         CType(Me.ver, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -48,6 +49,7 @@ Partial Class Login
         'panelLogin
         '
         Me.panelLogin.BackColor = System.Drawing.Color.White
+        Me.panelLogin.Controls.Add(Me.Button4)
         Me.panelLogin.Controls.Add(Me.Button3)
         Me.panelLogin.Controls.Add(Me.Button2)
         Me.panelLogin.Controls.Add(Me.estado)
@@ -209,7 +211,8 @@ Partial Class Login
         '
         Me.Button1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(115, Byte), Integer), CType(CType(201, Byte), Integer))
+        Me.Button1.BackColor = System.Drawing.Color.Gray
+        Me.Button1.Enabled = False
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button1.Font = New System.Drawing.Font("Century Gothic", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button1.ForeColor = System.Drawing.Color.White
@@ -236,6 +239,16 @@ Partial Class Login
         'Tiempo
         '
         Me.Tiempo.Interval = 500
+        '
+        'Button4
+        '
+        Me.Button4.Font = New System.Drawing.Font("Calibri", 10.0!)
+        Me.Button4.Location = New System.Drawing.Point(710, 579)
+        Me.Button4.Name = "Button4"
+        Me.Button4.Size = New System.Drawing.Size(75, 23)
+        Me.Button4.TabIndex = 16
+        Me.Button4.Text = "ODBCFile"
+        Me.Button4.UseVisualStyleBackColor = True
         '
         'Login
         '
@@ -271,4 +284,5 @@ Partial Class Login
     Friend WithEvents estado As Label
     Friend WithEvents Button2 As Button
     Friend WithEvents Button3 As Button
+    Friend WithEvents Button4 As Button
 End Class

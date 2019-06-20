@@ -16,6 +16,13 @@
         Return initi
     End Function
 
+    Public Sub cerrarPanel(Of T As {Form})()
+        contenedor.Controls.OfType(Of T).ForEach(Sub(x)
+                                                     x.Close()
+                                                     contenedor.Controls.Remove(x)
+                                                 End Sub)
+    End Sub
+
     Public Function cargarPanel(Of T As {Form})(obj As T) As T
         Dim f As Form = contenedor.Controls.OfType(Of T).FirstOrDefault 'Nos devuelve el panel si ya estaba dentro del control del panel
 
@@ -71,6 +78,8 @@
                 cargarPanel(Of ListaLotes)(New ListaLotes)
             Case "nuevoVehiculo"
                 cargarPanel(Of nuevoVehiculo)(New nuevoVehiculo)
+            Case "ListaZona"
+                cargarPanel(Of ListaZonas)(New ListaZonas)
         End Select
 
     End Sub

@@ -1,16 +1,22 @@
 ﻿Namespace Logica
     Public Class Subzona
+        Public ReadOnly _posicionados As List(Of Posicionado)
         Public ReadOnly Padre As Zona
-        Private _posicionados As List(Of Posicionado)
+        Public ReadOnly Nombre As String
+        Public ReadOnly ID As Integer
+        Friend ReadOnly Capacidad As Integer
+
         Public ReadOnly Property Posicionados As List(Of Posicionado)
             Get
-                Return _posicionados.Where(Function(x) x.Hasta Is Nothing)
+                Return _posicionados.Where(Function(x) x.Hasta Is Nothing).ToList
             End Get
         End Property
 
-        Public Sub New(padre As Zona, posicionados As List(Of Posicionado))
+        Public Sub New(padre As Zona, posicionados As List(Of Posicionado), nombre As String, id As Integer)
             Me.Padre = padre
             _posicionados = posicionados
+            Me.Nombre = nombre
+            Me.ID = id
         End Sub
 
         Protected Friend Function Posicionar(v As Vehiculo, Posicion As Integer) As Boolean
@@ -31,6 +37,12 @@
         Public ReadOnly Posicion As Integer
         Public ReadOnly Desde As Date
         Public Hasta As Date?
+
+        Public Sub New(dt As DataRow, enSub As Subzona)
+            Me.New(VRepo.VehiculoIncompleto(dt("VIN")),
+                   enSub, dt("posicion"), dt("desde"),
+                   If(dt("hasta") Is DBNull.Value, Nothing, dt("hesde")))
+        End Sub
 
         Public Sub New(vehiculo As Vehiculo, subzona As Subzona, posicion As Integer, desde As Date, hasta As Date?)
             Me.Vehiculo = vehiculo

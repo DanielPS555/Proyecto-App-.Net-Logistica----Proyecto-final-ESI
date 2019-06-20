@@ -1,11 +1,17 @@
-﻿Public Class NuevoLote
-    Public Sub New()
+﻿Public Interface LoteReceiver
+    WriteOnly Property Lote As String
+End Interface
 
+Public Class NuevoLote
+    Private parentLote As LoteReceiver
+    Public Sub New(parent As LoteReceiver)
+        Me.parentLote = parent
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
         StartPosition = FormStartPosition.CenterScreen
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
-
+        destino.Items.Clear()
+        destino.Items.AddRange(LRepo.AllLugares.Select(Function(x) x.Nombre))
     End Sub
 
     Private Sub NuevoLote_Paint(sender As Object, e As PaintEventArgs) Handles Me.Paint
@@ -42,17 +48,11 @@
 
 
         If verif = 1 Then
+
             Me.Close()
-            ' se crea el lote
-            ' se lo envia al formulario padre 
         Else
             MsgBox("Error en la informacion ingresada", MsgBoxStyle.Critical)
         End If
-
-
-
-
-
     End Sub
 
     Private Sub descipt_TextChanged(sender As Object, e As EventArgs) Handles descipt.TextChanged

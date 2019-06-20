@@ -1,15 +1,30 @@
 ﻿Public Class panelInfoVehiculo
-    Public Sub New()
-
+    Private vin As String
+    Public Sub New(VIN As String)
         ' Esta llamada es exigida por el diseñador.
+        Me.vin = VIN
         InitializeComponent()
         regularTamañoColumnas()
-
-
-
+        tomarValores()
     End Sub
 
-
+    Private Sub tomarValores()
+        Label14.Text = vin
+        Label15.Text = VRepo.Marca(vin)
+        Label16.Text = VRepo.Modelo(vin)
+        Label17.Text = VRepo.Cliente(vin)
+        Label18.Text = VRepo.Año(vin)
+        Label19.Text = VRepo.Tipo(vin)
+        Panel1.BackColor = VRepo.Color(vin)
+        Label20.Text = VRepo.Zona(vin)
+        Label21.Text = VRepo.Subzona(vin)
+        Label22.Text = VRepo.Posicion(vin)
+        Label23.Text = VRepo.Lote(vin)
+        informes.Columns.Clear()
+        informes.DataSource = VRepo.Inspecciones(vin)
+        traslados.Columns.Clear()
+        traslados.DataSource = VRepo.PosicionesEn(vin, URepo.ConectadoEn)
+    End Sub
 
     Public Sub regularTamañoColumnas()
         informes.Columns(0).Width = 60
@@ -19,11 +34,6 @@
         informes.Columns(4).Width = 150
         informes.Columns(5).Width = 60
         Me.Height = 3000
-
-        'DATOS PRUEBA
-        informes.Rows.Add("Juana", "pep", 3, 4, 5)
-        informes.Rows.Add("Juana", "pep", 3, 4, 5)
-        informes.Rows.Add("Juana", "pep", 3, 4, 5)
 
         traslados.Columns(0).Width = 200
         traslados.Columns(1).Width = 200
@@ -54,11 +64,16 @@
         ' nos lleva a la ventana nuevovehiculo pero ya con la infocargada 
     End Sub
 
-    Private Sub Label22_Click(sender As Object, e As EventArgs) Handles Label22.Click
-
-    End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         MarcoPuerto.getInstancia.cargarPanel(Of trasladoInterno)(New trasladoInterno)
     End Sub
+
+    Private Sub Label4_Click(sender As Object, e As EventArgs) Handles Label4.Click
+        For Each i As DataGridViewRow In informes.SelectedRows
+            Dim vi = New VerInforme(VRepo.Registros(vin, i.Cells(0).Value))
+            vi.ShowDialog()
+        Next
+    End Sub
+
 End Class

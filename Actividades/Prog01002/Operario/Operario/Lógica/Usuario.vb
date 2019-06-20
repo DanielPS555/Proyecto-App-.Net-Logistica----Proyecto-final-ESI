@@ -3,6 +3,7 @@
         Private _trabajaen As List(Of TrabajaEn)
         Public _dirty As Boolean
 
+        Public ReadOnly creador As Usuario
         Public ReadOnly ID As Integer
 
         Public ReadOnly Property TrabajaEn As List(Of TrabajaEn)
@@ -11,8 +12,8 @@
             End Get
         End Property
 
-        Public Sub New(from As DataRow)
-            Me.New(from("IDUsuario"), New List(Of TrabajaEn), from("NombreDeUsuario"), from("hash_contra"), from("primernombre"), from("segundonombre"), from("primerapellido"), from("segundoapellido"), from("preguntasecreta"), from("respuestasecreta"), from("fechanac"), SexoFromString(from("sexo")), from("email"), from("telefono"), RoleFromID(from("rol")))
+        Public Sub New(from As DataRow, creador As Usuario)
+            Me.New(from("IDUsuario"), New List(Of TrabajaEn), from("NombreDeUsuario"), from("hash_contra"), from("primernombre"), from("segundonombre"), from("primerapellido"), from("segundoapellido"), from("preguntasecreta"), from("respuestasecreta"), from("fechanac"), SexoFromString(from("sexo")), from("email"), from("telefono"), RoleFromID(from("rol")), creador)
         End Sub
 
         Public ReadOnly Property ConectadoEn As Lugar
@@ -81,7 +82,7 @@
 
         Private _password_hash As String
         Public Function VerificarContraseña(password As String) As Boolean
-            Return ContraseñaHash(password, UserName).Equals(_password_hash)
+            Return password.Equals(_password_hash.Trim)
         End Function
 
         Public Function RestablecerContraseña(Respuesta As String, NewPass As String) As Boolean
@@ -212,7 +213,7 @@
             End Get
         End Property
 
-        Public Sub New(ID As Integer, trabajaen As List(Of TrabajaEn), username As String, password_hash As String, primer_nombre As String, segundo_nombre As String, primer_apellido As String, segundo_apellido As String, pregunta_secreta As String, respuesta_secreta As String, fecha_nacimiento As DateTime, sexo As Sexo, email As String, telefono As String, rol As Role)
+        Public Sub New(ID As Integer, trabajaen As List(Of TrabajaEn), username As String, password_hash As String, primer_nombre As String, segundo_nombre As String, primer_apellido As String, segundo_apellido As String, pregunta_secreta As String, respuesta_secreta As String, fecha_nacimiento As DateTime, sexo As Sexo, email As String, telefono As String, rol As Role, creador As Usuario)
             Me.ID = ID
             _trabajaen = trabajaen
             _username = username
@@ -228,6 +229,7 @@
             _telefono = telefono
             _rol = rol
             Me.RespuestaSecreta = respuesta_secreta
+            Me.creador = creador
         End Sub
     End Class
     Public Enum Sexo

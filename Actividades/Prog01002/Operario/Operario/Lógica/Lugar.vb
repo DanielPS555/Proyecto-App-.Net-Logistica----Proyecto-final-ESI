@@ -38,7 +38,7 @@
 
         Public ReadOnly Property LotesPorPartir As List(Of Lote)
             Get
-                Return LotesCreados.Where(Function(x) [Enum].GetName(GetType(EstadoLote), x.Estado).Contains("Cerrado") And Not [Enum].GetName(GetType(EstadoLote), x.Estado).Contains("Transportado"))
+                Return LotesCreados.Where(Function(x) [Enum].GetName(GetType(EstadoLote), x.Estado).Contains("Cerrado") And Not [Enum].GetName(GetType(EstadoLote), x.Estado).Contains("Transportado")).ToList
             End Get
         End Property
 
