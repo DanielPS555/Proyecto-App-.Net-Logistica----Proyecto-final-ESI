@@ -59,7 +59,6 @@ Partial Class panelInfoVehiculo
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
-        Me.Label4 = New System.Windows.Forms.Label()
         Me.informes = New System.Windows.Forms.DataGridView()
         Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -415,7 +414,6 @@ Partial Class panelInfoVehiculo
         '
         'TabPage2
         '
-        Me.TabPage2.Controls.Add(Me.Label4)
         Me.TabPage2.Controls.Add(Me.informes)
         Me.TabPage2.Location = New System.Drawing.Point(4, 31)
         Me.TabPage2.Name = "TabPage2"
@@ -424,16 +422,6 @@ Partial Class panelInfoVehiculo
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Informes de daños"
         Me.TabPage2.UseVisualStyleBackColor = True
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(3, 14)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(208, 22)
-        Me.Label4.TabIndex = 82
-        Me.Label4.Text = "Ver informe de daños"
         '
         'informes
         '
@@ -730,7 +718,6 @@ Partial Class panelInfoVehiculo
         Me.TabPage1.PerformLayout()
         CType(Me.QR, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage2.ResumeLayout(False)
-        Me.TabPage2.PerformLayout()
         CType(Me.informes, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage3.ResumeLayout(False)
         CType(Me.traslados, System.ComponentModel.ISupportInitialize).EndInit()
@@ -744,7 +731,6 @@ Partial Class panelInfoVehiculo
     Friend WithEvents TabControl1 As TabControl
     Friend WithEvents TabPage1 As TabPage
     Friend WithEvents TabPage2 As TabPage
-    Friend WithEvents Label4 As Label
     Friend WithEvents informes As DataGridView
     Friend WithEvents DataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn2 As DataGridViewTextBoxColumn

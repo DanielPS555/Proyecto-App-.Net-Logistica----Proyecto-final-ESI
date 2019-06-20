@@ -181,12 +181,6 @@
     <Compile Include="Presentación\operario\trasladoInterno.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Presentación\operario\VerInforme.Designer.vb">
-      <DependentUpon>VerInforme.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentación\operario\VerInforme.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Presentación\Principal.Designer.vb">
       <DependentUpon>Principal.vb</DependentUpon>
     </Compile>
@@ -263,9 +257,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentación\operario\trasladoInterno.resx">
       <DependentUpon>trasladoInterno.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentación\operario\VerInforme.resx">
-      <DependentUpon>VerInforme.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentación\Principal.resx">
       <DependentUpon>Principal.vb</DependentUpon>
