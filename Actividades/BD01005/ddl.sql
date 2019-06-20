@@ -182,10 +182,10 @@ CREATE table
 CREATE table
 	rampascamion( VIN char(17),
 	RampaIt integer check (RampaIt > 0),
-	CantCamiones integer NOT null check (CantCamiones > 0),
-	CantAutos integer NOT null check (CantAutos > 0),
-	CantSUV integer NOT null check(CantSUV > 0),
-	CantMinivan integer NOT null check (CantMinivan > 0),
+	CantCamiones integer NOT null check (CantCamiones > -1),
+	CantAutos integer NOT null check (CantAutos > -1),
+	CantSUV integer NOT null check(CantSUV > -1),
+	CantMinivan integer NOT null check (CantMinivan > -1),
 	primary key(VIN, RampaIt),
 	foreign key(VIN) references camion(VIN) ON DELETE CASCADE);
 
@@ -201,7 +201,7 @@ CREATE table
 );
 CREATE table
 	lote( IDLote serial,
-	FechaPartida date NOT null,
+	nombre varchar(20) unique,
 	Desde integer NOT null,
 	Hacia integer NOT null,
 	CreadorID integer NOT null,

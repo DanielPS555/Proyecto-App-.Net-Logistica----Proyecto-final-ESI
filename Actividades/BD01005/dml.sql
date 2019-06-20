@@ -22,15 +22,15 @@ insert into usuario values (0,"PedroB43","","Pedro43563@outlook.com", "27/8/1981
 
 /*CREADO POR*/
 insert into creadoPor values ((select idusuario from usuario where primernombre = "Fernanda"),
- (select idusuario from usuario where primernombre = "Felipe"),TO_DATE("27/8/1981", "%d/%m/%Y"));
+ (select idusuario from usuario where primernombre = "Felipe"),"24/6/2019");
 insert into creadoPor values ((select idusuario from usuario where primernombre = "Pepe"),
-	(select idusuario from usuario where primernombre = "Felipe"),TO_DATE("27/8/1981", "%d/%m/%Y"));
+	(select idusuario from usuario where primernombre = "Felipe"),"27/6/2019");
 insert into creadoPor values ((select idusuario from usuario where primernombre = "Juan"),
-	(select idusuario from usuario where primernombre = "Fernanda"),TO_DATE("27/8/1981", "%d/%m/%Y"));
+	(select idusuario from usuario where primernombre = "Fernanda"),"28/6/2019");
 insert into creadoPor values ((select idusuario from usuario where primernombre = "Antonio"),
-	(select idusuario from usuario where primernombre = "Fernanda"),TO_DATE("27/8/1981", "%d/%m/%Y"));
+	(select idusuario from usuario where primernombre = "Fernanda"),"26/6/2019");
 insert into creadoPor values ((select idusuario from usuario where primernombre = "Pedro"),
-	(select idusuario from usuario where primernombre = "Fernanda"),TO_DATE("27/8/1981", "%d/%m/%Y"));
+	(select idusuario from usuario where primernombre = "Fernanda"),"25/6/2019");
 
 
 	/*LINK*/
@@ -79,7 +79,7 @@ insert into trabajaen values (0,(select IDLugar from lugar where Nombre="Deposit
 	,"2019-6-28 20:00",
 	 "2019-6-28 22:00");
 	 /*32*/
-/*	insert into conexion values (3,"2019-6-13 7:04","2019-6-13 12:06");
+	insert into conexion values (3,"2019-6-13 7:04","2019-6-13 12:06");
 	insert into conexion values (3,"2019-6-15 12:02","2019-6-15 18:01");
   insert into conexion values (3,"2019-6-18 10:17","2019-6-18 16:09");
 	insert into conexion values (3,"2019-7-4 10:00","2019-7-4 18:00");
@@ -92,7 +92,7 @@ insert into trabajaen values (0,(select IDLugar from lugar where Nombre="Deposit
 	insert into conexion values (4,"2019-7-3 8:45","2019-7-3 17:15");
   insert into conexion values (5,"2019-6-20 22:09","2019-6-21 02:01");
   insert into conexion values (5,"2019-6-22 10:20","2019-6-22 17:06");
-	insert into conexion values (5,"2019-7-2 9:20","2019-7-2 17:06");*/
+	insert into conexion values (5,"2019-7-2 9:20","2019-7-2 17:06");
 
 		/*ZONA*/
 	insert into zona values ((select IDLugar from lugar where Nombre="Deposito piedras blancas"),
@@ -261,23 +261,56 @@ insert into trabajaen values (0,(select IDLugar from lugar where Nombre="Deposit
 			insert into posicionado values (2,4,6,"1GH2J83LED0987547","2019-7-2 16", "2019-7-4 13",14,(select idusuario from usuario where primernombre = "Pepe"));
 			insert into posicionado values (2,4,6,"1GH2J83LED0987547","2019-7-4 17",null,18,(select idusuario from usuario where primernombre = "Pepe"));
 
-			insert into posicionado values (3,5,7,"1HGYN4HTEL8372649","2019-6-29 12", "2019-7-25 10",22,(select idusuario from usuario where primernombre = "Juan"));
-			insert into posicionado values (3,5,7,"1HGYN4HTEL8372649","2019-7-25 10", null ,25,(select idusuario from usuario where primernombre = "Juan"));
+			insert into posicionado values (3,5,7,"1HGYN4HTEL8372649","2019-6-29 12", "2019-7-5 10",22,(select idusuario from usuario where primernombre = "Juan"));
+			insert into posicionado values (1,2,3,"1HGYN4HTEL8372649","2019-7-5 12", null ,25,(select idusuario from usuario where primernombre = "Juan"));
 
-			insert into posicionado values (3,5,7,"2GH2JJEBTE0987547","2019-7-3 14"
-			,"2019-7-5 17"
-			,6,(select idusuario from usuario where primernombre = "Juan"));
-			insert into posicionado values (1,2,3,"2GH2JJEBTE0987547","2019-7-5 19"
-			,"2019-7-8 15",
-			5,(select idusuario from usuario where primernombre = "Juan"));
-			insert into posicionado values (1,2,4,"2GH2JJEBTE0987547","2019-7-8 15"
-			,null,2,(select idusuario from usuario where primernombre = "Juan"));
+			insert into posicionado values (3,5,7,"2GH2JJEBTE0987547","2019-7-3 14","2019-7-5 10",6,(select idusuario from usuario where primernombre = "Juan"));
+			insert into posicionado values (1,2,3,"2GH2JJEBTE0987547","2019-7-5 12","2019-7-8 15",5,(select idusuario from usuario where primernombre = "Juan"));
+			insert into posicionado values (1,2,4,"2GH2JJEBTE0987547","2019-7-8 15",null,2,(select idusuario from usuario where primernombre = "Juan"));
 
-			insert into posicionado values (4,8,11,"1GH2HGRLED0988472","2019-6-26 14"
-			,"2019-7-2 15"
-			,19,(select idusuario from usuario where primernombre = "Pepe"));
-			insert into posicionado values (2,4,6,"1GH2HGRLED0988472","2019-7-2 16",
-			"2019-7-4 15",
-			28,(select idusuario from usuario where primernombre = "Pepe"));
-			insert into posicionado values (1,1,1,"1GH2HGRLED0988472","2019-7-4 18",
-			null,74,(select idusuario from usuario where primernombre = "Juan"));
+			insert into posicionado values (4,8,11,"1GH2HGRLED0988472","2019-6-26 14","2019-7-2 15",19,(select idusuario from usuario where primernombre = "Pepe"));
+			insert into posicionado values (2,4,6,"1GH2HGRLED0988472","2019-7-2 16","2019-7-4 15",28,(select idusuario from usuario where primernombre = "Pepe"));
+			insert into posicionado values (1,1,1,"1GH2HGRLED0988472","2019-7-4 18",null,74,(select idusuario from usuario where primernombre = "Juan"));
+
+      /*Camion*/
+
+      insert into camion values ("24GHBYEGV81874679","Fiat","Moustro1","SJTHE001",
+        (select idusuario from usuario where primernombre = "Felipe"));
+      insert into camion values ("HGU63YEGV81845879","Chevrolet","Moustro2","SKTHE007",
+        (select idusuario from usuario where primernombre = "Felipe"));
+
+      insert into rampascamion values ("24GHBYEGV81874679",1,1,6,3,3);
+      insert into rampascamion values ("24GHBYEGV81874679",2,0,4,2,2);
+      insert into rampascamion values ("HGU63YEGV81845879",1,2,8,3,3);
+
+      insert into conduce values ("24GHBYEGV81874679",(select idusuario from usuario where primernombre = "Antonio"),
+      "27/6/2019",null);
+      insert into conduce values ("HGU63YEGV81845879",(select idusuario from usuario where primernombre = "Pedro"),
+      "27/6/2019",null);
+
+      insert into lote values (0,"l_1",(select IDLugar from lugar where Nombre="Puerto de aguas profundas rocha"),
+      (select IDLugar from lugar where Nombre="Deposito de maldonado"));
+
+      insert into lote values (0,"l_2",(select IDLugar from lugar where Nombre="Puerto de montevideo"),
+      (select IDLugar from lugar where Nombre="Deposito piedras blancas"));
+
+      insert into lote values (0,"l_3",(select IDLugar from lugar where Nombre="Deposito de maldonado"),
+      (select IDLugar from lugar where Nombre="Deposito piedras blancas"));
+
+
+      insert into integra values ("1GH2J83LED0987547",1,"28/6/2019",'f');
+      insert into integra values ("1GH2HGRLED0988472",1,"26/6/2019",'f');
+      insert into integra values ("1HGYN4HTEL8372649",2,"29/6/2019",'f');
+      insert into integra values ("2GH2JJEBTE0987547",2,"3/7/2019",'f');
+      insert into integra values ("1GH2HGRLED0988472",3,"4/7/2019",'f');
+
+      insert into transporte values (0,(select idusuario from usuario where primernombre = "Antonio"),
+      "2019-7-2 15:00","2019-7-2 16:00","Exitoso");
+      insert into transporte values (0,(select idusuario from usuario where primernombre = "Pedro"),
+      "2019-7-5 10:00","2019-7-5 12:00","Exitoso");
+      insert into transporte values (0,(select idusuario from usuario where primernombre = "Antonio"),
+      "2019-7-4 15:00","2019-7-4 18:00","Exitoso");
+
+      insert into trasporta values (1,1);
+      insert into trasporta values (2,2);
+      insert into trasporta values (3,3);
