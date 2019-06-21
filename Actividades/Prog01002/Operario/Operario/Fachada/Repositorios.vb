@@ -105,7 +105,11 @@ Public MustInherit Class VehiculoRepo
         Return v
     End Function
 
-    Friend MustOverride Function Inspecciones(vin As String) As DataTable
-    Friend MustOverride Function Registros(vin As String, inspeccion As Integer) As Tuple(Of DataTable, String, Integer, Date, String, Integer)
-    Friend MustOverride Function PosicionesEn(vin As String, conectadoEn As String) As DataTable
+    Public MustOverride Function Inspecciones(vin As String) As DataTable
+    Public MustOverride Function Registros(vin As String, inspeccion As Integer) As Tuple(Of DataTable, String, Integer, Date, String, Integer)
+    Public MustOverride Function PosicionesEn(vin As String, conectadoEn As String) As DataTable
+
+    Public MustOverride Function TipoInforme(informe As Integer) As String
+    Public MustOverride Function DescripcionInforme(informe As Integer) As String
+    Public MustOverride Function VINInforme(informe As Integer) As String
 End Class

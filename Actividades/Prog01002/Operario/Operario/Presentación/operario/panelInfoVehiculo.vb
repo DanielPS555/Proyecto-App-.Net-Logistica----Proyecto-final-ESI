@@ -64,16 +64,11 @@
         ' nos lleva a la ventana nuevovehiculo pero ya con la infocargada 
     End Sub
 
-
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         MarcoPuerto.getInstancia.cargarPanel(Of trasladoInterno)(New trasladoInterno)
     End Sub
 
-    Private Sub Label4_Click(sender As Object, e As EventArgs) Handles Label4.Click
-        For Each i As DataGridViewRow In informes.SelectedRows
-            Dim vi = New VerInforme(VRepo.Registros(vin, i.Cells(0).Value))
-            vi.ShowDialog()
-        Next
+    Private Sub informes_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles informes.CellDoubleClick
+        MarcoPuerto.getInstancia.cargarPanel(Of crearInformaDeDaños)(New crearInformaDeDaños(informes.Rows()(e.RowIndex).Cells()(0).Value))
     End Sub
-
 End Class

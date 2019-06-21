@@ -110,15 +110,27 @@ Public Class FVehiculoRepo
         Throw New NotImplementedException()
     End Function
 
-    Friend Overrides Function Inspecciones(vin As String) As DataTable
+    Public Overrides Function TipoInforme(informe As Integer) As String
         Throw New NotImplementedException()
     End Function
 
-    Friend Overrides Function Registros(vin As String, inspeccion As Integer) As Tuple(Of DataTable, String, Integer, Date, String, Integer)
+    Public Overrides Function DescripcionInforme(informe As Integer) As String
         Throw New NotImplementedException()
     End Function
 
-    Friend Overrides Function PosicionesEn(vin As String, conectadoEn As String) As DataTable
+    Public Overrides Function VINInforme(informe As Integer) As String
+        Throw New NotImplementedException()
+    End Function
+
+    Public Overrides Function Inspecciones(vin As String) As DataTable
+        Throw New NotImplementedException()
+    End Function
+
+    Public Overrides Function Registros(vin As String, inspeccion As Integer) As Tuple(Of DataTable, String, Integer, Date, String, Integer)
+        Throw New NotImplementedException()
+    End Function
+
+    Public Overrides Function PosicionesEn(vin As String, conectadoEn As String) As DataTable
         Throw New NotImplementedException()
     End Function
 End Class

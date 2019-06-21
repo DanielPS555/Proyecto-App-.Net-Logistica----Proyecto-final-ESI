@@ -250,7 +250,7 @@ Public Class SQLRepo
         Dim loteDt As New DataTable
         loteDt.Load(rdr)
         Dim lotes As New List(Of Lote)
-        Dim tpr = New OdbcCommand("select * from transporta, transporte where transporta.idlote=? and transporta.transporteID=transporte.transporteID;")
+        Dim tpr = New OdbcCommand("select * from transporta, transporte where transporta.idlote=? and transporta.transporteID=transporte.transporteID;", _conn)
         Dim tpp = tpr.CrearParametro(DbType.Int64, -1)
         For Each l As DataRow In loteDt.Rows
             Dim autos = New OdbcCommand("select * from integra where Lote=?;")
@@ -383,7 +383,7 @@ Public Class SQLRepo
         Return [Enum].GetName(GetType(TipoLugar), LugarPorNombre(lugar).Tipo)
     End Function
 
-    Friend Overrides Function Inspecciones(vin As String) As DataTable
+    Public Overrides Function Inspecciones(vin As String) As DataTable
         Dim dt As New DataTable
         dt.Columns.Add("ID", GetType(Integer))
         dt.Columns.Add("Lugar", GetType(String))
@@ -402,7 +402,7 @@ Public Class SQLRepo
         Return dt
     End Function
 
-    Friend Overrides Function Registros(vin As String, inspeccion As Integer) As Tuple(Of DataTable, String, Integer, Date, String, Integer)
+    Public Overrides Function Registros(vin As String, inspeccion As Integer) As Tuple(Of DataTable, String, Integer, Date, String, Integer)
         Dim dt As New DataTable
         dt.Columns.Add("ID", GetType(Integer))
         dt.Columns.Add("Descripcion", GetType(String))
@@ -417,7 +417,7 @@ Public Class SQLRepo
         Return New Tuple(Of DataTable, String, Integer, Date, String, Integer)(dt, informe.Tipo, informe.id, informe.Fecha, informe.Descripcion, dt.Rows.Count)
     End Function
 
-    Friend Overrides Function PosicionesEn(vin As String, conectadoEn As String) As DataTable
+    Public Overrides Function PosicionesEn(vin As String, conectadoEn As String) As DataTable
         Dim cmd As New OdbcCommand("select (select nombre from zona where zona.idzona=posicionado.idzona) as zona, (select nombre from subzona where subzona.idsub=posicionado.idsub) as subzona, desde, hasta, posicion, (select nombredeusuario from usuario where idusuario=posicionado.idusuario) as usuario from posicionado where VIN=? and IDLugar=(select IDLugar from lugar where nombre=?);", _conn)
         cmd.CrearParametro(DbType.StringFixedLength, vin)
         cmd.CrearParametro(DbType.String, conectadoEn)
@@ -439,5 +439,23 @@ Public Class SQLRepo
                                                 dr("Capacidad") = x.Capacidad
                                             End Sub)
         Return dt
+    End Function
+
+    Public Overrides Function TipoInforme(informe As Integer) As String
+        Dim cmd As New OdbcCommand("select tipo from informedanios where id=?;", _conn)
+        cmd.CrearParametro(DbType.Int64, informe)
+        Return cmd.ExecuteScalar
+    End Function
+
+    Public Overrides Function DescripcionInforme(informe As Integer) As String
+        Dim cmd As New OdbcCommand("select descripcion from informedanios where id=?;", _conn)
+        cmd.CrearParametro(DbType.Int64, informe)
+        Return cmd.ExecuteScalar
+    End Function
+
+    Public Overrides Function VINInforme(informe As Integer) As String
+        Dim cmd As New OdbcCommand("select VIN from informedanios where id=?;", _conn)
+        cmd.CrearParametro(DbType.Int64, informe)
+        Return cmd.ExecuteScalar
     End Function
 End Class

@@ -9,6 +9,30 @@
         Alto
     End Enum
     Public Class Lote
+        Public Shared prioridadMap As Dictionary(Of String, PrioridadLote) = Nothing
+        Public Shared estadoMap As Dictionary(Of String, EstadoLote) = Nothing
+        Public Shared Function PrioridadFromString(prioridad As String) As PrioridadLote
+            If Lote.prioridadMap Is Nothing Then
+                Dim x = [Enum].GetValues(GetType(PrioridadLote))
+                Dim map As New Dictionary(Of String, PrioridadLote)
+                For Each i As PrioridadLote In x
+                    map([Enum].GetName(GetType(PrioridadLote), i)) = i
+                Next
+                Lote.prioridadMap = map
+            End If
+            Return Lote.prioridadMap(prioridad)
+        End Function
+        Public Shared Function EstadoFromString(estado As String) As EstadoLote
+            If Lote.estadoMap Is Nothing Then
+                Dim x = [Enum].GetValues(GetType(EstadoLote))
+                Dim map As New Dictionary(Of String, EstadoLote)
+                For Each i As PrioridadLote In x
+                    map([Enum].GetName(GetType(EstadoLote), i)) = i
+                Next
+                Lote.estadoMap = map
+            End If
+            Return Lote.estadoMap(estado)
+        End Function
         Public ReadOnly ID As UInteger
         Public ReadOnly FechaPartida As Date?
         Public ReadOnly Desde As Lugar

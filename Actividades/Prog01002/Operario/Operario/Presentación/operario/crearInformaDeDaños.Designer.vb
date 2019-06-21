@@ -22,7 +22,7 @@ Partial Class crearInformaDeDaños
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim ingresar As System.Windows.Forms.Button
+        Dim ingresarBtn As System.Windows.Forms.Button
         Dim Button1 As System.Windows.Forms.Button
         Dim nuevo As System.Windows.Forms.Button
         Dim eliminar As System.Windows.Forms.Button
@@ -39,12 +39,115 @@ Partial Class crearInformaDeDaños
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.autor = New System.Windows.Forms.Label()
-        ingresar = New System.Windows.Forms.Button()
+        ingresarBtn = New System.Windows.Forms.Button()
         Button1 = New System.Windows.Forms.Button()
         nuevo = New System.Windows.Forms.Button()
         eliminar = New System.Windows.Forms.Button()
         modificar = New System.Windows.Forms.Button()
         Me.SuspendLayout()
+        '
+        'ingresarBtn
+        '
+        ingresarBtn.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        ingresarBtn.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        ingresarBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        ingresarBtn.FlatAppearance.BorderSize = 0
+        ingresarBtn.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        ingresarBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        ingresarBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        ingresarBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        ingresarBtn.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        ingresarBtn.ForeColor = System.Drawing.Color.White
+        ingresarBtn.Location = New System.Drawing.Point(673, 603)
+        ingresarBtn.Name = "ingresarBtn"
+        ingresarBtn.Size = New System.Drawing.Size(174, 35)
+        ingresarBtn.TabIndex = 62
+        ingresarBtn.Text = "Ingrezar"
+        ingresarBtn.UseVisualStyleBackColor = False
+        '
+        'Button1
+        '
+        Button1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(180, Byte), Integer), CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer))
+        Button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Button1.FlatAppearance.BorderSize = 0
+        Button1.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        Button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Button1.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Button1.ForeColor = System.Drawing.Color.White
+        Button1.Location = New System.Drawing.Point(429, 603)
+        Button1.Name = "Button1"
+        Button1.Size = New System.Drawing.Size(174, 35)
+        Button1.TabIndex = 63
+        Button1.Text = "Cancelar"
+        Button1.UseVisualStyleBackColor = False
+        AddHandler Button1.Click, AddressOf Me.Button1_Click
+        '
+        'nuevo
+        '
+        nuevo.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        nuevo.BackColor = System.Drawing.Color.FromArgb(CType(CType(20, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(40, Byte), Integer))
+        nuevo.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        nuevo.FlatAppearance.BorderSize = 0
+        nuevo.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        nuevo.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        nuevo.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        nuevo.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        nuevo.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        nuevo.ForeColor = System.Drawing.Color.White
+        nuevo.Location = New System.Drawing.Point(823, 78)
+        nuevo.Name = "nuevo"
+        nuevo.Size = New System.Drawing.Size(45, 35)
+        nuevo.TabIndex = 64
+        nuevo.Text = "+"
+        nuevo.UseVisualStyleBackColor = False
+        AddHandler nuevo.Click, AddressOf Me.nuevo_Click
+        '
+        'eliminar
+        '
+        eliminar.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        eliminar.BackColor = System.Drawing.Color.FromArgb(CType(CType(180, Byte), Integer), CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer))
+        eliminar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        eliminar.FlatAppearance.BorderSize = 0
+        eliminar.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        eliminar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        eliminar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        eliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        eliminar.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        eliminar.ForeColor = System.Drawing.Color.White
+        eliminar.Location = New System.Drawing.Point(823, 119)
+        eliminar.Name = "eliminar"
+        eliminar.Size = New System.Drawing.Size(45, 35)
+        eliminar.TabIndex = 65
+        eliminar.Text = "-"
+        eliminar.UseVisualStyleBackColor = False
+        AddHandler eliminar.Click, AddressOf Me.eliminar_Click
+        '
+        'modificar
+        '
+        modificar.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        modificar.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        modificar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        modificar.FlatAppearance.BorderSize = 0
+        modificar.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        modificar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        modificar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        modificar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        modificar.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        modificar.ForeColor = System.Drawing.Color.White
+        modificar.Location = New System.Drawing.Point(823, 160)
+        modificar.Name = "modificar"
+        modificar.Size = New System.Drawing.Size(45, 35)
+        modificar.TabIndex = 66
+        modificar.Text = "E"
+        modificar.UseVisualStyleBackColor = False
         '
         'Label1
         '
@@ -139,108 +242,6 @@ Partial Class crearInformaDeDaños
         Me.Registros.Size = New System.Drawing.Size(360, 488)
         Me.Registros.TabIndex = 61
         '
-        'ingresar
-        '
-        ingresar.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        ingresar.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        ingresar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        ingresar.FlatAppearance.BorderSize = 0
-        ingresar.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        ingresar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        ingresar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        ingresar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        ingresar.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        ingresar.ForeColor = System.Drawing.Color.White
-        ingresar.Location = New System.Drawing.Point(673, 603)
-        ingresar.Name = "ingresar"
-        ingresar.Size = New System.Drawing.Size(174, 35)
-        ingresar.TabIndex = 62
-        ingresar.Text = "Ingrezar"
-        ingresar.UseVisualStyleBackColor = False
-        '
-        'Button1
-        '
-        Button1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(180, Byte), Integer), CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer))
-        Button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Button1.FlatAppearance.BorderSize = 0
-        Button1.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        Button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Button1.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Button1.ForeColor = System.Drawing.Color.White
-        Button1.Location = New System.Drawing.Point(429, 603)
-        Button1.Name = "Button1"
-        Button1.Size = New System.Drawing.Size(174, 35)
-        Button1.TabIndex = 63
-        Button1.Text = "Cancelar"
-        Button1.UseVisualStyleBackColor = False
-        '
-        'nuevo
-        '
-        nuevo.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        nuevo.BackColor = System.Drawing.Color.FromArgb(CType(CType(20, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(40, Byte), Integer))
-        nuevo.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        nuevo.FlatAppearance.BorderSize = 0
-        nuevo.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        nuevo.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        nuevo.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        nuevo.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        nuevo.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        nuevo.ForeColor = System.Drawing.Color.White
-        nuevo.Location = New System.Drawing.Point(823, 78)
-        nuevo.Name = "nuevo"
-        nuevo.Size = New System.Drawing.Size(45, 35)
-        nuevo.TabIndex = 64
-        nuevo.Text = "+"
-        nuevo.UseVisualStyleBackColor = False
-        AddHandler nuevo.Click, AddressOf Me.nuevo_Click
-        '
-        'eliminar
-        '
-        eliminar.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        eliminar.BackColor = System.Drawing.Color.FromArgb(CType(CType(180, Byte), Integer), CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer))
-        eliminar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        eliminar.FlatAppearance.BorderSize = 0
-        eliminar.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        eliminar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        eliminar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        eliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        eliminar.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        eliminar.ForeColor = System.Drawing.Color.White
-        eliminar.Location = New System.Drawing.Point(823, 119)
-        eliminar.Name = "eliminar"
-        eliminar.Size = New System.Drawing.Size(45, 35)
-        eliminar.TabIndex = 65
-        eliminar.Text = "-"
-        eliminar.UseVisualStyleBackColor = False
-        AddHandler eliminar.Click, AddressOf Me.eliminar_Click
-        '
-        'modificar
-        '
-        modificar.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        modificar.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        modificar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        modificar.FlatAppearance.BorderSize = 0
-        modificar.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        modificar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        modificar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        modificar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        modificar.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        modificar.ForeColor = System.Drawing.Color.White
-        modificar.Location = New System.Drawing.Point(823, 160)
-        modificar.Name = "modificar"
-        modificar.Size = New System.Drawing.Size(45, 35)
-        modificar.TabIndex = 66
-        modificar.Text = "E"
-        modificar.UseVisualStyleBackColor = False
-        '
         'Label4
         '
         Me.Label4.AutoSize = True
@@ -287,7 +288,7 @@ Partial Class crearInformaDeDaños
         Me.Controls.Add(eliminar)
         Me.Controls.Add(nuevo)
         Me.Controls.Add(Button1)
-        Me.Controls.Add(ingresar)
+        Me.Controls.Add(ingresarBtn)
         Me.Controls.Add(Me.Registros)
         Me.Controls.Add(Me.cp)
         Me.Controls.Add(Me.Label5)
