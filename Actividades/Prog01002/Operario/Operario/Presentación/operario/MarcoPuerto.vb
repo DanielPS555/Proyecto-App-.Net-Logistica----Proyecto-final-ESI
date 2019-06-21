@@ -23,6 +23,10 @@
                                                  End Sub)
     End Sub
 
+    Public Function InstanciaDe(Of T As {Form})() As T
+        Return contenedor.Controls.OfType(Of T).FirstOrDefault
+    End Function
+
     Public Function cargarPanel(Of T As {Form})(obj As T) As T
         Dim f As Form = contenedor.Controls.OfType(Of T).FirstOrDefault 'Nos devuelve el panel si ya estaba dentro del control del panel
 

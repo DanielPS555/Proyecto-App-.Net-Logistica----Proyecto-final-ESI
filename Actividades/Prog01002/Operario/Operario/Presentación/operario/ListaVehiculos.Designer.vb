@@ -24,7 +24,6 @@ Partial Class ListaVehiculos
     Private Sub InitializeComponent()
         Dim buscar As System.Windows.Forms.Button
         Dim nuevo As System.Windows.Forms.Button
-        Dim Button1 As System.Windows.Forms.Button
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.buscador = New System.Windows.Forms.TextBox()
         Me.Panel2 = New System.Windows.Forms.Panel()
@@ -37,7 +36,6 @@ Partial Class ListaVehiculos
         Me.VehiculoTipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         buscar = New System.Windows.Forms.Button()
         nuevo = New System.Windows.Forms.Button()
-        Button1 = New System.Windows.Forms.Button()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -164,34 +162,12 @@ Partial Class ListaVehiculos
         Me.VehiculoTipo.Name = "VehiculoTipo"
         Me.VehiculoTipo.ReadOnly = True
         '
-        'Button1
-        '
-        Button1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Button1.FlatAppearance.BorderSize = 0
-        Button1.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        Button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Button1.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Button1.ForeColor = System.Drawing.Color.White
-        Button1.Location = New System.Drawing.Point(614, 102)
-        Button1.Name = "Button1"
-        Button1.Size = New System.Drawing.Size(58, 35)
-        Button1.TabIndex = 27
-        Button1.Text = "Ver"
-        Button1.UseVisualStyleBackColor = False
-        AddHandler Button1.Click, AddressOf Me.Button1_Click
-        '
         'ListaVehiculos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(880, 650)
-        Me.Controls.Add(Button1)
         Me.Controls.Add(Me.DataGridView1)
         Me.Controls.Add(nuevo)
         Me.Controls.Add(Me.criterios)

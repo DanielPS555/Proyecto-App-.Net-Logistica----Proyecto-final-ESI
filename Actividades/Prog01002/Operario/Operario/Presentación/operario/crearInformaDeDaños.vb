@@ -11,8 +11,6 @@
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
         tipo.Enabled = False
-        Dim List = Me.components.Components.OfType(Of Button).ToList
-        List.Where(Function(x) x.Name = "ingresarBtn").Single.Visible = False
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
         tipo.SelectedItem = VRepo.TipoInforme(informe)
         descipt.Text = VRepo.DescripcionInforme(informe)
@@ -46,7 +44,7 @@
 
     Private Sub Registros_SelectedIndexChanged(sender As Object, e As EventArgs) Handles Registros.SelectedIndexChanged
         If descipt.ReadOnly Then
-            descipt.Text = m.ToList.Where(Function(x) x("ID") = Registros.SelectedIndex).Select(Of String)(Function(z) z("Descripcion")).Single
+            descipt.Text = m.ToList.Where(Function(x) x("ID") = Registros.SelectedItem).Select(Of String)(Function(z) z("Descripcion")).Single
         End If
     End Sub
 

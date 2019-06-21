@@ -2,7 +2,7 @@
 Namespace Logica
     Public Enum TipoVehiculo
         Auto
-        Camioneta
+        Camion
         MiniVan
         SUV
     End Enum
@@ -11,11 +11,23 @@ Namespace Logica
         Alta
         Baja
     End Enum
-    Public Class Ingresos
+    Public Class Ingreso
         Public ReadOnly Vehiculo As Vehiculo
         Public ReadOnly Usuario As Usuario
         Public ReadOnly Tipo As TipoIngreso
         Public ReadOnly Fecha As Date
+
+        Private Shared tipoMap As Dictionary(Of String, TipoIngreso)
+
+        Public Shared Function TipoFromString(t As String) As TipoIngreso
+            If tipoMap Is Nothing Then
+                tipoMap = New Dictionary(Of String, TipoIngreso)
+                For Each z As TipoIngreso In [Enum].GetValues(GetType(TipoIngreso))
+                    tipoMap([Enum].GetName(GetType(TipoIngreso), z)) = z
+                Next
+            End If
+            Return tipoMap(t)
+        End Function
 
         Public Sub New(vehiculo As Vehiculo, usuario As Usuario, tipo As TipoIngreso, fecha As Date)
             Me.Vehiculo = vehiculo
@@ -40,7 +52,7 @@ Namespace Logica
             End Get
         End Property
         Public ReadOnly FechaArribo As DateTime?
-        Public ReadOnly Ingresos As List(Of Ingresos)
+        Public ReadOnly Ingresos As New List(Of Ingreso)
 
         Public ReadOnly Property PosicionActual As Posicionado
             Get
@@ -93,7 +105,7 @@ Namespace Logica
             Me.Modelo = modelo
             Me.Año = año
             Me.Color = color
-            Ingresos.Add(New Logica.Ingresos(Me, usuario, TipoIngreso.Alta, Date.Now))
+            Ingresos.Add(New Logica.Ingreso(Me, usuario, TipoIngreso.Alta, Date.Now))
             Return True
         End Function
 

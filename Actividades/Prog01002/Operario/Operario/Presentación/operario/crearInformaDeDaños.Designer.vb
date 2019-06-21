@@ -20,13 +20,13 @@ Partial Class crearInformaDeDaños
     'NOTA: el Diseñador de Windows Forms necesita el siguiente procedimiento
     'Se puede modificar usando el Diseñador de Windows Forms.  
     'No lo modifique con el editor de código.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim ingresarBtn As System.Windows.Forms.Button
-        Dim Button1 As System.Windows.Forms.Button
-        Dim nuevo As System.Windows.Forms.Button
-        Dim eliminar As System.Windows.Forms.Button
-        Dim modificar As System.Windows.Forms.Button
+        Me.ingresarBtn = New System.Windows.Forms.Button
+        Me.Button1 = New System.Windows.Forms.Button
+        Me.nuevo = New System.Windows.Forms.Button
+        Me.eliminar = New System.Windows.Forms.Button
+        Me.modificar = New System.Windows.Forms.Button
         Me.Label1 = New System.Windows.Forms.Label()
         Me.fecha = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -39,11 +39,6 @@ Partial Class crearInformaDeDaños
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.autor = New System.Windows.Forms.Label()
-        ingresarBtn = New System.Windows.Forms.Button()
-        Button1 = New System.Windows.Forms.Button()
-        nuevo = New System.Windows.Forms.Button()
-        eliminar = New System.Windows.Forms.Button()
-        modificar = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'ingresarBtn
@@ -306,6 +301,11 @@ Partial Class crearInformaDeDaños
 
     End Sub
 
+    Friend WithEvents ingresarBtn As Button
+    Friend WithEvents Button1 As Button
+    Friend WithEvents nuevo As Button
+    Friend WithEvents eliminar As Button
+    Friend WithEvents modificar As Button
     Friend WithEvents Label1 As Label
     Friend WithEvents fecha As Label
     Friend WithEvents Label2 As Label

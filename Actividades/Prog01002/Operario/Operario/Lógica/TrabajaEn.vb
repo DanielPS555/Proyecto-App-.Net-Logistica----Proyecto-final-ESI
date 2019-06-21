@@ -24,7 +24,7 @@
             Lugar = LRepo.LugarPorID(from("IDLugar"))
             Usuario = usr
             FechaInicio = from("fechainicio")
-            FechaFin = If(from("fechafin") Is DBNull.Value, Nothing, from("fechafin"))
+            FechaFin = AutoNull(Of DateTime?)(from("fechafin"))
             Conexiones = New List(Of Conexion)()
         End Sub
 

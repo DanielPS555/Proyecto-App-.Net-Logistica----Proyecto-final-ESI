@@ -42,6 +42,10 @@ Public Class FVehiculoRepo
         End Get
     End Property
 
+    Public Overrides Sub IngresosVehiculo(V As Vehiculo)
+        Throw New NotImplementedException()
+    End Sub
+
     Public Overrides Function VehiculoIncompleto(VIN As String) As Vehiculo
         Dim find = _vehiculos.Where(Function(x) x.VIN = VIN)
         If find.Count = 0 Then
@@ -70,7 +74,15 @@ Public Class FVehiculoRepo
         Throw New NotImplementedException()
     End Function
 
+    Public Overrides Function Marca(vin As String, nuevaMarca As String) As Boolean
+        Throw New NotImplementedException()
+    End Function
+
     Public Overrides Function Modelo(vin As String) As String
+        Throw New NotImplementedException()
+    End Function
+
+    Public Overrides Function Modelo(vin As String, nuevoModelo As String) As Boolean
         Throw New NotImplementedException()
     End Function
 
@@ -78,11 +90,23 @@ Public Class FVehiculoRepo
         Throw New NotImplementedException()
     End Function
 
+    Public Overrides Function Año(vin As String, nuevoAño As String) As Boolean
+        Throw New NotImplementedException()
+    End Function
+
     Public Overrides Function Cliente(vin As String) As String
         Throw New NotImplementedException()
     End Function
 
+    Public Overrides Function Cliente(vin As String, nuevoCliente As String) As String
+        Throw New NotImplementedException()
+    End Function
+
     Public Overrides Function Tipo(vin As String) As String
+        Throw New NotImplementedException()
+    End Function
+
+    Public Overrides Function Tipo(vin As String, nuevoTipo As String) As String
         Throw New NotImplementedException()
     End Function
 

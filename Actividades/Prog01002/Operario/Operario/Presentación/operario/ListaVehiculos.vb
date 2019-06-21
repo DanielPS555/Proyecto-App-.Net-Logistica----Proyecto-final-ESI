@@ -4,24 +4,22 @@
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
-        CargarDatos()
+        CargarDatos(DataGridView1.Columns)
         DataGridView1.MultiSelect = False
 
     End Sub
 
-    Public Sub CargarDatos()
+    Public Sub CargarDatos(columns As DataGridViewColumnCollection)
         Dim dt As New DataTable("Vehiculos")
-        Dim List = DirectCast(DataGridView1.Columns, IList)
-        For i1 = 0 To list.Count - 1
-            Dim i As DataGridViewColumn = DirectCast(list(i1), DataGridViewColumn)
-            dt.Columns.Add(i.Name)
+        For Each col As DataGridViewColumn In columns
+            dt.Columns.Add(col.Name, GetType(String))
         Next
         dt = URepo.ListaVehiculos(dt)
         DataGridView1.Columns.Clear()
         DataGridView1.DataSource = dt
         DataGridView1.Columns()("VehiculoTipo").HeaderText = "Tipo"
+        DataGridView1.Update()
     End Sub
-
 
     Private Sub ListaVehiculos_Paint(sender As Object, e As PaintEventArgs) Handles MyBase.Paint
         Dim g As Graphics = e.Graphics
@@ -32,10 +30,8 @@
         MarcoPuerto.getInstancia.cargarPanel(Of nuevoVehiculo)(New nuevoVehiculo)
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs)
-        For Each i As DataGridViewRow In DataGridView1.SelectedRows
-            MarcoPuerto.getInstancia.cargarPanel(Of panelInfoVehiculo)(New panelInfoVehiculo(i.Cells(1).Value))
-        Next
+    Private Sub DataGridView1_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellDoubleClick
+        MarcoPuerto.getInstancia.cargarPanel(New panelInfoVehiculo(DataGridView1.Rows()(e.RowIndex).Cells(1).Value))
     End Sub
 End Class
 

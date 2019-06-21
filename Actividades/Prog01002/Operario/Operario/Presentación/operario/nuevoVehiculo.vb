@@ -67,6 +67,7 @@ Public Class nuevoVehiculo
 
     Private Sub Buscar_Click(sender As Object, e As EventArgs)
         Dim vehiculo As Logica.Vehiculo = VRepo.VehiculoIncompleto(buscador.Text)
+        VRepo.IngresosVehiculo(vehiculo)
 
         If vehiculo Is Nothing Then
             MsgBox("No existe precarga para ese vehículo, reporte a su administrador")
@@ -86,16 +87,19 @@ Public Class nuevoVehiculo
         Dim subzona As String = subzonas.SelectedItem
         Dim zona As String = zonas.SelectedItem
         Dim lugar As String = URepo.ConectadoEn
-        Dim capacidadrange = Enumerable.Range(0, LRepo.CapacidadSubzona(subzona, zona, lugar))
         posDis.Items.Clear()
-        posDis.Items.AddRange(capacidadrange.Where(Function(x) LRepo.PosicionOcupada(subzona, zona, lugar, x)).Select(Function(x) x.ToString).ToArray)
+        For i = 0 To LRepo.CapacidadSubzona(subzona, zona, lugar)
+            '            If LRepo.PosicionOcupada(subzona, zona, lugar, i) Then
+            posDis.Items.Add(i)
+            '            End If
+        Next
     End Sub
 
     Private Sub ingresar_Click(sender As Object, e As EventArgs)
         If URepo.AltaVehiculo(buscador.Text, marca.Text, modelo.Text, Integer.Parse(anio.Text), zonas.SelectedItem, subzonas.SelectedItem, Integer.Parse(posDis.SelectedItem), ColorDialog1.Color) Then
             MarcoPuerto.getInstancia.cerrarPanel(Of nuevoVehiculo)()
         Else
-            MsgBox("No pudo ingresarse ese vehículo. Confirme que no ha sido ingresado aún.")
+            MsgBox("No pudo ingresarse ese vehículo. Confirme que no ha sido ingresado aún, o que ha sido precargado.")
         End If
     End Sub
 End Class

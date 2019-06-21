@@ -32,27 +32,27 @@ End Interface
 
 Public Module RepoUtils
     <System.Runtime.CompilerServices.Extension>
-    Function PosicionOcupada([this] As ILugarRepositorio, subzona As String, zona As String, lugar As String, pos As Integer) As Boolean
-        Return this.LugarPorNombre(lugar)?.Zonas.Where(Function(x) x.Nombre = zona).SingleOrDefault?.Subzonas.Where(Function(x) x.Nombre = subzona).SingleOrDefault?.Posicionados.Where(Function(x) x.Posicion = pos).Count > 0
-    End Function
-    <System.Runtime.CompilerServices.Extension>
     Function ZonasEnLugar([this] As ILugarRepositorio, lugar As String) As List(Of String)
         Return this.LugarPorNombre(lugar)?.Zonas.Select(Function(x) x.Nombre).ToList
     End Function
 
     <System.Runtime.CompilerServices.Extension>
     Function SubzonasEnLugar([this] As ILugarRepositorio, zona As String, lugar As String) As List(Of String)
-        Return this.LugarPorNombre(lugar)?.Zonas.Where(Function(x) x.Nombre = zona).SingleOrDefault?.Subzonas.Select(Function(x) x.Nombre)
+        Dim _lugar = this.LugarPorNombre(lugar)
+        Return _lugar?.Subzonas.Select(Function(x) x.Nombre).ToList
     End Function
 
     <System.Runtime.CompilerServices.Extension>
     Function CapacidadSubzona([this] As ILugarRepositorio, subzona As String, zona As String, lugar As String) As Integer
-        Return this.LugarPorNombre(lugar)?.Zonas.Where(Function(x) x.Nombre = zona).SingleOrDefault?.Subzonas.Where(Function(x) x.Nombre = subzona).SingleOrDefault?.Capacidad
+        Dim _lugar = this.LugarPorNombre(lugar)
+        Dim _zona = _lugar?.Zonas.Where(Function(x) x.Nombre = zona).SingleOrDefault
+        Dim _subzona = _zona?.Subzonas.Where(Function(x) x.Nombre = subzona).SingleOrDefault
+        Return _subzona?.Capacidad
     End Function
 
     <System.Runtime.CompilerServices.Extension>
     Function LotesEnLugar([this] As ILugarRepositorio, lugar As String) As List(Of String)
-        Return this.LugarPorNombre(lugar)?.LotesPorPartir.Select(Function(x) x.ID.ToString)
+        Return this.LugarPorNombre(lugar)?.LotesPorPartir.Select(Function(x) x.ID.ToString).ToList
     End Function
 End Module
 
@@ -72,16 +72,22 @@ End Module
 
 Public MustInherit Class VehiculoRepo
     Public MustOverride Function VehiculoIncompleto(VIN As String) As Logica.Vehiculo
+    Public MustOverride Sub IngresosVehiculo(V As Logica.Vehiculo)
     Public MustOverride Function InformesVehiculo(VIN As String) As Logica.Vehiculo
 
     Public MustOverride Function Sincronizar() As Boolean
     Public MustOverride Function ExisteVIN(vin As String) As Boolean
 
     Public MustOverride Function Marca(vin As String) As String
+    Public MustOverride Function Marca(vin As String, nuevaMarca As String) As Boolean
     Public MustOverride Function Modelo(vin As String) As String
+    Public MustOverride Function Modelo(vin As String, nuevoModelo As String) As Boolean
     Public MustOverride Function Año(vin As String) As String
+    Public MustOverride Function Año(vin As String, nuevoAño As String) As Boolean
     Public MustOverride Function Cliente(vin As String) As String
+    Public MustOverride Function Cliente(vin As String, nuevoCliente As String) As String
     Public MustOverride Function Tipo(vin As String) As String
+    Public MustOverride Function Tipo(vin As String, nuevoTipo As String) As String
     Public MustOverride Function Color(vin As String) As Color
     Public MustOverride Function Lugar(vin As String) As String
     Public MustOverride Function Zona(vin As String) As String

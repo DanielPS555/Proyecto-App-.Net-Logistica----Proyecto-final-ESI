@@ -82,25 +82,29 @@ Public Class SQLRepo
         Return usr
     End Function
 
+
     Private Sub CompletarUsuario(usr As Usuario)
         Dim cmd = New OdbcCommand("select * from trabajaen where idusuario=?;", _conn)
         Dim uid = cmd.CrearParametro(DbType.Int64, usr.ID)
         Dim rdr = cmd.ExecuteReader
         Dim dt As New DataTable
         dt.Load(rdr)
-        Dim _cmd = New OdbcCommand("select * from conexion where idtrabajaen=?;", _conn)
-        Dim teid = _cmd.CrearParametro(DbType.Int64, -1)
+        Dim _cmd = New OdbcCommand("select * from conexion where horasalida is null;", _conn)
+        usr.TrabajaEn.Clear()
         For Each i As DataRow In dt.Rows
             Dim tmp = New TrabajaEn(i, usr)
             usr.TrabajaEn.Add(tmp)
-            teid.Value = tmp.ID
-            rdr = _cmd.ExecuteReader
-            Dim ct As New DataTable
-            ct.Load(rdr)
-            For Each _i As DataRow In ct.Rows
-                tmp.Conexiones.Add(New Conexion(_i("HoraIngreso"), _i("HoraSalida")))
-            Next
         Next
+        Dim cdt As New DataTable
+        cdt.Load(_cmd.ExecuteReader)
+        If cdt.Rows.Count = 0 Then
+            Return
+        End If
+        Dim con = cdt.ToList.Single
+        Dim te = usr.TrabajaEn.Find(Function(x) x.ID = con("IDTrabajaEn"))
+        Dim entrada = con("HoraIngreso")
+        Dim salida = AutoNull(Of DateTime?)(con("HoraSalida"))
+        te.Conexiones.Add(New Conexion(entrada, salida))
     End Sub
 
     Public Function UsuarioPorNombre(nombre As String) As Usuario Implements IUsuarioRepositorio.UsuarioPorNombre
@@ -141,12 +145,39 @@ Public Class SQLRepo
         If Not LugaresTrabaja.Contains(lugar) Then
             Return False
         End If
-        Return usuarioConectado.TrabajaEn.Where(Function(x) x.Lugar.Nombre = lugar).Select(Function(x) usuarioConectado.Conectar(x.Lugar)).Single
+        Dim val = usuarioConectado.TrabajaEn.Where(Function(x) x.Lugar.Nombre = lugar).Select(Function(x) usuarioConectado.Conectar(x.Lugar)).Single
+        If val Then
+            Dim conexiones = usuarioConectado.TrabajaEn.Select(Function(x) x.Conexiones).UnionListas.ToList
+            conexiones.Sort(ConnectionComparison)
+            Dim te = usuarioConectado.TrabajaEn.Where(Function(x) x.Conexiones.Contains(conexiones.Last)).Single
+            Dim com As New OdbcCommand("insert into conexion(IDTrabajaEn, HoraIngreso) values(?, ?);", _conn)
+            com.CrearParametro(DbType.Int64, te.ID)
+            com.CrearParametro(DbType.DateTime, Date.Now)
+            Return com.ExecuteNonQuery() > 0
+            'TODO:       Informix se queja de tuplas duplicadas; arreglar para la segunda
+            Return True
+        Else
+            Return False
+        End If
     End Function
 
     Public Function Desconectar() As Boolean Implements IUsuarioRepositorio.Desconectar
         If usuarioConectado Is Nothing Then Return Nothing
-        Return usuarioConectado.Desconectar
+        Dim val = usuarioConectado.Desconectar
+        If val Then
+            Dim conexiones = usuarioConectado.TrabajaEn.Select(Function(x) x.Conexiones).UnionListas.ToList
+            conexiones.Sort(ConnectionComparison)
+            Dim te = usuarioConectado.TrabajaEn.Where(Function(x) x.Conexiones.Contains(conexiones.Last)).Single
+            Dim com As New OdbcCommand("update conexion set HoraSalida=? where IDTrabajaEn=? and HoraIngreso=?;", _conn)
+            com.CrearParametro(DbType.DateTime, DateTime.Now)
+            com.CrearParametro(DbType.Int64, te.ID)
+            com.CrearParametro(DbType.DateTime, conexiones.Last.FechaInicio)
+            Return com.ExecuteNonQuery > 0
+            'Informix se queja de tuplas duplicadas
+            Return True
+        Else
+            Return False
+        End If
     End Function
 
     Public Function NombreCompleto() As String Implements IUsuarioRepositorio.NombreCompleto
@@ -198,6 +229,17 @@ Public Class SQLRepo
         Return New Vehiculo(dt.Rows()(0))
     End Function
 
+    Public Overrides Sub IngresosVehiculo(V As Vehiculo)
+        Dim cmd As New OdbcCommand("select * from vehiculoIngresa where VIN=?;", _conn)
+        cmd.CrearParametro(DbType.StringFixedLength, V.VIN)
+        Dim dt As New DataTable
+        dt.Load(cmd.ExecuteReader)
+        For Each i In dt.ToList
+            V.Ingresos.Add(New Ingreso(V, UsuarioIncompletoPorID(i("Usuario")), Ingreso.TipoFromString(i("TipoIngreso")), i("Fecha")))
+        Next
+    End Sub
+
+
     Public Overrides Function InformesVehiculo(VIN As String) As Vehiculo
         Dim v = VehiculoIncompleto(VIN)
         If v Is Nothing Then
@@ -234,6 +276,8 @@ Public Class SQLRepo
                                                             Return CType(x("FechaHoraSalida"), DateTime).CompareTo(y("FechaHoraSalida"))
                                                         End Function
 
+    Private Shared ReadOnly ConnectionComparison As Comparison(Of Conexion) = Function(x, y) x.FechaInicio.CompareTo(y.FechaFin)
+
     Public Function LugarPorID(id As Integer) As Lugar Implements ILugarRepositorio.LugarPorID
         Dim cmd = New OdbcCommand("select * from lugar where idlugar=?;", _conn)
         Dim par = cmd.CrearParametro(DbType.Int64, id)
@@ -267,10 +311,10 @@ Public Class SQLRepo
             auDt.Load(aRdr)
             For Each a As DataRow In auDt.Rows
                 Dim v = InformesVehiculo(a("VIN"))
-                lote.Integrantes.Add(v)
+                Lote.Integrantes.Add(v)
             Next
-            lotes.Add(lote)
-            lugar.LotesCreados.Add(lote)
+            lotes.Add(Lote)
+            lugar.LotesCreados.Add(Lote)
         Next
         Dim zonasCmd = New OdbcCommand("select * from zona where idlugar=?;", _conn)
         zonasCmd.CrearParametro(DbType.Int64, id)
@@ -291,7 +335,7 @@ Public Class SQLRepo
             szdt.Load(szonasCmd.ExecuteReader)
             pzp.Value = z("IDZona")
             For Each sz As DataRow In szdt.Rows
-                Dim msz As Subzona = New Subzona(zObj, New List(Of Posicionado), sz("Nombre"), sz("IDSub"))
+                Dim msz As Subzona = New Subzona(zObj, New List(Of Posicionado), sz("Nombre"), sz("IDSub"), sz("Capacidad"))
                 zObj.Subzonas.Add(msz)
                 psp.Value = sz("IDSub")
                 Dim pdt As New DataTable
@@ -309,9 +353,9 @@ Public Class SQLRepo
         If usuarioConectado Is Nothing Then
             Throw New InvalidOperationException("No está conectado")
         End If
+        ReloadUsuario(usuarioConectado)
         Dim x = usuarioConectado.ConectadoEn
         Dim szonasPos As IEnumerable(Of List(Of Posicionado)) = x.Subzonas.Select(Function(z) z.Posicionados)
-
         For Each i In szonasPos.UnionListas
             Dim dr = dt.NewRow
             dt.Rows.Add(dr)
@@ -324,8 +368,36 @@ Public Class SQLRepo
         Return dt
     End Function
 
+    Private Sub ReloadUsuario(usuarioConectado As Usuario)
+        CompletarUsuario(usuarioConectado)
+    End Sub
+
     Public Function AltaVehiculo(VIN As String, marca As String, modelo As String, año As Integer, zona As String, subzona As String, posicion As Integer, color As Color) As Boolean Implements IUsuarioRepositorio.AltaVehiculo
-        Throw New NotImplementedException()
+        If usuarioConectado Is Nothing Then
+            Return False
+        End If
+        Dim checkCommand = New OdbcCommand("select count(*) from vehiculoIngresa where VIN=?;", _conn)
+        If checkCommand.ExecuteScalar <> 1 Then
+            Return False
+        End If
+        If LRepo.PosicionOcupada(subzona, zona, usuarioConectado.ConectadoEn.Nombre, posicion) Then
+            Return False
+        End If
+        Dim insertCommand = New OdbcCommand("insert into vehiculoIngresa(VIN, Fecha, TipoIngreso, Usuario) values(?, ?, 'Alta', ?);", _conn)
+        insertCommand.CrearParametro(DbType.String, VIN)
+        insertCommand.CrearParametro(DbType.Date, Date.Now)
+        insertCommand.CrearParametro(DbType.Int64, usuarioConectado.ID)
+        If insertCommand.ExecuteNonQuery <> 1 Then
+            Return False
+        End If
+        Dim updateCommand = New OdbcCommand("update vehiculo set Marca=?, Modelo=?, Anio=?, Color=? where VIN=?;", _conn)
+        updateCommand.CrearParametro(DbType.String, marca)
+        updateCommand.CrearParametro(DbType.String, modelo)
+        updateCommand.CrearParametro(DbType.Int64, año)
+        updateCommand.CrearParametro(DbType.StringFixedLength, color.ToArgb.ToString("X6"))
+        updateCommand.CrearParametro(DbType.StringFixedLength, VIN)
+        If updateCommand.ExecuteNonQuery > 0 Then Return True
+        Throw New Exception("No hubieron cambios en el vehículo, por favor informe a su administrador")
     End Function
 
     Public Function ConectadoEn() As String Implements IUsuarioRepositorio.ConectadoEn
@@ -457,5 +529,40 @@ Public Class SQLRepo
         Dim cmd As New OdbcCommand("select VIN from informedanios where id=?;", _conn)
         cmd.CrearParametro(DbType.Int64, informe)
         Return cmd.ExecuteScalar
+    End Function
+
+    Public Overrides Function Marca(vin As String, nuevaMarca As String) As Boolean
+        Dim cmd As New OdbcCommand("update vehiculo set marca=? where VIN=?;", _conn)
+        cmd.CrearParametro(DbType.String, nuevaMarca)
+        cmd.CrearParametro(DbType.StringFixedLength, vin)
+        Return cmd.ExecuteNonQuery > 0
+    End Function
+
+    Public Overrides Function Modelo(vin As String, nuevoModelo As String) As Boolean
+        Dim cmd As New OdbcCommand("update vehiculo set modelo=? where VIN=?;", _conn)
+        cmd.CrearParametro(DbType.String, nuevoModelo)
+        cmd.CrearParametro(DbType.StringFixedLength, vin)
+        Return cmd.ExecuteNonQuery > 0
+    End Function
+
+    Public Overrides Function Año(vin As String, nuevoAño As String) As Boolean
+        Dim cmd As New OdbcCommand("update vehiculo set anio=? where VIN=?;", _conn)
+        cmd.CrearParametro(DbType.Int64, Integer.Parse(nuevoAño))
+        cmd.CrearParametro(DbType.StringFixedLength, vin)
+        Return cmd.ExecuteNonQuery > 0
+    End Function
+
+    Public Overrides Function Cliente(vin As String, nuevoCliente As String) As String
+        Dim cmd As New OdbcCommand("update vehiculo set ClienteNombre=? where VIN=?;", _conn)
+        cmd.CrearParametro(DbType.String, nuevoCliente)
+        cmd.CrearParametro(DbType.StringFixedLength, vin)
+        Return cmd.ExecuteNonQuery > 0
+    End Function
+
+    Public Overrides Function Tipo(vin As String, nuevoTipo As String) As String
+        Dim cmd As New OdbcCommand("update vehiculo set Tipo=? where VIN=?;", _conn)
+        cmd.CrearParametro(DbType.String, nuevoTipo)
+        cmd.CrearParametro(DbType.StringFixedLength, vin)
+        Return cmd.ExecuteNonQuery > 0
     End Function
 End Class

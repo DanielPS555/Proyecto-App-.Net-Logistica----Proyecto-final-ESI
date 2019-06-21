@@ -4,7 +4,7 @@
         Public ReadOnly Padre As Zona
         Public ReadOnly Nombre As String
         Public ReadOnly ID As Integer
-        Friend ReadOnly Capacidad As Integer
+        Public ReadOnly Capacidad As Integer
 
         Public ReadOnly Property Posicionados As List(Of Posicionado)
             Get
@@ -12,10 +12,11 @@
             End Get
         End Property
 
-        Public Sub New(padre As Zona, posicionados As List(Of Posicionado), nombre As String, id As Integer)
+        Public Sub New(padre As Zona, posicionados As List(Of Posicionado), nombre As String, id As Integer, capacidad As Integer)
             Me.Padre = padre
             _posicionados = posicionados
             Me.Nombre = nombre
+            Me.Capacidad = capacidad
             Me.ID = id
         End Sub
 
@@ -40,8 +41,7 @@
 
         Public Sub New(dt As DataRow, enSub As Subzona)
             Me.New(VRepo.VehiculoIncompleto(dt("VIN")),
-                   enSub, dt("posicion"), dt("desde"),
-                   If(dt("hasta") Is DBNull.Value, Nothing, dt("hesde")))
+                   enSub, dt("posicion"), dt("desde"), AutoNull(Of DateTime?)(dt("hasta")))
         End Sub
 
         Public Sub New(vehiculo As Vehiculo, subzona As Subzona, posicion As Integer, desde As Date, hasta As Date?)

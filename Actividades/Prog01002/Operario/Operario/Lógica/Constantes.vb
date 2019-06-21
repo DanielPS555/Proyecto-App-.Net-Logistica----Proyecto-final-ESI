@@ -7,6 +7,12 @@
             list.AddRange(B)
             Return list
         End Function
+        Public Function AutoNull(Of T)(data As Object) As T
+            If data Is DBNull.Value Then
+                Return Nothing
+            End If
+            Return data
+        End Function
         Public Function TipoFromString(tipo As String) As TipoLugar
             Select Case tipo.ToLower
                 Case "puerto"
