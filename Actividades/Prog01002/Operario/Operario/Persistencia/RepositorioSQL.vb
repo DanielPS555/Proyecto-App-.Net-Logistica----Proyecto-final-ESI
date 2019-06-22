@@ -449,7 +449,7 @@ Public Class SQLRepo
     End Function
 
     Public Overrides Function Lote(vin As String) As String
-        Return AllLugares.Select(Function(x) x.LotesCreados).UnionListas.Where(Function(x) x.Integrantes.Where(Function(z) z.VIN = vin).Count > 0 AndAlso x.FechaPartida Is Nothing).SingleOrDefault?.ID.ToString
+        Return AllLugares.Select(Function(x) x.LotesCreados).UnionListas.Where(Function(x) x.Integrantes.Where(Function(z) z.VIN = vin).Count > 0 AndAlso x.FechaPartida Is Nothing).SingleOrDefault?.Nombre
     End Function
 
     Public Function TipoLugar(lugar As String) As String Implements ILugarRepositorio.TipoLugar
@@ -567,11 +567,16 @@ Public Class SQLRepo
         Return cmd.ExecuteNonQuery > 0
     End Function
 
-    Public Function PosicionOcupada(subzona As String, zona As String, nombre As String, posicion As Integer) As Boolean Implements ILugarRepositorio.PosicionOcupada
-        Dim _lugar = LugarPorNombre(nombre)
+    Public Function PosicionOcupada(subzona As String, zona As String, lugar As String, posicion As Integer) As Boolean Implements ILugarRepositorio.PosicionOcupada
+        Dim _lugar = LugarPorNombre(lugar)
         Dim _zona = _lugar.Zonas.Find(Function(x) x.Nombre = zona)
         Dim _subzona = _zona.Subzonas.Find(Function(x) x.Nombre = subzona)
-        Dim cmd As New OdbcCommand("select count(*) from posicionado where")
+        Dim cmd As New OdbcCommand("select count(*) from posicionado where idlugar=? and _zona=? and _subzona=? and posicion=? and hasta is null;", _conn)
+        cmd.CrearParametro(DbType.Int64, _lugar.ID)
+        cmd.CrearParametro(DbType.Int64, _zona.ID)
+        cmd.CrearParametro(DbType.Int64, _subzona.ID)
+        cmd.CrearParametro(DbType.Int64, posicion)
+        Return cmd.ExecuteScalar > 0
     End Function
 
     Public Overrides Function Posicion(vin As String, zona As String, subzona As String, lugar As String, nuevaPosicion As Integer) As Boolean
@@ -589,5 +594,19 @@ Public Class SQLRepo
         Dim cmd As New OdbcCommand("select desde from posicionado where vin=? and hasta is null;", _conn)
         cmd.CrearParametro(DbType.StringFixedLength, vin)
         Return cmd.ExecuteScalar
+    End Function
+
+    Public Function LotesEnLugar(lugar As String) As List(Of String) Implements ILugarRepositorio.LotesEnLugar
+        Dim cmd As New OdbcCommand("select nombrelote from lote inner join lugar on lote.desde = lugar.idlugar where lugar.nombre = ?;", _conn)
+        cmd.CrearParametro(DbType.String, lugar)
+        Dim dt As New DataTable
+        dt.Load(cmd.ExecuteReader)
+        Return dt.ToList.Select(Function(x) CType(x(0), String)).ToList
+    End Function
+
+    Public Function CreadorDe(vin As String) As Boolean Implements IUsuarioRepositorio.CreadorDe
+        Dim cmd As New OdbcCommand("select idusuario from posicionado where vin=?;", _conn)
+        cmd.CrearParametro(DbType.StringFixedLength, vin)
+        Return cmd.ExecuteScalar = usuarioConectado.ID
     End Function
 End Class

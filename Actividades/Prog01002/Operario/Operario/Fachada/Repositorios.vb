@@ -28,6 +28,7 @@ Public Interface IUsuarioRepositorio
 
     Function UltimoAcceso() As Date?
     Function UsuarioIncompletoPorNombre(nombre As String) As Usuario
+    Function CreadorDe(vin As String) As Boolean
 End Interface
 
 Public Module RepoUtils
@@ -60,6 +61,7 @@ Public Interface ILugarRepositorio
     Function AllLugares(Optional patron As String = "%") As List(Of Logica.Lugar)
     Function LugarPorNombre(nombre As String) As Logica.Lugar
     Function LugarPorID(id As Integer) As Logica.Lugar
+    Function LotesEnLugar(lugar As String) As List(Of String)
     Function TipoLugar(selectedItem As String) As String
     Function CapacidadZonas(lugar As String) As DataTable
     Function PosicionOcupada(subzona As String, zona As String, nombre As String, posicion As Integer) As Boolean

@@ -24,21 +24,24 @@ Partial Class panelInfoVehiculo
     Private Sub InitializeComponent()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.LinkLabel2 = New System.Windows.Forms.LinkLabel()
+        Me.LoteCombo = New System.Windows.Forms.ComboBox()
+        Me.Button5 = New System.Windows.Forms.Button()
         Me.Button3 = New System.Windows.Forms.Button()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
-        Me.TextBox5 = New System.Windows.Forms.TextBox()
-        Me.TextBox4 = New System.Windows.Forms.TextBox()
-        Me.TextBox3 = New System.Windows.Forms.TextBox()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.TipoCombo = New System.Windows.Forms.ComboBox()
+        Me.AñoBox = New System.Windows.Forms.TextBox()
+        Me.ClienteBox = New System.Windows.Forms.TextBox()
+        Me.ModeloBox = New System.Windows.Forms.TextBox()
+        Me.MarcaBox = New System.Windows.Forms.TextBox()
+        Me.VINBox = New System.Windows.Forms.TextBox()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label13 = New System.Windows.Forms.Label()
@@ -50,13 +53,19 @@ Partial Class panelInfoVehiculo
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.Label11 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.Button4 = New System.Windows.Forms.Button()
         Me.informes = New System.Windows.Forms.DataGridView()
+        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewLinkColumn1 = New System.Windows.Forms.DataGridViewLinkColumn()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.traslados = New System.Windows.Forms.DataGridView()
@@ -68,12 +77,6 @@ Partial Class panelInfoVehiculo
         Me.trasPor = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
         Me.lugares = New System.Windows.Forms.DataGridView()
-        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewLinkColumn1 = New System.Windows.Forms.DataGridViewLinkColumn()
         Me.nomLugar = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.tipoLugar = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.fLlegada = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -81,13 +84,9 @@ Partial Class panelInfoVehiculo
         Me.trasportadoPor = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.Button4 = New System.Windows.Forms.Button()
-        Me.Button5 = New System.Windows.Forms.Button()
-        Me.ComboBox2 = New System.Windows.Forms.ComboBox()
-        Me.ComboBox3 = New System.Windows.Forms.ComboBox()
-        Me.ComboBox4 = New System.Windows.Forms.ComboBox()
-        Me.ComboBox5 = New System.Windows.Forms.ComboBox()
-        Me.LinkLabel2 = New System.Windows.Forms.LinkLabel()
+        Me.ZonaLabel = New System.Windows.Forms.Label()
+        Me.SubzonaLabel = New System.Windows.Forms.Label()
+        Me.PosicionLabel = New System.Windows.Forms.Label()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.QR, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -126,19 +125,19 @@ Partial Class panelInfoVehiculo
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.PosicionLabel)
+        Me.TabPage1.Controls.Add(Me.SubzonaLabel)
+        Me.TabPage1.Controls.Add(Me.ZonaLabel)
         Me.TabPage1.Controls.Add(Me.LinkLabel2)
-        Me.TabPage1.Controls.Add(Me.ComboBox5)
-        Me.TabPage1.Controls.Add(Me.ComboBox4)
-        Me.TabPage1.Controls.Add(Me.ComboBox3)
-        Me.TabPage1.Controls.Add(Me.ComboBox2)
+        Me.TabPage1.Controls.Add(Me.LoteCombo)
         Me.TabPage1.Controls.Add(Me.Button5)
         Me.TabPage1.Controls.Add(Me.Button3)
-        Me.TabPage1.Controls.Add(Me.ComboBox1)
-        Me.TabPage1.Controls.Add(Me.TextBox5)
-        Me.TabPage1.Controls.Add(Me.TextBox4)
-        Me.TabPage1.Controls.Add(Me.TextBox3)
-        Me.TabPage1.Controls.Add(Me.TextBox2)
-        Me.TabPage1.Controls.Add(Me.TextBox1)
+        Me.TabPage1.Controls.Add(Me.TipoCombo)
+        Me.TabPage1.Controls.Add(Me.AñoBox)
+        Me.TabPage1.Controls.Add(Me.ClienteBox)
+        Me.TabPage1.Controls.Add(Me.ModeloBox)
+        Me.TabPage1.Controls.Add(Me.MarcaBox)
+        Me.TabPage1.Controls.Add(Me.VINBox)
         Me.TabPage1.Controls.Add(Me.Button1)
         Me.TabPage1.Controls.Add(Me.Label1)
         Me.TabPage1.Controls.Add(Me.Label13)
@@ -150,7 +149,6 @@ Partial Class panelInfoVehiculo
         Me.TabPage1.Controls.Add(Me.Label5)
         Me.TabPage1.Controls.Add(Me.Panel1)
         Me.TabPage1.Controls.Add(Me.Label6)
-        Me.TabPage1.Controls.Add(Me.Label11)
         Me.TabPage1.Controls.Add(Me.Label7)
         Me.TabPage1.Controls.Add(Me.Label10)
         Me.TabPage1.Controls.Add(Me.Label8)
@@ -163,6 +161,42 @@ Partial Class panelInfoVehiculo
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "General"
         Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        'LinkLabel2
+        '
+        Me.LinkLabel2.ActiveLinkColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.LinkLabel2.AutoSize = True
+        Me.LinkLabel2.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LinkLabel2.LinkColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.LinkLabel2.Location = New System.Drawing.Point(335, 537)
+        Me.LinkLabel2.Name = "LinkLabel2"
+        Me.LinkLabel2.Size = New System.Drawing.Size(100, 21)
+        Me.LinkLabel2.TabIndex = 131
+        Me.LinkLabel2.TabStop = True
+        Me.LinkLabel2.Text = "Nuevo lote "
+        '
+        'ComboBox5
+        '
+        Me.LoteCombo.Enabled = False
+        Me.LoteCombo.FormattingEnabled = True
+        Me.LoteCombo.Location = New System.Drawing.Point(90, 531)
+        Me.LoteCombo.Name = "ComboBox5"
+        Me.LoteCombo.Size = New System.Drawing.Size(155, 32)
+        Me.LoteCombo.TabIndex = 130
+        '
+        'Button5
+        '
+        Me.Button5.BackColor = System.Drawing.Color.FromArgb(CType(CType(180, Byte), Integer), CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer))
+        Me.Button5.Enabled = False
+        Me.Button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button5.ForeColor = System.Drawing.Color.White
+        Me.Button5.Location = New System.Drawing.Point(549, 546)
+        Me.Button5.Name = "Button5"
+        Me.Button5.Size = New System.Drawing.Size(161, 66)
+        Me.Button5.TabIndex = 126
+        Me.Button5.Text = "Cancelar cambios"
+        Me.Button5.UseVisualStyleBackColor = False
+        Me.Button5.Visible = False
         '
         'Button3
         '
@@ -180,59 +214,59 @@ Partial Class panelInfoVehiculo
         '
         'ComboBox1
         '
-        Me.ComboBox1.BackColor = System.Drawing.Color.White
-        Me.ComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ComboBox1.Enabled = False
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(95, 231)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(246, 32)
-        Me.ComboBox1.TabIndex = 124
+        Me.TipoCombo.BackColor = System.Drawing.Color.White
+        Me.TipoCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.TipoCombo.Enabled = False
+        Me.TipoCombo.FormattingEnabled = True
+        Me.TipoCombo.Location = New System.Drawing.Point(95, 231)
+        Me.TipoCombo.Name = "ComboBox1"
+        Me.TipoCombo.Size = New System.Drawing.Size(246, 32)
+        Me.TipoCombo.TabIndex = 124
         '
         'TextBox5
         '
-        Me.TextBox5.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox5.Enabled = False
-        Me.TextBox5.Location = New System.Drawing.Point(95, 181)
-        Me.TextBox5.Name = "TextBox5"
-        Me.TextBox5.Size = New System.Drawing.Size(492, 26)
-        Me.TextBox5.TabIndex = 123
+        Me.AñoBox.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.AñoBox.Enabled = False
+        Me.AñoBox.Location = New System.Drawing.Point(95, 181)
+        Me.AñoBox.Name = "TextBox5"
+        Me.AñoBox.Size = New System.Drawing.Size(492, 26)
+        Me.AñoBox.TabIndex = 123
         '
         'TextBox4
         '
-        Me.TextBox4.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox4.Enabled = False
-        Me.TextBox4.Location = New System.Drawing.Point(95, 134)
-        Me.TextBox4.Name = "TextBox4"
-        Me.TextBox4.Size = New System.Drawing.Size(492, 26)
-        Me.TextBox4.TabIndex = 122
+        Me.ClienteBox.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.ClienteBox.Enabled = False
+        Me.ClienteBox.Location = New System.Drawing.Point(95, 134)
+        Me.ClienteBox.Name = "TextBox4"
+        Me.ClienteBox.Size = New System.Drawing.Size(492, 26)
+        Me.ClienteBox.TabIndex = 122
         '
         'TextBox3
         '
-        Me.TextBox3.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox3.Enabled = False
-        Me.TextBox3.Location = New System.Drawing.Point(95, 83)
-        Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(492, 26)
-        Me.TextBox3.TabIndex = 121
+        Me.ModeloBox.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.ModeloBox.Enabled = False
+        Me.ModeloBox.Location = New System.Drawing.Point(95, 83)
+        Me.ModeloBox.Name = "TextBox3"
+        Me.ModeloBox.Size = New System.Drawing.Size(492, 26)
+        Me.ModeloBox.TabIndex = 121
         '
         'TextBox2
         '
-        Me.TextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox2.Enabled = False
-        Me.TextBox2.Location = New System.Drawing.Point(95, 39)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(492, 26)
-        Me.TextBox2.TabIndex = 120
+        Me.MarcaBox.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.MarcaBox.Enabled = False
+        Me.MarcaBox.Location = New System.Drawing.Point(95, 39)
+        Me.MarcaBox.Name = "TextBox2"
+        Me.MarcaBox.Size = New System.Drawing.Size(492, 26)
+        Me.MarcaBox.TabIndex = 120
         '
         'TextBox1
         '
-        Me.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox1.Enabled = False
-        Me.TextBox1.Location = New System.Drawing.Point(95, 3)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(492, 26)
-        Me.TextBox1.TabIndex = 119
+        Me.VINBox.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.VINBox.Enabled = False
+        Me.VINBox.Location = New System.Drawing.Point(95, 3)
+        Me.VINBox.Name = "TextBox1"
+        Me.VINBox.Size = New System.Drawing.Size(492, 26)
+        Me.VINBox.TabIndex = 119
         '
         'Button1
         '
@@ -283,7 +317,7 @@ Partial Class panelInfoVehiculo
         '
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(59, 484)
+        Me.Label3.Location = New System.Drawing.Point(12, 420)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(96, 24)
         Me.Label3.TabIndex = 100
@@ -325,7 +359,7 @@ Partial Class panelInfoVehiculo
         '
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(59, 386)
+        Me.Label5.Location = New System.Drawing.Point(12, 338)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(66, 24)
         Me.Label5.TabIndex = 99
@@ -347,16 +381,6 @@ Partial Class panelInfoVehiculo
         Me.Label6.Size = New System.Drawing.Size(66, 24)
         Me.Label6.TabIndex = 95
         Me.Label6.Text = "Color"
-        '
-        'Label11
-        '
-        Me.Label11.AutoSize = True
-        Me.Label11.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label11.Location = New System.Drawing.Point(12, 344)
-        Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(219, 24)
-        Me.Label11.TabIndex = 98
-        Me.Label11.Text = "Establaser ubicacion"
         '
         'Label7
         '
@@ -382,7 +406,7 @@ Partial Class panelInfoVehiculo
         '
         Me.Label8.AutoSize = True
         Me.Label8.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label8.Location = New System.Drawing.Point(59, 429)
+        Me.Label8.Location = New System.Drawing.Point(12, 378)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(108, 24)
         Me.Label8.TabIndex = 101
@@ -409,6 +433,15 @@ Partial Class panelInfoVehiculo
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Informes de daños"
         Me.TabPage2.UseVisualStyleBackColor = True
+        '
+        'Button4
+        '
+        Me.Button4.Location = New System.Drawing.Point(567, 10)
+        Me.Button4.Name = "Button4"
+        Me.Button4.Size = New System.Drawing.Size(297, 32)
+        Me.Button4.TabIndex = 110
+        Me.Button4.Text = "Ingresar informe de daños"
+        Me.Button4.UseVisualStyleBackColor = True
         '
         'informes
         '
@@ -448,6 +481,59 @@ Partial Class panelInfoVehiculo
         Me.informes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.informes.Size = New System.Drawing.Size(850, 559)
         Me.informes.TabIndex = 86
+        '
+        'DataGridViewTextBoxColumn1
+        '
+        Me.DataGridViewTextBoxColumn1.Frozen = True
+        Me.DataGridViewTextBoxColumn1.HeaderText = "Id"
+        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
+        Me.DataGridViewTextBoxColumn1.ReadOnly = True
+        Me.DataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        '
+        'DataGridViewTextBoxColumn2
+        '
+        Me.DataGridViewTextBoxColumn2.Frozen = True
+        Me.DataGridViewTextBoxColumn2.HeaderText = "Lugar"
+        Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
+        Me.DataGridViewTextBoxColumn2.ReadOnly = True
+        Me.DataGridViewTextBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        '
+        'DataGridViewTextBoxColumn3
+        '
+        Me.DataGridViewTextBoxColumn3.Frozen = True
+        Me.DataGridViewTextBoxColumn3.HeaderText = "Autor"
+        Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
+        Me.DataGridViewTextBoxColumn3.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn4
+        '
+        Me.DataGridViewTextBoxColumn4.Frozen = True
+        Me.DataGridViewTextBoxColumn4.HeaderText = "Fecha de realizacion"
+        Me.DataGridViewTextBoxColumn4.Name = "DataGridViewTextBoxColumn4"
+        Me.DataGridViewTextBoxColumn4.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn5
+        '
+        Me.DataGridViewTextBoxColumn5.Frozen = True
+        Me.DataGridViewTextBoxColumn5.HeaderText = "Numero de registros"
+        Me.DataGridViewTextBoxColumn5.Name = "DataGridViewTextBoxColumn5"
+        Me.DataGridViewTextBoxColumn5.ReadOnly = True
+        '
+        'DataGridViewLinkColumn1
+        '
+        Me.DataGridViewLinkColumn1.ActiveLinkColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        DataGridViewCellStyle2.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.White
+        Me.DataGridViewLinkColumn1.DefaultCellStyle = DataGridViewCellStyle2
+        Me.DataGridViewLinkColumn1.HeaderText = "Acceso"
+        Me.DataGridViewLinkColumn1.LinkColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.DataGridViewLinkColumn1.Name = "DataGridViewLinkColumn1"
+        Me.DataGridViewLinkColumn1.ReadOnly = True
+        Me.DataGridViewLinkColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridViewLinkColumn1.Text = "Ver Mas "
+        Me.DataGridViewLinkColumn1.UseColumnTextForLinkValue = True
+        Me.DataGridViewLinkColumn1.VisitedLinkColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
         '
         'TabPage3
         '
@@ -596,59 +682,6 @@ Partial Class panelInfoVehiculo
         Me.lugares.Size = New System.Drawing.Size(850, 592)
         Me.lugares.TabIndex = 88
         '
-        'DataGridViewTextBoxColumn1
-        '
-        Me.DataGridViewTextBoxColumn1.Frozen = True
-        Me.DataGridViewTextBoxColumn1.HeaderText = "Id"
-        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
-        Me.DataGridViewTextBoxColumn1.ReadOnly = True
-        Me.DataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        '
-        'DataGridViewTextBoxColumn2
-        '
-        Me.DataGridViewTextBoxColumn2.Frozen = True
-        Me.DataGridViewTextBoxColumn2.HeaderText = "Lugar"
-        Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
-        Me.DataGridViewTextBoxColumn2.ReadOnly = True
-        Me.DataGridViewTextBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        '
-        'DataGridViewTextBoxColumn3
-        '
-        Me.DataGridViewTextBoxColumn3.Frozen = True
-        Me.DataGridViewTextBoxColumn3.HeaderText = "Autor"
-        Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
-        Me.DataGridViewTextBoxColumn3.ReadOnly = True
-        '
-        'DataGridViewTextBoxColumn4
-        '
-        Me.DataGridViewTextBoxColumn4.Frozen = True
-        Me.DataGridViewTextBoxColumn4.HeaderText = "Fecha de realizacion"
-        Me.DataGridViewTextBoxColumn4.Name = "DataGridViewTextBoxColumn4"
-        Me.DataGridViewTextBoxColumn4.ReadOnly = True
-        '
-        'DataGridViewTextBoxColumn5
-        '
-        Me.DataGridViewTextBoxColumn5.Frozen = True
-        Me.DataGridViewTextBoxColumn5.HeaderText = "Numero de registros"
-        Me.DataGridViewTextBoxColumn5.Name = "DataGridViewTextBoxColumn5"
-        Me.DataGridViewTextBoxColumn5.ReadOnly = True
-        '
-        'DataGridViewLinkColumn1
-        '
-        Me.DataGridViewLinkColumn1.ActiveLinkColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        DataGridViewCellStyle2.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.White
-        Me.DataGridViewLinkColumn1.DefaultCellStyle = DataGridViewCellStyle2
-        Me.DataGridViewLinkColumn1.HeaderText = "Acceso"
-        Me.DataGridViewLinkColumn1.LinkColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Me.DataGridViewLinkColumn1.Name = "DataGridViewLinkColumn1"
-        Me.DataGridViewLinkColumn1.ReadOnly = True
-        Me.DataGridViewLinkColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridViewLinkColumn1.Text = "Ver Mas "
-        Me.DataGridViewLinkColumn1.UseColumnTextForLinkValue = True
-        Me.DataGridViewLinkColumn1.VisitedLinkColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        '
         'nomLugar
         '
         Me.nomLugar.HeaderText = "Nombre del lugar "
@@ -698,77 +731,29 @@ Partial Class panelInfoVehiculo
         Me.Label4.TabIndex = 0
         Me.Label4.Text = "2º ENTREGA, Corespone a la Aplicacion del administrador"
         '
-        'Button4
+        'ZonaLabel
         '
-        Me.Button4.Location = New System.Drawing.Point(567, 10)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(297, 32)
-        Me.Button4.TabIndex = 110
-        Me.Button4.Text = "Ingresar informe de daños"
-        Me.Button4.UseVisualStyleBackColor = True
+        Me.ZonaLabel.AutoSize = True
+        Me.ZonaLabel.Location = New System.Drawing.Point(86, 338)
+        Me.ZonaLabel.Name = "ZonaLabel"
+        Me.ZonaLabel.Size = New System.Drawing.Size(0, 24)
+        Me.ZonaLabel.TabIndex = 132
         '
-        'Button5
+        'SubzonaLabel
         '
-        Me.Button5.BackColor = System.Drawing.Color.FromArgb(CType(CType(180, Byte), Integer), CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer))
-        Me.Button5.Enabled = False
-        Me.Button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button5.ForeColor = System.Drawing.Color.White
-        Me.Button5.Location = New System.Drawing.Point(549, 546)
-        Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(161, 66)
-        Me.Button5.TabIndex = 126
-        Me.Button5.Text = "Cancelar cambios"
-        Me.Button5.UseVisualStyleBackColor = False
-        Me.Button5.Visible = False
+        Me.SubzonaLabel.AutoSize = True
+        Me.SubzonaLabel.Location = New System.Drawing.Point(120, 378)
+        Me.SubzonaLabel.Name = "SubzonaLabel"
+        Me.SubzonaLabel.Size = New System.Drawing.Size(0, 24)
+        Me.SubzonaLabel.TabIndex = 133
         '
-        'ComboBox2
+        'PosicionLabel
         '
-        Me.ComboBox2.Enabled = False
-        Me.ComboBox2.FormattingEnabled = True
-        Me.ComboBox2.Location = New System.Drawing.Point(173, 383)
-        Me.ComboBox2.Name = "ComboBox2"
-        Me.ComboBox2.Size = New System.Drawing.Size(154, 32)
-        Me.ComboBox2.TabIndex = 127
-        '
-        'ComboBox3
-        '
-        Me.ComboBox3.Enabled = False
-        Me.ComboBox3.FormattingEnabled = True
-        Me.ComboBox3.Location = New System.Drawing.Point(173, 429)
-        Me.ComboBox3.Name = "ComboBox3"
-        Me.ComboBox3.Size = New System.Drawing.Size(154, 32)
-        Me.ComboBox3.TabIndex = 128
-        '
-        'ComboBox4
-        '
-        Me.ComboBox4.Enabled = False
-        Me.ComboBox4.FormattingEnabled = True
-        Me.ComboBox4.Location = New System.Drawing.Point(173, 484)
-        Me.ComboBox4.Name = "ComboBox4"
-        Me.ComboBox4.Size = New System.Drawing.Size(154, 32)
-        Me.ComboBox4.TabIndex = 129
-        '
-        'ComboBox5
-        '
-        Me.ComboBox5.Enabled = False
-        Me.ComboBox5.FormattingEnabled = True
-        Me.ComboBox5.Location = New System.Drawing.Point(90, 531)
-        Me.ComboBox5.Name = "ComboBox5"
-        Me.ComboBox5.Size = New System.Drawing.Size(155, 32)
-        Me.ComboBox5.TabIndex = 130
-        '
-        'LinkLabel2
-        '
-        Me.LinkLabel2.ActiveLinkColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Me.LinkLabel2.AutoSize = True
-        Me.LinkLabel2.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LinkLabel2.LinkColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Me.LinkLabel2.Location = New System.Drawing.Point(335, 537)
-        Me.LinkLabel2.Name = "LinkLabel2"
-        Me.LinkLabel2.Size = New System.Drawing.Size(100, 21)
-        Me.LinkLabel2.TabIndex = 131
-        Me.LinkLabel2.TabStop = True
-        Me.LinkLabel2.Text = "Nuevo lote "
+        Me.PosicionLabel.AutoSize = True
+        Me.PosicionLabel.Location = New System.Drawing.Point(108, 420)
+        Me.PosicionLabel.Name = "PosicionLabel"
+        Me.PosicionLabel.Size = New System.Drawing.Size(0, 24)
+        Me.PosicionLabel.TabIndex = 134
         '
         'panelInfoVehiculo
         '
@@ -812,7 +797,6 @@ Partial Class panelInfoVehiculo
     Friend WithEvents Label5 As Label
     Friend WithEvents Panel1 As Panel
     Friend WithEvents Label6 As Label
-    Friend WithEvents Label11 As Label
     Friend WithEvents Label7 As Label
     Friend WithEvents Label10 As Label
     Friend WithEvents Label8 As Label
@@ -829,12 +813,12 @@ Partial Class panelInfoVehiculo
     Friend WithEvents trasPor As DataGridViewTextBoxColumn
     Friend WithEvents TabPage4 As TabPage
     Friend WithEvents lugares As DataGridView
-    Friend WithEvents ComboBox1 As ComboBox
-    Friend WithEvents TextBox5 As TextBox
-    Friend WithEvents TextBox4 As TextBox
-    Friend WithEvents TextBox3 As TextBox
-    Friend WithEvents TextBox2 As TextBox
-    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents TipoCombo As ComboBox
+    Friend WithEvents AñoBox As TextBox
+    Friend WithEvents ClienteBox As TextBox
+    Friend WithEvents ModeloBox As TextBox
+    Friend WithEvents MarcaBox As TextBox
+    Friend WithEvents VINBox As TextBox
     Friend WithEvents Button3 As Button
     Friend WithEvents DataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn2 As DataGridViewTextBoxColumn
@@ -848,12 +832,12 @@ Partial Class panelInfoVehiculo
     Friend WithEvents fPartida As DataGridViewTextBoxColumn
     Friend WithEvents trasportadoPor As DataGridViewTextBoxColumn
     Friend WithEvents LinkLabel2 As LinkLabel
-    Friend WithEvents ComboBox5 As ComboBox
-    Friend WithEvents ComboBox4 As ComboBox
-    Friend WithEvents ComboBox3 As ComboBox
-    Friend WithEvents ComboBox2 As ComboBox
+    Friend WithEvents LoteCombo As ComboBox
     Friend WithEvents Button5 As Button
     Friend WithEvents Button4 As Button
     Friend WithEvents TabPage5 As TabPage
     Friend WithEvents Label4 As Label
+    Friend WithEvents PosicionLabel As Label
+    Friend WithEvents SubzonaLabel As Label
+    Friend WithEvents ZonaLabel As Label
 End Class

@@ -34,6 +34,7 @@
             Return Lote.estadoMap(estado)
         End Function
         Public ReadOnly ID As UInteger
+        Public ReadOnly Nombre As UInteger
         Public ReadOnly FechaPartida As Date?
         Public ReadOnly Desde As Lugar
         Public ReadOnly Hacia As Lugar
