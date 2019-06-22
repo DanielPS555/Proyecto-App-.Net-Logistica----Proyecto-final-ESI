@@ -139,6 +139,7 @@ Public Class SQLRepo
 
     Public Function ConectarEn(lugar As String) As Boolean Implements IUsuarioRepositorio.ConectarEn
         If usuarioConectado Is Nothing Then Return Nothing
+        ReloadUsuario(usuarioConectado)
         If usuarioConectado.ConectadoEn IsNot Nothing Then
             Return False
         End If
@@ -564,5 +565,29 @@ Public Class SQLRepo
         cmd.CrearParametro(DbType.String, nuevoTipo)
         cmd.CrearParametro(DbType.StringFixedLength, vin)
         Return cmd.ExecuteNonQuery > 0
+    End Function
+
+    Public Function PosicionOcupada(subzona As String, zona As String, nombre As String, posicion As Integer) As Boolean Implements ILugarRepositorio.PosicionOcupada
+        Dim _lugar = LugarPorNombre(nombre)
+        Dim _zona = _lugar.Zonas.Find(Function(x) x.Nombre = zona)
+        Dim _subzona = _zona.Subzonas.Find(Function(x) x.Nombre = subzona)
+        Dim cmd As New OdbcCommand("select count(*) from posicionado where")
+    End Function
+
+    Public Overrides Function Posicion(vin As String, zona As String, subzona As String, lugar As String, nuevaPosicion As Integer) As Boolean
+        Dim cmd As New OdbcCommand("update posicionado set hasta=? where IDLugar=(select IDLugar from Lugar where Nombre = ?) and IDZona = (select IDZona from Zona where Nombre = ?) and IDSub = (select IDSub from Subzona where Nombre=?) and posicion = ? and desde = ?;", _conn)
+        cmd.CrearParametro(DbType.DateTime, Date.Now)
+        cmd.CrearParametro(DbType.String, lugar)
+        cmd.CrearParametro(DbType.String, zona)
+        cmd.CrearParametro(DbType.String, subzona)
+        cmd.crearParametro(DbType.Int64, nuevaPosicion)
+        cmd.CrearParametro(DbType.DateTime, VRepo.PosicionadoDesde(vin))
+        Return cmd.ExecuteNonQuery > 0
+    End Function
+
+    Friend Overrides Function PosicionadoDesde(vin As String) As DateTime
+        Dim cmd As New OdbcCommand("select desde from posicionado where vin=? and hasta is null;", _conn)
+        cmd.CrearParametro(DbType.StringFixedLength, vin)
+        Return cmd.ExecuteScalar
     End Function
 End Class
