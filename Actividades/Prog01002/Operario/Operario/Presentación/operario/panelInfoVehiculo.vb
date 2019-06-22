@@ -44,18 +44,25 @@
         traslados.Columns(4).Width = 175
         traslados.Columns(5).Width = 225
 
-        lugares.Columns(0).Width = 225
-        lugares.Columns(1).Width = 225
-        lugares.Columns(2).Width = 225
-        lugares.Columns(3).Width = 225
-        lugares.Columns(4).Width = 225
-        lugares.Columns(5).Width = 225
+        lugares.Columns(0).Width = 170
+        lugares.Columns(1).Width = 170
+        lugares.Columns(2).Width = 170
+        lugares.Columns(3).Width = 170
+        lugares.Columns(4).Width = 170
+
+
 
     End Sub
 
-    Private Sub panelInfoVehiculo_Paint(sender As Object, e As PaintEventArgs) Handles Me.Paint
+    Private Sub panelInfoVehiculo_Paint(sender As Object, e As PaintEventArgs) Handles Me.Paint, TabPage1.Paint
         Dim g As Graphics = e.Graphics
         g.DrawRectangle(New Pen(Color.FromArgb(15, 139, 196), 2), New Rectangle(informes.Location, informes.Size))
+        For Each textCo In Me.Controls
+            If TypeOf (textCo) Is TextBox Then
+                Dim text As TextBox = DirectCast(textCo, TextBox)
+                g.DrawLine(New Pen(Color.FromArgb(35, 35, 35)), text.Location.X, text.Location.Y + text.Height, text.Location.X + text.Size.Width, text.Location.Y + text.Height)
+            End If
+        Next
     End Sub
 
     Private Sub ingresar_Click(sender As Object, e As EventArgs)
