@@ -62,6 +62,7 @@ Public Interface ILugarRepositorio
     Function LugarPorID(id As Integer) As Logica.Lugar
     Function TipoLugar(selectedItem As String) As String
     Function CapacidadZonas(lugar As String) As DataTable
+    Function PosicionOcupada(subzona As String, zona As String, nombre As String, posicion As Integer) As Boolean
 End Interface
 
 Public Module Constantes
@@ -93,6 +94,7 @@ Public MustInherit Class VehiculoRepo
     Public MustOverride Function Zona(vin As String) As String
     Public MustOverride Function Subzona(vin As String) As String
     Public MustOverride Function Posicion(vin As String) As Integer
+    Public MustOverride Function Posicion(vin As String, zona As String, subzona As String, lugar As String, nuevaPosicion As Integer) As Boolean
     Public MustOverride Function Lote(vin As String) As String
 
     Public MustOverride ReadOnly Property Vehiculos As List(Of Logica.Vehiculo)
@@ -118,4 +120,5 @@ Public MustInherit Class VehiculoRepo
     Public MustOverride Function TipoInforme(informe As Integer) As String
     Public MustOverride Function DescripcionInforme(informe As Integer) As String
     Public MustOverride Function VINInforme(informe As Integer) As String
+    Friend MustOverride Function PosicionadoDesde(vin As String) As DateTime
 End Class

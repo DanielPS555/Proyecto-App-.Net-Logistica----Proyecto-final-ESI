@@ -72,7 +72,7 @@
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        MarcoPuerto.getInstancia.cargarPanel(Of trasladoInterno)(New trasladoInterno)
+        MarcoPuerto.getInstancia.cargarPanel(Of trasladoInterno)(New trasladoInterno(""))
     End Sub
 
     Private Sub informes_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles informes.CellDoubleClick

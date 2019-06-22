@@ -1,4 +1,6 @@
-﻿Public Class Login
+﻿Imports Microsoft.Win32
+
+Public Class Login
     Private contraseñaVisible As Boolean = False
 
     Public Sub New()
@@ -103,8 +105,26 @@
         Dim ofd As New OpenFileDialog With {
             .Multiselect = False
         }
-        ofd.ShowDialog()
-        con.ConnectionString = $"FileDsn={ofd.FileName};Uid={InputBox("nombre")}; Pwd={InputBox("contraseña")};"
+        Dim uR As String = "HKEY_CURRENT_USER" + "\" + "BIT" + "\" + "Database"
+        Dim ip = Registry.GetValue(uR, "IP", "localhost")
+        Dim port = Registry.GetValue(uR, "Port", "9088")
+        Dim servername = Registry.GetValue(uR, "Server", "ol_esi")
+        Dim uid = Registry.GetValue(uR, "UID", "")
+        Dim pwd = Registry.GetValue(uR, "PWD", "")
+        Dim db = Registry.GetValue(uR, "BD", "")
+        ip = InputBox("Por favor ingrese la IP del servidor Informix", "IP", ip)
+        port = InputBox("Por favor ingrese el puerto del servidor Informix (9088 por defecto)", "Puerto", port)
+        servername = InputBox("Por favor ingrese el nombre del servidor Informix (ol_esi, ol_taurus, ol_etc)", "Servidor", servername)
+        uid = InputBox("Por favor ingrese el usuario de la BD Informix", "BD", uid)
+        pwd = InputBox("Por favor ingrese la contraseña de la BD Informix", "BD", pwd)
+        db = InputBox("Por favor ingrese el nombre de la BD Informix", "BD", db)
+        Registry.SetValue(uR, "IP", ip)
+        Registry.SetValue(uR, "Port", port)
+        Registry.SetValue(uR, "Server", servername)
+        Registry.SetValue(uR, "UID", uid)
+        Registry.SetValue(uR, "PWD", pwd)
+        Registry.SetValue(uR, "BD", db)
+        con.ConnectionString = $"Driver={{IBM INFORMIX ODBC DRIVER (64-bit)}};Database={db};Host={ip};Server={servername};Service={port};Uid={uid}; Pwd={pwd};"
         con.Open()
         Button1.Enabled = True
         Button1.BackColor = Color.Aquamarine

@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class trasladoInterno
     Inherits System.Windows.Forms.Form
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,13 +20,13 @@ Partial Class trasladoInterno
     'NOTA: el Diseñador de Windows Forms necesita el siguiente procedimiento
     'Se puede modificar usando el Diseñador de Windows Forms.  
     'No lo modifique con el editor de código.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim ingresar As System.Windows.Forms.Button
         Dim Button1 As System.Windows.Forms.Button
         Me.Label13 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.hasiaSubZona = New System.Windows.Forms.ComboBox()
+        Me.haciaSubzona = New System.Windows.Forms.ComboBox()
         Me.haciaPosicion = New System.Windows.Forms.ComboBox()
         Me.l_sz = New System.Windows.Forms.Label()
         Me.l_posDis = New System.Windows.Forms.Label()
@@ -40,11 +40,49 @@ Partial Class trasladoInterno
         Me.DeZona = New System.Windows.Forms.Label()
         Me.deSubzona = New System.Windows.Forms.Label()
         Me.dePosicion = New System.Windows.Forms.Label()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.operario = New System.Windows.Forms.Label()
         ingresar = New System.Windows.Forms.Button()
         Button1 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
+        '
+        'ingresar
+        '
+        ingresar.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        ingresar.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        ingresar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        ingresar.FlatAppearance.BorderSize = 0
+        ingresar.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        ingresar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        ingresar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        ingresar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        ingresar.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        ingresar.ForeColor = System.Drawing.Color.White
+        ingresar.Location = New System.Drawing.Point(256, 467)
+        ingresar.Name = "ingresar"
+        ingresar.Size = New System.Drawing.Size(133, 35)
+        ingresar.TabIndex = 123
+        ingresar.Text = "Aceptar"
+        ingresar.UseVisualStyleBackColor = False
+        '
+        'Button1
+        '
+        Button1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(180, Byte), Integer), CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer))
+        Button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Button1.FlatAppearance.BorderSize = 0
+        Button1.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        Button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Button1.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Button1.ForeColor = System.Drawing.Color.White
+        Button1.Location = New System.Drawing.Point(12, 467)
+        Button1.Name = "Button1"
+        Button1.Size = New System.Drawing.Size(133, 35)
+        Button1.TabIndex = 124
+        Button1.Text = "Cancelar"
+        Button1.UseVisualStyleBackColor = False
         '
         'Label13
         '
@@ -66,14 +104,14 @@ Partial Class trasladoInterno
         Me.Label1.TabIndex = 106
         Me.Label1.Text = "Hacia"
         '
-        'hasiaSubZona
+        'haciaSubzona
         '
-        Me.hasiaSubZona.Font = New System.Drawing.Font("Century Gothic", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.hasiaSubZona.FormattingEnabled = True
-        Me.hasiaSubZona.Location = New System.Drawing.Point(242, 290)
-        Me.hasiaSubZona.Name = "hasiaSubZona"
-        Me.hasiaSubZona.Size = New System.Drawing.Size(138, 29)
-        Me.hasiaSubZona.TabIndex = 112
+        Me.haciaSubzona.Font = New System.Drawing.Font("Century Gothic", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.haciaSubzona.FormattingEnabled = True
+        Me.haciaSubzona.Location = New System.Drawing.Point(242, 290)
+        Me.haciaSubzona.Name = "haciaSubzona"
+        Me.haciaSubzona.Size = New System.Drawing.Size(138, 29)
+        Me.haciaSubzona.TabIndex = 112
         '
         'haciaPosicion
         '
@@ -168,9 +206,9 @@ Partial Class trasladoInterno
         Me.Label5.Font = New System.Drawing.Font("Century Gothic", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.Location = New System.Drawing.Point(30, 156)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(195, 21)
+        Me.Label5.Size = New System.Drawing.Size(76, 21)
         Me.Label5.TabIndex = 115
-        Me.Label5.Text = "Posiciones disponibles "
+        Me.Label5.Text = "Posición"
         '
         'DeZona
         '
@@ -202,66 +240,6 @@ Partial Class trasladoInterno
         Me.dePosicion.TabIndex = 120
         Me.dePosicion.Text = "//"
         '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Font = New System.Drawing.Font("Century Gothic", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(12, 404)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(142, 21)
-        Me.Label6.TabIndex = 121
-        Me.Label6.Text = "Trasladado por:"
-        '
-        'operario
-        '
-        Me.operario.AutoSize = True
-        Me.operario.Font = New System.Drawing.Font("Century Gothic", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.operario.Location = New System.Drawing.Point(171, 404)
-        Me.operario.Name = "operario"
-        Me.operario.Size = New System.Drawing.Size(24, 21)
-        Me.operario.TabIndex = 122
-        Me.operario.Text = "//"
-        '
-        'ingresar
-        '
-        ingresar.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        ingresar.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        ingresar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        ingresar.FlatAppearance.BorderSize = 0
-        ingresar.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        ingresar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        ingresar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        ingresar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        ingresar.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        ingresar.ForeColor = System.Drawing.Color.White
-        ingresar.Location = New System.Drawing.Point(256, 467)
-        ingresar.Name = "ingresar"
-        ingresar.Size = New System.Drawing.Size(133, 35)
-        ingresar.TabIndex = 123
-        ingresar.Text = "Aceptar"
-        ingresar.UseVisualStyleBackColor = False
-        '
-        'Button1
-        '
-        Button1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(180, Byte), Integer), CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer))
-        Button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Button1.FlatAppearance.BorderSize = 0
-        Button1.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        Button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Button1.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Button1.ForeColor = System.Drawing.Color.White
-        Button1.Location = New System.Drawing.Point(12, 467)
-        Button1.Name = "Button1"
-        Button1.Size = New System.Drawing.Size(133, 35)
-        Button1.TabIndex = 124
-        Button1.Text = "Cancelar"
-        Button1.UseVisualStyleBackColor = False
-        '
         'trasladoInterno
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -270,8 +248,6 @@ Partial Class trasladoInterno
         Me.ClientSize = New System.Drawing.Size(392, 514)
         Me.Controls.Add(Button1)
         Me.Controls.Add(ingresar)
-        Me.Controls.Add(Me.operario)
-        Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.dePosicion)
         Me.Controls.Add(Me.deSubzona)
         Me.Controls.Add(Me.DeZona)
@@ -280,7 +256,7 @@ Partial Class trasladoInterno
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.haciaZona)
         Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.hasiaSubZona)
+        Me.Controls.Add(Me.haciaSubzona)
         Me.Controls.Add(Me.haciaPosicion)
         Me.Controls.Add(Me.l_sz)
         Me.Controls.Add(Me.l_posDis)
@@ -298,7 +274,7 @@ Partial Class trasladoInterno
 
     Friend WithEvents Label13 As Label
     Friend WithEvents Label1 As Label
-    Friend WithEvents hasiaSubZona As ComboBox
+    Friend WithEvents haciaSubzona As ComboBox
     Friend WithEvents haciaPosicion As ComboBox
     Friend WithEvents l_sz As Label
     Friend WithEvents l_posDis As Label
@@ -312,6 +288,4 @@ Partial Class trasladoInterno
     Friend WithEvents DeZona As Label
     Friend WithEvents deSubzona As Label
     Friend WithEvents dePosicion As Label
-    Friend WithEvents Label6 As Label
-    Friend WithEvents operario As Label
 End Class

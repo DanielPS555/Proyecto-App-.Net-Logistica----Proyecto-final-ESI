@@ -1,17 +1,15 @@
 ﻿Public Class Principal
     Private Shared initi As Principal
 
-    Private Sub New()
+    Public Sub New()
 
         ' Esta llamada es exigida por el diseñador.
         'Dim U = New SQLRepo()
         'constantes.URepo = U
         'U.usuarios.Add(New Logica.Usuario(1, New List(Of Logica.TrabajaEn), "Felipe3", "", "Felipe", Nothing, "Camacho", Nothing, "Cual fue su primer juego?", "Lol", Date.Now, Logica.Sexo.Masculino, "felip49@gmail.com", "096515746", Logica.Constantes.RoleFromID(3), Nothing))
-        Constantes.LRepo = New FLugarRepo
         'LRepo.AllLugares.Add(New Logica.Lugar(1, "Puerto de Montevideo", 300, New PointF(0, 0), U.usuarios.Single, Logica.TipoLugar.Puerto, New List(Of Logica.Zona), New List(Of Logica.Lote)))
         'LRepo.AllLugares.Single.Zonas.Add(New Logica.Zona(New List(Of Logica.Subzona), LRepo.AllLugares.Single, "Zona A", 1))
         'LRepo.AllLugares.Single.Zonas.Single.Subzonas.Add(New Logica.Subzona(LRepo.AllLugares.Single.Zonas.Single, New List(Of Logica.Posicionado), "SZona 1", 1))
-        Constantes.VRepo = New FVehiculoRepo
         'VRepo.Vehiculos.Add(New Logica.Vehiculo("A", Nothing, Nothing, Nothing, Nothing, Logica.TipoVehiculo.Auto, False, "nadie", LRepo.AllLugares.Single.ID, Date.Now, New List(Of Logica.InformeDaños)))
         'U.usuarios.Add(New Logica.Usuario(2, New List(Of Logica.TrabajaEn), "john", Logica.Usuario.ContraseñaHash("abcdef", "john"), "Juan", Nothing, "Talarga", Nothing, "Preguntas", "Sabes", Date.Now, Logica.Sexo.Masculino, "aaa@nada.com", "", Logica.Constantes.RoleFromID(1), U.usuarios.Single))
         'Dim sr = URepo.UsuarioPorNombre("john")
@@ -20,6 +18,7 @@
         StartPosition = FormStartPosition.CenterScreen
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
         cargarPanel(Of Login)(New Login)
+        initi = Me
     End Sub
 
     Public Shared Function getInstancia() As Principal
@@ -52,6 +51,7 @@
             obj.BringToFront()
             Return obj
         Else
+            f.Show()
             f.BringToFront()
             Return f
         End If

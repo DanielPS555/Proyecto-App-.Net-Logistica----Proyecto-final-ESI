@@ -97,7 +97,6 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Fachada\FalsosRepositorios.vb" />
     <Compile Include="Fachada\Repositorios.vb" />
     <Compile Include="Lógica\Conexion.vb" />
     <Compile Include="Lógica\Constantes.vb" />
