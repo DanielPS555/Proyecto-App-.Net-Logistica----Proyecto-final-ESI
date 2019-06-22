@@ -188,6 +188,10 @@ insert into trabajaen values (0,(select IDLugar from lugar where Nombre="Deposit
 		"6ead26", "MiniVan", 2018, "Chevrolet UY",
 		(select IDLugar from lugar where Nombre="Puerto de aguas profundas rocha"),
 		"2019-6-26");
+		insert into vehiculo values("KHBEHGRLED0988442","Chevrolet","Volt",
+		"6ejr27", "MiniVan", 2018, "Chevrolet UY",
+		(select IDLugar from lugar where Nombre="Puerto de montevideo"),
+		"2019-6-26");
 /*57*/
 
 		/*vehiculoIngresa*/
@@ -200,6 +204,7 @@ insert into trabajaen values (0,(select IDLugar from lugar where Nombre="Deposit
 		insert into vehiculoIngresa values ("1GH2HGRLED0988472","2019-3-20","Precarga",(select idusuario from usuario where primernombre = "Felipe"));
 		insert into vehiculoIngresa values ("1GH2HGRLED0988472","2019-6-26","Alta",(select idusuario from usuario where primernombre = "Fernanda"));
 		insert into vehiculoIngresa values ("1GH2HGRLED0988472","2019-7-25","Baja",(select idusuario from usuario where primernombre = "Felipe"));
+		insert into vehiculoIngresa values ("KHBEHGRLED0988442","2019-3-20","Precarga",(select idusuario from usuario where primernombre = "Felipe"));
 /*67*/
 		/*informedanios*/
 		insert into informedanios values ("0","Informe de ingreso","2019-6-28", "Parcial",
