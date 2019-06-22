@@ -57,28 +57,13 @@ insert into trabajaen values (0,(select IDLugar from lugar where Nombre="Deposit
 	(select idusuario from usuario where primernombre = "Juan"), "15/6/2019","17/6/2019");
 /*25*/
 	/*CONEXCION*/
-	insert into conexion values ((select ID from trabajaen where idlugar=(select idlugar from lugar where nombre="Puerto de montevideo"))
-	,"2019-6-27 8:02",
-	 "2019-6-27 18:06");
-	insert into conexion values ((select ID from trabajaen where idlugar=(select idlugar from lugar where nombre="Puerto de montevideo"))
-	,"2019-6-28 23:02",
-	 "2019-6-29 02:01");
-	insert into conexion values ((select ID from trabajaen where idlugar=(select idlugar from lugar where nombre="Puerto de montevideo"))
-	,"2019-6-30 10:20",
-	 "2019-6-30 16:06");
-	insert into conexion values ((select ID from trabajaen where idlugar=(select idlugar from lugar where nombre="Puerto de montevideo"))
-	,"2019-7-1 8:04",
-	 "2019-6-27 19:06");
-	insert into conexion values ((select ID from trabajaen where idlugar=(select idlugar from lugar where nombre="Puerto de montevideo"))
-	,"2019-7-2 7:04",
-	 "2019-6-27 18:06");
-	insert into conexion values ((select ID from trabajaen where idlugar=(select idlugar from lugar where nombre="Puerto de montevideo"))
-	,"2019-7-4 9:04",
-	 "2019-6-27 18:06");
-	insert into conexion values ((select ID from trabajaen where idlugar=(select idlugar from lugar where nombre="Puerto de montevideo"))
-	,"2019-6-28 20:00",
-	 "2019-6-28 22:00");
-	 /*32*/
+	insert into conexion values (1,"2019-6-27 8:02", "2019-6-27 18:06");
+	insert into conexion values (1,"2019-6-28 23:02","2019-6-29 02:01");
+	insert into conexion values (1,"2019-6-30 10:20","2019-6-30 16:06");
+	insert into conexion values (2,"2019-7-1 8:04","2019-6-27 19:06");
+	insert into conexion values (2,"2019-7-2 7:04","2019-6-27 18:06");
+	insert into conexion values (2,"2019-7-4 9:04","2019-6-27 18:06");
+	insert into conexion values (2,"2019-6-28 20:00","2019-6-28 22:00");
 	insert into conexion values (3,"2019-6-13 7:04","2019-6-13 12:06");
 	insert into conexion values (3,"2019-6-15 12:02","2019-6-15 18:01");
   insert into conexion values (3,"2019-6-18 10:17","2019-6-18 16:09");
