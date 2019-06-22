@@ -1,4 +1,4 @@
-/*DML Primera entrega por BIT*/
+
 /*ROL*/
 insert into rol(idrol, nombre) values(1, "Operario");
 insert into rol(idrol, nombre) values(2, "Transportista");
@@ -291,11 +291,11 @@ insert into trabajaen values (0,(select IDLugar from lugar where Nombre="Deposit
        (select idusuario from usuario where primernombre = "Pepe"),'Normal','Cerrado');
 
 
-      insert into integra values ("1GH2J83LED0987547",1,"2019-6-28 14:02",'f');
-      insert into integra values ("1GH2HGRLED0988472",1,"2019-6-26 15:08",'f');
-      insert into integra values ("1HGYN4HTEL8372649",2,"2019-6-29 16:25",'f');
-      insert into integra values ("2GH2JJEBTE0987547",2,"2019-7-3 11:47",'f');
-      insert into integra values ("1GH2HGRLED0988472",3,"2019-7-4 12:07",'f');
+      insert into integra values ("1GH2J83LED0987547",1,"2019-6-28 14:02",'f',(select idusuario from usuario where primernombre = "Pepe"));
+      insert into integra values ("1GH2HGRLED0988472",1,"2019-6-26 15:08",'f',(select idusuario from usuario where primernombre = "Pepe"));
+      insert into integra values ("1HGYN4HTEL8372649",2,"2019-6-29 16:25",'f',(select idusuario from usuario where primernombre = "Juan"));
+      insert into integra values ("2GH2JJEBTE0987547",2,"2019-7-3 11:47",'f',(select idusuario from usuario where primernombre = "Juan"));
+      insert into integra values ("1GH2HGRLED0988472",3,"2019-7-4 12:07",'f',(select idusuario from usuario where primernombre = "Pepe"));
 
       insert into transporte values (0,(select idusuario from usuario where primernombre = "Antonio"),
       "2019-7-2 15:00","2019-7-2 16:00","Exitoso");

@@ -217,9 +217,11 @@ CREATE table
 	Lote integer,
 	Fecha datetime year to minute,
 	invalidado boolean not null,
+	IDUsuario integer not null, 
 	primary key(VIN, Lote, Fecha),
 	foreign key(VIN) references vehiculo(VIN) ON DELETE CASCADE,
-	foreign key(Lote) references lote(IDLote) ON DELETE CASCADE );
+	foreign key(Lote) references lote(IDLote) ON DELETE CASCADE,
+	foreign key(IDUsuario) references usuario(IDUsuario) ON DELETE CASCADE );
 
 CREATE table
 	transporte(
