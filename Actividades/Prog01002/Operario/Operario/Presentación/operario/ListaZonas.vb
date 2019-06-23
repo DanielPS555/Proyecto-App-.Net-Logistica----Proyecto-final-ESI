@@ -27,6 +27,11 @@
     End Sub
 
     Private Sub TreeView1_AfterSelect(sender As Object, e As TreeViewEventArgs) Handles TreeView1.AfterSelect
+        If e.Node Is Nothing Then
+            Label1.Text = ""
+            childList.Items.Clear()
+            Return
+        End If
         If pInfo IsNot Nothing Then
             pInfo.Close()
             Marco.getInstancia.cerrarPanel(Of panelInfoVehiculo)()
@@ -34,29 +39,32 @@
         If e.Node.Level = 0 Then
             Label1.Visible = True
             ProgressBar1.Visible = True
-            Label2.Visible = True
             Dim capacidad As Integer = LRepo.CapacidadZona(e.Node.Text, conectadoEn)
             Dim ocupacion As Integer = LRepo.OcupacionZona(e.Node.Text, conectadoEn)
             Label1.Text = $"Capacidad: ({ocupacion}/{capacidad})"
-            Label2.Text = $"Nro de Subzonas: {LRepo.SubzonasEnLugar(e.Node.Text, conectadoEn).Count}"
             ProgressBar1.Maximum = capacidad
             ProgressBar1.Value = ocupacion
+            childList.Items.Clear()
         ElseIf e.Node.Level = 1 Then
             Label1.Visible = True
             ProgressBar1.Visible = True
             Dim capacidad As Integer = LRepo.CapacidadSubzona(e.Node.Text, e.Node.Parent.Text, conectadoEn)
             Dim ocupacion As Integer = LRepo.OcupacionSubzona(e.Node.Text, e.Node.Parent.Text, conectadoEn)
             Label1.Text = $"Capacidad: ({ocupacion}/{capacidad})"
-            Label2.Visible = False
             ProgressBar1.Maximum = capacidad
             ProgressBar1.Value = ocupacion
-        Else
+        ElseIf e.Node.Level = 2 Then
             Label1.Visible = False
             ProgressBar1.Visible = False
-            Label2.Visible = False
             pInfo = New panelInfoVehiculo(e.Node.Text, True)
             Marco.getInstancia.cargarPanel(pInfo)
             pInfo.Location = Label1.Location
+        End If
+        If e.Node.Level < 2 Then
+            childList.Items.Clear()
+            For Each i As TreeNode In e.Node.Nodes
+                childList.Items.Add(i.Text)
+            Next
         End If
     End Sub
     Private pInfo As panelInfoVehiculo
@@ -66,5 +74,17 @@
             pInfo.Close()
             Marco.getInstancia.cerrarPanel(Of panelInfoVehiculo)()
         End If
+    End Sub
+
+    Private Sub ListBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles childList.SelectedIndexChanged
+        If childList.SelectedIndex < 0 Then
+            Return
+        End If
+        For Each i As TreeNode In TreeView1.SelectedNode.Nodes
+            If i.Text = childList.SelectedItem Then
+                TreeView1.SelectedNode = i
+                Return
+            End If
+        Next
     End Sub
 End Class

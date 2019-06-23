@@ -26,6 +26,7 @@ End Module
 
 Public Class SQLRepo
     Inherits VehiculoRepo
+    Implements ISQLRepositorio
     Implements IUsuarioRepositorio
     Implements ILugarRepositorio
 
@@ -896,5 +897,18 @@ Public Class SQLRepo
 
     Public Function NewLote(id As Integer, nombre As String, hacia As String, prioridad As String) as string Implements IUsuarioRepositorio.NewLote
         Return NewLote(id, nombre, usuarioConectado.ConectadoEn, LugarPorNombre(hacia), usuarioConectado, EstadoLote.Abierto, Logica.Lote.PrioridadFromString(prioridad)).Nombre
+    End Function
+
+    Public Sub Cerrar(lote As String) Implements ILugarRepositorio.Cerrar
+        Dim scmd As New OdbcCommand("update lote set estado='Cerrado' where lote.nombre=? and lote.estado<>'Cerrado';", _conn)
+        scmd.CrearParametro(DbType.String, lote)
+        scmd.ExecuteNonQuery()
+    End Sub
+
+    Public Function Consultar(consulta As String) As DataTable Implements ISQLRepositorio.Consultar
+        Dim ccmd As New OdbcCommand(consulta, _conn)
+        Dim dt As New DataTable
+        dt.Load(ccmd.ExecuteReader)
+        Return dt
     End Function
 End Class

@@ -122,6 +122,7 @@ Public Class Login
             URepo = New SQLRepo(con)
             LRepo = URepo
             VRepo = URepo
+            SRepo = URepo
             estadoConex.Text = "Conectado"
             estadoConex.ForeColor = Color.FromArgb(14, 160, 36)
             Button1.Enabled = True

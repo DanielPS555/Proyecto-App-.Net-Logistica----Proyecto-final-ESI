@@ -4,6 +4,10 @@
         InitializeComponent()
 
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
+        Reload()
+    End Sub
+
+    Private Sub Reload()
         Dim dt As New DataTable("Lotes")
         dt.Columns.Add("ID", GetType(Integer))
         dt.Columns.Add("Nombre", GetType(String))
@@ -29,4 +33,8 @@
         DataGridView2.DataSource = dt
     End Sub
 
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        LRepo.Cerrar(DataGridView1.SelectedRows(0).Cells(0).Value)
+        Reload()
+    End Sub
 End Class

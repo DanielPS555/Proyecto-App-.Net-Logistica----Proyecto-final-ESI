@@ -62,6 +62,7 @@ Public Module RepoUtils
 End Module
 
 Public Interface ILugarRepositorio
+    Sub Cerrar(lote As String)
     Function AllLugares(Optional patron As String = "%") As List(Of Logica.Lugar)
     Function LugarPorNombre(nombre As String) As Logica.Lugar
     Function LugarPorID(id As Integer) As Logica.Lugar
@@ -79,10 +80,15 @@ Public Interface ILugarRepositorio
     Function LoteAbierto(Lote As String) As Boolean
 End Interface
 
+Public Interface ISQLRepositorio
+    Function Consultar(sql As String) As DataTable
+End Interface
+
 Public Module Constantes
     Public URepo As IUsuarioRepositorio = Nothing
     Public LRepo As ILugarRepositorio = Nothing
     Public VRepo As VehiculoRepo = Nothing
+    Public SRepo As ISQLRepositorio = Nothing
 End Module
 
 Public MustInherit Class VehiculoRepo
