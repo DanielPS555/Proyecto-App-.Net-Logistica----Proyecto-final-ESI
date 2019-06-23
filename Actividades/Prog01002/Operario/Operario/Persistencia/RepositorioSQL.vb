@@ -128,6 +128,7 @@ Public Class SQLRepo
             cmd.CrearParametro(DbType.String, username)
             Return cmd.ExecuteNonQuery > 0
         End If
+        Return False
     End Function
 
     Public Function LugaresTrabaja() As List(Of String) Implements IUsuarioRepositorio.LugaresTrabaja
@@ -338,7 +339,7 @@ Public Class SQLRepo
         Dim szonasCmd = New OdbcCommand("select * from subzona where idlugar=? and idzona=?;", _conn)
         szonasCmd.CrearParametro(DbType.Int64, id)
         Dim zpm = szonasCmd.CrearParametro(DbType.Int64, -1)
-        Dim posCmd = New OdbcCommand("select * from posicionado where (idlugar=?) and (idzona=?) and (idsub=?) and (hasta is null);", _conn)
+        Dim posCmd = New OdbcCommand("select * from posicionado where (idlugar=?) and (idzona=?) and (idsub=?);", _conn)
         posCmd.CrearParametro(DbType.Int64, id)
         Dim pzp = posCmd.CrearParametro(DbType.Int64, -1)
         Dim psp = posCmd.CrearParametro(DbType.Int64, -1)
@@ -370,15 +371,17 @@ Public Class SQLRepo
         End If
         ReloadUsuario(usuarioConectado)
         Dim x = usuarioConectado.ConectadoEn
-        Dim szonasPos As IEnumerable(Of List(Of Posicionado)) = x.Subzonas.Select(Function(z) z.Posicionados)
-        For Each i In szonasPos.UnionListas
+        Dim _szonasPos As IEnumerable(Of Posicionado) = x.Subzonas.Select(Function(z) z._posicionados).UnionListas
+        Dim szonasPos = _szonasPos.GroupBy(Of String)(Function(z) z.Vehiculo.VIN)
+        For Each i In szonasPos
             Dim dr = dt.NewRow
             dt.Rows.Add(dr)
-            dr("Estado") = [Enum].GetName(GetType(EstadoVehiculo), i.Vehiculo.Estado)
-            dr("VIN") = i.Vehiculo.VIN
-            dr("Marca") = i.Vehiculo.Marca
-            dr("Modelo") = i.Vehiculo.Modelo
-            dr("VehiculoTipo") = [Enum].GetName(GetType(TipoVehiculo), i.Vehiculo.Tipo)
+            Dim vehiculo = VehiculoIncompleto(i.Key)
+            dr("Estado") = If(i.Where(Function(z) z.Hasta Is Nothing And z.Vehiculo.VIN = i.Key).Count > 0, [Enum].GetName(GetType(EstadoVehiculo), vehiculo.Estado), "Fuera del lugar")
+            dr("VIN") = vehiculo.VIN
+            dr("Marca") = vehiculo.Marca
+            dr("Modelo") = vehiculo.Modelo
+            dr("VehiculoTipo") = [Enum].GetName(GetType(TipoVehiculo), vehiculo.Tipo)
         Next
         Return dt
     End Function
@@ -424,10 +427,12 @@ Public Class SQLRepo
     Public Overrides Function Lote(vin As String, nuevolote As String) As Boolean
         Dim ccom = New OdbcCommand("update integra set invalidado='t' where VIN=? and invalidado='f';", _conn)
         ccom.CrearParametro(DbType.StringFixedLength, vin)
-        Dim ncom = New OdbcCommand("insert into integra(vin, invalidado, fecha, lote) values(?, 'f', ?, ?);", _conn)
+        ccom.ExecuteNonQuery()
+        Dim ncom = New OdbcCommand("insert into integra(vin, invalidado, fecha, lote, idusuario) values(?, 'f', ?, ?, ?);", _conn)
         ncom.CrearParametro(DbType.StringFixedLength, vin)
         ncom.CrearParametro(DbType.DateTime, Date.Now)
         ncom.CrearParametro(DbType.Int64, LoteID(nuevolote))
+        ncom.CrearParametro(DbType.Int64, usuarioConectado.ID)
         Return ncom.ExecuteNonQuery > 0
     End Function
 

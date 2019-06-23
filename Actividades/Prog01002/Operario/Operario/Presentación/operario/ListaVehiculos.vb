@@ -31,7 +31,12 @@
     End Sub
 
     Private Sub DataGridView1_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellDoubleClick
-        MarcoPuerto.getInstancia.cargarPanel(New panelInfoVehiculo(DataGridView1.Rows()(e.RowIndex).Cells(1).Value)).Show()
+        Dim row = DataGridView1.Rows()(e.RowIndex)
+        If row.Cells(0).Value <> "Fuera del lugar" Then
+            MarcoPuerto.getInstancia.cargarPanel(New panelInfoVehiculo(row.Cells(1).Value)).Show()
+        Else
+            MsgBox("El vehiculo no está en este lugar. No puede acceder a su información")
+        End If
     End Sub
 End Class
 
