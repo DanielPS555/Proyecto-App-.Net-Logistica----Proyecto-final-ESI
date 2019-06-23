@@ -111,6 +111,12 @@
     <Compile Include="Lógica\Vehiculo.vb" />
     <Compile Include="Lógica\Zona.vb" />
     <Compile Include="Persistencia\RepositorioSQL.vb" />
+    <Compile Include="Presentación\ConfiguracionRed.Designer.vb">
+      <DependentUpon>ConfiguracionRed.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentación\ConfiguracionRed.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Presentación\operario\crearInformaDeDaños.Designer.vb">
       <DependentUpon>crearInformaDeDaños.vb</DependentUpon>
     </Compile>
@@ -219,6 +225,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Presentación\ConfiguracionRed.resx">
+      <DependentUpon>ConfiguracionRed.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentación\operario\crearInformaDeDaños.resx">
       <DependentUpon>crearInformaDeDaños.vb</DependentUpon>
     </EmbeddedResource>

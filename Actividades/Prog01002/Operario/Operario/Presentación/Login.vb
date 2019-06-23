@@ -1,4 +1,7 @@
-﻿Imports Microsoft.Win32
+﻿Imports System.Data.Odbc
+Imports System.IO
+Imports System.Text
+Imports Microsoft.Win32
 
 Public Class Login
     Private contraseñaVisible As Boolean = False
@@ -7,7 +10,11 @@ Public Class Login
 
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
-
+        Button1.Visible = True 'SACA LA PARTE QUE LOS HACE NO INVISIBLES DONDE SEA QUE ESTE 
+        Button3.Visible = True
+        Button1.Enabled = True
+        Button3.Enabled = True
+        conectar()
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
 
     End Sub
@@ -21,6 +28,7 @@ Public Class Login
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
         Tiempo.Start()
         Me.AcceptButton = Button1 ' al asignar Button1 a la propiedad AcceptButton, el evento Click de Button1 será ejecutado al presionar enter
+
     End Sub
 
     Private Sub user_Enter(sender As Object, e As EventArgs) Handles user.Enter
@@ -99,40 +107,78 @@ Public Class Login
     Private con As New Odbc.OdbcConnection
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
-        Button4.Visible = False
-        Button4.Enabled = False
-        Dim ofd As New OpenFileDialog With {
-            .Multiselect = False
-        }
-        Dim uR As String = "HKEY_CURRENT_USER" + "\" + "BIT" + "\" + "Database"
-        Dim ip = Registry.GetValue(uR, "IP", "localhost")
-        Dim port = Registry.GetValue(uR, "Port", "9088")
-        Dim servername = Registry.GetValue(uR, "Server", "ol_esi")
-        Dim uid = Registry.GetValue(uR, "UID", "")
-        Dim pwd = Registry.GetValue(uR, "PWD", "")
-        Dim db = Registry.GetValue(uR, "BD", "")
-        ip = InputBox("Por favor ingrese la IP del servidor Informix", "IP", ip)
-        port = InputBox("Por favor ingrese el puerto del servidor Informix (9088 por defecto)", "Puerto", port)
-        servername = InputBox("Por favor ingrese el nombre del servidor Informix (ol_esi, ol_taurus, ol_etc)", "Servidor", servername)
-        uid = InputBox("Por favor ingrese el usuario de la BD Informix", "BD", uid)
-        pwd = InputBox("Por favor ingrese la contraseña de la BD Informix", "BD", pwd)
-        db = InputBox("Por favor ingrese el nombre de la BD Informix", "BD", db)
-        Registry.SetValue(uR, "IP", ip)
-        Registry.SetValue(uR, "Port", port)
-        Registry.SetValue(uR, "Server", servername)
-        Registry.SetValue(uR, "UID", uid)
-        Registry.SetValue(uR, "PWD", pwd)
-        Registry.SetValue(uR, "BD", db)
-        con.ConnectionString = $"Driver={{IBM INFORMIX ODBC DRIVER (64-bit)}};Database={db};Host={ip};Server={servername};Service={port};Uid={uid}; Pwd={pwd};"
-        con.Open()
-        Button1.Enabled = True
-        Button1.Visible = True
-        Button1.BackColor = Button3.BackColor
+        Dim config As New ConfiguracionRed(Me)
+        config.ShowDialog()
 
-        Button3.Visible = True
-        Button3.Enabled = True
-        URepo = New SQLRepo(con)
-        LRepo = URepo
-        VRepo = URepo
     End Sub
+
+    Public Function conectar(ip As String, port As String, servername As String, uid As String, pwd As String, db As String) As Integer
+        Try
+            Dim creacion As String = "Driver=IBM INFORMIX ODBC DRIVER (64-bit);Database=" & db & ";Host=" & ip & ";Server=" & servername & ";Service=" &
+            port & ";Uid=" & uid & "; Pwd=" & pwd & ";"
+            MsgBox(creacion)
+            Dim con As New OdbcConnection(creacion)
+            con.Open()
+            URepo = New SQLRepo(con)
+            LRepo = URepo
+            VRepo = URepo
+            estadoConex.Text = "Conectado"
+            estadoConex.ForeColor = Color.FromArgb(14, 160, 36)
+            Button1.Enabled = True
+            Button3.Enabled = True
+            Return 1
+        Catch ee As Exception
+            estadoConex.Text = "Desconectado"
+            estadoConex.ForeColor = Color.FromArgb(180, 20, 20)
+            Button1.Enabled = False
+            Button3.Enabled = False
+            Return 0
+
+        End Try
+    End Function
+
+    Private Function conectar() As Integer
+        Try
+
+            Dim ip = "192.168.1.12" 'MIRA QUE ANDA AUNQUE LE CAMBIE LA IP!!!!
+            Dim port = "9088"
+            Dim servername = "ol_esi"
+            Dim uid = "root" 'CAMBIAR LUEGO
+            Dim pwd = "daniel2001" 'CAMBIAR LUEGO
+            Dim db = "bit"
+            Dim creacion As String = "Driver=IBM INFORMIX ODBC DRIVER (64-bit);Database=" & db & ";Host=" & ip & ";Server=" & servername & ";Service=" &
+            port & ";Uid=" & uid & "; Pwd=" & pwd & ";"
+            Dim con As New OdbcConnection(creacion)
+            con.Open()
+
+
+            URepo = New SQLRepo(con)
+            LRepo = URepo
+            VRepo = URepo
+            estadoConex.Text = "Conectado"
+            estadoConex.ForeColor = Color.FromArgb(14, 160, 36)
+            Button1.Enabled = True
+            Button3.Enabled = True
+            Return 1
+        Catch ee As Exception
+            estadoConex.Text = "Desconectado"
+            estadoConex.ForeColor = Color.FromArgb(180, 20, 20)
+            Button1.Enabled = False
+            Button3.Enabled = False
+            Return 0
+        End Try
+    End Function
+
+    Public Function pruebaConect(ip As String, port As String, servername As String, uid As String, pwd As String, db As String) As Integer
+        Try
+            Dim creacion As String = "Driver=IBM INFORMIX ODBC DRIVER (64-bit);Database=" & db & ";Host=" & ip & ";Server=" & servername & ";Service=" &
+            port & ";Uid=" & uid & "; Pwd=" & pwd & ";"
+            Dim con1 As New OdbcConnection(creacion)
+            con1.Open()
+            con1.Close()
+            Return 1
+        Catch ee As Exception
+            Return 0
+        End Try
+    End Function
 End Class
