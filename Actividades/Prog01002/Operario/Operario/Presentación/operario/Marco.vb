@@ -108,6 +108,7 @@
             MsgBox("Hubo un error desconectando. Por favor informe a su admin")
         End If
         initi = Nothing
+        cerrarTodos()
         Principal.getInstancia.cerrarPanel(Of Marco)()
     End Sub
 

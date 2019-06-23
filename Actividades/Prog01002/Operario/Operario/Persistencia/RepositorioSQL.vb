@@ -78,7 +78,9 @@ Public Class SQLRepo
 
     Public Function UsuarioPorID(id As Integer) As Usuario Implements IUsuarioRepositorio.UsuarioPorID
         Dim usr = UsuarioIncompletoPorID(id)
-        CompletarUsuario(usr)
+        If usr IsNot Nothing Then
+            CompletarUsuario(usr)
+        End If
         Return usr
     End Function
 
@@ -111,13 +113,15 @@ Public Class SQLRepo
 
     Public Function UsuarioPorNombre(nombre As String) As Usuario Implements IUsuarioRepositorio.UsuarioPorNombre
         Dim usr = UsuarioIncompletoPorNombre(nombre)
-        CompletarUsuario(usr)
+        If usr IsNot Nothing Then
+            CompletarUsuario(usr)
+        End If
         Return usr
     End Function
 
     Public Function Login(username As String, password As String) As Usuario Implements IUsuarioRepositorio.Login
         Dim u = UsuarioPorNombre(username)
-        If u.VerificarContraseña(password) Then usuarioConectado = u
+        If u?.VerificarContraseña(password) Then usuarioConectado = u
         Return usuarioConectado
     End Function
 
