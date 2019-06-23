@@ -24,9 +24,8 @@ Partial Class Login
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.panelLogin = New System.Windows.Forms.Panel()
+        Me.Button4 = New System.Windows.Forms.Button()
         Me.Button3 = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.estado = New System.Windows.Forms.Label()
         Me.ver = New System.Windows.Forms.PictureBox()
         Me.e2 = New System.Windows.Forms.Panel()
         Me.e1 = New System.Windows.Forms.Panel()
@@ -39,7 +38,7 @@ Partial Class Login
         Me.Button1 = New System.Windows.Forms.Button()
         Me.user = New System.Windows.Forms.TextBox()
         Me.Tiempo = New System.Windows.Forms.Timer(Me.components)
-        Me.Button4 = New System.Windows.Forms.Button()
+        Me.estado = New System.Windows.Forms.Label()
         Me.panelLogin.SuspendLayout()
         CType(Me.ver, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -49,9 +48,7 @@ Partial Class Login
         'panelLogin
         '
         Me.panelLogin.BackColor = System.Drawing.Color.White
-        Me.panelLogin.Controls.Add(Me.Button4)
         Me.panelLogin.Controls.Add(Me.Button3)
-        Me.panelLogin.Controls.Add(Me.Button2)
         Me.panelLogin.Controls.Add(Me.estado)
         Me.panelLogin.Controls.Add(Me.ver)
         Me.panelLogin.Controls.Add(Me.e2)
@@ -62,8 +59,9 @@ Partial Class Login
         Me.panelLogin.Controls.Add(Me.hora)
         Me.panelLogin.Controls.Add(Me.fecha)
         Me.panelLogin.Controls.Add(Me.PictureBox1)
-        Me.panelLogin.Controls.Add(Me.Button1)
         Me.panelLogin.Controls.Add(Me.user)
+        Me.panelLogin.Controls.Add(Me.Button4)
+        Me.panelLogin.Controls.Add(Me.Button1)
         Me.panelLogin.Dock = System.Windows.Forms.DockStyle.Fill
         Me.panelLogin.Font = New System.Drawing.Font("Century Gothic", 18.0!, System.Drawing.FontStyle.Bold)
         Me.panelLogin.Location = New System.Drawing.Point(0, 0)
@@ -71,11 +69,24 @@ Partial Class Login
         Me.panelLogin.Size = New System.Drawing.Size(1100, 650)
         Me.panelLogin.TabIndex = 2
         '
+        'Button4
+        '
+        Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button4.Font = New System.Drawing.Font("Century Gothic", 21.75!)
+        Me.Button4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(115, Byte), Integer), CType(CType(201, Byte), Integer))
+        Me.Button4.Location = New System.Drawing.Point(405, 452)
+        Me.Button4.Name = "Button4"
+        Me.Button4.Size = New System.Drawing.Size(281, 75)
+        Me.Button4.TabIndex = 16
+        Me.Button4.Text = "Conectar a BD"
+        Me.Button4.UseVisualStyleBackColor = True
+        '
         'Button3
         '
         Me.Button3.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Button3.BackColor = System.Drawing.Color.White
+        Me.Button3.Enabled = False
         Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button3.Font = New System.Drawing.Font("Century Gothic", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(115, Byte), Integer), CType(CType(201, Byte), Integer))
@@ -85,32 +96,7 @@ Partial Class Login
         Me.Button3.TabIndex = 15
         Me.Button3.Text = "Restaurar"
         Me.Button3.UseVisualStyleBackColor = False
-        '
-        'Button2
-        '
-        Me.Button2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button2.BackColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(115, Byte), Integer), CType(CType(201, Byte), Integer))
-        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button2.Font = New System.Drawing.Font("Century Gothic", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button2.ForeColor = System.Drawing.Color.White
-        Me.Button2.Location = New System.Drawing.Point(3, 572)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(281, 75)
-        Me.Button2.TabIndex = 14
-        Me.Button2.Text = "Registrar"
-        Me.Button2.UseVisualStyleBackColor = False
-        '
-        'estado
-        '
-        Me.estado.AutoSize = True
-        Me.estado.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.estado.ForeColor = System.Drawing.Color.White
-        Me.estado.Location = New System.Drawing.Point(388, 438)
-        Me.estado.Name = "estado"
-        Me.estado.Size = New System.Drawing.Size(308, 22)
-        Me.estado.TabIndex = 13
-        Me.estado.Text = "Usuario o contraseña incorrecta "
+        Me.Button3.Visible = False
         '
         'ver
         '
@@ -211,17 +197,18 @@ Partial Class Login
         '
         Me.Button1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button1.BackColor = System.Drawing.Color.Gray
+        Me.Button1.BackColor = System.Drawing.Color.White
         Me.Button1.Enabled = False
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button1.Font = New System.Drawing.Font("Century Gothic", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button1.ForeColor = System.Drawing.Color.White
+        Me.Button1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(115, Byte), Integer), CType(CType(201, Byte), Integer))
         Me.Button1.Location = New System.Drawing.Point(405, 452)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(281, 75)
         Me.Button1.TabIndex = 2
         Me.Button1.Text = "Ingresar"
         Me.Button1.UseVisualStyleBackColor = False
+        Me.Button1.Visible = False
         '
         'user
         '
@@ -240,15 +227,16 @@ Partial Class Login
         '
         Me.Tiempo.Interval = 500
         '
-        'Button4
+        'estado
         '
-        Me.Button4.Font = New System.Drawing.Font("Calibri", 10.0!)
-        Me.Button4.Location = New System.Drawing.Point(710, 579)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(75, 23)
-        Me.Button4.TabIndex = 16
-        Me.Button4.Text = "ODBCFile"
-        Me.Button4.UseVisualStyleBackColor = True
+        Me.estado.AutoSize = True
+        Me.estado.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.estado.ForeColor = System.Drawing.Color.White
+        Me.estado.Location = New System.Drawing.Point(330, 394)
+        Me.estado.Name = "estado"
+        Me.estado.Size = New System.Drawing.Size(308, 22)
+        Me.estado.TabIndex = 13
+        Me.estado.Text = "Usuario o contraseña incorrecta "
         '
         'Login
         '
@@ -281,8 +269,7 @@ Partial Class Login
     Friend WithEvents Button1 As Button
     Friend WithEvents user As TextBox
     Friend WithEvents Tiempo As Timer
-    Friend WithEvents estado As Label
-    Friend WithEvents Button2 As Button
     Friend WithEvents Button3 As Button
     Friend WithEvents Button4 As Button
+    Friend WithEvents estado As Label
 End Class

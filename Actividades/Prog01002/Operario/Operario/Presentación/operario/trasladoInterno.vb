@@ -5,7 +5,10 @@
 
     Private lugar As String = Nothing
 
+    Private vin As String
+
     Public Sub New(VIN As String)
+        Me.vin = VIN
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
 
@@ -27,6 +30,23 @@
     End Sub
 
     Private Sub haciaSubzona_SelectedIndexChanged(sender As Object, e As EventArgs) Handles haciaSubzona.SelectedIndexChanged
+        haciaPosicion.Items.Clear()
+        If haciaSubzona.SelectedIndex < 0 Then Return
+        haciaPosicion.Items.Clear()
+        For i = 0 To LRepo.CapacidadSubzona(haciaSubzona.SelectedItem, haciaZona.SelectedItem, URepo.ConectadoEn)
+            haciaPosicion.Items.Add(i)
+        Next
+    End Sub
 
+    Private Sub ingresar_Click(sender As Object, e As EventArgs)
+        If VRepo.Posicion(Me.vin, haciaZona.SelectedItem, haciaSubzona.SelectedItem, Me.lugar, Me.haciaPosicion.SelectedItem) Then
+            Me.Close()
+        Else
+            MsgBox("No se pudo ingresar el vehículo. Intente nuevamente o reporte a su administrador")
+        End If
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs)
+        Me.Close()
     End Sub
 End Class

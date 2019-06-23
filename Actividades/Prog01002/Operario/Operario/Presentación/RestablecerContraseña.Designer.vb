@@ -32,6 +32,8 @@ Partial Class RestablecerContraseña
         Me.username = New System.Windows.Forms.TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Button2 = New System.Windows.Forms.Button()
+        Me.Button3 = New System.Windows.Forms.Button()
+        Me.Pregunta = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'Label1
@@ -51,7 +53,7 @@ Partial Class RestablecerContraseña
         Me.Label2.Location = New System.Drawing.Point(371, 221)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(157, 26)
-        Me.Label2.TabIndex = 1
+        Me.Label2.TabIndex = 0
         Me.Label2.Text = "Podés cambiarla!"
         '
         'secretanswer
@@ -59,7 +61,8 @@ Partial Class RestablecerContraseña
         Me.secretanswer.Location = New System.Drawing.Point(332, 283)
         Me.secretanswer.Name = "secretanswer"
         Me.secretanswer.Size = New System.Drawing.Size(100, 20)
-        Me.secretanswer.TabIndex = 3
+        Me.secretanswer.TabIndex = 4
+        Me.secretanswer.Visible = False
         '
         'Label4
         '
@@ -67,15 +70,17 @@ Partial Class RestablecerContraseña
         Me.Label4.Location = New System.Drawing.Point(438, 290)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(107, 13)
-        Me.Label4.TabIndex = 5
+        Me.Label4.TabIndex = 4
         Me.Label4.Text = "Tu respuesta secreta"
+        Me.Label4.Visible = False
         '
         'newpwd
         '
         Me.newpwd.Location = New System.Drawing.Point(332, 309)
         Me.newpwd.Name = "newpwd"
         Me.newpwd.Size = New System.Drawing.Size(100, 20)
-        Me.newpwd.TabIndex = 6
+        Me.newpwd.TabIndex = 5
+        Me.newpwd.Visible = False
         '
         'Label5
         '
@@ -83,24 +88,26 @@ Partial Class RestablecerContraseña
         Me.Label5.Location = New System.Drawing.Point(438, 316)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(109, 13)
-        Me.Label5.TabIndex = 7
+        Me.Label5.TabIndex = 6
         Me.Label5.Text = "Tu nueva contraseña"
+        Me.Label5.Visible = False
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(571, 280)
+        Me.Button1.Location = New System.Drawing.Point(553, 309)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(111, 23)
-        Me.Button1.TabIndex = 10
+        Me.Button1.TabIndex = 6
         Me.Button1.Text = "Intentar reiniciar"
         Me.Button1.UseVisualStyleBackColor = True
+        Me.Button1.Visible = False
         '
         'username
         '
         Me.username.Location = New System.Drawing.Point(332, 257)
         Me.username.Name = "username"
         Me.username.Size = New System.Drawing.Size(100, 20)
-        Me.username.TabIndex = 11
+        Me.username.TabIndex = 1
         '
         'Label6
         '
@@ -108,7 +115,7 @@ Partial Class RestablecerContraseña
         Me.Label6.Location = New System.Drawing.Point(438, 260)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(43, 13)
-        Me.Label6.TabIndex = 12
+        Me.Label6.TabIndex = 2
         Me.Label6.Text = "Usuario"
         '
         'Button2
@@ -122,12 +129,33 @@ Partial Class RestablecerContraseña
         Me.Button2.Text = "Atras"
         Me.Button2.UseVisualStyleBackColor = True
         '
+        'Button3
+        '
+        Me.Button3.Location = New System.Drawing.Point(553, 255)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(111, 23)
+        Me.Button3.TabIndex = 2
+        Me.Button3.Text = "Ver pregunta"
+        Me.Button3.UseVisualStyleBackColor = True
+        '
+        'Pregunta
+        '
+        Me.Pregunta.Location = New System.Drawing.Point(96, 283)
+        Me.Pregunta.Name = "Pregunta"
+        Me.Pregunta.Size = New System.Drawing.Size(230, 72)
+        Me.Pregunta.TabIndex = 15
+        Me.Pregunta.Text = "Label3"
+        Me.Pregunta.TextAlign = System.Drawing.ContentAlignment.TopRight
+        Me.Pregunta.Visible = False
+        '
         'RestablecerContraseña
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(1134, 611)
+        Me.Controls.Add(Me.Pregunta)
+        Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.username)
@@ -156,4 +184,6 @@ Partial Class RestablecerContraseña
     Friend WithEvents username As TextBox
     Friend WithEvents Label6 As Label
     Friend WithEvents Button2 As Button
+    Friend WithEvents Button3 As Button
+    Friend WithEvents Pregunta As Label
 End Class

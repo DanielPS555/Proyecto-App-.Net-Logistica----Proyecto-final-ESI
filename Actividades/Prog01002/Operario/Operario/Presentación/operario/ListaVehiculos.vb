@@ -31,7 +31,7 @@
     End Sub
 
     Private Sub DataGridView1_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellDoubleClick
-        MarcoPuerto.getInstancia.cargarPanel(New panelInfoVehiculo(DataGridView1.Rows()(e.RowIndex).Cells(1).Value))
+        MarcoPuerto.getInstancia.cargarPanel(New panelInfoVehiculo(DataGridView1.Rows()(e.RowIndex).Cells(1).Value)).Show()
     End Sub
 End Class
 

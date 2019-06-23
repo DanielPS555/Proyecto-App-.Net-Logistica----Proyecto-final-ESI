@@ -211,12 +211,6 @@
     <Compile Include="Presentación\operario\ListaVehiculos.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Presentación\Registrar.Designer.vb">
-      <DependentUpon>Registrar.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentación\Registrar.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Presentación\RestablecerContraseña.Designer.vb">
       <DependentUpon>RestablecerContraseña.vb</DependentUpon>
     </Compile>
@@ -272,15 +266,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentación\operario\ListaVehiculos.resx">
       <DependentUpon>ListaVehiculos.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentación\Registrar.en.resx">
-      <DependentUpon>Registrar.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentación\Registrar.es.resx">
-      <DependentUpon>Registrar.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentación\Registrar.resx">
-      <DependentUpon>Registrar.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentación\RestablecerContraseña.resx">
       <DependentUpon>RestablecerContraseña.vb</DependentUpon>

@@ -1,5 +1,5 @@
 ﻿Public Class MarcoPuerto
-    Private Shared initi As MarcoPuerto
+    Private Shared initi As MarcoPuerto = Nothing
     Private Sub New()
 
         ' Esta llamada es exigida por el diseñador.
@@ -27,24 +27,35 @@
         Return contenedor.Controls.OfType(Of T).FirstOrDefault
     End Function
 
-    Public Function cargarPanel(Of T As {Form})(obj As T) As T
-        Dim f As Form = contenedor.Controls.OfType(Of T).FirstOrDefault 'Nos devuelve el panel si ya estaba dentro del control del panel
+    Public Sub cerrarTodos()
+        While stack.Count > 0
+            cerrarUltimo()
+        End While
+    End Sub
 
-        If f Is Nothing Then 'si no existe ningun panel de este tipo ingresado, nos devuelve nada, en cuyo caso se crea uno nuevo 
-
-            obj.TopLevel = False
-            obj.FormBorderStyle = FormBorderStyle.None
-
-            contenedor.Controls.Add(obj)
-            contenedor.Tag = obj
-            obj.Show()
-            obj.BringToFront()
-            Return obj
-        Else
-            f.BringToFront()
-            Return f
+    Private Sub cerrarUltimo()
+        If stack.Count = 0 Then
+            Return
         End If
+        Dim x = stack.Pop
+        contenedor.Controls.Remove(x)
+        x.Close()
+    End Sub
 
+    Public stack As New Stack(Of Form)
+
+    Public Function cargarPanel(Of T As {Form})(obj As T) As T
+        cerrarPanel(Of T)()
+        stack.Push(obj)
+
+        obj.TopLevel = False
+        obj.FormBorderStyle = FormBorderStyle.None
+
+        contenedor.Controls.Add(obj)
+        contenedor.Tag = obj
+        obj.Show()
+        obj.BringToFront()
+        Return obj
     End Function
 
     Private Sub MarcoPuerto_Load(sender As Object, e As EventArgs) Handles Me.Load
@@ -94,5 +105,9 @@
         End If
         initi = Nothing
         Principal.getInstancia.cerrarPanel(Of MarcoPuerto)()
+    End Sub
+
+    Private Sub Label1_Click(sender As Object, e As EventArgs) Handles Label1.Click
+        cerrarUltimo()
     End Sub
 End Class

@@ -33,6 +33,7 @@ Partial Class MarcoPuerto
         Me.veiculos = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.inicio = New System.Windows.Forms.Button()
+        Me.Label1 = New System.Windows.Forms.Label()
         Button7 = New System.Windows.Forms.Button()
         Button8 = New System.Windows.Forms.Button()
         Me.contpr.SuspendLayout()
@@ -102,6 +103,7 @@ Partial Class MarcoPuerto
         'Panel2
         '
         Me.Panel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.Panel2.Controls.Add(Me.Label1)
         Me.Panel2.Controls.Add(Me.ListaZona)
         Me.Panel2.Controls.Add(Button8)
         Me.Panel2.Controls.Add(Button7)
@@ -239,6 +241,17 @@ Partial Class MarcoPuerto
         Me.inicio.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.inicio.UseVisualStyleBackColor = False
         '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.ForeColor = System.Drawing.SystemColors.ButtonFace
+        Me.Label1.Location = New System.Drawing.Point(12, 263)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(52, 20)
+        Me.Label1.TabIndex = 0
+        Me.Label1.Text = "Atrás"
+        '
         'MarcoPuerto
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -250,6 +263,7 @@ Partial Class MarcoPuerto
         Me.Text = "MarcoPuerto"
         Me.contpr.ResumeLayout(False)
         Me.Panel2.ResumeLayout(False)
+        Me.Panel2.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -262,4 +276,5 @@ Partial Class MarcoPuerto
     Friend WithEvents veiculos As Button
     Friend WithEvents Button1 As Button
     Friend WithEvents ListaZona As Button
+    Friend WithEvents Label1 As Label
 End Class

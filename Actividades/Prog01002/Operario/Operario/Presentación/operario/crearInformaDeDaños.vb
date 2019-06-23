@@ -1,14 +1,17 @@
 ﻿Public Class crearInformaDeDaños
     ' hay que crear una lista de registros
     Public Sub New()
+        informe = VRepo.NewInforme()
+        Dim m = VehiculoRepo.RegistroTable()(0)
         InitializeComponent()
         tipo.SelectedIndex = 0
     End Sub
 
     Private m As DataTable
+    Private ReadOnly informe As Integer
 
     Public Sub New(informe As Integer)
-        ' Esta llamada es exigida por el diseñador.
+        Me.informe = informe
         InitializeComponent()
         tipo.Enabled = False
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
@@ -30,7 +33,7 @@
     End Sub
 
     Private Sub nuevo_Click(sender As Object, e As EventArgs)
-        MarcoPuerto.getInstancia.cargarPanel(Of RegistroDeDañoPanel)(New RegistroDeDañoPanel)
+        MarcoPuerto.getInstancia.cargarPanel(Of RegistroDeDañoPanel)(New RegistroDeDañoPanel(VRepo.NewReg(informe)))
     End Sub
 
     Private Sub eliminar_Click(sender As Object, e As EventArgs)

@@ -32,6 +32,9 @@ Partial Class panelInfoVehiculo
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.PosicionLabel = New System.Windows.Forms.Label()
+        Me.SubzonaLabel = New System.Windows.Forms.Label()
+        Me.ZonaLabel = New System.Windows.Forms.Label()
         Me.LinkLabel2 = New System.Windows.Forms.LinkLabel()
         Me.LoteCombo = New System.Windows.Forms.ComboBox()
         Me.Button5 = New System.Windows.Forms.Button()
@@ -84,9 +87,6 @@ Partial Class panelInfoVehiculo
         Me.trasportadoPor = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.ZonaLabel = New System.Windows.Forms.Label()
-        Me.SubzonaLabel = New System.Windows.Forms.Label()
-        Me.PosicionLabel = New System.Windows.Forms.Label()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.QR, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -162,6 +162,30 @@ Partial Class panelInfoVehiculo
         Me.TabPage1.Text = "General"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
+        'PosicionLabel
+        '
+        Me.PosicionLabel.AutoSize = True
+        Me.PosicionLabel.Location = New System.Drawing.Point(108, 420)
+        Me.PosicionLabel.Name = "PosicionLabel"
+        Me.PosicionLabel.Size = New System.Drawing.Size(0, 24)
+        Me.PosicionLabel.TabIndex = 134
+        '
+        'SubzonaLabel
+        '
+        Me.SubzonaLabel.AutoSize = True
+        Me.SubzonaLabel.Location = New System.Drawing.Point(120, 378)
+        Me.SubzonaLabel.Name = "SubzonaLabel"
+        Me.SubzonaLabel.Size = New System.Drawing.Size(0, 24)
+        Me.SubzonaLabel.TabIndex = 133
+        '
+        'ZonaLabel
+        '
+        Me.ZonaLabel.AutoSize = True
+        Me.ZonaLabel.Location = New System.Drawing.Point(86, 338)
+        Me.ZonaLabel.Name = "ZonaLabel"
+        Me.ZonaLabel.Size = New System.Drawing.Size(0, 24)
+        Me.ZonaLabel.TabIndex = 132
+        '
         'LinkLabel2
         '
         Me.LinkLabel2.ActiveLinkColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
@@ -175,12 +199,12 @@ Partial Class panelInfoVehiculo
         Me.LinkLabel2.TabStop = True
         Me.LinkLabel2.Text = "Nuevo lote "
         '
-        'ComboBox5
+        'LoteCombo
         '
         Me.LoteCombo.Enabled = False
         Me.LoteCombo.FormattingEnabled = True
         Me.LoteCombo.Location = New System.Drawing.Point(90, 531)
-        Me.LoteCombo.Name = "ComboBox5"
+        Me.LoteCombo.Name = "LoteCombo"
         Me.LoteCombo.Size = New System.Drawing.Size(155, 32)
         Me.LoteCombo.TabIndex = 130
         '
@@ -212,59 +236,59 @@ Partial Class panelInfoVehiculo
         Me.Button3.UseVisualStyleBackColor = False
         Me.Button3.Visible = False
         '
-        'ComboBox1
+        'TipoCombo
         '
         Me.TipoCombo.BackColor = System.Drawing.Color.White
         Me.TipoCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.TipoCombo.Enabled = False
         Me.TipoCombo.FormattingEnabled = True
         Me.TipoCombo.Location = New System.Drawing.Point(95, 231)
-        Me.TipoCombo.Name = "ComboBox1"
+        Me.TipoCombo.Name = "TipoCombo"
         Me.TipoCombo.Size = New System.Drawing.Size(246, 32)
         Me.TipoCombo.TabIndex = 124
         '
-        'TextBox5
+        'AñoBox
         '
         Me.AñoBox.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.AñoBox.Enabled = False
         Me.AñoBox.Location = New System.Drawing.Point(95, 181)
-        Me.AñoBox.Name = "TextBox5"
+        Me.AñoBox.Name = "AñoBox"
         Me.AñoBox.Size = New System.Drawing.Size(492, 26)
         Me.AñoBox.TabIndex = 123
         '
-        'TextBox4
+        'ClienteBox
         '
         Me.ClienteBox.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.ClienteBox.Enabled = False
         Me.ClienteBox.Location = New System.Drawing.Point(95, 134)
-        Me.ClienteBox.Name = "TextBox4"
+        Me.ClienteBox.Name = "ClienteBox"
         Me.ClienteBox.Size = New System.Drawing.Size(492, 26)
         Me.ClienteBox.TabIndex = 122
         '
-        'TextBox3
+        'ModeloBox
         '
         Me.ModeloBox.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.ModeloBox.Enabled = False
         Me.ModeloBox.Location = New System.Drawing.Point(95, 83)
-        Me.ModeloBox.Name = "TextBox3"
+        Me.ModeloBox.Name = "ModeloBox"
         Me.ModeloBox.Size = New System.Drawing.Size(492, 26)
         Me.ModeloBox.TabIndex = 121
         '
-        'TextBox2
+        'MarcaBox
         '
         Me.MarcaBox.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.MarcaBox.Enabled = False
         Me.MarcaBox.Location = New System.Drawing.Point(95, 39)
-        Me.MarcaBox.Name = "TextBox2"
+        Me.MarcaBox.Name = "MarcaBox"
         Me.MarcaBox.Size = New System.Drawing.Size(492, 26)
         Me.MarcaBox.TabIndex = 120
         '
-        'TextBox1
+        'VINBox
         '
         Me.VINBox.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.VINBox.Enabled = False
         Me.VINBox.Location = New System.Drawing.Point(95, 3)
-        Me.VINBox.Name = "TextBox1"
+        Me.VINBox.Name = "VINBox"
         Me.VINBox.Size = New System.Drawing.Size(492, 26)
         Me.VINBox.TabIndex = 119
         '
@@ -730,30 +754,6 @@ Partial Class panelInfoVehiculo
         Me.Label4.Size = New System.Drawing.Size(535, 22)
         Me.Label4.TabIndex = 0
         Me.Label4.Text = "2º ENTREGA, Corespone a la Aplicacion del administrador"
-        '
-        'ZonaLabel
-        '
-        Me.ZonaLabel.AutoSize = True
-        Me.ZonaLabel.Location = New System.Drawing.Point(86, 338)
-        Me.ZonaLabel.Name = "ZonaLabel"
-        Me.ZonaLabel.Size = New System.Drawing.Size(0, 24)
-        Me.ZonaLabel.TabIndex = 132
-        '
-        'SubzonaLabel
-        '
-        Me.SubzonaLabel.AutoSize = True
-        Me.SubzonaLabel.Location = New System.Drawing.Point(120, 378)
-        Me.SubzonaLabel.Name = "SubzonaLabel"
-        Me.SubzonaLabel.Size = New System.Drawing.Size(0, 24)
-        Me.SubzonaLabel.TabIndex = 133
-        '
-        'PosicionLabel
-        '
-        Me.PosicionLabel.AutoSize = True
-        Me.PosicionLabel.Location = New System.Drawing.Point(108, 420)
-        Me.PosicionLabel.Name = "PosicionLabel"
-        Me.PosicionLabel.Size = New System.Drawing.Size(0, 24)
-        Me.PosicionLabel.TabIndex = 134
         '
         'panelInfoVehiculo
         '

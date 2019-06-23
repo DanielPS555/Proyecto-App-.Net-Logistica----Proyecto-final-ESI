@@ -37,12 +37,12 @@ Namespace Logica
         End Sub
     End Class
     Public Class Vehiculo
-        Private ReadOnly _puertoArriba As Integer
+        Private ReadOnly _puertoArriba As Integer?
         Public ReadOnly VIN As String
         Public Marca As String
         Public Modelo As String
         Public Año? As Integer
-        Public Color As Color
+        Public Color? As Color
         Public ReadOnly Tipo As TipoVehiculo
         Public ReadOnly FueraDeSistema As Boolean
         Public ReadOnly ClienteNombre As String
@@ -56,6 +56,9 @@ Namespace Logica
 
         Public ReadOnly Property PosicionActual As Posicionado
             Get
+                If _puertoArriba < 0 Then
+                    Return Nothing
+                End If
                 Try
                     Dim allz = LRepo.AllLugares.Select(Function(x) x.Zonas).UnionListas
                     Dim alls = allz.Select(Function(x) x.Subzonas).UnionListas
@@ -97,19 +100,8 @@ Namespace Logica
             End Get
         End Property
         Public ReadOnly Informes As List(Of InformeDaños)
-        Public Function Alta(marca As String, modelo As String, año As Integer, color As Color, usuario As Usuario) As Boolean
-            If Ingresos.Where(Function(x) x.Tipo = TipoIngreso.Alta).Count > 0 Then
-                Return False
-            End If
-            Me.Marca = marca
-            Me.Modelo = modelo
-            Me.Año = año
-            Me.Color = color
-            Ingresos.Add(New Logica.Ingreso(Me, usuario, TipoIngreso.Alta, Date.Now))
-            Return True
-        End Function
 
-        Public Sub New(vIN As String, marca As String, modelo As String, año As Integer, color As Color, tipo As TipoVehiculo, fueraDeSistema As Boolean, clienteNombre As String, PuertoArriba As Integer, fechaArribo As Date?, informes As List(Of InformeDaños))
+        Public Sub New(vIN As String, marca As String, modelo As String, año As Integer?, color? As Color, tipo As TipoVehiculo, fueraDeSistema As Boolean, clienteNombre As String, PuertoArriba? As Integer, fechaArribo As Date?, informes As List(Of InformeDaños))
             Me.VIN = vIN
             Me.Marca = marca
             Me.Modelo = modelo
@@ -124,7 +116,14 @@ Namespace Logica
         End Sub
 
         Public Sub New(dataRow As DataRow)
-            Me.New(dataRow("VIN"), dataRow("Marca"), dataRow("Modelo"), dataRow("anio"), Color.FromArgb(Integer.Parse(dataRow("Color"), Globalization.NumberStyles.HexNumber)), TipoFromString(dataRow("Tipo")), False, dataRow("ClienteNombre"), dataRow("PuertoArriba"), dataRow("FechaArribo"), New List(Of InformeDaños))
+            Me.New(dataRow("VIN"),
+                   AutoNull(Of String)(dataRow("Marca")), AutoNull(Of String)(dataRow("Modelo")),
+                   AutoNull(Of Integer?)(dataRow("Anio")),
+                   If(dataRow("Color") IsNot DBNull.Value, Drawing.Color.FromArgb(Integer.Parse(dataRow("Color"), Globalization.NumberStyles.HexNumber)), Nothing),
+                   TipoFromString(dataRow("Tipo")),
+                   False,
+                   dataRow("ClienteNombre"),
+                   AutoNull(Of Integer?)(dataRow("PuertoArriba")), AutoNull(Of DateTime?)(dataRow("FechaArribo")), New List(Of InformeDaños)) ' Revisar nuevoVehiculo
         End Sub
     End Class
     Public Enum EstadoVehiculo

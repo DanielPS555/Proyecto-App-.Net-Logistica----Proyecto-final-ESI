@@ -91,9 +91,6 @@ Public Class Login
         End If
     End Sub
 
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        Principal.getInstancia.cargarPanel(Of Registrar)(New Registrar)
-    End Sub
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
         Principal.getInstancia.cargarPanel(Of RestablecerContraseña)(New RestablecerContraseña)
@@ -102,6 +99,8 @@ Public Class Login
     Private con As New Odbc.OdbcConnection
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+        Button4.Visible = False
+        Button4.Enabled = False
         Dim ofd As New OpenFileDialog With {
             .Multiselect = False
         }
@@ -127,7 +126,11 @@ Public Class Login
         con.ConnectionString = $"Driver={{IBM INFORMIX ODBC DRIVER (64-bit)}};Database={db};Host={ip};Server={servername};Service={port};Uid={uid}; Pwd={pwd};"
         con.Open()
         Button1.Enabled = True
-        Button1.BackColor = Color.Aquamarine
+        Button1.Visible = True
+        Button1.BackColor = Button3.BackColor
+
+        Button3.Visible = True
+        Button3.Enabled = True
         URepo = New SQLRepo(con)
         LRepo = URepo
         VRepo = URepo
