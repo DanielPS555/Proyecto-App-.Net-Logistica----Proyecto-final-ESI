@@ -177,9 +177,11 @@ insert into trabajaen values (0,(select IDLugar from lugar where Nombre="Deposit
 		"6ejr27", "MiniVan", 2018, "Chevrolet UY",
 		(select IDLugar from lugar where Nombre="Puerto de montevideo"),
 		"2019-6-26");
+			insert into vehiculo(vin, clientenombre, tipo) values("1L0V36I113UWU1112", "Chevrolet UY", "Auto");
 /*57*/
 
 		/*vehiculoIngresa*/
+		insert into vehiculoIngresa values ("1L0V36I113UWU1112", "2019-4-11","Precarga", (select idusuario from usuario where primernombre = "Fernanda"));
 		insert into vehiculoIngresa values ("1GH2J83LED0987547","2019-4-11","Precarga",(select idusuario from usuario where primernombre = "Fernanda"));
 		insert into vehiculoIngresa values ("1GH2J83LED0987547","2019-6-28","Alta",(select idusuario from usuario where primernombre = "Pepe"));
 		insert into vehiculoIngresa values ("1HGYN4HTEL8372649","2019-4-11","Precarga",(select idusuario from usuario where primernombre = "Fernanda"));

@@ -77,8 +77,8 @@
             Me.Desde = desde
             Me.Hacia = hacia
             Me.Creador = creador
-            Me.Prioridad = prioridad
-            _estado = estado
+            Me.Prioridad = PrioridadFromString(prioridad)
+            _estado = EstadoFromString(estado)
             desde.LotesCreados.Add(Me)
         End Sub
     End Class

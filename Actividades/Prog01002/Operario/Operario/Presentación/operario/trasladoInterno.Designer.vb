@@ -63,6 +63,7 @@ Partial Class trasladoInterno
         ingresar.TabIndex = 123
         ingresar.Text = "Aceptar"
         ingresar.UseVisualStyleBackColor = False
+        AddHandler ingresar.Click, AddressOf Me.ingresar_Click
         '
         'Button1
         '
@@ -83,6 +84,7 @@ Partial Class trasladoInterno
         Button1.TabIndex = 124
         Button1.Text = "Cancelar"
         Button1.UseVisualStyleBackColor = False
+        AddHandler Button1.Click, AddressOf Me.Button1_Click
         '
         'Label13
         '

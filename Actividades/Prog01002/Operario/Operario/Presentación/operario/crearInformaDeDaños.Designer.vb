@@ -22,11 +22,11 @@ Partial Class crearInformaDeDaños
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.ingresarBtn = New System.Windows.Forms.Button
-        Me.Button1 = New System.Windows.Forms.Button
-        Me.nuevo = New System.Windows.Forms.Button
-        Me.eliminar = New System.Windows.Forms.Button
-        Me.modificar = New System.Windows.Forms.Button
+        Dim ingresarBtn As System.Windows.Forms.Button
+        Dim Button1 As System.Windows.Forms.Button
+        Dim nuevo As System.Windows.Forms.Button
+        Dim eliminar As System.Windows.Forms.Button
+        Dim modificar As System.Windows.Forms.Button
         Me.Label1 = New System.Windows.Forms.Label()
         Me.fecha = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -37,8 +37,11 @@ Partial Class crearInformaDeDaños
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Registros = New System.Windows.Forms.ListBox()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.autor = New System.Windows.Forms.Label()
+        ingresarBtn = New System.Windows.Forms.Button()
+        Button1 = New System.Windows.Forms.Button()
+        nuevo = New System.Windows.Forms.Button()
+        eliminar = New System.Windows.Forms.Button()
+        modificar = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'ingresarBtn
@@ -248,36 +251,12 @@ Partial Class crearInformaDeDaños
         Me.Label4.TabIndex = 67
         Me.Label4.Text = "Registros de daño"
         '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
-        Me.Label6.Location = New System.Drawing.Point(14, 49)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(70, 24)
-        Me.Label6.TabIndex = 68
-        Me.Label6.Text = "Autor:"
-        '
-        'autor
-        '
-        Me.autor.AutoSize = True
-        Me.autor.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.autor.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
-        Me.autor.Location = New System.Drawing.Point(90, 49)
-        Me.autor.Name = "autor"
-        Me.autor.Size = New System.Drawing.Size(55, 24)
-        Me.autor.TabIndex = 69
-        Me.autor.Text = "###"
-        '
         'crearInformaDeDaños
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(880, 650)
-        Me.Controls.Add(Me.autor)
-        Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(modificar)
         Me.Controls.Add(eliminar)
@@ -300,12 +279,6 @@ Partial Class crearInformaDeDaños
         Me.PerformLayout()
 
     End Sub
-
-    Friend WithEvents ingresarBtn As Button
-    Friend WithEvents Button1 As Button
-    Friend WithEvents nuevo As Button
-    Friend WithEvents eliminar As Button
-    Friend WithEvents modificar As Button
     Friend WithEvents Label1 As Label
     Friend WithEvents fecha As Label
     Friend WithEvents Label2 As Label
@@ -316,6 +289,4 @@ Partial Class crearInformaDeDaños
     Friend WithEvents Label5 As Label
     Friend WithEvents Registros As ListBox
     Friend WithEvents Label4 As Label
-    Friend WithEvents Label6 As Label
-    Friend WithEvents autor As Label
 End Class

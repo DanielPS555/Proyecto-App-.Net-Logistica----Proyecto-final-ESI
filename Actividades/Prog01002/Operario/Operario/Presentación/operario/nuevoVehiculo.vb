@@ -67,11 +67,14 @@ Public Class nuevoVehiculo
 
     Private Sub Buscar_Click(sender As Object, e As EventArgs)
         Dim vehiculo As Logica.Vehiculo = VRepo.VehiculoIncompleto(buscador.Text)
-        VRepo.IngresosVehiculo(vehiculo)
 
         If vehiculo Is Nothing Then
             MsgBox("No existe precarga para ese vehículo, reporte a su administrador")
-        ElseIf vehiculo.Ingresos.Where(Function(x) x.Tipo = Logica.TipoIngreso.Alta).Count > 0 Then
+            Return
+        End If
+
+        VRepo.IngresosVehiculo(vehiculo)
+        If vehiculo.Ingresos.Where(Function(x) x.Tipo = Logica.TipoIngreso.Alta).Count > 0 Then
             MsgBox("Ese vehículo ya ha sido ingresado")
         Else
             MsgBox("Ese vehículo tiene una precarga pendiente, puede ser ingresado")
@@ -80,7 +83,7 @@ Public Class nuevoVehiculo
 
     Private Sub zonas_SelectedIndexChanged(sender As Object, e As EventArgs) Handles zonas.SelectedIndexChanged
         subzonas.Items.Clear()
-        subzonas.Items.AddRange(LRepo.SubzonasEnLugar(subzonas.SelectedItem, URepo.ConectadoEn).ToArray)
+        subzonas.Items.AddRange(LRepo.SubzonasEnLugar(zonas.SelectedItem, URepo.ConectadoEn).ToArray)
     End Sub
 
     Private Sub subzonas_SelectedIndexChanged(sender As Object, e As EventArgs) Handles subzonas.SelectedIndexChanged
@@ -96,10 +99,44 @@ Public Class nuevoVehiculo
     End Sub
 
     Private Sub ingresar_Click(sender As Object, e As EventArgs)
-        If URepo.AltaVehiculo(buscador.Text, marca.Text, modelo.Text, Integer.Parse(anio.Text), zonas.SelectedItem, subzonas.SelectedItem, Integer.Parse(posDis.SelectedItem), ColorDialog1.Color) Then
+        If URepo.AltaVehiculo(buscador.Text, marca.Text, modelo.Text, Integer.Parse(anio.Text), zonas.SelectedItem, subzonas.SelectedItem, Integer.Parse(posDis.SelectedItem), ColorDialog1.Color, lote.Text) Then
+            MarcoPuerto.getInstancia.cerrarPanel(Of ListaVehiculos)()
+            MarcoPuerto.getInstancia.cargarPanel(New ListaVehiculos)
             MarcoPuerto.getInstancia.cerrarPanel(Of nuevoVehiculo)()
         Else
             MsgBox("No pudo ingresarse ese vehículo. Confirme que no ha sido ingresado aún, o que ha sido precargado.")
         End If
+    End Sub
+
+    Private completionIndex As Integer = 0
+
+    Private Sub buscador_TextChanged(sender As Object, e As EventArgs) Handles buscador.TextChanged
+        If buscador.Text.Count > 0 Then
+            Dim autos = VRepo.AutoComplete(buscador.Text)
+            If autos.Count > 0 Then
+                Dim index = buscador.Text.Count
+                If completionIndex < 0 Then
+                    completionIndex = autos.Count - completionIndex
+                End If
+                buscador.Text = autos(completionIndex Mod autos.Count)
+                buscador.SelectionStart = index
+                buscador.SelectionLength = buscador.Text.Length - index
+            End If
+        End If
+    End Sub
+
+    Private Sub buscador_KeyDown(sender As Object, e As KeyEventArgs) Handles buscador.KeyDown
+        If e.KeyCode = Keys.Tab Then
+            If e.Shift Then
+                completionIndex -= 1
+            Else
+                completionIndex += 1
+            End If
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Sub buscador_Leave(sender As Object, e As EventArgs) Handles buscador.Leave
+        cliente.Text = VRepo.Cliente(buscador.Text)
     End Sub
 End Class

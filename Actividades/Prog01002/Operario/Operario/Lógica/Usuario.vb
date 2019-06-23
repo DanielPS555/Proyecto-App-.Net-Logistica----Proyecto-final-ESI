@@ -80,9 +80,9 @@
             End Get
         End Property
 
-        Private _password_hash As String
+        Public _password_hash As String
         Public Function VerificarContraseña(password As String) As Boolean
-            Return password.Equals(_password_hash.Trim)
+            Return ContraseñaHash(password.Trim, UserName).Equals(_password_hash)
         End Function
 
         Public Function RestablecerContraseña(Respuesta As String, NewPass As String) As Boolean

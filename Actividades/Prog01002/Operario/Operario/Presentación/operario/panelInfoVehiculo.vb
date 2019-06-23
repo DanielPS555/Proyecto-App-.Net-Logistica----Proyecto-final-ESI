@@ -27,8 +27,20 @@
         informes.DataSource = VRepo.Inspecciones(vin)
         traslados.Columns.Clear()
         traslados.DataSource = VRepo.PosicionesEn(vin, URepo.ConectadoEn)
+        dtlugares = New DataTable
+        dtlugares.Columns.Add("Lugar", GetType(String))
+        dtlugares.Columns.Add("Fecha de llegada", GetType(String))
+        dtlugares.Columns.Add("Transportado por", GetType(String))
+        Dim dr = dtlugares.NewRow
+        dtlugares.Rows.Add(dr)
+        dr("Lugar") = VRepo.PuertoLlegada(vin)
+        dr("Fecha de llegada") = VRepo.FechaLlegada(vin)
+        dr("Transportado por") = "Ingresa al sistema"
+        lugares.Columns.Clear()
+        lugares.DataSource = dtlugares
     End Sub
 
+    Private dtlugares As DataTable
     Public Sub RegularTamañoColumnas()
         informes.Columns(0).Width = 60
         informes.Columns(1).Width = 200
@@ -86,7 +98,8 @@
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        MarcoPuerto.getInstancia.cargarPanel(Of trasladoInterno)(New trasladoInterno(""))
+        Dim tInterno = New trasladoInterno(vin)
+        tInterno.ShowDialog()
     End Sub
 
     Private Sub informes_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles informes.CellDoubleClick
@@ -145,5 +158,9 @@
             VRepo.Tipo(vin, TipoCombo.SelectedItem)
         End If
         Button1_Click(sender, e)
+    End Sub
+
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+        MarcoPuerto.getInstancia.cargarPanel(Of crearInformaDeDaños)(New crearInformaDeDaños())
     End Sub
 End Class

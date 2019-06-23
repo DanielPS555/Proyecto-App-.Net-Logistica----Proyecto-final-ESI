@@ -37,7 +37,6 @@ Partial Class nuevoVehiculo
         Me.anio = New System.Windows.Forms.ComboBox()
         Me.l_color = New System.Windows.Forms.Label()
         Me.l_cliente = New System.Windows.Forms.Label()
-        Me.cliente = New System.Windows.Forms.TextBox()
         Me.l_tipo = New System.Windows.Forms.Label()
         Me.tipo = New System.Windows.Forms.ComboBox()
         Me.Label8 = New System.Windows.Forms.Label()
@@ -52,6 +51,7 @@ Partial Class nuevoVehiculo
         Me.muestra_color = New System.Windows.Forms.Panel()
         Me.ColorDialog1 = New System.Windows.Forms.ColorDialog()
         Me.LinkLabel2 = New System.Windows.Forms.LinkLabel()
+        Me.cliente = New System.Windows.Forms.TextBox()
         QR = New System.Windows.Forms.Button()
         Buscar = New System.Windows.Forms.Button()
         color = New System.Windows.Forms.Button()
@@ -262,15 +262,6 @@ Partial Class nuevoVehiculo
         Me.l_cliente.TabIndex = 36
         Me.l_cliente.Text = "Cliente"
         '
-        'cliente
-        '
-        Me.cliente.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.cliente.Font = New System.Drawing.Font("Century Gothic", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cliente.Location = New System.Drawing.Point(92, 258)
-        Me.cliente.Name = "cliente"
-        Me.cliente.Size = New System.Drawing.Size(757, 25)
-        Me.cliente.TabIndex = 37
-        '
         'l_tipo
         '
         Me.l_tipo.AutoSize = True
@@ -397,6 +388,16 @@ Partial Class nuevoVehiculo
         Me.LinkLabel2.TabStop = True
         Me.LinkLabel2.Text = "Crear lote"
         '
+        'cliente
+        '
+        Me.cliente.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.cliente.Font = New System.Drawing.Font("Century Gothic", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cliente.Location = New System.Drawing.Point(92, 258)
+        Me.cliente.Name = "cliente"
+        Me.cliente.ReadOnly = True
+        Me.cliente.Size = New System.Drawing.Size(757, 25)
+        Me.cliente.TabIndex = 37
+        '
         'nuevoVehiculo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -449,7 +450,6 @@ Partial Class nuevoVehiculo
     Friend WithEvents anio As ComboBox
     Friend WithEvents l_color As Label
     Friend WithEvents l_cliente As Label
-    Friend WithEvents cliente As TextBox
     Friend WithEvents l_tipo As Label
     Friend WithEvents tipo As ComboBox
     Friend WithEvents Label8 As Label
@@ -464,4 +464,5 @@ Partial Class nuevoVehiculo
     Friend WithEvents muestra_color As Panel
     Friend WithEvents ColorDialog1 As ColorDialog
     Friend WithEvents LinkLabel2 As LinkLabel
+    Friend WithEvents cliente As TextBox
 End Class

@@ -8,11 +8,11 @@ Public Interface IUsuarioRepositorio
 
     Function Login(username As String, password As String) As Logica.Usuario
     Function Restablecer(username As String, respuesta As String, newpass As String) As Boolean
-
+    Function Pregunta(username As String) As String
     Function LugaresTrabaja() As List(Of String)
     Function UltimaConexionEn(lugar As String) As Date?
 
-    Function AltaVehiculo(VIN As String, marca As String, modelo As String, año As Integer, zona As String, subzona As String, posicion As Integer, color As Color) As Boolean
+    Function AltaVehiculo(VIN As String, marca As String, modelo As String, año As Integer, zona As String, subzona As String, posicion As Integer, color As Color, loteInicial As String) As Boolean
 
     Function ConectarEn(lugar As String) As Boolean
     Function Desconectar() As Boolean
@@ -40,7 +40,10 @@ Public Module RepoUtils
     <System.Runtime.CompilerServices.Extension>
     Function SubzonasEnLugar([this] As ILugarRepositorio, zona As String, lugar As String) As List(Of String)
         Dim _lugar = this.LugarPorNombre(lugar)
-        Return _lugar?.Subzonas.Select(Function(x) x.Nombre).ToList
+        Dim _subzonas = _lugar?.Subzonas.Where(Function(x)
+                                                   Return x.Padre.Nombre = zona
+                                               End Function)
+        Return _subzonas.Select(Function(x) x.Nombre).ToList
     End Function
 
     <System.Runtime.CompilerServices.Extension>
@@ -65,6 +68,7 @@ Public Interface ILugarRepositorio
     Function TipoLugar(selectedItem As String) As String
     Function CapacidadZonas(lugar As String) As DataTable
     Function PosicionOcupada(subzona As String, zona As String, nombre As String, posicion As Integer) As Boolean
+    Function OcupacionSubzona(text1 As String, text2 As String, conectadoEn As String) As Integer
 End Interface
 
 Public Module Constantes
@@ -93,11 +97,13 @@ Public MustInherit Class VehiculoRepo
     Public MustOverride Function Tipo(vin As String, nuevoTipo As String) As String
     Public MustOverride Function Color(vin As String) As Color
     Public MustOverride Function Lugar(vin As String) As String
+    Public MustOverride Function AutoComplete(start As String) As List(Of String)
     Public MustOverride Function Zona(vin As String) As String
     Public MustOverride Function Subzona(vin As String) As String
     Public MustOverride Function Posicion(vin As String) As Integer
     Public MustOverride Function Posicion(vin As String, zona As String, subzona As String, lugar As String, nuevaPosicion As Integer) As Boolean
     Public MustOverride Function Lote(vin As String) As String
+    Public MustOverride Function Lote(vin As String, nuevolote As String) As Boolean
 
     Public MustOverride ReadOnly Property Vehiculos As List(Of Logica.Vehiculo)
 
@@ -117,10 +123,24 @@ Public MustInherit Class VehiculoRepo
 
     Public MustOverride Function Inspecciones(vin As String) As DataTable
     Public MustOverride Function Registros(vin As String, inspeccion As Integer) As Tuple(Of DataTable, String, Integer, Date, String, Integer)
+    Public MustOverride Function Imagenes(inspeccion As Integer, registro As Integer) As DataTable
     Public MustOverride Function PosicionesEn(vin As String, conectadoEn As String) As DataTable
 
     Public MustOverride Function TipoInforme(informe As Integer) As String
     Public MustOverride Function DescripcionInforme(informe As Integer) As String
     Public MustOverride Function VINInforme(informe As Integer) As String
     Friend MustOverride Function PosicionadoDesde(vin As String) As DateTime
+    Friend MustOverride Function PuertoLlegada(vin As String) As String
+    Friend MustOverride Function FechaLlegada(vin As String) As String
+    Friend MustOverride Function NewReg(enInforme As Integer) As Integer
+    Friend MustOverride Function NewInforme() As Integer
+    Friend Shared Function RegistroTable() As DataTable()
+        Dim rdt As New DataTable("Registros")
+        rdt.Columns.Add("ID", GetType(Integer))
+        rdt.Columns.Add("Descripcion", GetType(String))
+        Dim idt As New DataTable("Imagenes")
+        idt.Columns.Add("ID", GetType(Integer))
+        idt.Columns.Add("Imagen", GetType(Bitmap))
+        Return {rdt, idt}
+    End Function
 End Class
