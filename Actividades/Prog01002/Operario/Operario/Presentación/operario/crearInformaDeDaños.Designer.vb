@@ -63,6 +63,7 @@ Partial Class crearInformaDeDaños
         ingresarBtn.TabIndex = 62
         ingresarBtn.Text = "Ingrezar"
         ingresarBtn.UseVisualStyleBackColor = False
+        ingresarBtn.Visible = False
         AddHandler ingresarBtn.Click, AddressOf Me.ingresarBtn_Click
         '
         'Button1
@@ -105,6 +106,7 @@ Partial Class crearInformaDeDaños
         nuevo.TabIndex = 64
         nuevo.Text = "+"
         nuevo.UseVisualStyleBackColor = False
+        nuevo.Visible = False
         AddHandler nuevo.Click, AddressOf Me.nuevo_Click
         '
         'eliminar
@@ -126,6 +128,7 @@ Partial Class crearInformaDeDaños
         eliminar.TabIndex = 65
         eliminar.Text = "-"
         eliminar.UseVisualStyleBackColor = False
+        eliminar.Visible = False
         AddHandler eliminar.Click, AddressOf Me.eliminar_Click
         '
         'modificar
@@ -147,6 +150,7 @@ Partial Class crearInformaDeDaños
         modificar.TabIndex = 66
         modificar.Text = "E"
         modificar.UseVisualStyleBackColor = False
+        modificar.Visible = False
         AddHandler modificar.Click, AddressOf Me.modificar_Click
         '
         'Label1

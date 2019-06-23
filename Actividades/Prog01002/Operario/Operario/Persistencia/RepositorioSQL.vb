@@ -839,12 +839,12 @@ Public Class SQLRepo
         Return bitmapBytes
     End Function
     Friend Overrides Sub UpdateInformeImg(eninforme As Integer, enregistro As Integer, images As List(Of Bitmap))
-        Dim cmd As New OdbcCommand("select count(*) from imagenregistro where informe=? and nroenlista=?;", _conn)
+        Dim cmd As New OdbcCommand("select count(*) from imagenregistro where informe=? and nrolista=?;", _conn)
         cmd.CrearParametro(DbType.Int64, eninforme)
         cmd.CrearParametro(DbType.Int64, enregistro)
         Dim r = cmd.ExecuteScalar
         If r <> images.Count Then
-            Dim icmd As New OdbcCommand("insert into imagenregistro(informe, nroenlista, nroimagen, imagen) values(?,?,?,?);", _conn)
+            Dim icmd As New OdbcCommand("insert into imagenregistro(informe, nrolista, nroimagen, imagen) values(?,?,?,?);", _conn)
             icmd.CrearParametro(DbType.Int64, eninforme)
             icmd.CrearParametro(DbType.Int64, enregistro)
             Dim imgc = icmd.CrearParametro(DbType.Int64, -1)
