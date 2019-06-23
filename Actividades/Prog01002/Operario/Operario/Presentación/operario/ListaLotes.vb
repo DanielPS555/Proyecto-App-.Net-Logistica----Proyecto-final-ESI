@@ -28,4 +28,5 @@
         Dim dt As DataTable = LRepo.VehiculosEnLote(DataGridView1.Rows(e.RowIndex).Cells(0).Value)
         DataGridView2.DataSource = dt
     End Sub
+
 End Class

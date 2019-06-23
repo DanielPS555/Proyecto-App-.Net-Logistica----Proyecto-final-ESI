@@ -29,6 +29,7 @@ Public Interface IUsuarioRepositorio
     Function UltimoAcceso() As Date?
     Function UsuarioIncompletoPorNombre(nombre As String) As Usuario
     Function CreadorDe(vin As String) As Boolean
+    Function NewLote(id As Integer, nombre As String, hacia As String, prioridad As String) As String
 End Interface
 
 Public Module RepoUtils
@@ -72,6 +73,10 @@ Public Interface ILugarRepositorio
     Function Nombre(id As Integer) As String
     Function VehiculosEnLote(value As Integer) As DataTable
     Function NewLote(numeroLote As UInteger, nombre As String, conectadoEn As Lugar, destino As Lugar, usuario As Usuario, estado As EstadoLote, prioridad As PrioridadLote) As Lote
+    Function CapacidadZona(zona As String, lugar As String) As Integer
+    Function OcupacionZona(zona As String, lugar As String) As Integer
+    Function VehiculosEnSubzona(y As String, x As String, conectadoEn As String) As List(Of String)
+    Function LoteAbierto(Lote As String) As Boolean
 End Interface
 
 Public Module Constantes
@@ -137,7 +142,10 @@ Public MustInherit Class VehiculoRepo
     Friend MustOverride Function PuertoLlegada(vin As String) As String
     Friend MustOverride Function FechaLlegada(vin As String) As String
     Friend MustOverride Function NewReg(enInforme As Integer) As Integer
-    Friend MustOverride Function NewInforme() As Integer
+    Friend MustOverride Function NewInforme(desc As String, tipo As String, vin As String) As Integer
+    Friend MustOverride Function UpdateInformeDesc(id As Integer, newDesc As String) As Boolean
+    Friend MustOverride Function UpdateInformeTipo(id As Integer, newTipo As String) As Boolean
+    Friend MustOverride Function UpdateInformeReg(id As Integer, reg As Integer, newDesc As String) As Boolean
     Friend Shared Function RegistroTable() As DataTable()
         Dim rdt As New DataTable("Registros")
         rdt.Columns.Add("ID", GetType(Integer))
@@ -149,4 +157,5 @@ Public MustInherit Class VehiculoRepo
     End Function
 
     Friend MustOverride Sub Lugares(dtlugares As DataTable, vin As String)
+    Friend MustOverride Sub UpdateInformeImg(eninforme As Integer, enregistro As Integer, images As List(Of Bitmap))
 End Class

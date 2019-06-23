@@ -19,6 +19,8 @@ Public Class nuevoVehiculo
     Private WriteOnly Property LoteReceiver_Lote As String Implements LoteReceiver.Lote
         Set(value As String)
             lote_s = value
+            loadLotes()
+            lote.SelectedItem = lote_s
         End Set
     End Property
 
@@ -33,8 +35,12 @@ Public Class nuevoVehiculo
         anio.SelectedItem = DateTime.Now.Year
         zonas.Items.Clear()
         zonas.Items.AddRange(LRepo.ZonasEnLugar(URepo.ConectadoEn).ToArray)
+        loadLotes()
+    End Sub
+
+    Private Sub loadLotes()
         lote.Items.Clear()
-        lote.Items.AddRange(LRepo.LotesEnLugar(URepo.ConectadoEn).ToArray)
+        lote.Items.AddRange(LRepo.LotesEnLugar(URepo.ConectadoEn).Where(Function(x) LRepo.LoteAbierto(x)).ToArray)
     End Sub
 
     Private Sub nuevoVehiculo_Paint(sender As Object, e As PaintEventArgs) Handles Me.Paint
@@ -53,16 +59,20 @@ Public Class nuevoVehiculo
         End If
     End Sub
 
-    Private Sub nuevoLote_Click(sender As Object, e As EventArgs)
-        Dim d As New NuevoLote(Me)
-        d.ShowDialog()
-    End Sub
-
-    Private Sub LinkLabel2_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel2.LinkClicked
-        Marco.getInstancia.cargarPanel(Of crearInformaDeDaños)(New crearInformaDeDaños)
-    End Sub
 
     Private Sub infoDaños_Click(sender As Object, e As EventArgs)
+        Dim vehiculo As Logica.Vehiculo = VRepo.VehiculoIncompleto(buscador.Text)
+        If vehiculo Is Nothing Then
+            MsgBox("No existe precarga para ese vehículo, reporte a su administrador")
+            Return
+        End If
+
+        VRepo.IngresosVehiculo(vehiculo)
+        If vehiculo.Ingresos.Where(Function(x) x.Tipo = Logica.TipoIngreso.Alta).Count > 0 Then
+            MsgBox("Ese vehículo ya ha sido ingresado")
+        Else
+            Marco.getInstancia.cargarPanel(Of crearInformaDeDaños)(New crearInformaDeDaños(vehiculo.VIN))
+        End If
     End Sub
 
     Private Sub Buscar_Click(sender As Object, e As EventArgs)
@@ -102,6 +112,7 @@ Public Class nuevoVehiculo
         Dim v = VRepo.VehiculoIncompleto(buscador.Text)
         If v Is Nothing Then
             MsgBox("Ese vehículo no existe, por favor verifique el VIN.")
+            Return
         End If
         If URepo.AltaVehiculo(buscador.Text, marca.Text, modelo.Text, Integer.Parse(anio.Text), zonas.SelectedItem, subzonas.SelectedItem, Integer.Parse(posDis.SelectedItem), ColorDialog1.Color, lote.Text) Then
             Marco.getInstancia.cerrarPanel(Of ListaVehiculos)()
@@ -142,5 +153,10 @@ Public Class nuevoVehiculo
 
     Private Sub buscador_Leave(sender As Object, e As EventArgs) Handles buscador.Leave
         cliente.Text = VRepo.Cliente(buscador.Text)
+    End Sub
+
+    Private Sub LinkLabel2_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel2.LinkClicked
+        Dim d As New NuevoLote(Me)
+        d.ShowDialog()
     End Sub
 End Class

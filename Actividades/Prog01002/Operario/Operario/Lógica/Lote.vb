@@ -6,7 +6,7 @@
     End Enum
     Public Enum PrioridadLote
         Normal
-        Alto
+        Alta
     End Enum
     Public Class Lote
         Public Shared prioridadMap As Dictionary(Of String, PrioridadLote) = Nothing

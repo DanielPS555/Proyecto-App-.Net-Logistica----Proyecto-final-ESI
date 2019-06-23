@@ -25,7 +25,6 @@ Partial Class RegistroDeDañoPanel
         Dim anteriorFotografia As System.Windows.Forms.Button
         Dim sigienteFotografia As System.Windows.Forms.Button
         Dim NuevaFotografia As System.Windows.Forms.Button
-        Dim eliminaFotografia As System.Windows.Forms.Button
         Dim Button4 As System.Windows.Forms.Button
         Dim Button5 As System.Windows.Forms.Button
         Me.Label1 = New System.Windows.Forms.Label()
@@ -49,12 +48,113 @@ Partial Class RegistroDeDañoPanel
         anteriorFotografia = New System.Windows.Forms.Button()
         sigienteFotografia = New System.Windows.Forms.Button()
         NuevaFotografia = New System.Windows.Forms.Button()
-        eliminaFotografia = New System.Windows.Forms.Button()
         Button4 = New System.Windows.Forms.Button()
         Button5 = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         CType(Me.panelFotografias, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
+        '
+        'anteriorFotografia
+        '
+        anteriorFotografia.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        anteriorFotografia.BackColor = System.Drawing.SystemColors.Control
+        anteriorFotografia.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        anteriorFotografia.FlatAppearance.BorderSize = 0
+        anteriorFotografia.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        anteriorFotografia.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        anteriorFotografia.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        anteriorFotografia.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        anteriorFotografia.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        anteriorFotografia.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
+        anteriorFotografia.Location = New System.Drawing.Point(369, 554)
+        anteriorFotografia.Name = "anteriorFotografia"
+        anteriorFotografia.Size = New System.Drawing.Size(104, 35)
+        anteriorFotografia.TabIndex = 67
+        anteriorFotografia.Text = "Anterior"
+        anteriorFotografia.UseVisualStyleBackColor = False
+        '
+        'sigienteFotografia
+        '
+        sigienteFotografia.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        sigienteFotografia.BackColor = System.Drawing.SystemColors.Control
+        sigienteFotografia.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        sigienteFotografia.FlatAppearance.BorderSize = 0
+        sigienteFotografia.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        sigienteFotografia.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        sigienteFotografia.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        sigienteFotografia.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        sigienteFotografia.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        sigienteFotografia.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
+        sigienteFotografia.Location = New System.Drawing.Point(479, 554)
+        sigienteFotografia.Name = "sigienteFotografia"
+        sigienteFotografia.Size = New System.Drawing.Size(104, 35)
+        sigienteFotografia.TabIndex = 68
+        sigienteFotografia.Text = "Sigiente"
+        sigienteFotografia.UseVisualStyleBackColor = False
+        '
+        'NuevaFotografia
+        '
+        NuevaFotografia.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        NuevaFotografia.BackColor = System.Drawing.SystemColors.Control
+        NuevaFotografia.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        NuevaFotografia.FlatAppearance.BorderSize = 0
+        NuevaFotografia.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        NuevaFotografia.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        NuevaFotografia.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        NuevaFotografia.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        NuevaFotografia.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        NuevaFotografia.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
+        NuevaFotografia.Location = New System.Drawing.Point(767, 185)
+        NuevaFotografia.Name = "NuevaFotografia"
+        NuevaFotografia.Size = New System.Drawing.Size(104, 35)
+        NuevaFotografia.TabIndex = 69
+        NuevaFotografia.Text = "Agregar"
+        NuevaFotografia.UseVisualStyleBackColor = False
+        AddHandler NuevaFotografia.Click, AddressOf Me.NuevaFotografia_Click
+        '
+        'Button4
+        '
+        Button4.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Button4.BackColor = System.Drawing.Color.FromArgb(CType(CType(180, Byte), Integer), CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer))
+        Button4.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Button4.FlatAppearance.BorderSize = 0
+        Button4.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Button4.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        Button4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Button4.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Button4.ForeColor = System.Drawing.Color.White
+        Button4.Location = New System.Drawing.Point(603, 603)
+        Button4.Name = "Button4"
+        Button4.Size = New System.Drawing.Size(130, 35)
+        Button4.TabIndex = 72
+        Button4.Text = "Cancelar"
+        Button4.UseVisualStyleBackColor = False
+        '
+        'Button5
+        '
+        Button5.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Button5.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Button5.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Button5.FlatAppearance.BorderSize = 0
+        Button5.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Button5.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        Button5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        Button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Button5.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Button5.ForeColor = System.Drawing.Color.White
+        Button5.Location = New System.Drawing.Point(741, 603)
+        Button5.Name = "Button5"
+        Button5.Size = New System.Drawing.Size(133, 35)
+        Button5.TabIndex = 71
+        Button5.Text = "Ingrezar"
+        Button5.UseVisualStyleBackColor = False
+        AddHandler Button5.Click, AddressOf Me.Button5_Click
         '
         'Label1
         '
@@ -230,46 +330,6 @@ Partial Class RegistroDeDañoPanel
         Me.Panel1.Size = New System.Drawing.Size(392, 364)
         Me.Panel1.TabIndex = 66
         '
-        'anteriorFotografia
-        '
-        anteriorFotografia.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        anteriorFotografia.BackColor = System.Drawing.SystemColors.Control
-        anteriorFotografia.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        anteriorFotografia.FlatAppearance.BorderSize = 0
-        anteriorFotografia.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        anteriorFotografia.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        anteriorFotografia.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        anteriorFotografia.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        anteriorFotografia.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        anteriorFotografia.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
-        anteriorFotografia.Location = New System.Drawing.Point(369, 554)
-        anteriorFotografia.Name = "anteriorFotografia"
-        anteriorFotografia.Size = New System.Drawing.Size(104, 35)
-        anteriorFotografia.TabIndex = 67
-        anteriorFotografia.Text = "Anterior"
-        anteriorFotografia.UseVisualStyleBackColor = False
-        '
-        'sigienteFotografia
-        '
-        sigienteFotografia.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        sigienteFotografia.BackColor = System.Drawing.SystemColors.Control
-        sigienteFotografia.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        sigienteFotografia.FlatAppearance.BorderSize = 0
-        sigienteFotografia.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        sigienteFotografia.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        sigienteFotografia.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        sigienteFotografia.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        sigienteFotografia.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        sigienteFotografia.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
-        sigienteFotografia.Location = New System.Drawing.Point(479, 554)
-        sigienteFotografia.Name = "sigienteFotografia"
-        sigienteFotografia.Size = New System.Drawing.Size(104, 35)
-        sigienteFotografia.TabIndex = 68
-        sigienteFotografia.Text = "Sigiente"
-        sigienteFotografia.UseVisualStyleBackColor = False
-        '
         'panelFotografias
         '
         Me.panelFotografias.Dock = System.Windows.Forms.DockStyle.Fill
@@ -282,86 +342,6 @@ Partial Class RegistroDeDañoPanel
         Me.panelFotografias.TabIndex = 0
         Me.panelFotografias.TabStop = False
         '
-        'NuevaFotografia
-        '
-        NuevaFotografia.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        NuevaFotografia.BackColor = System.Drawing.SystemColors.Control
-        NuevaFotografia.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        NuevaFotografia.FlatAppearance.BorderSize = 0
-        NuevaFotografia.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        NuevaFotografia.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        NuevaFotografia.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        NuevaFotografia.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        NuevaFotografia.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        NuevaFotografia.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
-        NuevaFotografia.Location = New System.Drawing.Point(767, 185)
-        NuevaFotografia.Name = "NuevaFotografia"
-        NuevaFotografia.Size = New System.Drawing.Size(104, 35)
-        NuevaFotografia.TabIndex = 69
-        NuevaFotografia.Text = "Agregar"
-        NuevaFotografia.UseVisualStyleBackColor = False
-        '
-        'eliminaFotografia
-        '
-        eliminaFotografia.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        eliminaFotografia.BackColor = System.Drawing.SystemColors.Control
-        eliminaFotografia.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        eliminaFotografia.FlatAppearance.BorderSize = 0
-        eliminaFotografia.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        eliminaFotografia.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        eliminaFotografia.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        eliminaFotografia.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        eliminaFotografia.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        eliminaFotografia.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
-        eliminaFotografia.Location = New System.Drawing.Point(767, 226)
-        eliminaFotografia.Name = "eliminaFotografia"
-        eliminaFotografia.Size = New System.Drawing.Size(104, 35)
-        eliminaFotografia.TabIndex = 70
-        eliminaFotografia.Text = "Eliminar"
-        eliminaFotografia.UseVisualStyleBackColor = False
-        '
-        'Button4
-        '
-        Button4.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Button4.BackColor = System.Drawing.Color.FromArgb(CType(CType(180, Byte), Integer), CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer))
-        Button4.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Button4.FlatAppearance.BorderSize = 0
-        Button4.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Button4.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        Button4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Button4.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Button4.ForeColor = System.Drawing.Color.White
-        Button4.Location = New System.Drawing.Point(603, 603)
-        Button4.Name = "Button4"
-        Button4.Size = New System.Drawing.Size(130, 35)
-        Button4.TabIndex = 72
-        Button4.Text = "Cancelar"
-        Button4.UseVisualStyleBackColor = False
-        '
-        'Button5
-        '
-        Button5.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Button5.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Button5.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Button5.FlatAppearance.BorderSize = 0
-        Button5.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Button5.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        Button5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        Button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Button5.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Button5.ForeColor = System.Drawing.Color.White
-        Button5.Location = New System.Drawing.Point(741, 603)
-        Button5.Name = "Button5"
-        Button5.Size = New System.Drawing.Size(133, 35)
-        Button5.TabIndex = 71
-        Button5.Text = "Ingrezar"
-        Button5.UseVisualStyleBackColor = False
-        '
         'RegistroDeDañoPanel
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -370,7 +350,6 @@ Partial Class RegistroDeDañoPanel
         Me.ClientSize = New System.Drawing.Size(880, 650)
         Me.Controls.Add(Button4)
         Me.Controls.Add(Button5)
-        Me.Controls.Add(eliminaFotografia)
         Me.Controls.Add(NuevaFotografia)
         Me.Controls.Add(sigienteFotografia)
         Me.Controls.Add(anteriorFotografia)

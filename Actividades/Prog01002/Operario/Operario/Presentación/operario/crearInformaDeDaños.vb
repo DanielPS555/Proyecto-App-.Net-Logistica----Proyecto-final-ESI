@@ -1,7 +1,7 @@
 ﻿Public Class crearInformaDeDaños
     ' hay que crear una lista de registros
-    Public Sub New()
-        informe = VRepo.NewInforme()
+    Public Sub New(VIN As String)
+        informe = VRepo.NewInforme("", "Total", VIN)
         Dim m = VehiculoRepo.RegistroTable()(0)
         InitializeComponent()
         tipo.SelectedIndex = 0
@@ -33,7 +33,7 @@
     End Sub
 
     Private Sub nuevo_Click(sender As Object, e As EventArgs)
-        Marco.getInstancia.cargarPanel(Of RegistroDeDañoPanel)(New RegistroDeDañoPanel(VRepo.NewReg(informe)))
+        Marco.getInstancia.cargarPanel(Of RegistroDeDañoPanel)(New RegistroDeDañoPanel(informe))
     End Sub
 
     Private Sub eliminar_Click(sender As Object, e As EventArgs)
@@ -53,5 +53,17 @@
 
     Private Sub Button1_Click(sender As Object, e As EventArgs)
         Marco.getInstancia.cerrarPanel(Of crearInformaDeDaños)()
+    End Sub
+
+    Private Sub ingresarBtn_Click(sender As Object, e As EventArgs)
+        If Not (VRepo.UpdateInformeDesc(informe, descipt.Text) AndAlso VRepo.UpdateInformeTipo(informe, tipo.SelectedItem)) Then
+            MsgBox("no se pudo actualizar el informe")
+        Else
+            Marco.getInstancia.cerrarPanel(Of crearInformaDeDaños)()
+        End If
+    End Sub
+
+    Private Sub modificar_Click(sender As Object, e As EventArgs)
+
     End Sub
 End Class

@@ -60,11 +60,11 @@
 
     Private Sub Marco_Load(sender As Object, e As EventArgs) Handles Me.Load
         inicio.Font = New Font("Century Gothic", 15.75!, FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
-        Me.cargarPanel(Of OperarioHome)(New OperarioHome) 'despues se pasa por parametro un operario
         If LRepo.TipoLugar(URepo.ConectadoEn) = "Patio" Then
             nuevoVehiculo.Visible = False
             nuevoVehiculo.Enabled = False
         End If
+        Me.cargarPanel(Of OperarioHome)(New OperarioHome) 'despues se pasa por parametro un operario
     End Sub
 
     Private Sub botones_Click(sender As Object, e As EventArgs) Handles veiculos.Click, nuevoVehiculo.Click, lotes.Click, ListaZona.Click, inicio.Click

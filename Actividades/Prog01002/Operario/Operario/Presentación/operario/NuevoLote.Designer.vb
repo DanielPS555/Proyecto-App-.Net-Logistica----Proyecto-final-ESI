@@ -25,18 +25,18 @@ Partial Class NuevoLote
         Dim ingresar As System.Windows.Forms.Button
         Dim Button1 As System.Windows.Forms.Button
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.destino = New System.Windows.Forms.ComboBox()
+        Me.l_destino = New System.Windows.Forms.Label()
         Me.cp = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.idLote = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.descipt = New System.Windows.Forms.TextBox()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.nom = New System.Windows.Forms.TextBox()
-        Me.l_descript = New System.Windows.Forms.Label()
         Me.l_nom = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.l_destino = New System.Windows.Forms.Label()
-        Me.destino = New System.Windows.Forms.ComboBox()
+        Me.Prioridad = New System.Windows.Forms.ComboBox()
+        Me.Label2 = New System.Windows.Forms.Label()
         ingresar = New System.Windows.Forms.Button()
         Button1 = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
@@ -87,6 +87,8 @@ Partial Class NuevoLote
         'Panel1
         '
         Me.Panel1.BackColor = System.Drawing.Color.White
+        Me.Panel1.Controls.Add(Me.Label2)
+        Me.Panel1.Controls.Add(Me.Prioridad)
         Me.Panel1.Controls.Add(Me.destino)
         Me.Panel1.Controls.Add(Me.l_destino)
         Me.Panel1.Controls.Add(Me.cp)
@@ -95,10 +97,8 @@ Partial Class NuevoLote
         Me.Panel1.Controls.Add(Me.Label4)
         Me.Panel1.Controls.Add(Button1)
         Me.Panel1.Controls.Add(ingresar)
-        Me.Panel1.Controls.Add(Me.descipt)
         Me.Panel1.Controls.Add(Me.Panel2)
         Me.Panel1.Controls.Add(Me.nom)
-        Me.Panel1.Controls.Add(Me.l_descript)
         Me.Panel1.Controls.Add(Me.l_nom)
         Me.Panel1.Controls.Add(Me.Label1)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
@@ -106,6 +106,25 @@ Partial Class NuevoLote
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(438, 554)
         Me.Panel1.TabIndex = 0
+        '
+        'destino
+        '
+        Me.destino.Font = New System.Drawing.Font("Century Gothic", 15.0!)
+        Me.destino.FormattingEnabled = True
+        Me.destino.Location = New System.Drawing.Point(107, 122)
+        Me.destino.Name = "destino"
+        Me.destino.Size = New System.Drawing.Size(319, 31)
+        Me.destino.TabIndex = 60
+        '
+        'l_destino
+        '
+        Me.l_destino.AutoSize = True
+        Me.l_destino.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.l_destino.Location = New System.Drawing.Point(13, 126)
+        Me.l_destino.Name = "l_destino"
+        Me.l_destino.Size = New System.Drawing.Size(87, 22)
+        Me.l_destino.TabIndex = 59
+        Me.l_destino.Text = "Destino: "
         '
         'cp
         '
@@ -147,14 +166,6 @@ Partial Class NuevoLote
         Me.Label4.TabIndex = 55
         Me.Label4.Text = "id:"
         '
-        'descipt
-        '
-        Me.descipt.Location = New System.Drawing.Point(16, 197)
-        Me.descipt.Multiline = True
-        Me.descipt.Name = "descipt"
-        Me.descipt.Size = New System.Drawing.Size(410, 273)
-        Me.descipt.TabIndex = 34
-        '
         'Panel2
         '
         Me.Panel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
@@ -171,16 +182,6 @@ Partial Class NuevoLote
         Me.nom.Name = "nom"
         Me.nom.Size = New System.Drawing.Size(314, 25)
         Me.nom.TabIndex = 32
-        '
-        'l_descript
-        '
-        Me.l_descript.AutoSize = True
-        Me.l_descript.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.l_descript.Location = New System.Drawing.Point(13, 163)
-        Me.l_descript.Name = "l_descript"
-        Me.l_descript.Size = New System.Drawing.Size(116, 22)
-        Me.l_descript.TabIndex = 2
-        Me.l_descript.Text = "Descripcion"
         '
         'l_nom
         '
@@ -202,24 +203,25 @@ Partial Class NuevoLote
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Crear Lote "
         '
-        'l_destino
+        'Prioridad
         '
-        Me.l_destino.AutoSize = True
-        Me.l_destino.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.l_destino.Location = New System.Drawing.Point(13, 126)
-        Me.l_destino.Name = "l_destino"
-        Me.l_destino.Size = New System.Drawing.Size(87, 22)
-        Me.l_destino.TabIndex = 59
-        Me.l_destino.Text = "Destino: "
+        Me.Prioridad.Font = New System.Drawing.Font("Century Gothic", 15.0!)
+        Me.Prioridad.FormattingEnabled = True
+        Me.Prioridad.Items.AddRange(New Object() {"Normal", "Alta"})
+        Me.Prioridad.Location = New System.Drawing.Point(107, 159)
+        Me.Prioridad.Name = "Prioridad"
+        Me.Prioridad.Size = New System.Drawing.Size(319, 31)
+        Me.Prioridad.TabIndex = 61
         '
-        'destino
+        'Label2
         '
-        Me.destino.Font = New System.Drawing.Font("Century Gothic", 15.0!)
-        Me.destino.FormattingEnabled = True
-        Me.destino.Location = New System.Drawing.Point(107, 122)
-        Me.destino.Name = "destino"
-        Me.destino.Size = New System.Drawing.Size(319, 31)
-        Me.destino.TabIndex = 60
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Location = New System.Drawing.Point(1, 163)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(95, 22)
+        Me.Label2.TabIndex = 62
+        Me.Label2.Text = "Prioridad:"
         '
         'NuevoLote
         '
@@ -236,10 +238,8 @@ Partial Class NuevoLote
     End Sub
 
     Friend WithEvents Panel1 As Panel
-    Friend WithEvents l_descript As Label
     Friend WithEvents l_nom As Label
     Friend WithEvents Label1 As Label
-    Friend WithEvents descipt As TextBox
     Friend WithEvents Panel2 As Panel
     Friend WithEvents nom As TextBox
     Friend WithEvents cp As Label
@@ -248,4 +248,6 @@ Partial Class NuevoLote
     Friend WithEvents Label4 As Label
     Friend WithEvents destino As ComboBox
     Friend WithEvents l_destino As Label
+    Friend WithEvents Label2 As Label
+    Friend WithEvents Prioridad As ComboBox
 End Class

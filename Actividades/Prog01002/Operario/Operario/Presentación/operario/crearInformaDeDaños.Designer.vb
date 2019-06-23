@@ -63,6 +63,7 @@ Partial Class crearInformaDeDaños
         ingresarBtn.TabIndex = 62
         ingresarBtn.Text = "Ingrezar"
         ingresarBtn.UseVisualStyleBackColor = False
+        AddHandler ingresarBtn.Click, AddressOf Me.ingresarBtn_Click
         '
         'Button1
         '
@@ -146,6 +147,7 @@ Partial Class crearInformaDeDaños
         modificar.TabIndex = 66
         modificar.Text = "E"
         modificar.UseVisualStyleBackColor = False
+        AddHandler modificar.Click, AddressOf Me.modificar_Click
         '
         'Label1
         '

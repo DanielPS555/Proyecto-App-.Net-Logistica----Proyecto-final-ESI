@@ -91,7 +91,7 @@ Public Class SQLRepo
         Dim rdr = cmd.ExecuteReader
         Dim dt As New DataTable
         dt.Load(rdr)
-        Dim _cmd = New OdbcCommand("select first 10 * from conexion inner join trabajaen on trabajaen.id=conexion.idtrabajaen where idusuario=? order by conexion.horaingreso desc;", _conn)
+        Dim _cmd = New OdbcCommand("select idtrabajaen, conexion.horaingreso, conexion.horasalida from conexion inner join trabajaen on trabajaen.id=conexion.idtrabajaen where idusuario=? order by conexion.horaingreso;", _conn)
         _cmd.CrearParametro(DbType.Int64, usr.ID)
         usr.TrabajaEn.Clear()
         For Each i As DataRow In dt.Rows
@@ -104,9 +104,9 @@ Public Class SQLRepo
             Return
         End If
         cdt.ToList.ForEach(Sub(con)
-                               Dim te = usr.TrabajaEn.Find(Function(x) x.ID = con("IDTrabajaEn"))
-                               Dim entrada = con("HoraIngreso")
-                               Dim salida = AutoNull(Of DateTime?)(con("HoraSalida"))
+                               Dim te = usr.TrabajaEn.Find(Function(x) x.ID = con(0))
+                               Dim entrada As DateTime = con(1)
+                               Dim salida = AutoNull(Of DateTime?)(con(2))
                                te.Conexiones.Add(New Conexion(entrada, salida))
                            End Sub)
     End Sub
@@ -161,33 +161,35 @@ Public Class SQLRepo
         End If
         Dim val = usuarioConectado.TrabajaEn.Where(Function(x) x.Lugar.Nombre = lugar).Select(Function(x) usuarioConectado.Conectar(x.Lugar)).Single
         If val Then
-            Dim conexiones = usuarioConectado.TrabajaEn.Select(Function(x) x.Conexiones).UnionListas.ToList
-            conexiones.Sort(ConnectionComparison)
-            Dim te = usuarioConectado.TrabajaEn.Where(Function(x) x.Conexiones.Contains(conexiones.Last)).Single
+            Dim te = usuarioConectado.TrabajaEn.Where(Function(x) x.Lugar.Nombre = lugar).Single
             Dim com As New OdbcCommand("insert into conexion(IDTrabajaEn, HoraIngreso) values(?, ?);", _conn)
             com.CrearParametro(DbType.Int64, te.ID)
             com.CrearParametro(DbType.DateTime, Date.Now)
-            Return com.ExecuteNonQuery() > 0
-            'TODO:       Informix se queja de tuplas duplicadas; arreglar para la segunda
-            Return True
+            Try
+                Return com.ExecuteNonQuery() > 0
+            Catch e As Exception
+                Return False
+            End Try
         Else
-            Return False
+                Return False
         End If
     End Function
 
     Public Function Desconectar() As Boolean Implements IUsuarioRepositorio.Desconectar
         If usuarioConectado Is Nothing Then Return Nothing
         Dim val = usuarioConectado.Desconectar
+        CompletarUsuario(usuarioConectado)
         If val Then
-            Dim conexiones = usuarioConectado.TrabajaEn.Select(Function(x) x.Conexiones).UnionListas.ToList
-            conexiones.Sort(ConnectionComparison)
+            Dim conexiones = usuarioConectado.TrabajaEn.Select(Function(x) x.Conexiones).UnionListas.Where(Function(x) x.FechaFin Is Nothing).ToList
             Dim te = usuarioConectado.TrabajaEn.Where(Function(x) x.Conexiones.Contains(conexiones.Last)).Single
             Dim com As New OdbcCommand("update conexion set HoraSalida=? where IDTrabajaEn=? and HoraIngreso=?;", _conn)
             com.CrearParametro(DbType.DateTime, DateTime.Now)
             com.CrearParametro(DbType.Int64, te.ID)
             com.CrearParametro(DbType.DateTime, conexiones.Last.FechaInicio)
-            Return com.ExecuteNonQuery > 0
-            'Informix se queja de tuplas duplicadas
+            If com.ExecuteNonQuery < 1 Then
+                Return False
+            End If
+            usuarioConectado = Nothing
             Return True
         Else
             Return False
@@ -425,7 +427,9 @@ Public Class SQLRepo
     End Function
 
     Public Function ConectadoEn() As String Implements IUsuarioRepositorio.ConectadoEn
-        Return usuarioConectado?.ConectadoEn.Nombre
+        Dim scom = New OdbcCommand("select lugar.nombre from lugar, trabajaen, conexion where lugar.idlugar=trabajaen.idlugar and conexion.idtrabajaen=trabajaen.id and conexion.horasalida is null;", _conn)
+        scom.CrearParametro(DbType.Int64, usuarioConectado.ID)
+        Return scom.ExecuteScalar
     End Function
 
     Public Overrides Function Lote(vin As String, nuevolote As String) As Boolean
@@ -529,7 +533,9 @@ Public Class SQLRepo
     End Function
 
     Public Function TipoLugar(lugar As String) As String Implements ILugarRepositorio.TipoLugar
-        Return [Enum].GetName(GetType(TipoLugar), LugarPorNombre(lugar).Tipo)
+        Dim selcmd = New OdbcCommand("select tipo from lugar where nombre = ?;", _conn)
+        selcmd.CrearParametro(DbType.String, lugar)
+        Return selcmd.ExecuteScalar
     End Function
 
     Public Overrides Function Inspecciones(vin As String) As DataTable
@@ -690,14 +696,20 @@ Public Class SQLRepo
 
     Friend Overrides Function NewReg(enInforme As Integer) As Integer
         Dim scmd As New OdbcCommand("select dbinfo('sqlca.sqlerrd1') from informix.systables where tabid=1;", _conn)
-        Dim cmd As New OdbcCommand("insert into registrodanios(informedanios) values(?);", _conn)
+        Dim cmd As New OdbcCommand("insert into registrodanios(informedanios, descripcion) values(?, '');", _conn)
         cmd.CrearParametro(DbType.Int64, enInforme)
         cmd.ExecuteNonQuery()
         Return scmd.ExecuteScalar
     End Function
 
-    Friend Overrides Function NewInforme() As Integer
-        Dim cmd As New OdbcCommand("insert into informedanios(id) values(0);", _conn)
+    Friend Overrides Function NewInforme(descripcion As String, tipo As String, vin As String) As Integer
+        Dim cmd As New OdbcCommand("insert into informedanios(id, descripcion, fecha, tipo, vin, idlugar, idusuario) values(0, ?, ?, ?, ?, ?, ?);", _conn)
+        cmd.CrearParametro(DbType.String, descripcion)
+        cmd.CrearParametro(DbType.DateTime, Date.Now)
+        cmd.CrearParametro(DbType.String, tipo)
+        cmd.CrearParametro(DbType.String, vin)
+        cmd.CrearParametro(DbType.Int64, Me.usuarioConectado.ConectadoEn.ID)
+        cmd.CrearParametro(DbType.Int64, Me.usuarioConectado.ID)
         Dim scmd As New OdbcCommand("select dbinfo('sqlca.sqlerrd1') from informix.systables where tabid=1;", _conn)
         cmd.ExecuteNonQuery()
         Return scmd.ExecuteScalar
@@ -784,5 +796,105 @@ Public Class SQLRepo
             Return New Lote(numeroLote, nombre, lugar.ID, destino.ID, usuario, prioridad, estado)
         End If
         Return Nothing
+    End Function
+
+    Friend Overrides Function UpdateInformeDesc(id As Integer, newDesc As String) As Boolean
+        Dim cmd As New OdbcCommand("update informedanios set descripcion=? where id=?;", _conn)
+        cmd.CrearParametro(DbType.String, newDesc)
+        cmd.CrearParametro(DbType.Int64, id)
+        Return cmd.ExecuteNonQuery > 0
+    End Function
+
+    Friend Overrides Function UpdateInformeTipo(id As Integer, newTipo As String) As Boolean
+        Dim cmd As New OdbcCommand("update informedanios set tipo=? where id=?;", _conn)
+        cmd.CrearParametro(DbType.String, newTipo)
+        cmd.CrearParametro(DbType.Int64, id)
+        Return cmd.ExecuteNonQuery > 0
+    End Function
+
+    Friend Overrides Function UpdateInformeReg(id As Integer, reg As Integer, newDesc As String) As Boolean
+        Dim cmd As New OdbcCommand("select count(*) from registrodanios where informedanios=? and nroenlista=?;", _conn)
+        cmd.CrearParametro(DbType.Int64, id)
+        cmd.CrearParametro(DbType.Int64, reg)
+        If cmd.ExecuteScalar > 0 Then
+            Dim ucmd As New OdbcCommand("update registrodanios set descripcion=? where informedanios=? and nroenlista=?;", _conn)
+            ucmd.CrearParametro(DbType.String, newDesc)
+            ucmd.CrearParametro(DbType.Int64, id)
+            ucmd.CrearParametro(DbType.Int64, reg)
+            Return ucmd.ExecuteNonQuery > 0
+        Else
+            Dim icmd As New OdbcCommand("insert into registrodanios(informedanios, nroenlista, descripcion) values(?, ?, ?);", _conn)
+            icmd.CrearParametro(DbType.Int64, id)
+            icmd.CrearParametro(DbType.Int64, reg)
+            icmd.CrearParametro(DbType.String, newDesc)
+            Return icmd.ExecuteNonQuery > 0
+        End If
+    End Function
+    Private Shared Function ConvertToByteArray(ByVal value As Bitmap) As Byte()
+        Dim bitmapBytes As Byte()
+        Using stream As New System.IO.MemoryStream
+            value.Save(stream, value.RawFormat)
+            bitmapBytes = stream.ToArray
+        End Using
+        Return bitmapBytes
+    End Function
+    Friend Overrides Sub UpdateInformeImg(eninforme As Integer, enregistro As Integer, images As List(Of Bitmap))
+        Dim cmd As New OdbcCommand("select count(*) from imagenregistro where informe=? and nroenlista=?;", _conn)
+        cmd.CrearParametro(DbType.Int64, eninforme)
+        cmd.CrearParametro(DbType.Int64, enregistro)
+        Dim r = cmd.ExecuteScalar
+        If r <> images.Count Then
+            Dim icmd As New OdbcCommand("insert into imagenregistro(informe, nroenlista, nroimagen, imagen) values(?,?,?,?);", _conn)
+            icmd.CrearParametro(DbType.Int64, eninforme)
+            icmd.CrearParametro(DbType.Int64, enregistro)
+            Dim imgc = icmd.CrearParametro(DbType.Int64, -1)
+            Dim imagen = icmd.CrearParametro(DbType.Binary, Nothing)
+            For i = r To images.Count - 1
+                imgc.Value = i
+                imagen.Value = ConvertToByteArray(images(i))
+                If icmd.ExecuteNonQuery < 1 Then
+                    Return
+                End If
+            Next
+        End If
+    End Sub
+
+    Public Function CapacidadZona(zona As String, lugar As String) As Integer Implements ILugarRepositorio.CapacidadZona
+        Dim cmd As New OdbcCommand("select capacidad from zona where nombre=? and idlugar=(select idlugar from lugar where nombre=?);", _conn)
+        cmd.CrearParametro(DbType.String, zona)
+        cmd.CrearParametro(DbType.String, lugar)
+        Return cmd.ExecuteScalar
+    End Function
+
+    Public Function OcupacionZona(zona As String, lugar As String) As Integer Implements ILugarRepositorio.OcupacionZona
+        Dim cmd As New OdbcCommand("select count(*) from posicionado where idlugar=? and idzona=? and hasta is null;", _conn)
+        Dim sz = LugarPorNombre(ConectadoEn).Zonas.Where(Function(z) z.Nombre = zona).Single
+        cmd.CrearParametro(DbType.Int64, sz.Padre.ID)
+        cmd.CrearParametro(DbType.Int64, sz.ID)
+        Return cmd.ExecuteScalar
+    End Function
+
+    Public Function VehiculosEnSubzona(y As String, x As String, conectadoEn As String) As List(Of String) Implements ILugarRepositorio.VehiculosEnSubzona
+        Dim cmd As New OdbcCommand("select VIN from posicionado where idlugar=? and idzona=? and idsub=? and hasta is null;", _conn)
+        Dim sz = LugarPorNombre(conectadoEn).Subzonas.Where(Function(z) z.Nombre = y AndAlso z.Padre.Nombre = x).Single
+        cmd.CrearParametro(DbType.Int64, sz.Padre.Padre.ID)
+        cmd.CrearParametro(DbType.Int64, sz.Padre.ID)
+        cmd.CrearParametro(DbType.Int64, sz.ID)
+        Dim r = cmd.ExecuteReader
+        Dim lst As New List(Of String)
+        While r.Read
+            lst.Add(r.Item(0))
+        End While
+        Return lst
+    End Function
+
+    Public Function LoteAbierto(Lote As String) As Boolean Implements ILugarRepositorio.LoteAbierto
+        Dim scmd As New OdbcCommand("select estado from lote where nombre=?;", _conn)
+        scmd.CrearParametro(DbType.String, Lote)
+        Return scmd.ExecuteScalar = "Abierto"
+    End Function
+
+    Public Function NewLote(id As Integer, nombre As String, hacia As String, prioridad As String) as string Implements IUsuarioRepositorio.NewLote
+        Return NewLote(id, nombre, usuarioConectado.ConectadoEn, LugarPorNombre(hacia), usuarioConectado, EstadoLote.Abierto, Logica.Lote.PrioridadFromString(prioridad)).Nombre
     End Function
 End Class
