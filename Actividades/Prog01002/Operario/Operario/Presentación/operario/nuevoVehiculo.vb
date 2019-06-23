@@ -59,7 +59,7 @@ Public Class nuevoVehiculo
     End Sub
 
     Private Sub LinkLabel2_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel2.LinkClicked
-        MarcoPuerto.getInstancia.cargarPanel(Of crearInformaDeDaños)(New crearInformaDeDaños)
+        Marco.getInstancia.cargarPanel(Of crearInformaDeDaños)(New crearInformaDeDaños)
     End Sub
 
     Private Sub infoDaños_Click(sender As Object, e As EventArgs)
@@ -99,12 +99,16 @@ Public Class nuevoVehiculo
     End Sub
 
     Private Sub ingresar_Click(sender As Object, e As EventArgs)
+        Dim v = VRepo.VehiculoIncompleto(buscador.Text)
+        If v Is Nothing Then
+            MsgBox("Ese vehículo no existe, por favor verifique el VIN.")
+        End If
         If URepo.AltaVehiculo(buscador.Text, marca.Text, modelo.Text, Integer.Parse(anio.Text), zonas.SelectedItem, subzonas.SelectedItem, Integer.Parse(posDis.SelectedItem), ColorDialog1.Color, lote.Text) Then
-            MarcoPuerto.getInstancia.cerrarPanel(Of ListaVehiculos)()
-            MarcoPuerto.getInstancia.cargarPanel(New ListaVehiculos)
-            MarcoPuerto.getInstancia.cerrarPanel(Of nuevoVehiculo)()
+            Marco.getInstancia.cerrarPanel(Of ListaVehiculos)()
+            Marco.getInstancia.cargarPanel(New ListaVehiculos)
+            Marco.getInstancia.cerrarPanel(Of nuevoVehiculo)()
         Else
-            MsgBox("No pudo ingresarse ese vehículo. Confirme que no ha sido ingresado aún, o que ha sido precargado.")
+            MsgBox("No pudo ingresarse ese vehículo. Confirme que no ha sido ingresado aún.")
         End If
     End Sub
 

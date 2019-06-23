@@ -1,5 +1,5 @@
-﻿Public Class MarcoPuerto
-    Private Shared initi As MarcoPuerto = Nothing
+﻿Public Class Marco
+    Private Shared initi As Marco = Nothing
     Private Sub New()
 
         ' Esta llamada es exigida por el diseñador.
@@ -9,9 +9,9 @@
 
     End Sub
 
-    Public Shared Function getInstancia() As MarcoPuerto
+    Public Shared Function getInstancia() As Marco
         If initi Is Nothing Then
-            initi = New MarcoPuerto
+            initi = New Marco
         End If
         Return initi
     End Function
@@ -58,9 +58,13 @@
         Return obj
     End Function
 
-    Private Sub MarcoPuerto_Load(sender As Object, e As EventArgs) Handles Me.Load
+    Private Sub Marco_Load(sender As Object, e As EventArgs) Handles Me.Load
         inicio.Font = New Font("Century Gothic", 15.75!, FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.cargarPanel(Of OperarioHome)(New OperarioHome) 'despues se pasa por parametro un operario
+        If LRepo.TipoLugar(URepo.ConectadoEn) = "Patio" Then
+            nuevoVehiculo.Visible = False
+            nuevoVehiculo.Enabled = False
+        End If
     End Sub
 
     Private Sub botones_Click(sender As Object, e As EventArgs) Handles veiculos.Click, nuevoVehiculo.Click, lotes.Click, ListaZona.Click, inicio.Click
@@ -104,7 +108,7 @@
             MsgBox("Hubo un error desconectando. Por favor informe a su admin")
         End If
         initi = Nothing
-        Principal.getInstancia.cerrarPanel(Of MarcoPuerto)()
+        Principal.getInstancia.cerrarPanel(Of Marco)()
     End Sub
 
     Private Sub Label1_Click(sender As Object, e As EventArgs) Handles Label1.Click

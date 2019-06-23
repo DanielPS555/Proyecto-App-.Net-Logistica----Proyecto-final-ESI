@@ -18,6 +18,7 @@
 
         Public ReadOnly Property ConectadoEn As Lugar
             Get
+                URepo.CompletarUsuario(Me)
                 Dim _t_e = _trabajaen.Where(Function(x)
                                                 Return x.Conexiones.Where(Function(y) As Boolean
                                                                               Return y.FechaFin Is Nothing
@@ -35,12 +36,12 @@
             End Get
         End Property
 
-        Public Function CrearLote(NumeroLote As Integer, Destino As Lugar, FechaSalida As Date) As Lote
+        Public Function CrearLote(NumeroLote As Integer, nombre As String, Destino As Lugar) As Lote
             Dim lotes = LRepo.AllLugares.Select(Of List(Of Lote))(Function(x) x.LotesCreados).UnionListas
-            If lotes.Where(Function(x) x.ID = NumeroLote).Count <> 0 Then
+            If lotes.Where(Function(x) x.ID = NumeroLote OrElse x.Nombre = nombre).Count <> 0 Then
                 Throw New InvalidOperationException("Ya existe un lote con esa numeración")
             End If
-            Return New Lote(NumeroLote, FechaSalida, Me.ConectadoEn, Destino, Me, EstadoLote.Abierto, PrioridadLote.Normal)
+            Return LRepo.NewLote(NumeroLote, nombre, Me.ConectadoEn, Destino, Me, EstadoLote.Abierto, PrioridadLote.Normal)
         End Function
 
         Public Function Conectar(En As Lugar) As Boolean

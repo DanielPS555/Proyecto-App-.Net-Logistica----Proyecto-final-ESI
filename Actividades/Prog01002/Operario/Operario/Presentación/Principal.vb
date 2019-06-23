@@ -57,4 +57,10 @@
         End If
 
     End Function
+
+    Private Sub Principal_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        If URepo IsNot Nothing Then
+            URepo.Desconectar()
+        End If
+    End Sub
 End Class

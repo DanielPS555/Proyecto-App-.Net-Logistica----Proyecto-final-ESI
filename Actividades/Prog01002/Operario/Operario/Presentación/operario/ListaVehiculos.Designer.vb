@@ -59,6 +59,7 @@ Partial Class ListaVehiculos
         buscar.Text = "Buscar"
         buscar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         buscar.UseVisualStyleBackColor = False
+        AddHandler buscar.Click, AddressOf Me.buscar_Click
         '
         'nuevo
         '
@@ -114,6 +115,7 @@ Partial Class ListaVehiculos
         Me.criterios.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.criterios.Font = New System.Drawing.Font("Century Gothic", 15.0!)
         Me.criterios.FormattingEnabled = True
+        Me.criterios.Items.AddRange(New Object() {"VIN", "Marca", "Modelo", "Tipo"})
         Me.criterios.Location = New System.Drawing.Point(519, 12)
         Me.criterios.Name = "criterios"
         Me.criterios.Size = New System.Drawing.Size(253, 31)

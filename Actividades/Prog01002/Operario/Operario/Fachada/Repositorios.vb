@@ -13,7 +13,7 @@ Public Interface IUsuarioRepositorio
     Function UltimaConexionEn(lugar As String) As Date?
 
     Function AltaVehiculo(VIN As String, marca As String, modelo As String, año As Integer, zona As String, subzona As String, posicion As Integer, color As Color, loteInicial As String) As Boolean
-
+    Sub CompletarUsuario(usuario As Usuario)
     Function ConectarEn(lugar As String) As Boolean
     Function Desconectar() As Boolean
     Function ConectadoEn() As String
@@ -22,7 +22,7 @@ Public Interface IUsuarioRepositorio
     Function NombreDeUsuario() As String
     Function RolDeUsuario() As String
 
-    Function ListaVehiculos(dt As DataTable) As DataTable
+    Function ListaVehiculos(dt As DataTable, patron As Predicate(Of DataRow)) As DataTable
 
     Function AccesosAlSistema() As Integer
 
@@ -68,7 +68,10 @@ Public Interface ILugarRepositorio
     Function TipoLugar(selectedItem As String) As String
     Function CapacidadZonas(lugar As String) As DataTable
     Function PosicionOcupada(subzona As String, zona As String, nombre As String, posicion As Integer) As Boolean
-    Function OcupacionSubzona(text1 As String, text2 As String, conectadoEn As String) As Integer
+    Function OcupacionSubzona(subzona As String, zona As String, lugar As String) As Integer
+    Function Nombre(id As Integer) As String
+    Function VehiculosEnLote(value As Integer) As DataTable
+    Function NewLote(numeroLote As UInteger, nombre As String, conectadoEn As Lugar, destino As Lugar, usuario As Usuario, estado As EstadoLote, prioridad As PrioridadLote) As Lote
 End Interface
 
 Public Module Constantes
@@ -79,6 +82,7 @@ End Module
 
 Public MustInherit Class VehiculoRepo
     Public MustOverride Function VehiculoIncompleto(VIN As String) As Logica.Vehiculo
+    Public MustOverride Function VehiculoIncompleto(VIN As String, patron As Predicate(Of DataRow)) As Logica.Vehiculo
     Public MustOverride Sub IngresosVehiculo(V As Logica.Vehiculo)
     Public MustOverride Function InformesVehiculo(VIN As String) As Logica.Vehiculo
 
@@ -143,4 +147,6 @@ Public MustInherit Class VehiculoRepo
         idt.Columns.Add("Imagen", GetType(Bitmap))
         Return {rdt, idt}
     End Function
+
+    Friend MustOverride Sub Lugares(dtlugares As DataTable, vin As String)
 End Class

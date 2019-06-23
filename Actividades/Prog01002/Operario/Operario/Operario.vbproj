@@ -193,10 +193,10 @@
     <Compile Include="Presentación\Principal.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Presentación\operario\MarcoPuerto.Designer.vb">
-      <DependentUpon>MarcoPuerto.vb</DependentUpon>
+    <Compile Include="Presentación\operario\Marco.Designer.vb">
+      <DependentUpon>Marco.vb</DependentUpon>
     </Compile>
-    <Compile Include="Presentación\operario\MarcoPuerto.vb">
+    <Compile Include="Presentación\operario\Marco.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Presentación\operario\OperarioHome.Designer.vb">
@@ -264,8 +264,8 @@
     <EmbeddedResource Include="Presentación\Principal.resx">
       <DependentUpon>Principal.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Presentación\operario\MarcoPuerto.resx">
-      <DependentUpon>MarcoPuerto.vb</DependentUpon>
+    <EmbeddedResource Include="Presentación\operario\Marco.resx">
+      <DependentUpon>Marco.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentación\operario\OperarioHome.resx">
       <DependentUpon>OperarioHome.vb</DependentUpon>

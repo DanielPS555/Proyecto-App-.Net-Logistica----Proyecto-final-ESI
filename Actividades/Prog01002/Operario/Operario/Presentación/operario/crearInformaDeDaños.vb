@@ -33,7 +33,7 @@
     End Sub
 
     Private Sub nuevo_Click(sender As Object, e As EventArgs)
-        MarcoPuerto.getInstancia.cargarPanel(Of RegistroDeDañoPanel)(New RegistroDeDañoPanel(VRepo.NewReg(informe)))
+        Marco.getInstancia.cargarPanel(Of RegistroDeDañoPanel)(New RegistroDeDañoPanel(VRepo.NewReg(informe)))
     End Sub
 
     Private Sub eliminar_Click(sender As Object, e As EventArgs)
@@ -52,6 +52,6 @@
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs)
-        MarcoPuerto.getInstancia.cerrarPanel(Of crearInformaDeDaños)()
+        Marco.getInstancia.cerrarPanel(Of crearInformaDeDaños)()
     End Sub
 End Class

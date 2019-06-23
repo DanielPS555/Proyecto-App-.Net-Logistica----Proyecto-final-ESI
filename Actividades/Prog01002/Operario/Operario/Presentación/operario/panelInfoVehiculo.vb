@@ -1,9 +1,14 @@
 ﻿Public Class panelInfoVehiculo
     Private vin As String
-    Public Sub New(VIN As String)
+    Public Sub New(VIN As String, aqui As Boolean)
         ' Esta llamada es exigida por el diseñador.
-        Me.vin = VIN
         InitializeComponent()
+        If Not aqui Then
+            Button1.Visible = False
+            Button2.Visible = False
+
+        End If
+        Me.vin = VIN
         TipoCombo.Items.Clear()
         TipoCombo.Items.AddRange([Enum].GetNames(GetType(Logica.TipoVehiculo)))
         RegularTamañoColumnas()
@@ -28,14 +33,11 @@
         traslados.Columns.Clear()
         traslados.DataSource = VRepo.PosicionesEn(vin, URepo.ConectadoEn)
         dtlugares = New DataTable
-        dtlugares.Columns.Add("Lugar", GetType(String))
+        dtlugares.Columns.Add("Nombre de Lugar", GetType(String))
         dtlugares.Columns.Add("Fecha de llegada", GetType(String))
         dtlugares.Columns.Add("Transportado por", GetType(String))
-        Dim dr = dtlugares.NewRow
-        dtlugares.Rows.Add(dr)
-        dr("Lugar") = VRepo.PuertoLlegada(vin)
-        dr("Fecha de llegada") = VRepo.FechaLlegada(vin)
-        dr("Transportado por") = "Ingresa al sistema"
+        dtlugares.Columns.Add("Fecha de partida", GetType(String))
+        VRepo.Lugares(dtlugares, vin)
         lugares.Columns.Clear()
         lugares.DataSource = dtlugares
     End Sub
@@ -67,16 +69,6 @@
 
     End Sub
 
-    Private Sub panelInfoVehiculo_Paint(sender As Object, e As PaintEventArgs) Handles Me.Paint, TabPage1.Paint
-        Dim g As Graphics = e.Graphics
-        g.DrawRectangle(New Pen(Color.FromArgb(15, 139, 196), 2), New Rectangle(informes.Location, informes.Size))
-        For Each textCo In Me.Controls
-            If TypeOf (textCo) Is TextBox Then
-                Dim text As TextBox = DirectCast(textCo, TextBox)
-                g.DrawLine(New Pen(Color.FromArgb(35, 35, 35)), text.Location.X, text.Location.Y + text.Height, text.Location.X + text.Size.Width, text.Location.Y + text.Height)
-            End If
-        Next
-    End Sub
 
     Private Sub ingresar_Click(sender As Object, e As EventArgs)
 
@@ -103,7 +95,7 @@
     End Sub
 
     Private Sub informes_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles informes.CellDoubleClick
-        MarcoPuerto.getInstancia.cargarPanel(Of crearInformaDeDaños)(New crearInformaDeDaños(informes.Rows()(e.RowIndex).Cells()(0).Value))
+        Marco.getInstancia.cargarPanel(Of crearInformaDeDaños)(New crearInformaDeDaños(informes.Rows()(e.RowIndex).Cells()(0).Value))
     End Sub
     Private _changedTB2 As Boolean = False
     Private _changedTB3 As Boolean = False
@@ -161,6 +153,6 @@
     End Sub
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
-        MarcoPuerto.getInstancia.cargarPanel(Of crearInformaDeDaños)(New crearInformaDeDaños())
+        Marco.getInstancia.cargarPanel(Of crearInformaDeDaños)(New crearInformaDeDaños())
     End Sub
 End Class

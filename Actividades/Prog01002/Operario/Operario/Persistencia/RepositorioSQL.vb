@@ -83,13 +83,14 @@ Public Class SQLRepo
     End Function
 
 
-    Private Sub CompletarUsuario(usr As Usuario)
+    Public Sub CompletarUsuario(usr As Usuario) Implements IUsuarioRepositorio.CompletarUsuario
         Dim cmd = New OdbcCommand("select * from trabajaen where idusuario=?;", _conn)
         Dim uid = cmd.CrearParametro(DbType.Int64, usr.ID)
         Dim rdr = cmd.ExecuteReader
         Dim dt As New DataTable
         dt.Load(rdr)
-        Dim _cmd = New OdbcCommand("select * from conexion where horasalida is null;", _conn)
+        Dim _cmd = New OdbcCommand("select first 10 * from conexion inner join trabajaen on trabajaen.id=conexion.idtrabajaen where idusuario=? order by conexion.horaingreso desc;", _conn)
+        _cmd.CrearParametro(DbType.Int64, usr.ID)
         usr.TrabajaEn.Clear()
         For Each i As DataRow In dt.Rows
             Dim tmp = New TrabajaEn(i, usr)
@@ -100,11 +101,12 @@ Public Class SQLRepo
         If cdt.Rows.Count = 0 Then
             Return
         End If
-        Dim con = cdt.ToList.Single
-        Dim te = usr.TrabajaEn.Find(Function(x) x.ID = con("IDTrabajaEn"))
-        Dim entrada = con("HoraIngreso")
-        Dim salida = AutoNull(Of DateTime?)(con("HoraSalida"))
-        te.Conexiones.Add(New Conexion(entrada, salida))
+        cdt.ToList.ForEach(Sub(con)
+                               Dim te = usr.TrabajaEn.Find(Function(x) x.ID = con("IDTrabajaEn"))
+                               Dim entrada = con("HoraIngreso")
+                               Dim salida = AutoNull(Of DateTime?)(con("HoraSalida"))
+                               te.Conexiones.Add(New Conexion(entrada, salida))
+                           End Sub)
     End Sub
 
     Public Function UsuarioPorNombre(nombre As String) As Usuario Implements IUsuarioRepositorio.UsuarioPorNombre
@@ -226,15 +228,18 @@ Public Class SQLRepo
         Return AllLugares(nombre).Single
     End Function
 
-    Public Overrides Function VehiculoIncompleto(VIN As String) As Vehiculo
+    Public Overrides Function VehiculoIncompleto(VIN As String, patron As Predicate(Of DataRow)) As Vehiculo
         Dim cmd As New OdbcCommand("select * from vehiculo where VIN=?;", _conn)
         Dim par = cmd.CrearParametro(DbType.StringFixedLength, VIN)
         Dim dt As New DataTable()
         dt.Load(cmd.ExecuteReader)
-        If dt.Rows.Count = 0 Then
+        If dt.Rows.Count = 0 OrElse Not patron(dt.Rows()(0)) Then
             Return Nothing
         End If
         Return New Vehiculo(dt.Rows()(0))
+    End Function
+    Public Overrides Function VehiculoIncompleto(VIN As String) As Vehiculo
+        Return VehiculoIncompleto(VIN, Function(x) True)
     End Function
 
     Public Overrides Sub IngresosVehiculo(V As Vehiculo)
@@ -305,22 +310,16 @@ Public Class SQLRepo
         End If
         Dim lugar As New Lugar(dt.Rows()(0))
         cmd = New OdbcCommand("select * from lote where ?=desde;", _conn)
+        Dim transportes As New OdbcCommand("select count(*) from transporta where idlote=?;", _conn)
+        Dim idlote = transportes.CrearParametro(DbType.Int64, -1)
         par = cmd.CrearParametro(DbType.Int64, id)
         rdr = cmd.ExecuteReader
         Dim loteDt As New DataTable
         loteDt.Load(rdr)
-        Dim lotes As New List(Of Lote)
-        Dim tpr = New OdbcCommand("select * from transporta, transporte where transporta.idlote=? and transporta.transporteID=transporte.transporteID;", _conn)
-        Dim tpp = tpr.CrearParametro(DbType.Int64, -1)
         For Each l As DataRow In loteDt.Rows
             Dim autos = New OdbcCommand("select * from integra where Lote=?;", _conn)
-            tpp.Value = l("IDLote")
-            Dim ex = tpr.ExecuteReader
-            Dim tdt As New DataTable
-            tdt.Load(ex)
-            Dim rows = tdt.ToList()
-            rows.Sort(DateOrder)
-            Dim Lote As Lote = New Lote(l, lugar, If(rows.Count > 0, rows.Last()("FechaHoraSalida"), Nothing))
+            idlote.Value = l("IDLote")
+            Dim Lote As Lote = New Lote(l, lugar.ID, transportes.ExecuteScalar > 0)
             Dim param = autos.CrearParametro(DbType.Int64, l("IDLote"))
             Dim aRdr = autos.ExecuteReader
             Dim auDt = New DataTable
@@ -329,7 +328,6 @@ Public Class SQLRepo
                 Dim v = InformesVehiculo(a("VIN"))
                 Lote.Integrantes.Add(v)
             Next
-            lotes.Add(Lote)
             lugar.LotesCreados.Add(Lote)
         Next
         Dim zonasCmd = New OdbcCommand("select * from zona where idlugar=?;", _conn)
@@ -365,7 +363,7 @@ Public Class SQLRepo
         Return lugar
     End Function
 
-    Public Function ListaVehiculos(dt As DataTable) As DataTable Implements IUsuarioRepositorio.ListaVehiculos
+    Public Function ListaVehiculos(dt As DataTable, patron As Predicate(Of DataRow)) As DataTable Implements IUsuarioRepositorio.ListaVehiculos
         If usuarioConectado Is Nothing Then
             Throw New InvalidOperationException("No está conectado")
         End If
@@ -374,14 +372,16 @@ Public Class SQLRepo
         Dim _szonasPos As IEnumerable(Of Posicionado) = x.Subzonas.Select(Function(z) z._posicionados).UnionListas
         Dim szonasPos = _szonasPos.GroupBy(Of String)(Function(z) z.Vehiculo.VIN)
         For Each i In szonasPos
-            Dim dr = dt.NewRow
-            dt.Rows.Add(dr)
-            Dim vehiculo = VehiculoIncompleto(i.Key)
-            dr("Estado") = If(i.Where(Function(z) z.Hasta Is Nothing And z.Vehiculo.VIN = i.Key).Count > 0, [Enum].GetName(GetType(EstadoVehiculo), vehiculo.Estado), "Fuera del lugar")
-            dr("VIN") = vehiculo.VIN
-            dr("Marca") = vehiculo.Marca
-            dr("Modelo") = vehiculo.Modelo
-            dr("VehiculoTipo") = [Enum].GetName(GetType(TipoVehiculo), vehiculo.Tipo)
+            Dim vehiculo = VehiculoIncompleto(i.Key, patron)
+            If vehiculo IsNot Nothing Then
+                Dim dr = dt.NewRow
+                dt.Rows.Add(dr)
+                dr("Estado") = If(i.Where(Function(z) z.Hasta Is Nothing And z.Vehiculo.VIN = i.Key).Count > 0, [Enum].GetName(GetType(EstadoVehiculo), vehiculo.Estado), "Fuera del lugar")
+                dr("VIN") = vehiculo.VIN
+                dr("Marca") = vehiculo.Marca
+                dr("Modelo") = vehiculo.Modelo
+                dr("VehiculoTipo") = [Enum].GetName(GetType(TipoVehiculo), vehiculo.Tipo)
+            End If
         Next
         Return dt
     End Function
@@ -729,5 +729,56 @@ Public Class SQLRepo
         Dim cmd As New OdbcCommand("select preguntasecreta from usuario where nombredeusuario=?;", _conn)
         cmd.CrearParametro(DbType.String, username)
         Return cmd.ExecuteScalar
+    End Function
+
+    Friend Overrides Sub Lugares(dtlugares As DataTable, vin As String)
+        Dim trans As New OdbcCommand("select lugar.nombre as nombrelugar, transporte.fechahorasalida as partida, transporte.fechahorallegada as llegada, usuario.nombredeusuario as transportista from transporta, usuario, transporte, lote, integra, lugar where transporta.transporteID=transporte.transporteID and transporta.idlote=lote.idlote and integra.lote=lote.idlote and integra.vin=? and integra.invalidado='f' and lote.hacia=lugar.idlugar and usuario.idusuario=transporte.usuario;", _conn)
+        trans.CrearParametro(DbType.StringFixedLength, vin)
+        Dim rdr = trans.ExecuteReader
+        Dim idr = dtlugares.NewRow
+        dtlugares.Rows.Add(idr)
+        idr("Nombre de lugar") = LRepo.Nombre(VRepo.PuertoLlegada(vin))
+        idr("Fecha de llegada") = VRepo.FechaLlegada(vin)
+        idr("Transportado por") = "Ingresa al sistema"
+        idr("Fecha de partida") = "Permanece"
+        While (rdr.Read)
+            idr("Fecha de partida") = rdr.Item(1)
+            idr = dtlugares.NewRow
+            dtlugares.Rows.Add(idr)
+            idr("Nombre de lugar") = rdr.Item(0)
+            idr("Fecha de llegada") = rdr.Item(2)
+            idr("Transportado por") = rdr.Item(3)
+            idr("Fecha de partida") = "Permanece"
+        End While
+    End Sub
+
+    Public Function Nombre(id As Integer) As String Implements ILugarRepositorio.Nombre
+        Dim cmd As New OdbcCommand("select nombre from lugar where idlugar = ?;", _conn)
+        cmd.CrearParametro(DbType.Int64, id)
+        Return cmd.ExecuteScalar
+    End Function
+
+    Public Function VehiculosEnLote(loteid As Integer) As DataTable Implements ILugarRepositorio.VehiculosEnLote
+        Dim cmd As New OdbcCommand("select vehiculo.vin, vehiculo.modelo, vehiculo.marca, integra.fecha from vehiculo, integra where integra.lote=? and integra.vin=vehiculo.vin;", _conn)
+        cmd.CrearParametro(DbType.Int64, loteid)
+        Dim rdr = cmd.ExecuteReader
+        Dim dt As New DataTable("vehiculos")
+        dt.Load(rdr)
+        Return dt
+    End Function
+
+    Public Function NewLote(numeroLote As UInteger, nombre As String, lugar As Lugar, destino As Lugar, usuario As Usuario, estado As EstadoLote, prioridad As PrioridadLote) As Lote Implements ILugarRepositorio.NewLote
+        Dim cmd As New OdbcCommand("insert into lote(idlote, nombre, desde, hacia, creadorid, prioridad, estado) values(?,?,?,?,?,?,?);", _conn)
+        cmd.CrearParametro(DbType.Int64, numeroLote)
+        cmd.CrearParametro(DbType.String, nombre)
+        cmd.CrearParametro(DbType.Int64, lugar.ID)
+        cmd.CrearParametro(DbType.Int64, destino.ID)
+        cmd.CrearParametro(DbType.Int64, usuario.ID)
+        cmd.CrearParametro(DbType.String, [Enum].GetName(GetType(PrioridadLote), prioridad))
+        cmd.CrearParametro(DbType.String, [Enum].GetName(GetType(EstadoLote), estado))
+        If cmd.ExecuteNonQuery > 0 Then
+            Return New Lote(numeroLote, nombre, lugar.ID, destino.ID, usuario, prioridad, estado)
+        End If
+        Return Nothing
     End Function
 End Class

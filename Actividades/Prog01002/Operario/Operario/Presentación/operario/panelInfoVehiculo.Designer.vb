@@ -125,6 +125,7 @@ Partial Class panelInfoVehiculo
         '
         'TabPage1
         '
+        Me.TabPage1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TabPage1.Controls.Add(Me.PosicionLabel)
         Me.TabPage1.Controls.Add(Me.SubzonaLabel)
         Me.TabPage1.Controls.Add(Me.ZonaLabel)
@@ -448,6 +449,7 @@ Partial Class panelInfoVehiculo
         '
         'TabPage2
         '
+        Me.TabPage2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TabPage2.Controls.Add(Me.Button4)
         Me.TabPage2.Controls.Add(Me.informes)
         Me.TabPage2.Location = New System.Drawing.Point(4, 31)
@@ -561,6 +563,7 @@ Partial Class panelInfoVehiculo
         '
         'TabPage3
         '
+        Me.TabPage3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TabPage3.Controls.Add(Me.Button2)
         Me.TabPage3.Controls.Add(Me.traslados)
         Me.TabPage3.Location = New System.Drawing.Point(4, 31)
@@ -660,6 +663,7 @@ Partial Class panelInfoVehiculo
         '
         'TabPage4
         '
+        Me.TabPage4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TabPage4.Controls.Add(Me.lugares)
         Me.TabPage4.Location = New System.Drawing.Point(4, 31)
         Me.TabPage4.Name = "TabPage4"
@@ -751,9 +755,9 @@ Partial Class panelInfoVehiculo
         Me.Label4.AutoSize = True
         Me.Label4.Location = New System.Drawing.Point(170, 231)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(535, 22)
+        Me.Label4.Size = New System.Drawing.Size(548, 22)
         Me.Label4.TabIndex = 0
-        Me.Label4.Text = "2º ENTREGA, Corespone a la Aplicacion del administrador"
+        Me.Label4.Text = "2º ENTREGA, Coresponde a la Aplicacion del administrador"
         '
         'panelInfoVehiculo
         '

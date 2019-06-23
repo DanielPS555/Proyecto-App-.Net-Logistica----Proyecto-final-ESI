@@ -175,6 +175,8 @@ Public Class Login
             port & ";Uid=" & uid & "; Pwd=" & pwd & ";"
             Dim con1 As New OdbcConnection(creacion)
             con1.Open()
+            Dim cmd As New OdbcCommand("select count(*) from conexion;", con1)
+            cmd.ExecuteNonQuery()
             con1.Close()
             Return 1
         Catch ee As Exception
