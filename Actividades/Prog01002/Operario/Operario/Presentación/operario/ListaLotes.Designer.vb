@@ -29,6 +29,8 @@ Partial Class ListaLotes
         '
         'lote
         '
+        Me.lote.AllowUserToAddRows = False
+        Me.lote.AllowUserToDeleteRows = False
         Me.lote.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(115, Byte), Integer), CType(CType(201, Byte), Integer))
@@ -41,6 +43,7 @@ Partial Class ListaLotes
         Me.lote.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.lote.Location = New System.Drawing.Point(13, 29)
         Me.lote.Name = "lote"
+        Me.lote.ReadOnly = True
         Me.lote.RowHeadersVisible = False
         Me.lote.Size = New System.Drawing.Size(855, 587)
         Me.lote.TabIndex = 0

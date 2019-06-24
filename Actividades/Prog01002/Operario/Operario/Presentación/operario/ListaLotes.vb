@@ -19,10 +19,12 @@
     End Sub
 
 
-    Private Sub DataGridView1_CellClick(sender As Object, e As DataGridViewCellEventArgs)
+    Private Sub DataGridView1_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles lote.CellClick
         'LLAMA AL PANEL DE INFORMACION
-        Marco.getInstancia.cargarPanel(Of PanelInfoLote)(New PanelInfoLote(lote.Rows(0).Cells(0).Value))
+        If e.RowIndex < 0 Then
+            Return
+        End If
+        Marco.getInstancia.cargarPanel(Of PanelInfoLote)(New PanelInfoLote(lote.Rows(e.RowIndex).Cells(0).Value))
     End Sub
-
 
 End Class
