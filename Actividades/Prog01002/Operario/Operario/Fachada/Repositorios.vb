@@ -116,7 +116,7 @@ Public MustInherit Class VehiculoRepo
     Public MustOverride Function AutoComplete(start As String) As List(Of String)
     Public MustOverride Function Zona(vin As String) As String
     Public MustOverride Function Subzona(vin As String) As String
-    Public MustOverride Function Posicion(vin As String) As Integer
+    Public MustOverride Function Posicion(vin As String) As Integer?
     Public MustOverride Function Posicion(vin As String, zona As String, subzona As String, lugar As String, nuevaPosicion As Integer) As Boolean
     Public MustOverride Function Lote(vin As String) As String
     Public MustOverride Function Lote(vin As String, nuevolote As String) As Boolean

@@ -1,4 +1,6 @@
-﻿Public Class Principal
+﻿Imports System.Threading
+
+Public Class Principal
     Private Shared initi As Principal
 
     Public Sub New()

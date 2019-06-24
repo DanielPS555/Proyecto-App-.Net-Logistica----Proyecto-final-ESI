@@ -466,7 +466,7 @@ Public Class SQLRepo
         Dim posicionadoCommand = New OdbcCommand("select count(*) from posicionado where vin=? and hasta is null;", _conn)
         posicionadoCommand.CrearParametro(DbType.String, vin)
         If posicionadoCommand.ExecuteScalar > 0 Then
-            Dim updateCommand = New OdbcCommand("update posicionado set hasta=? where vin=?;", _conn)
+            Dim updateCommand = New OdbcCommand("update posicionado set hasta=? where vin=? and hasta is null;", _conn)
             updateCommand.CrearParametro(DbType.DateTime, Date.Now)
             updateCommand.CrearParametro(DbType.StringFixedLength, vin)
             If updateCommand.ExecuteNonQuery = 0 Then
@@ -481,7 +481,12 @@ Public Class SQLRepo
         posicionarCommand.CrearParametro(DbType.DateTime, Date.Now)
         posicionarCommand.CrearParametro(DbType.Int64, nuevaposicion)
         posicionarCommand.CrearParametro(DbType.Int64, usuarioConectado.ID)
-        Return posicionarCommand.ExecuteNonQuery > 0
+        Try
+            Return posicionarCommand.ExecuteNonQuery > 0
+        Catch e As Exception
+            Return False
+        End Try
+
     End Function
 
     Public Overrides Function Marca(vin As String) As String
@@ -512,19 +517,19 @@ Public Class SQLRepo
     End Function
 
     Public Overrides Function Lugar(vin As String) As String
-        Return VehiculoIncompleto(vin)?.LugarActual.Nombre
+        Return VehiculoIncompleto(vin)?.LugarActual?.Nombre
     End Function
 
     Public Overrides Function Zona(vin As String) As String
-        Return VehiculoIncompleto(vin)?.PosicionActual.Subzona.Padre.Nombre
+        Return VehiculoIncompleto(vin)?.PosicionActual?.Subzona.Padre.Nombre
     End Function
 
     Public Overrides Function Subzona(vin As String) As String
-        Return VehiculoIncompleto(vin)?.PosicionActual.Subzona.Nombre
+        Return VehiculoIncompleto(vin)?.PosicionActual?.Subzona.Nombre
     End Function
 
-    Public Overrides Function Posicion(vin As String) As Integer
-        Return VehiculoIncompleto(vin)?.PosicionActual.Posicion
+    Public Overrides Function Posicion(vin As String) As Integer?
+        Return VehiculoIncompleto(vin)?.PosicionActual?.Posicion
     End Function
 
     Public Overrides Function Lote(vin As String) As String

@@ -83,33 +83,26 @@
 
         Public _password_hash As String
         Public Function VerificarContraseña(password As String) As Boolean
-            Return ContraseñaHash(password.Trim, UserName).Equals(_password_hash)
+            Return ContraseñaHash(password.Trim).Equals(_password_hash.Trim)
         End Function
 
         Public Function RestablecerContraseña(Respuesta As String, NewPass As String) As Boolean
             If Respuesta <> Me.RespuestaSecreta Then
                 Return False
             End If
-            Me._password_hash = ContraseñaHash(NewPass, UserName)
+            Me._password_hash = ContraseñaHash(NewPass)
             _dirty = True
             Return True
         End Function
 
-        Public Shared Function SelfPad(data As String, toLen As UInteger) As String
-            If String.IsNullOrEmpty(data) Then
-                Throw New InvalidOperationException("Cannot selfpad an empty string")
-            End If
-            Dim returnString(toLen - 1) As Char
-            For i As UInteger = 0 To toLen - 1
-                returnString(i) = data(i Mod data.Length)
-            Next
-            Return returnString
-        End Function
-
-        Public Shared Function ContraseñaHash(password As String, usuario As String) As String
-            Dim data = SelfPad(password, 60)
-            Dim nkey = SelfPad(usuario, 60)
-            Return data.Select(Of Char)(Function(x As Char, i As Integer) ChrW(AscW(x) Xor AscW(nkey(i)))).ToArray
+        Public Shared Function ContraseñaHash(password As String) As String
+            Dim mysha = System.Security.Cryptography.SHA1Managed.Create
+            Dim barray = System.Text.UTF8Encoding.UTF8.GetBytes(password)
+            Dim result As New System.Text.StringBuilder
+            mysha.ComputeHash(barray).Select(Function(x) x.ToString("X2")).ForEach(Sub(x)
+                                                                                       result.Append(x)
+                                                                                   End Sub)
+            Return result.ToString
         End Function
 
         Private _primer_nombre As String

@@ -1,4 +1,11 @@
-﻿Public Class panelInfoVehiculo
+﻿Imports Operario
+
+Public Interface IActualizaMessage
+    Sub Actualizar()
+End Interface
+
+Public Class panelInfoVehiculo
+    Implements IActualizaMessage
     Private vin As String
     Public Sub New(VIN As String, aqui As Boolean)
         ' Esta llamada es exigida por el diseñador.
@@ -6,7 +13,8 @@
         If Not aqui Then
             Button1.Visible = False
             Button2.Visible = False
-
+            Button3.Visible = False
+            Button4.Visible = False
         End If
         Me.vin = VIN
         TipoCombo.Items.Clear()
@@ -25,7 +33,9 @@
         Panel1.BackColor = VRepo.Color(vin)
         ZonaLabel.Text = VRepo.Zona(vin)
         SubzonaLabel.Text = VRepo.Subzona(vin)
-        PosicionLabel.Text = VRepo.Posicion(vin)
+        Dim pos = VRepo.Posicion(vin).GetValueOrDefault
+        PosicionLabel.Text = pos
+        lugar.Text = VRepo.Lugar(vin)
         LoteCombo.Items.AddRange(LRepo.LotesEnLugar(VRepo.Lugar(vin)).ToArray)
         LoteCombo.SelectedItem = VRepo.Lote(vin)
         informes.Columns.Clear()
@@ -64,14 +74,6 @@
         lugares.Columns(2).Width = 170
         lugares.Columns(3).Width = 170
         lugares.Columns(4).Width = 170
-
-
-
-    End Sub
-
-
-    Private Sub ingresar_Click(sender As Object, e As EventArgs)
-
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
@@ -90,13 +92,14 @@
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        Dim tInterno = New trasladoInterno(vin)
+        Dim tInterno = New trasladoInterno(vin, Me)
         tInterno.ShowDialog()
     End Sub
 
     Private Sub informes_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles informes.CellDoubleClick
         Marco.getInstancia.cargarPanel(Of crearInformaDeDaños)(New crearInformaDeDaños(DirectCast(informes.Rows()(e.RowIndex).Cells()(0).Value, Integer)))
     End Sub
+
     Private _changedTB2 As Boolean = False
     Private _changedTB3 As Boolean = False
     Private _changedTB4 As Boolean = False
@@ -165,5 +168,10 @@
     Private Sub LinkLabel2_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel2.LinkClicked
         Dim nl = New NuevoLote(Me)
         Marco.getInstancia.cargarPanel(nl)
+    End Sub
+
+    Public Sub Actualizar() Implements IActualizaMessage.Actualizar
+        traslados.Columns.Clear()
+        traslados.DataSource = VRepo.PosicionesEn(vin, URepo.ConectadoEn)
     End Sub
 End Class

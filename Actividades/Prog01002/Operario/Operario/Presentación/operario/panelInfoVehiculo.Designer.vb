@@ -87,6 +87,8 @@ Partial Class panelInfoVehiculo
         Me.trasportadoPor = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
         Me.Label4 = New System.Windows.Forms.Label()
+        Me.LLable = New System.Windows.Forms.Label()
+        Me.lugar = New System.Windows.Forms.Label()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.QR, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -126,6 +128,8 @@ Partial Class panelInfoVehiculo
         'TabPage1
         '
         Me.TabPage1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TabPage1.Controls.Add(Me.lugar)
+        Me.TabPage1.Controls.Add(Me.LLable)
         Me.TabPage1.Controls.Add(Me.PosicionLabel)
         Me.TabPage1.Controls.Add(Me.SubzonaLabel)
         Me.TabPage1.Controls.Add(Me.ZonaLabel)
@@ -759,6 +763,23 @@ Partial Class panelInfoVehiculo
         Me.Label4.TabIndex = 0
         Me.Label4.Text = "2º ENTREGA, Coresponde a la Aplicacion del administrador"
         '
+        'LLable
+        '
+        Me.LLable.AutoSize = True
+        Me.LLable.Location = New System.Drawing.Point(12, 444)
+        Me.LLable.Name = "LLable"
+        Me.LLable.Size = New System.Drawing.Size(72, 24)
+        Me.LLable.TabIndex = 135
+        Me.LLable.Text = "Lugar:"
+        '
+        'lugar
+        '
+        Me.lugar.AutoSize = True
+        Me.lugar.Location = New System.Drawing.Point(86, 444)
+        Me.lugar.Name = "lugar"
+        Me.lugar.Size = New System.Drawing.Size(0, 24)
+        Me.lugar.TabIndex = 136
+        '
         'panelInfoVehiculo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -844,4 +865,6 @@ Partial Class panelInfoVehiculo
     Friend WithEvents PosicionLabel As Label
     Friend WithEvents SubzonaLabel As Label
     Friend WithEvents ZonaLabel As Label
+    Friend WithEvents lugar As Label
+    Friend WithEvents LLable As Label
 End Class
