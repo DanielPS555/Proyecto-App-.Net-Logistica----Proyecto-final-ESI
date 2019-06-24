@@ -8,6 +8,7 @@
     End Sub
 
     Private Sub cargar()
+
         Dim r As DataTable = Constantes.SRepo.Consultar("select lote.nombre,min(integra.fecha) fecha_creacion, lugar.nombre,
                                                         count(integra.VIN) from lote,integra,lugar,vehiculoIngresa
                                                         where IDLote=integra.lote and lote.hacia=lugar.idlugar  and
