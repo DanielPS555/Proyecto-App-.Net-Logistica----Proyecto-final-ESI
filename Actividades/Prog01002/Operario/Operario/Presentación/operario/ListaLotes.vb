@@ -2,39 +2,27 @@
     Public Sub New()
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
-
+        cargar()
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
-        Reload()
+
     End Sub
 
-    Private Sub Reload()
-        Dim dt As New DataTable("Lotes")
-        dt.Columns.Add("ID", GetType(Integer))
-        dt.Columns.Add("Nombre", GetType(String))
-        dt.Columns.Add("Hacia", GetType(String))
-        dt.Columns.Add("Prioridad", GetType(String))
-        dt.Columns.Add("Estado", GetType(String))
-        LRepo.LugarPorNombre(URepo.ConectadoEn).LotesCreados.Select(
-            Function(x) New Tuple(Of Integer, String, String, String, String)(x.ID, x.Nombre, x.Hacia.Nombre, [Enum].GetName(GetType(Logica.PrioridadLote), x.Prioridad), [Enum].GetName(GetType(Logica.EstadoLote), x.Estado))
-            ).ForEach(Sub(x)
-                          Dim t = dt.NewRow
-                          dt.Rows.Add(t)
-                          t("ID") = x.Item1
-                          t("Nombre") = x.Item2
-                          t("Hacia") = x.Item3
-                          t("Prioridad") = x.Item4
-                          t("Estado") = x.Item5
-                      End Sub)
-        DataGridView1.DataSource = dt
+    Private Sub cargar()
+        Dim r As DataTable = Constantes.SRepo.Consultar("select lote.nombre,min(integra.fecha) fecha_creacion, lugar.nombre,
+                                                        count(integra.VIN) from lote,integra,lugar,vehiculoIngresa
+                                                        where IDLote=integra.lote and lote.hacia=lugar.idlugar  and
+                                                        vehiculoIngresa.VIN = integra.VIN and  vehiculoingresa.tipoingreso='Alta'
+                                                        group by lote.nombre, lugar.nombre
+                                                           ")
+        lote.Rows.Clear()
+        lote.DataSource = r
     End Sub
 
-    Private Sub DataGridView1_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellClick
-        Dim dt As DataTable = LRepo.VehiculosEnLote(DataGridView1.Rows(e.RowIndex).Cells(0).Value)
-        DataGridView2.DataSource = dt
+
+    Private Sub DataGridView1_CellClick(sender As Object, e As DataGridViewCellEventArgs)
+        'LLAMA AL PANEL DE INFORMACION
+        Marco.getInstancia.cargarPanel(Of PanelInfoLote)(New PanelInfoLote(lote.Rows(0).Cells(0).Value))
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        LRepo.Cerrar(DataGridView1.SelectedRows(0).Cells(0).Value)
-        Reload()
-    End Sub
+
 End Class

@@ -125,6 +125,7 @@ Partial Class ListaVehiculos
         '
         Me.DataGridView1.AllowUserToAddRows = False
         Me.DataGridView1.AllowUserToDeleteRows = False
+        Me.DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Estado, Me.VIN, Me.Marca, Me.Modelo, Me.VehiculoTipo})
         Me.DataGridView1.Location = New System.Drawing.Point(13, 151)
