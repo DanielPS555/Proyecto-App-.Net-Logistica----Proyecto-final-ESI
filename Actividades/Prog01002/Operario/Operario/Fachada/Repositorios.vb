@@ -82,6 +82,7 @@ End Interface
 
 Public Interface ISQLRepositorio
     Function Consultar(sql As String) As DataTable
+    Function ConsultarSingle(sql As String) As Object
 End Interface
 
 Public Module Constantes
@@ -158,7 +159,7 @@ Public MustInherit Class VehiculoRepo
         rdt.Columns.Add("Descripcion", GetType(String))
         Dim idt As New DataTable("Imagenes")
         idt.Columns.Add("ID", GetType(Integer))
-        idt.Columns.Add("Imagen", GetType(Bitmap))
+        idt.Columns.Add("Imagen", GetType(Byte()))
         Return {rdt, idt}
     End Function
 

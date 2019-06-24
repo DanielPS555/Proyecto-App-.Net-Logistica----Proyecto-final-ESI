@@ -22,11 +22,11 @@ Partial Class RegistroDeDañoPanel
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim anteriorFotografia As System.Windows.Forms.Button
-        Dim sigienteFotografia As System.Windows.Forms.Button
-        Dim NuevaFotografia As System.Windows.Forms.Button
-        Dim Button4 As System.Windows.Forms.Button
-        Dim Button5 As System.Windows.Forms.Button
+        anteriorFotografia = New System.Windows.Forms.Button
+        sigienteFotografia = New System.Windows.Forms.Button
+        NuevaFotografia = New System.Windows.Forms.Button
+        Button4 = New System.Windows.Forms.Button
+        Button5 = New System.Windows.Forms.Button
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.infoDaños = New System.Windows.Forms.Label()
@@ -93,6 +93,7 @@ Partial Class RegistroDeDañoPanel
         sigienteFotografia.TabIndex = 68
         sigienteFotografia.Text = "Sigiente"
         sigienteFotografia.UseVisualStyleBackColor = False
+        AddHandler sigienteFotografia.Click, AddressOf Me.sigienteFotografia_Click
         '
         'NuevaFotografia
         '
@@ -134,6 +135,7 @@ Partial Class RegistroDeDañoPanel
         Button4.TabIndex = 72
         Button4.Text = "Cancelar"
         Button4.UseVisualStyleBackColor = False
+        AddHandler Button4.Click, AddressOf Me.Button4_Click
         '
         'Button5
         '
@@ -398,4 +400,9 @@ Partial Class RegistroDeDañoPanel
     Friend WithEvents Label9 As Label
     Friend WithEvents Panel1 As Panel
     Friend WithEvents panelFotografias As PictureBox
+    Friend WithEvents anteriorFotografia As Button
+    Friend WithEvents sigienteFotografia As Button
+    Friend WithEvents NuevaFotografia As Button
+    Friend WithEvents Button4 As Button
+    Friend WithEvents Button5 As Button
 End Class

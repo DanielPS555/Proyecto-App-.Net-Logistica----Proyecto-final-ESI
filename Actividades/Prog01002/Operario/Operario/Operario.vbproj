@@ -169,6 +169,12 @@
     <Compile Include="Presentación\operario\NuevoLote.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Presentación\operario\PanelInfoLote.Designer.vb">
+      <DependentUpon>PanelInfoLote.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentación\operario\PanelInfoLote.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Presentación\operario\panelInfoVehiculo.Designer.vb">
       <DependentUpon>panelInfoVehiculo.vb</DependentUpon>
     </Compile>

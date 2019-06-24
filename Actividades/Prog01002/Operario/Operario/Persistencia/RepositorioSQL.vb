@@ -696,9 +696,10 @@ Public Class SQLRepo
     End Function
 
     Friend Overrides Function NewReg(enInforme As Integer) As Integer
-        Dim scmd As New OdbcCommand("select dbinfo('sqlca.sqlerrd1') from informix.systables where tabid=1;", _conn)
         Dim cmd As New OdbcCommand("insert into registrodanios(informedanios, descripcion) values(?, '');", _conn)
+        Dim scmd As New OdbcCommand("select max(nroenlista) from registrodanios where informedanios=?;", _conn)
         cmd.CrearParametro(DbType.Int64, enInforme)
+        scmd.CrearParametro(DbType.Int64, enInforme)
         cmd.ExecuteNonQuery()
         Return scmd.ExecuteScalar
     End Function
@@ -711,7 +712,7 @@ Public Class SQLRepo
         cmd.CrearParametro(DbType.String, vin)
         cmd.CrearParametro(DbType.Int64, Me.usuarioConectado.ConectadoEn.ID)
         cmd.CrearParametro(DbType.Int64, Me.usuarioConectado.ID)
-        Dim scmd As New OdbcCommand("select dbinfo('sqlca.sqlerrd1') from informix.systables where tabid=1;", _conn)
+        Dim scmd As New OdbcCommand("select max(id) from informedanios;", _conn)
         cmd.ExecuteNonQuery()
         Return scmd.ExecuteScalar
     End Function
@@ -851,7 +852,7 @@ Public Class SQLRepo
             Dim imgc = icmd.CrearParametro(DbType.Int64, -1)
             Dim imagen = icmd.CrearParametro(DbType.Binary, Nothing)
             For i = r To images.Count - 1
-                imgc.Value = i
+                imgc.Value = i + 1
                 imagen.Value = ConvertToByteArray(images(i))
                 If icmd.ExecuteNonQuery < 1 Then
                     Return
@@ -910,5 +911,10 @@ Public Class SQLRepo
         Dim dt As New DataTable
         dt.Load(ccmd.ExecuteReader)
         Return dt
+    End Function
+
+    Public Function ConsultarSingle(sql As String) As Object Implements ISQLRepositorio.ConsultarSingle
+        Dim ccmd As New OdbcCommand(sql, _conn)
+        Return ccmd.ExecuteScalar
     End Function
 End Class

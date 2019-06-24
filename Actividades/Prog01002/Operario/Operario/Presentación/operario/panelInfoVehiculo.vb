@@ -153,7 +153,7 @@
     End Sub
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
-        Marco.getInstancia.cargarPanel(Of crearInformaDeDaños)(New crearInformaDeDaños(vin))
+        Marco.getInstancia.cargarPanel(New crearInformaDeDaños(vin))
     End Sub
 
     Private Sub LoteCombo_SelectedIndexChanged(sender As Object, e As EventArgs) Handles LoteCombo.SelectedIndexChanged

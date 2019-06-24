@@ -48,7 +48,7 @@
     Private Sub Registros_SelectedIndexChanged(sender As Object, e As EventArgs) Handles Registros.SelectedIndexChanged
         If descipt.ReadOnly Then
             descipt.Text = m.ToList.Where(Function(x) x("ID") = Registros.SelectedItem).Select(Of String)(Function(z) z("Descripcion")).Single
-            Marco.getInstancia.cargarPanel(New RegistroDeDañoPanel(informe, Integer.Parse(Registros.SelectedItem)))
+            Marco.getInstancia.cargarPanel(New RegistroDeDañoPanel(informe, Integer.Parse(Registros.SelectedItem), False))
         End If
     End Sub
 
