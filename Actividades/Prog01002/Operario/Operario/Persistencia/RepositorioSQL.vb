@@ -912,10 +912,14 @@ Public Class SQLRepo
     End Sub
 
     Public Function Consultar(consulta As String) As DataTable Implements ISQLRepositorio.Consultar
-        Dim ccmd As New OdbcCommand(consulta, _conn)
-        Dim dt As New DataTable
-        dt.Load(ccmd.ExecuteReader)
-        Return dt
+        Try
+            Dim ccmd As New OdbcCommand(consulta, _conn)
+            Dim dt As New DataTable
+            dt.Load(ccmd.ExecuteReader)
+            Return dt
+        Catch ex As Exception
+            Throw New Exception("Sentencia incorrecta")
+        End Try
     End Function
 
     Public Function ConsultarSingle(sql As String) As Object Implements ISQLRepositorio.ConsultarSingle
