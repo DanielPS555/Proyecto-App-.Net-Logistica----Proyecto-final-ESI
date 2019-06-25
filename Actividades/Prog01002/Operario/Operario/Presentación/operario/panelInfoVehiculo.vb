@@ -12,7 +12,7 @@ Public Class panelInfoVehiculo
         InitializeComponent()
         If Not aqui Then
             Button1.Visible = False
-            Button2.Visible = False
+            'Button2.Visible = False
             Button3.Visible = False
             Button4.Visible = False
         Else

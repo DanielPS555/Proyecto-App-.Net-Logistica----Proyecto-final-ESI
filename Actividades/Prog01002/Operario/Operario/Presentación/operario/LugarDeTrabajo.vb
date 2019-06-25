@@ -6,7 +6,7 @@
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         If Not URepo.ConectarEn(lugares.SelectedItem) Then
-            MsgBox("Hubo un error conectando al lugar.")
+            MsgBox("Hubo un error conectando al lugar. Cierre la aplicacion y vuelva a abrirla por favor")
         Else
             Principal.getInstancia.cargarPanel(Marco.getInstancia)
             Principal.getInstancia.cerrarPanel(Of LugarDeTrabajo)()

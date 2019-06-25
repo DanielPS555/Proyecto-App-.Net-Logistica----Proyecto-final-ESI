@@ -8,6 +8,7 @@
     End Sub
 
     Private Sub cargar()
+        'QUEDA REGISTRAR EL LUGAR DE CONEXCION 
         Dim r As DataTable = Constantes.SRepo.Consultar("select lote.nombre,min(integra.fecha) fecha_creacion, lugar.nombre,
                                                         count(integra.VIN) from lote,integra,lugar,vehiculoIngresa
                                                         where IDLote=integra.lote and lote.hacia=lugar.idlugar  and
