@@ -10,7 +10,9 @@ Public Interface IUsuarioRepositorio
     Function Restablecer(username As String, respuesta As String, newpass As String) As Boolean
     Function Pregunta(username As String) As String
     Function LugaresTrabaja() As List(Of String)
+    Function CambiarPregunta(text1 As String, text2 As String, text3 As String) As Boolean
     Function UltimaConexionEn(lugar As String) As Date?
+    Function UsuarioID() As Integer
 
     Function AltaVehiculo(VIN As String, marca As String, modelo As String, año As Integer, zona As String, subzona As String, posicion As Integer, color As Color, loteInicial As String) As Boolean
     Sub CompletarUsuario(usuario As Usuario)
@@ -81,6 +83,7 @@ Public Interface ILugarRepositorio
 End Interface
 
 Public Interface ISQLRepositorio
+    Function ConsultarSinRetorno(v As String) As Integer
     Function Consultar(sql As String) As DataTable
     Function ConsultarSingle(sql As String) As Object
 End Interface

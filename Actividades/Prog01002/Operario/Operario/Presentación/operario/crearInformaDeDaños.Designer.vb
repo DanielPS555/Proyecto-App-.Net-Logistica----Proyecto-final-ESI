@@ -25,8 +25,6 @@ Partial Class crearInformaDeDaños
         Dim ingresarBtn As System.Windows.Forms.Button
         Dim Button1 As System.Windows.Forms.Button
         Dim nuevo As System.Windows.Forms.Button
-        Dim eliminar As System.Windows.Forms.Button
-        Dim modificar As System.Windows.Forms.Button
         Me.Label1 = New System.Windows.Forms.Label()
         Me.fecha = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -40,8 +38,6 @@ Partial Class crearInformaDeDaños
         ingresarBtn = New System.Windows.Forms.Button()
         Button1 = New System.Windows.Forms.Button()
         nuevo = New System.Windows.Forms.Button()
-        eliminar = New System.Windows.Forms.Button()
-        modificar = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'ingresarBtn
@@ -106,48 +102,6 @@ Partial Class crearInformaDeDaños
         nuevo.Text = "+"
         nuevo.UseVisualStyleBackColor = False
         AddHandler nuevo.Click, AddressOf Me.nuevo_Click
-        '
-        'eliminar
-        '
-        eliminar.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        eliminar.BackColor = System.Drawing.Color.FromArgb(CType(CType(180, Byte), Integer), CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer))
-        eliminar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        eliminar.FlatAppearance.BorderSize = 0
-        eliminar.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        eliminar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        eliminar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        eliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        eliminar.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        eliminar.ForeColor = System.Drawing.Color.White
-        eliminar.Location = New System.Drawing.Point(823, 119)
-        eliminar.Name = "eliminar"
-        eliminar.Size = New System.Drawing.Size(45, 35)
-        eliminar.TabIndex = 65
-        eliminar.Text = "-"
-        eliminar.UseVisualStyleBackColor = False
-        AddHandler eliminar.Click, AddressOf Me.eliminar_Click
-        '
-        'modificar
-        '
-        modificar.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        modificar.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        modificar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        modificar.FlatAppearance.BorderSize = 0
-        modificar.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        modificar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        modificar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        modificar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        modificar.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        modificar.ForeColor = System.Drawing.Color.White
-        modificar.Location = New System.Drawing.Point(823, 160)
-        modificar.Name = "modificar"
-        modificar.Size = New System.Drawing.Size(45, 35)
-        modificar.TabIndex = 66
-        modificar.Text = "E"
-        modificar.UseVisualStyleBackColor = False
-        AddHandler modificar.Click, AddressOf Me.modificar_Click
         '
         'Label1
         '
@@ -260,8 +214,6 @@ Partial Class crearInformaDeDaños
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(880, 650)
         Me.Controls.Add(Me.Label4)
-        Me.Controls.Add(modificar)
-        Me.Controls.Add(eliminar)
         Me.Controls.Add(nuevo)
         Me.Controls.Add(Button1)
         Me.Controls.Add(ingresarBtn)

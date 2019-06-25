@@ -172,7 +172,7 @@ Public Class SQLRepo
                 Return False
             End Try
         Else
-                Return False
+            Return False
         End If
     End Function
 
@@ -901,7 +901,7 @@ Public Class SQLRepo
         Return scmd.ExecuteScalar = "Abierto"
     End Function
 
-    Public Function NewLote(id As Integer, nombre As String, hacia As String, prioridad As String) as string Implements IUsuarioRepositorio.NewLote
+    Public Function NewLote(id As Integer, nombre As String, hacia As String, prioridad As String) As String Implements IUsuarioRepositorio.NewLote
         Return NewLote(id, nombre, usuarioConectado.ConectadoEn, LugarPorNombre(hacia), usuarioConectado, EstadoLote.Abierto, Logica.Lote.PrioridadFromString(prioridad)).Nombre
     End Function
 
@@ -921,5 +921,22 @@ Public Class SQLRepo
     Public Function ConsultarSingle(sql As String) As Object Implements ISQLRepositorio.ConsultarSingle
         Dim ccmd As New OdbcCommand(sql, _conn)
         Return ccmd.ExecuteScalar
+    End Function
+
+    Public Function ConsultarSinRetorno(v As String) As Integer Implements ISQLRepositorio.ConsultarSinRetorno
+        Dim ccmd As New OdbcCommand(v, _conn)
+        Return ccmd.ExecuteNonQuery()
+    End Function
+
+    Public Function UsuarioID() As Integer Implements IUsuarioRepositorio.UsuarioID
+        Return usuarioConectado?.ID
+    End Function
+
+    Public Function CambiarPregunta(nuevapregunta As String, nuevarespuesta As String, contraseña As String) As Boolean Implements IUsuarioRepositorio.CambiarPregunta
+        If usuarioConectado?.VerificarContraseña(contraseña) Then
+            Return SRepo.ConsultarSinRetorno($"update usuario set preguntasecreta='{nuevapregunta}', respuestasecreta='{nuevarespuesta}' where idusuario={UsuarioID()}") > 0
+        Else
+            Return False
+        End If
     End Function
 End Class

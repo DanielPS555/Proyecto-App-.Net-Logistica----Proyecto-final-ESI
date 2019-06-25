@@ -1,10 +1,16 @@
-﻿Public Class crearInformaDeDaños
+﻿Imports Operario
+
+Public Class crearInformaDeDaños
+    Implements IActualizaMessage
     ' hay que crear una lista de registros
+    Public nuevo As Boolean
     Public Sub New(VIN As String)
         informe = VRepo.NewInforme("", "Total", VIN)
         Dim m = VehiculoRepo.RegistroTable()(0)
         InitializeComponent()
         tipo.SelectedIndex = 0
+        Actualizar()
+        nuevo = True
     End Sub
 
     Private m As DataTable
@@ -18,8 +24,8 @@
         tipo.SelectedItem = VRepo.TipoInforme(informe)
         descipt.Text = VRepo.DescripcionInforme(informe)
         descipt.ReadOnly = True
-        m = VRepo.Registros(VRepo.VINInforme(informe), informe).Item1
-        Registros.Items.AddRange(m.ToList.Select(Function(x) x("ID")).ToArray)
+        Actualizar()
+        nuevo = False
     End Sub
 
     Private Sub descipt_TextChanged(sender As Object, e As EventArgs) Handles descipt.TextChanged
@@ -33,7 +39,7 @@
     End Sub
 
     Private Sub nuevo_Click(sender As Object, e As EventArgs)
-        Marco.getInstancia.cargarPanel(Of RegistroDeDañoPanel)(New RegistroDeDañoPanel(informe))
+        Marco.getInstancia.cargarPanel(Of RegistroDeDañoPanel)(New RegistroDeDañoPanel(informe, Me))
     End Sub
 
     Private Sub eliminar_Click(sender As Object, e As EventArgs)
@@ -48,11 +54,17 @@
     Private Sub Registros_SelectedIndexChanged(sender As Object, e As EventArgs) Handles Registros.SelectedIndexChanged
         If descipt.ReadOnly Then
             descipt.Text = m.ToList.Where(Function(x) x("ID") = Registros.SelectedItem).Select(Of String)(Function(z) z("Descripcion")).Single
-            Marco.getInstancia.cargarPanel(New RegistroDeDañoPanel(informe, Integer.Parse(Registros.SelectedItem), False))
+            Marco.getInstancia.cargarPanel(New RegistroDeDañoPanel(informe, Integer.Parse(Registros.SelectedItem), False, Me))
         End If
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs)
+        If nuevo Then
+            For Each i As String In Registros.Items
+                SRepo.ConsultarSinRetorno($"delete from imagenregistro where informe={informe} and nrolista={i.Split(":")(0)};")
+                SRepo.ConsultarSinRetorno($"delete from registrodanios where informe={informe} and nrolista={i.Split(":")(0)};")
+            Next
+        End If
         Marco.getInstancia.cerrarPanel(Of crearInformaDeDaños)()
     End Sub
 
@@ -64,7 +76,9 @@
         End If
     End Sub
 
-    Private Sub modificar_Click(sender As Object, e As EventArgs)
-
+    Public Sub Actualizar() Implements IActualizaMessage.Actualizar
+        m = VRepo.Registros(VRepo.VINInforme(informe), informe).Item1
+        Registros.Items.Clear()
+        Registros.Items.AddRange(m.ToList.Select(Function(x) $"{x("ID")}: {x("Descripcion")}").ToArray)
     End Sub
 End Class

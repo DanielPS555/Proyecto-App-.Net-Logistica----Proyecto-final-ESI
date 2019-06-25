@@ -178,6 +178,12 @@
     <Compile Include="Presentación\operario\PanelInfoLote.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Presentación\operario\PanelInfoUsuario.Designer.vb">
+      <DependentUpon>PanelInfoUsuario.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentación\operario\PanelInfoUsuario.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Presentación\operario\panelInfoVehiculo.Designer.vb">
       <DependentUpon>panelInfoVehiculo.vb</DependentUpon>
     </Compile>
@@ -263,6 +269,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentación\operario\PanelInfoLote.resx">
       <DependentUpon>PanelInfoLote.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentación\operario\PanelInfoUsuario.resx">
+      <DependentUpon>PanelInfoUsuario.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentación\operario\panelInfoVehiculo.resx">
       <DependentUpon>panelInfoVehiculo.vb</DependentUpon>

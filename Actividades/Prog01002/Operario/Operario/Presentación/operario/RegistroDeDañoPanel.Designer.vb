@@ -22,7 +22,6 @@ Partial Class RegistroDeDañoPanel
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        anteriorFotografia = New System.Windows.Forms.Button
         sigienteFotografia = New System.Windows.Forms.Button
         NuevaFotografia = New System.Windows.Forms.Button
         Button4 = New System.Windows.Forms.Button
@@ -45,7 +44,6 @@ Partial Class RegistroDeDañoPanel
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.panelFotografias = New System.Windows.Forms.PictureBox()
-        anteriorFotografia = New System.Windows.Forms.Button()
         sigienteFotografia = New System.Windows.Forms.Button()
         NuevaFotografia = New System.Windows.Forms.Button()
         Button4 = New System.Windows.Forms.Button()
@@ -53,26 +51,6 @@ Partial Class RegistroDeDañoPanel
         Me.Panel1.SuspendLayout()
         CType(Me.panelFotografias, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'anteriorFotografia
-        '
-        anteriorFotografia.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        anteriorFotografia.BackColor = System.Drawing.SystemColors.Control
-        anteriorFotografia.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        anteriorFotografia.FlatAppearance.BorderSize = 0
-        anteriorFotografia.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        anteriorFotografia.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        anteriorFotografia.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        anteriorFotografia.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        anteriorFotografia.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        anteriorFotografia.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
-        anteriorFotografia.Location = New System.Drawing.Point(369, 554)
-        anteriorFotografia.Name = "anteriorFotografia"
-        anteriorFotografia.Size = New System.Drawing.Size(104, 35)
-        anteriorFotografia.TabIndex = 67
-        anteriorFotografia.Text = "Anterior"
-        anteriorFotografia.UseVisualStyleBackColor = False
         '
         'sigienteFotografia
         '
@@ -354,7 +332,6 @@ Partial Class RegistroDeDañoPanel
         Me.Controls.Add(Button5)
         Me.Controls.Add(NuevaFotografia)
         Me.Controls.Add(sigienteFotografia)
-        Me.Controls.Add(anteriorFotografia)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.Label9)
         Me.Controls.Add(Me.Label8)
@@ -400,7 +377,6 @@ Partial Class RegistroDeDañoPanel
     Friend WithEvents Label9 As Label
     Friend WithEvents Panel1 As Panel
     Friend WithEvents panelFotografias As PictureBox
-    Friend WithEvents anteriorFotografia As Button
     Friend WithEvents sigienteFotografia As Button
     Friend WithEvents NuevaFotografia As Button
     Friend WithEvents Button4 As Button

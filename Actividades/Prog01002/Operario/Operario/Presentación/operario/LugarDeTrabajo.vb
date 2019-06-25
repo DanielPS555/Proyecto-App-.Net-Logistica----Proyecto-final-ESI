@@ -29,4 +29,8 @@
         lugares.Items.Clear()
         lugares.Items.AddRange(URepo.LugaresTrabaja.ToArray)
     End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Principal.getInstancia.cerrarPanel(Of LugarDeTrabajo)()
+    End Sub
 End Class

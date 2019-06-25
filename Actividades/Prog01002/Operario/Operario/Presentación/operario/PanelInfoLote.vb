@@ -1,6 +1,7 @@
 ﻿Imports Operario.Logica
 
 Public Class PanelInfoLote
+    Private idlote As Integer
     Public Sub New(nombre As String)
 
         ' Esta llamada es exigida por el diseñador.
@@ -17,6 +18,7 @@ Public Class PanelInfoLote
             Button1.Visible = False
         End If
         Label4.Text = $"Prioridad: {dr(3)}"
+        idlote = dr(4)
         Dim vehiculos = LRepo.VehiculosEnLote(dr(4))
         DataGridView1.DataSource = vehiculos
         Dim fechaCreacion = vehiculos.ToList.Select(Function(x) CType(x(3), DateTime)).ToList
@@ -28,28 +30,23 @@ Public Class PanelInfoLote
             Fecha = fechaCreacion.First.ToShortDateString
         End If
         Label5.Text = $"Fecha de creación: {Fecha}"
-        Me.Size = New Size(880, 650)
     End Sub
 
     Private vehiculo As panelInfoVehiculo
 
     Private Sub dgv(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellClick
-        If vehiculo IsNot Nothing Then
-            vehiculo.Close()
-            Me.Controls.Remove(vehiculo)
-            vehiculo = Nothing
-            Me.Size = New Size(880, 650)
-        End If
         If e.RowIndex < 0 Then
             Return
         End If
 
-        vehiculo = New panelInfoVehiculo(DataGridView1.Rows(e.RowIndex).Cells(0).Value, False) With {
+        Dim vehiculo = New panelInfoVehiculo(DataGridView1.Rows(e.RowIndex).Cells(0).Value, False) With {
             .Location = DataGridView1.Location + New Point(0, DataGridView1.Height + 25),
             .TopLevel = False
         }
-        Me.Size = New Size(880, vehiculo.Location.Y + vehiculo.Height)
-        Me.Controls.Add(vehiculo)
-        vehiculo.Show()
+        Marco.getInstancia.cargarPanel(Of panelInfoVehiculo)(vehiculo)
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        CType(sender, Button).Visible = (SRepo.ConsultarSinRetorno($"update lote set estado='Cerrado' where idlote={idlote};") = 0)
     End Sub
 End Class

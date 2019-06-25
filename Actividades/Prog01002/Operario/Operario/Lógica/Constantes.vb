@@ -1,12 +1,6 @@
 ﻿Namespace Logica
     Public Module Constantes
         Public Roles() As Role = {New Role("Operario"), New Role("Transportista"), New Role("Administrador")}
-        Public Function UnionListas(Of T1)(A As IEnumerable(Of T1), B As IEnumerable(Of T1)) As IList(Of T1)
-            Dim list As New List(Of T1)
-            list.AddRange(A)
-            list.AddRange(B)
-            Return list
-        End Function
         Public Function AutoNull(Of T)(data As Object) As T
             If data Is DBNull.Value Then
                 Return Nothing
@@ -52,6 +46,24 @@ Module Extensiones
             lista.AddRange(l)
         Next
         Return lista
+    End Function
+
+    <Runtime.CompilerServices.Extension>
+    Public Function Transpose(table As DataTable) As DataTable
+        Dim dt As New DataTable(table.TableName + " transposed")
+        dt.Columns.Add("Columna")
+        For i = 1 To table.Rows.Count
+            dt.Columns.Add($"{i}")
+        Next
+        For Each c As DataColumn In table.Columns
+            Dim dr = dt.NewRow
+            dr(0) = c.ColumnName
+            For i = 1 To table.Rows.Count
+                dr(i) = table.Rows(i - 1)(c)
+            Next
+            dt.Rows.Add(dr)
+        Next
+        Return dt
     End Function
 
     Delegate Sub T1Delegate(Of T1)(arg As T1)

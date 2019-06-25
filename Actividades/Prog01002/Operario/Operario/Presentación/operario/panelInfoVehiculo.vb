@@ -15,6 +15,8 @@ Public Class panelInfoVehiculo
             Button2.Visible = False
             Button3.Visible = False
             Button4.Visible = False
+        Else
+            LoteCombo.Enabled = True
         End If
         Me.vin = VIN
         TipoCombo.Items.Clear()
@@ -81,14 +83,11 @@ Public Class panelInfoVehiculo
         If permitido Then
             ModeloBox.Enabled = Not ModeloBox.Enabled
             MarcaBox.Enabled = Not MarcaBox.Enabled
-        End If
-        permitido = permitido OrElse URepo.CreadorDe(vin)
-        If permitido Then
             AñoBox.Enabled = Not AñoBox.Enabled
             TipoCombo.Enabled = Not TipoCombo.Enabled
+            LoteCombo.Enabled = Not LoteCombo.Enabled
+            Button3.Visible = Not Button3.Visible
         End If
-        LoteCombo.Enabled = Not LoteCombo.Enabled
-        Button3.Visible = Not Button3.Visible
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
