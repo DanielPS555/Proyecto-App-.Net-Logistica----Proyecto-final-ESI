@@ -11,12 +11,39 @@
         'QUEDA REGISTRAR EL LUGAR DE CONEXCION 
         Dim r As DataTable = Constantes.SRepo.Consultar("select lote.nombre,min(integra.fecha) fecha_creacion, lugar.nombre,
                                                         count(integra.VIN) from lote,integra,lugar,vehiculoIngresa
-                                                        where IDLote=integra.lote and lote.hacia=lugar.idlugar  and
+                                                        where IDLote=integra.lote and lote.desde=lugar.idlugar  and
                                                         vehiculoIngresa.VIN = integra.VIN and  vehiculoingresa.tipoingreso='Alta'
-                                                        group by lote.nombre, lugar.nombre
-                                                           ")
+                                                        and lugar.nombre='" & URepo.ConectadoEn & "'
+                                                        group by lote.nombre, lugar.nombre")
         lote.Rows.Clear()
+        r.Columns.Add("Estado", GetType(String))
         lote.DataSource = r
+        For i As Integer = 0 To r.Rows.Count - 1
+            Try
+                Dim elemento As Integer = SRepo.ConsultarSingle("Select count(transporte.estado)
+
+                                    from lote , transporte,transporta,lugar
+
+                                    where lote.idlote = transporta.idlote and transporte.transporteid= transporta.transporteid
+
+                                    and lote.nombre='" & lote.Rows(i).Cells(0).Value & "' and transporte.estado='Exitoso' and
+
+                                    lugar.idlugar=lote.Desde and lugar.nombre='" & URepo.ConectadoEn & "'
+
+                                    group by transporte.estado")
+
+                If elemento > 0 Then
+                    lote.Rows(i).Cells(4).Value = "Fuera del lugar"
+                Else
+                    lote.Rows(i).Cells(4).Value = "En el lugar"
+                End If
+
+            Catch ex As Exception
+                lote.Rows(i).Cells(4).Value = "En el lugar"
+            End Try
+
+        Next
+
     End Sub
 
 

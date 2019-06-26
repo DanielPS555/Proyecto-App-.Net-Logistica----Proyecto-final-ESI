@@ -23,7 +23,7 @@ Partial Class ListaZonas
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.zonas = New System.Windows.Forms.ListBox()
-        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.vehi = New System.Windows.Forms.DataGridView()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -42,7 +42,7 @@ Partial Class ListaZonas
         Me.subcapasidad = New System.Windows.Forms.Label()
         Me.subUso = New System.Windows.Forms.Label()
         Me.zonaUso = New System.Windows.Forms.Label()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.vehi, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'zonas
@@ -56,15 +56,15 @@ Partial Class ListaZonas
         Me.zonas.Size = New System.Drawing.Size(215, 264)
         Me.zonas.TabIndex = 0
         '
-        'DataGridView1
+        'vehi
         '
-        Me.DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
-        Me.DataGridView1.BackgroundColor = System.Drawing.Color.White
-        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Location = New System.Drawing.Point(244, 358)
-        Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.Size = New System.Drawing.Size(624, 283)
-        Me.DataGridView1.TabIndex = 1
+        Me.vehi.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.vehi.BackgroundColor = System.Drawing.Color.White
+        Me.vehi.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.vehi.Location = New System.Drawing.Point(244, 358)
+        Me.vehi.Name = "vehi"
+        Me.vehi.Size = New System.Drawing.Size(624, 283)
+        Me.vehi.TabIndex = 1
         '
         'Label1
         '
@@ -271,19 +271,19 @@ Partial Class ListaZonas
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.DataGridView1)
+        Me.Controls.Add(Me.vehi)
         Me.Controls.Add(Me.zonas)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "ListaZonas"
         Me.Text = "ListaZonas"
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.vehi, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
 
     Friend WithEvents zonas As ListBox
-    Friend WithEvents DataGridView1 As DataGridView
+    Friend WithEvents vehi As DataGridView
     Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents Label3 As Label
