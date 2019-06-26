@@ -27,13 +27,13 @@ Partial Class Marco
         Me.contpr = New System.Windows.Forms.Panel()
         Me.contenedor = New System.Windows.Forms.Panel()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.ListaZona = New System.Windows.Forms.Button()
         Me.lotes = New System.Windows.Forms.Button()
         Me.nuevoVehiculo = New System.Windows.Forms.Button()
         Me.veiculos = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.inicio = New System.Windows.Forms.Button()
-        Me.Label1 = New System.Windows.Forms.Label()
         Button7 = New System.Windows.Forms.Button()
         Button8 = New System.Windows.Forms.Button()
         Me.contpr.SuspendLayout()
@@ -93,7 +93,6 @@ Partial Class Marco
         '
         'contenedor
         '
-        Me.contenedor.AutoScroll = True
         Me.contenedor.Dock = System.Windows.Forms.DockStyle.Fill
         Me.contenedor.Location = New System.Drawing.Point(220, 0)
         Me.contenedor.Name = "contenedor"
@@ -117,6 +116,17 @@ Partial Class Marco
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(220, 650)
         Me.Panel2.TabIndex = 0
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.ForeColor = System.Drawing.SystemColors.ButtonFace
+        Me.Label1.Location = New System.Drawing.Point(12, 263)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(52, 20)
+        Me.Label1.TabIndex = 0
+        Me.Label1.Text = "Atrás"
         '
         'ListaZona
         '
@@ -241,25 +251,14 @@ Partial Class Marco
         Me.inicio.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.inicio.UseVisualStyleBackColor = False
         '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.ForeColor = System.Drawing.SystemColors.ButtonFace
-        Me.Label1.Location = New System.Drawing.Point(12, 263)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(52, 20)
-        Me.Label1.TabIndex = 0
-        Me.Label1.Text = "Atrás"
-        '
-        'MarcoPuerto
+        'Marco
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1100, 650)
         Me.Controls.Add(Me.contpr)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
-        Me.Name = "MarcoPuerto"
+        Me.Name = "Marco"
         Me.Text = "MarcoPuerto"
         Me.contpr.ResumeLayout(False)
         Me.Panel2.ResumeLayout(False)

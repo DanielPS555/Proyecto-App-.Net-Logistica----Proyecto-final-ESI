@@ -22,16 +22,17 @@ Partial Class panelInfoVehiculo
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.lugar = New System.Windows.Forms.Label()
+        Me.LLable = New System.Windows.Forms.Label()
         Me.PosicionLabel = New System.Windows.Forms.Label()
         Me.SubzonaLabel = New System.Windows.Forms.Label()
         Me.ZonaLabel = New System.Windows.Forms.Label()
@@ -62,22 +63,8 @@ Partial Class panelInfoVehiculo
         Me.Label9 = New System.Windows.Forms.Label()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.Button4 = New System.Windows.Forms.Button()
-        Me.informes = New System.Windows.Forms.DataGridView()
-        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewLinkColumn1 = New System.Windows.Forms.DataGridViewLinkColumn()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
         Me.Button2 = New System.Windows.Forms.Button()
-        Me.traslados = New System.Windows.Forms.DataGridView()
-        Me.zona = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.subZona = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.posicion = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.desde = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.hasta = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.trasPor = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
         Me.lugares = New System.Windows.Forms.DataGridView()
         Me.nomLugar = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -87,18 +74,30 @@ Partial Class panelInfoVehiculo
         Me.trasportadoPor = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.LLable = New System.Windows.Forms.Label()
-        Me.lugar = New System.Windows.Forms.Label()
+        Me.informes = New System.Windows.Forms.DataGridView()
+        Me.ide = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.l = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.autor_e = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FFinalizacion = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Nregistros = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.asse = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.traslados = New System.Windows.Forms.DataGridView()
+        Me.Zona_ = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Sub_zona = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.pos = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.desde_ = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.hasta_ = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.trasportadoPor_ = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.QR, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage2.SuspendLayout()
-        CType(Me.informes, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage3.SuspendLayout()
-        CType(Me.traslados, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage4.SuspendLayout()
         CType(Me.lugares, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage5.SuspendLayout()
+        CType(Me.informes, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.traslados, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Panel2
@@ -166,6 +165,23 @@ Partial Class panelInfoVehiculo
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "General"
         Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        'lugar
+        '
+        Me.lugar.AutoSize = True
+        Me.lugar.Location = New System.Drawing.Point(86, 444)
+        Me.lugar.Name = "lugar"
+        Me.lugar.Size = New System.Drawing.Size(0, 24)
+        Me.lugar.TabIndex = 136
+        '
+        'LLable
+        '
+        Me.LLable.AutoSize = True
+        Me.LLable.Location = New System.Drawing.Point(12, 444)
+        Me.LLable.Name = "LLable"
+        Me.LLable.Size = New System.Drawing.Size(72, 24)
+        Me.LLable.TabIndex = 135
+        Me.LLable.Text = "Lugar:"
         '
         'PosicionLabel
         '
@@ -454,8 +470,8 @@ Partial Class panelInfoVehiculo
         'TabPage2
         '
         Me.TabPage2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TabPage2.Controls.Add(Me.Button4)
         Me.TabPage2.Controls.Add(Me.informes)
+        Me.TabPage2.Controls.Add(Me.Button4)
         Me.TabPage2.Location = New System.Drawing.Point(4, 31)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
@@ -473,103 +489,11 @@ Partial Class panelInfoVehiculo
         Me.Button4.Text = "Ingresar informe de daños"
         Me.Button4.UseVisualStyleBackColor = True
         '
-        'informes
-        '
-        Me.informes.AllowUserToAddRows = False
-        Me.informes.AllowUserToDeleteRows = False
-        Me.informes.AllowUserToOrderColumns = True
-        Me.informes.AllowUserToResizeRows = False
-        Me.informes.BackgroundColor = System.Drawing.Color.White
-        Me.informes.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.informes.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
-        Me.informes.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.informes.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
-        Me.informes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.informes.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2, Me.DataGridViewTextBoxColumn3, Me.DataGridViewTextBoxColumn4, Me.DataGridViewTextBoxColumn5, Me.DataGridViewLinkColumn1})
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(166, Byte), Integer), CType(CType(214, Byte), Integer), CType(CType(237, Byte), Integer))
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.informes.DefaultCellStyle = DataGridViewCellStyle3
-        Me.informes.EnableHeadersVisualStyles = False
-        Me.informes.GridColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Me.informes.Location = New System.Drawing.Point(14, 48)
-        Me.informes.MultiSelect = False
-        Me.informes.Name = "informes"
-        Me.informes.ReadOnly = True
-        Me.informes.RowHeadersVisible = False
-        Me.informes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.informes.Size = New System.Drawing.Size(850, 559)
-        Me.informes.TabIndex = 86
-        '
-        'DataGridViewTextBoxColumn1
-        '
-        Me.DataGridViewTextBoxColumn1.Frozen = True
-        Me.DataGridViewTextBoxColumn1.HeaderText = "Id"
-        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
-        Me.DataGridViewTextBoxColumn1.ReadOnly = True
-        Me.DataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        '
-        'DataGridViewTextBoxColumn2
-        '
-        Me.DataGridViewTextBoxColumn2.Frozen = True
-        Me.DataGridViewTextBoxColumn2.HeaderText = "Lugar"
-        Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
-        Me.DataGridViewTextBoxColumn2.ReadOnly = True
-        Me.DataGridViewTextBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        '
-        'DataGridViewTextBoxColumn3
-        '
-        Me.DataGridViewTextBoxColumn3.Frozen = True
-        Me.DataGridViewTextBoxColumn3.HeaderText = "Autor"
-        Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
-        Me.DataGridViewTextBoxColumn3.ReadOnly = True
-        '
-        'DataGridViewTextBoxColumn4
-        '
-        Me.DataGridViewTextBoxColumn4.Frozen = True
-        Me.DataGridViewTextBoxColumn4.HeaderText = "Fecha de realizacion"
-        Me.DataGridViewTextBoxColumn4.Name = "DataGridViewTextBoxColumn4"
-        Me.DataGridViewTextBoxColumn4.ReadOnly = True
-        '
-        'DataGridViewTextBoxColumn5
-        '
-        Me.DataGridViewTextBoxColumn5.Frozen = True
-        Me.DataGridViewTextBoxColumn5.HeaderText = "Numero de registros"
-        Me.DataGridViewTextBoxColumn5.Name = "DataGridViewTextBoxColumn5"
-        Me.DataGridViewTextBoxColumn5.ReadOnly = True
-        '
-        'DataGridViewLinkColumn1
-        '
-        Me.DataGridViewLinkColumn1.ActiveLinkColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        DataGridViewCellStyle2.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.White
-        Me.DataGridViewLinkColumn1.DefaultCellStyle = DataGridViewCellStyle2
-        Me.DataGridViewLinkColumn1.HeaderText = "Acceso"
-        Me.DataGridViewLinkColumn1.LinkColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Me.DataGridViewLinkColumn1.Name = "DataGridViewLinkColumn1"
-        Me.DataGridViewLinkColumn1.ReadOnly = True
-        Me.DataGridViewLinkColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridViewLinkColumn1.Text = "Ver Mas "
-        Me.DataGridViewLinkColumn1.UseColumnTextForLinkValue = True
-        Me.DataGridViewLinkColumn1.VisitedLinkColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        '
         'TabPage3
         '
         Me.TabPage3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TabPage3.Controls.Add(Me.Button2)
         Me.TabPage3.Controls.Add(Me.traslados)
+        Me.TabPage3.Controls.Add(Me.Button2)
         Me.TabPage3.Location = New System.Drawing.Point(4, 31)
         Me.TabPage3.Name = "TabPage3"
         Me.TabPage3.Size = New System.Drawing.Size(872, 615)
@@ -585,85 +509,6 @@ Partial Class panelInfoVehiculo
         Me.Button2.TabIndex = 109
         Me.Button2.Text = "Realizar un traslado interno "
         Me.Button2.UseVisualStyleBackColor = True
-        '
-        'traslados
-        '
-        Me.traslados.AllowUserToAddRows = False
-        Me.traslados.AllowUserToDeleteRows = False
-        Me.traslados.AllowUserToResizeRows = False
-        Me.traslados.BackgroundColor = System.Drawing.Color.White
-        Me.traslados.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.traslados.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
-        Me.traslados.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle4.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.traslados.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle4
-        Me.traslados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.traslados.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.zona, Me.subZona, Me.posicion, Me.desde, Me.hasta, Me.trasPor})
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle5.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(166, Byte), Integer), CType(CType(214, Byte), Integer), CType(CType(237, Byte), Integer))
-        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.traslados.DefaultCellStyle = DataGridViewCellStyle5
-        Me.traslados.EnableHeadersVisualStyles = False
-        Me.traslados.GridColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Me.traslados.Location = New System.Drawing.Point(14, 55)
-        Me.traslados.Name = "traslados"
-        Me.traslados.ReadOnly = True
-        Me.traslados.RowHeadersVisible = False
-        Me.traslados.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.traslados.Size = New System.Drawing.Size(850, 552)
-        Me.traslados.TabIndex = 87
-        '
-        'zona
-        '
-        Me.zona.Frozen = True
-        Me.zona.HeaderText = "Zona"
-        Me.zona.Name = "zona"
-        Me.zona.ReadOnly = True
-        '
-        'subZona
-        '
-        Me.subZona.Frozen = True
-        Me.subZona.HeaderText = "Sub-Zona"
-        Me.subZona.Name = "subZona"
-        Me.subZona.ReadOnly = True
-        '
-        'posicion
-        '
-        Me.posicion.Frozen = True
-        Me.posicion.HeaderText = "Posicion de la sub-zona"
-        Me.posicion.Name = "posicion"
-        Me.posicion.ReadOnly = True
-        '
-        'desde
-        '
-        Me.desde.Frozen = True
-        Me.desde.HeaderText = "Desde"
-        Me.desde.Name = "desde"
-        Me.desde.ReadOnly = True
-        '
-        'hasta
-        '
-        Me.hasta.Frozen = True
-        Me.hasta.HeaderText = "Hasta"
-        Me.hasta.Name = "hasta"
-        Me.hasta.ReadOnly = True
-        '
-        'trasPor
-        '
-        Me.trasPor.Frozen = True
-        Me.trasPor.HeaderText = "Trasladado por"
-        Me.trasPor.Name = "trasPor"
-        Me.trasPor.ReadOnly = True
         '
         'TabPage4
         '
@@ -682,28 +527,29 @@ Partial Class panelInfoVehiculo
         Me.lugares.AllowUserToDeleteRows = False
         Me.lugares.AllowUserToOrderColumns = True
         Me.lugares.AllowUserToResizeRows = False
+        Me.lugares.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.lugares.BackgroundColor = System.Drawing.Color.White
         Me.lugares.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.lugares.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
         Me.lugares.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        DataGridViewCellStyle6.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle6.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.lugares.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        DataGridViewCellStyle5.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle5.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.lugares.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle5
         Me.lugares.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.lugares.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.nomLugar, Me.tipoLugar, Me.fLlegada, Me.fPartida, Me.trasportadoPor})
-        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle7.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(166, Byte), Integer), CType(CType(214, Byte), Integer), CType(CType(237, Byte), Integer))
-        DataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.lugares.DefaultCellStyle = DataGridViewCellStyle7
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle6.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(166, Byte), Integer), CType(CType(214, Byte), Integer), CType(CType(237, Byte), Integer))
+        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.lugares.DefaultCellStyle = DataGridViewCellStyle6
         Me.lugares.EnableHeadersVisualStyles = False
         Me.lugares.GridColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
         Me.lugares.Location = New System.Drawing.Point(14, 15)
@@ -763,22 +609,155 @@ Partial Class panelInfoVehiculo
         Me.Label4.TabIndex = 0
         Me.Label4.Text = "2º ENTREGA, Coresponde a la Aplicacion del administrador"
         '
-        'LLable
+        'informes
         '
-        Me.LLable.AutoSize = True
-        Me.LLable.Location = New System.Drawing.Point(12, 444)
-        Me.LLable.Name = "LLable"
-        Me.LLable.Size = New System.Drawing.Size(72, 24)
-        Me.LLable.TabIndex = 135
-        Me.LLable.Text = "Lugar:"
+        Me.informes.AllowUserToAddRows = False
+        Me.informes.AllowUserToDeleteRows = False
+        Me.informes.AllowUserToOrderColumns = True
+        Me.informes.AllowUserToResizeRows = False
+        Me.informes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.informes.BackgroundColor = System.Drawing.Color.White
+        Me.informes.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.informes.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
+        Me.informes.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.informes.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        Me.informes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.informes.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ide, Me.l, Me.autor_e, Me.FFinalizacion, Me.Nregistros, Me.asse})
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(166, Byte), Integer), CType(CType(214, Byte), Integer), CType(CType(237, Byte), Integer))
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.informes.DefaultCellStyle = DataGridViewCellStyle2
+        Me.informes.EnableHeadersVisualStyles = False
+        Me.informes.GridColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.informes.Location = New System.Drawing.Point(10, 69)
+        Me.informes.Name = "informes"
+        Me.informes.ReadOnly = True
+        Me.informes.RowHeadersVisible = False
+        Me.informes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.informes.Size = New System.Drawing.Size(850, 533)
+        Me.informes.TabIndex = 112
         '
-        'lugar
+        'ide
         '
-        Me.lugar.AutoSize = True
-        Me.lugar.Location = New System.Drawing.Point(86, 444)
-        Me.lugar.Name = "lugar"
-        Me.lugar.Size = New System.Drawing.Size(0, 24)
-        Me.lugar.TabIndex = 136
+        Me.ide.HeaderText = "Id"
+        Me.ide.Name = "ide"
+        Me.ide.ReadOnly = True
+        '
+        'l
+        '
+        Me.l.HeaderText = "Lugar"
+        Me.l.Name = "l"
+        Me.l.ReadOnly = True
+        '
+        'autor_e
+        '
+        Me.autor_e.HeaderText = "Autor"
+        Me.autor_e.Name = "autor_e"
+        Me.autor_e.ReadOnly = True
+        '
+        'FFinalizacion
+        '
+        Me.FFinalizacion.HeaderText = "Fecha Finalizacion"
+        Me.FFinalizacion.Name = "FFinalizacion"
+        Me.FFinalizacion.ReadOnly = True
+        '
+        'Nregistros
+        '
+        Me.Nregistros.HeaderText = "Numero de registros "
+        Me.Nregistros.Name = "Nregistros"
+        Me.Nregistros.ReadOnly = True
+        '
+        'asse
+        '
+        Me.asse.HeaderText = "Acceso "
+        Me.asse.Name = "asse"
+        Me.asse.ReadOnly = True
+        '
+        'traslados
+        '
+        Me.traslados.AllowUserToAddRows = False
+        Me.traslados.AllowUserToDeleteRows = False
+        Me.traslados.AllowUserToOrderColumns = True
+        Me.traslados.AllowUserToResizeRows = False
+        Me.traslados.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.traslados.BackgroundColor = System.Drawing.Color.White
+        Me.traslados.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.traslados.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
+        Me.traslados.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.traslados.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle3
+        Me.traslados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.traslados.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Zona_, Me.Sub_zona, Me.pos, Me.desde_, Me.hasta_, Me.trasportadoPor_})
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(166, Byte), Integer), CType(CType(214, Byte), Integer), CType(CType(237, Byte), Integer))
+        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.traslados.DefaultCellStyle = DataGridViewCellStyle4
+        Me.traslados.EnableHeadersVisualStyles = False
+        Me.traslados.GridColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.traslados.Location = New System.Drawing.Point(10, 55)
+        Me.traslados.Name = "traslados"
+        Me.traslados.ReadOnly = True
+        Me.traslados.RowHeadersVisible = False
+        Me.traslados.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.traslados.Size = New System.Drawing.Size(850, 547)
+        Me.traslados.TabIndex = 110
+        '
+        'Zona_
+        '
+        Me.Zona_.HeaderText = "Zona"
+        Me.Zona_.Name = "Zona_"
+        Me.Zona_.ReadOnly = True
+        '
+        'Sub_zona
+        '
+        Me.Sub_zona.HeaderText = "Sub zona"
+        Me.Sub_zona.Name = "Sub_zona"
+        Me.Sub_zona.ReadOnly = True
+        '
+        'pos
+        '
+        Me.pos.HeaderText = "Posicion de la sub-zona"
+        Me.pos.Name = "pos"
+        Me.pos.ReadOnly = True
+        '
+        'desde_
+        '
+        Me.desde_.HeaderText = "Desde"
+        Me.desde_.Name = "desde_"
+        Me.desde_.ReadOnly = True
+        '
+        'hasta_
+        '
+        Me.hasta_.HeaderText = "Hasta"
+        Me.hasta_.Name = "hasta_"
+        Me.hasta_.ReadOnly = True
+        '
+        'trasportadoPor_
+        '
+        Me.trasportadoPor_.HeaderText = "Trasladado Por"
+        Me.trasportadoPor_.Name = "trasportadoPor_"
+        Me.trasportadoPor_.ReadOnly = True
         '
         'panelInfoVehiculo
         '
@@ -796,13 +775,13 @@ Partial Class panelInfoVehiculo
         Me.TabPage1.PerformLayout()
         CType(Me.QR, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage2.ResumeLayout(False)
-        CType(Me.informes, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage3.ResumeLayout(False)
-        CType(Me.traslados, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage4.ResumeLayout(False)
         CType(Me.lugares, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage5.ResumeLayout(False)
         Me.TabPage5.PerformLayout()
+        CType(Me.informes, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.traslados, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -811,7 +790,6 @@ Partial Class panelInfoVehiculo
     Friend WithEvents TabControl1 As TabControl
     Friend WithEvents TabPage1 As TabPage
     Friend WithEvents TabPage2 As TabPage
-    Friend WithEvents informes As DataGridView
     Friend WithEvents Label1 As Label
     Friend WithEvents Label13 As Label
     Friend WithEvents Label2 As Label
@@ -829,13 +807,6 @@ Partial Class panelInfoVehiculo
     Friend WithEvents Button1 As Button
     Friend WithEvents TabPage3 As TabPage
     Friend WithEvents Button2 As Button
-    Friend WithEvents traslados As DataGridView
-    Friend WithEvents zona As DataGridViewTextBoxColumn
-    Friend WithEvents subZona As DataGridViewTextBoxColumn
-    Friend WithEvents posicion As DataGridViewTextBoxColumn
-    Friend WithEvents desde As DataGridViewTextBoxColumn
-    Friend WithEvents hasta As DataGridViewTextBoxColumn
-    Friend WithEvents trasPor As DataGridViewTextBoxColumn
     Friend WithEvents TabPage4 As TabPage
     Friend WithEvents lugares As DataGridView
     Friend WithEvents TipoCombo As ComboBox
@@ -845,12 +816,6 @@ Partial Class panelInfoVehiculo
     Friend WithEvents MarcaBox As TextBox
     Friend WithEvents VINBox As TextBox
     Friend WithEvents Button3 As Button
-    Friend WithEvents DataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn2 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn3 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn4 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn5 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewLinkColumn1 As DataGridViewLinkColumn
     Friend WithEvents nomLugar As DataGridViewTextBoxColumn
     Friend WithEvents tipoLugar As DataGridViewTextBoxColumn
     Friend WithEvents fLlegada As DataGridViewTextBoxColumn
@@ -867,4 +832,18 @@ Partial Class panelInfoVehiculo
     Friend WithEvents ZonaLabel As Label
     Friend WithEvents lugar As Label
     Friend WithEvents LLable As Label
+    Friend WithEvents informes As DataGridView
+    Friend WithEvents ide As DataGridViewTextBoxColumn
+    Friend WithEvents l As DataGridViewTextBoxColumn
+    Friend WithEvents autor_e As DataGridViewTextBoxColumn
+    Friend WithEvents FFinalizacion As DataGridViewTextBoxColumn
+    Friend WithEvents Nregistros As DataGridViewTextBoxColumn
+    Friend WithEvents asse As DataGridViewTextBoxColumn
+    Friend WithEvents traslados As DataGridView
+    Friend WithEvents Zona_ As DataGridViewTextBoxColumn
+    Friend WithEvents Sub_zona As DataGridViewTextBoxColumn
+    Friend WithEvents pos As DataGridViewTextBoxColumn
+    Friend WithEvents desde_ As DataGridViewTextBoxColumn
+    Friend WithEvents hasta_ As DataGridViewTextBoxColumn
+    Friend WithEvents trasportadoPor_ As DataGridViewTextBoxColumn
 End Class

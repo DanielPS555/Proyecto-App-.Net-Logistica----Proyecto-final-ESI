@@ -95,7 +95,7 @@ Public Class panelInfoVehiculo
         tInterno.ShowDialog()
     End Sub
 
-    Private Sub informes_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles informes.CellDoubleClick
+    Private Sub informes_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs)
         Marco.getInstancia.cargarPanel(Of crearInformaDeDaños)(New crearInformaDeDaños(DirectCast(informes.Rows()(e.RowIndex).Cells()(0).Value, Integer)))
     End Sub
 

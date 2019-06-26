@@ -39,14 +39,19 @@ Public Class PanelInfoLote
             Return
         End If
 
-        Dim vehiculo = New panelInfoVehiculo(DataGridView1.Rows(e.RowIndex).Cells(0).Value, False) With {
-            .Location = DataGridView1.Location + New Point(0, DataGridView1.Height + 25),
-            .TopLevel = False
-        }
+        Dim vehiculo = New panelInfoVehiculo(DataGridView1.Rows(e.RowIndex).Cells(0).Value, False)
         Marco.getInstancia.cargarPanel(Of panelInfoVehiculo)(vehiculo)
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         CType(sender, Button).Visible = (SRepo.ConsultarSinRetorno($"update lote set estado='Cerrado' where idlote={idlote};") = 0)
+    End Sub
+
+    Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
+
+    End Sub
+
+    Private Sub PanelInfoLote_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
     End Sub
 End Class

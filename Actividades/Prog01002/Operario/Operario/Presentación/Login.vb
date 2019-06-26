@@ -141,12 +141,12 @@ Public Class Login
     Private Function conectar() As Integer
         Try
 
-            Dim ip = "192.168.1.12" 'MIRA QUE ANDA AUNQUE LE CAMBIE LA IP!!!!
+            Dim ip = "192.168.1.50"
             Dim port = "9088"
             Dim servername = "ol_esi"
-            Dim uid = "root" 'CAMBIAR LUEGO
-            Dim pwd = "daniel2001" 'CAMBIAR LUEGO
-            Dim db = "bit"
+            Dim uid = "dpadron" 'CAMBIAR LUEGO
+            Dim pwd = "bit-2562019" 'CAMBIAR LUEGO
+            Dim db = "bitsgv"
             Dim creacion As String = "Driver=IBM INFORMIX ODBC DRIVER (64-bit);Database=" & db & ";Host=" & ip & ";Server=" & servername & ";Service=" &
             port & ";Uid=" & uid & "; Pwd=" & pwd & ";"
             Dim con As New OdbcConnection(creacion)
