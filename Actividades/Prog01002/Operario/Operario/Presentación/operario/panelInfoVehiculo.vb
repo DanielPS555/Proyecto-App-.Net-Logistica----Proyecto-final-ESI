@@ -40,8 +40,14 @@ Public Class panelInfoVehiculo
         Dim pos = VRepo.Posicion(vin).GetValueOrDefault
         PosicionLabel.Text = pos
         lugar.Text = VRepo.Lugar(vin)
-        LoteCombo.Items.AddRange(LRepo.LotesEnLugar(VRepo.Lugar(vin)).ToArray)
-        LoteCombo.Text = VRepo.Lote(vin)
+        Dim lotes = LRepo.LotesEnLugar(VRepo.Lugar(vin)).ToArray
+        LoteCombo.Items.AddRange(lotes)
+        Dim loteVehiculo As String = VRepo.Lote(vin)
+        For i = 0 To lotes.Count - 1
+            If lotes(i) = loteVehiculo Then
+                LoteCombo.SelectedIndex = i
+            End If
+        Next
         informes.Columns.Clear()
         informes.DataSource = VRepo.Inspecciones(vin)
         traslados.Columns.Clear()

@@ -177,24 +177,33 @@ Public Class SQLRepo
     End Function
 
     Public Function Desconectar() As Boolean Implements IUsuarioRepositorio.Desconectar
-        If usuarioConectado Is Nothing Then Return Nothing
-        Dim val = usuarioConectado.Desconectar
-        CompletarUsuario(usuarioConectado)
-        If val Then
-            Dim conexiones = usuarioConectado.TrabajaEn.Select(Function(x) x.Conexiones).UnionListas.Where(Function(x) x.FechaFin Is Nothing).ToList
-            Dim te = usuarioConectado.TrabajaEn.Where(Function(x) x.Conexiones.Contains(conexiones.Last)).Single
-            Dim com As New OdbcCommand("update conexion set HoraSalida=? where IDTrabajaEn=? and HoraIngreso=?;", _conn)
-            com.CrearParametro(DbType.DateTime, DateTime.Now)
-            com.CrearParametro(DbType.Int64, te.ID)
-            com.CrearParametro(DbType.DateTime, conexiones.Last.FechaInicio)
-            If com.ExecuteNonQuery < 1 Then
+        Try
+            If usuarioConectado Is Nothing Then Return Nothing
+            Dim val = usuarioConectado.Desconectar
+            CompletarUsuario(usuarioConectado)
+            If val Then
+                Dim conexiones = usuarioConectado.TrabajaEn.Select(Function(x) x.Conexiones).UnionListas.Where(Function(x) x.FechaFin Is Nothing).ToList
+                Dim te = usuarioConectado.TrabajaEn.Where(Function(x) x.Conexiones.Contains(conexiones.Last)).Single
+                Dim com As New OdbcCommand("update conexion set HoraSalida=? where IDTrabajaEn=? and HoraIngreso=?;", _conn)
+                com.CrearParametro(DbType.DateTime, DateTime.Now)
+                com.CrearParametro(DbType.Int64, te.ID)
+                com.CrearParametro(DbType.DateTime, conexiones.Last.FechaInicio)
+                If com.ExecuteNonQuery < 1 Then
+                    Return False
+                End If
+                usuarioConectado = Nothing
+                Return True
+            Else
                 Return False
             End If
-            usuarioConectado = Nothing
+        Catch e As Exception
+            Dim com As New OdbcCommand("update conexion set HoraSalida=? where HoraSalida is null;", _conn)
+            com.CrearParametro(DbType.DateTime, DateTime.Now)
+            com.ExecuteNonQuery()
+            MsgBox("Hubo un error desconectando, por favor informe a su administrador.")
+            MsgBox("Como medida de simplicidad, se han cerrado todas las conexiones. Esto será resuelto en la 2da entrega")
             Return True
-        Else
-            Return False
-        End If
+        End Try
     End Function
 
     Public Function NombreCompleto() As String Implements IUsuarioRepositorio.NombreCompleto
@@ -442,7 +451,11 @@ Public Class SQLRepo
         ncom.CrearParametro(DbType.DateTime, Date.Now)
         ncom.CrearParametro(DbType.Int64, LoteID(nuevolote))
         ncom.CrearParametro(DbType.Int64, usuarioConectado.ID)
-        Return ncom.ExecuteNonQuery > 0
+        Try
+            Return ncom.ExecuteNonQuery > 0
+        Catch e As Exception
+            Return False
+        End Try
     End Function
 
     Public Function LoteID(nombre As String) As Integer
@@ -472,16 +485,6 @@ Public Class SQLRepo
         If checkPKCommand.ExecuteScalar > 0 Then
             Return False
         End If
-        Dim posicionadoCommand = New OdbcCommand("select count(*) from posicionado where vin=? and hasta is null;", _conn)
-        posicionadoCommand.CrearParametro(DbType.StringFixedLength, vin)
-        If posicionadoCommand.ExecuteScalar > 0 Then
-            Dim updateCommand = New OdbcCommand("update posicionado set hasta=? where vin=? and hasta is null;", _conn)
-            updateCommand.CrearParametro(DbType.DateTime, Date.Now)
-            updateCommand.CrearParametro(DbType.StringFixedLength, vin)
-            If updateCommand.ExecuteNonQuery = 0 Then
-                Return False
-            End If
-        End If
         Dim posicionarCommand = New OdbcCommand("insert into posicionado(vin, idlugar, idzona, idsub, desde, posicion, idusuario) values(?,?,?,?,?,?,?);", _conn)
         posicionarCommand.CrearParametro(DbType.StringFixedLength, vin)
         posicionarCommand.CrearParametro(DbType.Int64, _lugar.ID)
@@ -491,10 +494,31 @@ Public Class SQLRepo
         posicionarCommand.CrearParametro(DbType.Int64, nuevaposicion)
         posicionarCommand.CrearParametro(DbType.Int64, usuarioConectado.ID)
         Try
-            Return posicionarCommand.ExecuteNonQuery > 0
+            If Not posicionarCommand.ExecuteNonQuery > 0 Then
+                Return False
+            End If
         Catch e As Exception
             Return False
         End Try
+        Dim posicionadoCommand = New OdbcCommand("select count(*) from posicionado where vin=? and hasta is null and idzona<>? and idsub<>? and idlugar<>?;", _conn)
+        posicionadoCommand.CrearParametro(DbType.StringFixedLength, vin)
+        posicionadoCommand.CrearParametro(DbType.Int64, _zona.ID)
+        posicionadoCommand.CrearParametro(DbType.Int64, _subzona.ID)
+        posicionadoCommand.CrearParametro(DbType.Int64, _lugar.ID)
+        If posicionadoCommand.ExecuteScalar > 0 Then
+            Dim updateCommand = New OdbcCommand("update posicionado set hasta=? where vin=? and hasta is null and idzona <>? and idsub<>? and idlugar<>?;", _conn)
+            updateCommand.CrearParametro(DbType.DateTime, Date.Now)
+            updateCommand.CrearParametro(DbType.StringFixedLength, vin)
+            updateCommand.CrearParametro(DbType.Int64, _zona.ID)
+            updateCommand.CrearParametro(DbType.Int64, _subzona.ID)
+            updateCommand.CrearParametro(DbType.Int64, _lugar.ID)
+            If updateCommand.ExecuteNonQuery = 0 Then
+                Return False
+            End If
+            Return True
+        Else
+            Return True
+        End If
 
     End Function
 
@@ -954,12 +978,12 @@ Public Class SQLRepo
     End Function
 
     Friend Overrides Function IDInformes(vin As String) As String()
-        Dim dt = Me.Consultar($"select id from informedanios where vin='{vin}';")
-        Return dt.ToList.Select(Function(x) x(0)).ToArray
+        Dim dt = Me.Consultar($"select informedanios.ID from informedanios where VIN='{vin}';")
+        Return dt.ToList.Select(Function(x) CType(x(0), String)).ToArray
     End Function
 
     Friend Overrides Function IDRegistros(informe As String) As String()
-        Dim dt = Me.Consultar($"select id from registrodanios where informedanios={informe};")
-        Return dt.ToList.Select(Function(x) x(0)).ToArray
+        Dim dt = Me.Consultar($"select registrodanios.nroenlista from registrodanios where informedanios={informe};")
+        Return dt.ToList.Select(Function(x) CType(x(0), String)).ToArray
     End Function
 End Class

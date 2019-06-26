@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class RegistroDeDañoPanel
     Inherits System.Windows.Forms.Form
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,12 +20,8 @@ Partial Class RegistroDeDañoPanel
     'NOTA: el Diseñador de Windows Forms necesita el siguiente procedimiento
     'Se puede modificar usando el Diseñador de Windows Forms.  
     'No lo modifique con el editor de código.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        sigienteFotografia = New System.Windows.Forms.Button
-        NuevaFotografia = New System.Windows.Forms.Button
-        Button4 = New System.Windows.Forms.Button
-        Button5 = New System.Windows.Forms.Button
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.infoDaños = New System.Windows.Forms.Label()
@@ -44,6 +40,10 @@ Partial Class RegistroDeDañoPanel
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.panelFotografias = New System.Windows.Forms.PictureBox()
+        sigienteFotografia = New System.Windows.Forms.Button()
+        NuevaFotografia = New System.Windows.Forms.Button()
+        Button4 = New System.Windows.Forms.Button()
+        Button5 = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         CType(Me.panelFotografias, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -197,6 +197,7 @@ Partial Class RegistroDeDañoPanel
         Me.Label3.Size = New System.Drawing.Size(46, 22)
         Me.Label3.TabIndex = 6
         Me.Label3.Text = "Tipo"
+        Me.Label3.Visible = False
         '
         'tipo
         '
@@ -207,6 +208,7 @@ Partial Class RegistroDeDañoPanel
         Me.tipo.Name = "tipo"
         Me.tipo.Size = New System.Drawing.Size(121, 30)
         Me.tipo.TabIndex = 7
+        Me.tipo.Visible = False
         '
         'Label5
         '
@@ -218,6 +220,7 @@ Partial Class RegistroDeDañoPanel
         Me.Label5.Size = New System.Drawing.Size(109, 22)
         Me.Label5.TabIndex = 8
         Me.Label5.Text = "De informe"
+        Me.Label5.Visible = False
         '
         'infoOrigen
         '
@@ -227,6 +230,7 @@ Partial Class RegistroDeDañoPanel
         Me.infoOrigen.Name = "infoOrigen"
         Me.infoOrigen.Size = New System.Drawing.Size(121, 30)
         Me.infoOrigen.TabIndex = 9
+        Me.infoOrigen.Visible = False
         '
         'Label6
         '
@@ -238,6 +242,7 @@ Partial Class RegistroDeDañoPanel
         Me.Label6.Size = New System.Drawing.Size(115, 22)
         Me.Label6.TabIndex = 10
         Me.Label6.Text = "Del registro "
+        Me.Label6.Visible = False
         '
         'registroOrigen
         '
@@ -247,6 +252,7 @@ Partial Class RegistroDeDañoPanel
         Me.registroOrigen.Name = "registroOrigen"
         Me.registroOrigen.Size = New System.Drawing.Size(121, 30)
         Me.registroOrigen.TabIndex = 11
+        Me.registroOrigen.Visible = False
         '
         'cp
         '
@@ -373,8 +379,8 @@ Partial Class RegistroDeDañoPanel
     Friend WithEvents Label9 As Label
     Friend WithEvents Panel1 As Panel
     Friend WithEvents panelFotografias As PictureBox
-    Friend WithEvents sigienteFotografia As Button
-    Friend WithEvents NuevaFotografia As Button
-    Friend WithEvents Button4 As Button
-    Friend WithEvents Button5 As Button
+    Friend WithEvents sigienteFotografia As System.Windows.Forms.Button
+    Friend WithEvents NuevaFotografia As System.Windows.Forms.Button
+    Friend WithEvents Button4 As System.Windows.Forms.Button
+    Friend WithEvents Button5 As System.Windows.Forms.Button
 End Class

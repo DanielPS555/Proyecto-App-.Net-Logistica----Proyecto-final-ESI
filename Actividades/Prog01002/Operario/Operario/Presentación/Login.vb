@@ -173,7 +173,11 @@ Public Class Login
 
     Public Function pruebaConect(ip As String, port As String, servername As String, uid As String, pwd As String, db As String) As Integer
         Try
-            Dim creacion As String = "Driver=IBM INFORMIX ODBC DRIVER (64-bit);Database=" & db & ";Host=" & ip & ";Server=" & servername & ";Service=" &
+            Dim driver As String = "IBM INFORMIX ODBC DRIVER"
+            If System.Environment.Is64BitProcess Then
+                driver += " (64-bit)"
+            End If
+            Dim creacion As String = "Driver=" & driver & ";Database=" & db & ";Host=" & ip & ";Server=" & servername & ";Service=" &
             port & ";Uid=" & uid & "; Pwd=" & pwd & ";"
             Dim con1 As New OdbcConnection(creacion)
             con1.Open()

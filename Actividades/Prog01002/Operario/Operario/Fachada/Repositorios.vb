@@ -173,7 +173,7 @@ Public MustInherit Class VehiculoRepo
 
     Friend Sub InformeActualiza(eninforme As Integer, enregistro As Integer, tipoActualizacion As String, actualizaInforme As String, actualizaRegistro As String)
         If SRepo.ConsultarSingle($"select count(*) from actualiza where informe1={eninforme} and registro1={enregistro};") = 0 Then
-            SRepo.ConsultarSinRetorno($"insert into actualiza(informe1, registro1, informe2, registro2, tipo) values({eninforme},{enregistro},{actualizaInforme},{actualizaRegistro},{tipoActualizacion});")
+            SRepo.ConsultarSinRetorno($"insert into actualiza(informe1, registro1, informe2, registro2, tipo) values({eninforme},{enregistro},{actualizaInforme},{actualizaRegistro},'{tipoActualizacion}');")
         End If
     End Sub
 End Class

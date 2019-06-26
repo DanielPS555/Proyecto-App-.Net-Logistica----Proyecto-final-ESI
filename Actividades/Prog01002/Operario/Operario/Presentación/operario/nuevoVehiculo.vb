@@ -113,7 +113,7 @@ Public Class nuevoVehiculo
     End Sub
 
     Private Sub ingresar_Click(sender As Object, e As EventArgs)
-        If (buscador.Text.Count And marca.Text.Count And modelo.Text.Count And anio.Text.Count And lote.Text.Count) = 0 Then
+        If (buscador.Text.Count * marca.Text.Count * modelo.Text.Count * anio.Text.Count * lote.Text.Count) = 0 Then
             MsgBox("Todos los datos deben estar llenados para ingresar un vehiculo")
         End If
         Dim v = VRepo.VehiculoIncompleto(buscador.Text)

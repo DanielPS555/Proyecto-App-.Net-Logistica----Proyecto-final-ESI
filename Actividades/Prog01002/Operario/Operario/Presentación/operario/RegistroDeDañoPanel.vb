@@ -69,9 +69,9 @@
     Private Sub Button5_Click(sender As Object, e As EventArgs)
         VRepo.UpdateInformeReg(eninforme, enregistro, descipt.Text)
         VRepo.UpdateInformeImg(eninforme, enregistro, images)
-        If tipo.SelectedIndex > 0 Then
-            VRepo.InformeActualiza(eninforme, enregistro, tipo.SelectedItem, infoOrigen.SelectedItem, registroOrigen.SelectedItem)
-        End If
+        'If tipo.SelectedIndex > 0 Then
+        '   VRepo.InformeActualiza(eninforme, enregistro, tipo.SelectedItem, infoOrigen.SelectedItem, registroOrigen.SelectedItem)
+        'End If
         padre.Actualizar()
         Marco.getInstancia.cerrarPanel(Of RegistroDeDañoPanel)()
     End Sub

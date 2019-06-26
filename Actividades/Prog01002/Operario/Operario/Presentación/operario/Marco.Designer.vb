@@ -79,6 +79,7 @@ Partial Class Marco
         Button8.Text = "Mi cuenta"
         Button8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Button8.UseVisualStyleBackColor = False
+        AddHandler Button8.Click, AddressOf Me.Button8_Click
         '
         'contpr
         '

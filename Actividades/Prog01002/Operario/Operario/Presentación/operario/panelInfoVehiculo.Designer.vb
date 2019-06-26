@@ -173,6 +173,7 @@ Partial Class panelInfoVehiculo
         Me.lugar.Name = "lugar"
         Me.lugar.Size = New System.Drawing.Size(0, 24)
         Me.lugar.TabIndex = 136
+        Me.lugar.Visible = False
         '
         'LLable
         '
@@ -182,6 +183,7 @@ Partial Class panelInfoVehiculo
         Me.LLable.Size = New System.Drawing.Size(72, 24)
         Me.LLable.TabIndex = 135
         Me.LLable.Text = "Lugar:"
+        Me.LLable.Visible = False
         '
         'PosicionLabel
         '

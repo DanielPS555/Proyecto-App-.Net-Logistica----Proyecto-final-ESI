@@ -9,12 +9,11 @@
 
     Private Sub cargar()
         'QUEDA REGISTRAR EL LUGAR DE CONEXCION 
-        Dim r As DataTable = Constantes.SRepo.Consultar("select lote.nombre,min(integra.fecha) fecha_creacion, lugar.nombre,
-                                                        count(integra.VIN) from lote,integra,lugar,vehiculoIngresa
-                                                        where IDLote=integra.lote and lote.desde=lugar.idlugar  and
-                                                        vehiculoIngresa.VIN = integra.VIN and  vehiculoingresa.tipoingreso='Alta'
-                                                        and lugar.nombre='" & URepo.ConectadoEn & "'
-                                                        group by lote.nombre, lugar.nombre")
+        Dim r As DataTable = Constantes.SRepo.Consultar("select lote.nombre nombre_lote, lugar.nombre origen_lote
+                                                        from lote inner join lugar
+                                                        on lote.desde=lugar.idlugar
+                                                        where lugar.nombre='" & URepo.ConectadoEn & "'
+                                                        ")
         lote.Rows.Clear()
         r.Columns.Add("Estado", GetType(String))
         lote.DataSource = r
@@ -33,13 +32,13 @@
                                     group by transporte.estado")
 
                 If elemento > 0 Then
-                    lote.Rows(i).Cells(4).Value = "Fuera del lugar"
+                    lote.Rows(i).Cells(2).Value = "Fuera del lugar"
                 Else
-                    lote.Rows(i).Cells(4).Value = "En el lugar"
+                    lote.Rows(i).Cells(2).Value = "En el lugar"
                 End If
 
             Catch ex As Exception
-                lote.Rows(i).Cells(4).Value = "En el lugar"
+                lote.Rows(i).Cells(2).Value = "Desconocido"
             End Try
 
         Next
