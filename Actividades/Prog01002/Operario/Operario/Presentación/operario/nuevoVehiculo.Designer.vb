@@ -25,8 +25,8 @@ Partial Class nuevoVehiculo
         Dim QR As System.Windows.Forms.Button
         Dim Buscar As System.Windows.Forms.Button
         Dim color As System.Windows.Forms.Button
-        Dim infoDaños As System.Windows.Forms.Button
-        Dim ingresar As System.Windows.Forms.Button
+        Me.infoDaños = New System.Windows.Forms.Button
+        Me.ingresar = New System.Windows.Forms.Button
         Me.buscador = New System.Windows.Forms.TextBox()
         Me.EstadoBusqueda = New System.Windows.Forms.Label()
         Me.l_marca = New System.Windows.Forms.Label()
@@ -55,8 +55,6 @@ Partial Class nuevoVehiculo
         QR = New System.Windows.Forms.Button()
         Buscar = New System.Windows.Forms.Button()
         color = New System.Windows.Forms.Button()
-        infoDaños = New System.Windows.Forms.Button()
-        ingresar = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'QR
@@ -127,6 +125,7 @@ Partial Class nuevoVehiculo
         infoDaños.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         infoDaños.BackColor = System.Drawing.Color.White
+        infoDaños.Enabled = False
         infoDaños.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
         infoDaños.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
         infoDaños.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White
@@ -148,6 +147,7 @@ Partial Class nuevoVehiculo
         ingresar.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         ingresar.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        ingresar.Enabled = False
         ingresar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
         ingresar.FlatAppearance.BorderSize = 0
         ingresar.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
@@ -438,8 +438,8 @@ Partial Class nuevoVehiculo
         Me.Text = "nuevoVehiculo"
         Me.ResumeLayout(False)
         Me.PerformLayout()
-
     End Sub
+
     Friend WithEvents buscador As TextBox
     Friend WithEvents EstadoBusqueda As Label
     Friend WithEvents l_marca As Label
@@ -465,4 +465,6 @@ Partial Class nuevoVehiculo
     Friend WithEvents ColorDialog1 As ColorDialog
     Friend WithEvents LinkLabel2 As LinkLabel
     Friend WithEvents cliente As TextBox
+    Friend WithEvents infoDaños As Button
+    Friend WithEvents ingresar As Button
 End Class

@@ -18,6 +18,6 @@
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        Marco.getInstancia.cargarPanel(New PanelInfoUsuario(URepo.UsuarioID))
+        MsgBox("¡Sin implementar!")
     End Sub
 End Class

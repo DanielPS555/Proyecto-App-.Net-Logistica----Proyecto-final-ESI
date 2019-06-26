@@ -78,6 +78,8 @@ Public Class nuevoVehiculo
     Private Sub Buscar_Click(sender As Object, e As EventArgs)
         Dim vehiculo As Logica.Vehiculo = VRepo.VehiculoIncompleto(buscador.Text)
 
+        ingresar.Enabled = False
+        infoDaños.Enabled = False
         If vehiculo Is Nothing Then
             MsgBox("No existe precarga para ese vehículo, reporte a su administrador")
             Return
@@ -88,6 +90,8 @@ Public Class nuevoVehiculo
             MsgBox("Ese vehículo ya ha sido ingresado")
         Else
             MsgBox("Ese vehículo tiene una precarga pendiente, puede ser ingresado")
+            ingresar.Enabled = True
+            infoDaños.Enabled = True
         End If
     End Sub
 
@@ -109,6 +113,9 @@ Public Class nuevoVehiculo
     End Sub
 
     Private Sub ingresar_Click(sender As Object, e As EventArgs)
+        If (buscador.Text.Count And marca.Text.Count And modelo.Text.Count And anio.Text.Count And lote.Text.Count) = 0 Then
+            MsgBox("Todos los datos deben estar llenados para ingresar un vehiculo")
+        End If
         Dim v = VRepo.VehiculoIncompleto(buscador.Text)
         If v Is Nothing Then
             MsgBox("Ese vehículo no existe, por favor verifique el VIN.")

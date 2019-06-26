@@ -6,13 +6,15 @@ End Interface
 
 Public Class panelInfoVehiculo
     Implements IActualizaMessage
+    Implements LoteReceiver
+
     Private vin As String
     Public Sub New(VIN As String, aqui As Boolean)
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
         If Not aqui Then
             Button1.Visible = False
-            'Button2.Visible = False
+            Button2.Visible = False
             Button3.Visible = False
             Button4.Visible = False
         Else
@@ -39,7 +41,7 @@ Public Class panelInfoVehiculo
         PosicionLabel.Text = pos
         lugar.Text = VRepo.Lugar(vin)
         LoteCombo.Items.AddRange(LRepo.LotesEnLugar(VRepo.Lugar(vin)).ToArray)
-        LoteCombo.SelectedItem = VRepo.Lote(vin)
+        LoteCombo.Text = VRepo.Lote(vin)
         informes.Columns.Clear()
         informes.DataSource = VRepo.Inspecciones(vin)
         traslados.Columns.Clear()
@@ -95,7 +97,7 @@ Public Class panelInfoVehiculo
         tInterno.ShowDialog()
     End Sub
 
-    Private Sub informes_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs)
+    Private Sub informes_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles informes.CellDoubleClick
         Marco.getInstancia.cargarPanel(Of crearInformaDeDaños)(New crearInformaDeDaños(DirectCast(informes.Rows()(e.RowIndex).Cells()(0).Value, Integer)))
     End Sub
 
@@ -104,6 +106,12 @@ Public Class panelInfoVehiculo
     Private _changedTB4 As Boolean = False
     Private _changedTB5 As Boolean = False
     Private _changedCB1 As Boolean = False
+
+    Public WriteOnly Property Lote As String Implements LoteReceiver.Lote
+        Set(value As String)
+            LoteCombo.Text = value
+        End Set
+    End Property
 
     Private Sub TextBox2_TextChanged(sender As Object, e As EventArgs) Handles MarcaBox.TextChanged
         _changedTB2 = True
@@ -172,5 +180,9 @@ Public Class panelInfoVehiculo
     Public Sub Actualizar() Implements IActualizaMessage.Actualizar
         traslados.Columns.Clear()
         traslados.DataSource = VRepo.PosicionesEn(vin, URepo.ConectadoEn)
+    End Sub
+
+    Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
+        Marco.getInstancia.cargarPanel(New PanelInfoLote(LoteCombo.Text))
     End Sub
 End Class

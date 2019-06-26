@@ -168,4 +168,12 @@ Public MustInherit Class VehiculoRepo
 
     Friend MustOverride Sub Lugares(dtlugares As DataTable, vin As String)
     Friend MustOverride Sub UpdateInformeImg(eninforme As Integer, enregistro As Integer, images As List(Of Bitmap))
+    Friend MustOverride Function IDInformes(vin As String) As String()
+    Friend MustOverride Function IDRegistros(informe As String) As String()
+
+    Friend Sub InformeActualiza(eninforme As Integer, enregistro As Integer, tipoActualizacion As String, actualizaInforme As String, actualizaRegistro As String)
+        If SRepo.ConsultarSingle($"select count(*) from actualiza where informe1={eninforme} and registro1={enregistro};") = 0 Then
+            SRepo.ConsultarSinRetorno($"insert into actualiza(informe1, registro1, informe2, registro2, tipo) values({eninforme},{enregistro},{actualizaInforme},{actualizaRegistro},{tipoActualizacion});")
+        End If
+    End Sub
 End Class

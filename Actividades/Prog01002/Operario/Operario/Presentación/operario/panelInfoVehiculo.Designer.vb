@@ -22,12 +22,12 @@ Partial Class panelInfoVehiculo
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
@@ -62,8 +62,22 @@ Partial Class panelInfoVehiculo
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.informes = New System.Windows.Forms.DataGridView()
+        Me.ide = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.l = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.autor_e = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FFinalizacion = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Nregistros = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.asse = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Button4 = New System.Windows.Forms.Button()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.traslados = New System.Windows.Forms.DataGridView()
+        Me.Zona_ = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Sub_zona = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.pos = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.desde_ = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.hasta_ = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.trasportadoPor_ = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
         Me.lugares = New System.Windows.Forms.DataGridView()
@@ -74,30 +88,16 @@ Partial Class panelInfoVehiculo
         Me.trasportadoPor = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.informes = New System.Windows.Forms.DataGridView()
-        Me.ide = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.l = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.autor_e = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.FFinalizacion = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Nregistros = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.asse = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.traslados = New System.Windows.Forms.DataGridView()
-        Me.Zona_ = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Sub_zona = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.pos = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.desde_ = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.hasta_ = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.trasportadoPor_ = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.QR, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage2.SuspendLayout()
+        CType(Me.informes, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage3.SuspendLayout()
+        CType(Me.traslados, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage4.SuspendLayout()
         CType(Me.lugares, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage5.SuspendLayout()
-        CType(Me.informes, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.traslados, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Panel2
@@ -480,6 +480,81 @@ Partial Class panelInfoVehiculo
         Me.TabPage2.Text = "Informes de daños"
         Me.TabPage2.UseVisualStyleBackColor = True
         '
+        'informes
+        '
+        Me.informes.AllowUserToAddRows = False
+        Me.informes.AllowUserToDeleteRows = False
+        Me.informes.AllowUserToOrderColumns = True
+        Me.informes.AllowUserToResizeRows = False
+        Me.informes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.informes.BackgroundColor = System.Drawing.Color.White
+        Me.informes.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.informes.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
+        Me.informes.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.informes.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        Me.informes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.informes.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ide, Me.l, Me.autor_e, Me.FFinalizacion, Me.Nregistros, Me.asse})
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(166, Byte), Integer), CType(CType(214, Byte), Integer), CType(CType(237, Byte), Integer))
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.informes.DefaultCellStyle = DataGridViewCellStyle2
+        Me.informes.EnableHeadersVisualStyles = False
+        Me.informes.GridColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.informes.Location = New System.Drawing.Point(10, 69)
+        Me.informes.Name = "informes"
+        Me.informes.ReadOnly = True
+        Me.informes.RowHeadersVisible = False
+        Me.informes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.informes.Size = New System.Drawing.Size(850, 533)
+        Me.informes.TabIndex = 112
+        '
+        'ide
+        '
+        Me.ide.HeaderText = "Id"
+        Me.ide.Name = "ide"
+        Me.ide.ReadOnly = True
+        '
+        'l
+        '
+        Me.l.HeaderText = "Lugar"
+        Me.l.Name = "l"
+        Me.l.ReadOnly = True
+        '
+        'autor_e
+        '
+        Me.autor_e.HeaderText = "Autor"
+        Me.autor_e.Name = "autor_e"
+        Me.autor_e.ReadOnly = True
+        '
+        'FFinalizacion
+        '
+        Me.FFinalizacion.HeaderText = "Fecha Finalizacion"
+        Me.FFinalizacion.Name = "FFinalizacion"
+        Me.FFinalizacion.ReadOnly = True
+        '
+        'Nregistros
+        '
+        Me.Nregistros.HeaderText = "Numero de registros "
+        Me.Nregistros.Name = "Nregistros"
+        Me.Nregistros.ReadOnly = True
+        '
+        'asse
+        '
+        Me.asse.HeaderText = "Acceso "
+        Me.asse.Name = "asse"
+        Me.asse.ReadOnly = True
+        '
         'Button4
         '
         Me.Button4.Location = New System.Drawing.Point(567, 10)
@@ -500,6 +575,81 @@ Partial Class panelInfoVehiculo
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "Traslados internos"
         Me.TabPage3.UseVisualStyleBackColor = True
+        '
+        'traslados
+        '
+        Me.traslados.AllowUserToAddRows = False
+        Me.traslados.AllowUserToDeleteRows = False
+        Me.traslados.AllowUserToOrderColumns = True
+        Me.traslados.AllowUserToResizeRows = False
+        Me.traslados.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.traslados.BackgroundColor = System.Drawing.Color.White
+        Me.traslados.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.traslados.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
+        Me.traslados.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.traslados.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle3
+        Me.traslados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.traslados.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Zona_, Me.Sub_zona, Me.pos, Me.desde_, Me.hasta_, Me.trasportadoPor_})
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(166, Byte), Integer), CType(CType(214, Byte), Integer), CType(CType(237, Byte), Integer))
+        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.traslados.DefaultCellStyle = DataGridViewCellStyle4
+        Me.traslados.EnableHeadersVisualStyles = False
+        Me.traslados.GridColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.traslados.Location = New System.Drawing.Point(10, 55)
+        Me.traslados.Name = "traslados"
+        Me.traslados.ReadOnly = True
+        Me.traslados.RowHeadersVisible = False
+        Me.traslados.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.traslados.Size = New System.Drawing.Size(850, 547)
+        Me.traslados.TabIndex = 110
+        '
+        'Zona_
+        '
+        Me.Zona_.HeaderText = "Zona"
+        Me.Zona_.Name = "Zona_"
+        Me.Zona_.ReadOnly = True
+        '
+        'Sub_zona
+        '
+        Me.Sub_zona.HeaderText = "Sub zona"
+        Me.Sub_zona.Name = "Sub_zona"
+        Me.Sub_zona.ReadOnly = True
+        '
+        'pos
+        '
+        Me.pos.HeaderText = "Posicion de la sub-zona"
+        Me.pos.Name = "pos"
+        Me.pos.ReadOnly = True
+        '
+        'desde_
+        '
+        Me.desde_.HeaderText = "Desde"
+        Me.desde_.Name = "desde_"
+        Me.desde_.ReadOnly = True
+        '
+        'hasta_
+        '
+        Me.hasta_.HeaderText = "Hasta"
+        Me.hasta_.Name = "hasta_"
+        Me.hasta_.ReadOnly = True
+        '
+        'trasportadoPor_
+        '
+        Me.trasportadoPor_.HeaderText = "Trasladado Por"
+        Me.trasportadoPor_.Name = "trasportadoPor_"
+        Me.trasportadoPor_.ReadOnly = True
         '
         'Button2
         '
@@ -609,156 +759,6 @@ Partial Class panelInfoVehiculo
         Me.Label4.TabIndex = 0
         Me.Label4.Text = "2º ENTREGA, Coresponde a la Aplicacion del administrador"
         '
-        'informes
-        '
-        Me.informes.AllowUserToAddRows = False
-        Me.informes.AllowUserToDeleteRows = False
-        Me.informes.AllowUserToOrderColumns = True
-        Me.informes.AllowUserToResizeRows = False
-        Me.informes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
-        Me.informes.BackgroundColor = System.Drawing.Color.White
-        Me.informes.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.informes.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
-        Me.informes.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.informes.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
-        Me.informes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.informes.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ide, Me.l, Me.autor_e, Me.FFinalizacion, Me.Nregistros, Me.asse})
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(166, Byte), Integer), CType(CType(214, Byte), Integer), CType(CType(237, Byte), Integer))
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.informes.DefaultCellStyle = DataGridViewCellStyle2
-        Me.informes.EnableHeadersVisualStyles = False
-        Me.informes.GridColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Me.informes.Location = New System.Drawing.Point(10, 69)
-        Me.informes.Name = "informes"
-        Me.informes.ReadOnly = True
-        Me.informes.RowHeadersVisible = False
-        Me.informes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.informes.Size = New System.Drawing.Size(850, 533)
-        Me.informes.TabIndex = 112
-        '
-        'ide
-        '
-        Me.ide.HeaderText = "Id"
-        Me.ide.Name = "ide"
-        Me.ide.ReadOnly = True
-        '
-        'l
-        '
-        Me.l.HeaderText = "Lugar"
-        Me.l.Name = "l"
-        Me.l.ReadOnly = True
-        '
-        'autor_e
-        '
-        Me.autor_e.HeaderText = "Autor"
-        Me.autor_e.Name = "autor_e"
-        Me.autor_e.ReadOnly = True
-        '
-        'FFinalizacion
-        '
-        Me.FFinalizacion.HeaderText = "Fecha Finalizacion"
-        Me.FFinalizacion.Name = "FFinalizacion"
-        Me.FFinalizacion.ReadOnly = True
-        '
-        'Nregistros
-        '
-        Me.Nregistros.HeaderText = "Numero de registros "
-        Me.Nregistros.Name = "Nregistros"
-        Me.Nregistros.ReadOnly = True
-        '
-        'asse
-        '
-        Me.asse.HeaderText = "Acceso "
-        Me.asse.Name = "asse"
-        Me.asse.ReadOnly = True
-        '
-        'traslados
-        '
-        Me.traslados.AllowUserToAddRows = False
-        Me.traslados.AllowUserToDeleteRows = False
-        Me.traslados.AllowUserToOrderColumns = True
-        Me.traslados.AllowUserToResizeRows = False
-        Me.traslados.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
-        Me.traslados.BackgroundColor = System.Drawing.Color.White
-        Me.traslados.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.traslados.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
-        Me.traslados.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle3.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.traslados.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle3
-        Me.traslados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.traslados.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Zona_, Me.Sub_zona, Me.pos, Me.desde_, Me.hasta_, Me.trasportadoPor_})
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(166, Byte), Integer), CType(CType(214, Byte), Integer), CType(CType(237, Byte), Integer))
-        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.traslados.DefaultCellStyle = DataGridViewCellStyle4
-        Me.traslados.EnableHeadersVisualStyles = False
-        Me.traslados.GridColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Me.traslados.Location = New System.Drawing.Point(10, 55)
-        Me.traslados.Name = "traslados"
-        Me.traslados.ReadOnly = True
-        Me.traslados.RowHeadersVisible = False
-        Me.traslados.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.traslados.Size = New System.Drawing.Size(850, 547)
-        Me.traslados.TabIndex = 110
-        '
-        'Zona_
-        '
-        Me.Zona_.HeaderText = "Zona"
-        Me.Zona_.Name = "Zona_"
-        Me.Zona_.ReadOnly = True
-        '
-        'Sub_zona
-        '
-        Me.Sub_zona.HeaderText = "Sub zona"
-        Me.Sub_zona.Name = "Sub_zona"
-        Me.Sub_zona.ReadOnly = True
-        '
-        'pos
-        '
-        Me.pos.HeaderText = "Posicion de la sub-zona"
-        Me.pos.Name = "pos"
-        Me.pos.ReadOnly = True
-        '
-        'desde_
-        '
-        Me.desde_.HeaderText = "Desde"
-        Me.desde_.Name = "desde_"
-        Me.desde_.ReadOnly = True
-        '
-        'hasta_
-        '
-        Me.hasta_.HeaderText = "Hasta"
-        Me.hasta_.Name = "hasta_"
-        Me.hasta_.ReadOnly = True
-        '
-        'trasportadoPor_
-        '
-        Me.trasportadoPor_.HeaderText = "Trasladado Por"
-        Me.trasportadoPor_.Name = "trasportadoPor_"
-        Me.trasportadoPor_.ReadOnly = True
-        '
         'panelInfoVehiculo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -775,13 +775,13 @@ Partial Class panelInfoVehiculo
         Me.TabPage1.PerformLayout()
         CType(Me.QR, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage2.ResumeLayout(False)
+        CType(Me.informes, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage3.ResumeLayout(False)
+        CType(Me.traslados, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage4.ResumeLayout(False)
         CType(Me.lugares, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage5.ResumeLayout(False)
         Me.TabPage5.PerformLayout()
-        CType(Me.informes, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.traslados, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

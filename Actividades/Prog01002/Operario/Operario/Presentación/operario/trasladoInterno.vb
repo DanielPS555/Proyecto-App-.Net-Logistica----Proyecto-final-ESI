@@ -17,7 +17,7 @@
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
         Dim zona As String = VRepo.Zona(VIN)
         If zona Is Nothing Then zona = "---"
-        DeZona.Text = VIN
+        DeZona.Text = zona
         Dim subzona As String = VRepo.Subzona(VIN)
         If subzona Is Nothing Then subzona = "---"
         deSubzona.Text = subzona

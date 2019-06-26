@@ -6,7 +6,7 @@
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
         CargarDatos(DataGridView1.Columns)
         DataGridView1.MultiSelect = False
-
+        criterios.SelectedIndex = 0
     End Sub
 
     Dim t As DataTable

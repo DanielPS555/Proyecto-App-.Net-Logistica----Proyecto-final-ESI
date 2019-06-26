@@ -463,8 +463,17 @@ Public Class SQLRepo
         If ocupadoCommand.ExecuteScalar > 0 Then
             Return False
         End If
+        Dim checkPKCommand = New OdbcCommand("select count(*) from posicionado where vin=? and idlugar=? and idzona=? and idsub=? and desde=?;", _conn)
+        checkPKCommand.CrearParametro(DbType.StringFixedLength, vin)
+        checkPKCommand.CrearParametro(DbType.Int64, _lugar.ID)
+        checkPKCommand.CrearParametro(DbType.Int64, _zona.ID)
+        checkPKCommand.CrearParametro(DbType.Int64, _subzona.ID)
+        checkPKCommand.CrearParametro(DbType.DateTime, Date.Now)
+        If checkPKCommand.ExecuteScalar > 0 Then
+            Return False
+        End If
         Dim posicionadoCommand = New OdbcCommand("select count(*) from posicionado where vin=? and hasta is null;", _conn)
-        posicionadoCommand.CrearParametro(DbType.String, vin)
+        posicionadoCommand.CrearParametro(DbType.StringFixedLength, vin)
         If posicionadoCommand.ExecuteScalar > 0 Then
             Dim updateCommand = New OdbcCommand("update posicionado set hasta=? where vin=? and hasta is null;", _conn)
             updateCommand.CrearParametro(DbType.DateTime, Date.Now)
@@ -938,9 +947,19 @@ Public Class SQLRepo
 
     Public Function CambiarPregunta(nuevapregunta As String, nuevarespuesta As String, contraseña As String) As Boolean Implements IUsuarioRepositorio.CambiarPregunta
         If usuarioConectado?.VerificarContraseña(contraseña) Then
-            Return SRepo.ConsultarSinRetorno($"update usuario set preguntasecreta='{nuevapregunta}', respuestasecreta='{nuevarespuesta}' where idusuario={UsuarioID()}") > 0
+            Return Me.ConsultarSinRetorno($"update usuario set preguntasecreta='{nuevapregunta}', respuestasecreta='{nuevarespuesta}' where idusuario={UsuarioID()}") > 0
         Else
             Return False
         End If
+    End Function
+
+    Friend Overrides Function IDInformes(vin As String) As String()
+        Dim dt = Me.Consultar($"select id from informedanios where vin='{vin}';")
+        Return dt.ToList.Select(Function(x) x(0)).ToArray
+    End Function
+
+    Friend Overrides Function IDRegistros(informe As String) As String()
+        Dim dt = Me.Consultar($"select id from registrodanios where informedanios={informe};")
+        Return dt.ToList.Select(Function(x) x(0)).ToArray
     End Function
 End Class

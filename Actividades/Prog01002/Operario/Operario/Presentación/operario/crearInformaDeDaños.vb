@@ -8,8 +8,8 @@ Public Class crearInformaDeDaños
         informe = VRepo.NewInforme("", "Total", VIN)
         Dim m = VehiculoRepo.RegistroTable()(0)
         InitializeComponent()
-        tipo.SelectedIndex = 0
         Actualizar()
+        tipo.SelectedIndex = 0
         nuevo = True
     End Sub
 
@@ -47,15 +47,16 @@ Public Class crearInformaDeDaños
             Return
         ElseIf Registros.SelectedIndex > 0 Then
             'Se debe eliminar el elemento de la lista
-            Registros.Items.Remove(Registros.SelectedIndex)
+            Dim i As String = Registros.SelectedItem.split(":")(0)
+            SRepo.ConsultarSinRetorno($"delete from imagenregistro where informe={informe} and nrolista={i};")
+            SRepo.ConsultarSinRetorno($"delete from registrodanios where informe={informe} and nrolista={i};")
         End If
     End Sub
 
     Private Sub Registros_SelectedIndexChanged(sender As Object, e As EventArgs) Handles Registros.SelectedIndexChanged
-        If descipt.ReadOnly Then
-            descipt.Text = m.ToList.Where(Function(x) x("ID") = Registros.SelectedItem).Select(Of String)(Function(z) z("Descripcion")).Single
-            Marco.getInstancia.cargarPanel(New RegistroDeDañoPanel(informe, Integer.Parse(Registros.SelectedItem), False, Me))
-        End If
+        Dim reg As String = Registros.SelectedItem.Split(":")(0)
+        descipt.Text = m.ToList.Where(Function(x) x("ID") = reg).Select(Of String)(Function(z) z("Descripcion")).Single
+        Marco.getInstancia.cargarPanel(New RegistroDeDañoPanel(informe, Integer.Parse(reg), nuevo, Me))
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs)

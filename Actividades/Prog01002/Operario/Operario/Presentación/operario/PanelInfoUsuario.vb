@@ -20,6 +20,8 @@ Public Class PanelInfoUsuario
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         If URepo.CambiarPregunta(NPregunta.Text, NRespuesta.Text, Contraseña.Text) Then
             MsgBox("Pregunta cambiada con éxito.")
+        Else
+            MsgBox("Hubo un error cambiando la pregunta. Por favor verifique su contraseña.")
         End If
     End Sub
 
@@ -30,12 +32,12 @@ Public Class PanelInfoUsuario
     End Sub
 
     Private Sub DataGridView1_CellBeginEdit(sender As Object, e As DataGridViewCellCancelEventArgs) Handles DataGridView1.CellBeginEdit
-        If e.ColumnIndex = 0 Then
+        If e.ColumnIndex = 0 OrElse DataGridView1.Rows(e.RowIndex).Cells(0).Value = "nombredeusuario" Then
             e.Cancel = True
         End If
     End Sub
 
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+    Private Sub Button2_Click(sender As Object, e As EventArgs)
         For Each i In editados
             SRepo.ConsultarSinRetorno($"update usuario set {i.Key}='{i.Value}' where idusuario={usuario};")
         Next
