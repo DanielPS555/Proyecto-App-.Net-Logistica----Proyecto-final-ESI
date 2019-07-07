@@ -120,7 +120,7 @@
             Get
                 Return _segundo_nombre
             End Get
-            Set(value As String)
+            Set(value As String, othervalue As String)
                 _segundo_nombre = value
                 _dirty = True
             End Set

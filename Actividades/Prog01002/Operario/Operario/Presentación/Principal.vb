@@ -31,7 +31,7 @@ Public Class Principal
     End Function
 
     Public Function cerrarPanel(Of T As Form)() As Boolean
-        contenedorDePaneles.Controls.OfType(Of T).ForEach(Sub(x)
+        contenedorDePaneles.Controls.OfType(Of T).ForEach(Sub(x As Form)
                                                               x.Close()
                                                               contenedorDePaneles.Controls.Remove(x)
                                                           End Sub)
