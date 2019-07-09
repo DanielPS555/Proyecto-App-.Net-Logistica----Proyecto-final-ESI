@@ -49,7 +49,7 @@ CREATE table
 	GeoY FLOAT NOT null,
 	UsuarioCreador integer NOT null references usuario(IDUsuario),
 	Tipo varchar(6) NOT null check (Tipo IN ("Patio",
-	"Puerto"))
+	"Puerto", "Establecimiento"))
 );
 
 CREATE table
@@ -229,7 +229,7 @@ CREATE table
 	Usuario integer NOT NULL,
 	FechaHoraSalida datetime year to minute not null,
 	FechaHoraLlegada datetime year to minute not null,
-	Estado varchar(10) NOT null check (Estado in ("En proceso", "Fallo", "Exitoso")),
+	Estado varchar(10) NOT null check (Estado in ("Proceso", "Fallo", "Exitoso")),
 	foreign key(Usuario) references usuario(IDUsuario) ON DELETE CASCADE
 	);
 CREATE table
