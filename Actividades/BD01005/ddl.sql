@@ -7,7 +7,7 @@ create table
 CREATE table
 	usuario(
 	IDUsuario serial primary key,
-	NombreDeUsuario varchar(20),
+	NombreDeUsuario varchar(20) unique,
 	Hash_Contra char(60) NOT null,
 	/* La contrasenia ser hasheada con bcrypt */
 	Email varchar(255) NOT null,
@@ -41,6 +41,13 @@ CREATE table
 );
 
 CREATE table
+	cliente(
+		RUT integer unique,
+		Nombre varchar(100) primary key,
+		fechaRegistro datetime year to day not null
+);
+
+CREATE table
 	lugar(
 	IDLugar serial primary key,
 	Nombre varchar(100) not null unique,
@@ -48,8 +55,10 @@ CREATE table
 	GeoX FLOAT NOT null,
 	GeoY FLOAT NOT null,
 	UsuarioCreador integer NOT null references usuario(IDUsuario),
+	Duenio integer check (Tipo="Establecimiento"),
 	Tipo varchar(6) NOT null check (Tipo IN ("Patio",
-	"Puerto", "Establecimiento"))
+	"Puerto", "Establecimiento")),
+        foreign key(Duenio) references Cliente(RUT)
 );
 
 CREATE table
@@ -95,15 +104,16 @@ CREATE table
 	vehiculo( VIN char(17),
 	Marca varchar(50),
 	Modelo varchar(50),
-	Color char(6),
+	Color char(6), /* representación ineficiente; 6char = 6hex = 16^6 = 2^24 < 2^32 = 4char < 6char */
 	/* representacion del color por hexadecimal*/
-	Tipo varchar(25) NOT null check(Tipo in ('Auto', 'MiniVan', 'SUV', 'Camion', 'Van')),
+	Tipo varchar(7) NOT null check(Tipo in ('Auto', 'MiniVan', 'SUV', 'Camion', 'Van')),
 	Anio integer check(Anio >= 1900 and Anio <= 10000),
-	ClienteNombre varchar(50) NOT null,
+	ClienteRut Integer NOT null,
 	PuertoArriba integer,
 	FechaArribo datetime year to day,
 	primary key(VIN),
-	foreign key(PuertoArriba) references lugar(IDLugar) ON DELETE CASCADE );
+	foreign key(PuertoArriba) references lugar(IDLugar) ON DELETE CASCADE, /* ¿ por que on delete cascade si no usamos delete ? */
+	foreign key(ClienteRut) references Cliente(RUT) ON DELETE CASCADE);
 
 create table
 	vehiculoIngresa(
@@ -185,6 +195,7 @@ CREATE table
 	CantCamiones integer NOT null check (CantCamiones > -1),
 	CantAutos integer NOT null check (CantAutos > -1),
 	CantSUV integer NOT null check(CantSUV > -1),
+	CantVan integer NOT null check(CantSUV > -1),
 	CantMinivan integer NOT null check (CantMinivan > -1),
 	primary key(VIN, RampaIt),
 	foreign key(VIN) references camion(VIN) ON DELETE CASCADE);
@@ -227,8 +238,10 @@ CREATE table
 	transporte(
 	transporteID serial primary key,
 	Usuario integer NOT NULL,
+	FechaHoraCreacion datetime year to minute not null,
 	FechaHoraSalida datetime year to minute not null,
-	FechaHoraLlegada datetime year to minute not null,
+	FechaHoraLlegadaEstm datetime year to minute not null,
+	FechaHoraLlegadaReal datetime year to minute,
 	Estado varchar(10) NOT null check (Estado in ("Proceso", "Fallo", "Exitoso")),
 	foreign key(Usuario) references usuario(IDUsuario) ON DELETE CASCADE
 	);
