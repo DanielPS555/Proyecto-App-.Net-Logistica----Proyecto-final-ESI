@@ -7,7 +7,7 @@ create table
 CREATE table
 	usuario(
 	IDUsuario serial primary key,
-	NombreDeUsuario varchar(20) unique,
+	NombreDeUsuario varchar(20),
 	Hash_Contra char(60) NOT null,
 	/* La contrasenia ser hasheada con bcrypt */
 	Email varchar(255) NOT null,
