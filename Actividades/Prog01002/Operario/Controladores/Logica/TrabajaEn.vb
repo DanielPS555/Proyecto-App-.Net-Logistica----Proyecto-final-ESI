@@ -1,4 +1,4 @@
-﻿Imports Controladores
+﻿
 
 Public Class TrabajaEn
 
@@ -8,7 +8,12 @@ Public Class TrabajaEn
             Return _usuario
         End Get
         Set(ByVal value As Usuario)
-            _usuario = value
+            If value.Rol = Usuario.TIPO_ROL_OPERARIO Then
+                _usuario = value
+            Else
+                Throw New Exception("Tipo de usuario incorrecto")
+            End If
+
         End Set
     End Property
 
@@ -38,7 +43,12 @@ Public Class TrabajaEn
             Return _fechaF
         End Get
         Set(ByVal value As DateTime)
-            _fechaF = value
+            If DateTime.Compare(FechaInicio, value) <= 0 Then
+                _fechaF = value
+            Else
+                Throw New Exception("La fecha de salida no puede ser menor a la de ingreso ")
+            End If
+
         End Set
     End Property
 
@@ -49,6 +59,10 @@ Public Class TrabajaEn
         Me.Lugar = lugar
         Me.FechaInicio = fechaInicio
         Me.FechaFinalizacion = fechaFinalizacion
+        Me.Conexiones = New List(Of Tuple(Of Date, Date?))
+    End Sub
+
+    Public Sub New()
         Me.Conexiones = New List(Of Tuple(Of Date, Date?))
     End Sub
 

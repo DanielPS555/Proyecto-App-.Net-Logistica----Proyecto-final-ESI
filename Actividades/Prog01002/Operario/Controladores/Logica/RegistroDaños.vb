@@ -1,30 +1,29 @@
 ﻿
 Public Class RegistroDaños
 
-    Public Shared ReadOnly TIPO_ACTUALIZA_REGULARA As String = Nothing
-    Public Shared ReadOnly TIPO_ACTUALIZA_MODIFICACION As String = "Correccion"
-    Public Shared ReadOnly TIPO_ACTUALIZA_ANULACION As String = "Anulacion"
+    Public Shared ReadOnly TIPO_ACTUALIZACION_CORRECION As String = "Correccion"
+    Public Shared ReadOnly TIPO_ACTUALIZACION_REGULAR As String = Nothing
+    Public Shared ReadOnly TIPO_ACTUALIZACION_ANULACION As String = "Anulacion"
 
+    Public Shared ReadOnly Property TIPOS_ACTUALIZACIONES() As String()
+        Get
+            Return {TIPO_ACTUALIZACION_CORRECION, TIPO_ACTUALIZACION_REGULAR, TIPO_ACTUALIZACION_ANULACION}
+        End Get
+    End Property
 
     Public Sub New(id As Integer, des As String, tipoA As String, act As RegistroDaños, infoP As InformeDeDaños)
-        If id >= 0 Then
-
-            If tipoA = Me.TIPO_ACTUALIZA_ANULACION Or tipoA = Me.TIPO_ACTUALIZA_MODIFICACION Or tipoA = Me.TIPO_ACTUALIZA_MODIFICACION Then
-                Me.ID = id
-                Me.Descripcion = des
-                Me.TipoActualizacion = tipoA
-                Me.Actualiza = act
-                Me.InformePadre = infoP
-            Else
-                Throw New Exception("Los tipos de actualizacion estan definidas como constantes estaticas de la clase RegistroDaño, uselas")
-            End If
-        Else
-            Throw New Exception("LA ID NO PUEDE SER NEGATIVA")
-        End If
-
+        Me.ID = id
+        Me.Descripcion = des
+        Me.TipoActualizacion = tipoA
+        Me.Actualiza = act
+        Me.InformePadre = infoP
+        Me._imagenes = New List(Of Image)
     End Sub
 
-
+    Public Sub New(infoP As InformeDeDaños)
+        Me.InformePadre = infoP
+        Me._imagenes = New List(Of Image)
+    End Sub
 
     Private _id As Integer
     Public Property ID() As Integer
@@ -32,7 +31,9 @@ Public Class RegistroDaños
             Return _id
         End Get
         Set(ByVal value As Integer)
-            _id = value
+            If ID >= 0 Then
+                _id = value
+            End If
         End Set
     End Property
 
@@ -62,7 +63,20 @@ Public Class RegistroDaños
             Return _TipoActualizacion
         End Get
         Set(ByVal value As String)
-            _TipoActualizacion = value
+            If Not Actualiza Is Nothing Then
+                If value Is Nothing Then
+                    _TipoActualizacion = value
+                Else
+                    If TIPOS_ACTUALIZACIONES.Contains(value) Then
+                        _TipoActualizacion = value
+                    Else
+                        Throw New Exception("Valor del tipo de actualiza incorrecto")
+                    End If
+                End If
+                    Else
+                Throw New Exception("Antes de Establecer el tipo de actualizacion debe espesificar cual es el registro del que actualiza")
+            End If
+
         End Set
     End Property
 

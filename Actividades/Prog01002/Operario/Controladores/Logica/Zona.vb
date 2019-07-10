@@ -1,7 +1,21 @@
-﻿Public Class Zona
+﻿Imports Controladores
+
+Public Class Zona
 
     Public Sub New(Padre As Lugar)
         Me.LugarPadre = Padre
+    End Sub
+
+    Public Sub New(iDZona As Integer, nombre As String, capacidad As Integer, lugarPadre As Lugar)
+        Me.IDZona = iDZona
+        Me.Nombre = nombre
+        Me.Capacidad = capacidad
+        Me.LugarPadre = lugarPadre
+        Me.Subzonas = New List(Of Subzona)
+    End Sub
+
+    Public Sub New()
+
     End Sub
 
     Private _nombre As String

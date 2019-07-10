@@ -1,7 +1,23 @@
 ﻿Public Class InformeDeDaños
-    Public Sub New()
 
-    End Sub
+    Public Shared ReadOnly TIPO_INFORME_TOTAL As String = "Total"
+    Public Shared ReadOnly TIPO_INFORME_PARCIAL As String = "Parcial"
+
+    Public Shared ReadOnly Property TIPOS_INFORMES() As String()
+        Get
+            Return {TIPO_INFORME_TOTAL, TIPO_INFORME_PARCIAL}
+        End Get
+    End Property
+
+    Private _vehiculo As Vehiculo
+    Public Property VehiculoPadre() As Vehiculo
+        Get
+            Return _vehiculo
+        End Get
+        Set(ByVal value As Vehiculo)
+            _vehiculo = value
+        End Set
+    End Property
 
     Private _id As Integer
     Public Property ID() As Integer
@@ -28,6 +44,16 @@
         End Set
     End Property
 
+    Private _lugar As Lugar
+    Public Property Lugar() As Lugar
+        Get
+            Return _lugar
+        End Get
+        Set(ByVal value As Lugar)
+            _lugar = value
+        End Set
+    End Property
+
     Private _fecha As DateTime
     Public Property Fecha() As DateTime
         Get
@@ -44,12 +70,17 @@
             Return _tipo
         End Get
         Set(ByVal value As String)
-            _tipo = value
+            If TIPOS_INFORMES.Contains(value) Then
+                _tipo = value
+            Else
+                Throw New Exception("El tipo de informe es invalido, revise el enum TipoDeInforme")
+            End If
+
         End Set
     End Property
 
     Private _registros As List(Of RegistroDaños)
-    Public Property NewProperty() As List(Of RegistroDaños)
+    Public Property Registros() As List(Of RegistroDaños)
         Get
             Return _registros
         End Get
@@ -57,4 +88,19 @@
             _registros = value
         End Set
     End Property
+
+    Public Sub New(iD As Integer, descripcion As String, fecha As Date, tipo As String, lug As Lugar, vehi As Vehiculo)
+        Me.ID = iD
+        Me.Descripcion = descripcion
+        Me.Fecha = fecha
+        Me.Tipo = tipo
+        Me.Registros = New List(Of RegistroDaños)
+        Me.Lugar = lug
+        Me.VehiculoPadre = vehi
+    End Sub
+
+    Public Sub New(vehi As Vehiculo)
+        Me.VehiculoPadre = vehi
+        Me.Registros = New List(Of RegistroDaños)
+    End Sub
 End Class

@@ -1,5 +1,17 @@
 ﻿Public Class Vehiculo
 
+    Public Shared ReadOnly TIPO_VEHICULO_AUTO As String = "Auto"
+    Public Shared ReadOnly TIPO_VEHICULO_MINIVAN As String = "MiniVan"
+    Public Shared ReadOnly TIPO_VEHICULO_SUV As String = "SUV"
+    Public Shared ReadOnly TIPO_VEHICULO_CAMION As String = "Camion"
+    Public Shared ReadOnly TIPO_VEHICULO_VAN As String = "Van"
+
+    Public Shared ReadOnly Property TIPOS_VEHICULOS() As String()
+        Get
+            Return {TIPO_VEHICULO_AUTO, TIPO_VEHICULO_MINIVAN, TIPO_VEHICULO_SUV, TIPO_VEHICULO_CAMION, TIPO_VEHICULO_VAN}
+        End Get
+    End Property
+
     Public Sub New()
 
     End Sub
@@ -12,6 +24,7 @@
         Me.Tipo = tipo
         Me.Color = color
         Me.Cliente = Cliente
+        Me.Informes = New List(Of InformeDeDaños)
     End Sub
 
     Public Sub New(VIN As String, marca As String, modelo As String, año As Integer, tipo As String, color As Drawing.Color, Cliente As Cliente, arribaEn As Lugar)
@@ -23,6 +36,7 @@
         Me.Color = color
         Me.Cliente = Cliente
         Me.ArribaEn = arribaEn
+        Me.Informes = New List(Of InformeDeDaños)
     End Sub
 
     Public Sub New(VIN As String, marca As String, modelo As String, año As Integer, tipo As String, color As Drawing.Color, Cliente As Cliente, arribaEn As Lugar, info As List(Of InformeDeDaños))
@@ -43,7 +57,11 @@
             Return _año
         End Get
         Set(ByVal value As Integer)
-            _año = value
+            If value >= 0 Then
+                _año = value
+                Throw New Exception("Valor del año invalido")
+            End If
+
         End Set
     End Property
 
@@ -73,7 +91,9 @@
             Return _tipo
         End Get
         Set(ByVal value As String)
-            _tipo = value
+            If TIPOS_VEHICULOS.Contains(value) Then
+                _tipo = value
+            End If
         End Set
     End Property
 
@@ -93,7 +113,15 @@
             Return _VIN
         End Get
         Set(ByVal value As String)
-            _VIN = value
+            If value Is Nothing Then
+                _VIN = value
+            Else
+                If value.Length = 17 Then
+                    _VIN = value
+                End If
+                Throw New Exception("VIN invalido")
+            End If
+
         End Set
     End Property
 

@@ -1,19 +1,51 @@
 ﻿Imports Controladores
 
 Public Class Lote
+    Public Shared ReadOnly TIPO_PRIORIDAD_ALTA As String = "Alta"
+    Public Shared ReadOnly TIPO_PRIORIDAD_NORMAL As String = "Normal"
 
-    Enum Prioridades
-        Alta
-        Normal
-    End Enum
+    Public Shared ReadOnly Property TIPOS_PRIORIDADES() As String()
+        Get
+            Return {TIPO_PRIORIDAD_ALTA, TIPO_PRIORIDAD_NORMAL}
+        End Get
+    End Property
 
-    Public Sub New(id As Integer, prio As String, ori As Lugar, des As Lugar)
+    Public Shared ReadOnly TIPO_ESTADO_ABIERTO As String = "Abierto"
+    Public Shared ReadOnly TIPO_ESTADO_CERRADO As String = "Cerrado"
+
+    Public Shared ReadOnly Property TIPOS_ESTADOS() As String()
+        Get
+            Return {TIPO_ESTADO_ABIERTO, TIPO_ESTADO_CERRADO}
+        End Get
+    End Property
+
+    Public Sub New(id As Integer, prio As String, ori As Lugar, des As Lugar, es As String)
         Me.IDLote = id
         Me.Prioridad = prio
         Me.Origen = ori
         Me.Destino = des
-
+        Me.Estado = es
+        Me.Vehiculos = New List(Of Tuple(Of Tuple(Of Date, Usuario), Vehiculo))
     End Sub
+
+    Public Sub New()
+        Me.Vehiculos = New List(Of Tuple(Of Tuple(Of Date, Usuario), Vehiculo))
+    End Sub
+
+    Private _estado As String
+    Public Property Estado() As String
+        Get
+            Return _estado
+        End Get
+        Set(ByVal value As String)
+            If TIPOS_ESTADOS.Contains(value) Then
+                _estado = value
+            Else
+                Throw New Exception("Estado invalido")
+            End If
+
+        End Set
+    End Property
 
     Public Overrides Function Equals(obj As Object) As Boolean
         Dim lote = TryCast(obj, Lote)
@@ -42,7 +74,7 @@ Public Class Lote
             Return _proridad
         End Get
         Set(ByVal value As String)
-            If value = Me.Prioridades.Alta Or value = Me.Prioridades.Normal Then
+            If TIPOS_PRIORIDADES.Contains(value) Then
                 _proridad = value
             Else
                 Throw New Exception("Las proridades son Alta o Normal, use las constantes estaticas ")

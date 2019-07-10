@@ -1,7 +1,7 @@
-﻿Public Class Subzona
-    Public Sub New(padre As Zona)
-        Me.ZonaPadre = padre
-    End Sub
+﻿Imports Controladores
+
+Public Class Subzona
+
 
     Private _idSubzona As Integer
     Public Property IDSubzona() As Integer
@@ -42,4 +42,15 @@
             _zonaPadre = value
         End Set
     End Property
+
+    Public Sub New(iDSubzona As Integer, capasidad As Integer, nombre As String, zonaPadre As Zona)
+        Me.IDSubzona = iDSubzona
+        Me.Capasidad = capasidad
+        Me.Nombre = nombre
+        Me.ZonaPadre = zonaPadre
+    End Sub
+
+    Public Sub New(zonaPadre As Zona)
+        Me.ZonaPadre = zonaPadre
+    End Sub
 End Class

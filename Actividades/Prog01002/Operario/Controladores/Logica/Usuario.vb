@@ -2,11 +2,33 @@
 
 Public Class Usuario
 
-    Enum Roles
-        Administrador
-        Operario
-        Transportista
-    End Enum
+    Public Shared ReadOnly TIPO_ROL_ADMINISTRADOR As String = "Administrador"
+    Public Shared ReadOnly TIPO_ROL_OPERARIO As String = "Operario"
+    Public Shared ReadOnly TIPO_ROL_TRANSPORTISTA As String = "Transportista"
+
+    Public Sub New(iD_usuario As Integer, rol As String, sexo As Char, nombre As String, email As String, fechaNacimiento As Date, preguntaSecreta As String, respuestaSecreeta As String, respuestaSecreta As String, linkRastreador As String)
+        Me.ID_usuario = iD_usuario
+        Me.Rol = rol
+        Me.sexo = sexo
+        Me.Nombre = nombre
+        Me.Email = email
+        Me.FechaNacimiento = fechaNacimiento
+        Me.PreguntaSecreta = preguntaSecreta
+        Me.RespuestaSecreta = respuestaSecreta
+        Me.LinkRastreador = linkRastreador
+        Me.Camiones = New List(Of Tuple(Of Tuple(Of Date?, Date?), Camion))
+    End Sub
+
+    Public Sub New()
+
+    End Sub
+
+    Public Shared ReadOnly Property TIPOS_ROLES() As String()
+        Get
+            Return {TIPO_ROL_ADMINISTRADOR, TIPO_ROL_OPERARIO, TIPO_ROL_TRANSPORTISTA}
+        End Get
+    End Property
+
 
     Private _ID_usuario As Integer
     Public Property ID_usuario() As Integer
@@ -28,10 +50,10 @@ Public Class Usuario
             Return _rol
         End Get
         Set(ByVal value As String)
-            If value = Roles.Administrador Or value = Roles.Transportista Or value = Roles.Operario Then
+            If TIPOS_ROLES.Contains(value) Then
                 _rol = value
             Else
-                Throw New Exception("Rol incorrecto, mire los posibles en el enum 'Roles'")
+                Throw New Exception("Rol invalido")
             End If
 
         End Set

@@ -1,4 +1,17 @@
-﻿Public Class Lugar
+﻿Imports Controladores
+
+Public Class Lugar
+
+    Public Shared ReadOnly TIPO_LUGAR_PATIO As String = "Patio"
+    Public Shared ReadOnly TIPO_LUGAR_PUERTO As String = "Puerto"
+    Public Shared ReadOnly TIPO_LUGAR_ESTABLECIMIENTO As String = "Establecimiento"
+
+    Public Shared ReadOnly Property TIPOS_LUGARES() As String()
+        Get
+            Return {TIPO_LUGAR_PATIO, TIPO_LUGAR_PUERTO, TIPO_LUGAR_ESTABLECIMIENTO}
+        End Get
+    End Property
+
     Private _IDlugar As Integer
     Public Property IDLugar() As Integer
         Get
@@ -55,6 +68,9 @@
             Return _tipo
         End Get
         Set(ByVal value As String)
+            If TIPOS_LUGARES.Contains(value) Then
+
+            End If
             _tipo = value
         End Set
     End Property
@@ -78,4 +94,19 @@
             _creador = value
         End Set
     End Property
+
+    Public Sub New(iDLugar As Integer, capasidad As Integer, posicionX As Double, posicionY As Double, nombre As String, tipo As String, creador As Usuario)
+        Me.IDLugar = iDLugar
+        Me.Capasidad = capasidad
+        Me.PosicionX = posicionX
+        Me.PosicionY = posicionY
+        Me.Nombre = nombre
+        Me.Tipo = tipo
+        Me.Creador = creador
+        Me.Zonas = New List(Of Zona)
+    End Sub
+
+    Public Sub New()
+        Me.Zonas = New List(Of Zona)
+    End Sub
 End Class

@@ -1,12 +1,15 @@
 ﻿Imports Controladores
 
 Public Class Trasporte
+    Public Shared ReadOnly TIPO_ESTADO_PROSESO As String = "Proceso"
+    Public Shared ReadOnly TIPO_ESTADO_FALLO As String = "Fallo"
+    Public Shared ReadOnly TIPO_ESTADO_EXISTOSO As String = "Exitoso"
 
-    Enum Estados
-        Proseso
-        Fallo
-        Existoso
-    End Enum
+    Public Shared ReadOnly Property TIPOS_ESTADOS() As String()
+        Get
+            Return {TIPO_ESTADO_PROSESO, TIPO_ESTADO_FALLO, TIPO_ESTADO_EXISTOSO}
+        End Get
+    End Property
 
     Public Sub New(iD As Integer, fechaLLegadaEstimada As Date, fechaLLegadaReal As Date, estado As String, trass As Usuario)
         Me.ID = iD
@@ -15,6 +18,10 @@ Public Class Trasporte
         Me.Estado = estado
         Me.Lotes = New List(Of Lote)
         Me.Trasportista = trass
+    End Sub
+
+    Public Sub New()
+        Me.Lotes = New List(Of Lote)
     End Sub
 
     Private _id As Integer
@@ -58,7 +65,7 @@ Public Class Trasporte
             Return _estado
         End Get
         Set(ByVal value As String)
-            If value = Me.Estados.Existoso Or Me.Estados.Proseso Or Me.Estados.Fallo Then
+            If TIPOS_ESTADOS.Contains(value) Then
                 _estado = value
             Else
                 Throw New Exception("Valor de estado incorrecto")
@@ -83,7 +90,7 @@ Public Class Trasporte
             Return _trasportista
         End Get
         Set(ByVal value As Usuario)
-            If value.Rol = value.Roles.Transportista Then
+            If value.Rol = Usuario.TIPO_ROL_TRANSPORTISTA Then
                 _trasportista = value
             Else
                 Throw New Exception("El usuario debe ser trasportista")

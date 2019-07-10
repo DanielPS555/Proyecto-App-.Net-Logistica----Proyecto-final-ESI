@@ -2,11 +2,15 @@
 
 Public Class Ingreso
 
-    Enum TiposIngresos
-        Precarga
-        Alta
-        Baja
-    End Enum
+    Public Shared ReadOnly TIPO_INGRESO_PRECARGA As String = "Precarga"
+    Public Shared ReadOnly TIPO_INGRESO_ALTA As String = "Alta"
+    Public Shared ReadOnly TIPO_INGRESO_BAJA As String = "Baja"
+
+    Public Shared ReadOnly Property TIPOS_INGRESOS() As String()
+        Get
+            Return {TIPO_INGRESO_PRECARGA, TIPO_INGRESO_ALTA, TIPO_INGRESO_BAJA}
+        End Get
+    End Property
 
     Public Sub New(tipoIngreso As String, fecha As Date, vehiculo As Vehiculo, usuario As Usuario)
         Me.TipoIngreso = tipoIngreso
@@ -15,13 +19,17 @@ Public Class Ingreso
         Me.Usuario = usuario
     End Sub
 
+    Public Sub New()
+
+    End Sub
+
     Private _tipoIngreso As String
     Public Property TipoIngreso() As String
         Get
             Return _tipoIngreso
         End Get
         Set(ByVal value As String)
-            If DirectCast([Enum].GetValues(GetType(TiposIngresos)), String()).Contains(value) Then
+            If TIPOS_INGRESOS.Contains(value) Then
                 _tipoIngreso = value
             Else
                 Throw New Exception("El tipo de ingreso no es correcto, verifique los valores del enum TiposIngresos")
@@ -55,7 +63,7 @@ Public Class Ingreso
             Return _usuario
         End Get
         Set(ByVal value As Usuario)
-            If value.Rol <> value.roles.Transportista Then
+            If value.Rol <> Usuario.TIPO_ROL_TRANSPORTISTA Then
                 _usuario = value
             End If
         End Set

@@ -1,7 +1,4 @@
 ﻿Public Class Camion
-
-
-
     Private _VIN As String
     Public Property VIN() As String
         Get
@@ -106,12 +103,22 @@
         Me.CantMiniVan = New List(Of Integer)
     End Sub
 
+    Public Sub New()
+        Me.Conductores = New List(Of Usuario)
+        Me.CantCamiones = New List(Of Integer)
+        Me.CantAutos = New List(Of Integer)
+        Me.CantSUV = New List(Of Integer)
+        Me.CantVAN = New List(Of Integer)
+        Me.CantMiniVan = New List(Of Integer)
+    End Sub
     Public Property Creador() As Usuario
         Get
             Return _creador
         End Get
         Set(ByVal value As Usuario)
-            _creador = value
+            If value.Rol = Usuario.TIPO_ROL_ADMINISTRADOR Then
+                _creador = value
+            End If
         End Set
     End Property
 End Class
