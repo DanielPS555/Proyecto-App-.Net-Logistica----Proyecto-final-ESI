@@ -195,10 +195,10 @@ Public Class Persistencia
 
         Dim com As New OdbcCommand("update conexion set HoraSalida=? where idtrabajaen=? and HoraIngreso=? ;", Conexcion)
         com.CrearParametro(DbType.DateTime, DateTime.Now.ToString("yyyy-MM-dd") & " " &
-                                   DateTime.Now.ToString("HH:mm"))
+                                   DateTime.Now.ToString("HH:mm:ss"))
         com.CrearParametro(DbType.Int32, id)
         com.CrearParametro(DbType.DateTime, horaInico.ToString("yyyy-MM-dd") & " " &
-                                   horaInico.ToString("HH:mm"))
+                                   horaInico.ToString("HH:mm:ss"))
 
         MsgBox(com.ExecuteNonQuery() > 0)
         borrarDatosLocalesPorSeccion()
