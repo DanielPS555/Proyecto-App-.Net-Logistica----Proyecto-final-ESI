@@ -1,11 +1,11 @@
-﻿Public Class ConfiguracionRed
+﻿Imports Controladores.Fachada
+Public Class ConfiguracionRed
     Private Const KeyName As String = "HKEY_CURRENT_USER\Software\Bit\SLTA"
     Private papa As Login
-    Public Sub New(padre As Login)
-        papa = padre
+    Public Sub New(p As Login)
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
-
+        papa = p
         If Microsoft.Win32.Registry.GetValue(KeyName, "Informix IP", Nothing) Is Nothing Then
             Microsoft.Win32.Registry.SetValue(KeyName, "Informix IP", "localhost", Microsoft.Win32.RegistryValueKind.String)
         End If
@@ -19,14 +19,14 @@
 
     Public Function enviarDatos()
 
-        If papa.pruebaConect(ip.Text, puerto.Text, nomservidor.Text, nomInformix.Text, pass.Text, nomBd.Text) = 1 Then
+        If Controladores.Fachada.getInstancia.ProbarConexcion(ip.Text, puerto.Text, nomservidor.Text, nomInformix.Text, pass.Text, nomBd.Text) Then
             Microsoft.Win32.Registry.SetValue(KeyName, "Informix IP", ip.Text, Microsoft.Win32.RegistryValueKind.String)
             Microsoft.Win32.Registry.SetValue(KeyName, "Informix Port", puerto.Text, Microsoft.Win32.RegistryValueKind.String)
             Microsoft.Win32.Registry.SetValue(KeyName, "Informix Server name", nomservidor.Text, Microsoft.Win32.RegistryValueKind.String)
             Microsoft.Win32.Registry.SetValue(KeyName, "Username", nomInformix.Text, Microsoft.Win32.RegistryValueKind.String)
             Microsoft.Win32.Registry.SetValue(KeyName, "Password", pass.Text, Microsoft.Win32.RegistryValueKind.String)
             Microsoft.Win32.Registry.SetValue(KeyName, "Database", nomBd.Text, Microsoft.Win32.RegistryValueKind.String)
-            papa.conectar(ip.Text, puerto.Text, nomservidor.Text, nomInformix.Text, pass.Text, nomBd.Text)
+            Controladores.Fachada.getInstancia.IniciarConexcion(ip.Text, puerto.Text, nomservidor.Text, nomInformix.Text, pass.Text, nomBd.Text)
             Return 1
         Else
             Return 0
@@ -39,9 +39,11 @@
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         If enviarDatos() = 1 Then
+            papa.NotificarDeConexcion(True)
             Me.Close()
         Else
             MsgBox("No se puedo realizar la conexcion", MsgBoxStyle.Critical)
+            papa.NotificarDeConexcion(False)
         End If
     End Sub
 

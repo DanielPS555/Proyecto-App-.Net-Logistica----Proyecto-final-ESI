@@ -2,6 +2,7 @@
 Imports Operario
 Imports Operario.Logica
 
+
 Public Module SQLUtils
     Delegate Function DTBifunctor(Of T1)(ByVal a As DataRow, ByVal B As DataRow) As T1
 

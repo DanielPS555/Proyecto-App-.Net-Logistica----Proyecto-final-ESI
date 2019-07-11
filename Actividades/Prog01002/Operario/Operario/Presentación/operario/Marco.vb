@@ -1,4 +1,5 @@
-﻿Public Class Marco
+﻿Imports Controladores.Extenciones
+Public Class Marco
     Private Shared initi As Marco = Nothing
     Private Sub New()
 

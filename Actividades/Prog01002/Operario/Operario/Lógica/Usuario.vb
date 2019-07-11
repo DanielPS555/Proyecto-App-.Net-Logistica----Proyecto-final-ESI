@@ -1,4 +1,5 @@
-﻿Namespace Logica
+﻿Imports Controladores.Extenciones
+Namespace Logica
     Public Class Usuario
         Private _trabajaen As List(Of TrabajaEn)
         Public _dirty As Boolean

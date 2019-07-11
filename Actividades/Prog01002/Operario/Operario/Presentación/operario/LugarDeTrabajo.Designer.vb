@@ -31,7 +31,10 @@ Partial Class LugarDeTrabajo
         Me.Label4 = New System.Windows.Forms.Label()
         Me.nom = New System.Windows.Forms.Label()
         Me.ubi = New System.Windows.Forms.Label()
-        Me.uConn = New System.Windows.Forms.Label()
+        Me.inicioUconex = New System.Windows.Forms.Label()
+        Me.finalUconex = New System.Windows.Forms.Label()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.Label7 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'Label1
@@ -123,9 +126,8 @@ Partial Class LugarDeTrabajo
         Me.nom.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.nom.Location = New System.Drawing.Point(567, 71)
         Me.nom.Name = "nom"
-        Me.nom.Size = New System.Drawing.Size(106, 24)
+        Me.nom.Size = New System.Drawing.Size(0, 24)
         Me.nom.TabIndex = 7
-        Me.nom.Text = "Nombre: "
         '
         'ubi
         '
@@ -133,19 +135,46 @@ Partial Class LugarDeTrabajo
         Me.ubi.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ubi.Location = New System.Drawing.Point(590, 168)
         Me.ubi.Name = "ubi"
-        Me.ubi.Size = New System.Drawing.Size(112, 24)
+        Me.ubi.Size = New System.Drawing.Size(0, 24)
         Me.ubi.TabIndex = 8
-        Me.ubi.Text = "Ubicacion"
         '
-        'uConn
+        'inicioUconex
         '
-        Me.uConn.AutoSize = True
-        Me.uConn.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.uConn.Location = New System.Drawing.Point(797, 266)
-        Me.uConn.Name = "uConn"
-        Me.uConn.Size = New System.Drawing.Size(99, 24)
-        Me.uConn.TabIndex = 9
-        Me.uConn.Text = "uliConex"
+        Me.inicioUconex.AutoSize = True
+        Me.inicioUconex.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.inicioUconex.Location = New System.Drawing.Point(603, 307)
+        Me.inicioUconex.Name = "inicioUconex"
+        Me.inicioUconex.Size = New System.Drawing.Size(0, 24)
+        Me.inicioUconex.TabIndex = 9
+        '
+        'finalUconex
+        '
+        Me.finalUconex.AutoSize = True
+        Me.finalUconex.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.finalUconex.Location = New System.Drawing.Point(603, 340)
+        Me.finalUconex.Name = "finalUconex"
+        Me.finalUconex.Size = New System.Drawing.Size(0, 24)
+        Me.finalUconex.TabIndex = 10
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label6.Location = New System.Drawing.Point(498, 307)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(76, 24)
+        Me.Label6.TabIndex = 11
+        Me.Label6.Text = "Desde"
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label7.Location = New System.Drawing.Point(498, 340)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(67, 24)
+        Me.Label7.TabIndex = 12
+        Me.Label7.Text = "Hasta"
         '
         'LugarDeTrabajo
         '
@@ -153,7 +182,10 @@ Partial Class LugarDeTrabajo
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(1100, 650)
-        Me.Controls.Add(Me.uConn)
+        Me.Controls.Add(Me.Label7)
+        Me.Controls.Add(Me.Label6)
+        Me.Controls.Add(Me.finalUconex)
+        Me.Controls.Add(Me.inicioUconex)
         Me.Controls.Add(Me.ubi)
         Me.Controls.Add(Me.nom)
         Me.Controls.Add(Me.Label4)
@@ -180,5 +212,8 @@ Partial Class LugarDeTrabajo
     Friend WithEvents Label4 As Label
     Friend WithEvents nom As Label
     Friend WithEvents ubi As Label
-    Friend WithEvents uConn As Label
+    Friend WithEvents inicioUconex As Label
+    Friend WithEvents finalUconex As Label
+    Friend WithEvents Label6 As Label
+    Friend WithEvents Label7 As Label
 End Class

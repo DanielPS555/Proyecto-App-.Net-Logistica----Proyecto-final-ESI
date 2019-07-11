@@ -73,6 +73,7 @@
     <Compile Include="Fachada\Fachada.vb" />
     <Compile Include="Logica\Camion.vb" />
     <Compile Include="Logica\Cliente.vb" />
+    <Compile Include="Logica\Funciones comunes.vb" />
     <Compile Include="Logica\InformeDeDaños.vb" />
     <Compile Include="Logica\Ingreso.vb" />
     <Compile Include="Logica\Lote.vb" />
@@ -100,6 +101,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Persistencia\Extensiones.vb" />
+    <Compile Include="Persistencia\Persistencia.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">

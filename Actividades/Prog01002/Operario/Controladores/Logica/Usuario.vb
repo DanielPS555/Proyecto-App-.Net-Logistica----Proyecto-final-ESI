@@ -6,10 +6,11 @@ Public Class Usuario
     Public Shared ReadOnly TIPO_ROL_OPERARIO As String = "Operario"
     Public Shared ReadOnly TIPO_ROL_TRANSPORTISTA As String = "Transportista"
 
-    Public Sub New(iD_usuario As Integer, rol As String, sexo As Char, nombre As String, email As String, fechaNacimiento As Date, preguntaSecreta As String, respuestaSecreeta As String, respuestaSecreta As String, linkRastreador As String)
+    Public Sub New(iD_usuario As Integer, rol As String, sexo As Char, username As String, nombre As String, email As String, fechaNacimiento As Date, preguntaSecreta As String, respuestaSecreeta As String, respuestaSecreta As String, linkRastreador As String)
         Me.ID_usuario = iD_usuario
         Me.Rol = rol
         Me.sexo = sexo
+        Me.NombreDeUsuario = username
         Me.Nombre = nombre
         Me.Email = email
         Me.FechaNacimiento = fechaNacimiento
@@ -29,6 +30,16 @@ Public Class Usuario
         End Get
     End Property
 
+
+    Private _nombreUsuario As String
+    Public Property NombreDeUsuario() As String
+        Get
+            Return _nombreUsuario
+        End Get
+        Set(ByVal value As String)
+            _nombreUsuario = value
+        End Set
+    End Property
 
     Private _ID_usuario As Integer
     Public Property ID_usuario() As Integer

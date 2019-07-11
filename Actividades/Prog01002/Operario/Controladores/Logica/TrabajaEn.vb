@@ -17,6 +17,16 @@ Public Class TrabajaEn
         End Set
     End Property
 
+
+    Private _id As Integer
+    Public Property Id() As Integer
+        Get
+            Return _id
+        End Get
+        Set(ByVal value As Integer)
+            _id = value
+        End Set
+    End Property
     Private _lugar As Lugar
     Public Property Lugar() As Lugar
         Get
@@ -43,29 +53,34 @@ Public Class TrabajaEn
             Return _fechaF
         End Get
         Set(ByVal value As DateTime)
-            If DateTime.Compare(FechaInicio, value) <= 0 Then
-                _fechaF = value
-            Else
-                Throw New Exception("La fecha de salida no puede ser menor a la de ingreso ")
+            If Not value = DateTime.MinValue Then
+                If DateTime.Compare(FechaInicio, value) <= 0 Then
+                    _fechaF = value
+                Else
+                    Throw New Exception("La fecha de salida no puede ser menor a la de ingreso ")
+                End If
             End If
+
 
         End Set
     End Property
 
-    Private _conex As List(Of Tuple(Of DateTime, DateTime?))
 
-    Public Sub New(usuario As Usuario, lugar As Lugar, fechaInicio As Date, fechaFinalizacion As Date)
+
+    Public Sub New(id As Integer, usuario As Usuario, lugar As Lugar, fechaInicio As Date, fechaFinalizacion As Date)
         Me.Usuario = usuario
         Me.Lugar = lugar
         Me.FechaInicio = fechaInicio
         Me.FechaFinalizacion = fechaFinalizacion
         Me.Conexiones = New List(Of Tuple(Of Date, Date?))
+        Me.Id = id
     End Sub
 
     Public Sub New()
         Me.Conexiones = New List(Of Tuple(Of Date, Date?))
     End Sub
 
+    Private _conex As List(Of Tuple(Of DateTime, DateTime?))
     Public Property Conexiones() As List(Of Tuple(Of DateTime, DateTime?))
         Get
             Return _conex
@@ -74,5 +89,15 @@ Public Class TrabajaEn
             _conex = value
         End Set
     End Property
+
+    Public Function ultimaConexcion() As Tuple(Of DateTime, DateTime?)
+        Dim se As Integer = 0
+        For i As Integer = 1 To Conexiones.Count - 1
+            If Conexiones(se).Item1.CompareTo(Conexiones(i).Item1) < 0 Then
+                se = i
+            End If
+        Next
+        Return Conexiones(se)
+    End Function
 
 End Class
