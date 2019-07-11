@@ -42,8 +42,9 @@ CREATE table
 
 CREATE table
 	cliente(
-		RUT integer unique,
-		Nombre varchar(100) primary key,
+		RUT integer unique not null,
+		Nombre varchar(100) not null,
+		IDCliente serial primary key,
 		fechaRegistro datetime year to day not null
 );
 
@@ -55,10 +56,20 @@ CREATE table
 	GeoX FLOAT NOT null,
 	GeoY FLOAT NOT null,
 	UsuarioCreador integer NOT null references usuario(IDUsuario),
-	Duenio integer check (Tipo="Establecimiento"),
-	Tipo varchar(6) NOT null check (Tipo IN ("Patio",
-	"Puerto", "Establecimiento")),
-        foreign key(Duenio) references Cliente(RUT)
+/*	Duenio integer,*/
+
+	Tipo varchar(6) NOT null check (Tipo IN
+	     		    	         ("Patio","Puerto","Establecimiento"))
+/*        foreign key(Duenio) references Cliente(RUT)*/
+);
+/*alter table lugar
+add constraint check ((Tipo<>"Establecimiento" and Duenio is null) or
+    	       	      (Tipo ="Establecimiento" and Duenio is not null)) constraint duenio_null;*/
+
+create table
+       perteneceA(
+	IDLugar integer primary key references Lugar(IDLugar),
+	ClienteID integer references Cliente(IDCliente)
 );
 
 CREATE table
@@ -75,8 +86,8 @@ CREATE table
 CREATE table
 	conexion(
 	IDTrabajaEn integer,
-	HoraIngreso datetime year to minute not null,
-	HoraSalida datetime year to minute,
+	HoraIngreso datetime year to second not null,
+	HoraSalida datetime year to second,
 	foreign key(IDTrabajaEn) references trabajaen(ID) ON DELETE CASCADE,
 	primary key(IDTrabajaEn, HoraIngreso)
 );
@@ -104,16 +115,16 @@ CREATE table
 	vehiculo( VIN char(17),
 	Marca varchar(50),
 	Modelo varchar(50),
-	Color char(6), /* representación ineficiente; 6char = 6hex = 16^6 = 2^24 < 2^32 = 4char < 6char */
+	Color char(6), /* representación ineficiente; 6char = 6hex = 16^6 = 2^24 < 2^32 = int (4char) < 6char */
 	/* representacion del color por hexadecimal*/
 	Tipo varchar(7) NOT null check(Tipo in ('Auto', 'MiniVan', 'SUV', 'Camion', 'Van')),
 	Anio integer check(Anio >= 1900 and Anio <= 10000),
-	ClienteRut Integer NOT null,
+	Cliente Integer NOT null,
 	PuertoArriba integer,
 	FechaArribo datetime year to day,
 	primary key(VIN),
 	foreign key(PuertoArriba) references lugar(IDLugar) ON DELETE CASCADE, /* ¿ por que on delete cascade si no usamos delete ? */
-	foreign key(ClienteRut) references Cliente(RUT) ON DELETE CASCADE);
+	foreign key(Cliente) references Cliente(IDCliente) ON DELETE CASCADE);
 
 create table
 	vehiculoIngresa(
@@ -171,8 +182,8 @@ CREATE table
 	IDZona integer,
 	IDSub integer,
 	VIN char(17),
-	desde datetime year to hour,
-	hasta datetime year to hour,
+	desde datetime year to second,
+	hasta datetime year to second,
 	posicion integer NOT null check (posicion > 0),
 	IDUsuario integer NOT null,
 	foreign key(VIN) references vehiculo(VIN) ON DELETE CASCADE,
@@ -195,7 +206,7 @@ CREATE table
 	CantCamiones integer NOT null check (CantCamiones > -1),
 	CantAutos integer NOT null check (CantAutos > -1),
 	CantSUV integer NOT null check(CantSUV > -1),
-	CantVan integer NOT null check(CantSUV > -1),
+	CantVan integer NOT null check(CantVan > -1),
 	CantMinivan integer NOT null check (CantMinivan > -1),
 	primary key(VIN, RampaIt),
 	foreign key(VIN) references camion(VIN) ON DELETE CASCADE);
@@ -228,7 +239,7 @@ CREATE table
 	Lote integer,
 	Fecha datetime year to minute,
 	invalidado boolean not null,
-	IDUsuario integer not null, 
+	IDUsuario integer not null,
 	primary key(VIN, Lote, Fecha),
 	foreign key(VIN) references vehiculo(VIN) ON DELETE CASCADE,
 	foreign key(Lote) references lote(IDLote) ON DELETE CASCADE,
