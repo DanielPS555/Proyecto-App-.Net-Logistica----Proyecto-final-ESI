@@ -2,6 +2,7 @@
 Imports System.IO
 Imports System.Text
 Imports Microsoft.Win32
+Imports Controladores.Fachada
 
 Public Class Login
     Private contraseñaVisible As Boolean = False
@@ -10,11 +11,11 @@ Public Class Login
 
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
-        Button1.Visible = True 'SACA LA PARTE QUE LOS HACE NO INVISIBLES DONDE SEA QUE ESTE 
+        Button1.Visible = True
         Button3.Visible = True
         Button1.Enabled = True
         Button3.Enabled = True
-        conectar()
+        NotificarDeConexcion(False)
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
 
     End Sub
@@ -91,9 +92,8 @@ Public Class Login
     End Sub
 
     Private Sub login()
-        Dim usuario = Constantes.URepo.Login(user.Text, pass.Text)
-        If usuario Is Nothing Then
-            MsgBox("Credenciales incorrectas. Intente nuevamente")
+        If Not Controladores.Fachada.getInstancia.IngresoDeUsuarioConComprobacion(user.Text, pass.Text) Then 'YA CARGA EN EL METODO AL USUARIO QUE INGRESO 
+            MsgBox("Credenciales incorrectas. Intente nuevamente", MsgBoxStyle.Critical)
         Else
             Principal.getInstancia.cargarPanel(Of LugarDeTrabajo)(New LugarDeTrabajo)
         End If
@@ -104,7 +104,23 @@ Public Class Login
         Principal.getInstancia.cargarPanel(Of RestablecerContraseña)(New RestablecerContraseña)
     End Sub
 
-    Private con As New Odbc.OdbcConnection
+    Public Sub NotificarDeConexcion(j As Boolean)
+        If j Then
+            estadoConex.Text = "Conectado"
+            estadoConex.ForeColor = Color.FromArgb(13, 163, 51)
+            Button1.Enabled = True
+            Button3.Enabled = True
+            user.Enabled = True
+            pass.Enabled = True
+        Else
+            estadoConex.Text = "Desconectado"
+            estadoConex.ForeColor = Color.FromArgb(180, 20, 20)
+            Button1.Enabled = False
+            Button3.Enabled = False
+            user.Enabled = False
+            pass.Enabled = False
+        End If
+    End Sub
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
         Dim config As New ConfiguracionRed(Me)
@@ -112,81 +128,4 @@ Public Class Login
 
     End Sub
 
-    Public Function conectar(ip As String, port As String, servername As String, uid As String, pwd As String, db As String) As Integer
-        Try
-            Dim creacion As String = "Driver=IBM INFORMIX ODBC DRIVER (64-bit);Database=" & db & ";Host=" & ip & ";Server=" & servername & ";Service=" &
-            port & ";Uid=" & uid & "; Pwd=" & pwd & ";"
-            MsgBox(creacion)
-            Dim con As New OdbcConnection(creacion)
-            con.Open()
-            URepo = New SQLRepo(con)
-            LRepo = URepo
-            VRepo = URepo
-            SRepo = URepo
-            estadoConex.Text = "Conectado"
-            estadoConex.ForeColor = Color.FromArgb(14, 160, 36)
-            Button1.Enabled = True
-            Button3.Enabled = True
-            Return 1
-        Catch ee As Exception
-            estadoConex.Text = "Desconectado"
-            estadoConex.ForeColor = Color.FromArgb(180, 20, 20)
-            Button1.Enabled = False
-            Button3.Enabled = False
-            Return 0
-
-        End Try
-    End Function
-
-    Private Function conectar() As Integer
-        Try
-
-            Dim ip = "192.168.1.50"
-            Dim port = "9088"
-            Dim servername = "ol_esi"
-            Dim uid = "dpadron" 'CAMBIAR LUEGO
-            Dim pwd = "bit-2562019" 'CAMBIAR LUEGO
-            Dim db = "bitsgv"
-            Dim creacion As String = "Driver=IBM INFORMIX ODBC DRIVER (64-bit);Database=" & db & ";Host=" & ip & ";Server=" & servername & ";Service=" &
-            port & ";Uid=" & uid & "; Pwd=" & pwd & ";"
-            Dim con As New OdbcConnection(creacion)
-            con.Open()
-
-
-            URepo = New SQLRepo(con)
-            LRepo = URepo
-            VRepo = URepo
-            SRepo = URepo
-            estadoConex.Text = "Conectado"
-            estadoConex.ForeColor = Color.FromArgb(14, 160, 36)
-            Button1.Enabled = True
-            Button3.Enabled = True
-            Return 1
-        Catch ee As Exception
-            estadoConex.Text = "Desconectado"
-            estadoConex.ForeColor = Color.FromArgb(180, 20, 20)
-            Button1.Enabled = False
-            Button3.Enabled = False
-            Return 0
-        End Try
-    End Function
-
-    Public Function pruebaConect(ip As String, port As String, servername As String, uid As String, pwd As String, db As String) As Integer
-        Try
-            Dim driver As String = "IBM INFORMIX ODBC DRIVER"
-            If System.Environment.Is64BitProcess Then
-                driver += " (64-bit)"
-            End If
-            Dim creacion As String = "Driver=" & driver & ";Database=" & db & ";Host=" & ip & ";Server=" & servername & ";Service=" &
-            port & ";Uid=" & uid & "; Pwd=" & pwd & ";"
-            Dim con1 As New OdbcConnection(creacion)
-            con1.Open()
-            Dim cmd As New OdbcCommand("select count(*) from conexion;", con1)
-            cmd.ExecuteNonQuery()
-            con1.Close()
-            Return 1
-        Catch ee As Exception
-            Return 0
-        End Try
-    End Function
 End Class

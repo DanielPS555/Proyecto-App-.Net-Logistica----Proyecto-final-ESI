@@ -24,6 +24,8 @@ Partial Class Login
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.panelLogin = New System.Windows.Forms.Panel()
+        Me.estadoConex = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.estado = New System.Windows.Forms.Label()
         Me.ver = New System.Windows.Forms.PictureBox()
@@ -39,8 +41,6 @@ Partial Class Login
         Me.Button4 = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Tiempo = New System.Windows.Forms.Timer(Me.components)
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.estadoConex = New System.Windows.Forms.Label()
         Me.panelLogin.SuspendLayout()
         CType(Me.ver, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -72,6 +72,28 @@ Partial Class Login
         Me.panelLogin.Name = "panelLogin"
         Me.panelLogin.Size = New System.Drawing.Size(1100, 650)
         Me.panelLogin.TabIndex = 2
+        '
+        'estadoConex
+        '
+        Me.estadoConex.AutoSize = True
+        Me.estadoConex.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.estadoConex.ForeColor = System.Drawing.Color.FromArgb(CType(CType(180, Byte), Integer), CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer))
+        Me.estadoConex.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.estadoConex.Location = New System.Drawing.Point(655, 586)
+        Me.estadoConex.Name = "estadoConex"
+        Me.estadoConex.Size = New System.Drawing.Size(148, 22)
+        Me.estadoConex.TabIndex = 18
+        Me.estadoConex.Text = "Desconectado"
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(567, 586)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(82, 22)
+        Me.Label1.TabIndex = 17
+        Me.Label1.Text = "Estado: "
         '
         'Button3
         '
@@ -242,28 +264,6 @@ Partial Class Login
         'Tiempo
         '
         Me.Tiempo.Interval = 500
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(567, 586)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(82, 22)
-        Me.Label1.TabIndex = 17
-        Me.Label1.Text = "Estado: "
-        '
-        'estadoConex
-        '
-        Me.estadoConex.AutoSize = True
-        Me.estadoConex.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.estadoConex.ForeColor = System.Drawing.Color.FromArgb(CType(CType(180, Byte), Integer), CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer))
-        Me.estadoConex.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.estadoConex.Location = New System.Drawing.Point(643, 586)
-        Me.estadoConex.Name = "estadoConex"
-        Me.estadoConex.Size = New System.Drawing.Size(148, 22)
-        Me.estadoConex.TabIndex = 18
-        Me.estadoConex.Text = "Desconectado"
         '
         'Login
         '

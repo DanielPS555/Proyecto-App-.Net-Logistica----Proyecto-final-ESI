@@ -69,12 +69,12 @@ Module Extensiones
     Delegate Sub T2Delegate(Of T1, T2)(arg1 As T1, arg2 As T2)
 
     Delegate Sub T1Delegate(Of T1)(arg As T1)
-    <Runtime.CompilerServices.Extension>
-    Public Sub ForEach(Of T1)(Enumerable As IEnumerable(Of T1), fn As T1Delegate(Of T1))
-        For Each i In Enumerable
-            fn(i)
-        Next
-    End Sub
+    '<Runtime.CompilerServices.Extension>
+    'Public Sub ForEach(Of T1)(Enumerable As IEnumerable(Of T1), fn As T1Delegate(Of T1))
+    '    For Each i In Enumerable
+    '        fn(i)
+    '    Next
+    'End Sub
 
     <Runtime.CompilerServices.Extension>
     Public Function SubArray(Of T1)(Array As IEnumerable(Of T1), start As UInteger, length As UInteger) As T1()
