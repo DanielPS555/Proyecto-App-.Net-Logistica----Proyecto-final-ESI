@@ -311,7 +311,7 @@ insert into trabajaen values (0,(select IDLugar from lugar where Nombre="Deposit
 
       insert into lote values (0,"l_6",(select IDLugar from lugar where Nombre="Puerto de montevideo"),
 	(select IDLugar from lugar where Nombre="Patio de Sevel"),
-	(select IDUsuario from usuario where primernombre = "Pepe", "Normal", "Cerrado");
+	(select IDUsuario from usuario where primernombre = "Pepe"), "Normal", "Cerrado");
 
 
       insert into integra values ("1GH2J83LED0987547",1,"2019-6-28 14:02",'f',(select idusuario from usuario where primernombre = "Pepe"));
@@ -319,10 +319,10 @@ insert into trabajaen values (0,(select IDLugar from lugar where Nombre="Deposit
       insert into integra values ("1HGYN4HTEL8372649",2,"2019-6-29 16:25",'f',(select idusuario from usuario where primernombre = "Juan"));
       insert into integra values ("2GH2JJEBTE0987547",2,"2019-7-3 11:47",'f',(select idusuario from usuario where primernombre = "Juan"));
       insert into integra values ("1GH2HGRLED0988472",3,"2019-7-4 12:07",'f',(select idusuario from usuario where primernombre = "Pepe"));
-	  insert into integra values ("1HGYN4HTEL8372649",4,"2019-06-29 11:00",'f',(select idusuario from usuario where primernombre = "Juan"));
-	  insert into integra values ("1GH2J83LED0987547",5,"2019-06-30 12:00",'f',(select idusuario from usuario where primernombre = "Pepe"));
-	  insert into integra values ("1GH2HGRLED0988472",6,"2019-07-05 17:00",'f',(select idusuario from usuario where primernombre = "Juan"));
-	  insert into integra values ("2GH2JJEBTE0987547",6,"2019-07-04 16:25",'f',(select idusuario from usuario where primernombre = "Juan"));
+	  insert into integra values ("1HGYN4HTEL8372649",4,"2019-6-29 11:00",'f',(select idusuario from usuario where primernombre = "Juan"));
+	  insert into integra values ("1GH2J83LED0987547",5,"2019-6-30 12:00",'f',(select idusuario from usuario where primernombre = "Pepe"));
+	  insert into integra values ("1GH2HGRLED0988472",6,"2019-7-5 17:00",'f',(select idusuario from usuario where primernombre = "Juan"));
+	  insert into integra values ("2GH2JJEBTE0987547",6,"2019-7-4 16:25",'f',(select idusuario from usuario where primernombre = "Juan"));
 
 
 
