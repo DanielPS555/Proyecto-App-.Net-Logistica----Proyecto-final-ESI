@@ -302,12 +302,17 @@ insert into trabajaen values (0,(select IDLugar from lugar where Nombre="Deposit
       (select IDLugar from lugar where Nombre="Deposito piedras blancas"),
        (select idusuario from usuario where primernombre = "Pepe"),'Normal','Cerrado');
 
+      insert into lote values (0,"l_c1",(select IDLugar from lugar where Nombre="Puerto de montevideo"),
+	(select IDLugar from lugar where Nombre="Patio de Sevel"),
+	(select IDUsuario from usuario where primernombre = "Pepe", "Normal", "Cerrado");
+
 
       insert into integra values ("1GH2J83LED0987547",1,"2019-6-28 14:02",'f',(select idusuario from usuario where primernombre = "Pepe"));
       insert into integra values ("1GH2HGRLED0988472",1,"2019-6-26 15:08",'f',(select idusuario from usuario where primernombre = "Pepe"));
       insert into integra values ("1HGYN4HTEL8372649",2,"2019-6-29 16:25",'f',(select idusuario from usuario where primernombre = "Juan"));
       insert into integra values ("2GH2JJEBTE0987547",2,"2019-7-3 11:47",'f',(select idusuario from usuario where primernombre = "Juan"));
       insert into integra values ("1GH2HGRLED0988472",3,"2019-7-4 12:07",'f',(select idusuario from usuario where primernombre = "Pepe"));
+      insert into integra values ("1GH2HGRLED0988472",4,"2019-7-7 14:05",'f',(select idusuario from usuario where primernombre = "Pepe"));
 
       insert into transporte values (0,
       (select idusuario from usuario
@@ -318,14 +323,22 @@ insert into trabajaen values (0,(select IDLugar from lugar where Nombre="Deposit
       insert into transporte values (0,
       (select idusuario from usuario
        where primernombre = "Pedro"),
-      "2019-7-2 15:00", "2019-7-5 10:00",
-      "2019-7-5 12:00", "2019-7-2 12:25", "Exitoso");
+      "2019-7-5 9:40", "2019-7-5 10:00",
+      "2019-7-5 12:00", "2019-7-5 12:25", "Exitoso");
+
       insert into transporte values (0,
       (select idusuario from usuario
        where primernombre = "Antonio"),
       "2019-7-2 15:00", "2019-7-4 15:00",
-      "2019-7-4 18:00", "2019-7-2 17:45", "Exitoso");
+      "2019-7-4 18:00", "2019-7-4 17:45", "Exitoso");
+
+      insert into transporte values (0,
+      (select idusuario from usuario
+       where primernombre = "Antonio"),
+      "2019-7-8 15:00", "2019-7-8 15:00",
+      "2019-7-8 18:00", "2019-7-9 01:45", "Exitoso");
 
       insert into transporta values (1,1);
       insert into transporta values (2,2);
       insert into transporta values (3,3);
+      insert into transporta values (4,4);
