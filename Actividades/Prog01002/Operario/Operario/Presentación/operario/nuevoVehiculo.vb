@@ -12,6 +12,7 @@ Public Class nuevoVehiculo
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
         carcarComboBox()
+        loadLotes()
 
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
 
@@ -42,7 +43,7 @@ Public Class nuevoVehiculo
             zonas.Items.Add(z.Nombre)
         Next
 
-        loadLotes()
+
     End Sub
 
     Private Sub loadLotes()

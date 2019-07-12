@@ -200,7 +200,6 @@ insert into trabajaen values (0,(select IDLugar from lugar where Nombre="Deposit
 		insert into vehiculoIngresa values ("2GH2JJEBTE0987547","2019-7-3","Alta",(select idusuario from usuario where primernombre = "Juan"));
 		insert into vehiculoIngresa values ("1GH2HGRLED0988472","2019-3-20","Precarga",(select idusuario from usuario where primernombre = "Felipe"));
 		insert into vehiculoIngresa values ("1GH2HGRLED0988472","2019-6-26","Alta",(select idusuario from usuario where primernombre = "Fernanda"));
-		insert into vehiculoIngresa values ("1GH2HGRLED0988472","2019-7-25","Baja",(select idusuario from usuario where primernombre = "Felipe"));
 		insert into vehiculoIngresa values ("KHBEHGRLED0988442","2019-3-20","Precarga",(select idusuario from usuario where primernombre = "Felipe"));
 /*67*/
 		/*informedanios*/
@@ -261,18 +260,18 @@ insert into trabajaen values (0,(select IDLugar from lugar where Nombre="Deposit
 		/*Posicionado*/
 			insert into posicionado values (4,7,10,"1GH2J83LED0987547","2019-6-28 21:00:00", "2019-7-2 15:00:00",21,(select idusuario from usuario where primernombre = "Pepe"));
 			insert into posicionado values (2,4,6,"1GH2J83LED0987547","2019-7-2 16:35:04", "2019-7-4 13:03:21",14,(select idusuario from usuario where primernombre = "Pepe"));
-			insert into posicionado values (2,4,6,"1GH2J83LED0987547","2019-7-4 17:15:32",null,18,(select idusuario from usuario where primernombre = "Pepe"));
+			insert into posicionado values (2,4,6,"1GH2J83LED0987547","2019-7-4 17:15:32",'2019-7-8 15:00:02',18,(select idusuario from usuario where primernombre = "Pepe"));
 
 			insert into posicionado values (3,5,7,"1HGYN4HTEL8372649","2019-6-29 12:11:23", "2019-7-5 10:09:32",22,(select idusuario from usuario where primernombre = "Juan"));
 			insert into posicionado values (1,2,3,"1HGYN4HTEL8372649","2019-7-5 12:25:21", null ,25,(select idusuario from usuario where primernombre = "Juan"));
 
 			insert into posicionado values (3,5,7,"2GH2JJEBTE0987547","2019-7-3 14:14:09","2019-7-5 10:25:22",6,(select idusuario from usuario where primernombre = "Juan"));
 			insert into posicionado values (1,2,3,"2GH2JJEBTE0987547","2019-7-5 12:31:32","2019-7-8 15:00:03",5,(select idusuario from usuario where primernombre = "Juan"));
-			insert into posicionado values (1,2,4,"2GH2JJEBTE0987547","2019-7-8 15:50:23",null,2,(select idusuario from usuario where primernombre = "Juan"));
+			insert into posicionado values (1,2,4,"2GH2JJEBTE0987547","2019-7-8 15:50:23",'2019-7-8 15:00:02',2,(select idusuario from usuario where primernombre = "Juan"));
 
 			insert into posicionado values (4,8,11,"1GH2HGRLED0988472","2019-6-26 14:10:32","2019-7-2 15:21:32",19,(select idusuario from usuario where primernombre = "Pepe"));
 			insert into posicionado values (2,4,6,"1GH2HGRLED0988472","2019-7-2 16:10:21","2019-7-4 15:32:55",28,(select idusuario from usuario where primernombre = "Pepe"));
-			insert into posicionado values (1,1,1,"1GH2HGRLED0988472","2019-7-4 18:30:21",null,74,(select idusuario from usuario where primernombre = "Juan"));
+			insert into posicionado values (1,1,1,"1GH2HGRLED0988472","2019-7-4 18:30:21",'2019-7-8 15:00:02',74,(select idusuario from usuario where primernombre = "Juan"));
 
       /*Camion*/
 
@@ -301,8 +300,16 @@ insert into trabajaen values (0,(select IDLugar from lugar where Nombre="Deposit
       insert into lote values (0,"l_3",(select IDLugar from lugar where Nombre="Deposito de maldonado"),
       (select IDLugar from lugar where Nombre="Deposito piedras blancas"),
        (select idusuario from usuario where primernombre = "Pepe"),'Normal','Cerrado');
+		
+		insert into lote values (0,"l_4",(select IDLugar from lugar where Nombre="Deposito piedras blancas"),
+      (select IDLugar from lugar where Nombre="Patio de Sevel"),
+       (select idusuario from usuario where primernombre = "Juan"),'Normal','Cerrado');
+	   
+	   insert into lote values (0,"l_5",(select IDLugar from lugar where Nombre="Deposito de maldonado"),
+      (select IDLugar from lugar where Nombre="Patio de Chevrolet Ur a gay"),
+       (select idusuario from usuario where primernombre = "Pepe"),'Normal','Cerrado');
 
-      insert into lote values (0,"l_c1",(select IDLugar from lugar where Nombre="Puerto de montevideo"),
+      insert into lote values (0,"l_6",(select IDLugar from lugar where Nombre="Puerto de montevideo"),
 	(select IDLugar from lugar where Nombre="Patio de Sevel"),
 	(select IDUsuario from usuario where primernombre = "Pepe", "Normal", "Cerrado");
 
@@ -312,7 +319,13 @@ insert into trabajaen values (0,(select IDLugar from lugar where Nombre="Deposit
       insert into integra values ("1HGYN4HTEL8372649",2,"2019-6-29 16:25",'f',(select idusuario from usuario where primernombre = "Juan"));
       insert into integra values ("2GH2JJEBTE0987547",2,"2019-7-3 11:47",'f',(select idusuario from usuario where primernombre = "Juan"));
       insert into integra values ("1GH2HGRLED0988472",3,"2019-7-4 12:07",'f',(select idusuario from usuario where primernombre = "Pepe"));
-      insert into integra values ("1GH2HGRLED0988472",4,"2019-7-7 14:05",'f',(select idusuario from usuario where primernombre = "Pepe"));
+	  insert into integra values ("1HGYN4HTEL8372649",4,"2019-06-29 11:00",'f',(select idusuario from usuario where primernombre = "Juan"));
+	  insert into integra values ("1GH2J83LED0987547",5,"2019-06-30 12:00",'f',(select idusuario from usuario where primernombre = "Pepe"));
+	  insert into integra values ("1GH2HGRLED0988472",6,"2019-07-05 17:00",'f',(select idusuario from usuario where primernombre = "Juan"));
+	  insert into integra values ("2GH2JJEBTE0987547",6,"2019-07-04 16:25",'f',(select idusuario from usuario where primernombre = "Juan"));
+
+
+
 
       insert into transporte values (0,
       (select idusuario from usuario
@@ -341,4 +354,5 @@ insert into trabajaen values (0,(select IDLugar from lugar where Nombre="Deposit
       insert into transporta values (1,1);
       insert into transporta values (2,2);
       insert into transporta values (3,3);
-      insert into transporta values (4,4);
+      insert into transporta values (4,5);
+      insert into transporta values (4,6);

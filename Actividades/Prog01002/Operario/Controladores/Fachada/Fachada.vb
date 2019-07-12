@@ -230,11 +230,12 @@ Public Class Fachada
                                            .Capacidad = r1.Item(2), .LugarPadre = Persistencia.getInstancia.TrabajaEn.Lugar}
                 Dim dt2 As DataTable = Persistencia.getInstancia.DevolverInformacionDeSubzonaPorId_zona_y_IdLugar(z.IDZona, Persistencia.getInstancia.TrabajaEn.Lugar.IDLugar)
                 For Each r2 As DataRow In dt2.Rows
-                    z.Subzonas.Add(New Subzona() With {.IDSubzona = r2.Item(0),
-                                                       .Nombre = r2.Item(1),
-                                                       .Capasidad = r2.Item(2),
-                                                       .ZonaPadre = z
-                                                        })
+                    Dim id As Integer = r2.Item(0)
+                    Dim nom As String = r2.Item(1)
+                    Dim cap As Integer = r2.Item(2)
+
+                    z.Subzonas.Add(New Subzona(id, cap, nom, z))
+                    '.ZonaPadre = z
                 Next
                 Persistencia.getInstancia.TrabajaEn.Lugar.Zonas.Add(z)
             Next

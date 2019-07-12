@@ -15,7 +15,7 @@ Public Class Zona
     End Sub
 
     Public Sub New()
-
+        Me.Subzonas = New List(Of Subzona)
     End Sub
 
 
