@@ -1,8 +1,8 @@
-﻿Imports Controladores.Extenciones
+﻿Imports Controladores
+Imports Controladores.Extenciones.Extensiones
 Public Class Marco
     Private Shared initi As Marco = Nothing
-    Private Sub New()
-
+    Public Sub New()
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
 
@@ -10,9 +10,13 @@ Public Class Marco
 
     End Sub
 
+    Public Shared Sub reiniciarSingleton()
+        initi = Nothing
+    End Sub
+
     Public Shared Function getInstancia() As Marco
         If initi Is Nothing Then
-            initi = New Marco
+            initi = New Marco()
         End If
         Return initi
     End Function
@@ -28,11 +32,7 @@ Public Class Marco
         Return contenedor.Controls.OfType(Of T).FirstOrDefault
     End Function
 
-    Public Sub cerrarTodos()
-        While stack.Count > 0
-            cerrarUltimo()
-        End While
-    End Sub
+
 
     Private Sub cerrarUltimo()
         If stack.Count = 0 Then
@@ -61,7 +61,7 @@ Public Class Marco
 
     Private Sub Marco_Load(sender As Object, e As EventArgs) Handles Me.Load
         inicio.Font = New Font("Century Gothic", 15.75!, FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
-        If LRepo.TipoLugar(URepo.ConectadoEn) = "Patio" Then
+        If Fachada.getInstancia.TrabajaEnAcutual.Lugar.Tipo = Lugar.TIPO_LUGAR_PATIO Then
             nuevoVehiculo.Visible = False
             nuevoVehiculo.Enabled = False
         End If
@@ -105,12 +105,8 @@ Public Class Marco
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        If Not URepo.Desconectar Then
-            MsgBox("Hubo un error desconectando. Por favor informe a su admin")
-        End If
-        initi = Nothing
-        cerrarTodos()
-        Principal.getInstancia.cerrarPanel(Of Marco)()
+        Fachada.getInstancia.CerrarSeccion()
+        Principal.getInstancia.cargarPanel(Of Login)(New Login(True))
     End Sub
 
     Private Sub Label1_Click(sender As Object, e As EventArgs) Handles Label1.Click

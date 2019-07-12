@@ -27,10 +27,7 @@ Partial Class OperarioHome
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.autosAlteados = New System.Windows.Forms.Label()
-        Me.origenLote = New System.Windows.Forms.Label()
         Me.lotesCreados = New System.Windows.Forms.Label()
-        Me.Label21 = New System.Windows.Forms.Label()
-        Me.Label22 = New System.Windows.Forms.Label()
         Me.Label25 = New System.Windows.Forms.Label()
         Me.Label26 = New System.Windows.Forms.Label()
         Me.Label28 = New System.Windows.Forms.Label()
@@ -45,7 +42,6 @@ Partial Class OperarioHome
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Button2 = New System.Windows.Forms.Button()
-        Me.Label2 = New System.Windows.Forms.Label()
         Me.Panel2.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
@@ -64,7 +60,7 @@ Partial Class OperarioHome
         '
         Me.NombreCompleto.AutoSize = True
         Me.NombreCompleto.Font = New System.Drawing.Font("Century Gothic", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.NombreCompleto.Location = New System.Drawing.Point(304, 9)
+        Me.NombreCompleto.Location = New System.Drawing.Point(42, 41)
         Me.NombreCompleto.Name = "NombreCompleto"
         Me.NombreCompleto.Size = New System.Drawing.Size(318, 33)
         Me.NombreCompleto.TabIndex = 1
@@ -74,23 +70,20 @@ Partial Class OperarioHome
         '
         Me.Panel2.Controls.Add(Me.Label9)
         Me.Panel2.Controls.Add(Me.autosAlteados)
-        Me.Panel2.Controls.Add(Me.origenLote)
         Me.Panel2.Controls.Add(Me.lotesCreados)
-        Me.Panel2.Controls.Add(Me.Label21)
-        Me.Panel2.Controls.Add(Me.Label22)
         Me.Panel2.Controls.Add(Me.Label25)
         Me.Panel2.Controls.Add(Me.Label26)
         Me.Panel2.Controls.Add(Me.Label28)
-        Me.Panel2.Location = New System.Drawing.Point(463, 65)
+        Me.Panel2.Location = New System.Drawing.Point(463, 99)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(405, 534)
+        Me.Panel2.Size = New System.Drawing.Size(405, 500)
         Me.Panel2.TabIndex = 15
         '
         'Label9
         '
         Me.Label9.AutoSize = True
         Me.Label9.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.Location = New System.Drawing.Point(4, 272)
+        Me.Label9.Location = New System.Drawing.Point(4, 115)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(96, 23)
         Me.Label9.TabIndex = 14
@@ -100,21 +93,11 @@ Partial Class OperarioHome
         '
         Me.autosAlteados.AutoSize = True
         Me.autosAlteados.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.autosAlteados.Location = New System.Drawing.Point(312, 261)
+        Me.autosAlteados.Location = New System.Drawing.Point(312, 93)
         Me.autosAlteados.Name = "autosAlteados"
         Me.autosAlteados.Size = New System.Drawing.Size(40, 22)
         Me.autosAlteados.TabIndex = 12
         Me.autosAlteados.Text = "-----"
-        '
-        'origenLote
-        '
-        Me.origenLote.AutoSize = True
-        Me.origenLote.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.origenLote.Location = New System.Drawing.Point(312, 119)
-        Me.origenLote.Name = "origenLote"
-        Me.origenLote.Size = New System.Drawing.Size(40, 22)
-        Me.origenLote.TabIndex = 11
-        Me.origenLote.Text = "-----"
         '
         'lotesCreados
         '
@@ -126,31 +109,11 @@ Partial Class OperarioHome
         Me.lotesCreados.TabIndex = 10
         Me.lotesCreados.Text = "-----"
         '
-        'Label21
-        '
-        Me.Label21.AutoSize = True
-        Me.Label21.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label21.Location = New System.Drawing.Point(3, 132)
-        Me.Label21.Name = "Label21"
-        Me.Label21.Size = New System.Drawing.Size(137, 23)
-        Me.Label21.TabIndex = 8
-        Me.Label21.Text = "aun en origen"
-        '
-        'Label22
-        '
-        Me.Label22.AutoSize = True
-        Me.Label22.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label22.Location = New System.Drawing.Point(3, 109)
-        Me.Label22.Name = "Label22"
-        Me.Label22.Size = New System.Drawing.Size(242, 23)
-        Me.Label22.TabIndex = 7
-        Me.Label22.Text = "Numero de lotes creados"
-        '
         'Label25
         '
         Me.Label25.AutoSize = True
         Me.Label25.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label25.Location = New System.Drawing.Point(3, 249)
+        Me.Label25.Location = New System.Drawing.Point(4, 92)
         Me.Label25.Name = "Label25"
         Me.Label25.Size = New System.Drawing.Size(281, 23)
         Me.Label25.TabIndex = 4
@@ -210,7 +173,7 @@ Partial Class OperarioHome
         '
         Me.Label11.AutoSize = True
         Me.Label11.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label11.Location = New System.Drawing.Point(5, 238)
+        Me.Label11.Location = New System.Drawing.Point(3, 212)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(257, 23)
         Me.Label11.TabIndex = 5
@@ -250,7 +213,7 @@ Partial Class OperarioHome
         '
         Me.anteriorIngreso.AutoSize = True
         Me.anteriorIngreso.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.anteriorIngreso.Location = New System.Drawing.Point(288, 239)
+        Me.anteriorIngreso.Location = New System.Drawing.Point(288, 212)
         Me.anteriorIngreso.Name = "anteriorIngreso"
         Me.anteriorIngreso.Size = New System.Drawing.Size(40, 22)
         Me.anteriorIngreso.TabIndex = 13
@@ -268,7 +231,6 @@ Partial Class OperarioHome
         '
         'Panel1
         '
-        Me.Panel1.Controls.Add(Me.Label2)
         Me.Panel1.Controls.Add(Me.Button2)
         Me.Panel1.Controls.Add(Me.Label8)
         Me.Panel1.Controls.Add(Me.anteriorIngreso)
@@ -279,9 +241,9 @@ Partial Class OperarioHome
         Me.Panel1.Controls.Add(Me.Label13)
         Me.Panel1.Controls.Add(Me.Label14)
         Me.Panel1.Controls.Add(Me.Label15)
-        Me.Panel1.Location = New System.Drawing.Point(18, 65)
+        Me.Panel1.Location = New System.Drawing.Point(18, 99)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(368, 534)
+        Me.Panel1.Size = New System.Drawing.Size(368, 500)
         Me.Panel1.TabIndex = 2
         '
         'Button2
@@ -293,21 +255,12 @@ Partial Class OperarioHome
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button2.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button2.ForeColor = System.Drawing.Color.White
-        Me.Button2.Location = New System.Drawing.Point(69, 481)
+        Me.Button2.Location = New System.Drawing.Point(69, 445)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(224, 36)
         Me.Button2.TabIndex = 15
         Me.Button2.Text = "Ver mas "
         Me.Button2.UseVisualStyleBackColor = False
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(142, 465)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(223, 13)
-        Me.Label2.TabIndex = 16
-        Me.Label2.Text = "Cierta información se deja para la 2da entrega"
         '
         'OperarioHome
         '
@@ -335,10 +288,7 @@ Partial Class OperarioHome
     Friend WithEvents NombreCompleto As Label
     Friend WithEvents Panel2 As Panel
     Friend WithEvents autosAlteados As Label
-    Friend WithEvents origenLote As Label
     Friend WithEvents lotesCreados As Label
-    Friend WithEvents Label21 As Label
-    Friend WithEvents Label22 As Label
     Friend WithEvents Label25 As Label
     Friend WithEvents Label26 As Label
     Friend WithEvents Label28 As Label
@@ -354,5 +304,4 @@ Partial Class OperarioHome
     Friend WithEvents Label8 As Label
     Friend WithEvents Panel1 As Panel
     Friend WithEvents Button2 As Button
-    Friend WithEvents Label2 As Label
 End Class

@@ -13,13 +13,13 @@ Public Class Persistencia
         End Get
     End Property
 
-    Private _nombreUsuarioIngresado As String
-    Public Property NombreUsuarioActual() As String
+    Private _UsuarioIngresado As Usuario
+    Public Property UsuarioActual() As Usuario
         Get
-            Return _nombreUsuarioIngresado
+            Return _UsuarioIngresado
         End Get
-        Set(ByVal value As String)
-            _nombreUsuarioIngresado = value
+        Set(ByVal value As Usuario)
+            _UsuarioIngresado = value
         End Set
     End Property
 
@@ -44,7 +44,7 @@ Public Class Persistencia
     End Property
 
     Private Sub New()
-        _nombreUsuarioIngresado = Nothing
+        _UsuarioIngresado = New Usuario
         _trabajaEnAlcual = Nothing
         _conexcionActualHora = Nothing
     End Sub
@@ -134,7 +134,7 @@ Public Class Persistencia
 
     Public Function TrabajaEnPorusuarioDatosBasicos(username As String) As DataTable 'nos da la fecha, usuario y lugar
         Try
-            Dim cmd As New OdbcCommand("select lugar.nombre, trabajaen.fechainicio, trabajaen.fechafin, lugar.nombre, lugar.idlugar, lugar.GeoX , lugar.GeoY, trabajaen.id 
+            Dim cmd As New OdbcCommand("select lugar.nombre, trabajaen.fechainicio, trabajaen.fechafin, lugar.nombre, lugar.idlugar, lugar.GeoX , lugar.GeoY, trabajaen.id, lugar.tipo
                                     from lugar,trabajaen,usuario
                                     where lugar.idlugar = trabajaen.idlugar and trabajaen.idusuario=usuario.idusuario 
                                     and usuario.nombredeusuario=?", Conexcion)
@@ -188,11 +188,6 @@ Public Class Persistencia
     End Function
 
     Public Sub Cerrarseccion(id As Integer, horaInico As DateTime)
-
-        'Dim com As New OdbcCommand("update conexion set HoraSalida='" & DateTime.Now.ToString("yyyy-MM-dd") & " " &
-        '                           DateTime.Now.ToString("HH:mm") & "' where idtrabajaen=" & id & " and HoraIngreso='" & horaInico.ToString("yyyy-MM-dd") & " " &
-        '                           horaInico.ToString("HH:mm") & "';", Conexcion)
-
         Dim com As New OdbcCommand("update conexion set HoraSalida=? where idtrabajaen=? and HoraIngreso=? ;", Conexcion)
         com.CrearParametro(DbType.DateTime, DateTime.Now.ToString("yyyy-MM-dd") & " " &
                                    DateTime.Now.ToString("HH:mm:ss"))
@@ -200,7 +195,6 @@ Public Class Persistencia
         com.CrearParametro(DbType.DateTime, horaInico.ToString("yyyy-MM-dd") & " " &
                                    horaInico.ToString("HH:mm:ss"))
 
-        MsgBox(com.ExecuteNonQuery() > 0)
         borrarDatosLocalesPorSeccion()
 
 
@@ -208,9 +202,33 @@ Public Class Persistencia
     End Sub
 
     Private Sub borrarDatosLocalesPorSeccion()
-        _nombreUsuarioIngresado = Nothing
+        _UsuarioIngresado = New Usuario()
         _trabajaEnAlcual = Nothing
         _conexcionActualHora = Nothing
     End Sub
+
+    Public Function DatosBaseUsuario(nom As String) As DataTable
+        Dim com As New OdbcCommand("select IDUsuario, Email, FechaNac, Telefono, PrimerNombre, SegundoNombre, PrimerApellido, segundoapellido, PreguntaSecreta, RespuestaSecreta, Sexo, Rol.nombre
+                                    from Rol, Usuario Where Rol.idrol = usuario.rol and Usuario.nombreDeUsuario =? ;", Conexcion)
+        com.CrearParametro(DbType.String, nom)
+        Dim dt As New DataTable
+        dt.Load(com.ExecuteReader)
+        Return dt
+
+
+    End Function
+
+    Public Function NumeroLotesCreadorPorusuario_ID(id As Integer) As Integer
+        Dim com As New OdbcCommand("select count(*) from lote where creadorID=? ;", Conexcion)
+        com.CrearParametro(DbType.Int32, id)
+        Return com.ExecuteScalar
+    End Function
+
+    Public Function NumeroVehiculosDatosDeAltaPorUsuario_ID(id As Integer) As Integer
+        Dim com As New OdbcCommand("select count(*) from vehiculoIngresa where Usuario=? and TipoIngreso='Alta';", Conexcion)
+        com.CrearParametro(DbType.Int32, id)
+        Return com.ExecuteScalar
+    End Function
+
 
 End Class

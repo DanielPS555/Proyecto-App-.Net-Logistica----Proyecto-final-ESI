@@ -20,6 +20,19 @@ Public Class Login
 
     End Sub
 
+    Public Sub New(j As Boolean)
+
+        ' Esta llamada es exigida por el diseñador.
+        InitializeComponent()
+        Button1.Visible = True
+        Button3.Visible = True
+        Button1.Enabled = True
+        Button3.Enabled = True
+        NotificarDeConexcion(j)
+        ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
+
+    End Sub
+
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Tiempo.Tick 'se ejecuta un reloj cada 0.5 segundos
         Dim Tiempo As DateTime = DateTime.Now
         fecha.Text = Tiempo.ToString("dd MMMM yyyy") ' dd -> día en formato 01, 02, ..., 31. MMMM -> nombre completo del mes (enero, febrero, ..., diciembre). yyyy -> año en formato 1900, 1901, ..., 2019.

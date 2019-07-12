@@ -6,12 +6,13 @@ Public Class Usuario
     Public Shared ReadOnly TIPO_ROL_OPERARIO As String = "Operario"
     Public Shared ReadOnly TIPO_ROL_TRANSPORTISTA As String = "Transportista"
 
-    Public Sub New(iD_usuario As Integer, rol As String, sexo As Char, username As String, nombre As String, email As String, fechaNacimiento As Date, preguntaSecreta As String, respuestaSecreeta As String, respuestaSecreta As String, linkRastreador As String)
+    Public Sub New(iD_usuario As Integer, tele As String, rol As String, sexo As Char, username As String, nombre As String, email As String, fechaNacimiento As Date, preguntaSecreta As String, respuestaSecreeta As String, respuestaSecreta As String, linkRastreador As String)
         Me.ID_usuario = iD_usuario
         Me.Rol = rol
         Me.sexo = sexo
         Me.NombreDeUsuario = username
         Me.Nombre = nombre
+        Me.Telefono = tele
         Me.Email = email
         Me.FechaNacimiento = fechaNacimiento
         Me.PreguntaSecreta = preguntaSecreta
@@ -30,6 +31,26 @@ Public Class Usuario
         End Get
     End Property
 
+    Private _apellido As String
+    Public Property Apellido() As String
+        Get
+            Return _apellido
+        End Get
+        Set(ByVal value As String)
+            _apellido = value
+        End Set
+    End Property
+
+
+    Private _telefono As String
+    Public Property Telefono() As String
+        Get
+            Return _telefono
+        End Get
+        Set(ByVal value As String)
+            _telefono = value
+        End Set
+    End Property
 
     Private _nombreUsuario As String
     Public Property NombreDeUsuario() As String
@@ -48,7 +69,7 @@ Public Class Usuario
         End Get
         Set(ByVal value As Integer)
             If value >= 0 Then
-                ID_usuario = value
+                _ID_usuario = value
             Else
                 Throw New Exception("El id no puede ser negativo")
             End If

@@ -47,7 +47,7 @@ Public Class Fachada
 
     Public Function IngresoDeUsuarioConComprobacion(NombreUsuario As String, contraseña As String) As Boolean
         If ComrpobarUsuario(NombreUsuario, contraseña) Then
-            Persistencia.getInstancia.NombreUsuarioActual = NombreUsuario
+            Persistencia.getInstancia.UsuarioActual.Nombre = NombreUsuario
             Return True
         Else
             Return False
@@ -87,7 +87,8 @@ Public Class Fachada
                             New Lugar() With {.Nombre = DirectCast(row.Item(3), String),
                             .IDLugar = DirectCast(row.Item(4), Integer),
                             .PosicionX = DirectCast(row.Item(5), Double),
-                            .PosicionY = DirectCast(row.Item(6), Double)},
+                            .PosicionY = DirectCast(row.Item(6), Double),
+                            .Tipo = DirectCast(row.Item(8), String)},
                             f1, f2))
                 End If
 
@@ -98,7 +99,7 @@ Public Class Fachada
     End Function
 
     Public Function NombreUsuarioActual() As String
-        Return Persistencia.getInstancia.NombreUsuarioActual
+        Return Persistencia.getInstancia.UsuarioActual.Nombre
     End Function
 
     Public Function CargarConexcionEnTrabajaEn(t As TrabajaEn) As TrabajaEn
@@ -135,6 +136,62 @@ Public Class Fachada
         Else
             Return True
         End If
+    End Function
+
+    Public Sub CargarDataBaseDelUsuario() 'Para Los metodos que usen usuario tendran los datos basicos del mismo, no camiones
+        Dim user As New Usuario With {.NombreDeUsuario = Persistencia.getInstancia.UsuarioActual.Nombre}
+        Dim dt As DataTable = Persistencia.getInstancia.DatosBaseUsuario(Persistencia.getInstancia.UsuarioActual.Nombre)
+        For i As Integer = 0 To dt.Columns.Count - 1
+
+            If Funciones_comunes.AutoNull(Of Object)(dt.Rows(0).Item(i)) IsNot Nothing Then
+                If i = 0 Then
+                    user.ID_usuario = DirectCast(dt.Rows(0).Item(i), Integer)
+                ElseIf i = 2 Then
+                    user.FechaNacimiento = DirectCast(dt.Rows(0).Item(i), DateTime)
+                ElseIf i = 11 Then
+                    user.sexo = DirectCast(dt.Rows(0).Item(i), String)(0)
+                Else
+                    Dim data As String = DirectCast(dt.Rows(0).Item(i), String)
+                    Select Case i
+                        Case 1
+                            user.Email = data
+                        Case 3
+                            user.Telefono = data
+                        Case 4
+                            user.Nombre = data
+                        Case 5
+                            user.Nombre += data
+                        Case 6
+                            user.Apellido = data
+                        Case 7
+                            user.Apellido += data
+                        Case 8
+                            user.PreguntaSecreta = data
+                        Case 9
+                            user.RespuestaSecreta = data
+                        Case 11
+                            user.Rol = data
+                    End Select
+                End If
+            End If
+        Next
+        Persistencia.getInstancia.UsuarioActual = user
+    End Sub
+
+    Public Function DevolverUsuarioActual() As Usuario
+        Return Persistencia.getInstancia.UsuarioActual 'Para tener los datos completos hay que ejecutar el metodo anterior
+    End Function
+
+    Public Function TrabajaEnAcutual() As TrabajaEn
+        Return Persistencia.getInstancia.TrabajaEn
+    End Function
+
+    Public Function NumeroDeLotesCreadorPorElUsuarioActual() As Integer
+        Return Persistencia.getInstancia.NumeroLotesCreadorPorusuario_ID(Persistencia.getInstancia.UsuarioActual.ID_usuario)
+    End Function
+
+    Public Function NumeroDeVehiculosAgregadosPorElUsuarioActual() As Integer
+        Return Persistencia.getInstancia.NumeroVehiculosDatosDeAltaPorUsuario_ID(Persistencia.getInstancia.UsuarioActual.ID_usuario)
     End Function
 
 End Class
