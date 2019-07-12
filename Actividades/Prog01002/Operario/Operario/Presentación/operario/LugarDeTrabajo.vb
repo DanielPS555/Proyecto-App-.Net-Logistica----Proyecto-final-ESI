@@ -11,8 +11,9 @@ Public Class LugarDeTrabajo
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         Fachada.getInstancia.NuevaConexcion(ListaTrabajaEn(lugares.SelectedIndex))
-        'Principal.getInstancia.cargarPanel(Marco.getInstancia)
-        'Principal.getInstancia.cerrarPanel(Of LugarDeTrabajo)()
+        Marco.reiniciarSingleton()
+        Principal.getInstancia.cargarPanel(Marco.getInstancia)
+
 
     End Sub
 
@@ -25,6 +26,7 @@ Public Class LugarDeTrabajo
         Button2.Enabled = True
         nom.Text = ListaTrabajaEn(i).Lugar.Nombre
         ubi.Text = $"{ListaTrabajaEn(i).Lugar.PosicionX:F1}, {ListaTrabajaEn(i).Lugar.PosicionY:F1}"
+        tipo.Text = ListaTrabajaEn(i).Lugar.Tipo
         Dim ulti As Tuple(Of DateTime, DateTime?) = Fachada.getInstancia.CargarConexcionEnTrabajaEn(ListaTrabajaEn(i)).ultimaConexcion
         inicioUconex.Text = Funciones_comunes.DarFormato(ulti.Item1)
         finalUconex.Text = Funciones_comunes.DarFormato(ulti.Item2)
@@ -41,6 +43,7 @@ Public Class LugarDeTrabajo
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Principal.getInstancia.cerrarPanel(Of LugarDeTrabajo)()
+        Principal.getInstancia.cargarPanel(Of Login)(New Login(True))
+        Me.Close()
     End Sub
 End Class

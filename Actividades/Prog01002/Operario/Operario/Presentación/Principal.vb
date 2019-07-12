@@ -25,21 +25,22 @@ Public Class Principal
         Return initi
     End Function
 
-    Public Function cerrarPanel(Of T As Form)() As Boolean
-        contenedorDePaneles.Controls.OfType(Of T).ForEach(Sub(x As Form)
-                                                              x.Close()
-                                                              contenedorDePaneles.Controls.Remove(x)
-                                                          End Sub)
-        Return True
-    End Function
+    'Public Function cerrarPanel(Of T As Form)() As Boolean
+    '    contenedorDePaneles.Controls.OfType(Of T).ForEach(Sub(x As Form)
+    '                                                          x.Close()
+    '                                                          contenedorDePaneles.Controls.Remove(x)
+    '                                                      End Sub)
+    '    Return True
+    'End Function
 
     Public Function cargarPanel(Of T As Form)(obj As T) As T
 
-        Dim f As Form = contenedorDePaneles.Controls.OfType(Of T).FirstOrDefault 'Nos devuelve el panel si ya estaba dentro del control del panel
+        contenedorDePaneles.Controls.Clear()
+        'Dim f As Form = contenedorDePaneles.Controls.OfType(Of T).FirstOrDefault 'Nos devuelve el panel si ya estaba dentro del control del panel
 
-        If f Is Nothing Then 'si no existe ningun panel de este tipo ingresado, nos devuelve nada, en cuyo caso se crea uno nuevo 
+        'If f Is Nothing Then 'si no existe ningun panel de este tipo ingresado, nos devuelve nada, en cuyo caso se crea uno nuevo 
 
-            obj.TopLevel = False
+        obj.TopLevel = False
             obj.FormBorderStyle = FormBorderStyle.None
             obj.Dock = DockStyle.Fill
             contenedorDePaneles.Controls.Add(obj)
@@ -47,11 +48,11 @@ Public Class Principal
             obj.Show()
             obj.BringToFront()
             Return obj
-        Else
-            f.Show()
-            f.BringToFront()
-            Return f
-        End If
+        'Else
+        '    f.Show()
+        '    f.BringToFront()
+        '    Return f
+        'End If
 
     End Function
 

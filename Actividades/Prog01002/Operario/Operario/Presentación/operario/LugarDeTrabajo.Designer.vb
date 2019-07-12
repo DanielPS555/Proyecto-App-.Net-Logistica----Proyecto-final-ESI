@@ -35,6 +35,8 @@ Partial Class LugarDeTrabajo
         Me.finalUconex = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
+        Me.tipoLugar = New System.Windows.Forms.Label()
+        Me.tipo = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'Label1
@@ -104,7 +106,7 @@ Partial Class LugarDeTrabajo
         '
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Century Gothic", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(450, 163)
+        Me.Label3.Location = New System.Drawing.Point(450, 204)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(143, 30)
         Me.Label3.TabIndex = 5
@@ -133,7 +135,7 @@ Partial Class LugarDeTrabajo
         '
         Me.ubi.AutoSize = True
         Me.ubi.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ubi.Location = New System.Drawing.Point(590, 168)
+        Me.ubi.Location = New System.Drawing.Point(590, 209)
         Me.ubi.Name = "ubi"
         Me.ubi.Size = New System.Drawing.Size(0, 24)
         Me.ubi.TabIndex = 8
@@ -176,12 +178,33 @@ Partial Class LugarDeTrabajo
         Me.Label7.TabIndex = 12
         Me.Label7.Text = "Hasta"
         '
+        'tipoLugar
+        '
+        Me.tipoLugar.AutoSize = True
+        Me.tipoLugar.Font = New System.Drawing.Font("Century Gothic", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.tipoLugar.Location = New System.Drawing.Point(450, 142)
+        Me.tipoLugar.Name = "tipoLugar"
+        Me.tipoLugar.Size = New System.Drawing.Size(168, 30)
+        Me.tipoLugar.TabIndex = 13
+        Me.tipoLugar.Text = "Tipo de lugar"
+        '
+        'tipo
+        '
+        Me.tipo.AutoSize = True
+        Me.tipo.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.tipo.Location = New System.Drawing.Point(618, 148)
+        Me.tipo.Name = "tipo"
+        Me.tipo.Size = New System.Drawing.Size(0, 24)
+        Me.tipo.TabIndex = 14
+        '
         'LugarDeTrabajo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(1100, 650)
+        Me.Controls.Add(Me.tipo)
+        Me.Controls.Add(Me.tipoLugar)
         Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.finalUconex)
@@ -216,4 +239,6 @@ Partial Class LugarDeTrabajo
     Friend WithEvents finalUconex As Label
     Friend WithEvents Label6 As Label
     Friend WithEvents Label7 As Label
+    Friend WithEvents tipoLugar As Label
+    Friend WithEvents tipo As Label
 End Class
