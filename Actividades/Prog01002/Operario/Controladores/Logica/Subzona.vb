@@ -49,6 +49,10 @@ Public Class Subzona
         Me.Nombre = nombre
         Me.ZonaPadre = zonaPadre
     End Sub
+    Public Sub New()
+
+    End Sub
+
 
     Public Sub New(zonaPadre As Zona)
         Me.ZonaPadre = zonaPadre

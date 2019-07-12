@@ -3,7 +3,8 @@
 Public Class nuevoVehiculo
     Implements LoteReceiver
     'crear una entidad lote y hacer una propery publica para acceder a ella desde el panel nuevoLote y enviar el lote creado  
-
+    Private vehi As New Controladores.Vehiculo()
+    Private lotesDisponibles As New List(Of Controladores.Lote)
 
     Private lote_s As String
     Public Sub New()
@@ -11,6 +12,7 @@ Public Class nuevoVehiculo
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
         carcarComboBox()
+        loadLotes()
 
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
 
@@ -26,7 +28,7 @@ Public Class nuevoVehiculo
 
     Private Sub carcarComboBox()
         tipo.Items.Clear()
-        tipo.Items.AddRange([Enum].GetNames(GetType(Logica.TipoVehiculo)))
+        tipo.Items.AddRange(Controladores.Vehiculo.TIPOS_VEHICULOS)
         tipo.SelectedIndex = 0
         anio.Items.Clear()
         For i As Integer = 1900 To DateTime.Now.Year
@@ -34,13 +36,22 @@ Public Class nuevoVehiculo
         Next
         anio.SelectedItem = DateTime.Now.Year
         zonas.Items.Clear()
-        zonas.Items.AddRange(LRepo.ZonasEnLugar(URepo.ConectadoEn).ToArray)
-        loadLotes()
+        Controladores.Fachada.getInstancia().CargarTrabajaEnConLugarZonasySubzonas()
+        zonas.Items.Clear()
+
+        For Each z As Controladores.Zona In Controladores.Fachada.getInstancia.TrabajaEnAcutual.Lugar.Zonas
+            zonas.Items.Add(z.Nombre)
+        Next
+
+
     End Sub
 
     Private Sub loadLotes()
         lote.Items.Clear()
-        lote.Items.AddRange(LRepo.LotesEnLugar(URepo.ConectadoEn).Where(Function(x) LRepo.LoteAbierto(x)).ToArray)
+        lotesDisponibles = Controladores.Fachada.getInstancia.lotesDisponiblesPorLugarActual()
+        For Each l As Controladores.Lote In lotesDisponibles
+            lote.Items.Add("Nom:" & l.Nombre & "ID:" & l.IDLote)
+        Next
     End Sub
 
     Private Sub nuevoVehiculo_Paint(sender As Object, e As PaintEventArgs) Handles Me.Paint
@@ -48,7 +59,7 @@ Public Class nuevoVehiculo
         For Each textCo In Me.Controls
             If TypeOf (textCo) Is TextBox Then
                 Dim text As TextBox = DirectCast(textCo, TextBox)
-                g.DrawLine(New Pen(Color.FromArgb(35, 35, 35)), text.Location.X, text.Location.Y + text.Height, text.Location.X + text.Size.Width, text.Location.Y + text.Height)
+                g.DrawLine(New Pen(Drawing.Color.FromArgb(35, 35, 35)), text.Location.X, text.Location.Y + text.Height, text.Location.X + text.Size.Width, text.Location.Y + text.Height)
             End If
         Next
     End Sub
@@ -76,23 +87,42 @@ Public Class nuevoVehiculo
     End Sub
 
     Private Sub Buscar_Click(sender As Object, e As EventArgs)
-        Dim vehiculo As Logica.Vehiculo = VRepo.VehiculoIncompleto(buscador.Text)
+        If Controladores.Fachada.getInstancia.ExistenciaDevehiculoPrecargado(buscador.Text) Then
+            Dim vehiculo As Controladores.Vehiculo = Controladores.Fachada.getInstancia.DevolverDatosBasicosPorVIN_Vehiculo(buscador.Text)
 
-        ingresar.Enabled = False
-        infoDaños.Enabled = False
-        If vehiculo Is Nothing Then
-            MsgBox("No existe precarga para ese vehículo, reporte a su administrador")
-            Return
-        End If
+            ingresar.Enabled = False
+            infoDaños.Enabled = False
+            vehi = vehiculo
 
-        VRepo.IngresosVehiculo(vehiculo)
-        If vehiculo.Ingresos.Where(Function(x) x.Tipo = Logica.TipoIngreso.Alta).Count > 0 Then
-            MsgBox("Ese vehículo ya ha sido ingresado")
-        Else
-            MsgBox("Ese vehículo tiene una precarga pendiente, puede ser ingresado")
+
             ingresar.Enabled = True
-            infoDaños.Enabled = True
+                infoDaños.Enabled = True
+            cargarDatosDeLaPrecarga()
         End If
+
+    End Sub
+
+    Private Sub cargarDatosDeLaPrecarga()
+        If vehi.Marca IsNot Nothing Then
+            marca.Text = vehi.Marca
+            marca.Enabled = False
+        End If
+        If vehi.Modelo IsNot Nothing Then
+            modelo.Text = vehi.Modelo
+            modelo.Enabled = False
+        End If
+        If vehi.Año <> 0 Then
+            anio.SelectedItem = vehi.Año
+            Enabled = False
+        End If
+        If vehi.Tipo IsNot Nothing Then
+            tipo.SelectedItem = vehi.Tipo
+            Enabled = False
+        End If
+        If vehi.Color = Drawing.Color.Empty Then
+            muestra_color.BackColor = vehi.Color
+        End If
+
     End Sub
 
     Private Sub zonas_SelectedIndexChanged(sender As Object, e As EventArgs) Handles zonas.SelectedIndexChanged
@@ -134,7 +164,7 @@ Public Class nuevoVehiculo
 
     Private Sub buscador_TextChanged(sender As Object, e As EventArgs) Handles buscador.TextChanged
         If buscador.Text.Count > 0 Then
-            Dim autos = VRepo.AutoComplete(buscador.Text)
+            Dim autos = Controladores.Fachada.getInstancia.AutoComplete(buscador.Text)
             If autos.Count > 0 Then
                 Dim index = buscador.Text.Count
                 If completionIndex < 0 Then
@@ -159,11 +189,13 @@ Public Class nuevoVehiculo
     End Sub
 
     Private Sub buscador_Leave(sender As Object, e As EventArgs) Handles buscador.Leave
-        cliente.Text = VRepo.Cliente(buscador.Text)
+        'cliente.Text = VRepo.Cliente(buscador.Text)
     End Sub
 
     Private Sub LinkLabel2_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel2.LinkClicked
         Dim d As New NuevoLote(Me)
         d.ShowDialog()
     End Sub
+
+
 End Class

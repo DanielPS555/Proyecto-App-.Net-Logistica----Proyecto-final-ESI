@@ -84,7 +84,6 @@ Public Class RegistroDaños
     Public Property InformePadre() As InformeDeDaños
         Get
             Return _inforPadre
-            Dim i As Drawing.Image
         End Get
         Set(ByVal value As InformeDeDaños)
             _inforPadre = value

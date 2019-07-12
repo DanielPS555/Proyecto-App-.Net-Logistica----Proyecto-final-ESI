@@ -2,7 +2,11 @@
 Imports Controladores.Extenciones.Extensiones
 
 Public Class Persistencia
-
+    Private Sub New()
+        _UsuarioIngresado = New Usuario
+        _trabajaEnAlcual = Nothing
+        _conexcionActualHora = Nothing
+    End Sub
 
     Private Shared initi As Persistencia
 
@@ -42,12 +46,6 @@ Public Class Persistencia
             _conexcionActualHora = value
         End Set
     End Property
-
-    Private Sub New()
-        _UsuarioIngresado = New Usuario
-        _trabajaEnAlcual = Nothing
-        _conexcionActualHora = Nothing
-    End Sub
 
     Public Shared Function getInstancia() As Persistencia
         If initi Is Nothing Then
@@ -211,10 +209,105 @@ Public Class Persistencia
         Return com.ExecuteScalar
     End Function
 
-    Private Shared TrueF As Predicate(Of DataRow) = Function(x) True
+    Public Function IDLotePor_Vin_y_IDLugar(vin As String, id As Integer) As Integer
+        Try
+            Dim com As New OdbcCommand("select lote.idlote from integra, lote where vin=?
+                                    and invalidado ='f' and integra.lote=lote.idlote
+                                    and fecha in (select max(fecha) from lote, integra where vin=? and
+                                    integra.lote =lote.idlote and lote.desde=? )", Conexcion)
+            com.CrearParametro(DbType.String, vin)
+            com.CrearParametro(DbType.String, vin)
+            com.CrearParametro(DbType.Int32, id)
+            Return com.ExecuteScalar
+        Catch ex As Exception
+            Return -1
+        End Try
 
-    Public Function ListaVehiculos() As DataTable
-        Return ListaVehiculos(TrueF)
+    End Function
+
+    Public Function DatosBasicosParaListarVehiculos(id As Integer) As DataTable
+        Dim com As New OdbcCommand("select vehiculo.vin, vehiculo.marca, vehiculo.modelo, vehiculo.tipo , (select count(*) from vehiculoIngresa where vehiculoIngresa.VIN=Vehiculo.VIN and tipoingreso='Baja')
+                                    from vehiculo, posicionado
+                                    where posicionado.idlugar=? and vehiculo.vin = posicionado.vin
+                                    group by vehiculo.vin, vehiculo.marca, vehiculo.modelo, vehiculo.tipo,posicionado.idlugar", Conexcion)
+        com.CrearParametro(DbType.String, id)
+        Dim dt As New DataTable
+        dt.Load(com.ExecuteReader)
+        dt.Columns.Add("Estado", GetType(String))
+        For Each dr As DataRow In dt.Rows
+            Dim count As Integer = dr.Item(4)
+            If count <> 0 Then
+                dr.Item(5) = "Fuera del sistema"
+            Else
+                dr.Item(5) = "Activo"
+            End If
+        Next
+        dt.Columns.RemoveAt(4)
+        Return dt
+    End Function
+
+    Public Function ComprobarLoteTrasladoRealizado(id As Integer) As Boolean
+        Dim com As New OdbcCommand("select count(transporte.estado) from lote,transporte,transporta
+                                    where lote.idlote=? and lote.idlote=transporta.idlote
+                                    and transporta.transporteID = transporte.transporteID
+                                    and transporte.estado='Exitoso' ", Conexcion)
+        com.CrearParametro(DbType.Int32, id)
+        Return com.ExecuteScalar > 0
+    End Function
+
+    Public Function AutoComplete(start As String) As List(Of String)
+        Dim cmd = New OdbcCommand("select vin from vehiculo where vin like ?;", Conexcion)
+        cmd.CrearParametro(DbType.String, start.Replace("%", "_") + "%")
+        Dim dt As New DataTable
+        dt.Load(cmd.ExecuteReader)
+        Return dt.ToList.Select(Function(x) DirectCast(x(0), String)).ToList
+    End Function
+
+
+    Public Function DevolverInformacionBasicaDeZonasPorID_lugar(id As Integer) As DataTable
+        Dim com As New OdbcCommand("select idzona, nombre, capacidad from zona where idlugar=? ", Conexcion)
+        com.CrearParametro(DbType.Int32, id)
+        Dim dt As New DataTable
+        dt.Load(com.ExecuteReader)
+        Return dt
+    End Function
+
+    Public Function DevolverInformacionDeSubzonaPorId_zona_y_IdLugar(id_z As Integer, id_l As Integer) As DataTable
+        Dim com As New OdbcCommand("select idsub, nombre, capacidad from subzona where idzona=? and idlugar=?", Conexcion)
+        com.CrearParametro(DbType.Int32, id_z)
+        com.CrearParametro(DbType.Int32, id_l)
+        Dim dt As New DataTable
+        dt.Load(com.ExecuteReader)
+        Return dt
+    End Function
+
+    Public Function DevolverTodosLosLotesPor_IdLugar(id As Integer)
+        Dim com As New OdbcCommand("select lote.idlote, lote.nombre, lote.estado from lote inner join lugar on lote.desde = lugar.idlugar where lugar.nombre = ?;", Conexcion)
+        com.CrearParametro(DbType.Int32, id)
+        Dim dt As New DataTable
+        dt.Load(com.ExecuteReader)
+        Return dt
+    End Function
+
+    Public Function DevolverDatosBasicosDelVehiculoPrecargadoPor_VIN_vehiculo(vin As String)
+        Try
+            Dim com As New OdbcCommand("select VIN,Marca,Modelo,color,tipo,anio,cliente.nombre,cliente.rut,cliente.idcliente
+                                    from vehiculo, cliente
+                                    where vin=? and cliente.idcliente = vehiculo.cliente;", Conexcion)
+            com.CrearParametro(DbType.String, vin)
+            Dim dt As New DataTable
+            dt.Load(com.ExecuteReader)
+            Return dt
+        Catch ex As Exception
+            Return Nothing
+        End Try
+
+    End Function
+
+    Public Function ExistenciaDeVehiculoPRecargado(vin As String)
+        Dim com As New OdbcCommand("select count(vin) from vehiculoIngresa where vin=? and tipoIngreso='Precarga'", Conexcion)
+        com.CrearParametro(DbType.String, vin)
+        Return com.ExecuteScalar > 0
     End Function
 
     Public Function ListaVehiculos(patron As Predicate(Of DataRow)) As DataTable
@@ -223,7 +316,7 @@ Public Class Persistencia
         Dim _dt As New DataTable
         _dt.Load(scmd.ExecuteReader)
         Dim paramStr = String.Join(",", "?".Multiply(_dt.Rows.Count)) ' 3 autos => ?,?,? => where VIN in (?,?,?)
-        Dim cmd As New OdbcCommand($"select Vehiculo.VIN, Marca, Modelo, Tipo, (select count(*) from vehiculoIngresa where vehiculoIngresa.VIN=Vehiculo.VIN and tipoingreso='Baja') from vehiculo where Vehiculo.VIN in ({paramStr});", _con)
+        Dim cmd As New OdbcCommand($"select Vehiculo.VIN, Marca, Modelo, Tipo,  from vehiculo where Vehiculo.VIN in ({paramStr});", _con)
         For Each v As DataRow In _dt.Rows
             cmd.CrearParametro(DbType.AnsiStringFixedLength, v.Item(0))
         Next
@@ -250,3 +343,5 @@ Public Class Persistencia
         Return dt
     End Function
 End Class
+
+

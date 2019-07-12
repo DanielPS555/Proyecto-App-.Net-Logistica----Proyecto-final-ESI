@@ -1,31 +1,19 @@
-﻿Imports Controladores
+Imports Controladores.Fachada
 Public Class ListaVehiculos
 
     Public Sub New()
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
-        CargarDatos(DataGridView1.Columns)
+        CargarDatos()
         DataGridView1.MultiSelect = False
         criterios.SelectedIndex = 0
     End Sub
 
     Dim t As DataTable
 
-    Public Sub CargarDatos(columns As DataGridViewColumnCollection)
-        Dim dt As New DataTable("Vehiculos")
-        For Each col As DataGridViewColumn In columns
-            dt.Columns.Add(col.Name, GetType(String))
-        Next
-        dt = Persistencia.getInstancia.ListaVehiculos(
-                                  Function(x) If(buscador.Text.Trim.Count = 0,
-                                  True,
-                                  DirectCast(x(criterios.Text), String).StartsWith(buscador.Text))
-                                  )
-        DataGridView1.Columns.Clear()
-        DataGridView1.DataSource = dt
-        DataGridView1.Columns()("VehiculoTipo").HeaderText = "Tipo"
-        DataGridView1.Update()
+    Public Sub CargarDatos()
+        DataGridView1.DataSource = Controladores.Fachada.getInstancia.ListaVehiculos()
     End Sub
 
     Private Sub ListaVehiculos_Paint(sender As Object, e As PaintEventArgs) Handles MyBase.Paint
@@ -43,7 +31,11 @@ Public Class ListaVehiculos
     End Sub
 
     Private Sub buscar_Click(sender As Object, e As EventArgs)
-        CargarDatos(DataGridView1.Columns)
+        'CargarDatos(DataGridView1.Columns)
+    End Sub
+
+    Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
+
     End Sub
 End Class
 

@@ -2,6 +2,7 @@
 Public Class Fachada
     Private Shared initi As Fachada
 
+
     Private Sub New()
 
     End Sub
@@ -180,6 +181,95 @@ Public Class Fachada
 
     Public Function NumeroDeVehiculosAgregadosPorElUsuarioActual() As Integer
         Return Persistencia.getInstancia.NumeroVehiculosDatosDeAltaPorUsuario_ID(Persistencia.getInstancia.UsuarioActual.ID_usuario)
+    End Function
+
+    Public Function ListaVehiculos() As DataTable
+        Dim dt As New DataTable
+        dt = Persistencia.getInstancia.DatosBasicosParaListarVehiculos(Persistencia.getInstancia.TrabajaEn.Lugar.IDLugar)
+        dt.Columns.Add(New DataColumn("Id lote", GetType(String)))
+        For Each r As DataRow In dt.Rows
+            Dim idLote = Persistencia.getInstancia.IDLotePor_Vin_y_IDLugar(r.Item(0), Persistencia.getInstancia.TrabajaEn.Lugar.IDLugar)
+            If idLote = -1 Then
+                r.Item(4) = "Sin lote"
+                r.Item(5) = "-"
+            Else
+                r.Item(5) = idLote.ToString
+                If Persistencia.getInstancia.ComprobarLoteTrasladoRealizado(idLote) Then
+                    r.Item(4) = "Fuera del lugar"
+                Else
+                    r.Item(4) = "En el lugar"
+                End If
+            End If
+        Next
+        Return dt
+    End Function
+
+    Public Function AutoComplete(texto As String) As List(Of String)
+        Return Persistencia.getInstancia.AutoComplete(texto)
+    End Function
+
+    Public Sub CargarTrabajaEnConLugarZonasySubzonas()
+        If Persistencia.getInstancia.TrabajaEn.Lugar.Zonas.Count = 0 Then
+            Dim dt1 As DataTable = Persistencia.getInstancia.DevolverInformacionBasicaDeZonasPorID_lugar(Persistencia.getInstancia.TrabajaEn.Lugar.IDLugar)
+            For Each r1 As DataRow In dt1.Rows
+                'Persistencia.getInstancia.TrabajaEn.Lugar.Zonas.Add(
+                Dim z As New Zona() With {.IDZona = r1.Item(0), .Nombre = r1.Item(1),
+                                           .Capacidad = r1.Item(2), .LugarPadre = Persistencia.getInstancia.TrabajaEn.Lugar}
+                Dim dt2 As DataTable = Persistencia.getInstancia.DevolverInformacionDeSubzonaPorId_zona_y_IdLugar(z.IDZona, Persistencia.getInstancia.TrabajaEn.Lugar.IDLugar)
+                For Each r2 As DataRow In dt2.Rows
+                    Dim id As Integer = r2.Item(0)
+                    Dim nom As String = r2.Item(1)
+                    Dim cap As Integer = r2.Item(2)
+
+                    z.Subzonas.Add(New Subzona(id, cap, nom, z))
+                    '.ZonaPadre = z
+                Next
+                Persistencia.getInstancia.TrabajaEn.Lugar.Zonas.Add(z)
+            Next
+        End If
+    End Sub
+
+    Public Function lotesDisponiblesPorLugarActual() As List(Of Lote)
+        Dim lista As New List(Of Lote)
+        For Each r1 As DataRow In Persistencia.getInstancia.DevolverTodosLosLotesPor_IdLugar(Persistencia.getInstancia.TrabajaEn.Lugar.IDLugar)
+            Dim lote As New Lote With {.IDLote = r1.Item(0), .Nombre = r1.Item(1), .Estado = r1.Item(2)}
+            If lote.Estado = Lote.TIPO_ESTADO_ABIERTO Then
+                lista.Add(lote)
+            End If
+        Next
+        Return lista
+    End Function
+
+    Public Function DevolverDatosBasicosPorVIN_Vehiculo(vin As String) As Vehiculo
+
+        Dim dt As DataTable = Persistencia.getInstancia.DevolverDatosBasicosDelVehiculoPrecargadoPor_VIN_vehiculo(vin)
+        If dt Is Nothing Then
+            Return Nothing
+        Else
+            Dim r As DataRow = dt.Rows(0)
+            Dim color As Color
+            If r.Item(3) Is Nothing Then
+                color = Color.Empty
+            Else
+                color = ColorTranslator.FromHtml(r.Item(3))
+            End If
+
+            Dim vehi As New Vehiculo With {
+                                   .VIN = r.Item(0),
+                                   .Marca = r.Item(1),
+                                   .Modelo = r.Item(2),
+                                   .Color = color,
+                                   .Tipo = r.Item(4),
+                                   .Año = r.Item(5),
+                                   .Cliente = New Cliente With {.Nombre = r.Item(6),
+                                                               .RUT = r.Item(7),
+                                                               .IDCliente = r.Item(8)}}
+            Return vehi
+        End If
+    End Function
+
+    Public Function ExistenciaDevehiculoPrecargado(vin As String) As Boolean
+        Return Persistencia.getInstancia.ExistenciaDeVehiculoPRecargado(vin)
     End Function
 
 End Class
