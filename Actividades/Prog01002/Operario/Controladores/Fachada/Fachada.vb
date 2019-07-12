@@ -30,7 +30,7 @@ Public Class Fachada
     End Function
 
     Public Function ComrpobarUsuario(NombreUsuario As String, contraseña As String) As Boolean
-        If Persistencia.getInstancia.ExsistenciaDeUsuario(NombreUsuario, contraseña) Then
+        If Persistencia.getInstancia.VerificarCredenciales(NombreUsuario, contraseña) Then
             Return True
         Else
             Return False
@@ -38,7 +38,7 @@ Public Class Fachada
     End Function
 
     Public Function ComprobacionSoloNombreUsuario(NombreUsuario As String) As Boolean
-        If Persistencia.getInstancia.ExsistenciaDeUsuario(NombreUsuario) Then
+        If Persistencia.getInstancia.ExistenciaDeUsuario(NombreUsuario) Then
             Return True
         Else
             Return False
@@ -76,20 +76,18 @@ Public Class Fachada
         If dt Is Nothing Then
             Return New List(Of TrabajaEn) 'Lista vacia
         Else
+            Dim usuario As New Usuario() With {
+                .NombreDeUsuario = Nombreuser, .Rol = Usuario.TIPO_ROL_OPERARIO
+                }
             Dim lista As New List(Of TrabajaEn)
             For Each row As DataRow In dt.Rows
-                Dim f1 As DateTime = DirectCast(row.Item(1), DateTime?)
-                Dim f2 As DateTime
-                If Funciones_comunes.AutoNull(Of Object)(row.Item(2)) Is Nothing Then
+                Dim f1 As DateTime = DirectCast(row.Item(1), DateTime)
+                Dim f2 As DateTime?
+                If Funciones_comunes.AutoNull(Of DateTime?)(row.Item(2)) Is Nothing Then
                     f2 = Nothing
-                    lista.Add(New TrabajaEn(DirectCast(row.Item(7), Integer), New Usuario() With {
-                                        .NombreDeUsuario = Nombreuser, .Rol = Usuario.TIPO_ROL_OPERARIO},
-                            New Lugar() With {.Nombre = DirectCast(row.Item(3), String),
-                            .IDLugar = DirectCast(row.Item(4), Integer),
-                            .PosicionX = DirectCast(row.Item(5), Double),
-                            .PosicionY = DirectCast(row.Item(6), Double),
-                            .Tipo = DirectCast(row.Item(8), String)},
-                            f1, f2))
+                    Dim lg = New Lugar(row.Item(4), -1, row.Item(5), row.Item(6), row.Item(3), row.Item(8), Nothing)
+                    Dim t_e = New TrabajaEn(row.Item(7), usuario, lg, f1, f2)
+                    lista.Add(t_e)
                 End If
 
 
@@ -105,13 +103,8 @@ Public Class Fachada
     Public Function CargarConexcionEnTrabajaEn(t As TrabajaEn) As TrabajaEn
         Dim dt As DataTable = Persistencia.getInstancia.ConexcionesTrabaen(t.Id)
         For Each r As DataRow In dt.Rows
-            Dim f1 As DateTime = DirectCast(r.Item(0), DateTime)
-            Dim f2
-            If Funciones_comunes.AutoNull(Of Object)(r.Item(1)) Is Nothing Then
-                f2 = Nothing
-            Else
-                f2 = DirectCast(r.Item(1), DateTime)
-            End If
+            Dim f1 As Date = r.Item(0)
+            Dim f2 As Date = Funciones_comunes.AutoNull(Of Date?)(r.Item(1))
             t.Conexiones.Add(New Tuple(Of Date, Date?)(f1, f2))
         Next
 
@@ -119,11 +112,10 @@ Public Class Fachada
     End Function
 
     Public Sub NuevaConexcion(t As TrabajaEn)
-        Dim d As DateTime = DateTime.Now
+        Dim d As Date = Date.Now
         Persistencia.getInstancia.NuevaConext(t.Id, d)
         Persistencia.getInstancia().TrabajaEn = t
         Persistencia.getInstancia().HoraDeLaConexcionActual = d
-
     End Sub
 
     Public Sub CerrarSeccion()
@@ -131,11 +123,7 @@ Public Class Fachada
     End Sub
 
     Public Function SeccionExsistente() As Boolean
-        If Persistencia.getInstancia.TrabajaEn Is Nothing Then
-            Return False
-        Else
-            Return True
-        End If
+        Return Persistencia.getInstancia.TrabajaEn IsNot Nothing
     End Function
 
     Public Sub CargarDataBaseDelUsuario() 'Para Los metodos que usen usuario tendran los datos basicos del mismo, no camiones

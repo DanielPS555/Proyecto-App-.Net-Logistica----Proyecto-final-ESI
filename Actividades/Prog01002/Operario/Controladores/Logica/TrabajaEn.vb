@@ -47,27 +47,25 @@ Public Class TrabajaEn
         End Set
     End Property
 
-    Private _fechaF As DateTime
-    Public Property FechaFinalizacion() As DateTime
+    Private _fechaF As DateTime?
+    Public Property FechaFinalizacion() As DateTime?
         Get
             Return _fechaF
         End Get
-        Set(ByVal value As DateTime)
-            If Not value = DateTime.MinValue Then
+        Set(ByVal value As DateTime?)
+            If value IsNot Nothing And value <> DateTime.MinValue Then
                 If DateTime.Compare(FechaInicio, value) <= 0 Then
                     _fechaF = value
                 Else
                     Throw New Exception("La fecha de salida no puede ser menor a la de ingreso ")
                 End If
             End If
-
-
         End Set
     End Property
 
 
 
-    Public Sub New(id As Integer, usuario As Usuario, lugar As Lugar, fechaInicio As Date, fechaFinalizacion As Date)
+    Public Sub New(id As Integer, usuario As Usuario, lugar As Lugar, fechaInicio As Date, fechaFinalizacion As Date?)
         Me.Usuario = usuario
         Me.Lugar = lugar
         Me.FechaInicio = fechaInicio

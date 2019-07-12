@@ -59,7 +59,23 @@ Namespace Extenciones
             this.Parameters.Add(par)
             Return par
         End Function
+
+        <Runtime.CompilerServices.Extension>
+        Public Function Multiply(Of T)([this] As T, times As Integer) As IEnumerable(Of T)
+            Dim r As New List(Of T)
+            For i = 1 To times
+                r.Add(this)
+            Next
+            Return r
+        End Function
+
+        <Runtime.CompilerServices.Extension>
+        Public Function Repeat([this] As String, times As Integer) As String
+            Dim r = ""
+            For i = 1 To times
+                r += this
+            Next
+            Return r
+        End Function
     End Module
-
-
 End Namespace

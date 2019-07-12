@@ -74,37 +74,23 @@ Public Class Persistencia
         End Try
     End Function
 
-    Public Function ExsistenciaDeUsuario(nombreDeUsuario, password) As Boolean
+    Public Function VerificarCredenciales(nombreDeUsuario, password) As Boolean
         Try
-            Dim consulta As New OdbcCommand("select count(idusuario) from usuario where hash_contra=? and nombredeusuario=? group by idusuario", Conexcion)
-            consulta.CrearParametro(DbType.String, Funciones_comunes.ContraseñaHash(password))
+            Dim consulta As New OdbcCommand("select hash_contra from usuario where nombredeusuario=?;", Conexcion)
             consulta.CrearParametro(DbType.String, nombreDeUsuario)
-            Dim t As New DataTable
-            t.Load(consulta.ExecuteReader)
-            If t.Rows.Count > 0 Then
-                Return True
-            Else
-                Return False
-            End If
-
+            Dim hash = consulta.ExecuteScalar
+            Return BCrypt.Net.BCrypt.EnhancedVerify(password, hash, BCrypt.Net.HashType.SHA256)
         Catch ex As Exception
             Return False
         End Try
 
     End Function
 
-    Public Function ExsistenciaDeUsuario(nombreDeUsuario) As Boolean
+    Public Function ExistenciaDeUsuario(nombreDeUsuario) As Boolean
         Try
-            Dim consulta As New OdbcCommand("select count(idusuario) from usuario where nombredeusuario=? group by idusuario", Conexcion)
+            Dim consulta As New OdbcCommand("select count(*) from usuario where nombredeusuario=?;", Conexcion)
             consulta.CrearParametro(DbType.String, (nombreDeUsuario))
-            Dim t As New DataTable
-            t.Load(consulta.ExecuteReader)
-            If t.Rows.Count > 0 Then
-                Return True
-            Else
-                Return False
-            End If
-
+            Return consulta.ExecuteScalar() > 0
         Catch ex As Exception
             Return False
         End Try
@@ -119,11 +105,13 @@ Public Class Persistencia
         Return cmd.ExecuteScalar
     End Function
 
+
     Public Function RespuestaSecretaUsuario(username As String) As String
         Dim cmd As New OdbcCommand("select RespuestaSecreta from usuario where nombredeusuario=?;", Conexcion)
         cmd.CrearParametro(DbType.String, username)
         Return cmd.ExecuteScalar
     End Function
+
 
     Public Function ModificarContraseñaPorDatosDeRecuperacion(username As String, newpass As String) As Boolean
         Dim cmd As New OdbcCommand("update usuario set hash_contra=? where nombredeusuario=?;", Conexcion)
@@ -131,6 +119,7 @@ Public Class Persistencia
         cmd.CrearParametro(DbType.String, username)
         Return cmd.ExecuteNonQuery > 0
     End Function
+
 
     Public Function TrabajaEnPorusuarioDatosBasicos(username As String) As DataTable 'nos da la fecha, usuario y lugar
         Try
@@ -152,7 +141,7 @@ Public Class Persistencia
         Try
             Dim cmd As New OdbcCommand("select lugar.nombre from lugar where idlugar=?", Conexcion)
             cmd.CrearParametro(DbType.Int32, id)
-            Return DirectCast(cmd.ExecuteScalar, String)
+            Return cmd.ExecuteScalar()
         Catch ex As Exception
             Return Nothing
         End Try
@@ -189,16 +178,10 @@ Public Class Persistencia
 
     Public Sub Cerrarseccion(id As Integer, horaInico As DateTime)
         Dim com As New OdbcCommand("update conexion set HoraSalida=? where idtrabajaen=? and HoraIngreso=? ;", Conexcion)
-        com.CrearParametro(DbType.DateTime, DateTime.Now.ToString("yyyy-MM-dd") & " " &
-                                   DateTime.Now.ToString("HH:mm:ss"))
+        com.CrearParametro(DbType.DateTime, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
         com.CrearParametro(DbType.Int32, id)
-        com.CrearParametro(DbType.DateTime, horaInico.ToString("yyyy-MM-dd") & " " &
-                                   horaInico.ToString("HH:mm:ss"))
-
+        com.CrearParametro(DbType.DateTime, horaInico.ToString("yyyy-MM-dd HH:mm:ss"))
         borrarDatosLocalesPorSeccion()
-
-
-
     End Sub
 
     Private Sub borrarDatosLocalesPorSeccion()
@@ -214,8 +197,6 @@ Public Class Persistencia
         Dim dt As New DataTable
         dt.Load(com.ExecuteReader)
         Return dt
-
-
     End Function
 
     Public Function NumeroLotesCreadorPorusuario_ID(id As Integer) As Integer
@@ -230,5 +211,42 @@ Public Class Persistencia
         Return com.ExecuteScalar
     End Function
 
+    Private Shared TrueF As Predicate(Of DataRow) = Function(x) True
 
+    Public Function ListaVehiculos() As DataTable
+        Return ListaVehiculos(TrueF)
+    End Function
+
+    Public Function ListaVehiculos(patron As Predicate(Of DataRow)) As DataTable
+        Dim scmd As New OdbcCommand("select VIN from posicionado where idlugar=? and hasta is null;", _con)
+        scmd.CrearParametro(DbType.AnsiString, Me.TrabajaEn.Lugar.IDLugar)
+        Dim _dt As New DataTable
+        _dt.Load(scmd.ExecuteReader)
+        Dim paramStr = String.Join(",", "?".Multiply(_dt.Rows.Count)) ' 3 autos => ?,?,? => where VIN in (?,?,?)
+        Dim cmd As New OdbcCommand($"select Vehiculo.VIN, Marca, Modelo, Tipo, (select count(*) from vehiculoIngresa where vehiculoIngresa.VIN=Vehiculo.VIN and tipoingreso='Baja') from vehiculo where Vehiculo.VIN in ({paramStr});", _con)
+        For Each v As DataRow In _dt.Rows
+            cmd.CrearParametro(DbType.AnsiStringFixedLength, v.Item(0))
+        Next
+        Dim vehicles As New DataTable
+        vehicles.Load(cmd.ExecuteReader)
+        Dim dt As New DataTable
+        dt.Columns.Add("Estado", GetType(String))
+        dt.Columns.Add("VIN", GetType(String))
+        dt.Columns.Add("Marca", GetType(String))
+        dt.Columns.Add("Modelo", GetType(String))
+        dt.Columns.Add("VehiculoTipo", GetType(String))
+        For Each i As DataRow In vehicles.Rows
+            If Not patron(i) Then
+                Continue For
+            End If
+            Dim dr = dt.NewRow
+            dt.Rows.Add(dr)
+            dr("Estado") = If(i.Item(4) = 0, "Activo", "Fuera del sistema")
+            dr("VIN") = i.Item(0)
+            dr("Marca") = i.Item(1)
+            dr("Modelo") = i.Item(2)
+            dr("VehiculoTipo") = i.Item(3)
+        Next
+        Return dt
+    End Function
 End Class
