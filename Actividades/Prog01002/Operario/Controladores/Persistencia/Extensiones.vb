@@ -59,6 +59,15 @@ Namespace Extenciones
             this.Parameters.Add(par)
             Return par
         End Function
+
+        <Runtime.CompilerServices.Extension>
+        Public Function ToList(dt As DataTable) As List(Of DataRow)
+            Dim newlist As New List(Of DataRow)
+            For Each i In dt.Rows
+                newlist.Add(i)
+            Next
+            Return newlist
+        End Function
     End Module
 
 

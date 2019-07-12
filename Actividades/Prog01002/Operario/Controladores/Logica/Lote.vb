@@ -19,18 +19,29 @@ Public Class Lote
         End Get
     End Property
 
-    Public Sub New(id As Integer, prio As String, ori As Lugar, des As Lugar, es As String)
+    Public Sub New(id As Integer, nom As String, prio As String, ori As Lugar, des As Lugar, es As String)
         Me.IDLote = id
         Me.Prioridad = prio
         Me.Origen = ori
         Me.Destino = des
         Me.Estado = es
+        Me.Nombre = nom
         Me.Vehiculos = New List(Of Tuple(Of Tuple(Of Date, Usuario), Vehiculo))
     End Sub
 
     Public Sub New()
         Me.Vehiculos = New List(Of Tuple(Of Tuple(Of Date, Usuario), Vehiculo))
     End Sub
+
+    Private _nombre As String
+    Public Property Nombre() As String
+        Get
+            Return _nombre
+        End Get
+        Set(ByVal value As String)
+            _nombre = value
+        End Set
+    End Property
 
     Private _estado As String
     Public Property Estado() As String

@@ -22,11 +22,7 @@ Partial Class nuevoVehiculo
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim QR As System.Windows.Forms.Button
-        Dim Buscar As System.Windows.Forms.Button
-        Dim color As System.Windows.Forms.Button
-        Me.infoDaños = New System.Windows.Forms.Button
-        Me.ingresar = New System.Windows.Forms.Button
+
         Me.buscador = New System.Windows.Forms.TextBox()
         Me.EstadoBusqueda = New System.Windows.Forms.Label()
         Me.l_marca = New System.Windows.Forms.Label()
@@ -51,10 +47,12 @@ Partial Class nuevoVehiculo
         Me.muestra_color = New System.Windows.Forms.Panel()
         Me.ColorDialog1 = New System.Windows.Forms.ColorDialog()
         Me.LinkLabel2 = New System.Windows.Forms.LinkLabel()
-        Me.cliente = New System.Windows.Forms.TextBox()
+        Me.clientes = New System.Windows.Forms.ComboBox()
         QR = New System.Windows.Forms.Button()
         Buscar = New System.Windows.Forms.Button()
         color = New System.Windows.Forms.Button()
+        infoDaños = New System.Windows.Forms.Button()
+        ingresar = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'QR
@@ -104,6 +102,7 @@ Partial Class nuevoVehiculo
         color.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         color.BackColor = System.Drawing.Color.White
+        color.Enabled = False
         color.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
         color.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
         color.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White
@@ -156,7 +155,7 @@ Partial Class nuevoVehiculo
         ingresar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         ingresar.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         ingresar.ForeColor = System.Drawing.Color.White
-        ingresar.Location = New System.Drawing.Point(651, 591)
+        ingresar.Location = New System.Drawing.Point(651, 585)
         ingresar.Name = "ingresar"
         ingresar.Size = New System.Drawing.Size(198, 35)
         ingresar.TabIndex = 52
@@ -188,6 +187,7 @@ Partial Class nuevoVehiculo
         'l_marca
         '
         Me.l_marca.AutoSize = True
+        Me.l_marca.Enabled = False
         Me.l_marca.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.l_marca.Location = New System.Drawing.Point(12, 105)
         Me.l_marca.Name = "l_marca"
@@ -216,6 +216,7 @@ Partial Class nuevoVehiculo
         'l_modelo
         '
         Me.l_modelo.AutoSize = True
+        Me.l_modelo.Enabled = False
         Me.l_modelo.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.l_modelo.Location = New System.Drawing.Point(12, 149)
         Me.l_modelo.Name = "l_modelo"
@@ -226,6 +227,7 @@ Partial Class nuevoVehiculo
         'l_anio
         '
         Me.l_anio.AutoSize = True
+        Me.l_anio.Enabled = False
         Me.l_anio.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.l_anio.Location = New System.Drawing.Point(12, 197)
         Me.l_anio.Name = "l_anio"
@@ -235,6 +237,7 @@ Partial Class nuevoVehiculo
         '
         'anio
         '
+        Me.anio.Enabled = False
         Me.anio.Font = New System.Drawing.Font("Century Gothic", 15.0!)
         Me.anio.FormattingEnabled = True
         Me.anio.Location = New System.Drawing.Point(85, 193)
@@ -274,6 +277,7 @@ Partial Class nuevoVehiculo
         '
         'tipo
         '
+        Me.tipo.Enabled = False
         Me.tipo.Font = New System.Drawing.Font("Century Gothic", 15.0!)
         Me.tipo.FormattingEnabled = True
         Me.tipo.Items.AddRange(New Object() {"Auto", "Camion", "SUV", "Van", "MiniVan"})
@@ -294,6 +298,7 @@ Partial Class nuevoVehiculo
         '
         'subzonas
         '
+        Me.subzonas.Enabled = False
         Me.subzonas.Font = New System.Drawing.Font("Century Gothic", 15.0!)
         Me.subzonas.FormattingEnabled = True
         Me.subzonas.Location = New System.Drawing.Point(364, 343)
@@ -323,6 +328,7 @@ Partial Class nuevoVehiculo
         '
         'zonas
         '
+        Me.zonas.Enabled = False
         Me.zonas.Font = New System.Drawing.Font("Century Gothic", 15.0!)
         Me.zonas.FormattingEnabled = True
         Me.zonas.Location = New System.Drawing.Point(91, 343)
@@ -342,6 +348,7 @@ Partial Class nuevoVehiculo
         '
         'posDis
         '
+        Me.posDis.Enabled = False
         Me.posDis.Font = New System.Drawing.Font("Century Gothic", 15.0!)
         Me.posDis.FormattingEnabled = True
         Me.posDis.Location = New System.Drawing.Point(754, 343)
@@ -361,6 +368,7 @@ Partial Class nuevoVehiculo
         '
         'lote
         '
+        Me.lote.Enabled = False
         Me.lote.Font = New System.Drawing.Font("Century Gothic", 15.0!)
         Me.lote.FormattingEnabled = True
         Me.lote.Location = New System.Drawing.Point(68, 418)
@@ -388,15 +396,15 @@ Partial Class nuevoVehiculo
         Me.LinkLabel2.TabStop = True
         Me.LinkLabel2.Text = "Crear lote"
         '
-        'cliente
+        'clientes
         '
-        Me.cliente.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.cliente.Font = New System.Drawing.Font("Century Gothic", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cliente.Location = New System.Drawing.Point(92, 258)
-        Me.cliente.Name = "cliente"
-        Me.cliente.ReadOnly = True
-        Me.cliente.Size = New System.Drawing.Size(757, 25)
-        Me.cliente.TabIndex = 37
+        Me.clientes.Enabled = False
+        Me.clientes.Font = New System.Drawing.Font("Century Gothic", 15.0!)
+        Me.clientes.FormattingEnabled = True
+        Me.clientes.Location = New System.Drawing.Point(92, 254)
+        Me.clientes.Name = "clientes"
+        Me.clientes.Size = New System.Drawing.Size(432, 31)
+        Me.clientes.TabIndex = 110
         '
         'nuevoVehiculo
         '
@@ -404,6 +412,7 @@ Partial Class nuevoVehiculo
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(880, 650)
+        Me.Controls.Add(Me.clientes)
         Me.Controls.Add(Me.LinkLabel2)
         Me.Controls.Add(Me.muestra_color)
         Me.Controls.Add(ingresar)
@@ -420,7 +429,6 @@ Partial Class nuevoVehiculo
         Me.Controls.Add(Me.Label8)
         Me.Controls.Add(Me.tipo)
         Me.Controls.Add(Me.l_tipo)
-        Me.Controls.Add(Me.cliente)
         Me.Controls.Add(Me.l_cliente)
         Me.Controls.Add(Me.l_color)
         Me.Controls.Add(Me.anio)
@@ -438,6 +446,7 @@ Partial Class nuevoVehiculo
         Me.Text = "nuevoVehiculo"
         Me.ResumeLayout(False)
         Me.PerformLayout()
+
     End Sub
 
     Friend WithEvents buscador As TextBox
@@ -464,7 +473,10 @@ Partial Class nuevoVehiculo
     Friend WithEvents muestra_color As Panel
     Friend WithEvents ColorDialog1 As ColorDialog
     Friend WithEvents LinkLabel2 As LinkLabel
-    Friend WithEvents cliente As TextBox
-    Friend WithEvents infoDaños As Button
-    Friend WithEvents ingresar As Button
+    Friend WithEvents clientes As ComboBox
+    Friend WithEvents QR As System.Windows.Forms.Button
+    Friend WithEvents Buscar As System.Windows.Forms.Button
+    Friend WithEvents color As System.Windows.Forms.Button
+    Friend WithEvents infoDaños As System.Windows.Forms.Button
+    Friend WithEvents ingresar As System.Windows.Forms.Button
 End Class

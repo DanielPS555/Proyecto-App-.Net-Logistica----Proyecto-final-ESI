@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class ListaVehiculos
     Inherits System.Windows.Forms.Form
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class ListaVehiculos
     'NOTA: el Diseñador de Windows Forms necesita el siguiente procedimiento
     'Se puede modificar usando el Diseñador de Windows Forms.  
     'No lo modifique con el editor de código.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim buscar As System.Windows.Forms.Button
         Dim nuevo As System.Windows.Forms.Button
@@ -30,11 +30,6 @@ Partial Class ListaVehiculos
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.criterios = New System.Windows.Forms.ComboBox()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.Estado = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.VIN = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Marca = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Modelo = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.VehiculoTipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         buscar = New System.Windows.Forms.Button()
         nuevo = New System.Windows.Forms.Button()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -137,43 +132,12 @@ Partial Class ListaVehiculos
         DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Estado, Me.VIN, Me.Marca, Me.Modelo, Me.VehiculoTipo})
-        Me.DataGridView1.Location = New System.Drawing.Point(13, 151)
+        Me.DataGridView1.Location = New System.Drawing.Point(14, 151)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.ReadOnly = True
         Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.DataGridView1.Size = New System.Drawing.Size(849, 487)
         Me.DataGridView1.TabIndex = 26
-        '
-        'Estado
-        '
-        Me.Estado.HeaderText = "Estado"
-        Me.Estado.Name = "Estado"
-        Me.Estado.ReadOnly = True
-        '
-        'VIN
-        '
-        Me.VIN.HeaderText = "VIN"
-        Me.VIN.Name = "VIN"
-        Me.VIN.ReadOnly = True
-        '
-        'Marca
-        '
-        Me.Marca.HeaderText = "Marca"
-        Me.Marca.Name = "Marca"
-        Me.Marca.ReadOnly = True
-        '
-        'Modelo
-        '
-        Me.Modelo.HeaderText = "Modelo"
-        Me.Modelo.Name = "Modelo"
-        Me.Modelo.ReadOnly = True
-        '
-        'VehiculoTipo
-        '
-        Me.VehiculoTipo.HeaderText = "Tipo"
-        Me.VehiculoTipo.Name = "VehiculoTipo"
-        Me.VehiculoTipo.ReadOnly = True
         '
         'ListaVehiculos
         '
@@ -201,9 +165,4 @@ Partial Class ListaVehiculos
     Friend WithEvents Panel2 As Panel
     Friend WithEvents criterios As ComboBox
     Friend WithEvents DataGridView1 As DataGridView
-    Friend WithEvents Estado As DataGridViewTextBoxColumn
-    Friend WithEvents VIN As DataGridViewTextBoxColumn
-    Friend WithEvents Marca As DataGridViewTextBoxColumn
-    Friend WithEvents Modelo As DataGridViewTextBoxColumn
-    Friend WithEvents VehiculoTipo As DataGridViewTextBoxColumn
 End Class
