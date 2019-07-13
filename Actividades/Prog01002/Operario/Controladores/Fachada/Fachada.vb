@@ -104,9 +104,10 @@ Public Class Fachada
     Public Function CargarConexcionEnTrabajaEn(t As TrabajaEn) As TrabajaEn
         Dim dt As DataTable = Persistencia.getInstancia.ConexcionesTrabaen(t.Id)
         For Each r As DataRow In dt.Rows
-            Dim f1 As Date = r.Item(0)
-            Dim f2 As Date = Funciones_comunes.AutoNull(Of Date?)(r.Item(1))
-            t.Conexiones.Add(New Tuple(Of Date, Date?)(f1, f2))
+            Dim f1 As DateTime = r.Item(0)
+            Dim f2 As DateTime?
+            f2 = Funciones_comunes.AutoNull(Of Date?)(r.Item(1))
+            t.Conexiones.Add(New Tuple(Of DateTime, DateTime?)(f1, f2))
         Next
 
         Return t
@@ -186,18 +187,18 @@ Public Class Fachada
     Public Function ListaVehiculos() As DataTable
         Dim dt As New DataTable
         dt = Persistencia.getInstancia.DatosBasicosParaListarVehiculos(Persistencia.getInstancia.TrabajaEn.Lugar.IDLugar)
-        dt.Columns.Add(New DataColumn("Id lote", GetType(String)))
+        dt.Columns.Add("Estado", GetType(String))
         For Each r As DataRow In dt.Rows
             Dim idLote = Persistencia.getInstancia.IDLotePor_Vin_y_IDLugar(r.Item(0), Persistencia.getInstancia.TrabajaEn.Lugar.IDLugar)
             If idLote = -1 Then
-                r.Item(4) = "Sin lote"
-                r.Item(5) = "-"
+                r.Item(5) = "Sin lote"
+                r.Item(4) = "-"
             Else
-                r.Item(5) = idLote.ToString
+                r.Item(4) = idLote.ToString
                 If Persistencia.getInstancia.ComprobarLoteTrasladoRealizado(idLote) Then
-                    r.Item(4) = "Fuera del lugar"
+                    r.Item(5) = "Fuera del lugar"
                 Else
-                    r.Item(4) = "En el lugar"
+                    r.Item(5) = "En el lugar"
                 End If
             End If
         Next
@@ -231,11 +232,12 @@ Public Class Fachada
 
     Public Function lotesDisponiblesPorLugarActual() As List(Of Lote)
         Dim lista As New List(Of Lote)
-        For Each r1 As DataRow In Persistencia.getInstancia.DevolverTodosLosLotesPor_IdLugar(Persistencia.getInstancia.TrabajaEn.Lugar.IDLugar)
+        For Each r1 As DataRow In Persistencia.getInstancia.DevolverTodosLosLotesPor_IdLugar(Persistencia.getInstancia.TrabajaEn.Lugar.IDLugar).Rows
             Dim lote As New Lote With {.IDLote = r1.Item(0), .Nombre = r1.Item(1), .Estado = r1.Item(2)}
             If lote.Estado = Lote.TIPO_ESTADO_ABIERTO Then
                 lista.Add(lote)
             End If
+
         Next
         Return lista
     End Function
@@ -248,22 +250,27 @@ Public Class Fachada
         Else
             Dim r As DataRow = dt.Rows(0)
             Dim color As Color
-            If r.Item(3) Is Nothing Then
+            If Funciones_comunes.AutoNull(Of Object)(r.Item(3)) Is Nothing Then
                 color = Color.Empty
             Else
-                color = ColorTranslator.FromHtml(r.Item(3))
+
+                color = Color.FromArgb(Convert.ToInt32("0x" + r.Item(3), 16))
             End If
 
             Dim vehi As New Vehiculo With {
-                                   .VIN = r.Item(0),
-                                   .Marca = r.Item(1),
-                                   .Modelo = r.Item(2),
+                                   .VIN = Funciones_comunes.AutoNull(Of Object)(r.Item(0)),
+                                   .Marca = Funciones_comunes.AutoNull(Of Object)(r.Item(1)),
+                                   .Modelo = Funciones_comunes.AutoNull(Of Object)(r.Item(2)),
                                    .Color = color,
-                                   .Tipo = r.Item(4),
-                                   .Año = r.Item(5),
-                                   .Cliente = New Cliente With {.Nombre = r.Item(6),
+                                   .Tipo = Funciones_comunes.AutoNull(Of Object)(r.Item(4)),
+                                   .Año = Funciones_comunes.AutoNull(Of Object)(r.Item(5))}
+            If r.Item(7) IsNot Nothing Then
+                vehi.Cliente = New Cliente With {.Nombre = r.Item(6),
                                                                .RUT = r.Item(7),
-                                                               .IDCliente = r.Item(8)}}
+                                                               .IDCliente = r.Item(8)}
+            Else
+                vehi.Cliente = Nothing
+            End If
             Return vehi
         End If
     End Function
@@ -271,5 +278,27 @@ Public Class Fachada
     Public Function ExistenciaDevehiculoPrecargado(vin As String) As Boolean
         Return Persistencia.getInstancia.ExistenciaDeVehiculoPRecargado(vin)
     End Function
+
+    Public Function ClientesDelSistema() As List(Of Cliente)
+        Dim clientes As New List(Of Cliente)
+        Dim dt As DataTable = Persistencia.getInstancia.clienteDelSistema()
+        For Each r As DataRow In dt.Rows
+            Dim cliente As New Cliente With {.Nombre = r.Item(2),
+                                             .RUT = r.Item(1),
+                                             .IDCliente = r.Item(0)}
+            clientes.Add(cliente)
+        Next
+        Return clientes
+    End Function
+
+    Public Function PosicionesActualmenteOcupadasPorSubzona(sube As Subzona) As List(Of Integer)
+        Dim pos As New List(Of Integer)
+        Dim dt As DataTable = Persistencia.getInstancia.PoscionesOcupadasPor_ID_Subzona(sube.IDSubzona)
+        For Each r As DataRow In dt.Rows
+            pos.Add(r.Item(0))
+        Next
+        Return pos
+    End Function
+
 
 End Class

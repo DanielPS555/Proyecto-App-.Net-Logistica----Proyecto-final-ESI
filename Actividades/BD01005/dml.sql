@@ -38,8 +38,8 @@ insert into link values ("http://maps.com",(select idusuario from usuario where 
 insert into link values ("http://maps2.com",(select idusuario from usuario where primernombre = "Pedro"));
 /*16*/
 		/*CLIENTE*/
-insert into cliente(IDCliente, RUT, Nombre, fechaRegistro) values(0, 3243, "Sevel", "2019-7-10");
-insert into cliente(IDCliente, RUT, Nombre, fechaRegistro) values(0, 5434, "Chevrolet UY", "2014-8-8");
+insert into cliente(IDCliente, RUT, Nombre, fechaRegistro) values(0, 185769246724, "Sevel", "2019-7-10");
+insert into cliente(IDCliente, RUT, Nombre, fechaRegistro) values(0, 785349658722, "Chevrolet UY", "2014-8-8");
 
 	/*LUGAR*/
 insert into lugar(idlugar, nombre, capacidad, geox, geoy, usuariocreador, tipo) values (0,"Deposito piedras blancas", 3500, -34.882456, -56.194172,(select idusuario from usuario where primernombre = "Felipe"),"Patio");
@@ -184,7 +184,7 @@ insert into trabajaen values (0,(select IDLugar from lugar where Nombre="Deposit
 		(select IDLugar from lugar where Nombre="Puerto de aguas profundas rocha"),
 		"2019-6-26");
 		insert into vehiculo values("KHBEHGRLED0988442","Chevrolet","Volt",
-		"6ejr27", "MiniVan", 2018, (select IDCliente from cliente where Nombre="Chevrolet UY"),
+		"6e2327", "MiniVan", 2018, (select IDCliente from cliente where Nombre="Chevrolet UY"),
 		(select IDLugar from lugar where Nombre="Puerto de montevideo"),
 		"2019-6-26");
 			insert into vehiculo(vin, cliente, tipo) values("1L0V36I113UWU1112", (select IDCliente from cliente where Nombre="Sevel"), "Auto");
@@ -303,13 +303,13 @@ insert into trabajaen values (0,(select IDLugar from lugar where Nombre="Deposit
 		
 		insert into lote values (0,"l_4",(select IDLugar from lugar where Nombre="Deposito piedras blancas"),
       (select IDLugar from lugar where Nombre="Patio de Sevel"),
-       (select idusuario from usuario where primernombre = "Juan"),'Normal','Cerrado');
+       (select idusuario from usuario where primernombre = "Juan"),'Normal','Abierto');
 	   
 	   insert into lote values (0,"l_5",(select IDLugar from lugar where Nombre="Deposito de maldonado"),
       (select IDLugar from lugar where Nombre="Patio de Chevrolet Ur a gay"),
        (select idusuario from usuario where primernombre = "Pepe"),'Normal','Cerrado');
 
-      insert into lote values (0,"l_6",(select IDLugar from lugar where Nombre="Puerto de montevideo"),
+      insert into lote values (0,"l_6",(select IDLugar from lugar where Nombre="Deposito piedras blancas"),
 	(select IDLugar from lugar where Nombre="Patio de Sevel"),
 	(select IDUsuario from usuario where primernombre = "Pepe"), "Normal", "Cerrado");
 

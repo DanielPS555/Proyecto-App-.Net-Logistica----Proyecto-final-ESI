@@ -42,7 +42,7 @@ CREATE table
 
 CREATE table
 	cliente(
-		RUT integer unique not null,
+		RUT varchar(12) unique not null,
 		Nombre varchar(100) not null,
 		IDCliente serial primary key,
 		fechaRegistro datetime year to day not null

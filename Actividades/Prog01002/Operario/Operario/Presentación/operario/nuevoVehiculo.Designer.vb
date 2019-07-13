@@ -22,7 +22,6 @@ Partial Class nuevoVehiculo
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-
         Me.buscador = New System.Windows.Forms.TextBox()
         Me.EstadoBusqueda = New System.Windows.Forms.Label()
         Me.l_marca = New System.Windows.Forms.Label()
@@ -48,121 +47,12 @@ Partial Class nuevoVehiculo
         Me.ColorDialog1 = New System.Windows.Forms.ColorDialog()
         Me.LinkLabel2 = New System.Windows.Forms.LinkLabel()
         Me.clientes = New System.Windows.Forms.ComboBox()
-        QR = New System.Windows.Forms.Button()
-        Buscar = New System.Windows.Forms.Button()
-        color = New System.Windows.Forms.Button()
-        infoDaños = New System.Windows.Forms.Button()
-        ingresar = New System.Windows.Forms.Button()
+        Me.QR = New System.Windows.Forms.Button()
+        Me.Buscar = New System.Windows.Forms.Button()
+        Me.color = New System.Windows.Forms.Button()
+        Me.infoDaños = New System.Windows.Forms.Button()
+        Me.ingresar = New System.Windows.Forms.Button()
         Me.SuspendLayout()
-        '
-        'QR
-        '
-        QR.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        QR.BackColor = System.Drawing.Color.White
-        QR.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        QR.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        QR.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White
-        QR.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White
-        QR.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        QR.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        QR.ForeColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        QR.Location = New System.Drawing.Point(574, 24)
-        QR.Name = "QR"
-        QR.Size = New System.Drawing.Size(143, 35)
-        QR.TabIndex = 26
-        QR.Text = "Escaner QR"
-        QR.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        QR.UseVisualStyleBackColor = False
-        '
-        'Buscar
-        '
-        Buscar.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Buscar.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Buscar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Buscar.FlatAppearance.BorderSize = 0
-        Buscar.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Buscar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        Buscar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        Buscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Buscar.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Buscar.ForeColor = System.Drawing.Color.White
-        Buscar.Location = New System.Drawing.Point(748, 24)
-        Buscar.Name = "Buscar"
-        Buscar.Size = New System.Drawing.Size(93, 35)
-        Buscar.TabIndex = 27
-        Buscar.Text = "Buscar"
-        Buscar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Buscar.UseVisualStyleBackColor = False
-        AddHandler Buscar.Click, AddressOf Me.Buscar_Click
-        '
-        'color
-        '
-        color.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        color.BackColor = System.Drawing.Color.White
-        color.Enabled = False
-        color.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
-        color.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        color.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White
-        color.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White
-        color.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        color.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        color.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
-        color.Location = New System.Drawing.Point(634, 190)
-        color.Name = "color"
-        color.Size = New System.Drawing.Size(126, 35)
-        color.TabIndex = 48
-        color.Text = "Selecionar"
-        color.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        color.UseVisualStyleBackColor = False
-        AddHandler color.Click, AddressOf Me.color_Click
-        '
-        'infoDaños
-        '
-        infoDaños.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        infoDaños.BackColor = System.Drawing.Color.White
-        infoDaños.Enabled = False
-        infoDaños.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
-        infoDaños.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        infoDaños.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White
-        infoDaños.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White
-        infoDaños.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        infoDaños.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        infoDaños.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
-        infoDaños.Location = New System.Drawing.Point(288, 516)
-        infoDaños.Name = "infoDaños"
-        infoDaños.Size = New System.Drawing.Size(331, 35)
-        infoDaños.TabIndex = 51
-        infoDaños.Text = "Realizar un informe de daños"
-        infoDaños.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        infoDaños.UseVisualStyleBackColor = False
-        AddHandler infoDaños.Click, AddressOf Me.infoDaños_Click
-        '
-        'ingresar
-        '
-        ingresar.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        ingresar.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        ingresar.Enabled = False
-        ingresar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        ingresar.FlatAppearance.BorderSize = 0
-        ingresar.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        ingresar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        ingresar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        ingresar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        ingresar.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        ingresar.ForeColor = System.Drawing.Color.White
-        ingresar.Location = New System.Drawing.Point(651, 585)
-        ingresar.Name = "ingresar"
-        ingresar.Size = New System.Drawing.Size(198, 35)
-        ingresar.TabIndex = 52
-        ingresar.Text = "Ingrezar vehiculo "
-        ingresar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        ingresar.UseVisualStyleBackColor = False
-        AddHandler ingresar.Click, AddressOf Me.ingresar_Click
         '
         'buscador
         '
@@ -187,7 +77,6 @@ Partial Class nuevoVehiculo
         'l_marca
         '
         Me.l_marca.AutoSize = True
-        Me.l_marca.Enabled = False
         Me.l_marca.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.l_marca.Location = New System.Drawing.Point(12, 105)
         Me.l_marca.Name = "l_marca"
@@ -216,7 +105,6 @@ Partial Class nuevoVehiculo
         'l_modelo
         '
         Me.l_modelo.AutoSize = True
-        Me.l_modelo.Enabled = False
         Me.l_modelo.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.l_modelo.Location = New System.Drawing.Point(12, 149)
         Me.l_modelo.Name = "l_modelo"
@@ -227,7 +115,6 @@ Partial Class nuevoVehiculo
         'l_anio
         '
         Me.l_anio.AutoSize = True
-        Me.l_anio.Enabled = False
         Me.l_anio.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.l_anio.Location = New System.Drawing.Point(12, 197)
         Me.l_anio.Name = "l_anio"
@@ -237,7 +124,6 @@ Partial Class nuevoVehiculo
         '
         'anio
         '
-        Me.anio.Enabled = False
         Me.anio.Font = New System.Drawing.Font("Century Gothic", 15.0!)
         Me.anio.FormattingEnabled = True
         Me.anio.Location = New System.Drawing.Point(85, 193)
@@ -277,7 +163,6 @@ Partial Class nuevoVehiculo
         '
         'tipo
         '
-        Me.tipo.Enabled = False
         Me.tipo.Font = New System.Drawing.Font("Century Gothic", 15.0!)
         Me.tipo.FormattingEnabled = True
         Me.tipo.Items.AddRange(New Object() {"Auto", "Camion", "SUV", "Van", "MiniVan"})
@@ -298,7 +183,6 @@ Partial Class nuevoVehiculo
         '
         'subzonas
         '
-        Me.subzonas.Enabled = False
         Me.subzonas.Font = New System.Drawing.Font("Century Gothic", 15.0!)
         Me.subzonas.FormattingEnabled = True
         Me.subzonas.Location = New System.Drawing.Point(364, 343)
@@ -328,7 +212,6 @@ Partial Class nuevoVehiculo
         '
         'zonas
         '
-        Me.zonas.Enabled = False
         Me.zonas.Font = New System.Drawing.Font("Century Gothic", 15.0!)
         Me.zonas.FormattingEnabled = True
         Me.zonas.Location = New System.Drawing.Point(91, 343)
@@ -348,7 +231,6 @@ Partial Class nuevoVehiculo
         '
         'posDis
         '
-        Me.posDis.Enabled = False
         Me.posDis.Font = New System.Drawing.Font("Century Gothic", 15.0!)
         Me.posDis.FormattingEnabled = True
         Me.posDis.Location = New System.Drawing.Point(754, 343)
@@ -368,7 +250,6 @@ Partial Class nuevoVehiculo
         '
         'lote
         '
-        Me.lote.Enabled = False
         Me.lote.Font = New System.Drawing.Font("Century Gothic", 15.0!)
         Me.lote.FormattingEnabled = True
         Me.lote.Location = New System.Drawing.Point(68, 418)
@@ -398,13 +279,114 @@ Partial Class nuevoVehiculo
         '
         'clientes
         '
-        Me.clientes.Enabled = False
         Me.clientes.Font = New System.Drawing.Font("Century Gothic", 15.0!)
         Me.clientes.FormattingEnabled = True
         Me.clientes.Location = New System.Drawing.Point(92, 254)
         Me.clientes.Name = "clientes"
         Me.clientes.Size = New System.Drawing.Size(432, 31)
         Me.clientes.TabIndex = 110
+        '
+        'QR
+        '
+        Me.QR.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.QR.BackColor = System.Drawing.Color.White
+        Me.QR.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.QR.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.QR.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White
+        Me.QR.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White
+        Me.QR.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.QR.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.QR.ForeColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.QR.Location = New System.Drawing.Point(574, 24)
+        Me.QR.Name = "QR"
+        Me.QR.Size = New System.Drawing.Size(143, 35)
+        Me.QR.TabIndex = 26
+        Me.QR.Text = "Escaner QR"
+        Me.QR.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.QR.UseVisualStyleBackColor = False
+        '
+        'Buscar
+        '
+        Me.Buscar.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Buscar.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.Buscar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.Buscar.FlatAppearance.BorderSize = 0
+        Me.Buscar.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.Buscar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        Me.Buscar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        Me.Buscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Buscar.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Buscar.ForeColor = System.Drawing.Color.White
+        Me.Buscar.Location = New System.Drawing.Point(748, 24)
+        Me.Buscar.Name = "Buscar"
+        Me.Buscar.Size = New System.Drawing.Size(93, 35)
+        Me.Buscar.TabIndex = 27
+        Me.Buscar.Text = "Buscar"
+        Me.Buscar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Buscar.UseVisualStyleBackColor = False
+        '
+        'color
+        '
+        Me.color.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.color.BackColor = System.Drawing.Color.White
+        Me.color.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
+        Me.color.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.color.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White
+        Me.color.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White
+        Me.color.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.color.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.color.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
+        Me.color.Location = New System.Drawing.Point(634, 190)
+        Me.color.Name = "color"
+        Me.color.Size = New System.Drawing.Size(126, 35)
+        Me.color.TabIndex = 48
+        Me.color.Text = "Selecionar"
+        Me.color.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.color.UseVisualStyleBackColor = False
+        '
+        'infoDaños
+        '
+        Me.infoDaños.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.infoDaños.BackColor = System.Drawing.Color.White
+        Me.infoDaños.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
+        Me.infoDaños.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.infoDaños.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White
+        Me.infoDaños.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White
+        Me.infoDaños.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.infoDaños.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.infoDaños.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
+        Me.infoDaños.Location = New System.Drawing.Point(288, 516)
+        Me.infoDaños.Name = "infoDaños"
+        Me.infoDaños.Size = New System.Drawing.Size(331, 35)
+        Me.infoDaños.TabIndex = 51
+        Me.infoDaños.Text = "Realizar un informe de daños"
+        Me.infoDaños.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.infoDaños.UseVisualStyleBackColor = False
+        '
+        'ingresar
+        '
+        Me.ingresar.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.ingresar.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.ingresar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.ingresar.FlatAppearance.BorderSize = 0
+        Me.ingresar.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.ingresar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        Me.ingresar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        Me.ingresar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ingresar.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ingresar.ForeColor = System.Drawing.Color.White
+        Me.ingresar.Location = New System.Drawing.Point(651, 585)
+        Me.ingresar.Name = "ingresar"
+        Me.ingresar.Size = New System.Drawing.Size(198, 35)
+        Me.ingresar.TabIndex = 52
+        Me.ingresar.Text = "Ingrezar vehiculo "
+        Me.ingresar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.ingresar.UseVisualStyleBackColor = False
         '
         'nuevoVehiculo
         '
@@ -415,10 +397,10 @@ Partial Class nuevoVehiculo
         Me.Controls.Add(Me.clientes)
         Me.Controls.Add(Me.LinkLabel2)
         Me.Controls.Add(Me.muestra_color)
-        Me.Controls.Add(ingresar)
-        Me.Controls.Add(infoDaños)
+        Me.Controls.Add(Me.ingresar)
+        Me.Controls.Add(Me.infoDaños)
         Me.Controls.Add(Me.lote)
-        Me.Controls.Add(color)
+        Me.Controls.Add(Me.color)
         Me.Controls.Add(Me.l_lote)
         Me.Controls.Add(Me.posDis)
         Me.Controls.Add(Me.subzonas)
@@ -438,8 +420,8 @@ Partial Class nuevoVehiculo
         Me.Controls.Add(Me.marca)
         Me.Controls.Add(Me.l_marca)
         Me.Controls.Add(Me.EstadoBusqueda)
-        Me.Controls.Add(Buscar)
-        Me.Controls.Add(QR)
+        Me.Controls.Add(Me.Buscar)
+        Me.Controls.Add(Me.QR)
         Me.Controls.Add(Me.buscador)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "nuevoVehiculo"

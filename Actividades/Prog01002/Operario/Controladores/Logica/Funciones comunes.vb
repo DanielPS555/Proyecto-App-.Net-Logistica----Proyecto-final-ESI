@@ -122,4 +122,15 @@ Public Class Funciones_comunes
     Public Shared Function DarFormato(fecha As Date?) As String
         Return If(fecha IsNot Nothing, fecha?.ToString("yyyy/MM/dd a la\s HH:mm:ss"), "Nunca")
     End Function
+
+    Public Shared Function Hex_to_rgb(color As String) As System.Drawing.Color
+        Dim R As Integer = Integer.Parse(color.Substring(0, 2), System.Globalization.NumberStyles.HexNumber)
+        Dim G As Integer = Integer.Parse(color.Substring(2, 2), System.Globalization.NumberStyles.HexNumber)
+        Dim B As Integer = Integer.Parse(color.Substring(4, 2), System.Globalization.NumberStyles.HexNumber)
+        Dim re As Color = System.Drawing.Color.FromArgb(R, G, B)
+        Return re
+    End Function
+
+
+
 End Class

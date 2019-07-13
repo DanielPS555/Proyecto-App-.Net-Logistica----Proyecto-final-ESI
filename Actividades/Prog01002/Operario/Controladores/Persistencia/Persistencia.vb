@@ -179,6 +179,7 @@ Public Class Persistencia
         com.CrearParametro(DbType.DateTime, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
         com.CrearParametro(DbType.Int32, id)
         com.CrearParametro(DbType.DateTime, horaInico.ToString("yyyy-MM-dd HH:mm:ss"))
+        com.ExecuteNonQuery()
         borrarDatosLocalesPorSeccion()
     End Sub
 
@@ -226,23 +227,13 @@ Public Class Persistencia
     End Function
 
     Public Function DatosBasicosParaListarVehiculos(id As Integer) As DataTable
-        Dim com As New OdbcCommand("select vehiculo.vin, vehiculo.marca, vehiculo.modelo, vehiculo.tipo , (select count(*) from vehiculoIngresa where vehiculoIngresa.VIN=Vehiculo.VIN and tipoingreso='Baja')
+        Dim com As New OdbcCommand("select vehiculo.vin, vehiculo.marca, vehiculo.modelo, vehiculo.tipo , posicionado.idlugar
                                     from vehiculo, posicionado
-                                    where posicionado.idlugar=? and vehiculo.vin = posicionado.vin
+                                    where posicionado.idlugar=? and vehiculo.vin = posicionado.vin and vehiculo.vin not in (select vin from vehiculoIngresa where tipoingreso='Baja')
                                     group by vehiculo.vin, vehiculo.marca, vehiculo.modelo, vehiculo.tipo,posicionado.idlugar", Conexcion)
         com.CrearParametro(DbType.String, id)
         Dim dt As New DataTable
         dt.Load(com.ExecuteReader)
-        dt.Columns.Add("Estado", GetType(String))
-        For Each dr As DataRow In dt.Rows
-            Dim count As Integer = dr.Item(4)
-            If count <> 0 Then
-                dr.Item(5) = "Fuera del sistema"
-            Else
-                dr.Item(5) = "Activo"
-            End If
-        Next
-        dt.Columns.RemoveAt(4)
         Return dt
     End Function
 
@@ -281,8 +272,8 @@ Public Class Persistencia
         Return dt
     End Function
 
-    Public Function DevolverTodosLosLotesPor_IdLugar(id As Integer)
-        Dim com As New OdbcCommand("select lote.idlote, lote.nombre, lote.estado from lote inner join lugar on lote.desde = lugar.idlugar where lugar.nombre = ?;", Conexcion)
+    Public Function DevolverTodosLosLotesPor_IdLugar(id As Integer) As DataTable
+        Dim com As New OdbcCommand("select lote.idlote, lote.nombre, lote.estado from lote inner join lugar on lote.desde = lugar.idlugar where lugar.idlugar = ?;", Conexcion)
         com.CrearParametro(DbType.Int32, id)
         Dim dt As New DataTable
         dt.Load(com.ExecuteReader)
@@ -310,38 +301,22 @@ Public Class Persistencia
         Return com.ExecuteScalar > 0
     End Function
 
-    Public Function ListaVehiculos(patron As Predicate(Of DataRow)) As DataTable
-        Dim scmd As New OdbcCommand("select VIN from posicionado where idlugar=? and hasta is null;", _con)
-        scmd.CrearParametro(DbType.AnsiString, Me.TrabajaEn.Lugar.IDLugar)
-        Dim _dt As New DataTable
-        _dt.Load(scmd.ExecuteReader)
-        Dim paramStr = String.Join(",", "?".Multiply(_dt.Rows.Count)) ' 3 autos => ?,?,? => where VIN in (?,?,?)
-        Dim cmd As New OdbcCommand($"select Vehiculo.VIN, Marca, Modelo, Tipo,  from vehiculo where Vehiculo.VIN in ({paramStr});", _con)
-        For Each v As DataRow In _dt.Rows
-            cmd.CrearParametro(DbType.AnsiStringFixedLength, v.Item(0))
-        Next
-        Dim vehicles As New DataTable
-        vehicles.Load(cmd.ExecuteReader)
+    Public Function PoscionesOcupadasPor_ID_Subzona(id As Integer) As DataTable
+        Dim com As New OdbcCommand("select posicion from posicionado where posicionado.idsub=? and hasta is null", Conexcion)
+        com.CrearParametro(DbType.Int32, id)
         Dim dt As New DataTable
-        dt.Columns.Add("Estado", GetType(String))
-        dt.Columns.Add("VIN", GetType(String))
-        dt.Columns.Add("Marca", GetType(String))
-        dt.Columns.Add("Modelo", GetType(String))
-        dt.Columns.Add("VehiculoTipo", GetType(String))
-        For Each i As DataRow In vehicles.Rows
-            If Not patron(i) Then
-                Continue For
-            End If
-            Dim dr = dt.NewRow
-            dt.Rows.Add(dr)
-            dr("Estado") = If(i.Item(4) = 0, "Activo", "Fuera del sistema")
-            dr("VIN") = i.Item(0)
-            dr("Marca") = i.Item(1)
-            dr("Modelo") = i.Item(2)
-            dr("VehiculoTipo") = i.Item(3)
-        Next
+        dt.Load(com.ExecuteReader)
         Return dt
     End Function
+
+    Public Function clienteDelSistema() As DataTable
+        Dim com As New OdbcCommand("select cliente.idcliente,cliente.rut,cliente.nombre from cliente", Conexcion)
+        Dim dt As New DataTable
+        dt.Load(com.ExecuteReader)
+        Return dt
+    End Function
+
+
 End Class
 
 

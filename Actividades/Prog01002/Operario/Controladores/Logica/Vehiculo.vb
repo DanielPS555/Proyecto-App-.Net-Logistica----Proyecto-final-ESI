@@ -59,6 +59,8 @@
         Set(ByVal value As Integer)
             If value >= 0 Then
                 _año = value
+            Else
+
                 Throw New Exception("Valor del año invalido")
             End If
 
@@ -113,14 +115,9 @@
             Return _VIN
         End Get
         Set(ByVal value As String)
-            If value Is Nothing Then
-                _VIN = value
-            Else
-                If value.Length = 17 Then
-                    _VIN = value
-                End If
-                Throw New Exception("VIN invalido")
-            End If
+
+            _VIN = value
+
 
         End Set
     End Property
