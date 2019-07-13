@@ -1,4 +1,5 @@
-﻿Public Class ListaLotes
+﻿Imports Controladores
+Public Class ListaLotes
     Public Sub New()
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
@@ -9,38 +10,10 @@
 
     Private Sub cargar()
         'QUEDA REGISTRAR EL LUGAR DE CONEXCION 
-        Dim r As DataTable = Constantes.SRepo.Consultar("select lote.nombre nombre_lote, lugar.nombre origen_lote
-                                                        from lote inner join lugar
-                                                        on lote.desde=lugar.idlugar
-                                                        where lugar.nombre='" & URepo.ConectadoEn & "'
-                                                        ")
+        Dim r = Fachada.getInstancia.LotesEnLugar()
         lote.Rows.Clear()
-        r.Columns.Add("Estado", GetType(String))
-        lote.DataSource = r
-        For i As Integer = 0 To r.Rows.Count - 1
-            Try
-                Dim elemento As Integer = SRepo.ConsultarSingle("Select count(transporte.estado)
-
-                                    from lote , transporte,transporta,lugar
-
-                                    where lote.idlote = transporta.idlote and transporte.transporteid= transporta.transporteid
-
-                                    and lote.nombre='" & lote.Rows(i).Cells(0).Value & "' and transporte.estado='Exitoso' and
-
-                                    lugar.idlugar=lote.Desde and lugar.nombre='" & URepo.ConectadoEn & "'
-
-                                    group by transporte.estado")
-
-                If elemento > 0 Then
-                    lote.Rows(i).Cells(2).Value = "Fuera del lugar"
-                Else
-                    lote.Rows(i).Cells(2).Value = "En el lugar"
-                End If
-
-            Catch ex As Exception
-                lote.Rows(i).Cells(2).Value = "Desconocido"
-            End Try
-
+        For Each t In r
+            lote.Rows.Add(t.Item1.IDLote, t.Item1.Nombre, t.Item1.Estado, t.Item2, t.Item3)
         Next
 
     End Sub

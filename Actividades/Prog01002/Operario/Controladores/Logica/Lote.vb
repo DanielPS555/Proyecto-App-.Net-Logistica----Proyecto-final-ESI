@@ -19,7 +19,7 @@ Public Class Lote
         End Get
     End Property
 
-    Public Sub New(id As Integer, nom As String, prio As String, ori As Lugar, des As Lugar, es As String)
+    Public Sub New(id As Integer, nom As String, prio As String, ori As Lugar, des As Lugar, es As String, fechaCreacion As Date)
         Me.IDLote = id
         Me.Prioridad = prio
         Me.Origen = ori
@@ -27,6 +27,7 @@ Public Class Lote
         Me.Estado = es
         Me.Nombre = nom
         Me.Vehiculos = New List(Of Tuple(Of Tuple(Of Date, Usuario), Vehiculo))
+        Me.FechaCreacion = fechaCreacion
     End Sub
 
     Public Sub New()
@@ -34,7 +35,7 @@ Public Class Lote
     End Sub
 
     Private _nombre As String
-    Public Property Nombre() As String
+    Public Property Nombre() As String ' ¿Por qué hay tantas propiedades con getter/setter por defecto?
         Get
             Return _nombre
         End Get
@@ -42,6 +43,8 @@ Public Class Lote
             _nombre = value
         End Set
     End Property
+
+    Public FechaCreacion As Date
 
     Private _estado As String
     Public Property Estado() As String

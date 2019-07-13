@@ -14,6 +14,8 @@ Public Class Fachada
         Return initi
     End Function
 
+    Public InfoUsuario As Boolean = False
+
     Public Function IniciarConexcion(ip As String, port As String, servername As String, uid As String, pwd As String, db As String) As Boolean
         If Persistencia.getInstancia.RealizarConexcion(ip, port, servername, uid, pwd, db, True) Then
             Return True
@@ -48,7 +50,8 @@ Public Class Fachada
 
     Public Function IngresoDeUsuarioConComprobacion(NombreUsuario As String, contraseña As String) As Boolean
         If ComrpobarUsuario(NombreUsuario, contraseña) Then
-            Persistencia.getInstancia.UsuarioActual.Nombre = NombreUsuario
+            InfoUsuario = False
+            Persistencia.getInstancia.UsuarioActual.NombreDeUsuario = NombreUsuario
             Return True
         Else
             Return False
@@ -98,7 +101,7 @@ Public Class Fachada
     End Function
 
     Public Function NombreUsuarioActual() As String
-        Return Persistencia.getInstancia.UsuarioActual.Nombre
+        Return Persistencia.getInstancia.UsuarioActual.NombreDeUsuario
     End Function
 
     Public Function CargarConexcionEnTrabajaEn(t As TrabajaEn) As TrabajaEn
@@ -128,9 +131,46 @@ Public Class Fachada
         Return Persistencia.getInstancia.TrabajaEn IsNot Nothing
     End Function
 
+    Public Function InfoVehiculos(ParamArray VIN() As String) As List(Of Vehiculo)
+        Dim dt = Persistencia.getInstancia.DatosBaseVehiculos(VIN)
+        Dim lst As New List(Of Vehiculo)
+        Dim tClientList As New Dictionary(Of Integer, Cliente)
+        For Each i As DataRow In dt.Rows
+            If Not tClientList.ContainsKey(i.Item(6)) Then
+                tClientList(i.Item(6)) = New Cliente(i.Item(6), i.Item(7), i.Item(8), i.Item(9))
+            End If
+            lst.Add(New Vehiculo(i.Item(0), i.Item(1), i.Item(2), i.Item(3), i.Item(4), Color.FromArgb(Convert.ToInt32("0x" + i.Item(5), 16)), tClientList(i.Item(6))))
+        Next
+        Return lst
+    End Function
+
+    Public Function VehiculosEnLote(IDlote As Integer) As List(Of Vehiculo)
+        Dim dt = Persistencia.getInstancia.VehiculosEnLote(IDlote)
+        Return InfoVehiculos(dt.Select.Select(Function(x) CType(x.Item(0), String)).ToArray())
+    End Function
+
+    Public Function InfoLote(Optional ByVal ID As Integer? = Nothing, Optional ByVal Nombre As String = Nothing) As Lote
+        Dim dt As DataTable
+        If ID IsNot Nothing Then
+            dt = Persistencia.getInstancia.DatosBaseLote(IDLote:=ID)
+        ElseIf Nombre IsNot Nothing Then
+            dt = Persistencia.getInstancia.DatosBaseLote(Nombre:=Nombre)
+        Else
+            Return Nothing
+        End If
+        If dt.Rows.Count <> 1 Then
+            Return Nothing
+        End If
+        Dim dr = dt.Rows(0)
+        Return New Lote(ID, dr.Item(0), dr.Item(6), New Lugar(dr.Item(3), -1, -1, -1, dr.Item(2), "?", Nothing), New Lugar(dr.Item(4), -1, -1, -1, dr.Item(1), "?", Nothing), dr.Item(5), dr.Item(8))
+    End Function
+
     Public Sub CargarDataBaseDelUsuario() 'Para Los metodos que usen usuario tendran los datos basicos del mismo, no camiones
-        Dim user As New Usuario With {.NombreDeUsuario = Persistencia.getInstancia.UsuarioActual.Nombre}
-        Dim dt As DataTable = Persistencia.getInstancia.DatosBaseUsuario(Persistencia.getInstancia.UsuarioActual.Nombre)
+        If InfoUsuario Then
+            Return
+        End If
+        Dim user = Persistencia.getInstancia.UsuarioActual
+        Dim dt As DataTable = Persistencia.getInstancia.DatosBaseUsuario(Persistencia.getInstancia.UsuarioActual.NombreDeUsuario)
         For i As Integer = 0 To dt.Columns.Count - 1
 
             If Funciones_comunes.AutoNull(Of Object)(dt.Rows(0).Item(i)) IsNot Nothing Then
@@ -138,7 +178,7 @@ Public Class Fachada
                     user.ID_usuario = DirectCast(dt.Rows(0).Item(i), Integer)
                 ElseIf i = 2 Then
                     user.FechaNacimiento = DirectCast(dt.Rows(0).Item(i), DateTime)
-                ElseIf i = 11 Then
+                ElseIf i = 10 Then
                     user.sexo = DirectCast(dt.Rows(0).Item(i), String)(0)
                 Else
                     Dim data As String = DirectCast(dt.Rows(0).Item(i), String)
@@ -150,11 +190,11 @@ Public Class Fachada
                         Case 4
                             user.Nombre = data
                         Case 5
-                            user.Nombre += data
+                            user.Nombre += " " + data
                         Case 6
                             user.Apellido = data
                         Case 7
-                            user.Apellido += data
+                            user.Apellido += " " + data
                         Case 8
                             user.PreguntaSecreta = data
                         Case 9
@@ -165,7 +205,7 @@ Public Class Fachada
                 End If
             End If
         Next
-        Persistencia.getInstancia.UsuarioActual = user
+        InfoUsuario = True
     End Sub
 
     Public Function DevolverUsuarioActual() As Usuario
@@ -186,7 +226,7 @@ Public Class Fachada
 
     Public Function ListaVehiculos() As DataTable
         Dim dt As New DataTable
-        dt = Persistencia.getInstancia.DatosBasicosParaListarVehiculos(Persistencia.getInstancia.TrabajaEn.Lugar.IDLugar)
+        dt = Persistencia.getInstancia.DatosBasicosParaListarVehiculosPorLugar(Persistencia.getInstancia.TrabajaEn.Lugar.IDLugar)
         dt.Columns.Add("Estado", GetType(String))
         For Each r As DataRow In dt.Rows
             Dim idLote = Persistencia.getInstancia.IDLotePor_Vin_y_IDLugar(r.Item(0), Persistencia.getInstancia.TrabajaEn.Lugar.IDLugar)
@@ -230,7 +270,16 @@ Public Class Fachada
         End If
     End Sub
 
-    Public Function lotesDisponiblesPorLugarActual() As List(Of Lote)
+    Public Function LotesEnLugar() As List(Of Tuple(Of Lote, Integer, Boolean))
+        Dim retval As New List(Of Tuple(Of Lote, Integer, Boolean))
+        For Each row As DataRow In Persistencia.getInstancia.DevolverTodosLosLotesPor_IdLugar(Persistencia.getInstancia.TrabajaEn?.Lugar.IDLugar).Rows
+            Dim lote As New Lote With {.IDLote = row.Item(0), .Nombre = row.Item(1), .Estado = row.Item(2)}
+            retval.Add(New Tuple(Of Lote, Integer, Boolean)(lote, row.Item(3), row.Item(4)))
+        Next
+        Return retval
+    End Function
+
+    Public Function LotesDisponiblesPorLugarActual() As List(Of Lote) ' ¿En qué parte del programa necesitamos ver solamente lotes abiertos?
         Dim lista As New List(Of Lote)
         For Each r1 As DataRow In Persistencia.getInstancia.DevolverTodosLosLotesPor_IdLugar(Persistencia.getInstancia.TrabajaEn.Lugar.IDLugar).Rows
             Dim lote As New Lote With {.IDLote = r1.Item(0), .Nombre = r1.Item(1), .Estado = r1.Item(2)}

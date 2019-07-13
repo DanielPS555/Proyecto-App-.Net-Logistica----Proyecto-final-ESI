@@ -1,4 +1,4 @@
-﻿Imports Operario.Logica
+﻿Imports Controladores
 
 Public Class PanelInfoLote
     Private idlote As Integer
@@ -6,30 +6,26 @@ Public Class PanelInfoLote
 
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
-        Dim dt = SRepo.Consultar($"select lote.nombre, lugar.nombre, lote.estado, lote.prioridad, lote.idlote from lote inner join lugar on lote.hacia=lugar.idlugar where lote.nombre = '{nombre}';")
-        If dt.Rows.Count <> 1 Then
-            Me.Close()
-        End If
-        Dim dr = dt.Rows(0)
-        Label1.Text = $"Nombre: {dr(0)}"
-        Label2.Text = $"Destino: {dr(1)}"
-        Label3.Text = $"Estado: {dr(2)}"
-        If dr(2) <> "Abierto" Then
+        Dim lote = Fachada.getInstancia.InfoLote(nombre)
+        Label1.Text = $"Nombre: {lote.Nombre}"
+        Label2.Text = $"Destino: {lote.Destino.Nombre}"
+        Label3.Text = $"Estado: {lote.Estado}"
+        If lote.Estado <> "Abierto" Then
             Button1.Visible = False
         End If
-        Label4.Text = $"Prioridad: {dr(3)}"
-        idlote = dr(4)
-        Dim vehiculos = LRepo.VehiculosEnLote(dr(4))
-        DataGridView1.DataSource = vehiculos
-        Dim fechaCreacion = vehiculos.ToList.Select(Function(x) CType(x(3), DateTime)).ToList
-        Dim Fecha As String
-        If fechaCreacion.Count = 0 Then
-            Fecha = "Desconocido"
-        Else
-            fechaCreacion.Sort()
-            Fecha = fechaCreacion.First.ToShortDateString
-        End If
-        Label5.Text = $"Fecha de creación: {Fecha}"
+        Label4.Text = $"Prioridad: {lote.Prioridad}"
+        Label5.Text = $"Fecha de creación: {lote.FechaCreacion}"
+        idlote = lote.IDLote
+        Dim vehiculos = Fachada.getInstancia.VehiculosEnLote(idlote)
+        For Each i In vehiculos
+            Dim colorColumn = New Bitmap(50, 50)
+            For x = 0 To 49
+                For y = 0 To 49
+                    colorColumn.SetPixel(x, y, i.Color)
+                Next
+            Next
+            DataGridView1.Rows.Add(i.VIN, i.Marca, i.Modelo, i.Tipo, colorColumn, i.Cliente.Nombre)
+        Next
     End Sub
 
     Private vehiculo As panelInfoVehiculo

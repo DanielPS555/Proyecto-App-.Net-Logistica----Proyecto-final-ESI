@@ -291,27 +291,27 @@ insert into trabajaen values (0,(select IDLugar from lugar where Nombre="Deposit
 
       insert into lote values (0,"l_1",(select IDLugar from lugar where Nombre="Puerto de aguas profundas rocha"),
       (select IDLugar from lugar where Nombre="Deposito de maldonado"),
-       (select idusuario from usuario where primernombre = "Pepe"),'Normal','Cerrado');
+       (select idusuario from usuario where primernombre = "Pepe"), "2019-6-26", 'Normal', 'Cerrado');
 
       insert into lote values (0,"l_2",(select IDLugar from lugar where Nombre="Puerto de montevideo"),
       (select IDLugar from lugar where Nombre="Deposito piedras blancas"),
-       (select idusuario from usuario where primernombre = "Juan"),'Normal','Cerrado');
+       (select idusuario from usuario where primernombre = "Juan"), "2019-6-29",'Normal','Cerrado');
 
       insert into lote values (0,"l_3",(select IDLugar from lugar where Nombre="Deposito de maldonado"),
       (select IDLugar from lugar where Nombre="Deposito piedras blancas"),
-       (select idusuario from usuario where primernombre = "Pepe"),'Normal','Cerrado');
+       (select idusuario from usuario where primernombre = "Pepe"), "2019-7-4",'Normal','Cerrado');
 		
 		insert into lote values (0,"l_4",(select IDLugar from lugar where Nombre="Deposito piedras blancas"),
       (select IDLugar from lugar where Nombre="Patio de Sevel"),
-       (select idusuario from usuario where primernombre = "Juan"),'Normal','Abierto');
+       (select idusuario from usuario where primernombre = "Juan"),"2019-6-29",'Normal','Abierto');
 	   
 	   insert into lote values (0,"l_5",(select IDLugar from lugar where Nombre="Deposito de maldonado"),
       (select IDLugar from lugar where Nombre="Patio de Chevrolet Ur a gay"),
-       (select idusuario from usuario where primernombre = "Pepe"),'Normal','Cerrado');
+       (select idusuario from usuario where primernombre = "Pepe"),"2019-6-30",'Normal','Cerrado');
 
       insert into lote values (0,"l_6",(select IDLugar from lugar where Nombre="Deposito piedras blancas"),
 	(select IDLugar from lugar where Nombre="Patio de Sevel"),
-	(select IDUsuario from usuario where primernombre = "Pepe"), "Normal", "Cerrado");
+	(select IDUsuario from usuario where primernombre = "Pepe"), "2019-7-4", "Normal", "Cerrado");
 
 
       insert into integra values ("1GH2J83LED0987547",1,"2019-6-28 14:02",'f',(select idusuario from usuario where primernombre = "Pepe"));

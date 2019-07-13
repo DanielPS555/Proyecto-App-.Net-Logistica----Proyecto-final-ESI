@@ -9,7 +9,7 @@ Public Class OperarioHome
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
         Fachada.getInstancia.CargarDataBaseDelUsuario()
         Dim data As Usuario = Fachada.getInstancia.DevolverUsuarioActual
-        NombreCompleto.Text = data.Nombre
+        NombreCompleto.Text = data.Nombre + " " + data.Apellido
         nombreUsuario.Text = data.NombreDeUsuario
         rolUsuario.Text = data.Rol
         Dim numA As Integer = Fachada.getInstancia.TrabajaEnAcutual.Conexiones.Count

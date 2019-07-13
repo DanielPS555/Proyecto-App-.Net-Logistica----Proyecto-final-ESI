@@ -24,6 +24,11 @@ Partial Class ListaLotes
     Private Sub InitializeComponent()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.lote = New System.Windows.Forms.DataGridView()
+        Me.IDLote = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Nombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Estado = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NumeroVehiculos = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Transportado = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         CType(Me.lote, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -42,12 +47,43 @@ Partial Class ListaLotes
         DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.lote.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.lote.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.lote.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IDLote, Me.Nombre, Me.Estado, Me.NumeroVehiculos, Me.Transportado})
         Me.lote.Location = New System.Drawing.Point(13, 29)
         Me.lote.Name = "lote"
         Me.lote.ReadOnly = True
         Me.lote.RowHeadersVisible = False
         Me.lote.Size = New System.Drawing.Size(855, 587)
         Me.lote.TabIndex = 0
+        '
+        'IDLote
+        '
+        Me.IDLote.HeaderText = "ID del Lote"
+        Me.IDLote.Name = "IDLote"
+        Me.IDLote.ReadOnly = True
+        '
+        'Nombre
+        '
+        Me.Nombre.HeaderText = "Nombre del Lote"
+        Me.Nombre.Name = "Nombre"
+        Me.Nombre.ReadOnly = True
+        '
+        'Estado
+        '
+        Me.Estado.HeaderText = "Estado del Lote"
+        Me.Estado.Name = "Estado"
+        Me.Estado.ReadOnly = True
+        '
+        'NumeroVehiculos
+        '
+        Me.NumeroVehiculos.HeaderText = "Vehiculos en Lote"
+        Me.NumeroVehiculos.Name = "NumeroVehiculos"
+        Me.NumeroVehiculos.ReadOnly = True
+        '
+        'Transportado
+        '
+        Me.Transportado.HeaderText = "Transportado?"
+        Me.Transportado.Name = "Transportado"
+        Me.Transportado.ReadOnly = True
         '
         'ListaLotes
         '
@@ -65,4 +101,9 @@ Partial Class ListaLotes
     End Sub
 
     Friend WithEvents lote As DataGridView
+    Friend WithEvents IDLote As DataGridViewTextBoxColumn
+    Friend WithEvents Nombre As DataGridViewTextBoxColumn
+    Friend WithEvents Estado As DataGridViewTextBoxColumn
+    Friend WithEvents NumeroVehiculos As DataGridViewTextBoxColumn
+    Friend WithEvents Transportado As DataGridViewCheckBoxColumn
 End Class

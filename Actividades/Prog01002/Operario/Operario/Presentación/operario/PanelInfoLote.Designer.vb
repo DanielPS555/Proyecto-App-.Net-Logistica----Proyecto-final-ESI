@@ -30,6 +30,12 @@ Partial Class PanelInfoLote
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.VIN = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Marca = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Modelo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Tipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Color = New System.Windows.Forms.DataGridViewImageColumn()
+        Me.ClienteNombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -107,10 +113,47 @@ Partial Class PanelInfoLote
         DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.VIN, Me.Marca, Me.Modelo, Me.Tipo, Me.Color, Me.ClienteNombre})
         Me.DataGridView1.Location = New System.Drawing.Point(12, 296)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.Size = New System.Drawing.Size(856, 342)
         Me.DataGridView1.TabIndex = 7
+        '
+        'VIN
+        '
+        Me.VIN.HeaderText = "VIN"
+        Me.VIN.Name = "VIN"
+        Me.VIN.ReadOnly = True
+        '
+        'Marca
+        '
+        Me.Marca.HeaderText = "Marca"
+        Me.Marca.Name = "Marca"
+        Me.Marca.ReadOnly = True
+        '
+        'Modelo
+        '
+        Me.Modelo.HeaderText = "Modelo"
+        Me.Modelo.Name = "Modelo"
+        Me.Modelo.ReadOnly = True
+        '
+        'Tipo
+        '
+        Me.Tipo.HeaderText = "Tipo"
+        Me.Tipo.Name = "Tipo"
+        Me.Tipo.ReadOnly = True
+        '
+        'Color
+        '
+        Me.Color.HeaderText = "Color"
+        Me.Color.Name = "Color"
+        Me.Color.ReadOnly = True
+        '
+        'ClienteNombre
+        '
+        Me.ClienteNombre.HeaderText = "Nombre del Cliente"
+        Me.ClienteNombre.Name = "ClienteNombre"
+        Me.ClienteNombre.ReadOnly = True
         '
         'PanelInfoLote
         '
@@ -141,4 +184,10 @@ Partial Class PanelInfoLote
     Friend WithEvents Button1 As Button
     Friend WithEvents Label5 As Label
     Friend WithEvents DataGridView1 As DataGridView
+    Friend WithEvents VIN As DataGridViewTextBoxColumn
+    Friend WithEvents Marca As DataGridViewTextBoxColumn
+    Friend WithEvents Modelo As DataGridViewTextBoxColumn
+    Friend WithEvents Tipo As DataGridViewTextBoxColumn
+    Friend WithEvents Color As DataGridViewImageColumn
+    Friend WithEvents ClienteNombre As DataGridViewTextBoxColumn
 End Class
