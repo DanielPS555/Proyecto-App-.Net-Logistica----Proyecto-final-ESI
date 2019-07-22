@@ -1,36 +1,19 @@
 
-/*ROL*/
-insert into rol(idrol, nombre) values(1, "Operario");
-insert into rol(idrol, nombre) values(2, "Transportista");
-insert into rol(idrol, nombre) values(3, "Administrador");
-
 	/*USUARIO*/
 insert into usuario values (0,"Felipe3","aaaagria","felip49@gmail.com", "27/8/1981", "09877745",
-"Felipe","","Camacho", "" , "Cual fue su primer juego" , "Lol" , 'M',3);
+"Felipe","Camacho", "Cual fue su primer juego", "lol", null, "20/3/2018" , 'M','A');
 /*NO SE PONE CONTRASEÑA AQUI POR EL FUNCIONAMIENTO DE LA ENCRIPTACION DEL PROGRAMA*/
-insert into usuario values (0,"Fernanda1654","","ferti49@gmail.com", "27/8/1981", "098545574"
-,"Fernanda","Miranda","Lopes", "" , "Cual fue su primer telefono" , "Un poquet" , 'F',3);
+insert into usuario values (0,"Fernanda1654","","ferti49@gmail.com",  "27/8/1981", "098545574"
+,"Fernanda","Lopes", "Cual fue su primer telefono" , "Un poquet", 1, "21/3/2018" , 'F','A');
 insert into usuario values (0,"Pepe12","aaaagria","e1@gmail.com", "27/8/1981", "098167462"
-,"Pepe","Lorenzo","Miranda", "Lopes" , "Cual es tu color favorito" , "Rojo" , 'M',1);
+,"Pepe","Miranda", "Cual es tu color favorito" , "Rojo" , 1, "21/3/2018", 'M','O');
 insert into usuario values (0,"Juan24","aaaagria","re2@outlook.com", "27/8/1981", "098427894"
-,"Juan","Lorenzo","Simon", "Antonio" , "Cual es el nombre de tu perro" , "fido" , 'F',1);
+,"Juan","Simon", "Cual es el nombre de tu perro" , "fido", 1, "21/3/2018", 'F','O');
 insert into usuario values (0,"Anto322","","anti@gmail.com", "27/8/1981", "098456782"
-,"Antonio","","Pardiñas", "" , "Cual es el nombre de su pelicula favorita" , "Blanca nieves" ,'O',2);
+,"Antonio","Pardiñas", "Cual es el nombre de su pelicula favorita" , "Blanca nieves", 1, "21/3/2018",'O','T');
 insert into usuario values (0,"PedroB43","","Pedro43563@outlook.com", "27/8/1981", "098452746"
-,"Pedro","","Herandez", "Couto" , "El nomrbe de mi cancion favorita" , "Hello" , 'M',2);
+,"Pedro","Couto", "El nomrbe de mi cancion favorita" , "Hello", 1, "21/3/2018", 'M','T');
 /*9*/
-
-/*CREADO POR*/
-insert into creadoPor values ((select idusuario from usuario where primernombre = "Fernanda"),
- (select idusuario from usuario where primernombre = "Felipe"),"24/6/2019");
-insert into creadoPor values ((select idusuario from usuario where primernombre = "Pepe"),
-	(select idusuario from usuario where primernombre = "Felipe"),"27/6/2019");
-insert into creadoPor values ((select idusuario from usuario where primernombre = "Juan"),
-	(select idusuario from usuario where primernombre = "Fernanda"),"28/6/2019");
-insert into creadoPor values ((select idusuario from usuario where primernombre = "Antonio"),
-	(select idusuario from usuario where primernombre = "Fernanda"),"26/6/2019");
-insert into creadoPor values ((select idusuario from usuario where primernombre = "Pedro"),
-	(select idusuario from usuario where primernombre = "Fernanda"),"25/6/2019");
 
 
 	/*LINK*/
@@ -38,8 +21,8 @@ insert into link values ("http://maps.com",(select idusuario from usuario where 
 insert into link values ("http://maps2.com",(select idusuario from usuario where primernombre = "Pedro"));
 /*16*/
 		/*CLIENTE*/
-insert into cliente(IDCliente, RUT, Nombre, fechaRegistro) values(0, 185769246724, "Sevel", "2019-7-10");
-insert into cliente(IDCliente, RUT, Nombre, fechaRegistro) values(0, 785349658722, "Chevrolet UY", "2014-8-8");
+insert into cliente(IDCliente, RUT, Nombre, fechaRegistro, invalido) values(0, 185769246724, "Sevel", "2019-7-10", 'f');
+insert into cliente(IDCliente, RUT, Nombre, fechaRegistro, invalido) values(0, 785349658722, "Chevrolet UY", "2014-8-8", 'f');
 
 	/*LUGAR*/
 insert into lugar(idlugar, nombre, capacidad, geox, geoy, usuariocreador, tipo) values (0,"Deposito piedras blancas", 3500, -34.882456, -56.194172,(select idusuario from usuario where primernombre = "Felipe"),"Patio");
@@ -89,10 +72,11 @@ insert into trabajaen values (0,(select IDLugar from lugar where Nombre="Deposit
 	insert into conexion values (5,"2019-7-2 9:20:00","2019-7-2 17:06:00");
 
 		/*ZONA*/
-	insert into zona values ((select IDLugar from lugar where Nombre="Deposito piedras blancas"),
-	0,"Zona A", 1500);
-	insert into zona values ((select IDLugar from lugar where Nombre="Deposito piedras blancas"),
-	0,"Zona B", 1500);
+	execute function crear_zona("Zona A_pb", (select IDLugar from lugar where nombre="Deposito piedras blancas"), 1500);
+/*	insert into lugar values (0, "Zona A_pb", 1500, 0, 0, 1, 'Zona');
+	insert into incluye values ((select IDLugar from lugar where Nombre="Zona A_pb"),(select IDLugar from lugar where Nombre="Deposito piedras blancas"));*/
+	execute function crear_zona("Zona B_pb", (select IDLugar from lugar where nombre="Deposito piedras blancas"), 1500);
+/*	insert into lugar values (0, "Zona B_pb", 1500, 0, 0, 1, 'Zona');
 	insert into zona values ((select IDLugar from lugar where Nombre="Deposito piedras blancas"),
 	0,"Zona C", 500);
 	insert into zona values ((select IDLugar from lugar where Nombre="Deposito de maldonado"),
@@ -107,8 +91,7 @@ insert into trabajaen values (0,(select IDLugar from lugar where Nombre="Deposit
 	0,"Zona B", 800);
 	insert into zona values ((select IDLugar from lugar where Nombre="Puerto de aguas profundas rocha"),
 	0,"Zona C", 1000);
-/*41*/
-	/*SUBZONA*/
+	/*SUBZONA*//*
 	insert into subzona values ((select IDLugar from lugar where Nombre="Deposito piedras blancas"),
 		(select IDZona from lugar,zona where lugar.nombre="Deposito piedras blancas"
 		and lugar.idlugar = zona.idlugar and zona.nombre = "Zona A"),0,"Zona A_1",1000);
@@ -164,9 +147,7 @@ insert into trabajaen values (0,(select IDLugar from lugar where Nombre="Deposit
 	insert into subzona values ((select IDLugar from lugar where Nombre="Puerto de aguas profundas rocha"),
 		(select IDZona from lugar,zona where lugar.nombre="Puerto de aguas profundas rocha"
 		and lugar.idlugar = zona.idlugar and zona.nombre = "Zona C"),0,"Zona C_2",500);
-/*53*/
-
-		/*VEHIUCLO*/
+		/*VEHIUCLO*//*
 		insert into vehiculo values("1GH2J83LED0987547","Fiat","Cronos", "6ead26",
 		"Auto", 2011, (select IDCliente from cliente where Nombre="Sevel"),
 		(select IDLugar from lugar where Nombre="Puerto de aguas profundas rocha"),
@@ -188,9 +169,8 @@ insert into trabajaen values (0,(select IDLugar from lugar where Nombre="Deposit
 		(select IDLugar from lugar where Nombre="Puerto de montevideo"),
 		"2019-6-26");
 			insert into vehiculo(vin, cliente, tipo) values("1L0V36I113UWU1112", (select IDCliente from cliente where Nombre="Sevel"), "Auto");
-/*57*/
 
-		/*vehiculoIngresa*/
+		/*vehiculoIngresa*//*
 		insert into vehiculoIngresa values ("1L0V36I113UWU1112", "2019-4-11","Precarga", (select idusuario from usuario where primernombre = "Fernanda"));
 		insert into vehiculoIngresa values ("1GH2J83LED0987547","2019-4-11","Precarga",(select idusuario from usuario where primernombre = "Fernanda"));
 		insert into vehiculoIngresa values ("1GH2J83LED0987547","2019-6-28","Alta",(select idusuario from usuario where primernombre = "Pepe"));
@@ -201,8 +181,7 @@ insert into trabajaen values (0,(select IDLugar from lugar where Nombre="Deposit
 		insert into vehiculoIngresa values ("1GH2HGRLED0988472","2019-3-20","Precarga",(select idusuario from usuario where primernombre = "Felipe"));
 		insert into vehiculoIngresa values ("1GH2HGRLED0988472","2019-6-26","Alta",(select idusuario from usuario where primernombre = "Fernanda"));
 		insert into vehiculoIngresa values ("KHBEHGRLED0988442","2019-3-20","Precarga",(select idusuario from usuario where primernombre = "Felipe"));
-/*67*/
-		/*informedanios*/
+		/*informedanios*//*
 		insert into informedanios values ("0","Informe de ingreso","2019-6-28", "Parcial",
 			"1GH2J83LED0987547",(select IDLugar from lugar where Nombre="Puerto de aguas profundas rocha")
 		,(select idusuario from usuario where primernombre = "Pepe"));
@@ -238,26 +217,23 @@ insert into trabajaen values (0,(select IDLugar from lugar where Nombre="Deposit
 		insert into informedanios values ("0","Informe de ingreso","2019-7-4", "Parcial",
 			"1GH2HGRLED0988472",(select IDLugar from lugar where Nombre="Deposito piedras blancas")
 		,(select idusuario from usuario where primernombre = "Juan"));
-/*76*/
-		/*registrodanios*/
+		/*registrodanios*//*
 		insert into registrodanios values (1,0,"Rayon");
 		insert into registrodanios values (2,0,"Roptura en la puerta");
 		insert into registrodanios values (4,0,"No se ha encontrado el rayon");
 		insert into registrodanios values (4,0,"La roptura de la puerta a aumentado");
-		/*80*/
 		insert into registrodanios values (5,0,"Daño en el motor");
 		insert into registrodanios values (6,0,"No se encontraron daños en el motor");
 		insert into registrodanios values (7,0,"Agujero en el techo");
-		/*83*/
 		insert into registrodanios values (9,0,"Creio el agujero");
-			/*actualiza*/
+			/*actualiza*//*
 		insert into actualiza values (4,3,1,1,"Anulacion");
 		insert into actualiza values (4,4,2,2,"Correccion");
 		/*LA TABLA IMAGEN REGISTRO NO SE CARGA YA QUE NO SE PUEDE INGRESAR UNA imagen
 		EN BYTE DIRECTAMENTE POR AQUI, HAY QUE USAR EL ODBC, POR ESO SE INGREZAN DESDE EL PROGRAMA*/
 
 
-		/*Posicionado*/
+		/*Posicionado*//*
 			insert into posicionado values (4,7,10,"1GH2J83LED0987547","2019-6-28 21:00:00", "2019-7-2 15:00:00",21,(select idusuario from usuario where primernombre = "Pepe"));
 			insert into posicionado values (2,4,6,"1GH2J83LED0987547","2019-7-2 16:35:04", "2019-7-4 13:03:21",14,(select idusuario from usuario where primernombre = "Pepe"));
 			insert into posicionado values (2,4,6,"1GH2J83LED0987547","2019-7-4 17:15:32",'2019-7-8 15:00:02',18,(select idusuario from usuario where primernombre = "Pepe"));
@@ -273,7 +249,7 @@ insert into trabajaen values (0,(select IDLugar from lugar where Nombre="Deposit
 			insert into posicionado values (2,4,6,"1GH2HGRLED0988472","2019-7-2 16:10:21","2019-7-4 15:32:55",28,(select idusuario from usuario where primernombre = "Pepe"));
 			insert into posicionado values (1,1,1,"1GH2HGRLED0988472","2019-7-4 18:30:21",'2019-7-8 15:00:02',74,(select idusuario from usuario where primernombre = "Juan"));
 
-      /*Camion*/
+      /*Camion*//*
 
       insert into camion values ("24GHBYEGV81874679","Fiat","Moustro1","SJTHE001",
         (select idusuario from usuario where primernombre = "Felipe"));
@@ -355,4 +331,4 @@ insert into trabajaen values (0,(select IDLugar from lugar where Nombre="Deposit
       insert into transporta values (2,2);
       insert into transporta values (3,3);
       insert into transporta values (4,5);
-      insert into transporta values (4,6);
+      insert into transporta values (4,6);*/

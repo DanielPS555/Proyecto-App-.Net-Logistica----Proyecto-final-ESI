@@ -36,13 +36,13 @@ CREATE table
 CREATE table
 	lugar(
 	IDLugar serial primary key,
-	Nombre varchar(100) not null unique,
+	Nombre varchar(100) not null,
 	Capacidad INTEGER NOT null CHECK (Capacidad > 0),
 	GeoX FLOAT NOT null,
 	GeoY FLOAT NOT null,
 	UsuarioCreador integer NOT null references usuario(IDUsuario),
 	Tipo varchar(6) NOT null check (Tipo IN
-	     		    	         ("Patio","Puerto","Establecimiento"))
+ 		    	         ("Patio","Puerto","Establecimiento", 'Zona', 'Subzona'))
 );
 
 create table
