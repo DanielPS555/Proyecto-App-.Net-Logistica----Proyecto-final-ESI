@@ -4,7 +4,8 @@ Public Class crearInformaDeDaños
     Implements IActualizaMessage
     ' hay que crear una lista de registros
     Public nuevo As Boolean
-    Public Sub New(VIN As String)
+    Private Info As Controladores.InformeDeDaños
+    Public Sub New(VIN As String, numinfo As Integer)
         informe = VRepo.NewInforme("", "Total", VIN)
         Dim m = VehiculoRepo.RegistroTable()(0)
         InitializeComponent()
@@ -12,6 +13,7 @@ Public Class crearInformaDeDaños
         tipo.SelectedIndex = 0
         nuevo = True
     End Sub
+
 
     Private m As DataTable
     Private ReadOnly informe As Integer

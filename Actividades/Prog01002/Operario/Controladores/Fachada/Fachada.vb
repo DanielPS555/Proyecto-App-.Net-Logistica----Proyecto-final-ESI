@@ -349,5 +349,9 @@ Public Class Fachada
         Return pos
     End Function
 
+    Public Function DevolverInformeCompleto(vin As String, idinfo As Integer) As InformeDeDaños
+
+    End Function
+
 
 End Class
