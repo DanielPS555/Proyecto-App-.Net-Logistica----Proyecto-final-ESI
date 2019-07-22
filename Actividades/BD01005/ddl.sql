@@ -1,14 +1,8 @@
-create table
-	rol(
-	idrol serial primary key,
-	nombre varchar(25) unique
-);
-
 CREATE table
 	usuario(
 	IDUsuario serial primary key,
-	NombreDeUsuario varchar(20),
-	Hash_Contra char(60) NOT null,
+	NombreDeUsuario varchar(20) not null unique,
+	Hash_Contra char(60) not null,
 	/* La contrasenia ser hasheada con bcrypt */
 	Email varchar(255) NOT null,
 	FechaNac date,
@@ -16,28 +10,18 @@ CREATE table
 	/* segn E.164 los nmeros telefnicos internacionales pueden ser de hasta
 	15 dgitos incluyendo el codigo pas */
 	PrimerNombre varchar(50) NOT null,
-	SegundoNombre varchar(50),
 	PrimerApellido varchar(50) NOT null,
-	SegundoApellido varchar(50),
 	PreguntaSecreta varchar(50) NOT null,
 	RespuestaSecreta varchar(50) NOT null,
+	Creador integer,
+	FechaCreacion date not null,
 	Sexo char(1) NOT null,
-	rol integer not null,
+	Rol varchar(13) not null,
+	CHECK (Rol in ('Administrador', 'Operario', 'Transportista')),
 	CHECK (Sexo IN ('M',
 	'F',
 	'O')),
-	UNIQUE(NombreDeUsuario),
-	foreign key(rol) references rol(idrol) ON DELETE CASCADE
-);
-
-CREATE table
-	creadoPor(
-		creado integer NOT null,
-		creador integer NOT null,
-		fechaCreacion date NOT null,
-		primary key(creado),
-		foreign key(creado) references usuario(IDUsuario) ON DELETE CASCADE,
-		foreign key(creador) references usuario(IDUsuario) ON DELETE CASCADE
+	foreign key(Creador) references Usuario(IDUsuario)
 );
 
 CREATE table
@@ -45,7 +29,8 @@ CREATE table
 		RUT varchar(12) unique not null,
 		Nombre varchar(100) not null,
 		IDCliente serial primary key,
-		fechaRegistro datetime year to day not null
+		fechaRegistro datetime year to day not null,
+		invalido boolean not null
 );
 
 CREATE table
@@ -56,16 +41,17 @@ CREATE table
 	GeoX FLOAT NOT null,
 	GeoY FLOAT NOT null,
 	UsuarioCreador integer NOT null references usuario(IDUsuario),
-/*	Duenio integer,*/
-
 	Tipo varchar(6) NOT null check (Tipo IN
 	     		    	         ("Patio","Puerto","Establecimiento"))
-/*        foreign key(Duenio) references Cliente(RUT)*/
 );
-/*alter table lugar
-add constraint check ((Tipo<>"Establecimiento" and Duenio is null) or
-    	       	      (Tipo ="Establecimiento" and Duenio is not null)) constraint duenio_null;*/
 
+create table
+	incluye(
+	menor integer primary key,
+	mayor integer,
+	foreign key(menor) references lugar(idlugar),
+	foreign key(mayor) references lugar(idlugar)
+);
 create table
        perteneceA(
 	IDLugar integer primary key references Lugar(IDLugar),
@@ -93,26 +79,9 @@ CREATE table
 );
 
 CREATE table
-	zona(
-	IDLugar integer,
-	IDZona serial,
-	Nombre varchar(100) not null,
-	Capacidad integer NOT null check(Capacidad > 0),
-	foreign key(IDLugar) references lugar(IDLugar) ON DELETE CASCADE,
-	primary key(IDLugar, IDZona)
-	);
-CREATE table
-	subzona(
-	IDLugar integer,
-	IDZona integer,
-	IDSub serial,
-	Nombre varchar(50) not null,
-	Capacidad integer NOT null check(Capacidad > 0),
-	foreign key(IDLugar, IDZona) references zona(IDLugar, IDZona) ON DELETE CASCADE,
-	primary key(IDLugar, IDZona, IDSub)
-	);
-CREATE table
-	vehiculo( VIN char(17),
+	vehiculo(
+	IDVehiculo serial primary key,
+	VIN char(17) unique,
 	Marca varchar(50),
 	Modelo varchar(50),
 	Color char(6), /* representación ineficiente; 6char = 6hex = 16^6 = 2^24 < 2^32 = int (4char) < 6char */
@@ -120,129 +89,138 @@ CREATE table
 	Tipo varchar(7) NOT null check(Tipo in ('Auto', 'MiniVan', 'SUV', 'Camion', 'Van')),
 	Anio integer check(Anio >= 1900 and Anio <= 10000),
 	Cliente Integer NOT null,
-	PuertoArriba integer,
 	FechaArribo datetime year to day,
-	primary key(VIN),
-	foreign key(PuertoArriba) references lugar(IDLugar) ON DELETE CASCADE, /* ¿ por que on delete cascade si no usamos delete ? */
-	foreign key(Cliente) references Cliente(IDCliente) ON DELETE CASCADE);
+	foreign key(Cliente) references Cliente(IDCliente) ON DELETE CASCADE
+);
 
 create table
 	vehiculoIngresa(
-	VIN char(17),
-	Fecha datetime year to day not null,
+	IDVehiculo integer,
+	Fecha datetime year to day,
 	TipoIngreso varchar(10) not null check (TipoIngreso in ('Precarga', 'Alta', 'Baja')),
-	Usuario integer not null,
-	primary key(VIN, Fecha),
-	foreign key(VIN) references Vehiculo(VIN) ON DELETE CASCADE,
+	Usuario integer,
+	primary key(IDVehiculo, Usuario, Fecha),
+	foreign key(IDVehiculo) references Vehiculo(IDVehiculo) ON DELETE CASCADE,
 	foreign key(Usuario) references Usuario(IDUsuario) ON DELETE CASCADE
 );
 CREATE table
-	informedanios( ID serial primary key,
+	informedanios(
+	ID serial,
 	Descripcion varchar(255) NOT null,
-	Fecha datetime year to day NOT null,
+	Fecha datetime year to minute NOT null,
 	Tipo varchar(50) NOT null check (Tipo in ('Total', 'Parcial')),
-	VIN char(17) NOT null,
+	IDVehiculo integer NOT null,
 	idlugar integer NOT null,
 	idusuario integer NOT null,
+	primary key(ID, IDVehiculo),
 	foreign key(idusuario) references usuario(IDUsuario) ON DELETE CASCADE,
-	foreign key(VIN) references vehiculo(VIN) ON DELETE CASCADE,
- 	foreign key(idlugar) references lugar(idlugar) ON DELETE CASCADE );
+	foreign key(IDVehiculo) references vehiculo(IDVehiculo) ON DELETE CASCADE,
+ 	foreign key(idlugar) references lugar(idlugar) ON DELETE CASCADE
+);
 
 CREATE table
 	registrodanios(
+	idvehiculo integer not null,
 	informedanios integer not null,
-	nroenlista serial,
+	idregistro serial,
 	descripcion varchar(255) not null,
-	foreign key(informedanios) references informedanios(ID) ON DELETE CASCADE,
-	primary key(informedanios, nroenlista)
+	foreign key(informedanios, idvehiculo) references informedanios(ID, IDVehiculo) ON DELETE CASCADE,
+	primary key(idvehiculo, informedanios, idregistro)
 );
 CREATE table
 	imagenregistro (
+	vehiculo integer,
 	informe integer,
 	nrolista integer,
 	nroimagen serial,
 	imagen BYTE NOT null,
-	primary key(informe, nrolista, nroimagen),
-	foreign key(informe, nrolista) references registrodanios(informedanios, nroenlista) ON DELETE CASCADE
+	primary key(vehiculo, informe, nrolista, nroimagen),
+	foreign key(vehiculo, informe, nrolista) references registrodanios(idvehiculo, informedanios, idregistro) ON DELETE CASCADE
 );
 CREATE table
 	actualiza (
+	vehiculo1 integer,
 	informe1 integer,
 	registro1 integer,
+	vehiculo2 integer,
 	informe2 integer,
 	registro2 integer,
 	tipo varchar(15) NOT null check (tipo in ('Anulacion', 'Correccion')),
-	foreign key(informe1, registro1) references registrodanios(informedanios, nroenlista) ON DELETE CASCADE,
-	foreign key(informe2, registro2) references registrodanios(informedanios, nroenlista) ON DELETE CASCADE,
-	primary key(informe1, registro1, informe2, registro2)
+	CHECK (vehiculo1=vehiculo2),
+	foreign key(vehiculo1, informe1, registro1) references registrodanios(idvehiculo, informedanios, idregistro) ON DELETE CASCADE,
+	foreign key(vehiculo2, informe2, registro2) references registrodanios(idvehiculo, informedanios, idregistro) ON DELETE CASCADE,
+	primary key(vehiculo1, informe1, registro1, vehiculo2, informe2, registro2)
 );
 CREATE table
 	posicionado (
 	IDLugar integer,
-	IDZona integer,
-	IDSub integer,
-	VIN char(17),
+	IDVehiculo integer,
 	desde datetime year to second,
 	hasta datetime year to second,
 	posicion integer NOT null check (posicion > 0),
-	IDUsuario integer NOT null,
-	foreign key(VIN) references vehiculo(VIN) ON DELETE CASCADE,
-	foreign key(IDLugar, IDZona, IDSub) references subzona(IDLugar, IDZona, IDSub) ON DELETE CASCADE,
-	foreign key (IDUsuario) references usuario(IDUsuario) ON DELETE CASCADE,
-	primary key(IDLugar, IDZona, IDSub, VIN, desde)
+	IDUsuario integer,
+	foreign key(IDVehiculo) references vehiculo(IDVehiculo) ON DELETE CASCADE,
+	foreign key(IDLugar) references lugar(IDLugar) ON DELETE CASCADE,
+	foreign key(IDUsuario) references usuario(IDUsuario) ON DELETE CASCADE,
+	primary key(IDLugar, IDVehiculo, desde)
 	);
 CREATE table
-	camion( VIN char(17),
+	camion(
+	IDCamion serial primary key,
+	VIN char(17) unique,
 	Marca varchar(50) NOT null,
 	Modelo varchar(50) NOT null,
 	Matricula char(7) NOT null,
-	UsuarioIngresa integer NOT null,
-	primary key(VIN),
-	foreign key(UsuarioIngresa) references usuario(IDUsuario) ON DELETE CASCADE );
+	Creador integer NOT null,
+	FechaCreacion date not null,
+	foreign key(Creador) references usuario(IDUsuario) ON DELETE CASCADE
+);
 
 CREATE table
-	rampascamion( VIN char(17),
+	rampascamion(
+	IDCamion integer references camion(IDCamion),
 	RampaIt integer check (RampaIt > 0),
 	CantCamiones integer NOT null check (CantCamiones > -1),
 	CantAutos integer NOT null check (CantAutos > -1),
 	CantSUV integer NOT null check(CantSUV > -1),
 	CantVan integer NOT null check(CantVan > -1),
 	CantMinivan integer NOT null check (CantMinivan > -1),
-	primary key(VIN, RampaIt),
-	foreign key(VIN) references camion(VIN) ON DELETE CASCADE);
-
+	primary key(IDCamion, RampaIt)
+);
 CREATE table
 	conduce(
-	VIN char(17),
+	Camion integer,
 	Usuario integer,
 	Desde date,
 	Hasta date,
-	foreign key(VIN) references camion(VIN) ON DELETE CASCADE,
+	foreign key(Camion) references camion(IDCamion) ON DELETE CASCADE,
 	foreign key(Usuario) references usuario(IDUsuario) ON DELETE CASCADE,
-	primary key(VIN, Usuario, Desde)
+	primary key(Camion, Usuario, Desde)
 );
 CREATE table
-	lote( IDLote serial,
+	lote(
+	IDLote serial,
 	nombre varchar(20) unique,
-	Desde integer NOT null,
-	Hacia integer NOT null,
+	Origen integer NOT null,
+	Destino integer NOT null,
 	CreadorID integer NOT null,
 	FechaCreacion datetime year to day not null,
 	Prioridad varchar(10) NOT null check (Prioridad in ('Normal', 'Alta')),
-	Estado varchar(10) not null check (Estado in ('Abierto', 'Cerrado')),
+	Estado varchar(10) not null check (Estado in ('Abierto', 'Cerrado', 'Eliminado')),
 	primary key(IDLote),
-	foreign key(Desde) references lugar(IDLugar) ON DELETE CASCADE,
-	foreign key(Hacia) references lugar(IDLugar) ON DELETE CASCADE,
+	foreign key(Origen) references lugar(IDLugar) ON DELETE CASCADE,
+	foreign key(Destino) references lugar(IDLugar) ON DELETE CASCADE,
 	foreign key(CreadorID) references usuario(IDUsuario) ON DELETE CASCADE);
 
 CREATE table
-	integra( VIN char(17),
+	integra(
+	IDVehiculo integer,
 	Lote integer,
 	Fecha datetime year to minute,
 	invalidado boolean not null,
 	IDUsuario integer not null,
-	primary key(VIN, Lote, Fecha),
-	foreign key(VIN) references vehiculo(VIN) ON DELETE CASCADE,
+	primary key(IDVehiculo, Lote, Fecha),
+	foreign key(IDVehiculo) references vehiculo(IDVehiculo) ON DELETE CASCADE,
 	foreign key(Lote) references lote(IDLote) ON DELETE CASCADE,
 	foreign key(IDUsuario) references usuario(IDUsuario) ON DELETE CASCADE );
 
@@ -266,7 +244,7 @@ CREATE table
 
 create table
 	link(
-    link varchar(255) not null,
-    transportista integer primary key,
+    link varchar(255) primary key,
+    transportista integer not null,
 	foreign key(transportista) references usuario(idusuario) ON DELETE CASCADE
 );
