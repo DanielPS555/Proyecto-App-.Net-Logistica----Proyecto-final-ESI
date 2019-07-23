@@ -21,8 +21,8 @@ insert into link values ("http://maps.com",(select idusuario from usuario where 
 insert into link values ("http://maps2.com",(select idusuario from usuario where primernombre = "Pedro"));
 /*16*/
 		/*CLIENTE*/
-insert into cliente(IDCliente, RUT, Nombre, fechaRegistro, invalido) values(0, 185769246724, "Sevel", "2019-7-10", 'f');
-insert into cliente(IDCliente, RUT, Nombre, fechaRegistro, invalido) values(0, 785349658722, "Chevrolet UY", "2014-8-8", 'f');
+insert into cliente(IDCliente, RUT, Nombre, fechaRegistro, invalido, usuarioregistro) values(0, 185769246724, "Sevel", "2019-7-10", 'f', 1);
+insert into cliente(IDCliente, RUT, Nombre, fechaRegistro, invalido, usuarioregistro) values(0, 785349658722, "Chevrolet UY", "2014-8-8", 'f', 1);
 
 	/*LUGAR*/
 insert into lugar(idlugar, nombre, capacidad, geox, geoy, usuariocreador, tipo) values (0,"Deposito piedras blancas", 3500, -34.882456, -56.194172,(select idusuario from usuario where primernombre = "Felipe"),"Patio");
@@ -78,154 +78,167 @@ insert into trabajaen values (0,(select IDLugar from lugar where Nombre="Deposit
 	execute function crear_zona("Zona B_pb", (select IDLugar from lugar where nombre="Deposito piedras blancas"), 1500);
 /*	insert into lugar values (0, "Zona B_pb", 1500, 0, 0, 1, 'Zona');
 	insert into zona values ((select IDLugar from lugar where Nombre="Deposito piedras blancas"),
-	0,"Zona C", 500);
+	0,"Zona C", 500);*/
+	execute function crear_zona("Zona A_md", (select IDLugar from lugar where nombre="Deposito de maldonado"), 500);
+/*
 	insert into zona values ((select IDLugar from lugar where Nombre="Deposito de maldonado"),
-	0,"Zona A", 500);
+	0,"Zona A", 500);*/
+	execute function crear_zona("Zona A_mvd", (select IDLugar from lugar where nombre="Puerto de montevideo"), 800);
+/*
 	insert into zona values ((select IDLugar from lugar where Nombre="Puerto de montevideo"),
-	0,"Zona A", 800);
+	0,"Zona A", 800);*/
+	execute function crear_zona("Zona B_mvd", (select IDLugar from lugar where nombre="Puerto de montevideo"), 400);
+/*
 	insert into zona values ((select IDLugar from lugar where Nombre="Puerto de montevideo"),
-	0,"Zona B", 400);
+	0,"Zona B", 400);*/
+	execute function crear_zona("Zona A_papr", (select IDLugar from lugar where nombre="Puerto de aguas profundas rocha"), 200);
+/*
 	insert into zona values ((select IDLugar from lugar where Nombre="Puerto de aguas profundas rocha"),
-	0,"Zona A", 200);
+	0,"Zona A", 200);*/
+	execute function crear_zona("Zona B_papr", (select IDLugar from lugar where nombre="Puerto de aguas profundas rocha"), 800);
+/*
 	insert into zona values ((select IDLugar from lugar where Nombre="Puerto de aguas profundas rocha"),
-	0,"Zona B", 800);
+	0,"Zona B", 800);*/
+	execute function crear_zona("Zona C_papr", (select IDLugar from lugar where nombre="Puerto de aguas profundas rocha"), 1000);
+/*
 	insert into zona values ((select IDLugar from lugar where Nombre="Puerto de aguas profundas rocha"),
 	0,"Zona C", 1000);
-	/*SUBZONA*//*
-	insert into subzona values ((select IDLugar from lugar where Nombre="Deposito piedras blancas"),
+	/*SUBZONA*/
+	execute function crear_subzona("Zona A_1_pb",
+	(select idlugar from lugar where nombre="Zona A_pb"), 1000);
+/*	insert into subzona values ((select IDLugar from lugar where Nombre="Deposito piedras blancas"),
 		(select IDZona from lugar,zona where lugar.nombre="Deposito piedras blancas"
 		and lugar.idlugar = zona.idlugar and zona.nombre = "Zona A"),0,"Zona A_1",1000);
-
-	insert into subzona values ((select IDLugar from lugar where Nombre="Deposito piedras blancas"),
+*/
+	execute function crear_subzona("Zona A_2_pb", (select idlugar from lugar where nombre="Zona A_pb"), 500);
+/*	insert into subzona values ((select IDLugar from lugar where Nombre="Deposito piedras blancas"),
 		(select IDZona from lugar,zona where lugar.nombre="Deposito piedras blancas"
 		and lugar.idlugar = zona.idlugar and zona.nombre = "Zona A"),0,"Zona A_2",500);
-
-	insert into subzona values ((select IDLugar from lugar where Nombre="Deposito piedras blancas"),
+*/
+	execute function crear_subzona("Zona B_1_pb", (select IDLugar from lugar where nombre="Zona B_pb"), 800);
+/*	insert into subzona values ((select IDLugar from lugar where Nombre="Deposito piedras blancas"),
 		(select IDZona from lugar,zona where lugar.nombre="Deposito piedras blancas"
-		and lugar.idlugar = zona.idlugar and zona.nombre = "Zona B"),0,"Zona B_1",800);
+		and lugar.idlugar = zona.idlugar and zona.nombre = "Zona B"),0,"Zona B_1",800);*/
 
-	insert into subzona values ((select IDLugar from lugar where Nombre="Deposito piedras blancas"),
+	execute function crear_subzona("Zona B_2_pb", (select idlugar from lugar where nombre="Zona B_pb"), 700);
+/*	insert into subzona values ((select IDLugar from lugar where Nombre="Deposito piedras blancas"),
 		(select IDZona from lugar,zona where lugar.nombre="Deposito piedras blancas"
-		and lugar.idlugar = zona.idlugar and zona.nombre = "Zona B"),0,"Zona B_2",700);
+		and lugar.idlugar = zona.idlugar and zona.nombre = "Zona B"),0,"Zona B_2",700); */
 
-	insert into subzona values ((select IDLugar from lugar where Nombre="Deposito piedras blancas"),
-		(select IDZona from lugar,zona where lugar.nombre="Deposito piedras blancas"
-			and lugar.idlugar = zona.idlugar and zona.nombre = "Zona C"),0,"Zona C_1",500);
-
-	insert into subzona values ((select IDLugar from lugar where Nombre="Deposito de maldonado"),
+	execute function crear_subzona("Zona A_1_md", (select IDLugar from lugar where nombre="Zona A_md"), 500);
+/*	insert into subzona values ((select IDLugar from lugar where Nombre="Deposito de maldonado"),
 		(select IDZona from lugar,zona where lugar.nombre="Deposito de maldonado"
 		and lugar.idlugar = zona.idlugar and zona.nombre = "Zona A"),0,"Zona A_1",500);
-
+*/
+	execute function crear_subzona("Zona A_1_mvd", (select idlugar from lugar where nombre="Zona A_mvd"), 300);
+/*
 	insert into subzona values ((select IDLugar from lugar where Nombre="Puerto de montevideo"),
 		(select IDZona from lugar, zona
 		where lugar.nombre="Puerto de montevideo"
 		and lugar.idlugar = zona.idlugar and zona.nombre = "Zona A"),
-		0,"Zona A_1",300);
-
-	insert into subzona values ((select IDLugar from lugar where Nombre="Puerto de montevideo"),
+		0,"Zona A_1",300);*/
+	execute function crear_subzona("Zona A_2_mvd", (select idlugar from lugar where nombre="Zona A_mvd"), 500);
+/*	insert into subzona values ((select IDLugar from lugar where Nombre="Puerto de montevideo"),
 		(select IDZona from lugar,zona where lugar.nombre="Puerto de montevideo"
-		and lugar.idlugar = zona.idlugar and zona.nombre = "Zona A"),0,"Zona A_2",500);
-
-  insert into subzona values ((select IDLugar from lugar where Nombre="Puerto de montevideo"),
+		and lugar.idlugar = zona.idlugar and zona.nombre = "Zona A"),0,"Zona A_2",500);*/
+	execute function crear_subzona("Zona B_1_mvd", (select idlugar from lugar where nombre="Zona B_mvd"), 400);
+/*  insert into subzona values ((select IDLugar from lugar where Nombre="Puerto de montevideo"),
 	  (select IDZona from lugar,zona where lugar.nombre="Puerto de montevideo"
-		and lugar.idlugar = zona.idlugar and zona.nombre = "Zona B"),0,"Zona B_1",400);
-
-	insert into subzona values ((select IDLugar from lugar where Nombre="Puerto de aguas profundas rocha"),
+		and lugar.idlugar = zona.idlugar and zona.nombre = "Zona B"),0,"Zona B_1",400);*/
+	execute function crear_subzona("Zona A_1_papr", (select idlugar from lugar where nombre="Zona A_papr"), 200);
+/*	insert into subzona values ((select IDLugar from lugar where Nombre="Puerto de aguas profundas rocha"),
 		(select IDZona from lugar,zona where lugar.nombre="Puerto de aguas profundas rocha"
-		and lugar.idlugar = zona.idlugar and zona.nombre = "Zona A"),0,"Zona A_1",200);
-	insert into subzona values ((select IDLugar from lugar
+		and lugar.idlugar = zona.idlugar and zona.nombre = "Zona A"),0,"Zona A_1",200);*/
+	execute function crear_subzona("Zona B_1_papr", (select idlugar from lugar where nombre="Zona B_papr"), 480);
+/*	insert into subzona values ((select IDLugar from lugar
 	where Nombre="Puerto de aguas profundas rocha"),
 		(select IDZona from lugar,zona where lugar.nombre="Puerto de aguas profundas rocha"
 		and lugar.idlugar = zona.idlugar and zona.nombre = "Zona B"),
-		0,"Zona B_1",480);
-
-	insert into subzona values ((select IDLugar from lugar
+		0,"Zona B_1",480);*/
+	execute function crear_subzona("Zona C_1_papr", (select idlugar from lugar where nombre="Zona C_papr"), 500);
+/*	insert into subzona values ((select IDLugar from lugar
 	where Nombre="Puerto de aguas profundas rocha"),
 		(select IDZona from lugar,zona where lugar.nombre="Puerto de aguas profundas rocha"
-		and lugar.idlugar = zona.idlugar and zona.nombre = "Zona C"),0,"Zona C_1",500);
-
-	insert into subzona values ((select IDLugar from lugar where Nombre="Puerto de aguas profundas rocha"),
+		and lugar.idlugar = zona.idlugar and zona.nombre = "Zona C"),0,"Zona C_1",500);*/
+	execute function crear_subzona("Zona C_2_papr", (select idlugar from lugar where nombre="Zona C_papr"), 500);
+/*	insert into subzona values ((select IDLugar from lugar where Nombre="Puerto de aguas profundas rocha"),
 		(select IDZona from lugar,zona where lugar.nombre="Puerto de aguas profundas rocha"
-		and lugar.idlugar = zona.idlugar and zona.nombre = "Zona C"),0,"Zona C_2",500);
-		/*VEHIUCLO*//*
-		insert into vehiculo values("1GH2J83LED0987547","Fiat","Cronos", "6ead26",
+		and lugar.idlugar = zona.idlugar and zona.nombre = "Zona C"),0,"Zona C_2",500);*/
+		/*VEHIUCLO*/
+		insert into vehiculo values(0, "1GH2J83LED0987547","Fiat","Cronos", "6ead26",
 		"Auto", 2011, (select IDCliente from cliente where Nombre="Sevel"),
-		(select IDLugar from lugar where Nombre="Puerto de aguas profundas rocha"),
 		"2019-6-27");
-		insert into vehiculo values("1HGYN4HTEL8372649","Fiat","Toro", "cecece",
+		insert into vehiculo values(0, "1HGYN4HTEL8372649","Fiat","Toro", "cecece",
 		"Auto", 2015, (select IDCliente from cliente where Nombre="Sevel"),
-		(select IDLugar from lugar where Nombre="Puerto de montevideo"),
 		"2019-6-28");
-		insert into vehiculo values("2GH2JJEBTE0987547","Chevrolet","Aveo",
+		insert into vehiculo values(0, "2GH2JJEBTE0987547","Chevrolet","Aveo",
 		"c92222", "SUV", 2016, (select IDCliente from cliente where Nombre="Chevrolet UY"),
-		(select IDLugar from lugar where Nombre="Puerto de montevideo"),
 		"2019-7-1");
-		insert into vehiculo values("1GH2HGRLED0988472","Chevrolet","Volt",
+		insert into vehiculo values(0, "1GH2HGRLED0988472","Chevrolet","Volt",
 		"6ead26", "MiniVan", 2018, (select IDCliente from cliente where Nombre="Chevrolet UY"),
-		(select IDLugar from lugar where Nombre="Puerto de aguas profundas rocha"),
 		"2019-6-26");
-		insert into vehiculo values("KHBEHGRLED0988442","Chevrolet","Volt",
+		insert into vehiculo values(0, "KHBEHGRLED0988442","Chevrolet","Volt",
 		"6e2327", "MiniVan", 2018, (select IDCliente from cliente where Nombre="Chevrolet UY"),
-		(select IDLugar from lugar where Nombre="Puerto de montevideo"),
 		"2019-6-26");
-			insert into vehiculo(vin, cliente, tipo) values("1L0V36I113UWU1112", (select IDCliente from cliente where Nombre="Sevel"), "Auto");
+		insert into vehiculo(vin, cliente, tipo)
+		       values("1L0V36I113UWU1112", (select IDCliente from cliente where Nombre="Sevel"), "Auto");
 
-		/*vehiculoIngresa*//*
-		insert into vehiculoIngresa values ("1L0V36I113UWU1112", "2019-4-11","Precarga", (select idusuario from usuario where primernombre = "Fernanda"));
-		insert into vehiculoIngresa values ("1GH2J83LED0987547","2019-4-11","Precarga",(select idusuario from usuario where primernombre = "Fernanda"));
-		insert into vehiculoIngresa values ("1GH2J83LED0987547","2019-6-28","Alta",(select idusuario from usuario where primernombre = "Pepe"));
-		insert into vehiculoIngresa values ("1HGYN4HTEL8372649","2019-4-11","Precarga",(select idusuario from usuario where primernombre = "Fernanda"));
-		insert into vehiculoIngresa values ("1HGYN4HTEL8372649","2019-6-29","Alta",(select idusuario from usuario where primernombre = "Juan"));
-		insert into vehiculoIngresa values ("2GH2JJEBTE0987547","2019-3-20","Precarga",(select idusuario from usuario where primernombre = "Felipe"));
-		insert into vehiculoIngresa values ("2GH2JJEBTE0987547","2019-7-3","Alta",(select idusuario from usuario where primernombre = "Juan"));
-		insert into vehiculoIngresa values ("1GH2HGRLED0988472","2019-3-20","Precarga",(select idusuario from usuario where primernombre = "Felipe"));
-		insert into vehiculoIngresa values ("1GH2HGRLED0988472","2019-6-26","Alta",(select idusuario from usuario where primernombre = "Fernanda"));
-		insert into vehiculoIngresa values ("KHBEHGRLED0988442","2019-3-20","Precarga",(select idusuario from usuario where primernombre = "Felipe"));
-		/*informedanios*//*
-		insert into informedanios values ("0","Informe de ingreso","2019-6-28", "Parcial",
-			"1GH2J83LED0987547",(select IDLugar from lugar where Nombre="Puerto de aguas profundas rocha")
+		/*vehiculoIngresa*/
+		insert into vehiculoIngresa values ((select idvehiculo from vehiculo where VIN="1L0V36I113UWU1112"), "2019-4-11","Precarga", (select idusuario from usuario where primernombre = "Fernanda"));
+		insert into vehiculoIngresa values ((select idvehiculo from vehiculo where VIN="1GH2J83LED0987547"), "2019-4-11","Precarga",(select idusuario from usuario where primernombre = "Fernanda"));
+		insert into vehiculoIngresa values ((select idvehiculo from vehiculo where VIN="1GH2J83LED0987547"),"2019-6-28","Alta",(select idusuario from usuario where primernombre = "Pepe"));
+		insert into vehiculoIngresa values ((select idvehiculo from vehiculo where VIN="1HGYN4HTEL8372649"),"2019-4-11","Precarga",(select idusuario from usuario where primernombre = "Fernanda"));
+		insert into vehiculoIngresa values ((select idvehiculo from vehiculo where VIN="1HGYN4HTEL8372649"),"2019-6-29","Alta",(select idusuario from usuario where primernombre = "Juan"));
+		insert into vehiculoIngresa values ((select idvehiculo from vehiculo where VIN="2GH2JJEBTE0987547"),"2019-3-20","Precarga",(select idusuario from usuario where primernombre = "Felipe"));
+		insert into vehiculoIngresa values ((select idvehiculo from vehiculo where VIN="2GH2JJEBTE0987547"),"2019-7-3","Alta",(select idusuario from usuario where primernombre = "Juan"));
+		insert into vehiculoIngresa values ((select idvehiculo from vehiculo where VIN="1GH2HGRLED0988472"),"2019-3-20","Precarga",(select idusuario from usuario where primernombre = "Felipe"));
+		insert into vehiculoIngresa values ((select idvehiculo from vehiculo where VIN="1GH2HGRLED0988472"),"2019-6-26","Alta",(select idusuario from usuario where primernombre = "Fernanda"));
+		insert into vehiculoIngresa values ((select idvehiculo from vehiculo where VIN="KHBEHGRLED0988442"),"2019-3-20","Precarga",(select idusuario from usuario where primernombre = "Felipe"));
+		/*informedanios*/
+		insert into informedanios values (0,"Informe de ingreso","2019-6-28", "Parcial",
+			(select idvehiculo from vehiculo where VIN="1GH2J83LED0987547"),(select IDLugar from lugar where Nombre="Puerto de aguas profundas rocha")
 		,(select idusuario from usuario where primernombre = "Pepe"));
 
-		insert into informedanios values ("0","Luego del Granizo","2019-7-1", "Parcial",
-			"1GH2J83LED0987547",(select IDLugar from lugar where Nombre="Puerto de aguas profundas rocha"),
+		insert into informedanios values (0,"Luego del Granizo","2019-7-1", "Parcial",
+			(select idvehiculo from vehiculo where VIN="1GH2J83LED0987547"),(select IDLugar from lugar where Nombre="Puerto de aguas profundas rocha"),
 		(select idusuario from usuario where primernombre = "Pepe"));
 
-		insert into informedanios values ("0","Informe de ingreso","2019-7-2", "Parcial",
-			"1GH2J83LED0987547",(select IDLugar from lugar where Nombre="Deposito de maldonado"),
+		insert into informedanios values (0,"Informe de ingreso","2019-7-2", "Parcial",
+			(select idvehiculo from vehiculo where VIN="1GH2J83LED0987547"),(select IDLugar from lugar where Nombre="Deposito de maldonado"),
 		(select idusuario from usuario where primernombre = "Juan"));
 
-		insert into informedanios values ("0","Informe de ingreso","2019-6-29", "Parcial",
-			"1HGYN4HTEL8372649",(select IDLugar from lugar where Nombre="Puerto de montevideo")
+		insert into informedanios values (0,"Informe de ingreso","2019-6-29", "Parcial",
+			(select idvehiculo from vehiculo where VIN="1HGYN4HTEL8372649"),(select IDLugar from lugar where Nombre="Puerto de montevideo")
 		,(select idusuario from usuario where primernombre = "Juan"));
 
-		insert into informedanios values ("0","Informe de ingreso","2019-7-3", "Parcial",
-			"2GH2JJEBTE0987547",(select IDLugar from lugar where Nombre="Puerto de montevideo")
+		insert into informedanios values (0,"Informe de ingreso","2019-7-3", "Parcial",
+			(select idvehiculo from vehiculo where VIN="2GH2JJEBTE0987547"),(select IDLugar from lugar where Nombre="Puerto de montevideo")
 		,(select idusuario from usuario where primernombre = "Juan"));
 
-		insert into informedanios values ("0","Informe de ingreso","2019-7-8", "Parcial",
-			"2GH2JJEBTE0987547",(select IDLugar from lugar where Nombre="Deposito piedras blancas")
+		insert into informedanios values (0,"Informe de ingreso","2019-7-8", "Parcial",
+			(select idvehiculo from vehiculo where VIN="2GH2JJEBTE0987547"),(select IDLugar from lugar where Nombre="Deposito piedras blancas")
 		,(select idusuario from usuario where primernombre = "Juan"));
 
-		insert into informedanios values ("0","Informe de ingreso","2019-6-28", "Parcial",
-			"1GH2HGRLED0988472",(select IDLugar from lugar where Nombre="Puerto de aguas profundas rocha")
+		insert into informedanios values (0,"Informe de ingreso","2019-6-28", "Parcial",
+			(select idvehiculo from vehiculo where VIN="1GH2HGRLED0988472"),(select IDLugar from lugar where Nombre="Puerto de aguas profundas rocha")
 		,(select idusuario from usuario where primernombre = "Pepe"));
 
-		insert into informedanios values ("0","Informe de ingreso","2019-7-2", "Parcial",
-			"1GH2HGRLED0988472",(select IDLugar from lugar where Nombre="Deposito de maldonado")
+		insert into informedanios values (0,"Informe de ingreso","2019-7-2", "Parcial",
+			(select idvehiculo from vehiculo where VIN="1GH2HGRLED0988472"),(select IDLugar from lugar where Nombre="Deposito de maldonado")
 		,(select idusuario from usuario where primernombre = "Pepe"));
 
-		insert into informedanios values ("0","Informe de ingreso","2019-7-4", "Parcial",
-			"1GH2HGRLED0988472",(select IDLugar from lugar where Nombre="Deposito piedras blancas")
+		insert into informedanios values (0,"Informe de ingreso","2019-7-4", "Parcial",
+			(select idvehiculo from vehiculo where VIN="1GH2HGRLED0988472"),(select IDLugar from lugar where Nombre="Deposito piedras blancas")
 		,(select idusuario from usuario where primernombre = "Juan"));
-		/*registrodanios*//*
-		insert into registrodanios values (1,0,"Rayon");
-		insert into registrodanios values (2,0,"Roptura en la puerta");
-		insert into registrodanios values (4,0,"No se ha encontrado el rayon");
-		insert into registrodanios values (4,0,"La roptura de la puerta a aumentado");
-		insert into registrodanios values (5,0,"Daño en el motor");
-		insert into registrodanios values (6,0,"No se encontraron daños en el motor");
-		insert into registrodanios values (7,0,"Agujero en el techo");
-		insert into registrodanios values (9,0,"Creio el agujero");
+		/*registrodanios*/
+		insert into registrodanios values ((select idvehiculo from vehiculo where VIN="1GH2J83LED0987547"),1,0,"Rayon");
+		insert into registrodanios values ((select idvehiculo from vehiculo where VIN="1GH2J83LED0987547"),2,0,"Roptura en la puerta");
+		insert into registrodanios values ((select idvehiculo from vehiculo where VIN="1HGYN4HTEL8372649"),4,0,"No se ha encontrado el rayon");
+		insert into registrodanios values ((select idvehiculo from vehiculo where VIN="1HGYN4HTEL8372649"),4,0,"La roptura de la puerta a aumentado");
+		insert into registrodanios values ((select idvehiculo from vehiculo where VIN="2GH2JJEBTE0987547"),5,0,"Daño en el motor");
+		insert into registrodanios values ((select idvehiculo from vehiculo where VIN="2GH2JJEBTE0987547"),6,0,"No se encontraron daños en el motor");
+		insert into registrodanios values ((select idvehiculo from vehiculo where VIN="1GH2HGRLED0988472"),7,0,"Agujero en el techo");
+		insert into registrodanios values ((select idvehiculo from vehiculo where VIN="1GH2HGRLED0988472"),9,0,"Creio el agujero");
 			/*actualiza*//*
 		insert into actualiza values (4,3,1,1,"Anulacion");
 		insert into actualiza values (4,4,2,2,"Correccion");
@@ -233,21 +246,21 @@ insert into trabajaen values (0,(select IDLugar from lugar where Nombre="Deposit
 		EN BYTE DIRECTAMENTE POR AQUI, HAY QUE USAR EL ODBC, POR ESO SE INGREZAN DESDE EL PROGRAMA*/
 
 
-		/*Posicionado*//*
-			insert into posicionado values (4,7,10,"1GH2J83LED0987547","2019-6-28 21:00:00", "2019-7-2 15:00:00",21,(select idusuario from usuario where primernombre = "Pepe"));
-			insert into posicionado values (2,4,6,"1GH2J83LED0987547","2019-7-2 16:35:04", "2019-7-4 13:03:21",14,(select idusuario from usuario where primernombre = "Pepe"));
-			insert into posicionado values (2,4,6,"1GH2J83LED0987547","2019-7-4 17:15:32",'2019-7-8 15:00:02',18,(select idusuario from usuario where primernombre = "Pepe"));
+		/*Posicionado*/
+			insert into posicionado values ((select idlugar from lugar where nombre="Zona A_1_pb"), (select idvehiculo from vehiculo where vin="1GH2J83LED0987547"),"2019-6-28 21:00:00", "2019-7-2 15:00:00",21,(select idusuario from usuario where primernombre = "Pepe"));
+			insert into posicionado values ((select idlugar from lugar where nombre="Zona A_1_mvd"),(select idvehiculo from vehiculo where vin="1GH2J83LED0987547"),"2019-7-2 16:35:04", "2019-7-4 13:03:21",14,(select idusuario from usuario where primernombre = "Pepe"));
+			insert into posicionado values ((select idlugar from lugar where nombre="Zona A_1_mvd"),(select idvehiculo from vehiculo where vin="1GH2J83LED0987547"),"2019-7-4 17:15:32",'2019-7-8 15:00:02',18,(select idusuario from usuario where primernombre = "Pepe"));
+/*
+			insert into posicionado values (3,5,7,(select idvehiculo from vehiculo where vin="1HGYN4HTEL8372649"),"2019-6-29 12:11:23", "2019-7-5 10:09:32",22,(select idusuario from usuario where primernombre = "Juan"));
+			insert into posicionado values (1,2,3,(select idvehiculo from vehiculo where vin="1HGYN4HTEL8372649"),"2019-7-5 12:25:21", null ,25,(select idusuario from usuario where primernombre = "Juan"));
 
-			insert into posicionado values (3,5,7,"1HGYN4HTEL8372649","2019-6-29 12:11:23", "2019-7-5 10:09:32",22,(select idusuario from usuario where primernombre = "Juan"));
-			insert into posicionado values (1,2,3,"1HGYN4HTEL8372649","2019-7-5 12:25:21", null ,25,(select idusuario from usuario where primernombre = "Juan"));
+			insert into posicionado values (3,5,7,(select idvehiculo from vehiculo where vin="2GH2JJEBTE0987547"),"2019-7-3 14:14:09","2019-7-5 10:25:22",6,(select idusuario from usuario where primernombre = "Juan"));
+			insert into posicionado values (1,2,3,(select idvehiculo from vehiculo where vin="2GH2JJEBTE0987547"),"2019-7-5 12:31:32","2019-7-8 15:00:03",5,(select idusuario from usuario where primernombre = "Juan"));
+			insert into posicionado values (1,2,4,(select idvehiculo from vehiculo where vin="2GH2JJEBTE0987547"),"2019-7-8 15:50:23",'2019-7-8 15:00:02',2,(select idusuario from usuario where primernombre = "Juan"));
 
-			insert into posicionado values (3,5,7,"2GH2JJEBTE0987547","2019-7-3 14:14:09","2019-7-5 10:25:22",6,(select idusuario from usuario where primernombre = "Juan"));
-			insert into posicionado values (1,2,3,"2GH2JJEBTE0987547","2019-7-5 12:31:32","2019-7-8 15:00:03",5,(select idusuario from usuario where primernombre = "Juan"));
-			insert into posicionado values (1,2,4,"2GH2JJEBTE0987547","2019-7-8 15:50:23",'2019-7-8 15:00:02',2,(select idusuario from usuario where primernombre = "Juan"));
-
-			insert into posicionado values (4,8,11,"1GH2HGRLED0988472","2019-6-26 14:10:32","2019-7-2 15:21:32",19,(select idusuario from usuario where primernombre = "Pepe"));
-			insert into posicionado values (2,4,6,"1GH2HGRLED0988472","2019-7-2 16:10:21","2019-7-4 15:32:55",28,(select idusuario from usuario where primernombre = "Pepe"));
-			insert into posicionado values (1,1,1,"1GH2HGRLED0988472","2019-7-4 18:30:21",'2019-7-8 15:00:02',74,(select idusuario from usuario where primernombre = "Juan"));
+			insert into posicionado values (4,8,11,(select idvehiculo from vehiculo where vin="1GH2HGRLED0988472"),"2019-6-26 14:10:32","2019-7-2 15:21:32",19,(select idusuario from usuario where primernombre = "Pepe"));
+			insert into posicionado values (2,4,6,(select idvehiculo from vehiculo where vin="1GH2HGRLED0988472"),"2019-7-2 16:10:21","2019-7-4 15:32:55",28,(select idusuario from usuario where primernombre = "Pepe"));
+			insert into posicionado values (1,1,1,(select idvehiculo from vehiculo where vin="1GH2HGRLED0988472"),"2019-7-4 18:30:21",'2019-7-8 15:00:02',74,(select idusuario from usuario where primernombre = "Juan"));
 
       /*Camion*//*
 

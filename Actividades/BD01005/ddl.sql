@@ -30,7 +30,8 @@ CREATE table
 		Nombre varchar(100) not null,
 		IDCliente serial primary key,
 		fechaRegistro datetime year to day not null,
-		invalido boolean not null
+		invalido boolean not null,
+		UsuarioRegistro integer not null references Usuario(IDUsuario)
 );
 
 CREATE table
@@ -41,8 +42,8 @@ CREATE table
 	GeoX FLOAT NOT null,
 	GeoY FLOAT NOT null,
 	UsuarioCreador integer NOT null references usuario(IDUsuario),
-	Tipo varchar(6) NOT null check (Tipo IN
- 		    	         ("Patio","Puerto","Establecimiento", 'Zona', 'Subzona'))
+	Tipo varchar(15) NOT null check (Tipo IN
+		    	         ("Patio","Puerto","Establecimiento", 'Zona', 'Subzona'))
 );
 
 create table
@@ -107,8 +108,8 @@ CREATE table
 	informedanios(
 	ID serial,
 	Descripcion varchar(255) NOT null,
-	Fecha datetime year to minute NOT null,
-	Tipo varchar(50) NOT null check (Tipo in ('Total', 'Parcial')),
+	Fecha datetime year to day NOT null,
+	Tipo varchar(7) NOT null check (Tipo in ('Total', 'Parcial')),
 	IDVehiculo integer NOT null,
 	idlugar integer NOT null,
 	idusuario integer NOT null,
@@ -165,37 +166,28 @@ CREATE table
 	primary key(IDLugar, IDVehiculo, desde)
 	);
 CREATE table
-	camion(
-	IDCamion serial primary key,
-	VIN char(17) unique,
-	Marca varchar(50) NOT null,
-	Modelo varchar(50) NOT null,
-	Matricula char(7) NOT null,
+	medio(
+	IDMedio serial primary key,
+	Nombre varchar(50) NOT null,
+	Tipo varchar(50) NOT null,
 	Creador integer NOT null,
 	FechaCreacion date not null,
-	foreign key(Creador) references usuario(IDUsuario) ON DELETE CASCADE
-);
-
-CREATE table
-	rampascamion(
-	IDCamion integer references camion(IDCamion),
-	RampaIt integer check (RampaIt > 0),
 	CantCamiones integer NOT null check (CantCamiones > -1),
 	CantAutos integer NOT null check (CantAutos > -1),
 	CantSUV integer NOT null check(CantSUV > -1),
 	CantVan integer NOT null check(CantVan > -1),
 	CantMinivan integer NOT null check (CantMinivan > -1),
-	primary key(IDCamion, RampaIt)
+	foreign key(Creador) references usuario(IDUsuario) ON DELETE CASCADE
 );
+
 CREATE table
-	conduce(
-	Camion integer,
+	Permite(
+	Medio integer,
 	Usuario integer,
-	Desde date,
-	Hasta date,
-	foreign key(Camion) references camion(IDCamion) ON DELETE CASCADE,
+	invalido boolean,
+	foreign key(Medio) references Medio(IDMedio) ON DELETE CASCADE,
 	foreign key(Usuario) references usuario(IDUsuario) ON DELETE CASCADE,
-	primary key(Camion, Usuario, Desde)
+	primary key(Medio, Usuario)
 );
 CREATE table
 	lote(
@@ -228,12 +220,13 @@ CREATE table
 	transporte(
 	transporteID serial primary key,
 	Usuario integer NOT NULL,
+	Medio integer NOT NULL,
 	FechaHoraCreacion datetime year to minute not null,
 	FechaHoraSalida datetime year to minute not null,
 	FechaHoraLlegadaEstm datetime year to minute not null,
 	FechaHoraLlegadaReal datetime year to minute,
 	Estado varchar(10) NOT null check (Estado in ("Proceso", "Fallo", "Exitoso")),
-	foreign key(Usuario) references usuario(IDUsuario) ON DELETE CASCADE
+	foreign key(Medio, Usuario) references Permite(Medio, Usuario) ON DELETE CASCADE
 	);
 CREATE table
 	transporta( transporteID integer,
