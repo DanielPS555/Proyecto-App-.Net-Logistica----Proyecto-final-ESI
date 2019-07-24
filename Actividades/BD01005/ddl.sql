@@ -168,6 +168,7 @@ CREATE table
 CREATE table
 	medio(
 	IDMedio serial primary key,
+	IdentifLegal varchar(50), /* VIN/Matricula en caso de aplicar */
 	Nombre varchar(50) NOT null,
 	Tipo varchar(50) NOT null,
 	Creador integer NOT null,
