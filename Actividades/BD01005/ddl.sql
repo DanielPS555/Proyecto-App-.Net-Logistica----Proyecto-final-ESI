@@ -166,9 +166,24 @@ CREATE table
 	primary key(IDLugar, IDVehiculo, desde)
 	);
 CREATE table
-	medio(
+       medioTransporte(
 	IDMedio serial primary key,
-	IdentifLegal varchar(50), /* VIN/Matricula en caso de aplicar */
+	Nombre varchar(50) not null unique
+);
+
+create table
+       habilitadoEn(
+	IDLugar integer,
+	IDMedio integer,
+	foreign key(IDLugar) references lugar(IDLugar),
+	foreign key(IDMedio) references medioTransporte(IDMedio),
+	primary key(IDMedio, IDLugar)
+);
+
+CREATE table
+       instanciaMedio(
+	IDMedio integer,
+	IDLegal varchar(50), /* VIN/Matricula en caso de aplicar */
 	Nombre varchar(50) NOT null,
 	Tipo varchar(50) NOT null,
 	Creador integer NOT null,
@@ -178,15 +193,17 @@ CREATE table
 	CantSUV integer NOT null check(CantSUV > -1),
 	CantVan integer NOT null check(CantVan > -1),
 	CantMinivan integer NOT null check (CantMinivan > -1),
+	primary key(IDMedio, IDLegal),
+	foreign key(IDMedio) references medioTransporte(IDMedio) ON DELETE CASCADE,
 	foreign key(Creador) references usuario(IDUsuario) ON DELETE CASCADE
 );
 
 CREATE table
-	Permite(
+       permite(
 	Medio integer,
 	Usuario integer,
 	invalido boolean,
-	foreign key(Medio) references Medio(IDMedio) ON DELETE CASCADE,
+	foreign key(Medio) references medioTransporte(IDMedio) ON DELETE CASCADE,
 	foreign key(Usuario) references usuario(IDUsuario) ON DELETE CASCADE,
 	primary key(Medio, Usuario)
 );
