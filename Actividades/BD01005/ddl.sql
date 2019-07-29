@@ -166,23 +166,23 @@ CREATE table
 	primary key(IDLugar, IDVehiculo, desde)
 	);
 CREATE table
-       medioTransporte(
-	IDMedio serial primary key,
+       TipoTransporte(
+	IDTipo serial primary key,
 	Nombre varchar(50) not null unique
 );
 
 create table
-       habilitadoEn(
+       Habilitado(
 	IDLugar integer,
-	IDMedio integer,
+	IDTipo integer,
 	foreign key(IDLugar) references lugar(IDLugar),
-	foreign key(IDMedio) references medioTransporte(IDMedio),
-	primary key(IDMedio, IDLugar)
+	foreign key(IDTipo) references TipoTransporte(IDTipo),
+	primary key(IDTipo, IDLugar)
 );
 
 CREATE table
-       instanciaMedio(
-	IDMedio integer,
+       MedioTransporte(
+	IDTipo integer,
 	IDLegal varchar(50), /* VIN/Matricula en caso de aplicar */
 	Nombre varchar(50) NOT null,
 	Tipo varchar(50) NOT null,
@@ -193,20 +193,20 @@ CREATE table
 	CantSUV integer NOT null check(CantSUV > -1),
 	CantVan integer NOT null check(CantVan > -1),
 	CantMinivan integer NOT null check (CantMinivan > -1),
-	primary key(IDMedio, IDLegal),
-	foreign key(IDMedio) references medioTransporte(IDMedio) ON DELETE CASCADE,
+	primary key(IDTipo, IDLegal),
+	foreign key(IDTipo) references TipoTransporte(IDTipo) ON DELETE CASCADE,
 	foreign key(Creador) references usuario(IDUsuario) ON DELETE CASCADE
 );
 
 CREATE table
        permite(
-	IDMedio integer,
-	IDLegal integer,
+	IDTipo integer,
+	IDLegal varchar(50),
 	Usuario integer,
 	invalido boolean,
-	foreign key(IDMedio, IDLegal) references instanciaTransporte(IDMedio, IDLegal) ON DELETE CASCADE,
+	foreign key(IDTipo, IDLegal) references MedioTransporte(IDTipo, IDLegal) ON DELETE CASCADE,
 	foreign key(Usuario) references usuario(IDUsuario) ON DELETE CASCADE,
-	primary key(IDMedio, IDLegal, Usuario)
+	primary key(IDTipo, IDLegal, Usuario)
 );
 CREATE table
 	lote(
@@ -239,14 +239,14 @@ CREATE table
 	transporte(
 	transporteID serial primary key,
 	Usuario integer NOT NULL,
-	IDMedio integer NOT NULL,
-	IDLegal integer NOT NULL,
+	IDTipo integer NOT NULL,
+	IDLegal varchar(50) NOT NULL,
 	FechaHoraCreacion datetime year to minute not null,
 	FechaHoraSalida datetime year to minute not null,
 	FechaHoraLlegadaEstm datetime year to minute not null,
 	FechaHoraLlegadaReal datetime year to minute,
 	Estado varchar(10) NOT null check (Estado in ("Proceso", "Fallo", "Exitoso")),
-	foreign key(IDMedio, IDLegal, Usuario) references Permite(IDMedio, IDLegal, Usuario) ON DELETE CASCADE
+	foreign key(IDTipo, IDLegal, Usuario) references Permite(IDTipo, IDLegal, Usuario) ON DELETE CASCADE
 	);
 CREATE table
 	transporta( transporteID integer,

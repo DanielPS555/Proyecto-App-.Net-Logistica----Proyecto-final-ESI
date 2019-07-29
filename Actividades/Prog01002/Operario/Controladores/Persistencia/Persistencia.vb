@@ -280,10 +280,10 @@ Public Class Persistencia
     End Function
 
     Public Function ComprobarLoteTrasladoRealizado(id As Integer) As Boolean
-        Dim com As New OdbcCommand("select count(transporte.estado) from lote,transporte,transporta
-                                    where lote.idlote=? and lote.idlote=transporta.idlote
-                                    and transporta.transporteID = transporte.transporteID
-                                    and transporte.estado='Exitoso' ", Conexcion)
+        Dim com As New OdbcCommand("select count(transporte.estado) from lote
+                                      inner join transporta on transporta.idlote=lote.idlote
+                                      inner join transporte on transporte.transporteid=transporta.transporteid
+                                    where lote.idlote=? and transporte.estado='Exitoso'", Conexcion)
         com.CrearParametro(DbType.Int32, id)
         Return com.ExecuteScalar > 0
     End Function
@@ -299,7 +299,7 @@ Public Class Persistencia
 
 
     Public Function DevolverInformacionBasicaDeZonasPorID_lugar(id As Integer) As DataTable
-        Dim com As New OdbcCommand("select idzona, nombre, capacidad from zona where idlugar=? ", Conexcion)
+        Dim com As New OdbcCommand("select idzona, nombre, capacidad from zona where idlugar=?", Conexcion)
         com.CrearParametro(DbType.Int32, id)
         Dim dt As New DataTable
         dt.Load(com.ExecuteReader)
@@ -357,7 +357,7 @@ Public Class Persistencia
     End Function
 
     Public Function PoscionesOcupadasPor_ID_Subzona(id As Integer) As DataTable
-        Dim com As New OdbcCommand("select posicion from posicionado where posicionado.idsub=? and hasta is null", Conexcion)
+        Dim com As New OdbcCommand("select posicion from posicionado where posicionado.idlugar=? and hasta is null", Conexcion)
         com.CrearParametro(DbType.Int32, id)
         Dim dt As New DataTable
         dt.Load(com.ExecuteReader)
