@@ -349,9 +349,33 @@ Public Class Fachada
         Return pos
     End Function
 
-    Public Function DevolverInformeCompleto(vin As String, idinfo As Integer) As InformeDeDaños
+    Public Function devolverInformesSoloConRegistros_IdYIdPropio(idvehiculo As Integer) As List(Of InformeDeDaños)
+        Dim rd As DataTable = Persistencia.getInstancia.devolverIdDeTodosLosInformesyRegistros(idvehiculo)
+        Dim list As New List(Of InformeDeDaños)
+        Dim actual As InformeDeDaños = Nothing
+        For Each r As DataRow In rd.Rows
+            If actual Is Nothing OrElse actual.ID <> r.Item(0) Then
+                If actual IsNot Nothing Then
+                    list.Add(actual)
+                End If
+                actual = New InformeDeDaños(New Vehiculo() With {.IdVehiculo = idvehiculo}) With {.ID = r.Item(0)}
+            End If
+            Dim registro As New RegistroDaños(actual) With {.ID = r.Item(1)}
+            If Funciones_comunes.AutoNull(Of String)(r.Item(2)) Is Nothing Then
+                registro.TipoActualizacion = Controladores.RegistroDaños.TIPO_ACTUALIZACION_REGULAR
+            Else
+                If (r.Item(2)).Equals("Anulacion") Then
+                    registro.TipoActualizacion = Controladores.RegistroDaños.TIPO_ACTUALIZACION_ANULACION
+                Else
+                    registro.TipoActualizacion = Controladores.RegistroDaños.TIPO_ACTUALIZACION_CORRECION
 
+                End If
+            End If
+        Next
+        list.Add(actual)
+        Return list
     End Function
+
 
 
 End Class

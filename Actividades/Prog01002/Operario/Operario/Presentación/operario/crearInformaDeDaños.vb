@@ -1,34 +1,39 @@
 ﻿Imports Operario
 
 Public Class crearInformaDeDaños
-    Implements IActualizaMessage
-    ' hay que crear una lista de registros
-    Public nuevo As Boolean
+    Private idvehiculo As Integer
+    Private _listaDeTodosLosinformes As List(Of Controladores.InformeDeDaños)
+    Public Property ListaDeTodosLosInformes() As List(Of Controladores.InformeDeDaños)
+        Get
+            Return _listaDeTodosLosinformes
+        End Get
+        Set(ByVal value As List(Of Controladores.InformeDeDaños))
+            _listaDeTodosLosinformes = value
+        End Set
+    End Property
+
     Private Info As Controladores.InformeDeDaños
-    Public Sub New(VIN As String, numinfo As Integer)
-        informe = VRepo.NewInforme("", "Total", VIN)
-        Dim m = VehiculoRepo.RegistroTable()(0)
+    Public Sub New(id As Integer)
+        idvehiculo = id
         InitializeComponent()
-        Actualizar()
         tipo.SelectedIndex = 0
-        nuevo = True
+        TodosLosInformesYRegistros()
     End Sub
 
+    Private Sub TodosLosInformesYRegistros()
+        _listaDeTodosLosinformes = Controladores.Fachada.getInstancia.devolverInformesSoloConRegistros_IdYIdPropio(idvehiculo)
+    End Sub
+
+    Public ReadOnly Property InformeDeDaños() As Controladores.InformeDeDaños
+        Get
+            Return Info
+        End Get
+    End Property
 
     Private m As DataTable
     Private ReadOnly informe As Integer
 
-    Public Sub New(informe As Integer)
-        Me.informe = informe
-        InitializeComponent()
-        tipo.Enabled = False
-        ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
-        tipo.SelectedItem = VRepo.TipoInforme(informe)
-        descipt.Text = VRepo.DescripcionInforme(informe)
-        descipt.ReadOnly = True
-        Actualizar()
-        nuevo = False
-    End Sub
+
 
     Private Sub descipt_TextChanged(sender As Object, e As EventArgs) Handles descipt.TextChanged
         Dim length As Integer = 255 - descipt.Text.Length
@@ -41,7 +46,7 @@ Public Class crearInformaDeDaños
     End Sub
 
     Private Sub nuevo_Click(sender As Object, e As EventArgs)
-        Marco.getInstancia.cargarPanel(Of RegistroDeDañoPanel)(New RegistroDeDañoPanel(informe, Me))
+        Marco.getInstancia.cargarPanel(Of RegistroDeDañoPanel)(New RegistroDeDañoPanel(Me, Info.Registros.Count + 1, False))
     End Sub
 
     Private Sub eliminar_Click(sender As Object, e As EventArgs)
@@ -58,7 +63,7 @@ Public Class crearInformaDeDaños
     Private Sub Registros_SelectedIndexChanged(sender As Object, e As EventArgs) Handles Registros.SelectedIndexChanged
         Dim reg As String = Registros.SelectedItem.Split(":")(0)
         descipt.Text = m.ToList.Where(Function(x) x("ID") = reg).Select(Of String)(Function(z) z("Descripcion")).Single
-        Marco.getInstancia.cargarPanel(New RegistroDeDañoPanel(informe, Integer.Parse(reg), nuevo, Me))
+        Marco.getInstancia.cargarPanel(Of RegistroDeDañoPanel)(New RegistroDeDañoPanel(informe, Integer.Parse(reg), nuevo, Me))
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs)
@@ -83,5 +88,13 @@ Public Class crearInformaDeDaños
         m = VRepo.Registros(VRepo.VINInforme(informe), informe).Item1
         Registros.Items.Clear()
         Registros.Items.AddRange(m.ToList.Select(Function(x) $"{x("ID")}: {x("Descripcion")}").ToArray)
+    End Sub
+
+    Public Sub devolverRegistro(r As Controladores.RegistroDaños)
+
+    End Sub
+
+    Private Sub Tipo_SelectedIndexChanged(sender As Object, e As EventArgs) Handles tipo.SelectedIndexChanged
+
     End Sub
 End Class

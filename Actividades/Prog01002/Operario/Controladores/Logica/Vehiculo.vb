@@ -67,6 +67,17 @@
         End Set
     End Property
 
+    Private _idVehiculo As Integer
+    Public Property IdVehiculo() As Integer
+        Get
+            Return _idVehiculo
+        End Get
+        Set(ByVal value As Integer)
+            _idVehiculo = value
+        End Set
+    End Property
+
+
     Private _marca As String
     Public Property Marca() As String
         Get

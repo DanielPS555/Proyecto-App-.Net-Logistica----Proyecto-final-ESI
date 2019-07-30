@@ -150,7 +150,7 @@ CREATE table
 	CHECK (vehiculo1=vehiculo2),
 	foreign key(vehiculo1, informe1, registro1) references registrodanios(idvehiculo, informedanios, idregistro) ON DELETE CASCADE,
 	foreign key(vehiculo2, informe2, registro2) references registrodanios(idvehiculo, informedanios, idregistro) ON DELETE CASCADE,
-	primary key(vehiculo1, informe1, registro1, vehiculo2, informe2, registro2)
+	primary key(vehiculo1, informe1, registro1)
 );
 CREATE table
 	posicionado (

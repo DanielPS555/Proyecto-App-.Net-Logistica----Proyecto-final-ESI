@@ -22,6 +22,12 @@ Partial Class RegistroDeDañoPanel
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim NuevaFotografia As System.Windows.Forms.Button
+        Dim Button4 As System.Windows.Forms.Button
+        Dim Button5 As System.Windows.Forms.Button
+        Dim Button1 As System.Windows.Forms.Button
+        Dim Button2 As System.Windows.Forms.Button
+        Dim Button3 As System.Windows.Forms.Button
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.infoDaños = New System.Windows.Forms.Label()
@@ -40,34 +46,21 @@ Partial Class RegistroDeDañoPanel
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.panelFotografias = New System.Windows.Forms.PictureBox()
-        sigienteFotografia = New System.Windows.Forms.Button()
+        Me.p1 = New System.Windows.Forms.PictureBox()
+        Me.p2 = New System.Windows.Forms.PictureBox()
+        Me.p3 = New System.Windows.Forms.PictureBox()
         NuevaFotografia = New System.Windows.Forms.Button()
         Button4 = New System.Windows.Forms.Button()
         Button5 = New System.Windows.Forms.Button()
+        Button1 = New System.Windows.Forms.Button()
+        Button2 = New System.Windows.Forms.Button()
+        Button3 = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         CType(Me.panelFotografias, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.p1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.p2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.p3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'sigienteFotografia
-        '
-        sigienteFotografia.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        sigienteFotografia.BackColor = System.Drawing.SystemColors.Control
-        sigienteFotografia.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        sigienteFotografia.FlatAppearance.BorderSize = 0
-        sigienteFotografia.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        sigienteFotografia.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        sigienteFotografia.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        sigienteFotografia.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        sigienteFotografia.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        sigienteFotografia.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
-        sigienteFotografia.Location = New System.Drawing.Point(479, 554)
-        sigienteFotografia.Name = "sigienteFotografia"
-        sigienteFotografia.Size = New System.Drawing.Size(104, 35)
-        sigienteFotografia.TabIndex = 68
-        sigienteFotografia.Text = "Sigiente"
-        sigienteFotografia.UseVisualStyleBackColor = False
-        AddHandler sigienteFotografia.Click, AddressOf Me.sigienteFotografia_Click
         '
         'NuevaFotografia
         '
@@ -82,7 +75,7 @@ Partial Class RegistroDeDañoPanel
         NuevaFotografia.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         NuevaFotografia.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         NuevaFotografia.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
-        NuevaFotografia.Location = New System.Drawing.Point(767, 185)
+        NuevaFotografia.Location = New System.Drawing.Point(369, 555)
         NuevaFotografia.Name = "NuevaFotografia"
         NuevaFotografia.Size = New System.Drawing.Size(104, 35)
         NuevaFotografia.TabIndex = 69
@@ -131,6 +124,70 @@ Partial Class RegistroDeDañoPanel
         Button5.Text = "Ingrezar"
         Button5.UseVisualStyleBackColor = False
         AddHandler Button5.Click, AddressOf Me.Button5_Click
+        '
+        'Button1
+        '
+        Button1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Button1.BackColor = System.Drawing.SystemColors.Control
+        Button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Button1.FlatAppearance.BorderSize = 0
+        Button1.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        Button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Button1.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Button1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
+        Button1.Location = New System.Drawing.Point(490, 555)
+        Button1.Name = "Button1"
+        Button1.Size = New System.Drawing.Size(104, 35)
+        Button1.TabIndex = 73
+        Button1.Text = "Eliminar"
+        Button1.UseVisualStyleBackColor = False
+        '
+        'Button2
+        '
+        Button2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Button2.BackColor = System.Drawing.SystemColors.Control
+        Button2.Enabled = False
+        Button2.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Button2.FlatAppearance.BorderSize = 0
+        Button2.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        Button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Button2.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Button2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
+        Button2.Location = New System.Drawing.Point(781, 157)
+        Button2.Name = "Button2"
+        Button2.Size = New System.Drawing.Size(73, 35)
+        Button2.TabIndex = 77
+        Button2.Text = "Subir"
+        Button2.UseMnemonic = False
+        Button2.UseVisualStyleBackColor = False
+        '
+        'Button3
+        '
+        Button3.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Button3.BackColor = System.Drawing.SystemColors.Control
+        Button3.Enabled = False
+        Button3.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Button3.FlatAppearance.BorderSize = 0
+        Button3.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Button3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        Button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Button3.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Button3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
+        Button3.Location = New System.Drawing.Point(781, 520)
+        Button3.Name = "Button3"
+        Button3.Size = New System.Drawing.Size(73, 35)
+        Button3.TabIndex = 78
+        Button3.Text = "Bajar"
+        Button3.UseMnemonic = False
+        Button3.UseVisualStyleBackColor = False
         '
         'Label1
         '
@@ -324,16 +381,48 @@ Partial Class RegistroDeDañoPanel
         Me.panelFotografias.TabIndex = 0
         Me.panelFotografias.TabStop = False
         '
+        'p1
+        '
+        Me.p1.Location = New System.Drawing.Point(767, 202)
+        Me.p1.Name = "p1"
+        Me.p1.Size = New System.Drawing.Size(100, 100)
+        Me.p1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.p1.TabIndex = 74
+        Me.p1.TabStop = False
+        '
+        'p2
+        '
+        Me.p2.Location = New System.Drawing.Point(768, 308)
+        Me.p2.Name = "p2"
+        Me.p2.Size = New System.Drawing.Size(100, 100)
+        Me.p2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.p2.TabIndex = 75
+        Me.p2.TabStop = False
+        '
+        'p3
+        '
+        Me.p3.Location = New System.Drawing.Point(767, 414)
+        Me.p3.Name = "p3"
+        Me.p3.Size = New System.Drawing.Size(100, 100)
+        Me.p3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.p3.TabIndex = 76
+        Me.p3.TabStop = False
+        '
         'RegistroDeDañoPanel
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(880, 650)
+        Me.Controls.Add(Button3)
+        Me.Controls.Add(Button2)
+        Me.Controls.Add(Me.p3)
+        Me.Controls.Add(Me.p2)
+        Me.Controls.Add(Me.p1)
+        Me.Controls.Add(Button1)
         Me.Controls.Add(Button4)
         Me.Controls.Add(Button5)
         Me.Controls.Add(NuevaFotografia)
-        Me.Controls.Add(sigienteFotografia)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.Label9)
         Me.Controls.Add(Me.Label8)
@@ -356,6 +445,9 @@ Partial Class RegistroDeDañoPanel
         Me.Text = "RegistroDeDañoPanel"
         Me.Panel1.ResumeLayout(False)
         CType(Me.panelFotografias, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.p1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.p2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.p3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -379,8 +471,7 @@ Partial Class RegistroDeDañoPanel
     Friend WithEvents Label9 As Label
     Friend WithEvents Panel1 As Panel
     Friend WithEvents panelFotografias As PictureBox
-    Friend WithEvents sigienteFotografia As System.Windows.Forms.Button
-    Friend WithEvents NuevaFotografia As System.Windows.Forms.Button
-    Friend WithEvents Button4 As System.Windows.Forms.Button
-    Friend WithEvents Button5 As System.Windows.Forms.Button
+    Friend WithEvents p1 As PictureBox
+    Friend WithEvents p2 As PictureBox
+    Friend WithEvents p3 As PictureBox
 End Class

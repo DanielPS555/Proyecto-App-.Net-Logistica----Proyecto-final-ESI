@@ -371,4 +371,13 @@ Public Class Persistencia
         Return dt
     End Function
 
+    Public Function devolverIdDeTodosLosInformesyRegistros(idVehiculo As Integer) As DataTable
+        Dim com As New OdbcCommand("select informedanios.ID, registrodanios.idregistro, tipo from informedanios,registrodanios,actualiza
+                                    where ID=registrodanios.informedanios and informedanios.Idvehiculo=? and actualiza.registro1 = registrodanios.idregistro", Conexcion)
+        com.CrearParametro(DbType.Int32, idVehiculo)
+        Dim dt As New DataTable
+        dt.Load(com.ExecuteReader)
+        Return dt
+    End Function
+
 End Class
