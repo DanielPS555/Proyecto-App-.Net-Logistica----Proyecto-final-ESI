@@ -26,8 +26,8 @@ Partial Class RegistroDeDañoPanel
         Dim Button4 As System.Windows.Forms.Button
         Dim Button5 As System.Windows.Forms.Button
         Dim Button1 As System.Windows.Forms.Button
-        Dim Button2 As System.Windows.Forms.Button
-        Dim Button3 As System.Windows.Forms.Button
+        Me.bajar = New System.Windows.Forms.Button()
+        Me.subir = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.infoDaños = New System.Windows.Forms.Label()
@@ -53,8 +53,6 @@ Partial Class RegistroDeDañoPanel
         Button4 = New System.Windows.Forms.Button()
         Button5 = New System.Windows.Forms.Button()
         Button1 = New System.Windows.Forms.Button()
-        Button2 = New System.Windows.Forms.Button()
-        Button3 = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         CType(Me.panelFotografias, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.p1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -145,49 +143,49 @@ Partial Class RegistroDeDañoPanel
         Button1.Text = "Eliminar"
         Button1.UseVisualStyleBackColor = False
         '
-        'Button2
+        'bajar
         '
-        Button2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.bajar.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Button2.BackColor = System.Drawing.SystemColors.Control
-        Button2.Enabled = False
-        Button2.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Button2.FlatAppearance.BorderSize = 0
-        Button2.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        Button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Button2.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Button2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
-        Button2.Location = New System.Drawing.Point(781, 157)
-        Button2.Name = "Button2"
-        Button2.Size = New System.Drawing.Size(73, 35)
-        Button2.TabIndex = 77
-        Button2.Text = "Subir"
-        Button2.UseMnemonic = False
-        Button2.UseVisualStyleBackColor = False
+        Me.bajar.BackColor = System.Drawing.SystemColors.Control
+        Me.bajar.Enabled = False
+        Me.bajar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.bajar.FlatAppearance.BorderSize = 0
+        Me.bajar.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.bajar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        Me.bajar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        Me.bajar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.bajar.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.bajar.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
+        Me.bajar.Location = New System.Drawing.Point(781, 520)
+        Me.bajar.Name = "bajar"
+        Me.bajar.Size = New System.Drawing.Size(73, 35)
+        Me.bajar.TabIndex = 78
+        Me.bajar.Text = "Bajar"
+        Me.bajar.UseMnemonic = False
+        Me.bajar.UseVisualStyleBackColor = False
         '
-        'Button3
+        'subir
         '
-        Button3.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.subir.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Button3.BackColor = System.Drawing.SystemColors.Control
-        Button3.Enabled = False
-        Button3.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Button3.FlatAppearance.BorderSize = 0
-        Button3.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Button3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        Button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Button3.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Button3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
-        Button3.Location = New System.Drawing.Point(781, 520)
-        Button3.Name = "Button3"
-        Button3.Size = New System.Drawing.Size(73, 35)
-        Button3.TabIndex = 78
-        Button3.Text = "Bajar"
-        Button3.UseMnemonic = False
-        Button3.UseVisualStyleBackColor = False
+        Me.subir.BackColor = System.Drawing.SystemColors.Control
+        Me.subir.Enabled = False
+        Me.subir.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.subir.FlatAppearance.BorderSize = 0
+        Me.subir.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.subir.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        Me.subir.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        Me.subir.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.subir.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.subir.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
+        Me.subir.Location = New System.Drawing.Point(781, 157)
+        Me.subir.Name = "subir"
+        Me.subir.Size = New System.Drawing.Size(73, 35)
+        Me.subir.TabIndex = 77
+        Me.subir.Text = "Subir"
+        Me.subir.UseMnemonic = False
+        Me.subir.UseVisualStyleBackColor = False
         '
         'Label1
         '
@@ -414,8 +412,8 @@ Partial Class RegistroDeDañoPanel
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(880, 650)
-        Me.Controls.Add(Button3)
-        Me.Controls.Add(Button2)
+        Me.Controls.Add(Me.bajar)
+        Me.Controls.Add(Me.subir)
         Me.Controls.Add(Me.p3)
         Me.Controls.Add(Me.p2)
         Me.Controls.Add(Me.p1)
@@ -474,4 +472,6 @@ Partial Class RegistroDeDañoPanel
     Friend WithEvents p1 As PictureBox
     Friend WithEvents p2 As PictureBox
     Friend WithEvents p3 As PictureBox
+    Friend WithEvents subir As Button
+    Friend WithEvents bajar As Button
 End Class

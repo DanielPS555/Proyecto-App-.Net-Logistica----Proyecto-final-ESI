@@ -40,6 +40,7 @@
 
     Private imagenes As List(Of Bitmap)
     Private piso As Integer = 0
+    Private actual As Integer = 0
 
     Private Sub actualizarImagenes()
         Dim pc() As PictureBox = {p1, p2, p3}
@@ -48,6 +49,7 @@
             pc(c).Image = imagenes(i)
             c += 1
         Next
+        verifSubirYbajar()
     End Sub
 
 
@@ -62,14 +64,22 @@
     End Sub
 
     Private Sub NuevaFotografia_Click(sender As Object, e As EventArgs)
-        'Dim ofd As New OpenFileDialog()
-        'ofd.Filter = "Imagenes|*.jpg"
-        'If ofd.ShowDialog() = DialogResult.OK Then
-        '    images.Add(New Bitmap(ofd.OpenFile))
-        '    it = images.GetEnumerator
-        '    it.MoveNext()
-        '    panelFotografias.Image = it.Current
-        'End If
+        Dim ofd As New OpenFileDialog()
+        ofd.Filter = "Imagenes|*.jpg"
+        If ofd.ShowDialog() = DialogResult.OK Then
+            imagenes.Add(New Bitmap(ofd.OpenFile))
+            panelFotografias.Image = New Bitmap(ofd.OpenFile)
+        End If
+    End Sub
+
+    Private Sub verifSubirYbajar()
+        If imagenes.Count > 3 Then
+            subir.Enabled = True
+            bajar.Enabled = True
+        Else
+            subir.Enabled = False
+            bajar.Enabled = False
+        End If
     End Sub
 
     Private Sub Button4_Click(sender As Object, e As EventArgs)
@@ -88,6 +98,5 @@
         '    it.Reset()
         'End If
     End Sub
-
 
 End Class
