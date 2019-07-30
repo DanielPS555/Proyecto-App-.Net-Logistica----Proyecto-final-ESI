@@ -269,6 +269,98 @@ insert into trabajaen values (0,(select IDLugar from lugar where Nombre="Deposit
       insert into TipoTransporte values (0, "Maritimo");
       insert into TipoTransporte values (0, "Trenvía");
 
+insert into habilitado values(
+(select idlugar from lugar where nombre='Deposito piedras blancas'), 1);
+
+insert into habilitado values(
+(select idlugar from lugar where nombre='Deposito de maldonado'), 1);
+
+insert into habilitado values(
+(select idlugar from lugar where nombre='Puerto de montevideo'), 1);
+
+insert into habilitado values(
+(select idlugar from lugar where nombre='Puerto de aguas profundas rocha'), 1);
+
+insert into habilitado values
+((select idlugar from lugar where nombre='Patio de Sevel'), 1);
+
+insert into habilitado values
+((select idlugar from lugar where nombre='Patio de Chevrolet Ur a gay'), 1);
+
+insert into habilitado values
+((select idlugar from lugar where nombre='Zona A_pb'), 1);
+
+insert into habilitado values
+((select idlugar from lugar where nombre='Zona B_pb'), 1);
+
+insert into habilitado values
+((select idlugar from lugar where nombre='Zona A_md'), 1);
+
+insert into habilitado values
+((select idlugar from lugar where nombre='Zona A_mvd'), 1);
+
+insert into habilitado values
+((select idlugar from lugar where nombre='Zona B_mvd'), 1);
+
+insert into habilitado values((select idlugar from lugar where nombre='Zona A_papr'), 1);
+
+insert into habilitado values((select idlugar from lugar where nombre='Zona B_papr'), 1);
+
+insert into habilitado values((select idlugar from lugar where nombre='Zona C_papr'), 1);
+
+insert into habilitado values((select idlugar from lugar where nombre='Zona A_1_pb'), 1);
+
+insert into habilitado values((select idlugar from lugar where nombre='Zona A_2_pb'), 1);
+
+insert into habilitado values((select idlugar from lugar where nombre='Zona B_1_pb'), 1);
+
+insert into habilitado values((select idlugar from lugar where nombre='Zona B_2_pb'), 1);
+
+insert into habilitado values((select idlugar from lugar where nombre='Zona A_1_md'), 1);
+
+insert into habilitado values((select idlugar from lugar where nombre='Zona A_1_mvd'), 1);
+
+insert into habilitado values((select idlugar from lugar where nombre='Zona A_2_mvd'), 1);
+
+insert into habilitado values((select idlugar from lugar where nombre='Zona B_1_mvd'), 1);
+
+insert into habilitado values((select idlugar from lugar where nombre='Zona A_1_papr'), 1);
+
+insert into habilitado values((select idlugar from lugar where nombre='Zona B_1_papr'), 1);
+
+insert into habilitado values((select idlugar from lugar where nombre='Zona C_1_papr'), 1);
+
+insert into habilitado values((select idlugar from lugar where nombre='Zona C_2_papr'), 1);
+
+insert into habilitado values((select idlugar from lugar where nombre = 'Deposito piedras blancas'), 2);
+insert into habilitado values((select idlugar from lugar where nombre = 'Deposito de maldonado'), 2);
+insert into habilitado values((select idlugar from lugar where nombre = 'Puerto de montevideo'), 2);
+insert into habilitado values((select idlugar from lugar where nombre = 'Puerto de aguas profundas rocha'), 2);
+insert into habilitado values((select idlugar from lugar where nombre = 'Patio de Sevel'), 2);
+insert into habilitado values((select idlugar from lugar where nombre = 'Patio de Chevrolet Ur a gay'), 2);
+insert into habilitado values((select idlugar from lugar where nombre = 'Zona A_pb'), 2);
+insert into habilitado values((select idlugar from lugar where nombre = 'Zona B_pb'), 2);
+insert into habilitado values((select idlugar from lugar where nombre = 'Zona A_md'), 2);
+insert into habilitado values((select idlugar from lugar where nombre = 'Zona A_mvd'), 2);
+insert into habilitado values((select idlugar from lugar where nombre = 'Zona B_mvd'), 2);
+insert into habilitado values((select idlugar from lugar where nombre = 'Zona A_papr'), 2);
+insert into habilitado values((select idlugar from lugar where nombre = 'Zona B_papr'), 2);
+insert into habilitado values((select idlugar from lugar where nombre = 'Zona C_papr'), 2);
+insert into habilitado values((select idlugar from lugar where nombre = 'Zona A_1_pb'), 2);
+insert into habilitado values((select idlugar from lugar where nombre = 'Zona A_2_pb'), 2);
+insert into habilitado values((select idlugar from lugar where nombre = 'Zona B_1_pb'), 2);
+insert into habilitado values((select idlugar from lugar where nombre = 'Zona B_2_pb'), 2);
+insert into habilitado values((select idlugar from lugar where nombre = 'Zona A_1_md'), 2);
+insert into habilitado values((select idlugar from lugar where nombre = 'Zona A_1_mvd'), 2);
+insert into habilitado values((select idlugar from lugar where nombre = 'Zona A_2_mvd'), 2);
+insert into habilitado values((select idlugar from lugar where nombre = 'Zona B_1_mvd'), 2);
+insert into habilitado values((select idlugar from lugar where nombre = 'Zona A_1_papr'), 2);
+insert into habilitado values((select idlugar from lugar where nombre = 'Zona B_1_papr'), 2);
+insert into habilitado values((select idlugar from lugar where nombre = 'Zona C_1_papr'), 2);
+insert into habilitado values((select idlugar from lugar where nombre = 'Zona C_2_papr'), 2);
+
+insert into Habilitado values ((select idlugar from lugar where nombre="Puerto de montevideo"), 3);
+
       insert into MedioTransporte values (1, "24GHBYEGV81874679","Fiat Moustro1","Camion",
         (select idusuario from usuario where primernombre = "Felipe"), "4-5-17", 1,10,5,3,5);
       insert into MedioTransporte values (1, "HGU63YEGV81845879","Chevrolet Moustro2","Camion",
