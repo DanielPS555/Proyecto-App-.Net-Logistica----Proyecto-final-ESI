@@ -13,6 +13,8 @@ insert into usuario values (0,"Anto322","","anti@gmail.com", "27/8/1981", "09845
 ,"Antonio","Pardiñas", "Cual es el nombre de su pelicula favorita" , "Blanca nieves", 1, "21/3/2018",'O','T');
 insert into usuario values (0,"PedroB43","","Pedro43563@outlook.com", "27/8/1981", "098452746"
 ,"Pedro","Couto", "El nomrbe de mi cancion favorita" , "Hello", 1, "21/3/2018", 'M','T');
+insert into usuario values (0,"JulioMS", "","pachecodemicorazon@adinet.com.uy", "1/1/1928", "911",
+ "Julio", "Sanguinetti","15vs19","19",1,"25/3/2017","M","T");
 /*9*/
 
 
@@ -360,6 +362,7 @@ insert into habilitado values((select idlugar from lugar where nombre = 'Zona C_
 insert into habilitado values((select idlugar from lugar where nombre = 'Zona C_2_papr'), 2);
 
 insert into Habilitado values ((select idlugar from lugar where nombre="Puerto de montevideo"), 3);
+insert into Habilitado values ((select idlugar from lugar where nombre="Deposito piedras blancas"), 3);
 
       insert into MedioTransporte values (1, "24GHBYEGV81874679","Fiat Moustro1","Camion",
         (select idusuario from usuario where primernombre = "Felipe"), "4-5-17", 1,10,5,3,5);
@@ -370,8 +373,13 @@ insert into Habilitado values ((select idlugar from lugar where nombre="Puerto d
        (select idusuario from usuario where primernombre = "Felipe"), "8-8-15",
        0, 2, 1, 0, 1);
 
+      insert into MedioTransporte values (3,"AFE:32", "A!Train", "Tren",
+	(select idusuario from usuario where primernombre="Felipe"), "8-3-07", 0, 5, 5, 5, 5);
+
       insert into permite values (1,"24GHBYEGV81874679",(select idusuario from usuario where primernombre = "Antonio"),
       "f");
+      insert into permite values (3, "AFE:32",
+				  (select idusuario from usuario where primernombre = "Julio"), "f");
 
 insert into permite values (1,"HGU63YEGV81845879",(select idusuario from usuario where primernombre = "Pedro"),
       "f");
@@ -414,8 +422,7 @@ insert into permite values (2,"La virgen del Rio de la Plata",(select idusuario 
 
 insert into integra values ((select idvehiculo from vehiculo where VIN="1GH2J83LED0987547"),3,"2019-6-28 14:02",'t',(select idusuario from usuario where primernombre = "Pepe"));
 insert into integra values ((select idvehiculo from vehiculo where VIN="1GH2J83LED0987547"),1,"2019-6-29 14:00",'f',(select idusuario from usuario where primernombre = "Pepe"));
-insert into integra values ((select idvehiculo from vehiculo where VIN="1GH2J83LED0987547"),1,"2019-6-30 14:00",'f',(select idusuario from usuario where primernombre = "Pepe"));
-insert into integra values ((select idvehiculo from vehiculo where VIN="1GH2J83LED0987547"),3,"2019-7-02 14:02",'f',(select idusuario from usuario where primernombre = "Pepe"));
+insert into integra values ((select idvehiculo from vehiculo where VIN="1GH2J83LED0987547"),2,"2019-7-02 14:02",'f',(select idusuario from usuario where primernombre = "Pepe"));
       insert into integra values ((select idvehiculo from vehiculo where VIN="1GH2HGRLED0988472"),3,"2019-6-26 15:08",'f',(select idusuario from usuario where primernombre = "Pepe"));
       insert into integra values ((select idvehiculo from vehiculo where VIN="1HGYN4HTEL8372649"),4,"2019-6-29 16:25",'f',(select idusuario from usuario where primernombre = "Juan"));
       insert into integra values ((select idvehiculo from vehiculo where VIN="2GH2JJEBTE0987547"),4,"2019-7-3 11:47",'f',(select idusuario from usuario where primernombre = "Juan"));
@@ -447,7 +454,7 @@ insert into transporte values (0,
 
       insert into transporte values (0,
       (select idusuario from usuario
-       where primernombre = "Pedro"),1,"HGU63YEGV81845879",
+       where primernombre = "Julio"),3,"AFE:32",
       "2019-7-5 9:40", "2019-7-5 10:00",
       "2019-7-5 12:00", "2019-7-5 12:25", "Exitoso");
 
