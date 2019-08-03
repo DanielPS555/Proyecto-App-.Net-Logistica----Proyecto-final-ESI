@@ -1,4 +1,5 @@
-﻿Imports Operario.Logica
+﻿Imports Controladores
+Imports Operario.Logica
 Public Class ListaZonas
     Private estadoCom As Boolean
 
@@ -18,19 +19,18 @@ Public Class ListaZonas
     End Sub
 
     Private Sub cargarZonas()
-        Dim r As DataTable = SRepo.Consultar("select zona.nombre, zona.IDZona from zona, lugar where 
-                                              zona.idlugar=lugar.idlugar and lugar.nombre='" & URepo.ConectadoEn & "'")
+        Dim r As DataTable = Persistencia.getInstancia.Consultar("select zona.nombre, zona.IDZona from zona, lugar where 
+                                              zona.idlugar=lugar.idlugar and lugar.nombre=?", Persistencia.getInstancia.TrabajaEn.Lugar.Nombre)
         zonas.Items.Clear()
-
         For i As Integer = 0 To r.Rows.Count - 1
             zonas.Items.Add(r.Rows(i).Item(0))
         Next
     End Sub
 
     Private Sub CargarSubzonas(zona As String)
-        Dim r As DataTable = SRepo.Consultar("select subzona.nombre from subzona,zona,lugar where 
+        Dim r As DataTable = Persistencia.getInstancia.Consultar("select subzona.nombre from subzona,zona,lugar where 
                                               subzona.idzona=zona.idzona and zona.idlugar=lugar.idlugar and 
-                                              lugar.nombre='" & URepo.ConectadoEn & "' and zona.nombre='" & zona & "'")
+                                              lugar.nombre=? and zona.nombre=?", Persistencia.getInstancia.TrabajaEn.Lugar.Nombre, zona)
         subzonas.Items.Clear()
 
         For i As Integer = 0 To r.Rows.Count - 1

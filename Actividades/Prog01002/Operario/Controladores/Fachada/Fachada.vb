@@ -256,7 +256,7 @@ Public Class Fachada
                 'Persistencia.getInstancia.TrabajaEn.Lugar.Zonas.Add(
                 Dim z As New Zona() With {.IDZona = r1.Item(0), .Nombre = r1.Item(1),
                                            .Capacidad = r1.Item(2), .LugarPadre = Persistencia.getInstancia.TrabajaEn.Lugar}
-                Dim dt2 As DataTable = Persistencia.getInstancia.DevolverInformacionDeSubzonaPorId_zona_y_IdLugar(z.IDZona, Persistencia.getInstancia.TrabajaEn.Lugar.IDLugar)
+                Dim dt2 As DataTable = Persistencia.getInstancia.DevolverInformacionDeSubzonaPorIdZona(z.IDZona, Persistencia.getInstancia.TrabajaEn.Lugar.IDLugar)
                 For Each r2 As DataRow In dt2.Rows
                     Dim id As Integer = r2.Item(0)
                     Dim nom As String = r2.Item(1)

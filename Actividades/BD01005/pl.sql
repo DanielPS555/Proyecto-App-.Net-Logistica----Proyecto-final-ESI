@@ -44,16 +44,53 @@ create function crear_zona(nombrez like lugar.Nombre, enLugar like lugar.IDLugar
 	return 't';
 end function;
 
-create function zonas_en_lugar(nombrelugar like lugar.Nombre)
-   returning integer, varchar(100)
+create function zonas_en_lugar(lugarid like lugar.idlugar)
+   returning integer, varchar(100), integer
 	DEFINE idz integer;
 	DEFINE nmz varchar(100);
+	DEFINE cpz integer;
 	FOREACH cursor1 FOR
-	  SELECT l1.idlugar, l1.nombre into idz, nmz
-	  FROM lugar as l1
-		inner join incluye on incluye.menor=l1.idlugar
-		inner join lugar as l2 on incluye.mayor=l2.idlugar
-	  WHERE l2.nombre=nombrelugar AND l1.tipo='Zona'
-	  return idz, nmz WITH RESUME;
+	  select lugar.idlugar, nombre, capacidad
+	  into idz, nmz, cpz
+	  from lugar inner join
+	  (select menor as idlugar from incluye
+	   start with mayor=lugarid
+	   connect by prior menor=mayor) as children on lugar.idlugar=children.idlugar
+	  where lugar.tipo="Zona"
+	  return idz, nmz, cpz WITH RESUME;
+	END FOREACH;
+end function;
+
+create function subzonas_en_zona(lugarid like lugar.idlugar, zonaid like lugar.idlugar)
+   returning integer, varchar(100), integer
+	DEFINE idz integer;
+	DEFINE nmz varchar(100);
+	DEFINE cpz integer;
+	FOREACH cursor1 FOR
+	  select lugar.idlugar, nombre, capacidad
+	  into idz, nmz, cpz
+	  from lugar inner join
+	  (select menor as idlugar from incluye
+	   start with mayor=lugarid and menor=zonaid
+	   connect by prior menor=mayor) as children on lugar.idlugar=children.idlugar
+	  where lugar.tipo="Subzona"
+	  return idz, nmz, cpz WITH RESUME;
+	END FOREACH;
+end function;
+
+create function subzonas_en_lugar(lugarid like lugar.idlugar)
+   returning integer, varchar(100), integer
+	DEFINE idz integer;
+	DEFINE nmz varchar(100);
+	DEFINE cpz integer;
+	FOREACH cursor1 FOR
+	  select lugar.idlugar, nombre, capacidad
+	  into idz, nmz, cpz
+	  from lugar inner join
+	  (select menor as idlugar from incluye
+	   start with mayor=lugarid
+	   connect by prior menor=mayor) as children on lugar.idlugar=children.idlugar
+	  where lugar.tipo="Subzona"
+	  return idz, nmz, cpz WITH RESUME;
 	END FOREACH;
 end function;

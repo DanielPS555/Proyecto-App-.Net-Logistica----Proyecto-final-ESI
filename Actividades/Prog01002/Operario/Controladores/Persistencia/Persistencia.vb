@@ -18,6 +18,15 @@ Public Class Persistencia
     End Property
 
     Private _UsuarioIngresado As Usuario
+
+    Public Function Consultar(p As String, ParamArray values As Object()) As DataTable
+        Dim cmd As New OdbcDataAdapter(p, _con)
+        values.ForEach(Sub(x) cmd.SelectCommand.CrearParametro(x))
+        Dim ds As New DataSet
+        cmd.Fill(ds)
+        Return ds.Tables.Item(0)
+    End Function
+
     Public Property UsuarioActual() As Usuario
         Get
             Return _UsuarioIngresado
@@ -57,7 +66,7 @@ Public Class Persistencia
     Public Function RealizarConexcion(ip As String, port As String, servername As String, uid As String, pwd As String, db As String, prueba As Boolean) As Boolean
         Try
             Dim creacion As String = "Driver=IBM INFORMIX ODBC DRIVER (64-bit);Database=" & db & ";Host=" & ip & ";Server=" & servername & ";Service=" &
-            port & ";Uid=" & uid & "; Pwd=" & pwd & ";"
+            port & ";UID=" & uid & ";PWD=" & pwd & ";"
             Dim con As New OdbcConnection(creacion)
             con.Open()
             If prueba Then
@@ -74,7 +83,7 @@ Public Class Persistencia
 
     Public Function VerificarCredenciales(nombreDeUsuario, password) As Boolean
         Try
-            Dim consulta As New OdbcCommand("select hash_contra from usuario where nombredeusuario=?;", Conexcion)
+            Dim consulta = New OdbcCommand("select hash_contra from usuario where nombredeusuario=?", _con)
             consulta.CrearParametro(DbType.String, nombreDeUsuario)
             Dim hash = consulta.ExecuteScalar
             Return BCrypt.Net.BCrypt.EnhancedVerify(password, hash, BCrypt.Net.HashType.SHA256)
@@ -86,9 +95,9 @@ Public Class Persistencia
 
     Public Function ExistenciaDeUsuario(nombreDeUsuario) As Boolean
         Try
-            Dim consulta As New OdbcCommand("select count(*) from usuario where nombredeusuario=?;", Conexcion)
-            consulta.CrearParametro(DbType.String, (nombreDeUsuario))
-            Return consulta.ExecuteScalar() > 0
+            Dim consulta As New OdbcCommand("select count(*)=1 from usuario where nombredeusuario=?;", Conexcion)
+            consulta.CrearParametro(DbType.String, nombreDeUsuario)
+            Return consulta.ExecuteScalar()
         Catch ex As Exception
             Return False
         End Try
@@ -98,7 +107,7 @@ Public Class Persistencia
 
 
     Public Function PreguntaSecretaUsuario(username As String) As String
-        Dim cmd As New OdbcCommand("select preguntasecreta from usuario where nombredeusuario=?;", Conexcion)
+        Dim cmd As New OdbcCommand("select preguntasecreta from usuario where nombredeusuario=;", Conexcion)
         cmd.CrearParametro(DbType.String, username)
         Return cmd.ExecuteScalar
     End Function
@@ -121,14 +130,14 @@ Public Class Persistencia
 
     Public Function TrabajaEnPorusuarioDatosBasicos(username As String) As DataTable 'nos da la fecha, usuario y lugar
         Try
-            Dim cmd As New OdbcCommand("select lugar.nombre, trabajaen.fechainicio, trabajaen.fechafin, lugar.nombre, lugar.idlugar, lugar.GeoX , lugar.GeoY, trabajaen.id, lugar.tipo
+            Dim cmd As New OdbcDataAdapter("select lugar.nombre, trabajaen.fechainicio, trabajaen.fechafin, lugar.nombre, lugar.idlugar, lugar.GeoX , lugar.GeoY, trabajaen.id, lugar.tipo
                                     from lugar,trabajaen,usuario
                                     where lugar.idlugar = trabajaen.idlugar and trabajaen.idusuario=usuario.idusuario 
                                     and usuario.nombredeusuario=?", Conexcion)
-            cmd.CrearParametro(DbType.String, username)
-            Dim dt As New DataTable
-            dt.Load(cmd.ExecuteReader)
-            Return dt
+            cmd.SelectCommand.CrearParametro(DbType.String, username)
+            Dim TrabajaEn = New DataSet()
+            cmd.Fill(TrabajaEn)
+            Return TrabajaEn.Tables.Item(0)
         Catch ex As Exception
             Return Nothing
         End Try
@@ -147,16 +156,12 @@ Public Class Persistencia
 
     Public Function ConexcionesTrabaen(id As Integer) As DataTable
         Try
-            Dim cmd As New OdbcCommand("select conexion.HoraIngreso ,conexion.HoraSalida from 
+            Dim cmd As New OdbcDataAdapter("select conexion.HoraIngreso ,conexion.HoraSalida from 
                                         trabajaen,conexion where conexion.idtrabajaen = trabajaen.id and trabajaen.id=?", Conexcion)
-            cmd.CrearParametro(DbType.Int32, id)
-            Dim dt As New DataTable
-            dt.Load(cmd.ExecuteReader)
-            If dt.Rows.Count = 0 Then
-                Return Nothing
-            Else
-                Return dt
-            End If
+            cmd.SelectCommand.CrearParametro(DbType.Int32, id)
+            Dim ds As New DataSet
+            cmd.Fill(ds)
+            Return ds.Tables.Item(0)
         Catch ex As Exception
             Return Nothing
         End Try
@@ -174,15 +179,14 @@ Public Class Persistencia
 
     End Function
 
-    Public Sub Cerrarseccion(id As Integer, horaInico As DateTime)
-        Dim com As New OdbcCommand("update conexion set HoraSalida=? where idtrabajaen=? and HoraIngreso=? ;", Conexcion)
-        com.CrearParametro(DbType.DateTime, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+    Public Sub Cerrarseccion(id As Integer, horaInico As Date)
+        Dim com As New OdbcCommand("update conexion set HoraSalida=? where idtrabajaen=? and HoraIngreso=?;", Conexcion)
+        com.CrearParametro(DbType.DateTime, Date.Now.ToString("yyyy-MM-dd HH:mm:ss"))
         com.CrearParametro(DbType.Int32, id)
         com.CrearParametro(DbType.DateTime, horaInico.ToString("yyyy-MM-dd HH:mm:ss"))
         com.ExecuteNonQuery()
         borrarDatosLocalesPorSeccion()
     End Sub
-
 
     Private Sub borrarDatosLocalesPorSeccion()
         _UsuarioIngresado = New Usuario()
@@ -196,13 +200,13 @@ Public Class Persistencia
         End If
         Dim ParamList = "(" + String.Join(", ", "?".Multiply(VIN.Length)) + ")"
         Dim cmd = $"select vehiculo.vin, vehiculo.marca, vehiculo.modelo, vehiculo.anio, vehiculo.tipo, vehiculo.color, cliente.IDCliente, cliente.RUT, cliente.Nombre, cliente.fechaRegistro from vehiculo inner join cliente on vehiculo.Cliente=Cliente.IDCliente where vehiculo.vin in {ParamList};"
-        Dim com As New OdbcCommand(cmd, _con)
+        Dim com As New OdbcDataAdapter(cmd, _con)
         For Each i In VIN
-            com.CrearParametro(DbType.AnsiStringFixedLength, i)
+            com.SelectCommand.CrearParametro(DbType.AnsiStringFixedLength, i)
         Next
-        Dim dt As New DataTable
-        dt.Load(com.ExecuteReader)
-        Return dt
+        Dim ds As New DataSet
+        com.Fill(ds)
+        Return ds.Tables.Item(0)
     End Function
 
     Public Function VehiculosEnLote(IDLote As Integer) As DataTable
@@ -269,10 +273,12 @@ Public Class Persistencia
     End Function
 
     Public Function DatosBasicosParaListarVehiculosPorLugar(idlugar As Integer) As DataTable
+
         Dim com As New OdbcCommand("select vehiculo.vin, vehiculo.marca, vehiculo.modelo, vehiculo.tipo , posicionado.idlugar
-                                    from vehiculo, posicionado
-                                    where posicionado.idlugar=? and vehiculo.vin = posicionado.vin and vehiculo.vin not in (select vin from vehiculoIngresa where tipoingreso='Baja')
-                                    group by vehiculo.vin, vehiculo.marca, vehiculo.modelo, vehiculo.tipo,posicionado.idlugar", Conexcion)
+                                    from vehiculo inner join posicionado on vehiculo.idvehiculo=posicionado.idvehiculo
+                                    where posicionado.idlugar in (select unnamed_col_1 from table(subzonas_en_lugar(?)))
+                                    and vehiculo.vin not in (select vin from vehiculoIngresa where tipoingreso='Baja')",
+                                  Conexcion)
         com.CrearParametro(DbType.String, idlugar)
         Dim dt As New DataTable
         dt.Load(com.ExecuteReader)
@@ -299,15 +305,15 @@ Public Class Persistencia
 
 
     Public Function DevolverInformacionBasicaDeZonasPorID_lugar(id As Integer) As DataTable
-        Dim com As New OdbcCommand("select idzona, nombre, capacidad from zona where idlugar=?", Conexcion)
-        com.CrearParametro(DbType.Int32, id)
-        Dim dt As New DataTable
-        dt.Load(com.ExecuteReader)
-        Return dt
+        Dim com As New OdbcDataAdapter("select unnamed_col_1 as idzona, unnamed_col_2 as nombrezona, unnamed_col_3 as capacidad from table(zonas_en_lugar(?));", Conexcion)
+        com.SelectCommand.CrearParametro(DbType.Int32, id)
+        Dim ds As New DataSet
+        com.Fill(ds)
+        Return ds.Tables.Item(0)
     End Function
 
-    Public Function DevolverInformacionDeSubzonaPorId_zona_y_IdLugar(id_z As Integer, id_l As Integer) As DataTable
-        Dim com As New OdbcCommand("select idsub, nombre, capacidad from subzona where idzona=? and idlugar=?", Conexcion)
+    Public Function DevolverInformacionDeSubzonaPorIdZona(id_z As Integer, id_l As Integer) As DataTable
+        Dim com As New OdbcCommand("select unnamed_col_1 as idzona, unnamed_col_2 as nombrezona, unnamed_col_3 as capacidad from table(subzonas_en_zona(?, ?));", Conexcion)
         com.CrearParametro(DbType.Int32, id_z)
         com.CrearParametro(DbType.Int32, id_l)
         Dim dt As New DataTable
@@ -338,8 +344,8 @@ Public Class Persistencia
     Public Function DevolverDatosBasicosDelVehiculoPrecargadoPor_VIN_vehiculo(vin As String) As DataTable
         Try
             Dim com As New OdbcCommand("select VIN,Marca,Modelo,color,tipo,anio,cliente.nombre,cliente.rut,cliente.idcliente
-                                    from vehiculo, cliente
-                                    where vin=? and cliente.idcliente = vehiculo.cliente;", Conexcion)
+                                    from vehiculo inner join cliente on cliente.idcliente=vehiculo.cliente
+                                    where vin=?;", Conexcion)
             com.CrearParametro(DbType.String, vin)
             Dim dt As New DataTable
             dt.Load(com.ExecuteReader)
@@ -347,7 +353,6 @@ Public Class Persistencia
         Catch ex As Exception
             Return Nothing
         End Try
-
     End Function
 
     Public Function ExistenciaDeVehiculoPRecargado(vin As String) As Boolean
@@ -372,8 +377,11 @@ Public Class Persistencia
     End Function
 
     Public Function devolverIdDeTodosLosInformesyRegistros(idVehiculo As Integer) As DataTable
-        Dim com As New OdbcCommand("select informedanios.ID, registrodanios.idregistro, tipo from informedanios,registrodanios,actualiza
-                                    where ID=registrodanios.informedanios and informedanios.Idvehiculo=? and actualiza.registro1 = registrodanios.idregistro", Conexcion)
+        Dim com As New OdbcCommand("select informedanios.ID as idinforme, registrodanios.idregistro,
+                      nvl(actualiza.tipo, 'No actualiza'), actualiza.informe2, actualiza.registro2
+       from informedanios inner join registrodanios on informedanios.ID=registrodanios.informedanios
+       left join actualiza on actualiza.registro1=registrodanios.idregistro and actualiza.informe1=informedanios.id
+                                    where informedanios.Idvehiculo=?", Conexcion)
         com.CrearParametro(DbType.Int32, idVehiculo)
         Dim dt As New DataTable
         dt.Load(com.ExecuteReader)

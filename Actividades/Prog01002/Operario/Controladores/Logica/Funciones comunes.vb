@@ -1,6 +1,10 @@
 ﻿Imports Controladores.Extenciones.Extensiones
 Public Class Funciones_comunes
-    Public Shared Function ContraseñaHash(password As String) As String
+    Public Shared Function ContraseñaHash(password As String) As String ' NO es determinística ni idempotente;
+        ' esto es, la misma contraseña retornará distintos hash ya que el hash
+        ' incluye valores extra (aleatorios) para poder verificar una contraseña contra él. Por ende,
+        ' para verificar no haga ContraseñaHash("passw123")=hash_contra
+        ' llame a VerificarHash
         Return BCrypt.Net.BCrypt.EnhancedHashPassword(password, hashType:=BCrypt.Net.HashType.SHA256)
     End Function
 

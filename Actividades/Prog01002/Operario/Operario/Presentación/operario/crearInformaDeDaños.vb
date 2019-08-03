@@ -46,7 +46,7 @@ Public Class crearInformaDeDaños
     End Sub
 
     Private Sub nuevo_Click(sender As Object, e As EventArgs)
-        Marco.getInstancia.cargarPanel(Of RegistroDeDañoPanel)(New RegistroDeDañoPanel(Me, Info.Registros.Count + 1, False))
+        Marco.getInstancia.cargarPanel(Of RegistroDeDañoPanel)(New RegistroDeDañoPanel(Me, Info.Registros.Count + 1))
     End Sub
 
     Private Sub eliminar_Click(sender As Object, e As EventArgs)
@@ -55,39 +55,33 @@ Public Class crearInformaDeDaños
         ElseIf Registros.SelectedIndex > 0 Then
             'Se debe eliminar el elemento de la lista
             Dim i As String = Registros.SelectedItem.split(":")(0)
-            SRepo.ConsultarSinRetorno($"delete from imagenregistro where informe={informe} and nrolista={i};")
-            SRepo.ConsultarSinRetorno($"delete from registrodanios where informe={informe} and nrolista={i};")
+            '            SRepo.ConsultarSinRetorno($"delete from imagenregistro where informe={informe} and nrolista={i};")
+            'SRepo.ConsultarSinRetorno($"delete from registrodanios where informe={informe} and nrolista={i};")
         End If
     End Sub
 
     Private Sub Registros_SelectedIndexChanged(sender As Object, e As EventArgs) Handles Registros.SelectedIndexChanged
-        Dim reg As String = Registros.SelectedItem.Split(":")(0)
-        descipt.Text = m.ToList.Where(Function(x) x("ID") = reg).Select(Of String)(Function(z) z("Descripcion")).Single
-        Marco.getInstancia.cargarPanel(Of RegistroDeDañoPanel)(New RegistroDeDañoPanel(informe, Integer.Parse(reg), nuevo, Me))
+        '       Dim reg As String = Registros.SelectedItem.Split(":")(0)
+        '        descipt.Text = m.ToList.Where(Function(x) x("ID") = reg).Select(Of String)(Function(z) z("Descripcion")).Single
+        '      Marco.getInstancia.cargarPanel(Of RegistroDeDañoPanel)(New RegistroDeDañoPanel(informe, Integer.Parse(reg), nuevo, Me))
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs)
-        If nuevo Then
-            For Each i As String In Registros.Items
-                SRepo.ConsultarSinRetorno($"delete from imagenregistro where informe={informe} and nrolista={i.Split(":")(0)};")
-                SRepo.ConsultarSinRetorno($"delete from registrodanios where informe={informe} and nrolista={i.Split(":")(0)};")
-            Next
-        End If
         Marco.getInstancia.cerrarPanel(Of crearInformaDeDaños)()
     End Sub
 
     Private Sub ingresarBtn_Click(sender As Object, e As EventArgs)
-        If Not (VRepo.UpdateInformeDesc(informe, descipt.Text) AndAlso VRepo.UpdateInformeTipo(informe, tipo.SelectedItem)) Then
-            MsgBox("no se pudo actualizar el informe")
-        Else
-            Marco.getInstancia.cerrarPanel(Of crearInformaDeDaños)()
-        End If
+        '        If Not (VRepo.UpdateInformeDesc(informe, descipt.Text) AndAlso VRepo.UpdateInformeTipo(informe, tipo.SelectedItem)) Then
+        '       MsgBox("no se pudo actualizar el informe")
+        '      Else
+        '     Marco.getInstancia.cerrarPanel(Of crearInformaDeDaños)()
+        '    End If
     End Sub
 
-    Public Sub Actualizar() Implements IActualizaMessage.Actualizar
-        m = VRepo.Registros(VRepo.VINInforme(informe), informe).Item1
-        Registros.Items.Clear()
-        Registros.Items.AddRange(m.ToList.Select(Function(x) $"{x("ID")}: {x("Descripcion")}").ToArray)
+    Public Sub Actualizar()
+        '   m = VRepo.Registros(VRepo.VINInforme(informe), informe).Item1
+        '  Registros.Items.Clear()
+        ' Registros.Items.AddRange(m.ToList.Select(Function(x) $"{x("ID")}: {x("Descripcion")}").ToArray)
     End Sub
 
     Public Sub devolverRegistro(r As Controladores.RegistroDaños)

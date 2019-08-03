@@ -1,4 +1,5 @@
 ﻿Imports System.Data.Odbc
+
 Namespace Extenciones
     Public Module Extensiones
         <Runtime.CompilerServices.Extension>
@@ -52,13 +53,40 @@ Namespace Extenciones
         End Function
 
         <Runtime.CompilerServices.Extension>
-        Public Function CrearParametro([this] As OdbcCommand, type As DbType, value As Object) As OdbcParameter
-            Dim par = this.CreateParameter
-            par.DbType = type
+        Public Function CrearParametro([this] As OdbcCommand, nombre As String, type As DbType, value As Object) As OdbcParameter ' Nombrado
+            Dim par = this.Parameters.Add(nombre, type)
             par.Value = value
-            this.Parameters.Add(par)
             Return par
         End Function
+
+        <Runtime.CompilerServices.Extension>
+        Public Function CrearParametro([this] As OdbcCommand, type As DbType, value As Object) As OdbcParameter ' Posicional
+            Dim par = this.Parameters.Add(New OdbcParameter())
+            par.DbType = type
+            par.Value = value
+            Return par
+        End Function
+        <Runtime.CompilerServices.Extension>
+        Public Function CrearParametro([this] As OdbcCommand, value As Object) As OdbcParameter ' Posicional autotipado
+            Dim dbtype As DbType
+            Select Case (value.GetType)
+                Case GetType(String)
+                    dbtype = DbType.String
+                Case GetType(Integer)
+                    dbtype = DbType.Int32
+                Case GetType(Long)
+                    dbtype = DbType.Int64
+                Case GetType(Char)
+                    dbtype = DbType.Byte
+                Case GetType(Date())
+                    dbtype = DbType.DateTime
+                Case Else
+                    dbtype = DbType.Binary
+            End Select
+            Return this.CrearParametro(dbtype, value)
+        End Function
+
+
         <Runtime.CompilerServices.Extension>
         Public Function ToList(dt As DataTable) As List(Of DataRow)
             Dim newlist As New List(Of DataRow)

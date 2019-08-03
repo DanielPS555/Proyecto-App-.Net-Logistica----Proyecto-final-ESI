@@ -34,9 +34,6 @@ Namespace My
         End Sub
         Public Shared Sub UnhandledExceptionHandler(sender As Object, e As UnhandledExceptionEventArgs)
             MsgBox("El programa ha encontrado un error fatal y será cerrado." & vbNewLine & "Por favor informe a su administrador.")
-            If URepo IsNot Nothing Then
-                URepo.Desconectar()
-            End If
         End Sub
         <Global.System.Diagnostics.DebuggerStepThroughAttribute()>  _
         Protected Overrides Sub OnCreateMainForm()
