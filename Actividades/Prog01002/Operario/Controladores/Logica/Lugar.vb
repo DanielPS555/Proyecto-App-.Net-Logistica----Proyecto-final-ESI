@@ -5,10 +5,11 @@ Public Class Lugar
     Public Shared ReadOnly TIPO_LUGAR_PATIO As String = "Patio"
     Public Shared ReadOnly TIPO_LUGAR_PUERTO As String = "Puerto"
     Public Shared ReadOnly TIPO_LUGAR_ESTABLECIMIENTO As String = "Establecimiento"
+    Public Shared ReadOnly TIPO_LUGAR_ESTACION As String = "Estacion"
 
     Public Shared ReadOnly Property TIPOS_LUGARES() As String()
         Get
-            Return {TIPO_LUGAR_PATIO, TIPO_LUGAR_PUERTO, TIPO_LUGAR_ESTABLECIMIENTO}
+            Return {TIPO_LUGAR_PATIO, TIPO_LUGAR_PUERTO, TIPO_LUGAR_ESTABLECIMIENTO, TIPO_LUGAR_ESTACION}
         End Get
     End Property
 
@@ -92,6 +93,26 @@ Public Class Lugar
         End Get
         Set(ByVal value As Usuario)
             _creador = value
+        End Set
+    End Property
+
+    Private _Dueño As Cliente
+    Public Property Dueño() As Cliente
+        Get
+            Return _Dueño
+        End Get
+        Set(ByVal value As Cliente)
+            _Dueño = value
+        End Set
+    End Property
+
+    Private _ListaAutorizada As List(Of TipoMedioTrasporte)
+    Public Property TiposDeMediosDeTrasporteHabilitados() As List(Of TipoMedioTrasporte)
+        Get
+            Return _ListaAutorizada
+        End Get
+        Set(ByVal value As List(Of TipoMedioTrasporte))
+            _ListaAutorizada = value
         End Set
     End Property
 

@@ -107,7 +107,7 @@ Public Class Persistencia
 
 
     Public Function PreguntaSecretaUsuario(username As String) As String
-        Dim cmd As New OdbcCommand("select preguntasecreta from usuario where nombredeusuario=;", Conexcion)
+        Dim cmd As New OdbcCommand("select preguntasecreta from usuario where nombredeusuario=?;", Conexcion)
         cmd.CrearParametro(DbType.String, username)
         Return cmd.ExecuteScalar
     End Function
@@ -199,7 +199,7 @@ Public Class Persistencia
             Return Nothing
         End If
         Dim ParamList = "(" + String.Join(", ", "?".Multiply(VIN.Length)) + ")"
-        Dim cmd = $"select vehiculo.vin, vehiculo.marca, vehiculo.modelo, vehiculo.anio, vehiculo.tipo, vehiculo.color, cliente.IDCliente, cliente.RUT, cliente.Nombre, cliente.fechaRegistro from vehiculo inner join cliente on vehiculo.Cliente=Cliente.IDCliente where vehiculo.vin in {ParamList};"
+        Dim cmd = $"select vehiculo.vin, vehiculo.marca, vehiculo.modelo, vehiculo.anio, vehiculo.tipo, vehiculo.color, cliente.IDCliente, cliente.RUT, cliente.Nombre, cliente.fechaRegistro , vehiculo.idvehiculo from vehiculo inner join cliente on vehiculo.Cliente=Cliente.IDCliente where vehiculo.vin in {ParamList};"
         Dim com As New OdbcDataAdapter(cmd, _con)
         For Each i In VIN
             com.SelectCommand.CrearParametro(DbType.AnsiStringFixedLength, i)
@@ -210,7 +210,7 @@ Public Class Persistencia
     End Function
 
     Public Function VehiculosEnLote(IDLote As Integer) As DataTable
-        Dim com As New OdbcCommand("select vin, fecha, idusuario from integra where Lote=? and invalidado='f';", _con)
+        Dim com As New OdbcCommand("select vin, fecha, idusuario from integra,vehiculo where Lote=? and invalidado='f' and integra.idvehiculo=vehiculo.vin;", _con)
         com.CrearParametro(DbType.Int32, IDLote)
         Dim dt As New DataTable
         dt.Load(com.ExecuteReader)
@@ -219,7 +219,7 @@ Public Class Persistencia
 
     Public Function DatosBaseLote(Optional IDLote As Integer? = Nothing, Optional Nombre As String = Nothing) As DataTable
         Dim com As OdbcCommand
-        Dim commandStart = "select lote.nombre, l1.nombre, l2.nombre, lote.desde, lote.hacia, lote.estado, lote.prioridad, lote.idlote, lote.fechacreacion from lote inner join lugar as l1 on l1.idlugar=lote.hacia inner join lugar as l2 on l2.idlugar=lote.desde"
+        Dim commandStart = "select lote.nombre, l1.nombre, l2.nombre, lote.Origen, lote.Destino, lote.estado, lote.prioridad, lote.idlote, lote.fechacreacion from lote inner join lugar as l1 on l1.idlugar=lote.Destino inner join lugar as l2 on l2.idlugar=lote.Origen"
         Dim prefixes() = {" where lote.idlote=?;", " where lote.nombre=?;"}
         If IDLote IsNot Nothing Then
             com = New OdbcCommand(commandStart + prefixes(0), _con)
@@ -236,8 +236,8 @@ Public Class Persistencia
     End Function
 
     Public Function DatosBaseUsuario(nom As String) As DataTable
-        Dim com As New OdbcCommand("select IDUsuario, Email, FechaNac, Telefono, PrimerNombre, SegundoNombre, PrimerApellido, segundoapellido, PreguntaSecreta, RespuestaSecreta, Sexo, Rol.nombre
-                                    from Rol, Usuario Where Rol.idrol = usuario.rol and Usuario.nombreDeUsuario =? ;", Conexcion)
+        Dim com As New OdbcCommand("select IDUsuario, Email, FechaNac, Telefono, PrimerNombre, PrimerNombre, PrimerApellido, PrimerApellido, PreguntaSecreta, RespuestaSecreta, Sexo, rol
+                                    from Usuario Where Usuario.nombreDeUsuario=? ;", Conexcion)
         com.CrearParametro(DbType.String, nom)
         Dim dt As New DataTable
         dt.Load(com.ExecuteReader)
@@ -256,14 +256,14 @@ Public Class Persistencia
         Return com.ExecuteScalar
     End Function
 
-    Public Function IDLotePor_Vin_y_IDLugar(vin As String, id As Integer) As Integer
+    Public Function IDLotePor_IDvehiculo_y_IDLugar(idve As Integer, id As Integer) As Integer
         Try
-            Dim com As New OdbcCommand("select lote.idlote from integra, lote where vin=?
+            Dim com As New OdbcCommand("select lote.idlote from integra, lote where idvehiculo=?
                                     and invalidado ='f' and integra.lote=lote.idlote
-                                    and fecha in (select max(fecha) from lote, integra where vin=? and
-                                    integra.lote =lote.idlote and lote.desde=? )", Conexcion)
-            com.CrearParametro(DbType.String, vin)
-            com.CrearParametro(DbType.String, vin)
+                                    and fecha in (select max(fecha) from lote, integra where idvehiculo=? and
+                                    integra.lote =lote.idlote and lote.Origen=?)", Conexcion)
+            com.CrearParametro(DbType.Int32, idve)
+            com.CrearParametro(DbType.Int32, idve)
             com.CrearParametro(DbType.Int32, id)
             Return com.ExecuteScalar
         Catch ex As Exception
@@ -274,12 +274,12 @@ Public Class Persistencia
 
     Public Function DatosBasicosParaListarVehiculosPorLugar(idlugar As Integer) As DataTable
 
-        Dim com As New OdbcCommand("select vehiculo.vin, vehiculo.marca, vehiculo.modelo, vehiculo.tipo , posicionado.idlugar
-                                    from vehiculo inner join posicionado on vehiculo.idvehiculo=posicionado.idvehiculo
-                                    where posicionado.idlugar in (select unnamed_col_1 from table(subzonas_en_lugar(?)))
-                                    and vehiculo.vin not in (select vin from vehiculoIngresa where tipoingreso='Baja')",
+        Dim com As New OdbcCommand($"select distinct vehiculo.idvehiculo, vehiculo.vin, vehiculo.marca, vehiculo.modelo, vehiculo.tipo 
+                                    from vehiculo, posicionado, vehiculoIngresa
+                                    where posicionado.idvehiculo=vehiculo.idvehiculo and vehiculoIngresa.idvehiculo = vehiculo.idvehiculo
+                                    and posicionado.idlugar in (select unnamed_col_1 from table(subzonas_en_lugar({idlugar})))",
                                   Conexcion)
-        com.CrearParametro(DbType.String, idlugar)
+        'com.CrearParametro(DbType.Int32, idlugar)
         Dim dt As New DataTable
         dt.Load(com.ExecuteReader)
         Return dt
@@ -305,17 +305,15 @@ Public Class Persistencia
 
 
     Public Function DevolverInformacionBasicaDeZonasPorID_lugar(id As Integer) As DataTable
-        Dim com As New OdbcDataAdapter("select unnamed_col_1 as idzona, unnamed_col_2 as nombrezona, unnamed_col_3 as capacidad from table(zonas_en_lugar(?));", Conexcion)
-        com.SelectCommand.CrearParametro(DbType.Int32, id)
-        Dim ds As New DataSet
-        com.Fill(ds)
-        Return ds.Tables.Item(0)
+        Dim com As New OdbcCommand($"select unnamed_col_1 as idzona, unnamed_col_2 as nombrezona, unnamed_col_3 as capacidad from table(zonas_en_lugar({id}));", Conexcion)
+        'com.SelectCommand.CrearParametro(DbType.Int32, id)
+        Dim ds As New DataTable
+        ds.Load(com.ExecuteReader)
+        Return ds
     End Function
 
     Public Function DevolverInformacionDeSubzonaPorIdZona(id_z As Integer, id_l As Integer) As DataTable
-        Dim com As New OdbcCommand("select unnamed_col_1 as idzona, unnamed_col_2 as nombrezona, unnamed_col_3 as capacidad from table(subzonas_en_zona(?, ?));", Conexcion)
-        com.CrearParametro(DbType.Int32, id_z)
-        com.CrearParametro(DbType.Int32, id_l)
+        Dim com As New OdbcCommand($"select unnamed_col_1 as idzona, unnamed_col_2 as nombrezona, unnamed_col_3 as capacidad from table(subzonas_en_zona({id_l}, {id_z}));", Conexcion)
         Dim dt As New DataTable
         dt.Load(com.ExecuteReader)
         Return dt
@@ -325,7 +323,7 @@ Public Class Persistencia
         If id Is Nothing Then
             Return Nothing
         End If
-        Dim com As New OdbcCommand("select lote.idlote, lote.nombre, lote.estado, (select count(*) from integra where integra.lote=lote.idlote and integra.invalidado='f'), (select count(*) from transporta inner join transporte on transporta.transporteID=transporte.transporteID where transporta.IDLote=lote.IDLote) from lote inner join lugar on lote.desde = lugar.idlugar where lugar.idlugar = ?;", Conexcion)
+        Dim com As New OdbcCommand("select lote.idlote, lote.nombre, lote.estado, (select count(*) from integra where integra.lote=lote.idlote and integra.invalidado='f'), (select count(*) from transporta inner join transporte on transporta.transporteID=transporte.transporteID where transporta.IDLote=lote.IDLote) from lote inner join lugar on lote.origen = lugar.idlugar where lugar.idlugar = ?;", Conexcion)
         com.CrearParametro(DbType.Int32, id)
         Dim dt As New DataTable
         dt.Load(com.ExecuteReader)
@@ -356,7 +354,7 @@ Public Class Persistencia
     End Function
 
     Public Function ExistenciaDeVehiculoPRecargado(vin As String) As Boolean
-        Dim com As New OdbcCommand("select count(vin) from vehiculoIngresa where vin=? and tipoIngreso='Precarga'", Conexcion)
+        Dim com As New OdbcCommand("select count(vehiculo.idvehiculo) from vehiculoIngresa, vehiculo where vehiculo.idvehiculo=vehiculoIngresa.idvehiculo and vin=? and tipoIngreso='Precarga'", Conexcion)
         com.CrearParametro(DbType.String, vin)
         Return com.ExecuteScalar > 0
     End Function
@@ -386,6 +384,12 @@ Public Class Persistencia
         Dim dt As New DataTable
         dt.Load(com.ExecuteReader)
         Return dt
+    End Function
+
+    Public Function vinPorId(vin As String) As Integer
+        Dim com As New OdbcCommand("select IDVehiculo from vehiculo where vin=?", Conexcion)
+        com.CrearParametro(DbType.String, vin)
+        Return com.ExecuteScalar
     End Function
 
 End Class

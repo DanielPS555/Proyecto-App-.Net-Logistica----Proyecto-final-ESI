@@ -89,7 +89,7 @@
         End Set
     End Property
 
-    Public Sub New(iD As Integer, descripcion As String, fecha As Date, tipo As String, lug As Lugar, vehi As Vehiculo)
+    Public Sub New(iD As Integer, descripcion As String, fecha As Date, tipo As String, lug As Lugar, vehi As Vehiculo, padre As Vehiculo)
         Me.ID = iD
         Me.Descripcion = descripcion
         Me.Fecha = fecha

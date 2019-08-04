@@ -79,16 +79,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Fachada\Fachada.vb" />
-    <Compile Include="Logica\Camion.vb" />
     <Compile Include="Logica\Cliente.vb" />
     <Compile Include="Logica\Funciones comunes.vb" />
     <Compile Include="Logica\InformeDeDaños.vb" />
     <Compile Include="Logica\Ingreso.vb" />
     <Compile Include="Logica\Lote.vb" />
     <Compile Include="Logica\Lugar.vb" />
+    <Compile Include="Logica\MedioDeTrasporte.vb" />
     <Compile Include="Logica\Posicion.vb" />
     <Compile Include="Logica\RegistroDaños.vb" />
     <Compile Include="Logica\Subzona.vb" />
+    <Compile Include="Logica\TipoMedioTrasporte.vb" />
     <Compile Include="Logica\TrabajaEn.vb" />
     <Compile Include="Logica\Trasporte.vb" />
     <Compile Include="Logica\Usuario.vb" />

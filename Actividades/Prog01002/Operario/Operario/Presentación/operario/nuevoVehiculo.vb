@@ -92,18 +92,9 @@ Public Class nuevoVehiculo
 
 
     Private Sub infoDaños_Click(sender As Object, e As EventArgs) Handles infoDaños.Click
-        Dim vehiculo As Logica.Vehiculo = VRepo.VehiculoIncompleto(buscador.Text)
-        If vehiculo Is Nothing Then
-            MsgBox("No existe precarga para ese vehículo, reporte a su administrador")
-            Return
-        End If
 
-        VRepo.IngresosVehiculo(vehiculo)
-        If vehiculo.Ingresos.Where(Function(x) x.Tipo = Logica.TipoIngreso.Alta).Count > 0 Then
-            MsgBox("Ese vehículo ya ha sido ingresado")
-        Else
-            Marco.getInstancia.cargarPanel(Of crearInformaDeDaños)(New crearInformaDeDaños(vehiculo.VIN))
-        End If
+        Marco.getInstancia.cargarPanel(Of crearInformaDeDaños)(New crearInformaDeDaños(Controladores.Fachada.getInstancia.id_vehiculoPorVin(buscador.Text.Trim)))
+
     End Sub
 
     Private Sub Buscar_Click(sender As Object, e As EventArgs) Handles Buscar.Click

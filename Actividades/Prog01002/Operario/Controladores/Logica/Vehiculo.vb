@@ -67,6 +67,8 @@
         End Set
     End Property
 
+
+
     Private _idVehiculo As Integer
     Public Property IdVehiculo() As Integer
         Get

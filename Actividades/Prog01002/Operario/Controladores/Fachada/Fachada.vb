@@ -139,7 +139,7 @@ Public Class Fachada
             If Not tClientList.ContainsKey(i.Item(6)) Then
                 tClientList(i.Item(6)) = New Cliente(i.Item(6), i.Item(7), i.Item(8), i.Item(9))
             End If
-            lst.Add(New Vehiculo(i.Item(0), i.Item(1), i.Item(2), i.Item(3), i.Item(4), Color.FromArgb(Convert.ToInt32("0x" + i.Item(5), 16)), tClientList(i.Item(6))))
+            lst.Add(New Vehiculo(i.Item(0), i.Item(1), i.Item(2), i.Item(3), i.Item(4), Color.FromArgb(Convert.ToInt32("0x" + i.Item(5), 16)), tClientList(i.Item(6))) With {.IdVehiculo = i.Item(10)})
         Next
         Return lst
     End Function
@@ -190,11 +190,11 @@ Public Class Fachada
                         Case 4
                             user.Nombre = data
                         Case 5
-                            user.Nombre += " " + data
+                            'NADA
                         Case 6
                             user.Apellido = data
                         Case 7
-                            user.Apellido += " " + data
+                            'NADA
                         Case 8
                             user.PreguntaSecreta = data
                         Case 9
@@ -227,18 +227,19 @@ Public Class Fachada
     Public Function ListaVehiculos() As DataTable
         Dim dt As New DataTable
         dt = Persistencia.getInstancia.DatosBasicosParaListarVehiculosPorLugar(Persistencia.getInstancia.TrabajaEn.Lugar.IDLugar)
+        dt.Columns.Add("Id lote", GetType(String))
         dt.Columns.Add("Estado", GetType(String))
         For Each r As DataRow In dt.Rows
-            Dim idLote = Persistencia.getInstancia.IDLotePor_Vin_y_IDLugar(r.Item(0), Persistencia.getInstancia.TrabajaEn.Lugar.IDLugar)
+            Dim idLote = Persistencia.getInstancia.IDLotePor_IDvehiculo_y_IDLugar(r.Item(0), Persistencia.getInstancia.TrabajaEn.Lugar.IDLugar)
             If idLote = -1 Then
-                r.Item(5) = "Sin lote"
-                r.Item(4) = "-"
+                r.Item(6) = "Sin lote"
+                r.Item(5) = "-"
             Else
-                r.Item(4) = idLote.ToString
+                r.Item(5) = idLote.ToString
                 If Persistencia.getInstancia.ComprobarLoteTrasladoRealizado(idLote) Then
-                    r.Item(5) = "Fuera del lugar"
+                    r.Item(6) = "Fuera del lugar"
                 Else
-                    r.Item(5) = "En el lugar"
+                    r.Item(6) = "En el lugar"
                 End If
             End If
         Next
@@ -376,6 +377,8 @@ Public Class Fachada
         Return list
     End Function
 
-
+    Public Function id_vehiculoPorVin(vin As String) As Integer
+        Return Persistencia.getInstancia.vinPorId(vin)
+    End Function
 
 End Class

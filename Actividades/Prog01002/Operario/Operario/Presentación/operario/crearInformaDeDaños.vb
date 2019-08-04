@@ -18,6 +18,7 @@ Public Class crearInformaDeDaños
         InitializeComponent()
         tipo.SelectedIndex = 0
         TodosLosInformesYRegistros()
+        Info = New Controladores.InformeDeDaños(New Controladores.Vehiculo With {.IdVehiculo = id})
     End Sub
 
     Private Sub TodosLosInformesYRegistros()

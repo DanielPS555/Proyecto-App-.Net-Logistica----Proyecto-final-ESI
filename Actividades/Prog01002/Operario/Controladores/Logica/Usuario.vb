@@ -2,9 +2,9 @@
 
 Public Class Usuario
 
-    Public Shared ReadOnly TIPO_ROL_ADMINISTRADOR As String = "Administrador"
-    Public Shared ReadOnly TIPO_ROL_OPERARIO As String = "Operario"
-    Public Shared ReadOnly TIPO_ROL_TRANSPORTISTA As String = "Transportista"
+    Public Shared ReadOnly TIPO_ROL_ADMINISTRADOR As String = "A"
+    Public Shared ReadOnly TIPO_ROL_OPERARIO As String = "O"
+    Public Shared ReadOnly TIPO_ROL_TRANSPORTISTA As String = "T"
 
     Public Sub New(iD_usuario As Integer, tele As String, rol As String, sexo As Char, username As String, nombre As String, email As String, fechaNacimiento As Date, preguntaSecreta As String, respuestaSecreeta As String, respuestaSecreta As String, linkRastreador As String)
         Me.ID_usuario = iD_usuario
@@ -18,7 +18,7 @@ Public Class Usuario
         Me.PreguntaSecreta = preguntaSecreta
         Me.RespuestaSecreta = respuestaSecreta
         Me.LinkRastreador = linkRastreador
-        Me.Camiones = New List(Of Tuple(Of Tuple(Of Date?, Date?), Camion))
+        Me.MediosPermitidos = New List(Of MedioDeTrasporte)
     End Sub
 
     Public Sub New()
@@ -82,6 +82,17 @@ Public Class Usuario
             Return _rol
         End Get
         Set(ByVal value As String)
+            Select Case value
+                Case "T"
+                    _rol = Me.TIPO_ROL_TRANSPORTISTA
+                Case "O"
+                    _rol = Me.TIPO_ROL_OPERARIO
+                Case "A"
+                    _rol = Me.TIPO_ROL_ADMINISTRADOR
+                Case Else
+                    Throw New Exception("Rol invalido")
+            End Select
+
             If TIPOS_ROLES.Contains(value) Then
                 _rol = value
             Else
@@ -161,13 +172,13 @@ Public Class Usuario
         End Set
     End Property
 
-    Private _camiones As List(Of Tuple(Of Tuple(Of DateTime?, DateTime?), Camion))
-    Public Property Camiones() As List(Of Tuple(Of Tuple(Of DateTime?, DateTime?), Camion))
+    Private permitidos As List(Of MedioDeTrasporte)
+    Public Property MediosPermitidos() As List(Of MedioDeTrasporte)
         Get
-            Return _camiones
+            Return permitidos
         End Get
-        Set(ByVal value As List(Of Tuple(Of Tuple(Of DateTime?, DateTime?), Camion)))
-            _camiones = value
+        Set(ByVal value As List(Of MedioDeTrasporte))
+            permitidos = value
         End Set
     End Property
 
