@@ -1,5 +1,4 @@
 ﻿Imports Controladores
-Imports Operario.Logica
 Public Class ListaZonas
     Private estadoCom As Boolean
 
@@ -18,41 +17,37 @@ Public Class ListaZonas
         zonas.SelectedIndex = 0
     End Sub
 
+    Public zkvs As New Dictionary(Of String, Tuple(Of Integer, Integer)) ' zonas keyvalue store
     Private Sub cargarZonas()
-        Dim r As DataTable = Persistencia.getInstancia.Consultar("select zona.nombre, zona.IDZona from zona, lugar where 
-                                              zona.idlugar=lugar.idlugar and lugar.nombre=?", Persistencia.getInstancia.TrabajaEn.Lugar.Nombre)
+        Dim r As DataTable = Persistencia.getInstancia.DevolverInformacionBasicaDeZonasPorID_lugar(Persistencia.getInstancia.TrabajaEn.Lugar.IDLugar)
         zonas.Items.Clear()
+        zkvs.Clear()
         For i As Integer = 0 To r.Rows.Count - 1
-            zonas.Items.Add(r.Rows(i).Item(0))
+            zkvs.Add(r.Rows(i).Item(1), New Tuple(Of Integer, Integer)(r.Rows(i).Item(0), r.Rows(i).Item(2)))
+            zonas.Items.Add(r.Rows(i).Item(1))
         Next
     End Sub
 
+    Private szkvs As New Dictionary(Of String, Tuple(Of Integer, Integer))
     Private Sub CargarSubzonas(zona As String)
-        Dim r As DataTable = Persistencia.getInstancia.Consultar("select subzona.nombre from subzona,zona,lugar where 
-                                              subzona.idzona=zona.idzona and zona.idlugar=lugar.idlugar and 
-                                              lugar.nombre=? and zona.nombre=?", Persistencia.getInstancia.TrabajaEn.Lugar.Nombre, zona)
+        Dim r As DataTable = Persistencia.getInstancia.DevolverInformacionDeSubzonaPorIdZona(zkvs(zona).Item1, Persistencia.getInstancia.TrabajaEn.Lugar.IDLugar)
         subzonas.Items.Clear()
+        szkvs.Clear()
 
         For i As Integer = 0 To r.Rows.Count - 1
-            subzonas.Items.Add(r.Rows(i).Item(0))
+            szkvs.Add(r.Rows(i).Item(1), New Tuple(Of Integer, Integer)(r.Rows(i).Item(0), r.Rows(i).Item(2)))
+            subzonas.Items.Add(r.Rows(i).Item(1))
         Next
     End Sub
-
-
 
     Private Sub zonas_SelectedIndexChanged(sender As Object, e As EventArgs) Handles zonas.SelectedIndexChanged
 
         CargarSubzonas(zonas.SelectedItem)
         subzonas.SelectedIndex = 0
         zonaNombre.Text = zonas.SelectedItem
-        zonaCapasidad.Text = SRepo.Consultar("select zona.capacidad from zona, lugar where zona.nombre='" & zonas.SelectedItem & "'
-                                  And zona.IDLugar = Lugar.idLugar and Lugar.Nombre ='" & URepo.ConectadoEn & "'").Rows(0).Item(0)
+        zonaCapasidad.Text = zkvs(zonas.SelectedItem).Item2
         Try
-            zonaUso.Text = SRepo.Consultar("select zona.nombre, count(vin) from subzona,zona,lugar,posicionado where
-                                        subzona.idzona=zona.idzona and zona.idlugar=lugar.idlugar and
-                                        lugar.nombre='" & URepo.ConectadoEn & "' and zona.nombre='" & zonas.SelectedItem & "'
-                                        and subzona.idSub = posicionado.idsub and posicionado.hasta is null
-                                        group by zona.nombre").Rows(0).Item(1)
+            zonaUso.Text = Persistencia.getInstancia.PosicionesOcupadasEnLugar(zkvs(zonas.SelectedItem).Item1)
         Catch ex As Exception
             zonaUso.Text = "0"
         End Try
@@ -61,50 +56,20 @@ Public Class ListaZonas
 
     Private Sub subzonas_SelectedIndexChanged(sender As Object, e As EventArgs) Handles subzonas.SelectedIndexChanged
         subnombre.Text = subzonas.SelectedItem
-        subcapasidad.Text = SRepo.Consultar("select subzona.capacidad from subzona, zona, lugar
-
-                                            where lugar.nombre='" & URepo.ConectadoEn & "' and zona.IDLugar = lugar.idlugar
-
-                                            and zona.nombre = '" & zonas.SelectedItem & "' and subzona.idzona = zona.idzona
-
-                                            and subzona.nombre='" & subzonas.SelectedItem & "'").Rows(0).Item(0)
+        subcapasidad.Text = szkvs(subzonas.SelectedItem).Item2
         Try
-            subUso.Text = SRepo.Consultar("select zona.nombre, count(vin) from subzona,zona,lugar,posicionado where
-                                        subzona.idzona=zona.idzona and zona.idlugar=lugar.idlugar and
-                                        lugar.nombre='" & URepo.ConectadoEn & "' and zona.nombre='" & zonas.SelectedItem & "'
-                                        and subzona.idSub = posicionado.idsub and subzona.nombre='" & subzonas.SelectedItem & "' and posicionado.hasta is null
-                                        group by zona.nombre").Rows(0).Item(1)
+            subUso.Text = Persistencia.getInstancia.PosicionesOcupadasEnLugar(szkvs(subzonas.SelectedItem).Item1)
         Catch ex As Exception
             subUso.Text = "0"
         End Try
-        cargarTablaVehiculos(zonas.SelectedItem, subzonas.SelectedItem)
+        cargarTablaVehiculos(subzonas.SelectedItem)
     End Sub
 
-    Private Sub cargarTablaVehiculos(zona As String, subzona As String)
+    Private Sub cargarTablaVehiculos(subzona As String)
 
-        Dim r As DataTable = SRepo.Consultar("select VIN, posicion, desde, hasta, usuario.nombredeUsuario
+        Dim r As DataTable = Persistencia.getInstancia.DatosBasicosParaListarVehiculosPorSubzona(szkvs(subzona).Item1)
 
-                                            From lugar, zona, subzona, posicionado, usuario
-
-                                            where lugar.nombre ='" & URepo.ConectadoEn & "' And zona.idlugar = lugar.idLugar
-
-                                            And zona.nombre = '" & zona & "' And subzona.idzona=zona.idzona And subzona.nombre ='" & subzona & "'
-
-                                            And posicionado.idsub = subzona.idsub And posicionado.idusuario=usuario.idusuario")
-
-        r.Columns.Add("CustLName", GetType(String))
         vehi.DataSource = r
-        For i As Integer = 0 To r.Rows.Count - 1
-
-            If Logica.Constantes.AutoNull(Of Date?)(vehi.Rows(i).Cells(3).Value) Is Nothing Then
-                vehi.Rows(i).Cells(5).Value = "En la posicion"
-            Else
-                vehi.Rows(i).Cells(5).Value = "Fuera de la posicion"
-            End If
-        Next
-
-
-
     End Sub
 
     Private Sub vehi_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles vehi.CellContentClick

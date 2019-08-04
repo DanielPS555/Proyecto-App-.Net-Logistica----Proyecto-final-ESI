@@ -58,11 +58,14 @@ Partial Class ListaZonas
         '
         'vehi
         '
+        Me.vehi.AllowUserToAddRows = False
+        Me.vehi.AllowUserToDeleteRows = False
         Me.vehi.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.vehi.BackgroundColor = System.Drawing.Color.White
         Me.vehi.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.vehi.Location = New System.Drawing.Point(244, 358)
         Me.vehi.Name = "vehi"
+        Me.vehi.ReadOnly = True
         Me.vehi.Size = New System.Drawing.Size(624, 283)
         Me.vehi.TabIndex = 1
         '

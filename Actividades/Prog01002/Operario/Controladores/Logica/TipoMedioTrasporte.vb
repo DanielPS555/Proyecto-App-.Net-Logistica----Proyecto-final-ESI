@@ -1,4 +1,4 @@
-﻿Public Class TipoMedioTrasporte
+﻿Public Class TipoMedioTransporte
 
     Private _id As Integer
     Public Property ID() As Integer
@@ -20,12 +20,20 @@
         End Set
     End Property
 
-    Public Sub New()
-
+    Public Sub New(nombre As String)
+        Me.Nombre = nombre
     End Sub
 
     Public Sub New(iD As Integer, nombre As String)
         Me.ID = iD
         Me.Nombre = nombre
     End Sub
+    Public Sub New(nombre As String, iD As Integer)
+        Me.Nombre = nombre
+        Me.ID = iD
+    End Sub
+    Private Shared Medios As TipoMedioTransporte() = {New TipoMedioTransporte("Camión", 1), New TipoMedioTransporte("Maritimo", 2), New TipoMedioTransporte("Trenvía", 3)}
+    Public Shared Function ByName(tipo As String) As TipoMedioTransporte
+        Return Medios.Where(Function(x) x.Nombre = tipo).SingleOrDefault
+    End Function
 End Class

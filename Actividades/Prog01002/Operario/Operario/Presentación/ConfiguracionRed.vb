@@ -1,35 +1,33 @@
 ﻿Imports Controladores.Fachada
 Public Class ConfiguracionRed
-    Private Const KeyName As String = "HKEY_CURRENT_USER\Software\Bit\SLTA"
     Private papa As Login
+    Private Config As Controladores.FachadaRegistro.ConfiguracionEnRed
     Public Sub New(p As Login)
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
         papa = p
-        If Microsoft.Win32.Registry.GetValue(KeyName, "Informix IP", Nothing) Is Nothing Then
-            Microsoft.Win32.Registry.SetValue(KeyName, "Informix IP", "localhost", Microsoft.Win32.RegistryValueKind.String)
-        End If
-        ip.Text = Microsoft.Win32.Registry.GetValue(KeyName, "Informix IP", "localhost")
-        puerto.Text = Microsoft.Win32.Registry.GetValue(KeyName, "Informix Port", "9088")
-        nomservidor.Text = Microsoft.Win32.Registry.GetValue(KeyName, "Informix Server name", "ol_esi")
-        nomInformix.Text = Microsoft.Win32.Registry.GetValue(KeyName, "Username", "root")
-        pass.Text = Microsoft.Win32.Registry.GetValue(KeyName, "Password", Nothing)
-        nomBd.Text = Microsoft.Win32.Registry.GetValue(KeyName, "Database", "bit")
+        Config = Controladores.FachadaRegistro.LeerConfiguracion
+        ip.Text = Config.IP
+        puerto.Text = Config.Puerto
+        nomservidor.Text = Config.ServerName
+        nomInformix.Text = Config.UserName
+        pass.Text = Config.Password
+        nomBd.Text = Config.Database
     End Sub
 
-    Public Function enviarDatos()
-
-        If Controladores.Fachada.getInstancia.ProbarConexcion(ip.Text, puerto.Text, nomservidor.Text, nomInformix.Text, pass.Text, nomBd.Text) Then
-            Microsoft.Win32.Registry.SetValue(KeyName, "Informix IP", ip.Text, Microsoft.Win32.RegistryValueKind.String)
-            Microsoft.Win32.Registry.SetValue(KeyName, "Informix Port", puerto.Text, Microsoft.Win32.RegistryValueKind.String)
-            Microsoft.Win32.Registry.SetValue(KeyName, "Informix Server name", nomservidor.Text, Microsoft.Win32.RegistryValueKind.String)
-            Microsoft.Win32.Registry.SetValue(KeyName, "Username", nomInformix.Text, Microsoft.Win32.RegistryValueKind.String)
-            Microsoft.Win32.Registry.SetValue(KeyName, "Password", pass.Text, Microsoft.Win32.RegistryValueKind.String)
-            Microsoft.Win32.Registry.SetValue(KeyName, "Database", nomBd.Text, Microsoft.Win32.RegistryValueKind.String)
-            Controladores.Fachada.getInstancia.IniciarConexcion(ip.Text, puerto.Text, nomservidor.Text, nomInformix.Text, pass.Text, nomBd.Text)
-            Return 1
+    Public Function EnviarDatos() As Boolean
+        Config.IP = ip.Text
+        Config.Puerto = Integer.Parse(puerto.Text)
+        Config.ServerName = nomservidor.Text
+        Config.UserName = nomInformix.Text
+        Config.Password = pass.Text
+        Config.Database = nomBd.Text
+        If Controladores.Fachada.getInstancia.ProbarConexcion(Config) Then
+            Controladores.FachadaRegistro.GuardarConfiguracion(Config)
+            Controladores.Fachada.getInstancia.IniciarConexcion(Config)
+            Return True
         Else
-            Return 0
+            Return False
         End If
     End Function
 
@@ -38,7 +36,7 @@ Public Class ConfiguracionRed
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        If enviarDatos() = 1 Then
+        If EnviarDatos() Then
             papa.NotificarDeConexcion(True)
             Me.Close()
         Else
@@ -47,5 +45,7 @@ Public Class ConfiguracionRed
         End If
     End Sub
 
+    Private Sub ConfiguracionRed_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
+    End Sub
 End Class

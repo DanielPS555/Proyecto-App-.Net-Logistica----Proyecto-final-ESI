@@ -1,4 +1,6 @@
 ﻿
+Imports Controladores
+
 Public Class Fachada
     Private Shared initi As Fachada
 
@@ -30,6 +32,14 @@ Public Class Fachada
         Else
             Return False
         End If
+    End Function
+
+    Public Function ProbarConexcion(config As ConfiguracionEnRed) As Boolean
+        Return ProbarConexcion(config.IP, config.Puerto, config.ServerName, config.UserName, config.Password, config.Database)
+    End Function
+
+    Public Function IniciarConexcion(config As ConfiguracionEnRed) As Boolean
+        Return IniciarConexcion(config.IP, config.Puerto, config.ServerName, config.UserName, config.Password, config.Database)
     End Function
 
     Public Function ComrpobarUsuario(NombreUsuario As String, contraseña As String) As Boolean

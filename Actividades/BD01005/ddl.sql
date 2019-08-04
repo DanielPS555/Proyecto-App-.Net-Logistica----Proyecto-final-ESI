@@ -194,6 +194,7 @@ CREATE table
 	CantVan integer NOT null check(CantVan > -1),
 	CantMinivan integer NOT null check (CantMinivan > -1),
 	primary key(IDTipo, IDLegal),
+	foreign key(Tipo) references TipoTransporte(Nombre) on delete cascade,
 	foreign key(IDTipo) references TipoTransporte(IDTipo) ON DELETE CASCADE,
 	foreign key(Creador) references usuario(IDUsuario) ON DELETE CASCADE
 );

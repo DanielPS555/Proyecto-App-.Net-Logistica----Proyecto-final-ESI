@@ -79,6 +79,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Fachada\Fachada.vb" />
+    <Compile Include="Fachada\FachadaRegistro.vb" />
     <Compile Include="Logica\Cliente.vb" />
     <Compile Include="Logica\Funciones comunes.vb" />
     <Compile Include="Logica\InformeDeDaños.vb" />

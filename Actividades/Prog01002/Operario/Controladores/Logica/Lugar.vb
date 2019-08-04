@@ -106,12 +106,12 @@ Public Class Lugar
         End Set
     End Property
 
-    Private _ListaAutorizada As List(Of TipoMedioTrasporte)
-    Public Property TiposDeMediosDeTrasporteHabilitados() As List(Of TipoMedioTrasporte)
+    Private _ListaAutorizada As List(Of TipoMedioTransporte)
+    Public Property TiposDeMediosDeTrasporteHabilitados() As List(Of TipoMedioTransporte)
         Get
             Return _ListaAutorizada
         End Get
-        Set(ByVal value As List(Of TipoMedioTrasporte))
+        Set(ByVal value As List(Of TipoMedioTransporte))
             _ListaAutorizada = value
         End Set
     End Property

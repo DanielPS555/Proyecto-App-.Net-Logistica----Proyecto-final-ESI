@@ -94,3 +94,38 @@ create function subzonas_en_lugar(lugarid like lugar.idlugar)
 	  return idz, nmz, cpz WITH RESUME;
 	END FOREACH;
 end function;
+
+create function ocupacion_en_lugar(lugarid like lugar.idlugar)
+   returning integer
+   	DEFINE tipo varchar(15);
+	DEFINE ocup integer;
+	select lugar.tipo into tipo from lugar where idlugar=lugarid;
+	IF tipo <> "Subzona" THEN
+	   select count(*)  into ocup
+	   from posicionado where hasta is null
+	   and idlugar in (select unnamed_col_1 from table(subzonas_en_lugar(lugar)));
+	ELSE
+	   select count(*) into ocup
+	   from posicionado where hasta is null and idlugar = lugarid;
+	END IF;
+	return ocup;
+end function;
+
+create function subzonas_en_lugar_por_nombre(lugarnombre like lugar.nombre)
+   returning integer, varchar(100), integer
+	DEFINE idz integer;
+	DEFINE nmz varchar(100);
+	DEFINE cpz integer;
+	DEFINE lugarid integer;
+	select lugar.idlugar into lugarid from lugar where nombre=lugarnombre;
+	FOREACH cursor1 FOR
+	  select lugar.idlugar, nombre, capacidad
+	  into idz, nmz, cpz
+	  from lugar inner join
+	  (select menor as idlugar from incluye
+	   start with mayor=lugarid
+	   connect by prior menor=mayor) as children on lugar.idlugar=children.idlugar
+	  where lugar.tipo="Subzona"
+	  return idz, nmz, cpz WITH RESUME;
+	END FOREACH;
+end function;

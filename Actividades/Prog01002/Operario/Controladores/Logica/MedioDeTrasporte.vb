@@ -1,6 +1,6 @@
 ﻿Imports Controladores
 
-Public Class MedioDeTrasporte
+Public Class MedioDeTransporte
 
     Private _id As Integer
     Public Property ID() As Integer
@@ -22,12 +22,12 @@ Public Class MedioDeTrasporte
         End Set
     End Property
 
-    Private _Tipo As TipoMedioTrasporte
-    Public Property Tipo() As TipoMedioTrasporte
+    Private _Tipo As TipoMedioTransporte
+    Public Property Tipo() As TipoMedioTransporte
         Get
             Return _Tipo
         End Get
-        Set(ByVal value As TipoMedioTrasporte)
+        Set(ByVal value As TipoMedioTransporte)
             _Tipo = value
         End Set
     End Property
@@ -96,7 +96,7 @@ Public Class MedioDeTrasporte
 
     End Sub
 
-    Public Sub New(iD As Integer, nombre As String, tipo As TipoMedioTrasporte, creador As Usuario, cantAutos As Integer, cantVAN As Integer, cantMiniVan As Integer, cantSUV As Integer, cantCamiones As Integer)
+    Public Sub New(iD As Integer, nombre As String, tipo As TipoMedioTransporte, creador As Usuario, cantAutos As Integer, cantVAN As Integer, cantMiniVan As Integer, cantSUV As Integer, cantCamiones As Integer)
         Me.ID = iD
         Me.Nombre = nombre
         Me.Tipo = tipo

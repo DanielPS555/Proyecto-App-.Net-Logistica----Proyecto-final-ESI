@@ -124,7 +124,7 @@ Public Class Funciones_comunes
     End Function
 
     Public Shared Function DarFormato(fecha As Date?) As String
-        Return If(fecha IsNot Nothing, fecha?.ToString("yyyy/MM/dd a la\s HH:mm:ss"), "Nunca")
+        Return fecha.DarFormato
     End Function
 
     Public Shared Function Hex_to_rgb(color As String) As System.Drawing.Color

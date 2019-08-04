@@ -18,7 +18,7 @@ Public Class Usuario
         Me.PreguntaSecreta = preguntaSecreta
         Me.RespuestaSecreta = respuestaSecreta
         Me.LinkRastreador = linkRastreador
-        Me.MediosPermitidos = New List(Of MedioDeTrasporte)
+        Me.MediosPermitidos = New List(Of MedioDeTransporte)
     End Sub
 
     Public Sub New()
@@ -172,12 +172,12 @@ Public Class Usuario
         End Set
     End Property
 
-    Private permitidos As List(Of MedioDeTrasporte)
-    Public Property MediosPermitidos() As List(Of MedioDeTrasporte)
+    Private permitidos As List(Of MedioDeTransporte)
+    Public Property MediosPermitidos() As List(Of MedioDeTransporte)
         Get
             Return permitidos
         End Get
-        Set(ByVal value As List(Of MedioDeTrasporte))
+        Set(ByVal value As List(Of MedioDeTransporte))
             permitidos = value
         End Set
     End Property

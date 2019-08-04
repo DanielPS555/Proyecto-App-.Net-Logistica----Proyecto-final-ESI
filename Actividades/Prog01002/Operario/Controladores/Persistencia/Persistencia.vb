@@ -27,6 +27,48 @@ Public Class Persistencia
         Return ds.Tables.Item(0)
     End Function
 
+    Public Function TransportesDeVehiculo(VIN As String) As DataTable
+        Dim selcmd As New Odbc.OdbcCommand("select l1.nombre as origen, l2.nombre as destino, lote.nombre as lote, mediotransporte.nombre as medio, transporte.fechahorasalida from vehiculo
+                                            inner join integra on integra.idvehiculo=vehiculo.idvehiculo and integra.invalidado='f'
+                                            inner join lote on integra.lote=lote.idlote
+                                            inner join transporta on transporta.idlote=lote.idlote
+                                            inner join transporte on transporte.transporteid=transporta.transporteid
+                                            inner join mediotransporte on mediotransporte.idtipo=transporte.idtipo and mediotransporte.idlegal=transporte.idlegal
+                                            inner join lugar as l1 on l1.idlugar=lote.origen
+                                            inner join lugar as l2 on l2.idlugar=lote.destino
+                                            where vehiculo.vin=?", _con)
+        selcmd.CrearParametro(VIN)
+        Dim rdr = selcmd.ExecuteReader
+        Dim dt As New DataTable
+        dt.Load(rdr)
+        Return dt
+    End Function
+
+    Public Function PosicionesOcupadasEnLugar(idlugar As Integer) As Integer
+        Dim selcmd As New OdbcCommand("execute function ocupacion_en_lugar(?::integer);", _con)
+        selcmd.CrearParametro(idlugar)
+        Return selcmd.ExecuteScalar
+    End Function
+
+    Public Function PosicionesDeVehiculoEnLugar(lugarNombre As String, VIN As String) As DataTable
+        Dim selcmd As New OdbcCommand("select subz.unnamed_col_2::varchar(100) as subzona, posicionado.posicion, desde, hasta from table(subzonas_en_lugar_por_nombre(?::varchar(100))) as subz
+                                       inner join posicionado
+                                       on (subz.unnamed_col_1::integer)=posicionado.idlugar
+                                       inner join vehiculo on vehiculo.idvehiculo=posicionado.idvehiculo and vehiculo.vin=?", _con)
+        selcmd.CrearParametro(lugarNombre)
+        selcmd.CrearParametro(VIN)
+        Dim rdr = selcmd.ExecuteReader
+        Dim dt As New DataTable
+        dt.Load(rdr)
+        Return dt
+    End Function
+
+    Private Function IDLugar(lugarNombre As String) As Integer
+        Dim selcmd As New OdbcCommand("select idlugar from lugar where nombre=?", _con)
+        selcmd.CrearParametro(lugarNombre)
+        Return selcmd.ExecuteScalar
+    End Function
+
     Public Property UsuarioActual() As Usuario
         Get
             Return _UsuarioIngresado
@@ -280,6 +322,19 @@ Public Class Persistencia
                                     and posicionado.idlugar in (select unnamed_col_1 from table(subzonas_en_lugar({idlugar})))",
                                   Conexcion)
         'com.CrearParametro(DbType.Int32, idlugar)
+        Dim dt As New DataTable
+        dt.Load(com.ExecuteReader)
+        Return dt
+    End Function
+
+    Public Function DatosBasicosParaListarVehiculosPorSubzona(idlugar As Integer) As DataTable
+
+        Dim com As New OdbcCommand($"select distinct vehiculo.idvehiculo, vehiculo.vin, vehiculo.marca, vehiculo.modelo, vehiculo.tipo 
+                                    from vehiculo, posicionado, vehiculoIngresa
+                                    where posicionado.idvehiculo=vehiculo.idvehiculo and vehiculoIngresa.idvehiculo = vehiculo.idvehiculo
+                                    and posicionado.idlugar=? and posicionado.hasta is null",
+                                  Conexcion)
+        com.CrearParametro(DbType.Int32, idlugar)
         Dim dt As New DataTable
         dt.Load(com.ExecuteReader)
         Return dt

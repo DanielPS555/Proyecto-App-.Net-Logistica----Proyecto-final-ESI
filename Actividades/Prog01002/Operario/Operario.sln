@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29020.237
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.271
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Operario", "Operario\Operario.vbproj", "{D1C7738E-928B-4D44-8A10-9DC980651AE8}"
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Controladores", "Controladores\Controladores.vbproj", "{513A34CC-0479-486D-8B03-F3EDA1AB0383}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "TrayectoVehicular", "..\..\..\Herramientas extra\TrayectoVehicular\TrayectoVehicular\TrayectoVehicular.vbproj", "{AC1B5A25-485E-4544-A386-7A0363FD0233}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +33,14 @@ Global
 		{513A34CC-0479-486D-8B03-F3EDA1AB0383}.Release|Any CPU.Build.0 = Release|Any CPU
 		{513A34CC-0479-486D-8B03-F3EDA1AB0383}.Release|x64.ActiveCfg = Release|Any CPU
 		{513A34CC-0479-486D-8B03-F3EDA1AB0383}.Release|x64.Build.0 = Release|Any CPU
+		{AC1B5A25-485E-4544-A386-7A0363FD0233}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC1B5A25-485E-4544-A386-7A0363FD0233}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC1B5A25-485E-4544-A386-7A0363FD0233}.Debug|x64.ActiveCfg = Debug|x64
+		{AC1B5A25-485E-4544-A386-7A0363FD0233}.Debug|x64.Build.0 = Debug|x64
+		{AC1B5A25-485E-4544-A386-7A0363FD0233}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC1B5A25-485E-4544-A386-7A0363FD0233}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC1B5A25-485E-4544-A386-7A0363FD0233}.Release|x64.ActiveCfg = Release|x64
+		{AC1B5A25-485E-4544-A386-7A0363FD0233}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

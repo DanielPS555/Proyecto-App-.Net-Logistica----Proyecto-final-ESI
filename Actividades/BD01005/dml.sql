@@ -250,9 +250,10 @@ insert into trabajaen values (0,(select IDLugar from lugar where Nombre="Deposit
 
 
 		/*Posicionado*/
-			insert into posicionado values ((select idlugar from lugar where nombre="Zona A_1_pb"), (select idvehiculo from vehiculo where vin="1GH2J83LED0987547"),"2019-6-28 21:00:00", "2019-7-2 15:00:00",21,(select idusuario from usuario where primernombre = "Pepe"));
-			insert into posicionado values ((select idlugar from lugar where nombre="Zona A_1_mvd"),(select idvehiculo from vehiculo where vin="1GH2J83LED0987547"),"2019-7-2 16:35:04", "2019-7-4 13:03:21",14,(select idusuario from usuario where primernombre = "Pepe"));
-			insert into posicionado values ((select idlugar from lugar where nombre="Zona A_1_mvd"),(select idvehiculo from vehiculo where vin="1GH2J83LED0987547"),"2019-7-4 17:15:32",'2019-7-8 15:00:02',18,(select idusuario from usuario where primernombre = "Pepe"));
+
+			insert into posicionado values ((select idlugar from lugar where nombre="Zona A_1_mvd"),(select idvehiculo from vehiculo where vin="1GH2J83LED0987547"),"2019-6-29 12:35:04", "2019-6-29 13:03:21",14,(select idusuario from usuario where primernombre = "Pepe"));
+			insert into posicionado values ((select idlugar from lugar where nombre="Zona A_1_mvd"),(select idvehiculo from vehiculo where vin="1GH2J83LED0987547"),"2019-6-29 13:03:32",'2019-6-30 12:02:02',18,(select idusuario from usuario where primernombre = "Pepe"));
+			insert into posicionado values ((select idlugar from lugar where nombre="Zona A_1_md"),(select idvehiculo from vehiculo where vin="1GH2J83LED0987547"),"2019-7-8 17:15:32",'2019-7-8 15:00:02',18,(select idusuario from usuario where primernombre = "Pepe"));
 
 			insert into posicionado values ((select idlugar from lugar where nombre="Zona A_2_mvd"),(select idvehiculo from vehiculo where vin="1HGYN4HTEL8372649"),"2019-6-29 12:11:23", "2019-7-5 10:09:32",22,(select idusuario from usuario where primernombre = "Juan"));
 			
@@ -373,7 +374,7 @@ insert into Habilitado values ((select idlugar from lugar where nombre="Deposito
        (select idusuario from usuario where primernombre = "Felipe"), "8-8-15",
        0, 2, 1, 0, 1);
 
-      insert into MedioTransporte values (3,"AFE:32", "A!Train", "Tren",
+      insert into MedioTransporte values (3,"AFE:32", "A!Train", "Trenvía",
 	(select idusuario from usuario where primernombre="Felipe"), "8-3-07", 0, 5, 5, 5, 5);
 
       insert into permite values (1,"24GHBYEGV81874679",(select idusuario from usuario where primernombre = "Antonio"),
@@ -443,7 +444,7 @@ insert into transporte values (0,
 insert into transporte values (0,
        (select idusuario from usuario
        where primernombre = "Antonio"),1,"24GHBYEGV81874679",
-       "2019-6-30 12:00", "2019-6-29 12:02",
+       "2019-6-30 12:00", "2019-6-30 12:02",
        "2019-6-30 16:30", "2019-6-30 16:53", "Exitoso");
 
       insert into transporte values (0,

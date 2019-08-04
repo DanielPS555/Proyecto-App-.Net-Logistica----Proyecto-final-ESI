@@ -24,12 +24,12 @@ Public Class Trasporte
         Me.Lotes = New List(Of Lote)
     End Sub
 
-    Private _medi As MedioDeTrasporte
-    Public Property MedioDeTrasporte() As MedioDeTrasporte
+    Private _medi As MedioDeTransporte
+    Public Property MedioDeTrasporte() As MedioDeTransporte
         Get
             Return _medi
         End Get
-        Set(ByVal value As MedioDeTrasporte)
+        Set(ByVal value As MedioDeTransporte)
             _medi = value
         End Set
     End Property
