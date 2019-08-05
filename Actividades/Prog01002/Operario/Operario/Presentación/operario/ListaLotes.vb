@@ -24,7 +24,7 @@ Public Class ListaLotes
         If e.RowIndex < 0 Then
             Return
         End If
-        Marco.getInstancia.cargarPanel(Of PanelInfoLote)(New PanelInfoLote(lote.Rows(e.RowIndex).Cells(0).Value))
+        Marco.getInstancia.cargarPanel(New PanelInfoLote(CType(lote.Rows(e.RowIndex).Cells(1).Value, String)))
     End Sub
 
 End Class

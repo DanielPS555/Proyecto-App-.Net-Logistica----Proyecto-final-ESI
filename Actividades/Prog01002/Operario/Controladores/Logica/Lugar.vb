@@ -13,6 +13,18 @@ Public Class Lugar
         End Get
     End Property
 
+    Public Function Distancia(x As Lugar) As Double
+        Dim d_x = Math.Abs(x.PosicionX - Me.PosicionX)
+        Dim d_y = Math.Abs(x.PosicionY - Me.PosicionY)
+        Return Math.Sqrt((d_x * d_x) + (d_y * d_y))
+    End Function
+
+    Public ReadOnly Property Posicion As PointF
+        Get
+            Return New PointF(PosicionX, PosicionY)
+        End Get
+    End Property
+
     Private _IDlugar As Integer
     Public Property IDLugar() As Integer
         Get

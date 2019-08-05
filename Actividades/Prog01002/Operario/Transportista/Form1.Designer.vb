@@ -22,8 +22,8 @@ Partial Class Form1
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim ListViewItem3 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem(New String() {"Lote 1", "5", "Depósito de san chota", "Sí"}, -1)
-        Dim ListViewItem4 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem(New String() {"Lotezno", "9", "Chaina", "No"}, -1)
+        Dim ListViewItem5 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem(New String() {"Lote 1", "5", "Depósito de san chota", "Sí"}, -1)
+        Dim ListViewItem6 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem(New String() {"Lotezno", "9", "Chaina", "No"}, -1)
         Me.Lotes = New System.Windows.Forms.ListView()
         Me.ColumnHeader1 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader2 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
@@ -31,6 +31,7 @@ Partial Class Form1
         Me.ColumnHeader4 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.VehiculosEnLote = New System.Windows.Forms.ListView()
         Me.Button1 = New System.Windows.Forms.Button()
+        Me.PathView1 = New Transportista.PathView()
         Me.SuspendLayout()
         '
         'Lotes
@@ -38,9 +39,9 @@ Partial Class Form1
         Me.Lotes.CheckBoxes = True
         Me.Lotes.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.ColumnHeader2, Me.ColumnHeader3, Me.ColumnHeader4})
         Me.Lotes.HideSelection = False
-        ListViewItem3.StateImageIndex = 0
-        ListViewItem4.StateImageIndex = 0
-        Me.Lotes.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem3, ListViewItem4})
+        ListViewItem5.StateImageIndex = 0
+        ListViewItem6.StateImageIndex = 0
+        Me.Lotes.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem5, ListViewItem6})
         Me.Lotes.Location = New System.Drawing.Point(12, 12)
         Me.Lotes.Name = "Lotes"
         Me.Lotes.Size = New System.Drawing.Size(457, 97)
@@ -85,11 +86,19 @@ Partial Class Form1
         Me.Button1.Text = "Reservar"
         Me.Button1.UseVisualStyleBackColor = True
         '
+        'PathView1
+        '
+        Me.PathView1.Location = New System.Drawing.Point(476, 12)
+        Me.PathView1.Name = "PathView1"
+        Me.PathView1.Size = New System.Drawing.Size(249, 249)
+        Me.PathView1.TabIndex = 3
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(481, 264)
+        Me.ClientSize = New System.Drawing.Size(737, 264)
+        Me.Controls.Add(Me.PathView1)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.VehiculosEnLote)
         Me.Controls.Add(Me.Lotes)
@@ -106,4 +115,5 @@ Partial Class Form1
     Friend WithEvents ColumnHeader4 As ColumnHeader
     Friend WithEvents VehiculosEnLote As ListView
     Friend WithEvents Button1 As Button
+    Friend WithEvents PathView1 As PathView
 End Class

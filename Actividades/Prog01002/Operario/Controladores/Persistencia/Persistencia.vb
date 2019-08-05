@@ -44,6 +44,12 @@ Public Class Persistencia
         Return dt
     End Function
 
+    Friend Function CerrarLote(idlote As Integer) As Boolean
+        Dim selcmd As New OdbcCommand("execute function cerrar_lote(?::integer);", _con)
+        selcmd.CrearParametro(idlote)
+        Return selcmd.ExecuteScalar
+    End Function
+
     Public Function PosicionesOcupadasEnLugar(idlugar As Integer) As Integer
         Dim selcmd As New OdbcCommand("execute function ocupacion_en_lugar(?::integer);", _con)
         selcmd.CrearParametro(idlugar)
@@ -252,8 +258,8 @@ Public Class Persistencia
     End Function
 
     Public Function VehiculosEnLote(IDLote As Integer) As DataTable
-        Dim com As New OdbcCommand("select vin, fecha, idusuario from integra,vehiculo where Lote=? and invalidado='f' and integra.idvehiculo=vehiculo.vin;", _con)
-        com.CrearParametro(DbType.Int32, IDLote)
+        Dim com As New OdbcCommand("select vin, fecha, idusuario from integra inner join vehiculo on integra.lote=? and integra.invalidado='f' and integra.idvehiculo=vehiculo.idvehiculo;", _con)
+        com.CrearParametro(IDLote)
         Dim dt As New DataTable
         dt.Load(com.ExecuteReader)
         Return dt

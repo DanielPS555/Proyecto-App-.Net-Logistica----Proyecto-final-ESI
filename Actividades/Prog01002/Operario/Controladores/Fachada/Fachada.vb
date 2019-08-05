@@ -50,6 +50,10 @@ Public Class Fachada
         End If
     End Function
 
+    Public Function CerrarLote(idlote As Integer) As Boolean
+        Return Persistencia.getInstancia.CerrarLote(idlote)
+    End Function
+
     Public Function ComprobacionSoloNombreUsuario(NombreUsuario As String) As Boolean
         If Persistencia.getInstancia.ExistenciaDeUsuario(NombreUsuario) Then
             Return True
@@ -172,7 +176,7 @@ Public Class Fachada
             Return Nothing
         End If
         Dim dr = dt.Rows(0)
-        Return New Lote(ID, dr.Item(0), dr.Item(6), New Lugar(dr.Item(3), -1, -1, -1, dr.Item(2), "?", Nothing), New Lugar(dr.Item(4), -1, -1, -1, dr.Item(1), "?", Nothing), dr.Item(5), dr.Item(8))
+        Return New Lote(dr.Item(7), dr.Item(0), dr.Item(6), New Lugar(dr.Item(3), -1, -1, -1, dr.Item(2), "?", Nothing), New Lugar(dr.Item(4), -1, -1, -1, dr.Item(1), "?", Nothing), dr.Item(5), dr.Item(8))
     End Function
 
     Public Sub CargarDataBaseDelUsuario() 'Para Los metodos que usen usuario tendran los datos basicos del mismo, no camiones
@@ -281,11 +285,11 @@ Public Class Fachada
         End If
     End Sub
 
-    Public Function LotesEnLugar() As List(Of Tuple(Of Lote, Integer, Boolean))
+    Public Function LotesEnLugar() As List(Of Tuple(Of Lote, Integer, Boolean)) ' LOTE: IDLote, Nombre, Estado, TUPLE.2: Autos en Lote, TUPLE.3: Transportado?
         Dim retval As New List(Of Tuple(Of Lote, Integer, Boolean))
         For Each row As DataRow In Persistencia.getInstancia.DevolverTodosLosLotesPor_IdLugar(Persistencia.getInstancia.TrabajaEn?.Lugar.IDLugar).Rows
             Dim lote As New Lote With {.IDLote = row.Item(0), .Nombre = row.Item(1), .Estado = row.Item(2)}
-            retval.Add(New Tuple(Of Lote, Integer, Boolean)(lote, row.Item(3), row.Item(4)))
+            retval.Add(New Tuple(Of Lote, Integer, Boolean)(lote, row.Item(3), row.Item(4) > 0))
         Next
         Return retval
     End Function

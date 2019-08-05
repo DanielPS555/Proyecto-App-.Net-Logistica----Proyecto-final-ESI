@@ -2,12 +2,18 @@
 
 Public Class PanelInfoLote
     Private idlote As Integer
-    Public Sub New(nombre As String)
+    Public Sub New(nombrelote As String)
+        Me.New(Fachada.getInstancia.InfoLote(Nombre:=nombrelote))
+    End Sub
+
+    Public Sub New(lote As Lote)
 
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
-        Dim lote = Fachada.getInstancia.InfoLote(nombre)
         Label1.Text = $"Nombre: {lote.Nombre}"
+        If lote.Destino Is Nothing Then
+            lote = Fachada.getInstancia.InfoLote(ID:=lote.IDLote)
+        End If
         Label2.Text = $"Destino: {lote.Destino.Nombre}"
         Label3.Text = $"Estado: {lote.Estado}"
         If lote.Estado <> "Abierto" Then
@@ -40,7 +46,10 @@ Public Class PanelInfoLote
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        CType(sender, Button).Visible = (SRepo.ConsultarSinRetorno($"update lote set estado='Cerrado' where idlote={idlote};") = 0)
+        CType(sender, Button).Visible = Not (Fachada.getInstancia.CerrarLote(idlote))
+        If CType(sender, Button).Visible Then
+            MsgBox("El lote no fue cerrado porque uno o más vehículos no han sido inspeccionados")
+        End If
     End Sub
 
     Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick

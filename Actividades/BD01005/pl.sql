@@ -129,3 +129,21 @@ create function subzonas_en_lugar_por_nombre(lugarnombre like lugar.nombre)
 	  return idz, nmz, cpz WITH RESUME;
 	END FOREACH;
 end function;
+
+create function cerrar_lote(loteid like lote.idlote)
+    returning boolean
+    	DEFINE unverif boolean;
+	select count(*) > 0
+	into unverif
+	from integra
+	inner join vehiculo on integra.idvehiculo=vehiculo.idvehiculo and integra.lote=loteid
+	inner join lote on integra.lote=lote.idlote
+	left join informedanios on informedanios.idvehiculo=vehiculo.idvehiculo and informedanios.idlugar=lote.origen
+	where informedanios.id is null;
+	IF unverif THEN
+	return 'f';
+	ELSE
+	update lote set estado="Cerrado" where idlote=loteid;
+	return 't';
+	END IF;
+end function;
