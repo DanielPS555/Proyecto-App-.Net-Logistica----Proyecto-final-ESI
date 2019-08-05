@@ -63,7 +63,7 @@ Public Class nuevoVehiculo
         lote.Items.Clear()
         lotesDisponibles = Controladores.Fachada.getInstancia.LotesDisponiblesPorLugarActual()
         For Each l As Controladores.Lote In lotesDisponibles
-            lote.Items.Add("Nom:" & l.Nombre & "ID:" & l.IDLote)
+            lote.Items.Add("Nom: " & l.Nombre & "ID: " & l.IDLote)
         Next
         If lote.Items.Count > 0 Then
             lote.SelectedIndex = 0
@@ -74,7 +74,7 @@ Public Class nuevoVehiculo
         clientes.Items.Clear()
         clienteshabi = Controladores.Fachada.getInstancia.ClientesDelSistema()
         For Each ce As Controladores.Cliente In clienteshabi
-            clientes.Items.Add("Nom:" & ce.Nombre & "RUT:" & ce.RUT)
+            clientes.Items.Add("Nom: " & ce.Nombre & "RUT: " & ce.RUT)
         Next
     End Sub
 
@@ -169,8 +169,9 @@ Public Class nuevoVehiculo
                     Exit For
                 End If
             Next
-        Else
             clientes.Enabled = False
+        Else
+            clientes.Enabled = True
         End If
         If vehi.Color <> Drawing.Color.Empty Then
             muestra_color.BackColor = Drawing.Color.FromArgb(vehi.Color.R, vehi.Color.G, vehi.Color.B)
@@ -185,6 +186,7 @@ Public Class nuevoVehiculo
         For Each su As Controladores.Subzona In zonasDisponibles(zonas.SelectedIndex).Subzonas
             subzonas.Items.Add(su.Nombre)
         Next
+        subzonas.SelectedIndex = 0
     End Sub
 
     Private Sub subzonas_SelectedIndexChanged(sender As Object, e As EventArgs) Handles subzonas.SelectedIndexChanged
@@ -195,24 +197,15 @@ Public Class nuevoVehiculo
                 posDis.Items.Add(i)
             End If
         Next
+        posDis.SelectedIndex = 0
     End Sub
 
     Private Sub ingresar_Click(sender As Object, e As EventArgs) Handles ingresar.Click
-        If (buscador.Text.Count * marca.Text.Count * modelo.Text.Count * anio.Text.Count * lote.Text.Count) = 0 Then
+        If (buscador.Text.Trim.Count * marca.Text.Trim.Count * modelo.Text.Trim.Count * anio.Text.Trim.Count * lote.Text.Trim.Count) = 0 Then
             MsgBox("Todos los datos deben estar llenados para ingresar un vehiculo")
         End If
-        Dim v = VRepo.VehiculoIncompleto(buscador.Text)
-        If v Is Nothing Then
-            MsgBox("Ese vehículo no existe, por favor verifique el VIN.")
-            Return
-        End If
-        If URepo.AltaVehiculo(buscador.Text, marca.Text, modelo.Text, Integer.Parse(anio.Text), zonas.SelectedItem, subzonas.SelectedItem, Integer.Parse(posDis.SelectedItem), ColorDialog1.Color, lote.Text) Then
-            Marco.getInstancia.cerrarPanel(Of ListaVehiculos)()
-            Marco.getInstancia.cargarPanel(New ListaVehiculos)
-            Marco.getInstancia.cerrarPanel(Of nuevoVehiculo)()
-        Else
-            MsgBox("No pudo ingresarse ese vehículo. Confirme que no ha sido ingresado aún.")
-        End If
+        'NOS COMUNICAMOS CON FACHADA PARA EL TRASLADO DE INFORMACION MASIVO
+
     End Sub
 
     Private completionIndex As Integer = 0
@@ -243,17 +236,22 @@ Public Class nuevoVehiculo
         End If
     End Sub
 
-    Private Sub buscador_Leave(sender As Object, e As EventArgs) Handles buscador.Leave
-        'cliente.Text = VRepo.Cliente(buscador.Text)
-    End Sub
-
     Private Sub LinkLabel2_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles crearomodificarLote.LinkClicked
-        Dim d As New NuevoLote(Me)
-        d.ShowDialog()
+        If LoteFinal Is Nothing Then
+            Dim d As New NuevoLote(Me)
+            d.ShowDialog()
+        Else
+            Dim d As New NuevoLote(Me, LoteFinal)
+            d.ShowDialog()
+        End If
+
     End Sub
 
     Public Sub NotificarDeLote(l As Controladores.Lote)
-
+        lote.Enabled = False
+        crearomodificarLote.Text = "Modifica lote"
+        eliminarlote.Visible = True
+        LoteFinal = l
     End Sub
 
     Public Sub NotificarDeInforme(info As Controladores.InformeDeDaños)
@@ -274,5 +272,12 @@ Public Class nuevoVehiculo
         EstadoInforme.Text = "Sin informe"
         infoDaños.Enabled = True
         informe = Nothing
+    End Sub
+
+    Private Sub Eliminarlote_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles eliminarlote.LinkClicked
+        lote.Enabled = True
+        LoteFinal = Nothing
+        eliminarlote.Visible = False
+        crearomodificarLote.Text = "Crear lote"
     End Sub
 End Class

@@ -17,6 +17,24 @@ Public Class NuevoLote
         destino.SelectedIndex = 0
     End Sub
 
+    Public Sub New(padre As nuevoVehiculo, oldlote As Controladores.Lote)
+        Me.padre = padre
+        ' Esta llamada es exigida por el diseñador.
+        InitializeComponent()
+        StartPosition = FormStartPosition.CenterScreen
+        ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
+        destino.Items.Clear()
+        destinosPosibles = Controladores.Fachada.getInstancia.devolverPosiblesDestinos(Controladores.Fachada.getInstancia.TrabajaEnAcutual.Lugar, padre.Vehiculo)
+        Dim c As Integer = 0
+        For Each l As Controladores.Lugar In destinosPosibles
+            destino.Items.Add($"{l.Nombre}/{l.Tipo}")
+            If l.IDLugar = oldlote.Destino.IDLugar Then
+                destino.SelectedIndex = c
+            End If
+            c += 1
+        Next
+        nom.Text = oldlote.Destino.Nombre
+    End Sub
 
     Private Sub ingresar_Click(sender As Object, e As EventArgs)
         Dim verif As Integer = 1
@@ -43,7 +61,8 @@ Public Class NuevoLote
                                                     .Destino = destinosPosibles(destino.SelectedIndex),
                                                     .Estado = Controladores.Lote.TIPO_ESTADO_ABIERTO,
                                                     .Prioridad = Controladores.Lote.TIPO_PRIORIDAD_NORMAL,
-                                                    .Origen = Controladores.Fachada.getInstancia.TrabajaEnAcutual.Lugar}
+                                                    .Origen = Controladores.Fachada.getInstancia.TrabajaEnAcutual.Lugar,
+                                                    .Creador = Controladores.Fachada.getInstancia.DevolverUsuarioActual}
             padre.NotificarDeLote(lo)
             Me.Dispose()
         Else

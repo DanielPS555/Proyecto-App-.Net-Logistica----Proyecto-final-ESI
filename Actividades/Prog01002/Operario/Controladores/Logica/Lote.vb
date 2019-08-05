@@ -34,6 +34,16 @@ Public Class Lote
         Me.Vehiculos = New List(Of Tuple(Of Tuple(Of Date, Usuario), Vehiculo))
     End Sub
 
+    Private _creador As Usuario
+    Public Property Creador() As Usuario
+        Get
+            Return _creador
+        End Get
+        Set(ByVal value As Usuario)
+            _creador = value
+        End Set
+    End Property
+
     Private _nombre As String
     Public Property Nombre() As String ' ¿Por qué hay tantas propiedades con getter/setter por defecto?
         Get

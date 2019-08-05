@@ -428,7 +428,7 @@ Public Class Persistencia
 
     Public Function DevolverDatosBasicosDelVehiculoPrecargadoPor_VIN_vehiculo(vin As String) As DataTable
         Try
-            Dim com As New OdbcCommand("select VIN,Marca,Modelo,color,tipo,anio,cliente.nombre,cliente.rut,cliente.idcliente
+            Dim com As New OdbcCommand("select VIN,Marca,Modelo,color,tipo,anio,cliente.nombre,cliente.rut,cliente.idcliente,idvehiculo
                                     from vehiculo inner join cliente on cliente.idcliente=vehiculo.cliente
                                     where vin=?;", Conexcion)
             com.CrearParametro(DbType.String, vin)
@@ -487,5 +487,34 @@ Public Class Persistencia
         dt.Load(com.ExecuteReader)
         Return dt
     End Function
+
+    Public Function InsertLote(nombre As String, idorigen As Integer, destinoId As Integer, prioridad As String, creadorid As Integer, fechacreacion As DateTime, estado As String) As Boolean
+        Dim com As New OdbcCommand("insert into lote values (0,?,?,?,?,?,?,?)", Conexcion)
+        com.CrearParametro(DbType.String, nombre)
+        com.CrearParametro(DbType.Int32, idorigen)
+        com.CrearParametro(DbType.Int32, destinoId)
+        com.CrearParametro(DbType.Int32, creadorid)
+        com.CrearParametro(DbType.DateTime, fechacreacion)
+        com.CrearParametro(DbType.String, prioridad)
+        com.CrearParametro(DbType.String, estado)
+        Return com.ExecuteNonQuery() > 0
+    End Function
+
+    Public Function updateVehiculo(idvehiculo As Integer, vin As String, marca As String, modelo As String, color As String, tipo As String, año As Integer, idcliente As Integer)
+        Dim com As New OdbcCommand("update vehiculo set VIN=?,Marca=?,Modelo=?,color=?,tipo=?,anio=?,cliente=? where idvehiculo=?", Conexcion)
+
+    End Function
+
+    Public Function InsertIntegra(idlote As Integer, idvehiculo As Integer, fechaIntegracion As DateTime, invalido As Boolean, idusuario As Integer) As Boolean
+        Dim com As New OdbcCommand("insert into integra values (?,?,?,?,?)", Conexcion)
+        com.CrearParametro(DbType.Int32, idvehiculo)
+        com.CrearParametro(DbType.Int32, idlote)
+        com.CrearParametro(DbType.DateTime, fechaIntegracion)
+        com.CrearParametro(DbType.Boolean, invalido)
+        com.CrearParametro(DbType.Int32, idusuario)
+        Return com.ExecuteNonQuery() > 0
+    End Function
+
+
 
 End Class

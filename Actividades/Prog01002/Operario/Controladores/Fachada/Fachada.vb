@@ -337,6 +337,7 @@ Public Class Fachada
             End If
 
             Dim vehi As New Vehiculo With {
+                                    .IdVehiculo = Funciones_comunes.AutoNull(Of Object)(r.Item(9)),
                                    .VIN = Funciones_comunes.AutoNull(Of Object)(r.Item(0)),
                                    .Marca = Funciones_comunes.AutoNull(Of Object)(r.Item(1)),
                                    .Modelo = Funciones_comunes.AutoNull(Of Object)(r.Item(2)),
@@ -430,4 +431,8 @@ Public Class Fachada
         Next
         Return lista
     End Function
+
+    Public Sub NuevoLote(lote As Controladores.Lote)
+
+    End Sub
 End Class

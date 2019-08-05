@@ -447,7 +447,7 @@ Partial Class nuevoVehiculo
         Me.eliminarlote.AutoSize = True
         Me.eliminarlote.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.eliminarlote.LinkColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Me.eliminarlote.Location = New System.Drawing.Point(328, 423)
+        Me.eliminarlote.Location = New System.Drawing.Point(354, 423)
         Me.eliminarlote.Name = "eliminarlote"
         Me.eliminarlote.Size = New System.Drawing.Size(103, 21)
         Me.eliminarlote.TabIndex = 115

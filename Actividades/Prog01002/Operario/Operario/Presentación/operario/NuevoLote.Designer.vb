@@ -27,8 +27,6 @@ Partial Class NuevoLote
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.destino = New System.Windows.Forms.ComboBox()
         Me.l_destino = New System.Windows.Forms.Label()
-        Me.idLote = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.nom = New System.Windows.Forms.TextBox()
         Me.l_nom = New System.Windows.Forms.Label()
@@ -85,8 +83,6 @@ Partial Class NuevoLote
         Me.Panel1.BackColor = System.Drawing.Color.White
         Me.Panel1.Controls.Add(Me.destino)
         Me.Panel1.Controls.Add(Me.l_destino)
-        Me.Panel1.Controls.Add(Me.idLote)
-        Me.Panel1.Controls.Add(Me.Label4)
         Me.Panel1.Controls.Add(Button1)
         Me.Panel1.Controls.Add(ingresar)
         Me.Panel1.Controls.Add(Me.Panel2)
@@ -117,26 +113,6 @@ Partial Class NuevoLote
         Me.l_destino.Size = New System.Drawing.Size(87, 22)
         Me.l_destino.TabIndex = 59
         Me.l_destino.Text = "Destino: "
-        '
-        'idLote
-        '
-        Me.idLote.AutoSize = True
-        Me.idLote.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.idLote.Location = New System.Drawing.Point(234, 26)
-        Me.idLote.Name = "idLote"
-        Me.idLote.Size = New System.Drawing.Size(52, 22)
-        Me.idLote.TabIndex = 56
-        Me.idLote.Text = "###"
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(195, 24)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(33, 23)
-        Me.Label4.TabIndex = 55
-        Me.Label4.Text = "id:"
         '
         'Panel2
         '
@@ -194,8 +170,6 @@ Partial Class NuevoLote
     Friend WithEvents Label1 As Label
     Friend WithEvents Panel2 As Panel
     Friend WithEvents nom As TextBox
-    Friend WithEvents idLote As Label
-    Friend WithEvents Label4 As Label
     Friend WithEvents destino As ComboBox
     Friend WithEvents l_destino As Label
 End Class
