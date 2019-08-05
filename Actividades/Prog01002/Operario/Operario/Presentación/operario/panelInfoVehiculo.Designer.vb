@@ -31,7 +31,7 @@ Partial Class panelInfoVehiculo
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
-        Me.lugar = New System.Windows.Forms.Label()
+        Me.lugarLabel = New System.Windows.Forms.Label()
         Me.LLable = New System.Windows.Forms.Label()
         Me.PosicionLabel = New System.Windows.Forms.Label()
         Me.SubzonaLabel = New System.Windows.Forms.Label()
@@ -127,7 +127,7 @@ Partial Class panelInfoVehiculo
         'TabPage1
         '
         Me.TabPage1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TabPage1.Controls.Add(Me.lugar)
+        Me.TabPage1.Controls.Add(Me.lugarLabel)
         Me.TabPage1.Controls.Add(Me.LLable)
         Me.TabPage1.Controls.Add(Me.PosicionLabel)
         Me.TabPage1.Controls.Add(Me.SubzonaLabel)
@@ -168,12 +168,12 @@ Partial Class panelInfoVehiculo
         '
         'lugar
         '
-        Me.lugar.AutoSize = True
-        Me.lugar.Location = New System.Drawing.Point(86, 444)
-        Me.lugar.Name = "lugar"
-        Me.lugar.Size = New System.Drawing.Size(0, 24)
-        Me.lugar.TabIndex = 136
-        Me.lugar.Visible = False
+        Me.lugarLabel.AutoSize = True
+        Me.lugarLabel.Location = New System.Drawing.Point(86, 444)
+        Me.lugarLabel.Name = "lugar"
+        Me.lugarLabel.Size = New System.Drawing.Size(0, 24)
+        Me.lugarLabel.TabIndex = 136
+        Me.lugarLabel.Visible = False
         '
         'LLable
         '
@@ -832,7 +832,7 @@ Partial Class panelInfoVehiculo
     Friend WithEvents PosicionLabel As Label
     Friend WithEvents SubzonaLabel As Label
     Friend WithEvents ZonaLabel As Label
-    Friend WithEvents lugar As Label
+    Friend WithEvents lugarLabel As Label
     Friend WithEvents LLable As Label
     Friend WithEvents informes As DataGridView
     Friend WithEvents ide As DataGridViewTextBoxColumn

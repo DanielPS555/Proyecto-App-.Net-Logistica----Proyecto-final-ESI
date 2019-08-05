@@ -56,11 +56,20 @@ Public Class Persistencia
         Return selcmd.ExecuteScalar
     End Function
 
+    Public Function PadreDeLugar(idlugar As Integer) As DataRow
+        Dim selcmd As New OdbcCommand("select nombre, lugar.idlugar from lugar inner join (select mayor as idlugar from incluye start with menor=? connect by mayor=prior menor) as padres on padres.idlugar=lugar.idlugar;", _con)
+        selcmd.CrearParametro(idlugar)
+        Dim dt As New DataTable
+        dt.Load(selcmd.ExecuteReader)
+        Return If(dt.Rows.Count > 0, dt.Rows(0), Nothing)
+    End Function
+
     Public Function PosicionesDeVehiculoEnLugar(lugarNombre As String, VIN As String) As DataTable
-        Dim selcmd As New OdbcCommand("select subz.unnamed_col_2::varchar(100) as subzona, posicionado.posicion, desde, hasta from table(subzonas_en_lugar_por_nombre(?::varchar(100))) as subz
+        Dim selcmd As New OdbcCommand("select subz.unnamed_col_1::integer, subz.unnamed_col_2::varchar(100) as subzona, posicionado.posicion, desde, hasta from table(subzonas_en_lugar_por_nombre(?::varchar(100))) as subz
                                        inner join posicionado
                                        on (subz.unnamed_col_1::integer)=posicionado.idlugar
-                                       inner join vehiculo on vehiculo.idvehiculo=posicionado.idvehiculo and vehiculo.vin=?", _con)
+                                       inner join vehiculo on vehiculo.idvehiculo=posicionado.idvehiculo and vehiculo.vin=?
+                                       order by desde", _con)
         selcmd.CrearParametro(lugarNombre)
         selcmd.CrearParametro(VIN)
         Dim rdr = selcmd.ExecuteReader
@@ -302,6 +311,23 @@ Public Class Persistencia
         Dim com As New OdbcCommand("select count(*) from vehiculoIngresa where Usuario=? and TipoIngreso='Alta';", Conexcion)
         com.CrearParametro(DbType.Int32, id)
         Return com.ExecuteScalar
+    End Function
+
+    Public Function IDLotePor_VINvehiculo_y_NombreLugar(VIN As String, lugar As String) As Integer
+        Try
+            Dim com As New OdbcCommand("select lote.idlote from vehiculo inner join integra on vehiculo.idvehiculo=integra.idvehiculo and vehiculo.VIN=?
+                                     inner join lote on integra.lote=lote.idlote
+                                    where invalidado ='f'
+                                    and fecha in (select max(fecha) from lote inner join integra on
+                                    integra.lote =lote.idlote inner join vehiculo on integra.idvehiculo=vehiculo.idvehiculo and vehiculo.vin=? inner join lugar on lote.Origen=lugar.idlugar and lugar.nombre=?)", Conexcion)
+            com.CrearParametro(VIN)
+            com.CrearParametro(VIN)
+            com.CrearParametro(lugar)
+            Return com.ExecuteScalar
+        Catch ex As Exception
+            Return -1
+        End Try
+
     End Function
 
     Public Function IDLotePor_IDvehiculo_y_IDLugar(idve As Integer, id As Integer) As Integer

@@ -1,5 +1,6 @@
 ﻿
 Imports Controladores
+Imports Controladores.Extenciones
 
 Public Class Fachada
     Private Shared initi As Fachada
@@ -42,6 +43,12 @@ Public Class Fachada
         Return IniciarConexcion(config.IP, config.Puerto, config.ServerName, config.UserName, config.Password, config.Database)
     End Function
 
+    Public Function UltimaPosicionVehiculoEnLugar(VIN As String, Lugar As String) As DataRow ' subzona;posicion;desde;hasta
+        Dim posiciones = Persistencia.getInstancia.PosicionesDeVehiculoEnLugar(Lugar, VIN)
+        Dim ultpos = posiciones.Rows.Item(posiciones.Rows.Count - 1)
+        Return ultpos
+    End Function
+
     Public Function ComrpobarUsuario(NombreUsuario As String, contraseña As String) As Boolean
         If Persistencia.getInstancia.VerificarCredenciales(NombreUsuario, contraseña) Then
             Return True
@@ -52,6 +59,10 @@ Public Class Fachada
 
     Public Function CerrarLote(idlote As Integer) As Boolean
         Return Persistencia.getInstancia.CerrarLote(idlote)
+    End Function
+
+    Public Function LoteVehiculo(vin As String, lugar As String) As Lote
+        Return InfoLote(ID:=Persistencia.getInstancia.IDLotePor_VINvehiculo_y_NombreLugar(vin, lugar))
     End Function
 
     Public Function ComprobacionSoloNombreUsuario(NombreUsuario As String) As Boolean
@@ -156,6 +167,10 @@ Public Class Fachada
             lst.Add(New Vehiculo(i.Item(0), i.Item(1), i.Item(2), i.Item(3), i.Item(4), Color.FromArgb(Convert.ToInt32("0x" + i.Item(5), 16)), tClientList(i.Item(6))) With {.IdVehiculo = i.Item(10)})
         Next
         Return lst
+    End Function
+
+    Public Function AsignarLote(vin As String, lote As String) As Boolean ' FALTA IMPLEMENTAR
+        Return False
     End Function
 
     Public Function VehiculosEnLote(IDlote As Integer) As List(Of Vehiculo)

@@ -9,6 +9,7 @@ Public Class panelInfoVehiculo
 
 
     Private vin As String
+    Private lugar As DataRow
     Public Sub New(VIN As String, aqui As Boolean)
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
@@ -29,37 +30,44 @@ Public Class panelInfoVehiculo
 
     Private Sub TomarValores()
         VINBox.Text = vin
-        MarcaBox.Text = VRepo.Marca(vin)
-        ModeloBox.Text = VRepo.Modelo(vin)
-        ClienteBox.Text = VRepo.Cliente(vin)
-        AñoBox.Text = VRepo.Año(vin)
-        TipoCombo.SelectedItem = VRepo.Tipo(vin)
-        Panel1.BackColor = VRepo.Color(vin)
-        ZonaLabel.Text = VRepo.Zona(vin)
-        SubzonaLabel.Text = VRepo.Subzona(vin)
-        Dim pos = VRepo.Posicion(vin).GetValueOrDefault
-        PosicionLabel.Text = pos
-        lugar.Text = VRepo.Lugar(vin)
-        Dim lotes = LRepo.LotesEnLugar(VRepo.Lugar(vin)).ToArray
+        Dim vehiculo = Controladores.Fachada.getInstancia.InfoVehiculos(vin).SingleOrDefault
+        If vehiculo Is Nothing Then
+            MsgBox("No se encontró el vehículo con VIN " + vin + ", reporte este error")
+            Close()
+        End If
+        MarcaBox.Text = vehiculo.Marca
+        ModeloBox.Text = vehiculo.Modelo
+        ClienteBox.Text = vehiculo.Cliente.Nombre
+        AñoBox.Text = vehiculo.Año
+        TipoCombo.SelectedItem = vehiculo.Tipo
+        Panel1.BackColor = vehiculo.Color
+        Dim ultpos = Controladores.Fachada.getInstancia.UltimaPosicionVehiculoEnLugar(vin, Controladores.Persistencia.getInstancia.TrabajaEn.Lugar.Nombre)
+        SubzonaLabel.Text = ultpos.Item(1)
+        Dim zona = Controladores.Persistencia.getInstancia.PadreDeLugar(ultpos.Item(0))
+        ZonaLabel.Text = zona.Item(0)
+        PosicionLabel.Text = ultpos.Item(2) & " desde " & CType(ultpos.Item(3), Date?).DarFormato
+        lugar = Controladores.Persistencia.getInstancia.PadreDeLugar(zona.Item(1))
+        lugarLabel.Text = lugar.Item(0)
+        Dim lotes = Controladores.Fachada.getInstancia.LotesDisponiblesPorLugarActual.Select(Function(x) x.Nombre).ToArray
         LoteCombo.Items.AddRange(lotes)
-        Dim loteVehiculo As String = VRepo.Lote(vin)
+        Dim loteVehiculo As String = Controladores.Fachada.getInstancia.LoteVehiculo(vin, lugar.Item(0)).Nombre
         For i = 0 To lotes.Count - 1
             If lotes(i) = loteVehiculo Then
                 LoteCombo.SelectedIndex = i
             End If
         Next
-        informes.Columns.Clear()
-        informes.DataSource = VRepo.Inspecciones(vin)
+        'informes.Columns.Clear()
+        'informes.DataSource = Controladores.
         traslados.Columns.Clear()
-        traslados.DataSource = VRepo.PosicionesEn(vin, URepo.ConectadoEn)
-        dtlugares = New DataTable
-        dtlugares.Columns.Add("Nombre de Lugar", GetType(String))
-        dtlugares.Columns.Add("Fecha de llegada", GetType(String))
-        dtlugares.Columns.Add("Transportado por", GetType(String))
-        dtlugares.Columns.Add("Fecha de partida", GetType(String))
-        VRepo.Lugares(dtlugares, vin)
-        lugares.Columns.Clear()
-        lugares.DataSource = dtlugares
+        traslados.DataSource = Controladores.Persistencia.getInstancia.PosicionesDeVehiculoEnLugar(lugar.Item(0), vin)
+        'dtlugares = New DataTable
+        'dtlugares.Columns.Add("Nombre de Lugar", GetType(String))
+        'dtlugares.Columns.Add("Fecha de llegada", GetType(String))
+        'dtlugares.Columns.Add("Transportado por", GetType(String))
+        'dtlugares.Columns.Add("Fecha de partida", GetType(String))
+        'VRepo.Lugares(dtlugares, vin)
+        'lugares.Columns.Clear()
+        'lugares.DataSource = dtlugares
     End Sub
 
     Private dtlugares As DataTable
@@ -87,7 +95,7 @@ Public Class panelInfoVehiculo
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Dim permitido = (URepo.RolDeUsuario() = "Administrador")
+        Dim permitido = False
         If permitido Then
             ModeloBox.Enabled = Not ModeloBox.Enabled
             MarcaBox.Enabled = Not MarcaBox.Enabled
@@ -141,27 +149,6 @@ Public Class panelInfoVehiculo
     End Sub
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
-        If _changedTB2 Then
-            _changedTB2 = False
-            VRepo.Marca(vin, MarcaBox.Text)
-        End If
-        If _changedTB3 Then
-            _changedTB3 = False
-            VRepo.Modelo(vin, ModeloBox.Text)
-        End If
-        If _changedTB5 And AñoBox.ForeColor = Color.Black Then
-            _changedTB5 = False
-            VRepo.Año(vin, AñoBox.Text)
-        End If
-        If _changedTB4 Then
-            _changedTB4 = False
-            VRepo.Cliente(vin, ClienteBox.Text)
-        End If
-        If _changedCB1 Then
-            _changedCB1 = False
-            VRepo.Tipo(vin, TipoCombo.SelectedItem)
-        End If
-        Button1_Click(sender, e)
     End Sub
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
@@ -169,8 +156,10 @@ Public Class panelInfoVehiculo
     End Sub
 
     Private Sub LoteCombo_SelectedIndexChanged(sender As Object, e As EventArgs) Handles LoteCombo.SelectedIndexChanged
-        If LRepo.LoteAbierto(LoteCombo.SelectedItem) Then
-            VRepo.Lote(vin, LoteCombo.SelectedItem)
+        If Controladores.Fachada.getInstancia.InfoLote(Nombre:=LoteCombo.SelectedItem).Estado = Controladores.Lote.TIPO_ESTADO_ABIERTO Then
+            If Not Controladores.Fachada.getInstancia.AsignarLote(vin, LoteCombo.SelectedItem) Then ' FALTA IMPLEMENTACIÓN
+                MsgBox("No se pudo asignar el lote por alguna razón. ACTUALMENTE SIN IMPLEMENTAR")
+            End If
         End If
     End Sub
 
@@ -181,7 +170,7 @@ Public Class panelInfoVehiculo
 
     Public Sub Actualizar() Implements IActualizaMessage.Actualizar
         traslados.Columns.Clear()
-        traslados.DataSource = VRepo.PosicionesEn(vin, URepo.ConectadoEn)
+        traslados.DataSource = Controladores.Persistencia.getInstancia.PosicionesDeVehiculoEnLugar(lugar.Item(0), vin)
     End Sub
 
     Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
