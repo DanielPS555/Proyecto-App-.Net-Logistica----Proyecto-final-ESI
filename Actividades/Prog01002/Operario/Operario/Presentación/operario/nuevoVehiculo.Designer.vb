@@ -45,13 +45,18 @@ Partial Class nuevoVehiculo
         Me.lote = New System.Windows.Forms.ComboBox()
         Me.muestra_color = New System.Windows.Forms.Panel()
         Me.ColorDialog1 = New System.Windows.Forms.ColorDialog()
-        Me.LinkLabel2 = New System.Windows.Forms.LinkLabel()
+        Me.crearomodificarLote = New System.Windows.Forms.LinkLabel()
         Me.clientes = New System.Windows.Forms.ComboBox()
         Me.QR = New System.Windows.Forms.Button()
         Me.Buscar = New System.Windows.Forms.Button()
         Me.color = New System.Windows.Forms.Button()
         Me.infoDaños = New System.Windows.Forms.Button()
         Me.ingresar = New System.Windows.Forms.Button()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.eliminarInforme = New System.Windows.Forms.LinkLabel()
+        Me.ModificarInforme = New System.Windows.Forms.LinkLabel()
+        Me.EstadoInforme = New System.Windows.Forms.Label()
+        Me.eliminarlote = New System.Windows.Forms.LinkLabel()
         Me.SuspendLayout()
         '
         'buscador
@@ -264,18 +269,18 @@ Partial Class nuevoVehiculo
         Me.muestra_color.Size = New System.Drawing.Size(17, 53)
         Me.muestra_color.TabIndex = 53
         '
-        'LinkLabel2
+        'crearomodificarLote
         '
-        Me.LinkLabel2.ActiveLinkColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Me.LinkLabel2.AutoSize = True
-        Me.LinkLabel2.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LinkLabel2.LinkColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Me.LinkLabel2.Location = New System.Drawing.Point(234, 423)
-        Me.LinkLabel2.Name = "LinkLabel2"
-        Me.LinkLabel2.Size = New System.Drawing.Size(88, 21)
-        Me.LinkLabel2.TabIndex = 109
-        Me.LinkLabel2.TabStop = True
-        Me.LinkLabel2.Text = "Crear lote"
+        Me.crearomodificarLote.ActiveLinkColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.crearomodificarLote.AutoSize = True
+        Me.crearomodificarLote.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.crearomodificarLote.LinkColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.crearomodificarLote.Location = New System.Drawing.Point(234, 423)
+        Me.crearomodificarLote.Name = "crearomodificarLote"
+        Me.crearomodificarLote.Size = New System.Drawing.Size(88, 21)
+        Me.crearomodificarLote.TabIndex = 109
+        Me.crearomodificarLote.TabStop = True
+        Me.crearomodificarLote.Text = "Crear lote"
         '
         'clientes
         '
@@ -359,9 +364,9 @@ Partial Class nuevoVehiculo
         Me.infoDaños.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.infoDaños.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.infoDaños.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
-        Me.infoDaños.Location = New System.Drawing.Point(288, 516)
+        Me.infoDaños.Location = New System.Drawing.Point(32, 512)
         Me.infoDaños.Name = "infoDaños"
-        Me.infoDaños.Size = New System.Drawing.Size(331, 35)
+        Me.infoDaños.Size = New System.Drawing.Size(331, 51)
         Me.infoDaños.TabIndex = 51
         Me.infoDaños.Text = "Realizar un informe de daños"
         Me.infoDaños.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -388,14 +393,81 @@ Partial Class nuevoVehiculo
         Me.ingresar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.ingresar.UseVisualStyleBackColor = False
         '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(12, 478)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(172, 22)
+        Me.Label1.TabIndex = 111
+        Me.Label1.Text = "Informe de daños"
+        '
+        'eliminarInforme
+        '
+        Me.eliminarInforme.ActiveLinkColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.eliminarInforme.AutoSize = True
+        Me.eliminarInforme.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.eliminarInforme.LinkColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.eliminarInforme.Location = New System.Drawing.Point(380, 512)
+        Me.eliminarInforme.Name = "eliminarInforme"
+        Me.eliminarInforme.Size = New System.Drawing.Size(131, 21)
+        Me.eliminarInforme.TabIndex = 112
+        Me.eliminarInforme.TabStop = True
+        Me.eliminarInforme.Text = "Eliminar informe"
+        Me.eliminarInforme.Visible = False
+        '
+        'ModificarInforme
+        '
+        Me.ModificarInforme.ActiveLinkColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.ModificarInforme.AutoSize = True
+        Me.ModificarInforme.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ModificarInforme.LinkColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.ModificarInforme.Location = New System.Drawing.Point(380, 542)
+        Me.ModificarInforme.Name = "ModificarInforme"
+        Me.ModificarInforme.Size = New System.Drawing.Size(145, 21)
+        Me.ModificarInforme.TabIndex = 113
+        Me.ModificarInforme.TabStop = True
+        Me.ModificarInforme.Text = "Modificar informe"
+        Me.ModificarInforme.Visible = False
+        '
+        'EstadoInforme
+        '
+        Me.EstadoInforme.AutoSize = True
+        Me.EstadoInforme.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.EstadoInforme.Location = New System.Drawing.Point(29, 566)
+        Me.EstadoInforme.Name = "EstadoInforme"
+        Me.EstadoInforme.Size = New System.Drawing.Size(78, 17)
+        Me.EstadoInforme.TabIndex = 114
+        Me.EstadoInforme.Text = "Sin informe"
+        '
+        'eliminarlote
+        '
+        Me.eliminarlote.ActiveLinkColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.eliminarlote.AutoSize = True
+        Me.eliminarlote.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.eliminarlote.LinkColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.eliminarlote.Location = New System.Drawing.Point(328, 423)
+        Me.eliminarlote.Name = "eliminarlote"
+        Me.eliminarlote.Size = New System.Drawing.Size(103, 21)
+        Me.eliminarlote.TabIndex = 115
+        Me.eliminarlote.TabStop = True
+        Me.eliminarlote.Text = "Eliminar lote"
+        Me.eliminarlote.Visible = False
+        '
         'nuevoVehiculo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(880, 650)
+        Me.Controls.Add(Me.eliminarlote)
+        Me.Controls.Add(Me.EstadoInforme)
+        Me.Controls.Add(Me.ModificarInforme)
+        Me.Controls.Add(Me.eliminarInforme)
+        Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.clientes)
-        Me.Controls.Add(Me.LinkLabel2)
+        Me.Controls.Add(Me.crearomodificarLote)
         Me.Controls.Add(Me.muestra_color)
         Me.Controls.Add(Me.ingresar)
         Me.Controls.Add(Me.infoDaños)
@@ -454,11 +526,16 @@ Partial Class nuevoVehiculo
     Friend WithEvents lote As ComboBox
     Friend WithEvents muestra_color As Panel
     Friend WithEvents ColorDialog1 As ColorDialog
-    Friend WithEvents LinkLabel2 As LinkLabel
+    Friend WithEvents crearomodificarLote As LinkLabel
     Friend WithEvents clientes As ComboBox
     Friend WithEvents QR As System.Windows.Forms.Button
     Friend WithEvents Buscar As System.Windows.Forms.Button
     Friend WithEvents color As System.Windows.Forms.Button
     Friend WithEvents infoDaños As System.Windows.Forms.Button
     Friend WithEvents ingresar As System.Windows.Forms.Button
+    Friend WithEvents Label1 As Label
+    Friend WithEvents eliminarInforme As LinkLabel
+    Friend WithEvents ModificarInforme As LinkLabel
+    Friend WithEvents EstadoInforme As Label
+    Friend WithEvents eliminarlote As LinkLabel
 End Class

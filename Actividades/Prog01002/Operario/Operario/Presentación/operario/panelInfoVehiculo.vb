@@ -6,7 +6,7 @@ End Interface
 
 Public Class panelInfoVehiculo
     Implements IActualizaMessage
-    Implements LoteReceiver
+
 
     Private vin As String
     Public Sub New(VIN As String, aqui As Boolean)
@@ -104,7 +104,7 @@ Public Class panelInfoVehiculo
     End Sub
 
     Private Sub informes_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles informes.CellDoubleClick
-        Marco.getInstancia.cargarPanel(Of crearInformaDeDaños)(New crearInformaDeDaños(DirectCast(informes.Rows()(e.RowIndex).Cells()(0).Value, Integer)))
+        'Marco.getInstancia.cargarPanel(Of crearInformaDeDaños)(New crearInformaDeDaños(DirectCast(informes.Rows()(e.RowIndex).Cells()(0).Value, Integer)))
     End Sub
 
     Private _changedTB2 As Boolean = False
@@ -113,11 +113,7 @@ Public Class panelInfoVehiculo
     Private _changedTB5 As Boolean = False
     Private _changedCB1 As Boolean = False
 
-    Public WriteOnly Property Lote As String Implements LoteReceiver.Lote
-        Set(value As String)
-            LoteCombo.Text = value
-        End Set
-    End Property
+
 
     Private Sub TextBox2_TextChanged(sender As Object, e As EventArgs) Handles MarcaBox.TextChanged
         _changedTB2 = True
@@ -169,7 +165,7 @@ Public Class panelInfoVehiculo
     End Sub
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
-        Marco.getInstancia.cargarPanel(New crearInformaDeDaños(vin))
+        ' Marco.getInstancia.cargarPanel(New crearInformaDeDaños(vin))
     End Sub
 
     Private Sub LoteCombo_SelectedIndexChanged(sender As Object, e As EventArgs) Handles LoteCombo.SelectedIndexChanged
@@ -179,8 +175,8 @@ Public Class panelInfoVehiculo
     End Sub
 
     Private Sub LinkLabel2_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel2.LinkClicked
-        Dim nl = New NuevoLote(Me)
-        Marco.getInstancia.cargarPanel(nl)
+        'Dim nl = New NuevoLote(Me)
+        'Marco.getInstancia.cargarPanel(nl)
     End Sub
 
     Public Sub Actualizar() Implements IActualizaMessage.Actualizar

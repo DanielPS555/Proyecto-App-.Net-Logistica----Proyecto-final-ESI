@@ -453,4 +453,13 @@ Public Class Persistencia
         Return com.ExecuteScalar
     End Function
 
+    Public Function DevolverTodosLosDestinosPosibles() As DataTable        'NO SE INCLUYEN PUERTOS POR EL MOMENTO, LUEGO VEMOS QUE HACEMOS CON ESO
+        Dim com As New OdbcCommand("select lugar.idlugar, nombre, tipo,clienteid
+                                    from lugar left join perteneceA on lugar.idlugar = perteneceA.idlugar
+                                    where tipo in ('Patio', 'Puerto', 'Establecimiento')", Conexcion)
+        Dim dt As New DataTable
+        dt.Load(com.ExecuteReader)
+        Return dt
+    End Function
+
 End Class

@@ -1,4 +1,6 @@
 ﻿
+Imports Controladores
+
 Public Class RegistroDaños
 
     Public Shared ReadOnly TIPO_ACTUALIZACION_CORRECION As String = "Correccion"
@@ -24,6 +26,13 @@ Public Class RegistroDaños
         Me.InformePadre = infoP
         Me._imagenes = New List(Of Image)
     End Sub
+
+    Public Overrides Function Equals(obj As Object) As Boolean
+        Dim daños = TryCast(obj, RegistroDaños)
+        Return daños IsNot Nothing AndAlso
+               ID = daños.ID AndAlso
+               EqualityComparer(Of InformeDeDaños).Default.Equals(InformePadre, daños.InformePadre)
+    End Function
 
     Private _id As Integer
     Public Property ID() As Integer
@@ -63,19 +72,8 @@ Public Class RegistroDaños
             Return _TipoActualizacion
         End Get
         Set(ByVal value As String)
-            If Not Actualiza Is Nothing Then
-                If value Is Nothing Then
-                    _TipoActualizacion = value
-                Else
-                    If TIPOS_ACTUALIZACIONES.Contains(value) Then
-                        _TipoActualizacion = value
-                    Else
-                        Throw New Exception("Valor del tipo de actualiza incorrecto")
-                    End If
-                End If
-                    Else
-                Throw New Exception("Antes de Establecer el tipo de actualizacion debe espesificar cual es el registro del que actualiza")
-            End If
+
+            _TipoActualizacion = value
 
         End Set
     End Property
@@ -91,7 +89,7 @@ Public Class RegistroDaños
     End Property
 
     Private _imagenes As List(Of Image)
-    Public Property NewProperty() As List(Of Image)
+    Public Property Imagenes() As List(Of Image)
         Get
             Return _imagenes
         End Get
@@ -99,4 +97,5 @@ Public Class RegistroDaños
             _imagenes = value
         End Set
     End Property
+
 End Class

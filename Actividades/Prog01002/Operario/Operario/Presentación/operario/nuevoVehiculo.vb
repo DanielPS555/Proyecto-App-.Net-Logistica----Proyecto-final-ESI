@@ -2,12 +2,22 @@
 Imports Controladores.Extenciones.Extensiones
 
 Public Class nuevoVehiculo
-    Implements LoteReceiver
     'crear una entidad lote y hacer una propery publica para acceder a ella desde el panel nuevoLote y enviar el lote creado  
     Private vehi As New Controladores.Vehiculo()
     Private lotesDisponibles As New List(Of Controladores.Lote)
     Private zonasDisponibles As New List(Of Controladores.Zona)
     Private clienteshabi As New List(Of Controladores.Cliente)
+    Private informe As Controladores.InformeDeDaños
+    Private LoteFinal As Controladores.Lote
+
+    Public Property Vehiculo() As Controladores.Vehiculo
+        Get
+            Return vehi
+        End Get
+        Set(ByVal value As Controladores.Vehiculo)
+            vehi = value
+        End Set
+    End Property
 
     Private lote_s As String
     Public Sub New()
@@ -24,13 +34,7 @@ Public Class nuevoVehiculo
 
     End Sub
 
-    Private WriteOnly Property LoteReceiver_Lote As String Implements LoteReceiver.Lote
-        Set(value As String)
-            lote_s = value
-            loadLotes()
-            lote.SelectedItem = lote_s
-        End Set
-    End Property
+
 
     Private Sub carcarComboBox()
         tipo.Items.Clear()
@@ -57,7 +61,7 @@ Public Class nuevoVehiculo
 
     Private Sub loadLotes()
         lote.Items.Clear()
-        lotesDisponibles = Controladores.Fachada.getInstancia.lotesDisponiblesPorLugarActual()
+        lotesDisponibles = Controladores.Fachada.getInstancia.LotesDisponiblesPorLugarActual()
         For Each l As Controladores.Lote In lotesDisponibles
             lote.Items.Add("Nom:" & l.Nombre & "ID:" & l.IDLote)
         Next
@@ -92,8 +96,7 @@ Public Class nuevoVehiculo
 
 
     Private Sub infoDaños_Click(sender As Object, e As EventArgs) Handles infoDaños.Click
-
-        Marco.getInstancia.cargarPanel(Of crearInformaDeDaños)(New crearInformaDeDaños(Controladores.Fachada.getInstancia.id_vehiculoPorVin(buscador.Text.Trim)))
+        Marco.getInstancia.cargarPanel(Of crearInformaDeDaños)(New crearInformaDeDaños(Controladores.Fachada.getInstancia.id_vehiculoPorVin(buscador.Text.Trim), Me))
 
     End Sub
 
@@ -244,7 +247,7 @@ Public Class nuevoVehiculo
         'cliente.Text = VRepo.Cliente(buscador.Text)
     End Sub
 
-    Private Sub LinkLabel2_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel2.LinkClicked
+    Private Sub LinkLabel2_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles crearomodificarLote.LinkClicked
         Dim d As New NuevoLote(Me)
         d.ShowDialog()
     End Sub
@@ -254,7 +257,22 @@ Public Class nuevoVehiculo
     End Sub
 
     Public Sub NotificarDeInforme(info As Controladores.InformeDeDaños)
-
+        eliminarInforme.Visible = True
+        ModificarInforme.Visible = True
+        informe = info
+        EstadoInforme.Text = "Informe realizado"
+        infoDaños.Enabled = False
     End Sub
 
+    Private Sub ModificarInforme_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles ModificarInforme.LinkClicked
+        Marco.getInstancia.cargarPanel(Of crearInformaDeDaños)(New crearInformaDeDaños(informe, Me))
+    End Sub
+
+    Private Sub EliminarInforme_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles eliminarInforme.LinkClicked
+        eliminarInforme.Visible = False
+        ModificarInforme.Visible = False
+        EstadoInforme.Text = "Sin informe"
+        infoDaños.Enabled = True
+        informe = Nothing
+    End Sub
 End Class

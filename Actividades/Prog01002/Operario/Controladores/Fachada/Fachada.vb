@@ -395,4 +395,24 @@ Public Class Fachada
         Return Persistencia.getInstancia.vinPorId(vin)
     End Function
 
+    Public Function devolverPosiblesDestinos(l As Lugar, vehiculo As Vehiculo) As List(Of Lugar)
+        Dim dt As DataTable = Persistencia.getInstancia.DevolverTodosLosDestinosPosibles()
+        Dim lista As New List(Of Lugar)
+        For Each r As DataRow In dt.Rows
+            If r.Item(0) <> l.IDLugar Then
+                Dim lug As New Lugar() With {.IDLugar = r.Item(0), .Nombre = r.Item(1), .Tipo = r.Item(2)}
+                If Funciones_comunes.AutoNull(Of Object)(r.Item(3)) IsNot Nothing Then
+                    If r.Item(3) = vehiculo.Cliente.IDCliente Then
+                        Dim cliente As New Cliente() With {.IDCliente = r.Item(3)}
+                        lug.Dueño = cliente
+                        lista.Add(lug)
+                    End If
+                Else
+                    lista.Add(lug)
+                End If
+
+            End If
+        Next
+        Return lista
+    End Function
 End Class

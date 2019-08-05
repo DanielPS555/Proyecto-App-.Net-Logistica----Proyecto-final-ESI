@@ -25,6 +25,8 @@ Partial Class crearInformaDeDaños
         Dim ingresarBtn As System.Windows.Forms.Button
         Dim Button1 As System.Windows.Forms.Button
         Dim nuevo As System.Windows.Forms.Button
+        Dim Button2 As System.Windows.Forms.Button
+        Dim Button3 As System.Windows.Forms.Button
         Me.Label1 = New System.Windows.Forms.Label()
         Me.fecha = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -38,6 +40,8 @@ Partial Class crearInformaDeDaños
         ingresarBtn = New System.Windows.Forms.Button()
         Button1 = New System.Windows.Forms.Button()
         nuevo = New System.Windows.Forms.Button()
+        Button2 = New System.Windows.Forms.Button()
+        Button3 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'ingresarBtn
@@ -141,7 +145,7 @@ Partial Class crearInformaDeDaños
         Me.tipo.BackColor = System.Drawing.Color.White
         Me.tipo.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tipo.FormattingEnabled = True
-        Me.tipo.Items.AddRange(New Object() {"Total", "Parcial"})
+        Me.tipo.Items.AddRange(New Object() {"Parcial", "Total"})
         Me.tipo.Location = New System.Drawing.Point(83, 88)
         Me.tipo.Name = "tipo"
         Me.tipo.Size = New System.Drawing.Size(121, 30)
@@ -163,7 +167,7 @@ Partial Class crearInformaDeDaños
         Me.descipt.Location = New System.Drawing.Point(18, 160)
         Me.descipt.Multiline = True
         Me.descipt.Name = "descipt"
-        Me.descipt.Size = New System.Drawing.Size(387, 404)
+        Me.descipt.Size = New System.Drawing.Size(284, 404)
         Me.descipt.TabIndex = 35
         '
         'cp
@@ -188,12 +192,12 @@ Partial Class crearInformaDeDaños
         '
         'Registros
         '
-        Me.Registros.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Registros.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Registros.FormattingEnabled = True
-        Me.Registros.ItemHeight = 22
-        Me.Registros.Location = New System.Drawing.Point(457, 76)
+        Me.Registros.ItemHeight = 21
+        Me.Registros.Location = New System.Drawing.Point(357, 76)
         Me.Registros.Name = "Registros"
-        Me.Registros.Size = New System.Drawing.Size(360, 488)
+        Me.Registros.Size = New System.Drawing.Size(460, 487)
         Me.Registros.TabIndex = 61
         '
         'Label4
@@ -201,11 +205,53 @@ Partial Class crearInformaDeDaños
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
-        Me.Label4.Location = New System.Drawing.Point(453, 49)
+        Me.Label4.Location = New System.Drawing.Point(353, 49)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(192, 24)
         Me.Label4.TabIndex = 67
         Me.Label4.Text = "Registros de daño"
+        '
+        'Button2
+        '
+        Button2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Button2.BackColor = System.Drawing.Color.FromArgb(CType(CType(180, Byte), Integer), CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer))
+        Button2.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Button2.FlatAppearance.BorderSize = 0
+        Button2.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        Button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Button2.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Button2.ForeColor = System.Drawing.Color.White
+        Button2.Location = New System.Drawing.Point(823, 122)
+        Button2.Name = "Button2"
+        Button2.Size = New System.Drawing.Size(45, 35)
+        Button2.TabIndex = 68
+        Button2.Text = "-"
+        Button2.UseVisualStyleBackColor = False
+        AddHandler Button2.Click, AddressOf Me.Button2_Click
+        '
+        'Button3
+        '
+        Button3.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Button3.BackColor = System.Drawing.Color.FromArgb(CType(CType(34, Byte), Integer), CType(CType(103, Byte), Integer), CType(CType(199, Byte), Integer))
+        Button3.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Button3.FlatAppearance.BorderSize = 0
+        Button3.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Button3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        Button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Button3.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Button3.ForeColor = System.Drawing.Color.White
+        Button3.Location = New System.Drawing.Point(823, 163)
+        Button3.Name = "Button3"
+        Button3.Size = New System.Drawing.Size(45, 35)
+        Button3.TabIndex = 69
+        Button3.Text = "E"
+        Button3.UseVisualStyleBackColor = False
+        AddHandler Button3.Click, AddressOf Me.Button3_Click
         '
         'crearInformaDeDaños
         '
@@ -213,6 +259,8 @@ Partial Class crearInformaDeDaños
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(880, 650)
+        Me.Controls.Add(Button3)
+        Me.Controls.Add(Button2)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(nuevo)
         Me.Controls.Add(Button1)

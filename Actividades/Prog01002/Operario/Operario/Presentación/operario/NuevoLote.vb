@@ -1,21 +1,20 @@
 ﻿Imports Operario.Logica
 
-Public Interface LoteReceiver
-    WriteOnly Property Lote As String
-End Interface
-
 Public Class NuevoLote
-    Private parentLote As LoteReceiver
-    Public Sub New(parent As LoteReceiver)
-        Me.parentLote = parent
+    Private padre As nuevoVehiculo
+    Private destinosPosibles As List(Of Controladores.Lugar)
+    Public Sub New(padre As nuevoVehiculo)
+        Me.padre = padre
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
         StartPosition = FormStartPosition.CenterScreen
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
         destino.Items.Clear()
-        destino.Items.AddRange(LRepo.AllLugares.Select(Function(x) x.Nombre).ToArray)
-        Prioridad.Items.Clear()
-        Prioridad.Items.AddRange([Enum].GetNames(GetType(PrioridadLote)))
+        destinosPosibles = Controladores.Fachada.getInstancia.devolverPosiblesDestinos(Controladores.Fachada.getInstancia.TrabajaEnAcutual.Lugar, padre.Vehiculo)
+        For Each l As Controladores.Lugar In destinosPosibles
+            destino.Items.Add($"{l.Nombre}/{l.Tipo}")
+        Next
+        destino.SelectedIndex = 0
     End Sub
 
 
@@ -40,8 +39,13 @@ Public Class NuevoLote
 
 
         If verif = 1 Then
-            parentLote.Lote = URepo.NewLote(0, nom.Text, destino.SelectedItem, Prioridad.SelectedItem)
-            Me.Close()
+            Dim lo As New Controladores.Lote With {.Nombre = nom.Text.Trim,
+                                                    .Destino = destinosPosibles(destino.SelectedIndex),
+                                                    .Estado = Controladores.Lote.TIPO_ESTADO_ABIERTO,
+                                                    .Prioridad = Controladores.Lote.TIPO_PRIORIDAD_NORMAL,
+                                                    .Origen = Controladores.Fachada.getInstancia.TrabajaEnAcutual.Lugar}
+            padre.NotificarDeLote(lo)
+            Me.Dispose()
         Else
             MsgBox("Error en la informacion ingresada", MsgBoxStyle.Critical)
         End If
@@ -50,4 +54,6 @@ Public Class NuevoLote
     Private Sub Button1_Click(sender As Object, e As EventArgs)
         Me.Close()
     End Sub
+
+
 End Class

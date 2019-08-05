@@ -1,4 +1,6 @@
-﻿Public Class InformeDeDaños
+﻿Imports Controladores
+
+Public Class InformeDeDaños
 
     Public Shared ReadOnly TIPO_INFORME_TOTAL As String = "Total"
     Public Shared ReadOnly TIPO_INFORME_PARCIAL As String = "Parcial"
@@ -89,7 +91,17 @@
         End Set
     End Property
 
-    Public Sub New(iD As Integer, descripcion As String, fecha As Date, tipo As String, lug As Lugar, vehi As Vehiculo, padre As Vehiculo)
+    Private _creador As Usuario
+    Public Property Creador() As Usuario
+        Get
+            Return _creador
+        End Get
+        Set(ByVal value As Usuario)
+            _creador = value
+        End Set
+    End Property
+
+    Public Sub New(iD As Integer, descripcion As String, fecha As Date, tipo As String, lug As Lugar, vehi As Vehiculo, padre As Vehiculo, creador As Usuario)
         Me.ID = iD
         Me.Descripcion = descripcion
         Me.Fecha = fecha
@@ -97,10 +109,17 @@
         Me.Registros = New List(Of RegistroDaños)
         Me.Lugar = lug
         Me.VehiculoPadre = vehi
+        Me.Creador = creador
     End Sub
 
     Public Sub New(vehi As Vehiculo)
         Me.VehiculoPadre = vehi
         Me.Registros = New List(Of RegistroDaños)
     End Sub
+
+    Public Overrides Function Equals(obj As Object) As Boolean
+        Dim daños = TryCast(obj, InformeDeDaños)
+        Return daños IsNot Nothing AndAlso
+               ID = daños.ID
+    End Function
 End Class

@@ -142,6 +142,7 @@ Partial Class RegistroDeDañoPanel
         Button1.TabIndex = 73
         Button1.Text = "Eliminar"
         Button1.UseVisualStyleBackColor = False
+        AddHandler Button1.Click, AddressOf Me.Button1_Click
         '
         'bajar
         '
@@ -252,7 +253,6 @@ Partial Class RegistroDeDañoPanel
         Me.Label3.Size = New System.Drawing.Size(46, 22)
         Me.Label3.TabIndex = 6
         Me.Label3.Text = "Tipo"
-        Me.Label3.Visible = False
         '
         'tipo
         '
@@ -263,7 +263,6 @@ Partial Class RegistroDeDañoPanel
         Me.tipo.Name = "tipo"
         Me.tipo.Size = New System.Drawing.Size(121, 30)
         Me.tipo.TabIndex = 7
-        Me.tipo.Visible = False
         '
         'Label5
         '
@@ -313,6 +312,7 @@ Partial Class RegistroDeDañoPanel
         '
         Me.cp.AutoSize = True
         Me.cp.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cp.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
         Me.cp.Location = New System.Drawing.Point(177, 592)
         Me.cp.Name = "cp"
         Me.cp.Size = New System.Drawing.Size(29, 17)
