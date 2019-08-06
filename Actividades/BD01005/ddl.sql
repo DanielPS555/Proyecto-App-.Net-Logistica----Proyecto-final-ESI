@@ -90,7 +90,6 @@ CREATE table
 	Tipo varchar(7) NOT null check(Tipo in ('Auto', 'MiniVan', 'SUV', 'Camion', 'Van')),
 	Anio integer check(Anio >= 1900 and Anio <= 10000),
 	Cliente Integer NOT null,
-	FechaArribo datetime year to day,
 	foreign key(Cliente) references Cliente(IDCliente) ON DELETE CASCADE
 );
 

@@ -168,20 +168,15 @@ insert into trabajaen values (0,(select IDLugar from lugar where Nombre="Deposit
 		and lugar.idlugar = zona.idlugar and zona.nombre = "Zona C"),0,"Zona C_2",500);*/
 		/*VEHIUCLO*/
 		insert into vehiculo values(0, "1GH2J83LED0987547","Fiat","Cronos", "6ead26",
-		"Auto", 2011, (select IDCliente from cliente where Nombre="Sevel"),
-		"2019-6-27");
+		"Auto", 2011, (select IDCliente from cliente where Nombre="Sevel"));
 		insert into vehiculo values(0, "1HGYN4HTEL8372649","Fiat","Toro", "cecece",
-		"Auto", 2015, (select IDCliente from cliente where Nombre="Sevel"),
-		"2019-6-28");
+		"Auto", 2015, (select IDCliente from cliente where Nombre="Sevel"));
 		insert into vehiculo values(0, "2GH2JJEBTE0987547","Chevrolet","Aveo",
-		"c92222", "SUV", 2016, (select IDCliente from cliente where Nombre="Chevrolet UY"),
-		"2019-7-1");
+		"c92222", "SUV", 2016, (select IDCliente from cliente where Nombre="Chevrolet UY"));
 		insert into vehiculo values(0, "1GH2HGRLED0988472","Chevrolet","Volt",
-		"6ead26", "MiniVan", 2018, (select IDCliente from cliente where Nombre="Chevrolet UY"),
-		"2019-6-26");
+		"6ead26", "MiniVan", 2018, (select IDCliente from cliente where Nombre="Chevrolet UY"));
 		insert into vehiculo values(0, "KHBEHGRLED0988442","Chevrolet","Volt",
-		"6e2327", "MiniVan", 2018, (select IDCliente from cliente where Nombre="Chevrolet UY"),
-		"2019-6-26");
+		"6e2327", "MiniVan", 2018, (select IDCliente from cliente where Nombre="Chevrolet UY"));
 		insert into vehiculo(vin, cliente, tipo)
 		       values("1L0V36I113UWU1112", (select IDCliente from cliente where Nombre="Sevel"), "Auto");
 
