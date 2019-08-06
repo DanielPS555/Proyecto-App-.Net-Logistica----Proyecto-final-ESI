@@ -1,22 +1,21 @@
 ﻿Imports Operario
 
-Public Interface IActualizaMessage
-    Sub Actualizar()
-End Interface
+
 
 Public Class panelInfoVehiculo
-    Implements IActualizaMessage
 
 
+    Private informesElementos As New List(Of Controladores.InformeDeDaños)
     Private vin As String
     Private lugar As DataRow
+    Private actualInfore As Integer = 0
+    Private actualRegistro As Integer = 0
+    Private actualImagen As Integer = 0
     Public Sub New(VIN As String, aqui As Boolean)
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
         If Not aqui Then
-            Button1.Visible = False
             Button2.Visible = False
-            Button3.Visible = False
             Button4.Visible = False
         Else
             LoteCombo.Enabled = True
@@ -56,28 +55,57 @@ Public Class panelInfoVehiculo
                 LoteCombo.SelectedIndex = i
             End If
         Next
-        'informes.Columns.Clear()
-        'informes.DataSource = Controladores.
+
         traslados.Columns.Clear()
         traslados.DataSource = Controladores.Persistencia.getInstancia.PosicionesDeVehiculoEnLugar(lugar.Item(0), vin)
-        'dtlugares = New DataTable
-        'dtlugares.Columns.Add("Nombre de Lugar", GetType(String))
-        'dtlugares.Columns.Add("Fecha de llegada", GetType(String))
-        'dtlugares.Columns.Add("Transportado por", GetType(String))
-        'dtlugares.Columns.Add("Fecha de partida", GetType(String))
-        'VRepo.Lugares(dtlugares, vin)
-        'lugares.Columns.Clear()
-        'lugares.DataSource = dtlugares
+        informesElementos = Controladores.Fachada.getInstancia.devolverTodosLosInformesYregistrosCompletos(vehiculo)
+        cargarInformesYRegistros()
+    End Sub
+
+    Public Sub cargarInformesYRegistros()
+        Dim info As Controladores.InformeDeDaños = informesElementos(actualInfore)
+
+        numeroInforme.Text = info.ID
+        NomCreador.Text = info.Creador.Nombre
+        fechaCreacionInforme.Text = info.Fecha
+        descrip_Informe.Text = info.Descripcion
+        If info.Registros.Count > 0 Then
+            visualizarElementosRegistro(True)
+            Dim reg As Controladores.RegistroDaños = informesElementos(actualInfore).Registros(actualRegistro)
+            numRegistro.Text = reg.ID
+            descrip_registro.Text = reg.Descripcion
+        Else
+            visualizarElementosRegistro(False)
+        End If
+
+
+
+    End Sub
+
+    Private Sub visualizarElementosRegistro(j As Boolean)
+        sinregistros.Visible = Not j
+        Label17.Visible = j
+        numRegistro.Visible = j
+        Label19.Visible = j
+        idregistropadre.Visible = j
+        idinformepadre.Visible = j
+        Label20.Visible = j
+        Label18.Visible = j
+        tipoRegistro.Visible = j
+        verReferencia.Visible = j
+        anteriorRegistro.Visible = j
+        AnteriorImagen.Visible = j
+        SigienteRegistro.Visible = j
+        SigienteImagen.Visible = j
+        Label21.Visible = j
+        descrip_registro.Visible = j
+        imagen.Visible = j
+        modificar.Visible = j
     End Sub
 
     Private dtlugares As DataTable
     Public Sub RegularTamañoColumnas()
-        informes.Columns(0).Width = 60
-        informes.Columns(1).Width = 200
-        informes.Columns(2).Width = 200
-        informes.Columns(3).Width = 150
-        informes.Columns(4).Width = 150
-        informes.Columns(5).Width = 60
+
         Me.Height = 3000
 
         traslados.Columns(0).Width = 200
@@ -94,7 +122,7 @@ Public Class panelInfoVehiculo
         lugares.Columns(4).Width = 170
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub Button1_Click(sender As Object, e As EventArgs)
         Dim permitido = False
         If permitido Then
             ModeloBox.Enabled = Not ModeloBox.Enabled
@@ -102,16 +130,15 @@ Public Class panelInfoVehiculo
             AñoBox.Enabled = Not AñoBox.Enabled
             TipoCombo.Enabled = Not TipoCombo.Enabled
             LoteCombo.Enabled = Not LoteCombo.Enabled
-            Button3.Visible = Not Button3.Visible
         End If
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        Dim tInterno = New trasladoInterno(vin, Me)
-        tInterno.ShowDialog()
+        'Dim tInterno = New trasladoInterno(vin, Me)
+        'tInterno.ShowDialog()
     End Sub
 
-    Private Sub informes_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles informes.CellDoubleClick
+    Private Sub informes_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs)
         'Marco.getInstancia.cargarPanel(Of crearInformaDeDaños)(New crearInformaDeDaños(DirectCast(informes.Rows()(e.RowIndex).Cells()(0).Value, Integer)))
     End Sub
 
@@ -148,12 +175,13 @@ Public Class panelInfoVehiculo
         _changedCB1 = True
     End Sub
 
-    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+    Private Sub Button3_Click(sender As Object, e As EventArgs)
     End Sub
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
         ' Marco.getInstancia.cargarPanel(New crearInformaDeDaños(vin))
     End Sub
+
 
     Private Sub LoteCombo_SelectedIndexChanged(sender As Object, e As EventArgs) Handles LoteCombo.SelectedIndexChanged
         If Controladores.Fachada.getInstancia.InfoLote(Nombre:=LoteCombo.SelectedItem).Estado = Controladores.Lote.TIPO_ESTADO_ABIERTO Then
@@ -168,12 +196,9 @@ Public Class panelInfoVehiculo
         'Marco.getInstancia.cargarPanel(nl)
     End Sub
 
-    Public Sub Actualizar() Implements IActualizaMessage.Actualizar
-        traslados.Columns.Clear()
-        traslados.DataSource = Controladores.Persistencia.getInstancia.PosicionesDeVehiculoEnLugar(lugar.Item(0), vin)
-    End Sub
-
     Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
         Marco.getInstancia.cargarPanel(New PanelInfoLote(LoteCombo.Text))
     End Sub
+
+
 End Class

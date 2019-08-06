@@ -1,4 +1,5 @@
 ﻿
+Imports System.IO
 Imports Controladores
 Imports Controladores.Extenciones
 
@@ -407,6 +408,34 @@ Public Class Fachada
         Return list
     End Function
 
+    Public Function devolverTodosLosInformesYregistrosCompletos(vehi As Vehiculo) As List(Of InformeDeDaños)
+        Dim dt As DataTable = Persistencia.getInstancia.InformesDaño(vehi.VIN)
+        Dim lista As New List(Of InformeDeDaños)
+        For Each r As DataRow In dt.Rows
+            Dim l As New InformeDeDaños(vehi) With {.ID = r.Item(0),
+                                                    .Descripcion = r.Item(1),
+                                                    .Creador = New Usuario With {.Nombre = r.Item(2)},
+                                                    .Fecha = r.Item(3),
+                                                    .Lugar = New Lugar() With {.IDLugar = r.Item(5), .Nombre = r.Item(4)}}
+            If r.Item(6) > 0 Then
+                Dim dt2 As DataTable = Persistencia.getInstancia.RegistrosDaño(vehi.VIN, l.ID)
+                For Each r2 As DataRow In dt2.Rows
+                    Dim reg As New RegistroDaños(l) With {.ID = r2.Item(1), .Descripcion = r2.Item(2),
+                        .TipoActualizacion = RegistroDaños.TIPO_ACTUALIZACION_REGULAR} 'TEMPORAL      
+                    If r2.Item(3) > 0 Then
+                        Dim dt3 As DataTable = Persistencia.getInstancia.Imagenes(l.ID, reg.ID)
+                        For Each r3 As DataRow In dt3.Rows
+                            reg.Imagenes.Add(Funciones_comunes.BitmapFromByteArray(r3.Item(2)))
+                        Next
+                    End If
+                    l.Registros.Add(reg)
+                Next
+            End If
+            lista.Add(l)
+        Next
+        Return lista
+    End Function
+
     Public Function id_vehiculoPorVin(vin As String) As Integer
         Return Persistencia.getInstancia.vinPorId(vin)
     End Function
@@ -431,6 +460,8 @@ Public Class Fachada
         Next
         Return lista
     End Function
+
+
 
     Public Sub NuevoLote(lote As Controladores.Lote)
 

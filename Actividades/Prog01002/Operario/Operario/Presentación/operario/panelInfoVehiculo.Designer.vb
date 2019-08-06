@@ -26,11 +26,10 @@ Partial Class panelInfoVehiculo
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.cambiarGuardarLote = New System.Windows.Forms.LinkLabel()
         Me.lugarLabel = New System.Windows.Forms.Label()
         Me.LLable = New System.Windows.Forms.Label()
         Me.PosicionLabel = New System.Windows.Forms.Label()
@@ -38,15 +37,12 @@ Partial Class panelInfoVehiculo
         Me.ZonaLabel = New System.Windows.Forms.Label()
         Me.LinkLabel2 = New System.Windows.Forms.LinkLabel()
         Me.LoteCombo = New System.Windows.Forms.ComboBox()
-        Me.Button5 = New System.Windows.Forms.Button()
-        Me.Button3 = New System.Windows.Forms.Button()
         Me.TipoCombo = New System.Windows.Forms.ComboBox()
         Me.AñoBox = New System.Windows.Forms.TextBox()
         Me.ClienteBox = New System.Windows.Forms.TextBox()
         Me.ModeloBox = New System.Windows.Forms.TextBox()
         Me.MarcaBox = New System.Windows.Forms.TextBox()
         Me.VINBox = New System.Windows.Forms.TextBox()
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -62,13 +58,35 @@ Partial Class panelInfoVehiculo
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
-        Me.informes = New System.Windows.Forms.DataGridView()
-        Me.ide = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.l = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.autor_e = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.FFinalizacion = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Nregistros = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.asse = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.Panel4 = New System.Windows.Forms.Panel()
+        Me.Label21 = New System.Windows.Forms.Label()
+        Me.SigienteImagen = New System.Windows.Forms.Button()
+        Me.AnteriorImagen = New System.Windows.Forms.Button()
+        Me.imagen = New System.Windows.Forms.PictureBox()
+        Me.idregistropadre = New System.Windows.Forms.Label()
+        Me.idinformepadre = New System.Windows.Forms.Label()
+        Me.tipoRegistro = New System.Windows.Forms.Label()
+        Me.modificar = New System.Windows.Forms.Button()
+        Me.descrip_registro = New System.Windows.Forms.TextBox()
+        Me.verReferencia = New System.Windows.Forms.LinkLabel()
+        Me.Label20 = New System.Windows.Forms.Label()
+        Me.Label19 = New System.Windows.Forms.Label()
+        Me.Label18 = New System.Windows.Forms.Label()
+        Me.SigienteRegistro = New System.Windows.Forms.Button()
+        Me.anteriorRegistro = New System.Windows.Forms.Button()
+        Me.numRegistro = New System.Windows.Forms.Label()
+        Me.Label17 = New System.Windows.Forms.Label()
+        Me.Label16 = New System.Windows.Forms.Label()
+        Me.descrip_Informe = New System.Windows.Forms.TextBox()
+        Me.NomCreador = New System.Windows.Forms.Label()
+        Me.fechaCreacionInforme = New System.Windows.Forms.Label()
+        Me.numeroInforme = New System.Windows.Forms.Label()
+        Me.Label15 = New System.Windows.Forms.Label()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.sigienteInforme = New System.Windows.Forms.Button()
+        Me.anteriorInforme = New System.Windows.Forms.Button()
         Me.Button4 = New System.Windows.Forms.Button()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
         Me.traslados = New System.Windows.Forms.DataGridView()
@@ -88,11 +106,14 @@ Partial Class panelInfoVehiculo
         Me.trasportadoPor = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
         Me.Label4 = New System.Windows.Forms.Label()
+        Me.sinregistros = New System.Windows.Forms.Label()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.QR, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage2.SuspendLayout()
-        CType(Me.informes, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel3.SuspendLayout()
+        Me.Panel4.SuspendLayout()
+        CType(Me.imagen, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage3.SuspendLayout()
         CType(Me.traslados, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage4.SuspendLayout()
@@ -127,6 +148,7 @@ Partial Class panelInfoVehiculo
         'TabPage1
         '
         Me.TabPage1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TabPage1.Controls.Add(Me.cambiarGuardarLote)
         Me.TabPage1.Controls.Add(Me.lugarLabel)
         Me.TabPage1.Controls.Add(Me.LLable)
         Me.TabPage1.Controls.Add(Me.PosicionLabel)
@@ -134,15 +156,12 @@ Partial Class panelInfoVehiculo
         Me.TabPage1.Controls.Add(Me.ZonaLabel)
         Me.TabPage1.Controls.Add(Me.LinkLabel2)
         Me.TabPage1.Controls.Add(Me.LoteCombo)
-        Me.TabPage1.Controls.Add(Me.Button5)
-        Me.TabPage1.Controls.Add(Me.Button3)
         Me.TabPage1.Controls.Add(Me.TipoCombo)
         Me.TabPage1.Controls.Add(Me.AñoBox)
         Me.TabPage1.Controls.Add(Me.ClienteBox)
         Me.TabPage1.Controls.Add(Me.ModeloBox)
         Me.TabPage1.Controls.Add(Me.MarcaBox)
         Me.TabPage1.Controls.Add(Me.VINBox)
-        Me.TabPage1.Controls.Add(Me.Button1)
         Me.TabPage1.Controls.Add(Me.Label1)
         Me.TabPage1.Controls.Add(Me.Label13)
         Me.TabPage1.Controls.Add(Me.Label2)
@@ -166,11 +185,24 @@ Partial Class panelInfoVehiculo
         Me.TabPage1.Text = "General"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
-        'lugar
+        'cambiarGuardarLote
+        '
+        Me.cambiarGuardarLote.ActiveLinkColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.cambiarGuardarLote.AutoSize = True
+        Me.cambiarGuardarLote.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cambiarGuardarLote.LinkColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.cambiarGuardarLote.Location = New System.Drawing.Point(251, 567)
+        Me.cambiarGuardarLote.Name = "cambiarGuardarLote"
+        Me.cambiarGuardarLote.Size = New System.Drawing.Size(117, 21)
+        Me.cambiarGuardarLote.TabIndex = 137
+        Me.cambiarGuardarLote.TabStop = True
+        Me.cambiarGuardarLote.Text = "Cambiar lote "
+        '
+        'lugarLabel
         '
         Me.lugarLabel.AutoSize = True
         Me.lugarLabel.Location = New System.Drawing.Point(86, 444)
-        Me.lugarLabel.Name = "lugar"
+        Me.lugarLabel.Name = "lugarLabel"
         Me.lugarLabel.Size = New System.Drawing.Size(0, 24)
         Me.lugarLabel.TabIndex = 136
         Me.lugarLabel.Visible = False
@@ -231,34 +263,6 @@ Partial Class panelInfoVehiculo
         Me.LoteCombo.Size = New System.Drawing.Size(155, 32)
         Me.LoteCombo.TabIndex = 130
         '
-        'Button5
-        '
-        Me.Button5.BackColor = System.Drawing.Color.FromArgb(CType(CType(180, Byte), Integer), CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer))
-        Me.Button5.Enabled = False
-        Me.Button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button5.ForeColor = System.Drawing.Color.White
-        Me.Button5.Location = New System.Drawing.Point(549, 546)
-        Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(161, 66)
-        Me.Button5.TabIndex = 126
-        Me.Button5.Text = "Cancelar cambios"
-        Me.Button5.UseVisualStyleBackColor = False
-        Me.Button5.Visible = False
-        '
-        'Button3
-        '
-        Me.Button3.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Me.Button3.Enabled = False
-        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button3.ForeColor = System.Drawing.Color.White
-        Me.Button3.Location = New System.Drawing.Point(716, 546)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(148, 66)
-        Me.Button3.TabIndex = 125
-        Me.Button3.Text = "Guardar cambios"
-        Me.Button3.UseVisualStyleBackColor = False
-        Me.Button3.Visible = False
-        '
         'TipoCombo
         '
         Me.TipoCombo.BackColor = System.Drawing.Color.White
@@ -314,21 +318,6 @@ Partial Class panelInfoVehiculo
         Me.VINBox.Name = "VINBox"
         Me.VINBox.Size = New System.Drawing.Size(492, 26)
         Me.VINBox.TabIndex = 119
-        '
-        'Button1
-        '
-        Me.Button1.BackColor = System.Drawing.Color.White
-        Me.Button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Me.Button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White
-        Me.Button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White
-        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Me.Button1.Location = New System.Drawing.Point(549, 504)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(317, 36)
-        Me.Button1.TabIndex = 108
-        Me.Button1.Text = "Modificar informacion"
-        Me.Button1.UseVisualStyleBackColor = False
         '
         'Label1
         '
@@ -472,7 +461,7 @@ Partial Class panelInfoVehiculo
         'TabPage2
         '
         Me.TabPage2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TabPage2.Controls.Add(Me.informes)
+        Me.TabPage2.Controls.Add(Me.Panel3)
         Me.TabPage2.Controls.Add(Me.Button4)
         Me.TabPage2.Location = New System.Drawing.Point(4, 31)
         Me.TabPage2.Name = "TabPage2"
@@ -482,80 +471,300 @@ Partial Class panelInfoVehiculo
         Me.TabPage2.Text = "Informes de daños"
         Me.TabPage2.UseVisualStyleBackColor = True
         '
-        'informes
+        'Panel3
         '
-        Me.informes.AllowUserToAddRows = False
-        Me.informes.AllowUserToDeleteRows = False
-        Me.informes.AllowUserToOrderColumns = True
-        Me.informes.AllowUserToResizeRows = False
-        Me.informes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
-        Me.informes.BackgroundColor = System.Drawing.Color.White
-        Me.informes.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.informes.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
-        Me.informes.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.informes.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
-        Me.informes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.informes.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ide, Me.l, Me.autor_e, Me.FFinalizacion, Me.Nregistros, Me.asse})
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(166, Byte), Integer), CType(CType(214, Byte), Integer), CType(CType(237, Byte), Integer))
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.informes.DefaultCellStyle = DataGridViewCellStyle2
-        Me.informes.EnableHeadersVisualStyles = False
-        Me.informes.GridColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Me.informes.Location = New System.Drawing.Point(10, 69)
-        Me.informes.Name = "informes"
-        Me.informes.ReadOnly = True
-        Me.informes.RowHeadersVisible = False
-        Me.informes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.informes.Size = New System.Drawing.Size(850, 533)
-        Me.informes.TabIndex = 112
+        Me.Panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel3.Controls.Add(Me.Panel4)
+        Me.Panel3.Controls.Add(Me.Label16)
+        Me.Panel3.Controls.Add(Me.descrip_Informe)
+        Me.Panel3.Controls.Add(Me.NomCreador)
+        Me.Panel3.Controls.Add(Me.fechaCreacionInforme)
+        Me.Panel3.Controls.Add(Me.numeroInforme)
+        Me.Panel3.Controls.Add(Me.Label15)
+        Me.Panel3.Controls.Add(Me.Label14)
+        Me.Panel3.Controls.Add(Me.Label11)
+        Me.Panel3.Controls.Add(Me.sigienteInforme)
+        Me.Panel3.Controls.Add(Me.anteriorInforme)
+        Me.Panel3.Location = New System.Drawing.Point(7, 70)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(856, 536)
+        Me.Panel3.TabIndex = 114
         '
-        'ide
+        'Panel4
         '
-        Me.ide.HeaderText = "Id"
-        Me.ide.Name = "ide"
-        Me.ide.ReadOnly = True
+        Me.Panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel4.Controls.Add(Me.sinregistros)
+        Me.Panel4.Controls.Add(Me.Label21)
+        Me.Panel4.Controls.Add(Me.SigienteImagen)
+        Me.Panel4.Controls.Add(Me.AnteriorImagen)
+        Me.Panel4.Controls.Add(Me.imagen)
+        Me.Panel4.Controls.Add(Me.idregistropadre)
+        Me.Panel4.Controls.Add(Me.idinformepadre)
+        Me.Panel4.Controls.Add(Me.tipoRegistro)
+        Me.Panel4.Controls.Add(Me.modificar)
+        Me.Panel4.Controls.Add(Me.descrip_registro)
+        Me.Panel4.Controls.Add(Me.verReferencia)
+        Me.Panel4.Controls.Add(Me.Label20)
+        Me.Panel4.Controls.Add(Me.Label19)
+        Me.Panel4.Controls.Add(Me.Label18)
+        Me.Panel4.Controls.Add(Me.SigienteRegistro)
+        Me.Panel4.Controls.Add(Me.anteriorRegistro)
+        Me.Panel4.Controls.Add(Me.numRegistro)
+        Me.Panel4.Controls.Add(Me.Label17)
+        Me.Panel4.Location = New System.Drawing.Point(7, 150)
+        Me.Panel4.Name = "Panel4"
+        Me.Panel4.Size = New System.Drawing.Size(844, 381)
+        Me.Panel4.TabIndex = 121
         '
-        'l
+        'Label21
         '
-        Me.l.HeaderText = "Lugar"
-        Me.l.Name = "l"
-        Me.l.ReadOnly = True
+        Me.Label21.AutoSize = True
+        Me.Label21.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label21.Location = New System.Drawing.Point(498, 76)
+        Me.Label21.Name = "Label21"
+        Me.Label21.Size = New System.Drawing.Size(102, 23)
+        Me.Label21.TabIndex = 132
+        Me.Label21.Text = "Imagenes"
         '
-        'autor_e
+        'SigienteImagen
         '
-        Me.autor_e.HeaderText = "Autor"
-        Me.autor_e.Name = "autor_e"
-        Me.autor_e.ReadOnly = True
+        Me.SigienteImagen.Location = New System.Drawing.Point(630, 346)
+        Me.SigienteImagen.Name = "SigienteImagen"
+        Me.SigienteImagen.Size = New System.Drawing.Size(40, 30)
+        Me.SigienteImagen.TabIndex = 131
+        Me.SigienteImagen.Text = ">"
+        Me.SigienteImagen.UseVisualStyleBackColor = True
         '
-        'FFinalizacion
+        'AnteriorImagen
         '
-        Me.FFinalizacion.HeaderText = "Fecha Finalizacion"
-        Me.FFinalizacion.Name = "FFinalizacion"
-        Me.FFinalizacion.ReadOnly = True
+        Me.AnteriorImagen.Location = New System.Drawing.Point(584, 346)
+        Me.AnteriorImagen.Name = "AnteriorImagen"
+        Me.AnteriorImagen.Size = New System.Drawing.Size(40, 30)
+        Me.AnteriorImagen.TabIndex = 130
+        Me.AnteriorImagen.Text = "<"
+        Me.AnteriorImagen.UseVisualStyleBackColor = True
         '
-        'Nregistros
+        'imagen
         '
-        Me.Nregistros.HeaderText = "Numero de registros "
-        Me.Nregistros.Name = "Nregistros"
-        Me.Nregistros.ReadOnly = True
+        Me.imagen.Location = New System.Drawing.Point(502, 101)
+        Me.imagen.Name = "imagen"
+        Me.imagen.Size = New System.Drawing.Size(240, 240)
+        Me.imagen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.imagen.TabIndex = 129
+        Me.imagen.TabStop = False
         '
-        'asse
+        'idregistropadre
         '
-        Me.asse.HeaderText = "Acceso "
-        Me.asse.Name = "asse"
-        Me.asse.ReadOnly = True
+        Me.idregistropadre.AutoSize = True
+        Me.idregistropadre.Location = New System.Drawing.Point(209, 70)
+        Me.idregistropadre.Name = "idregistropadre"
+        Me.idregistropadre.Size = New System.Drawing.Size(0, 22)
+        Me.idregistropadre.TabIndex = 128
+        '
+        'idinformepadre
+        '
+        Me.idinformepadre.AutoSize = True
+        Me.idinformepadre.Location = New System.Drawing.Point(209, 40)
+        Me.idinformepadre.Name = "idinformepadre"
+        Me.idinformepadre.Size = New System.Drawing.Size(0, 22)
+        Me.idinformepadre.TabIndex = 127
+        '
+        'tipoRegistro
+        '
+        Me.tipoRegistro.AutoSize = True
+        Me.tipoRegistro.Location = New System.Drawing.Point(385, 9)
+        Me.tipoRegistro.Name = "tipoRegistro"
+        Me.tipoRegistro.Size = New System.Drawing.Size(0, 22)
+        Me.tipoRegistro.TabIndex = 126
+        '
+        'modificar
+        '
+        Me.modificar.Location = New System.Drawing.Point(7, 335)
+        Me.modificar.Name = "modificar"
+        Me.modificar.Size = New System.Drawing.Size(469, 32)
+        Me.modificar.TabIndex = 125
+        Me.modificar.Text = "Modificar"
+        Me.modificar.UseVisualStyleBackColor = True
+        '
+        'descrip_registro
+        '
+        Me.descrip_registro.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.descrip_registro.Location = New System.Drawing.Point(13, 101)
+        Me.descrip_registro.Multiline = True
+        Me.descrip_registro.Name = "descrip_registro"
+        Me.descrip_registro.Size = New System.Drawing.Size(469, 220)
+        Me.descrip_registro.TabIndex = 124
+        '
+        'verReferencia
+        '
+        Me.verReferencia.ActiveLinkColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.verReferencia.AutoSize = True
+        Me.verReferencia.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.verReferencia.LinkColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.verReferencia.Location = New System.Drawing.Point(316, 57)
+        Me.verReferencia.Name = "verReferencia"
+        Me.verReferencia.Size = New System.Drawing.Size(119, 21)
+        Me.verReferencia.TabIndex = 123
+        Me.verReferencia.TabStop = True
+        Me.verReferencia.Text = "Ver referencia"
+        Me.verReferencia.Visible = False
+        '
+        'Label20
+        '
+        Me.Label20.AutoSize = True
+        Me.Label20.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label20.Location = New System.Drawing.Point(3, 70)
+        Me.Label20.Name = "Label20"
+        Me.Label20.Size = New System.Drawing.Size(200, 23)
+        Me.Label20.TabIndex = 122
+        Me.Label20.Text = "Id registro referencia"
+        '
+        'Label19
+        '
+        Me.Label19.AutoSize = True
+        Me.Label19.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label19.Location = New System.Drawing.Point(3, 40)
+        Me.Label19.Name = "Label19"
+        Me.Label19.Size = New System.Drawing.Size(201, 23)
+        Me.Label19.TabIndex = 121
+        Me.Label19.Text = "Id informe referencia"
+        '
+        'Label18
+        '
+        Me.Label18.AutoSize = True
+        Me.Label18.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label18.Location = New System.Drawing.Point(333, 9)
+        Me.Label18.Name = "Label18"
+        Me.Label18.Size = New System.Drawing.Size(48, 23)
+        Me.Label18.TabIndex = 120
+        Me.Label18.Text = "Tipo"
+        '
+        'SigienteRegistro
+        '
+        Me.SigienteRegistro.Location = New System.Drawing.Point(799, 9)
+        Me.SigienteRegistro.Name = "SigienteRegistro"
+        Me.SigienteRegistro.Size = New System.Drawing.Size(40, 30)
+        Me.SigienteRegistro.TabIndex = 119
+        Me.SigienteRegistro.Text = ">"
+        Me.SigienteRegistro.UseVisualStyleBackColor = True
+        '
+        'anteriorRegistro
+        '
+        Me.anteriorRegistro.Location = New System.Drawing.Point(753, 9)
+        Me.anteriorRegistro.Name = "anteriorRegistro"
+        Me.anteriorRegistro.Size = New System.Drawing.Size(40, 30)
+        Me.anteriorRegistro.TabIndex = 118
+        Me.anteriorRegistro.Text = "<"
+        Me.anteriorRegistro.UseVisualStyleBackColor = True
+        '
+        'numRegistro
+        '
+        Me.numRegistro.AutoSize = True
+        Me.numRegistro.Location = New System.Drawing.Point(193, 9)
+        Me.numRegistro.Name = "numRegistro"
+        Me.numRegistro.Size = New System.Drawing.Size(0, 22)
+        Me.numRegistro.TabIndex = 117
+        '
+        'Label17
+        '
+        Me.Label17.AutoSize = True
+        Me.Label17.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label17.Location = New System.Drawing.Point(9, 9)
+        Me.Label17.Name = "Label17"
+        Me.Label17.Size = New System.Drawing.Size(186, 23)
+        Me.Label17.TabIndex = 112
+        Me.Label17.Text = "Numero de registro"
+        '
+        'Label16
+        '
+        Me.Label16.AutoSize = True
+        Me.Label16.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label16.Location = New System.Drawing.Point(3, 47)
+        Me.Label16.Name = "Label16"
+        Me.Label16.Size = New System.Drawing.Size(119, 23)
+        Me.Label16.TabIndex = 120
+        Me.Label16.Text = "Descripcion"
+        '
+        'descrip_Informe
+        '
+        Me.descrip_Informe.Font = New System.Drawing.Font("Century Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.descrip_Informe.Location = New System.Drawing.Point(7, 72)
+        Me.descrip_Informe.Multiline = True
+        Me.descrip_Informe.Name = "descrip_Informe"
+        Me.descrip_Informe.Size = New System.Drawing.Size(844, 71)
+        Me.descrip_Informe.TabIndex = 119
+        '
+        'NomCreador
+        '
+        Me.NomCreador.AutoSize = True
+        Me.NomCreador.Location = New System.Drawing.Point(411, 10)
+        Me.NomCreador.Name = "NomCreador"
+        Me.NomCreador.Size = New System.Drawing.Size(0, 22)
+        Me.NomCreador.TabIndex = 118
+        '
+        'fechaCreacionInforme
+        '
+        Me.fechaCreacionInforme.AutoSize = True
+        Me.fechaCreacionInforme.Location = New System.Drawing.Point(588, 47)
+        Me.fechaCreacionInforme.Name = "fechaCreacionInforme"
+        Me.fechaCreacionInforme.Size = New System.Drawing.Size(0, 22)
+        Me.fechaCreacionInforme.TabIndex = 117
+        '
+        'numeroInforme
+        '
+        Me.numeroInforme.AutoSize = True
+        Me.numeroInforme.Location = New System.Drawing.Point(195, 10)
+        Me.numeroInforme.Name = "numeroInforme"
+        Me.numeroInforme.Size = New System.Drawing.Size(0, 22)
+        Me.numeroInforme.TabIndex = 116
+        '
+        'Label15
+        '
+        Me.Label15.AutoSize = True
+        Me.Label15.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label15.Location = New System.Drawing.Point(324, 10)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(87, 23)
+        Me.Label15.TabIndex = 115
+        Me.Label15.Text = "Creador"
+        '
+        'Label14
+        '
+        Me.Label14.AutoSize = True
+        Me.Label14.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label14.Location = New System.Drawing.Point(517, 47)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(67, 23)
+        Me.Label14.TabIndex = 114
+        Me.Label14.Text = "Fecha"
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label11.Location = New System.Drawing.Point(3, 10)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(187, 23)
+        Me.Label11.TabIndex = 111
+        Me.Label11.Text = "Numero de informe"
+        '
+        'sigienteInforme
+        '
+        Me.sigienteInforme.Location = New System.Drawing.Point(800, 10)
+        Me.sigienteInforme.Name = "sigienteInforme"
+        Me.sigienteInforme.Size = New System.Drawing.Size(40, 30)
+        Me.sigienteInforme.TabIndex = 113
+        Me.sigienteInforme.Text = ">"
+        Me.sigienteInforme.UseVisualStyleBackColor = True
+        '
+        'anteriorInforme
+        '
+        Me.anteriorInforme.Location = New System.Drawing.Point(754, 10)
+        Me.anteriorInforme.Name = "anteriorInforme"
+        Me.anteriorInforme.Size = New System.Drawing.Size(40, 30)
+        Me.anteriorInforme.TabIndex = 112
+        Me.anteriorInforme.Text = "<"
+        Me.anteriorInforme.UseVisualStyleBackColor = True
         '
         'Button4
         '
@@ -589,24 +798,24 @@ Partial Class panelInfoVehiculo
         Me.traslados.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.traslados.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
         Me.traslados.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle3.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.traslados.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.traslados.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.traslados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.traslados.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Zona_, Me.Sub_zona, Me.pos, Me.desde_, Me.hasta_, Me.trasportadoPor_})
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(166, Byte), Integer), CType(CType(214, Byte), Integer), CType(CType(237, Byte), Integer))
-        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.traslados.DefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(166, Byte), Integer), CType(CType(214, Byte), Integer), CType(CType(237, Byte), Integer))
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.traslados.DefaultCellStyle = DataGridViewCellStyle2
         Me.traslados.EnableHeadersVisualStyles = False
         Me.traslados.GridColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
         Me.traslados.Location = New System.Drawing.Point(10, 55)
@@ -684,24 +893,24 @@ Partial Class panelInfoVehiculo
         Me.lugares.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.lugares.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
         Me.lugares.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        DataGridViewCellStyle5.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle5.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.lugares.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.lugares.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle3
         Me.lugares.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.lugares.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.nomLugar, Me.tipoLugar, Me.fLlegada, Me.fPartida, Me.trasportadoPor})
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle6.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(166, Byte), Integer), CType(CType(214, Byte), Integer), CType(CType(237, Byte), Integer))
-        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.lugares.DefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(166, Byte), Integer), CType(CType(214, Byte), Integer), CType(CType(237, Byte), Integer))
+        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.lugares.DefaultCellStyle = DataGridViewCellStyle4
         Me.lugares.EnableHeadersVisualStyles = False
         Me.lugares.GridColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
         Me.lugares.Location = New System.Drawing.Point(14, 15)
@@ -761,6 +970,16 @@ Partial Class panelInfoVehiculo
         Me.Label4.TabIndex = 0
         Me.Label4.Text = "2º ENTREGA, Coresponde a la Aplicacion del administrador"
         '
+        'sinregistros
+        '
+        Me.sinregistros.AutoSize = True
+        Me.sinregistros.Font = New System.Drawing.Font("Century Gothic", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.sinregistros.Location = New System.Drawing.Point(358, 177)
+        Me.sinregistros.Name = "sinregistros"
+        Me.sinregistros.Size = New System.Drawing.Size(170, 33)
+        Me.sinregistros.TabIndex = 133
+        Me.sinregistros.Text = "Sin registros "
+        '
         'panelInfoVehiculo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -777,7 +996,11 @@ Partial Class panelInfoVehiculo
         Me.TabPage1.PerformLayout()
         CType(Me.QR, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage2.ResumeLayout(False)
-        CType(Me.informes, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel3.ResumeLayout(False)
+        Me.Panel3.PerformLayout()
+        Me.Panel4.ResumeLayout(False)
+        Me.Panel4.PerformLayout()
+        CType(Me.imagen, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage3.ResumeLayout(False)
         CType(Me.traslados, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage4.ResumeLayout(False)
@@ -806,7 +1029,6 @@ Partial Class panelInfoVehiculo
     Friend WithEvents Label10 As Label
     Friend WithEvents Label8 As Label
     Friend WithEvents Label9 As Label
-    Friend WithEvents Button1 As Button
     Friend WithEvents TabPage3 As TabPage
     Friend WithEvents Button2 As Button
     Friend WithEvents TabPage4 As TabPage
@@ -817,7 +1039,6 @@ Partial Class panelInfoVehiculo
     Friend WithEvents ModeloBox As TextBox
     Friend WithEvents MarcaBox As TextBox
     Friend WithEvents VINBox As TextBox
-    Friend WithEvents Button3 As Button
     Friend WithEvents nomLugar As DataGridViewTextBoxColumn
     Friend WithEvents tipoLugar As DataGridViewTextBoxColumn
     Friend WithEvents fLlegada As DataGridViewTextBoxColumn
@@ -825,7 +1046,6 @@ Partial Class panelInfoVehiculo
     Friend WithEvents trasportadoPor As DataGridViewTextBoxColumn
     Friend WithEvents LinkLabel2 As LinkLabel
     Friend WithEvents LoteCombo As ComboBox
-    Friend WithEvents Button5 As Button
     Friend WithEvents Button4 As Button
     Friend WithEvents TabPage5 As TabPage
     Friend WithEvents Label4 As Label
@@ -834,13 +1054,6 @@ Partial Class panelInfoVehiculo
     Friend WithEvents ZonaLabel As Label
     Friend WithEvents lugarLabel As Label
     Friend WithEvents LLable As Label
-    Friend WithEvents informes As DataGridView
-    Friend WithEvents ide As DataGridViewTextBoxColumn
-    Friend WithEvents l As DataGridViewTextBoxColumn
-    Friend WithEvents autor_e As DataGridViewTextBoxColumn
-    Friend WithEvents FFinalizacion As DataGridViewTextBoxColumn
-    Friend WithEvents Nregistros As DataGridViewTextBoxColumn
-    Friend WithEvents asse As DataGridViewTextBoxColumn
     Friend WithEvents traslados As DataGridView
     Friend WithEvents Zona_ As DataGridViewTextBoxColumn
     Friend WithEvents Sub_zona As DataGridViewTextBoxColumn
@@ -848,4 +1061,35 @@ Partial Class panelInfoVehiculo
     Friend WithEvents desde_ As DataGridViewTextBoxColumn
     Friend WithEvents hasta_ As DataGridViewTextBoxColumn
     Friend WithEvents trasportadoPor_ As DataGridViewTextBoxColumn
+    Friend WithEvents cambiarGuardarLote As LinkLabel
+    Friend WithEvents Panel3 As Panel
+    Friend WithEvents Panel4 As Panel
+    Friend WithEvents Label18 As Label
+    Friend WithEvents SigienteRegistro As Button
+    Friend WithEvents anteriorRegistro As Button
+    Friend WithEvents numRegistro As Label
+    Friend WithEvents Label17 As Label
+    Friend WithEvents Label16 As Label
+    Friend WithEvents descrip_Informe As TextBox
+    Friend WithEvents NomCreador As Label
+    Friend WithEvents fechaCreacionInforme As Label
+    Friend WithEvents numeroInforme As Label
+    Friend WithEvents Label15 As Label
+    Friend WithEvents Label14 As Label
+    Friend WithEvents Label11 As Label
+    Friend WithEvents sigienteInforme As Button
+    Friend WithEvents anteriorInforme As Button
+    Friend WithEvents Label20 As Label
+    Friend WithEvents Label19 As Label
+    Friend WithEvents modificar As Button
+    Friend WithEvents descrip_registro As TextBox
+    Friend WithEvents verReferencia As LinkLabel
+    Friend WithEvents idregistropadre As Label
+    Friend WithEvents idinformepadre As Label
+    Friend WithEvents tipoRegistro As Label
+    Friend WithEvents Label21 As Label
+    Friend WithEvents SigienteImagen As Button
+    Friend WithEvents AnteriorImagen As Button
+    Friend WithEvents imagen As PictureBox
+    Friend WithEvents sinregistros As Label
 End Class

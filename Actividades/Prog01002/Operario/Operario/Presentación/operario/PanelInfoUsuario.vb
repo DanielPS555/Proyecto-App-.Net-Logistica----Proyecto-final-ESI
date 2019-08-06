@@ -1,7 +1,7 @@
 ﻿Imports Operario
 
 Public Class PanelInfoUsuario
-    Implements IActualizaMessage
+
     Public usuario As Integer
 
     Public Sub New(idusuario As Integer)
@@ -10,12 +10,9 @@ Public Class PanelInfoUsuario
         usuario = idusuario
 
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
-        Actualizar()
     End Sub
 
-    Public Sub Actualizar() Implements IActualizaMessage.Actualizar
-        DataGridView1.DataSource = SRepo.Consultar($"select nombredeusuario, email, fechanac, telefono, primernombre, segundonombre, primerapellido, segundoapellido, sexo from usuario where idusuario={usuario};").Transpose
-    End Sub
+
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         If URepo.CambiarPregunta(NPregunta.Text, NRespuesta.Text, Contraseña.Text) Then

@@ -29,19 +29,19 @@ Public Class Persistencia
 
     Public Function InformesDaño(VIN As String) As DataTable
         Dim selcmd As New OdbcCommand("select idan.id, informedanios.descripcion,
-concat(usuario.primernombre, concat(' ', usuario.primerapellido)) as autor,
-informedanios.fecha as fecha,
-lugar.nombre as lugar,
-idan.regs from
-(select informedanios.id, count(*) as regs from informedanios
-inner join registrodanios on informedanios.id=registrodanios.informedanios
-group by informedanios.id) as idan
-inner join informedanios on idan.id=informedanios.id
-inner join vehiculo on informedanios.idvehiculo=vehiculo.idvehiculo and vehiculo.vin=?
-inner join usuario on informedanios.idusuario=usuario.idusuario
-inner join lugar on informedanios.idlugar=lugar.idlugar
-", _con)
-        selcmd.CrearParametro(DbType.StringFixedLength, VIN)
+                                        concat(usuario.primernombre, concat(' ', usuario.primerapellido)) as autor,
+                                        informedanios.fecha as fecha,
+                                        lugar.nombre as lugar, lugar.idlugar,
+                                        idan.regs from
+                                        (select informedanios.id, count(*) as regs from informedanios
+                                        inner join registrodanios on informedanios.id=registrodanios.informedanios
+                                        group by informedanios.id) as idan
+                                        inner join informedanios on idan.id=informedanios.id
+                                        inner join vehiculo on informedanios.idvehiculo=vehiculo.idvehiculo and vehiculo.vin=?
+                                        inner join usuario on informedanios.idusuario=usuario.idusuario
+                                        inner join lugar on informedanios.idlugar=lugar.idlugar
+                                        ", _con)
+        selcmd.CrearParametro(DbType.String, VIN)
         Dim dt As New DataTable
         dt.Load(selcmd.ExecuteReader)
         Return dt
@@ -49,18 +49,18 @@ inner join lugar on informedanios.idlugar=lugar.idlugar
 
     Public Function RegistrosDaño(VIN As String, idinforme As Integer) As DataTable
         Dim selcmd As New OdbcCommand("select registrodanios.informedanios,
-    registrodanios.idregistro,
-	registrodanios.descripcion,
-	count(*) as imagenes from registrodanios
-    inner join imagenregistro on
-    imagenregistro.informe=registrodanios.informedanios
-    inner join vehiculo on
-    vehiculo.idvehiculo=registrodanios.idvehiculo and vehiculo.vin=?
-    group by registrodanios.informedanios, registrodanios.idregistro,
-    registrodanios.descripcion
-    having registrodanios.informedanios=?
-", _con)
-        selcmd.CrearParametro(DbType.StringFixedLength, VIN)
+                                        registrodanios.idregistro,
+	                                    registrodanios.descripcion,
+	                                    count(*) as imagenes from registrodanios
+                                        inner join imagenregistro on
+                                        imagenregistro.informe=registrodanios.informedanios
+                                        inner join vehiculo on
+                                        vehiculo.idvehiculo=registrodanios.idvehiculo and vehiculo.vin=?
+                                        group by registrodanios.informedanios, registrodanios.idregistro,
+                                        registrodanios.descripcion
+                                        having registrodanios.informedanios=?
+                                    ", _con)
+        selcmd.CrearParametro(DbType.String, VIN)
         selcmd.CrearParametro(DbType.Int32, idinforme)
         Dim dt As New DataTable
         dt.Load(selcmd.ExecuteReader)

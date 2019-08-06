@@ -6,11 +6,11 @@
     Private lugar As String = Nothing
 
     Private vin As String
-    Private form As IActualizaMessage
 
-    Public Sub New(VIN As String, form As IActualizaMessage)
+
+    Public Sub New(VIN As String)
         Me.vin = VIN
-        Me.form = form
+
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
 
@@ -48,7 +48,7 @@
 
     Private Sub ingresar_Click(sender As Object, e As EventArgs)
         If VRepo.Posicion(Me.vin, haciaZona.SelectedItem, haciaSubzona.SelectedItem, Me.lugar, Me.haciaPosicion.SelectedItem) Then
-            form.Actualizar()
+
             Me.Close()
         Else
             MsgBox("No se pudo ingresar el vehículo. Intente nuevamente o reporte a su administrador")
