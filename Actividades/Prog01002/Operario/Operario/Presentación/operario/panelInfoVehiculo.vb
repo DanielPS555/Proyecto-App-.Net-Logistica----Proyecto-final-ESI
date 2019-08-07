@@ -1,25 +1,27 @@
-﻿Imports Operario
+﻿Imports Controladores
+Imports Operario
 
 
 
 Public Class panelInfoVehiculo
-
+    Implements NotificacionDeLote
 
     Private informesElementos As New List(Of Controladores.InformeDeDaños)
     Private vin As String
     Private lugar As DataRow
+    Private vehiculo As Controladores.Vehiculo
     Private actualInfore As Integer = 0
     Private actualRegistro As Integer = 0
     Private actualImagen As Integer = 0
+    Private loteTemp As Controladores.Lote
     Public Sub New(VIN As String, aqui As Boolean)
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
         If Not aqui Then
             Button2.Visible = False
             Button4.Visible = False
-        Else
-            LoteCombo.Enabled = True
         End If
+        LoteCombo.Enabled = False
         Me.vin = VIN
         TipoCombo.Items.Clear()
         TipoCombo.Items.AddRange([Enum].GetNames(GetType(Logica.TipoVehiculo)))
@@ -59,10 +61,21 @@ Public Class panelInfoVehiculo
         traslados.Columns.Clear()
         traslados.DataSource = Controladores.Persistencia.getInstancia.PosicionesDeVehiculoEnLugar(lugar.Item(0), vin)
         informesElementos = Controladores.Fachada.getInstancia.devolverTodosLosInformesYregistrosCompletos(vehiculo)
-        cargarInformesYRegistros()
+        If informesElementos.Count = 0 Then
+
+            visualizarElementosRegistro(False, False)
+
+        Else
+            If informesElementos.Count = 1 Then
+                SinInformes.Enabled = False
+            End If
+            SinInformes.Visible = False
+            cargarInformes()
+        End If
+        Me.vehiculo = vehiculo
     End Sub
 
-    Public Sub cargarInformesYRegistros()
+    Public Sub cargarInformes()
         Dim info As Controladores.InformeDeDaños = informesElementos(actualInfore)
 
         numeroInforme.Text = info.ID
@@ -70,19 +83,52 @@ Public Class panelInfoVehiculo
         fechaCreacionInforme.Text = info.Fecha
         descrip_Informe.Text = info.Descripcion
         If info.Registros.Count > 0 Then
-            visualizarElementosRegistro(True)
-            Dim reg As Controladores.RegistroDaños = informesElementos(actualInfore).Registros(actualRegistro)
-            numRegistro.Text = reg.ID
-            descrip_registro.Text = reg.Descripcion
+            visualizarElementosRegistro(True, True)
+            If info.Registros.Count = 1 Then
+                SigienteRegistro.Enabled = False
+            Else
+                SigienteRegistro.Enabled = True
+            End If
+            Cargaregistros()
         Else
-            visualizarElementosRegistro(False)
+            visualizarElementosRegistro(False, True)
         End If
-
-
-
     End Sub
 
-    Private Sub visualizarElementosRegistro(j As Boolean)
+    Public Sub Cargaregistros()
+        Dim reg As Controladores.RegistroDaños = informesElementos(actualInfore).Registros(actualRegistro)
+        numRegistro.Text = reg.ID
+        descrip_registro.Text = reg.Descripcion
+        tipoRegistro.Text = reg.TipoActualizacion
+        If reg.TipoActualizacion.Equals(Controladores.RegistroDaños.TIPO_ACTUALIZACION_REGULAR) Then
+            idinformepadre.Text = "SIN INFORMACION"
+            idregistropadre.Text = "Sin INFORMACION"
+        Else
+            idinformepadre.Text = reg.Actualiza.InformePadre.ID
+            idregistropadre.Text = reg.Actualiza.ID
+        End If
+        cargarImgReg()
+    End Sub
+
+    Public Sub cargarImgReg()
+        Dim reg As Controladores.RegistroDaños = informesElementos(actualInfore).Registros(actualRegistro)
+        If reg.Imagenes.Count = 0 Then
+            imagen.Image = Operario.My.Resources.sinContenidoFotografico
+            SigienteImagen.Visible = False
+            AnteriorImagen.Visible = False
+
+        Else
+            If reg.Imagenes.Count = 1 Then
+                SigienteImagen.Enabled = False
+                AnteriorImagen.Enabled = False
+            End If
+            SigienteImagen.Visible = True
+            AnteriorImagen.Visible = True
+            imagen.Image = reg.Imagenes(actualImagen)
+        End If
+    End Sub
+
+    Private Sub visualizarElementosRegistro(j As Boolean, j2 As Boolean)
         sinregistros.Visible = Not j
         Label17.Visible = j
         numRegistro.Visible = j
@@ -101,6 +147,18 @@ Public Class panelInfoVehiculo
         descrip_registro.Visible = j
         imagen.Visible = j
         modificar.Visible = j
+        Label11.Visible = j2
+        numeroInforme.Visible = j2
+        NomCreador.Visible = j2
+        Label15.Visible = j2
+        Label16.Visible = j2
+        Label14.Visible = j2
+        fechaCreacionInforme.Visible = j2
+        anteriorInforme.Visible = j2
+        sigienteInforme.Visible = j2
+        descrip_Informe.Visible = j2
+        SinInformes.Visible = Not j2
+
     End Sub
 
     Private dtlugares As DataTable
@@ -179,7 +237,7 @@ Public Class panelInfoVehiculo
     End Sub
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
-        ' Marco.getInstancia.cargarPanel(New crearInformaDeDaños(vin))
+        Marco.getInstancia.cargarPanel(Of crearInformaDeDaños)(New crearInformaDeDaños(New Controladores.InformeDeDaños(vehiculo), False) With {.ListaDeTodosLosInformes = informesElementos})
     End Sub
 
 
@@ -191,14 +249,146 @@ Public Class panelInfoVehiculo
         End If
     End Sub
 
-    Private Sub LinkLabel2_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel2.LinkClicked
-        'Dim nl = New NuevoLote(Me)
-        'Marco.getInstancia.cargarPanel(nl)
+    Private Sub LinkLabel2_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles nuevoLote.LinkClicked
+        LoteCombo.Enabled = False
+        Dim nl As NuevoLote
+        If loteTemp Is Nothing Then
+            nl = New NuevoLote(Me)
+        Else
+            nl = New NuevoLote(Me, loteTemp)
+        End If
+        nl.ShowDialog()
     End Sub
 
-    Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
+    Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles vermasLote.LinkClicked
         Marco.getInstancia.cargarPanel(New PanelInfoLote(LoteCombo.Text))
     End Sub
 
+    Private Sub SigienteInforme_Click(sender As Object, e As EventArgs) Handles sigienteInforme.Click
+        If actualInfore + 1 < informesElementos.Count Then
+            actualInfore += 1
+            actualRegistro = 0
+            actualImagen = 0
+            If actualInfore + 1 = informesElementos.Count Then
+                sigienteInforme.Enabled = False
+            End If
+            anteriorInforme.Enabled = True
+        End If
+        cargarInformes()
+    End Sub
 
+    Private Sub AnteriorInforme_Click(sender As Object, e As EventArgs) Handles anteriorInforme.Click
+        If actualInfore > 0 Then
+            actualInfore -= 1
+            actualRegistro = 0
+            actualImagen = 0
+            If actualInfore = 0 Then
+                anteriorInforme.Enabled = False
+            End If
+            sigienteInforme.Enabled = True
+        End If
+        cargarInformes()
+    End Sub
+
+    Private Sub AnteriorRegistro_Click(sender As Object, e As EventArgs) Handles anteriorRegistro.Click
+        If actualRegistro > 0 Then
+            actualRegistro -= 1
+            actualImagen = 0
+            If actualRegistro = 0 Then
+                anteriorRegistro.Enabled = False
+            End If
+            SigienteRegistro.Enabled = True
+        End If
+        Cargaregistros()
+    End Sub
+
+    Private Sub SigienteRegistro_Click(sender As Object, e As EventArgs) Handles SigienteRegistro.Click
+        If actualRegistro + 1 < informesElementos(actualInfore).Registros.Count Then
+            actualRegistro += 1
+            actualImagen = 0
+            If actualRegistro + 1 = informesElementos(actualInfore).Registros.Count Then
+                SigienteRegistro.Enabled = False
+            End If
+            anteriorRegistro.Enabled = True
+        End If
+        Cargaregistros()
+    End Sub
+
+    Private Sub SigienteImagen_Click(sender As Object, e As EventArgs) Handles SigienteImagen.Click
+        If actualImagen + 1 < informesElementos(actualInfore).Registros(actualRegistro).Imagenes.Count Then
+            actualImagen += 1
+            If actualImagen + 1 = informesElementos(actualInfore).Registros(actualRegistro).Imagenes.Count Then
+                SigienteImagen.Enabled = False
+            End If
+            AnteriorImagen.Enabled = True
+        End If
+        cargarImgReg()
+    End Sub
+
+    Private Sub AnteriorImagen_Click(sender As Object, e As EventArgs) Handles AnteriorImagen.Click
+        If actualImagen > 0 Then
+            actualImagen -= 1
+            If actualImagen = 0 Then
+                AnteriorImagen.Enabled = False
+            End If
+            SigienteImagen.Enabled = True
+        End If
+        cargarImgReg()
+    End Sub
+
+    Private Sub Modificar_Click(sender As Object, e As EventArgs) Handles modificar.Click
+        Marco.getInstancia.cargarPanel(Of crearInformaDeDaños)(New crearInformaDeDaños(informesElementos(actualInfore), False) With {.ListaDeTodosLosInformes = informesElementos})
+    End Sub
+
+    Public Sub NotificarLote(lote As Lote) Implements NotificacionDeLote.NotificarLote
+        loteTemp = lote
+        Me.LoteCombo.Enabled = False
+        nuevoLote.Text = "Modificar"
+        EliminarLoteSelecion.Enabled = True
+    End Sub
+
+    Public Function dameVehiculoalLote() As Object Implements NotificacionDeLote.dameVehiculoalLote
+        Return vehiculo
+    End Function
+
+    Private Sub LinkLabel3_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles EliminarLoteSelecion.LinkClicked
+        loteTemp = Nothing
+        EliminarLoteSelecion.Enabled = False
+        nuevoLote.Text = "Nuevo lote"
+    End Sub
+
+    Private Sub CambiarGuardarLote_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles cambiarGuardarLote.LinkClicked
+        If cambiarGuardarLote.Text.Equals("Cambiar lote ") Then
+            cambiarGuardarLote.Text = "Guardar"
+            nuevoLote.Visible = True
+            EliminarLoteSelecion.Visible = True
+            Cancelar.Visible = True
+            EliminarLoteSelecion.Enabled = False
+            LoteCombo.Enabled = True
+            vermasLote.Enabled = False
+
+        Else
+            cambiarGuardarLote.Text = "Cambiar lote "
+            nuevoLote.Visible = False
+            EliminarLoteSelecion.Visible = False
+            Cancelar.Visible = False
+            vermasLote.Enabled = True
+            LoteCombo.Enabled = False
+            'COMUNICAR CON FACHADA PARA LA SUBIDA
+
+            'SINCRONIZAR INFORMACION 
+
+            loteTemp = Nothing
+        End If
+    End Sub
+
+    Private Sub Cancelar_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles Cancelar.LinkClicked
+        cambiarGuardarLote.Text = "Cambiar lote "
+        nuevoLote.Visible = False
+        EliminarLoteSelecion.Visible = False
+        Cancelar.Visible = False
+        LoteCombo.Enabled = False
+        vermasLote.Enabled = True
+        loteTemp = Nothing
+    End Sub
 End Class

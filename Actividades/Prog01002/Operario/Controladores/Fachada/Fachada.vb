@@ -417,20 +417,28 @@ Public Class Fachada
                                                     .Creador = New Usuario With {.Nombre = r.Item(2)},
                                                     .Fecha = r.Item(3),
                                                     .Lugar = New Lugar() With {.IDLugar = r.Item(5), .Nombre = r.Item(4)}}
-            If r.Item(6) > 0 Then
-                Dim dt2 As DataTable = Persistencia.getInstancia.RegistrosDaño(vehi.VIN, l.ID)
-                For Each r2 As DataRow In dt2.Rows
-                    Dim reg As New RegistroDaños(l) With {.ID = r2.Item(1), .Descripcion = r2.Item(2),
-                        .TipoActualizacion = RegistroDaños.TIPO_ACTUALIZACION_REGULAR} 'TEMPORAL      
-                    If r2.Item(3) > 0 Then
-                        Dim dt3 As DataTable = Persistencia.getInstancia.Imagenes(l.ID, reg.ID)
-                        For Each r3 As DataRow In dt3.Rows
-                            reg.Imagenes.Add(Funciones_comunes.BitmapFromByteArray(r3.Item(2)))
-                        Next
-                    End If
-                    l.Registros.Add(reg)
-                Next
-            End If
+            Dim dt2 As DataTable = Persistencia.getInstancia.RegistrosDaño(vehi.IdVehiculo, l.ID)
+            For Each r2 As DataRow In dt2.Rows
+                Dim tipo As String
+                Dim reg2 As RegistroDaños
+                If r2.Item(2).Equals("No actualiza") Then
+                    tipo = RegistroDaños.TIPO_ACTUALIZACION_REGULAR
+                Else
+                    tipo = r2.Item(2)
+                    reg2 = New RegistroDaños(New InformeDeDaños(vehi) With {.ID = Funciones_comunes.AutoNull(Of Object)(r2.Item(3))}) With {.ID = Funciones_comunes.AutoNull(Of Object)(r2.Item(4))}
+                End If
+                Dim reg As New RegistroDaños(l) With {.ID = r2.Item(0), .Descripcion = r2.Item(1),
+                        .TipoActualizacion = tipo}
+                If reg.TipoActualizacion <> RegistroDaños.TIPO_ACTUALIZACION_REGULAR Then
+                    reg.Actualiza = reg2
+                End If
+                Dim dt3 As DataTable = Persistencia.getInstancia.Imagenes(l.ID, reg.ID)
+                    For Each r3 As DataRow In dt3.Rows
+                        reg.Imagenes.Add(Funciones_comunes.BitmapFromByteArray(r3.Item(2)))
+                    Next
+
+                l.Registros.Add(reg)
+            Next
             lista.Add(l)
         Next
         Return lista

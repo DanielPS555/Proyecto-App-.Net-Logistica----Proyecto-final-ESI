@@ -10,6 +10,7 @@
     Public Sub New(informe As crearInformaDeDaños)
         InitializeComponent()
         padre = informe
+        regpadre = New Controladores.RegistroDaños(informe.InformeDeDaños)
         regitro = New Controladores.RegistroDaños(informe.InformeDeDaños)
         tipo.SelectedIndex = 0
 
@@ -21,9 +22,13 @@
             tipo.Enabled = False
             infoOrigen.Visible = False
             registroOrigen.Visible = False
+            Label5.Visible = False
+            Label6.Visible = False
         Else
             CargarregistrosInformes()
-            infoOrigen.SelectedIndex = 1
+            If infoOrigen.Items.Count > 0 Then
+                infoOrigen.SelectedIndex = 0
+            End If
         End If
     End Sub
 
@@ -38,7 +43,20 @@
             registroOrigen.Visible = False
         Else
             CargarregistrosInformes()
-            infoOrigen.SelectedIndex = 1
+            If infoOrigen.Items.Count > 0 Then
+                If registroPadre.Actualiza IsNot Nothing Then
+                    For i As Integer = 0 To infoOrigen.Items.Count - 1
+                        If infoOrigen.Items(i) = registroPadre.Actualiza.ID Then
+                            infoOrigen.SelectedIndex = i
+                            Exit For
+                        End If
+                    Next
+                Else
+                    infoOrigen.SelectedIndex = 0
+                End If
+
+            End If
+
         End If
         Select Case registroPadre.TipoActualizacion
             Case Controladores.RegistroDaños.TIPO_ACTUALIZACION_ANULACION
@@ -55,9 +73,15 @@
             imagenes.Add(DirectCast(img, Bitmap))
         Next
         piso = 0
-        actualizarImagenes()
+        If imagenes.Count > 0 Then
+            panelFotografias.Image = imagenes(0)
+            p1.Image = Operario.My.Resources.sinContenidoFotografico
+            p2.Image = Operario.My.Resources.sinContenidoFotografico
+            p3.Image = Operario.My.Resources.sinContenidoFotografico
+            actualizarImagenes()
+        End If
         descipt.Text = registroPadre.Descripcion.Trim
-        panelFotografias.Image = imagenes(0)
+
 
     End Sub
 
@@ -82,34 +106,31 @@
 
     Public Sub CargarregistrosInformes()
         infoOrigen.Items.Clear()
+        infoOrigen.Visible = True
+        registroOrigen.Visible = True
         If padre.ListaDeTodosLosInformes.Count = 0 Then
-            infoOrigen.Visible = False
-            registroOrigen.Visible = False
+            infoOrigen.Enabled = False
+            registroOrigen.Enabled = False
         Else
-            infoOrigen.Visible = True
-            registroOrigen.Visible = True
             For Each info As Controladores.InformeDeDaños In padre.ListaDeTodosLosInformes
-                infoOrigen.Items.Add(info)
+                infoOrigen.Items.Add(info.ID)
             Next
         End If
 
     End Sub
 
-    Private Shared Function BitmapFromByteArray(v As Byte()) As Bitmap
-        Dim br = New IO.MemoryStream(v)
-        Dim bm = New Bitmap(br)
-        br.Close()
-        Return bm
-    End Function
-
     Public Sub ActualizarReg() Handles infoOrigen.SelectedIndexChanged
         registroOrigen.Items.Clear()
-        'For Each reg As Controladores.RegistroDaños In padre.ListaDeTodosLosInformes(infoOrigen.SelectedIndex).Registros
-        '    If reg.TipoActualizacion <> Controladores.RegistroDaños.TIPO_ACTUALIZACION_ANULACION Then
-        '        registroOrigen.Items.Add()
-        '    End If
-        'Next
-        registroOrigen.Items.AddRange(padre.ListaDeTodosLosInformes(infoOrigen.SelectedIndex).Registros.Where(Function(x) x.TipoActualizacion <> Controladores.RegistroDaños.TIPO_ACTUALIZACION_ANULACION))
+        For Each reg As Controladores.RegistroDaños In padre.ListaDeTodosLosInformes(infoOrigen.SelectedIndex).Registros
+            If reg.TipoActualizacion <> Controladores.RegistroDaños.TIPO_ACTUALIZACION_ANULACION Then
+                registroOrigen.Items.Add(reg.ID)
+            End If
+        Next
+        If registroOrigen.Items.Count <> 0 Then
+            registroOrigen.SelectedIndex = 0
+        End If
+
+        'registroOrigen.Items.AddRange(todosLosInformes(infoOrigen.SelectedIndex).Registros.Where(Function(x) x.TipoActualizacion <> Controladores.RegistroDaños.TIPO_ACTUALIZACION_ANULACION))
     End Sub
 
 
@@ -158,6 +179,7 @@
             End If
         End If
 
+
         Dim reg As New Controladores.RegistroDaños(padre.InformeDeDaños)
         reg.Descripcion = descipt.Text.Trim
         For Each im As Bitmap In imagenes
@@ -166,15 +188,17 @@
         Select Case tipo.SelectedIndex
             Case 1
                 reg.TipoActualizacion = Controladores.RegistroDaños.TIPO_ACTUALIZACION_ANULACION
-                reg.Actualiza = padre.ListaDeTodosLosInformes(infoOrigen.SelectedIndex).Registros(registroOrigen.SelectedIndex)
+                reg.Actualiza = padre.ListaDeTodosLosInformes.Where(Function(x) x.ID = infoOrigen.SelectedItem).ToList.Single.Registros.Where(Function(x) x.ID = registroOrigen.SelectedItem).Single
             Case 2
                 reg.TipoActualizacion = Controladores.RegistroDaños.TIPO_ACTUALIZACION_CORRECION
-                reg.Actualiza = padre.ListaDeTodosLosInformes(infoOrigen.SelectedIndex).Registros(registroOrigen.SelectedIndex)
+                reg.Actualiza = padre.ListaDeTodosLosInformes.Where(Function(x) x.ID = infoOrigen.SelectedItem).ToList.Single.Registros.Where(Function(x) x.ID = registroOrigen.SelectedItem).Single
             Case 0
                 reg.TipoActualizacion = Controladores.RegistroDaños.TIPO_ACTUALIZACION_REGULAR
         End Select
 
         padre.devolverRegistro(reg)
+        imagenes = Nothing
+        Me.Dispose()
         Marco.getInstancia.cerrarPanel(Of RegistroDeDañoPanel)()
     End Sub
 
@@ -302,5 +326,10 @@
         Else
             cp.ForeColor = Color.FromArgb(35, 35, 35)
         End If
+    End Sub
+
+    Private Sub Tipo_SelectedIndexChanged(sender As Object, e As EventArgs) Handles tipo.SelectedIndexChanged
+        infoOrigen.Enabled = tipo.SelectedIndex > 0
+        registroOrigen.Enabled = tipo.SelectedIndex > 0
     End Sub
 End Class

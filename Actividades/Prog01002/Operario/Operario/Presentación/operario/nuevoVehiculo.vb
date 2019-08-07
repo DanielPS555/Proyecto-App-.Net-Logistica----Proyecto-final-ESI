@@ -1,7 +1,10 @@
 ﻿Imports Operario
 Imports Controladores.Extenciones.Extensiones
+Imports Controladores
 
 Public Class nuevoVehiculo
+    Implements NotificacionDeLote
+
     'crear una entidad lote y hacer una propery publica para acceder a ella desde el panel nuevoLote y enviar el lote creado  
     Private vehi As New Controladores.Vehiculo()
     Private lotesDisponibles As New List(Of Controladores.Lote)
@@ -96,7 +99,7 @@ Public Class nuevoVehiculo
 
 
     Private Sub infoDaños_Click(sender As Object, e As EventArgs) Handles infoDaños.Click
-        Marco.getInstancia.cargarPanel(Of crearInformaDeDaños)(New crearInformaDeDaños(Controladores.Fachada.getInstancia.id_vehiculoPorVin(buscador.Text.Trim), Me))
+        Marco.getInstancia.cargarPanel(Of crearInformaDeDaños)(New crearInformaDeDaños(Controladores.Fachada.getInstancia.id_vehiculoPorVin(buscador.Text.Trim), Me) With {.ListaDeTodosLosInformes = Controladores.Fachada.getInstancia.devolverTodosLosInformesYregistrosCompletos(Vehiculo)})
 
     End Sub
 
@@ -247,20 +250,6 @@ Public Class nuevoVehiculo
 
     End Sub
 
-    Public Sub NotificarDeLote(l As Controladores.Lote)
-        lote.Enabled = False
-        crearomodificarLote.Text = "Modifica lote"
-        eliminarlote.Visible = True
-        LoteFinal = l
-    End Sub
-
-    Public Sub NotificarDeInforme(info As Controladores.InformeDeDaños)
-        eliminarInforme.Visible = True
-        ModificarInforme.Visible = True
-        informe = info
-        EstadoInforme.Text = "Informe realizado"
-        infoDaños.Enabled = False
-    End Sub
 
     Private Sub ModificarInforme_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles ModificarInforme.LinkClicked
         Marco.getInstancia.cargarPanel(Of crearInformaDeDaños)(New crearInformaDeDaños(informe, Me))
@@ -280,4 +269,23 @@ Public Class nuevoVehiculo
         eliminarlote.Visible = False
         crearomodificarLote.Text = "Crear lote"
     End Sub
+
+    Public Sub NotificarDeInforme(info As InformeDeDaños)
+        eliminarInforme.Visible = True
+        ModificarInforme.Visible = True
+        informe = info
+        EstadoInforme.Text = "Informe realizado"
+        infoDaños.Enabled = False
+    End Sub
+
+    Public Sub NotificarLote(l As Lote) Implements NotificacionDeLote.NotificarLote
+        lote.Enabled = False
+        crearomodificarLote.Text = "Modifica lote"
+        eliminarlote.Visible = True
+        LoteFinal = l
+    End Sub
+
+    Public Function dameVehiculoalLote() As Object Implements NotificacionDeLote.dameVehiculoalLote
+        Return Vehiculo
+    End Function
 End Class

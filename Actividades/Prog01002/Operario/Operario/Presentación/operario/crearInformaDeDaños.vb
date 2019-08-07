@@ -5,13 +5,20 @@ Public Class crearInformaDeDaños
     Private _listaDeTodosLosinformes As List(Of Controladores.InformeDeDaños)
     Private numRegistroAEditar = -1
     Private PanelDelVehiculo As nuevoVehiculo
+    Private subida As Boolean
+    Private Info As Controladores.InformeDeDaños
 
     Public Property ListaDeTodosLosInformes() As List(Of Controladores.InformeDeDaños)
         Get
             Return _listaDeTodosLosinformes
         End Get
         Set(ByVal value As List(Of Controladores.InformeDeDaños))
-            _listaDeTodosLosinformes = value
+            For Each e As Controladores.InformeDeDaños In value
+                If e.Fecha < Info.Fecha And e.ID <> Info.ID Then
+                    _listaDeTodosLosinformes.Add(e)
+                End If
+            Next
+
         End Set
     End Property
 
@@ -23,7 +30,9 @@ Public Class crearInformaDeDaños
 
     End Property
 
-    Private Info As Controladores.InformeDeDaños
+
+
+
     Public Sub New(id As Integer, padre As nuevoVehiculo)
         idvehiculo = id
         InitializeComponent()
@@ -34,14 +43,14 @@ Public Class crearInformaDeDaños
             tipo.Enabled = False
         End If
         _listaDeTodosLosinformes = New List(Of Controladores.InformeDeDaños)
-        TodosLosInformesYRegistros()
-        Info = New Controladores.InformeDeDaños(New Controladores.Vehiculo With {.IdVehiculo = id})
+        Info = New Controladores.InformeDeDaños(New Controladores.Vehiculo With {.IdVehiculo = id}) With {.Fecha = DateTime.Now}
         _nuevo = True
         PanelDelVehiculo = padre
     End Sub
 
-    Public Sub New(informePrevio As Controladores.InformeDeDaños)
+    Public Sub New(informePrevio As Controladores.InformeDeDaños, subida As Boolean) 'FALSE PARA ENVIO POR ACTULIZACION, TRUE POR INSERCION TOTAL
         InitializeComponent()
+        Me.subida = subida
         Info = informePrevio
         _nuevo = False
         If Controladores.Fachada.getInstancia.DevolverUsuarioActual.Rol = Controladores.Usuario.TIPO_ROL_ADMINISTRADOR Then
@@ -49,7 +58,16 @@ Public Class crearInformaDeDaños
         Else
             tipo.Enabled = False
         End If
-        'FALTA
+        descipt.Text = informePrevio.Descripcion
+        For Each reg As Controladores.RegistroDaños In informePrevio.Registros
+            If reg.Descripcion.Length > 30 Then
+                Registros.Items.Add(reg.Descripcion.Substring(0, 30))
+            Else
+                Registros.Items.Add(reg.Descripcion)
+            End If
+        Next
+        _listaDeTodosLosinformes = New List(Of Controladores.InformeDeDaños)
+
     End Sub
 
     Public Sub New(InformePrevio As Controladores.InformeDeDaños, padre As nuevoVehiculo)
@@ -71,12 +89,8 @@ Public Class crearInformaDeDaños
             End If
         Next
         _listaDeTodosLosinformes = New List(Of Controladores.InformeDeDaños)
-        TodosLosInformesYRegistros()
 
-    End Sub
 
-    Private Sub TodosLosInformesYRegistros()
-        _listaDeTodosLosinformes = Controladores.Fachada.getInstancia.devolverInformesSoloConRegistros_IdYIdPropio(idvehiculo)
     End Sub
 
     Public ReadOnly Property InformeDeDaños() As Controladores.InformeDeDaños
@@ -111,7 +125,7 @@ Public Class crearInformaDeDaños
 
     Private Sub ingresarBtn_Click(sender As Object, e As EventArgs)
         If PanelDelVehiculo Is Nothing Then
-            'LLAMAR A FACHADA PARA QUE LO HAGA ELLA 
+
         Else
             Info.Descripcion = descipt.Text.Trim
             Select Case tipo.SelectedIndex

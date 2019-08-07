@@ -47,20 +47,25 @@ Public Class Persistencia
         Return dt
     End Function
 
-    Public Function RegistrosDaño(VIN As String, idinforme As Integer) As DataTable
-        Dim selcmd As New OdbcCommand("select registrodanios.informedanios,
-                                        registrodanios.idregistro,
-	                                    registrodanios.descripcion,
-	                                    count(*) as imagenes from registrodanios
-                                        inner join imagenregistro on
-                                        imagenregistro.informe=registrodanios.informedanios
-                                        inner join vehiculo on
-                                        vehiculo.idvehiculo=registrodanios.idvehiculo and vehiculo.vin=?
-                                        group by registrodanios.informedanios, registrodanios.idregistro,
-                                        registrodanios.descripcion
-                                        having registrodanios.informedanios=?
-                                    ", _con)
-        selcmd.CrearParametro(DbType.String, VIN)
+    Public Function RegistrosDaño(idvehiculo As Integer, idinforme As Integer) As DataTable
+        Dim selcmd As New OdbcCommand("select registrodanios.idregistro,registrodanios.descripcion,
+                      nvl(actualiza.tipo, 'No actualiza'), actualiza.informe2, actualiza.registro2
+       from informedanios inner join registrodanios on informedanios.ID=registrodanios.informedanios
+       left join actualiza on actualiza.registro1=registrodanios.idregistro and actualiza.informe1=informedanios.id
+                                    where informedanios.Idvehiculo=? and informedanios.ID=?", _con)
+        'Dim selcmd As New OdbcCommand("select registrodanios.informedanios,
+        '                                registrodanios.idregistro,
+        '                             registrodanios.descripcion,
+        '                             count(*) as imagenes from registrodanios
+        '                                inner join imagenregistro on
+        '                                imagenregistro.informe=registrodanios.informedanios
+        '                                inner join vehiculo on
+        '                                vehiculo.idvehiculo=registrodanios.idvehiculo and vehiculo.vin=?
+        '                                group by registrodanios.informedanios, registrodanios.idregistro,
+        '                                registrodanios.descripcion
+        '                                having registrodanios.informedanios=?
+        '                            ", _con)
+        selcmd.CrearParametro(DbType.Int32, idvehiculo)
         selcmd.CrearParametro(DbType.Int32, idinforme)
         Dim dt As New DataTable
         dt.Load(selcmd.ExecuteReader)

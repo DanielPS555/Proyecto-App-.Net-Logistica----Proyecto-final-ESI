@@ -32,9 +32,16 @@ Partial Class cargador
         Me.e7 = New System.Windows.Forms.Label()
         Me.e8 = New System.Windows.Forms.Label()
         Me.e9 = New System.Windows.Forms.Label()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
+        Me.p1 = New System.Windows.Forms.Label()
+        Me.p2 = New System.Windows.Forms.Label()
+        Me.p3 = New System.Windows.Forms.Label()
+        Me.p4 = New System.Windows.Forms.Label()
+        Me.p5 = New System.Windows.Forms.Label()
+        Me.p6 = New System.Windows.Forms.Label()
+        Me.p7 = New System.Windows.Forms.Label()
+        Me.p8 = New System.Windows.Forms.Label()
+        Me.p9 = New System.Windows.Forms.Label()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'Label13
@@ -137,47 +144,133 @@ Partial Class cargador
         Me.e9.TabIndex = 114
         Me.e9.Text = "Elemento9"
         '
-        'Label1
+        'p1
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(14, Byte), Integer), CType(CType(150, Byte), Integer), CType(CType(30, Byte), Integer))
-        Me.Label1.Location = New System.Drawing.Point(301, 88)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(43, 21)
-        Me.Label1.TabIndex = 115
-        Me.Label1.Text = "Listo"
+        Me.p1.AutoSize = True
+        Me.p1.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.p1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(14, Byte), Integer), CType(CType(150, Byte), Integer), CType(CType(30, Byte), Integer))
+        Me.p1.Location = New System.Drawing.Point(301, 88)
+        Me.p1.Name = "p1"
+        Me.p1.Size = New System.Drawing.Size(43, 21)
+        Me.p1.TabIndex = 115
+        Me.p1.Text = "Listo"
         '
-        'Label2
+        'p2
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(14, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(150, Byte), Integer))
-        Me.Label2.Location = New System.Drawing.Point(301, 127)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(86, 21)
-        Me.Label2.TabIndex = 116
-        Me.Label2.Text = "Proseso.... "
+        Me.p2.AutoSize = True
+        Me.p2.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.p2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
+        Me.p2.Location = New System.Drawing.Point(301, 127)
+        Me.p2.Name = "p2"
+        Me.p2.Size = New System.Drawing.Size(86, 21)
+        Me.p2.TabIndex = 116
+        Me.p2.Text = "Proseso.... "
         '
-        'Label3
+        'p3
         '
-        Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(180, Byte), Integer), CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer))
-        Me.Label3.Location = New System.Drawing.Point(301, 164)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(118, 21)
-        Me.Label3.TabIndex = 117
-        Me.Label3.Text = "No ejecutado"
+        Me.p3.AutoSize = True
+        Me.p3.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.p3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(180, Byte), Integer), CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer))
+        Me.p3.Location = New System.Drawing.Point(301, 164)
+        Me.p3.Name = "p3"
+        Me.p3.Size = New System.Drawing.Size(118, 21)
+        Me.p3.TabIndex = 117
+        Me.p3.Text = "No ejecutado"
+        '
+        'p4
+        '
+        Me.p4.AutoSize = True
+        Me.p4.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.p4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(180, Byte), Integer), CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer))
+        Me.p4.Location = New System.Drawing.Point(301, 199)
+        Me.p4.Name = "p4"
+        Me.p4.Size = New System.Drawing.Size(118, 21)
+        Me.p4.TabIndex = 118
+        Me.p4.Text = "No ejecutado"
+        '
+        'p5
+        '
+        Me.p5.AutoSize = True
+        Me.p5.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.p5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(180, Byte), Integer), CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer))
+        Me.p5.Location = New System.Drawing.Point(301, 234)
+        Me.p5.Name = "p5"
+        Me.p5.Size = New System.Drawing.Size(118, 21)
+        Me.p5.TabIndex = 119
+        Me.p5.Text = "No ejecutado"
+        '
+        'p6
+        '
+        Me.p6.AutoSize = True
+        Me.p6.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.p6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(180, Byte), Integer), CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer))
+        Me.p6.Location = New System.Drawing.Point(301, 271)
+        Me.p6.Name = "p6"
+        Me.p6.Size = New System.Drawing.Size(118, 21)
+        Me.p6.TabIndex = 120
+        Me.p6.Text = "No ejecutado"
+        '
+        'p7
+        '
+        Me.p7.AutoSize = True
+        Me.p7.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.p7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(180, Byte), Integer), CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer))
+        Me.p7.Location = New System.Drawing.Point(301, 306)
+        Me.p7.Name = "p7"
+        Me.p7.Size = New System.Drawing.Size(118, 21)
+        Me.p7.TabIndex = 121
+        Me.p7.Text = "No ejecutado"
+        '
+        'p8
+        '
+        Me.p8.AutoSize = True
+        Me.p8.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.p8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(180, Byte), Integer), CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer))
+        Me.p8.Location = New System.Drawing.Point(301, 343)
+        Me.p8.Name = "p8"
+        Me.p8.Size = New System.Drawing.Size(118, 21)
+        Me.p8.TabIndex = 122
+        Me.p8.Text = "No ejecutado"
+        '
+        'p9
+        '
+        Me.p9.AutoSize = True
+        Me.p9.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.p9.ForeColor = System.Drawing.Color.FromArgb(CType(CType(180, Byte), Integer), CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer))
+        Me.p9.Location = New System.Drawing.Point(301, 382)
+        Me.p9.Name = "p9"
+        Me.p9.Size = New System.Drawing.Size(118, 21)
+        Me.p9.TabIndex = 123
+        Me.p9.Text = "No ejecutado"
+        '
+        'Button1
+        '
+        Me.Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(180, Byte), Integer), CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer))
+        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button1.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button1.ForeColor = System.Drawing.Color.White
+        Me.Button1.Location = New System.Drawing.Point(67, 453)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(294, 44)
+        Me.Button1.TabIndex = 124
+        Me.Button1.Text = "Operacion en progreso "
+        Me.Button1.UseVisualStyleBackColor = False
         '
         'cargador
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(427, 509)
-        Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.Button1)
+        Me.Controls.Add(Me.p9)
+        Me.Controls.Add(Me.p8)
+        Me.Controls.Add(Me.p7)
+        Me.Controls.Add(Me.p6)
+        Me.Controls.Add(Me.p5)
+        Me.Controls.Add(Me.p4)
+        Me.Controls.Add(Me.p3)
+        Me.Controls.Add(Me.p2)
+        Me.Controls.Add(Me.p1)
         Me.Controls.Add(Me.e9)
         Me.Controls.Add(Me.e8)
         Me.Controls.Add(Me.e7)
@@ -206,7 +299,14 @@ Partial Class cargador
     Friend WithEvents e7 As Label
     Friend WithEvents e8 As Label
     Friend WithEvents e9 As Label
-    Friend WithEvents Label1 As Label
-    Friend WithEvents Label2 As Label
-    Friend WithEvents Label3 As Label
+    Friend WithEvents p1 As Label
+    Friend WithEvents p2 As Label
+    Friend WithEvents p3 As Label
+    Friend WithEvents p4 As Label
+    Friend WithEvents p5 As Label
+    Friend WithEvents p6 As Label
+    Friend WithEvents p7 As Label
+    Friend WithEvents p8 As Label
+    Friend WithEvents p9 As Label
+    Friend WithEvents Button1 As Button
 End Class

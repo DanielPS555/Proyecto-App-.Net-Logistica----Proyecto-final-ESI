@@ -1,30 +1,30 @@
 ﻿Imports Operario.Logica
 
 Public Class NuevoLote
-    Private padre As nuevoVehiculo
+    Private padre As NotificacionDeLote
     Private destinosPosibles As List(Of Controladores.Lugar)
-    Public Sub New(padre As nuevoVehiculo)
+    Public Sub New(padre As NotificacionDeLote)
         Me.padre = padre
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
         StartPosition = FormStartPosition.CenterScreen
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
         destino.Items.Clear()
-        destinosPosibles = Controladores.Fachada.getInstancia.devolverPosiblesDestinos(Controladores.Fachada.getInstancia.TrabajaEnAcutual.Lugar, padre.Vehiculo)
+        destinosPosibles = Controladores.Fachada.getInstancia.devolverPosiblesDestinos(Controladores.Fachada.getInstancia.TrabajaEnAcutual.Lugar, padre.dameVehiculoalLote)
         For Each l As Controladores.Lugar In destinosPosibles
             destino.Items.Add($"{l.Nombre}/{l.Tipo}")
         Next
         destino.SelectedIndex = 0
     End Sub
 
-    Public Sub New(padre As nuevoVehiculo, oldlote As Controladores.Lote)
+    Public Sub New(padre As NotificacionDeLote, oldlote As Controladores.Lote)
         Me.padre = padre
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
         StartPosition = FormStartPosition.CenterScreen
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
         destino.Items.Clear()
-        destinosPosibles = Controladores.Fachada.getInstancia.devolverPosiblesDestinos(Controladores.Fachada.getInstancia.TrabajaEnAcutual.Lugar, padre.Vehiculo)
+        destinosPosibles = Controladores.Fachada.getInstancia.devolverPosiblesDestinos(Controladores.Fachada.getInstancia.TrabajaEnAcutual.Lugar, padre.dameVehiculoalLote)
         Dim c As Integer = 0
         For Each l As Controladores.Lugar In destinosPosibles
             destino.Items.Add($"{l.Nombre}/{l.Tipo}")
@@ -33,7 +33,7 @@ Public Class NuevoLote
             End If
             c += 1
         Next
-        nom.Text = oldlote.Destino.Nombre
+        nom.Text = oldlote.Nombre
     End Sub
 
     Private Sub ingresar_Click(sender As Object, e As EventArgs)
@@ -63,7 +63,7 @@ Public Class NuevoLote
                                                     .Prioridad = Controladores.Lote.TIPO_PRIORIDAD_NORMAL,
                                                     .Origen = Controladores.Fachada.getInstancia.TrabajaEnAcutual.Lugar,
                                                     .Creador = Controladores.Fachada.getInstancia.DevolverUsuarioActual}
-            padre.NotificarDeLote(lo)
+            padre.NotificarLote(lo)
             Me.Dispose()
         Else
             MsgBox("Error en la informacion ingresada", MsgBoxStyle.Critical)

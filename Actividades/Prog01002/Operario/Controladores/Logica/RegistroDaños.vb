@@ -4,7 +4,7 @@ Imports Controladores
 Public Class RegistroDaños
 
     Public Shared ReadOnly TIPO_ACTUALIZACION_CORRECION As String = "Correccion"
-    Public Shared ReadOnly TIPO_ACTUALIZACION_REGULAR As String = Nothing
+    Public Shared ReadOnly TIPO_ACTUALIZACION_REGULAR As String = "Regular"
     Public Shared ReadOnly TIPO_ACTUALIZACION_ANULACION As String = "Anulacion"
 
     Public Shared ReadOnly Property TIPOS_ACTUALIZACIONES() As String()
