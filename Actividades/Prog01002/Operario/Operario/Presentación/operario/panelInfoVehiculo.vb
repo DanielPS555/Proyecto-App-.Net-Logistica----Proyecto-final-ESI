@@ -237,7 +237,7 @@ Public Class panelInfoVehiculo
     End Sub
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
-        Marco.getInstancia.cargarPanel(Of crearInformaDeDaños)(New crearInformaDeDaños(New Controladores.InformeDeDaños(vehiculo), False) With {.ListaDeTodosLosInformes = informesElementos})
+        Marco.getInstancia.cargarPanel(Of crearInformaDeDaños)(New crearInformaDeDaños(New Controladores.InformeDeDaños(vehiculo), True) With {.ListaDeTodosLosInformes = informesElementos})
     End Sub
 
 

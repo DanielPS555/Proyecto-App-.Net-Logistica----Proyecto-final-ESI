@@ -469,7 +469,21 @@ Public Class Fachada
         Return lista
     End Function
 
-
+    Public Sub nuevoInformeDeDaños(info As InformeDeDaños)
+        If Not Persistencia.getInstancia.InsertInformedeDaños(info.Descripcion, info.Fecha, info.Tipo, info.VehiculoPadre.IdVehiculo, info.Lugar.IDLugar, info.Creador.ID_usuario) Then
+            Dim idInfo As Integer = Persistencia.getInstancia.ultimoIdInforme(info.VehiculoPadre.IdVehiculo)
+            For Each reg As RegistroDaños In info.Registros
+                Persistencia.getInstancia.InsertRegistroDaño(info.VehiculoPadre.IdVehiculo, idInfo, reg.Descripcion)
+                Dim idReg As Integer = Persistencia.getInstancia.ultimoIDRegistro(info.VehiculoPadre.IdVehiculo, idInfo)
+                If reg.TipoActualizacion <> RegistroDaños.TIPO_ACTUALIZACION_REGULAR Then
+                    Persistencia.getInstancia.insertarActualizacion(info.VehiculoPadre.IdVehiculo, idInfo, idReg, reg.Actualiza.InformePadre.ID, reg.Actualiza.ID, reg.TipoActualizacion)
+                End If
+                For Each img As Image In reg.Imagenes
+                    Persistencia.getInstancia.insertarImagendeUnRegistro(info.VehiculoPadre.IdVehiculo, idInfo, idReg, img)
+                Next
+            Next
+        End If
+    End Sub
 
     Public Sub NuevoLote(lote As Controladores.Lote)
 

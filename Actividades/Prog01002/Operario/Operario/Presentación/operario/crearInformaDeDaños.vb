@@ -125,7 +125,11 @@ Public Class crearInformaDeDaños
 
     Private Sub ingresarBtn_Click(sender As Object, e As EventArgs)
         If PanelDelVehiculo Is Nothing Then
+            If subida Then
 
+            Else
+
+            End If
         Else
             Info.Descripcion = descipt.Text.Trim
             Select Case tipo.SelectedIndex

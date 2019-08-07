@@ -569,6 +569,69 @@ Public Class Persistencia
         Return com.ExecuteNonQuery() > 0
     End Function
 
+    Public Function InsertInformedeDaños(descripcion As String, fecha As DateTime, tipo As String, idvehiculo As Integer, idlugar As Integer, idUsuario As Integer)
+        Dim com As New OdbcCommand("insert into informedanios(id, descripcion, fecha, tipo, idvehiculo, idlugar, idusuario) values(0,?,?,?,?,?,?);", Conexcion)
+        com.CrearParametro(DbType.String, descripcion)
+        com.CrearParametro(DbType.DateTime, fecha)
+        com.CrearParametro(DbType.String, tipo)
+        com.CrearParametro(DbType.Int32, idvehiculo)
+        com.CrearParametro(DbType.Int32, idlugar)
+        com.CrearParametro(DbType.Int32, idUsuario)
+        Return com.ExecuteNonQuery() > 0
+    End Function
 
+    Public Function ultimoIdInforme(idvehiculo As Integer) As Integer
+        Dim com As New OdbcCommand("select first 1 informedanios.ID, fecha from informedanios
+                                    where IDVehiculo=? order by fecha desc", Conexcion)
+        com.CrearParametro(DbType.Int32, idvehiculo)
+        Return com.ExecuteScalar
+    End Function
+
+
+    Public Function ultimoIDRegistro(idvehiculo As Integer, idinforme As Integer) As Integer
+        Dim com As New OdbcCommand("select first 1 idregistro,informedanios.ID from registrodanios inner join informedanios
+                                    on registrodanios.informedanios=informedanios.ID
+                                    where  informedanios.IDVehiculo=? and informedanios.ID=? order by fecha desc", Conexcion)
+        com.CrearParametro(DbType.Int32, idvehiculo)
+        com.CrearParametro(DbType.Int32, idinforme)
+        Return com.ExecuteScalar
+    End Function
+
+    Public Function InsertRegistroDaño(idvehiculo As Integer, idInformedaños As Integer, descripcion As String)
+        Dim com As New OdbcCommand("insert into registrodanios(idvehiculo, informedanios, idregistro, descripcion) values(?,?,0,?);", Conexcion)
+        com.CrearParametro(DbType.Int32, idvehiculo)
+        com.CrearParametro(DbType.Int32, idInformedaños)
+        com.CrearParametro(DbType.String, descripcion)
+        Return com.ExecuteNonQuery() > 0
+    End Function
+
+    Public Function eliminarImagenesDeUnregistro(idvehiculo As Integer, idInforme As Integer, idregistro As Integer) As Boolean
+        Dim com As New OdbcCommand("delete from imagenregistro where vehiculo=? and informe=? and nrolista=?;", Conexcion)
+        com.CrearParametro(DbType.Int32, idvehiculo)
+        com.CrearParametro(DbType.Int32, idInforme)
+        com.CrearParametro(DbType.Int32, idregistro)
+        Return com.ExecuteNonQuery() > 0
+    End Function
+
+    Public Function insertarImagendeUnRegistro(idvehiculo As Integer, idInforme As Integer, idregistro As Integer, img As Bitmap) As Boolean
+        Dim com As New OdbcCommand("insert into imagenregistro values (?,?,?,0,? );", Conexcion)
+        com.CrearParametro(DbType.Int32, idvehiculo)
+        com.CrearParametro(DbType.Int32, idInforme)
+        com.CrearParametro(DbType.Int32, idregistro)
+        com.CrearParametro(DbType.Byte, img)
+        Return com.ExecuteNonQuery() > 0
+    End Function
+
+    Public Function insertarActualizacion(idvehiculo As Integer, idinforme1 As Integer, idregistro1 As Integer, idinforme2 As Integer, idregistro2 As Integer, tipo As String)
+        Dim com As New OdbcCommand("insert into actualiza(vehiculo1, informe1, registro1, vehiculo2, informe2, registro2, tipo) values (?,?,?,?,?,?,?);", Conexcion)
+        com.CrearParametro(DbType.Int32, idvehiculo)
+        com.CrearParametro(DbType.Int32, idinforme1)
+        com.CrearParametro(DbType.Int32, idregistro1)
+        com.CrearParametro(DbType.Int32, idvehiculo)
+        com.CrearParametro(DbType.Int32, idinforme2)
+        com.CrearParametro(DbType.Int32, idregistro2)
+        com.CrearParametro(DbType.String, tipo)
+        Return com.ExecuteNonQuery() > 0
+    End Function
 
 End Class
