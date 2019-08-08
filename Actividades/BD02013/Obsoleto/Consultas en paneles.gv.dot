@@ -1,0 +1,308 @@
+digraph G {
+	graph [bb="0,0,3630.3,1251.4",
+		rankdir=LR
+	];
+	node [label="\N",
+		shape=rect
+	];
+	{
+		graph [rank=same];
+		"Info de vehiculo"		 [height=0.5,
+			pos="854.5,598",
+			width=1.8194];
+		"Info de Lote"		 [height=0.5,
+			pos="854.5,299",
+			width=1.4444];
+		"Ingresar Vehiculo"		 [height=0.5,
+			pos="854.5,1038",
+			width=1.9861];
+	}
+	{
+		graph [rank=same];
+		"Ver Informe"		 [height=0.5,
+			pos="1419,809",
+			width=1.4167];
+		"Ver Registro"		 [height=0.5,
+			pos="1419,514",
+			width=1.4722];
+	}
+	{
+		graph [rank=same];
+		"Nuevo lote"		 [height=0.5,
+			pos="1267.5,1126",
+			width=1.3194];
+		"Crear Informe"		 [height=0.5,
+			pos="1267.5,847",
+			width=1.6528];
+		"Crear Registro"		 [height=0.5,
+			pos="1267.5,496",
+			width=1.7083];
+	}
+	{
+		graph [rank=same];
+		Home		 [height=0.5,
+			pos="477.5,76",
+			width=0.81944];
+		"Lista de zonas"		 [height=0.5,
+			pos="477.5,769",
+			width=1.6528];
+		"Lista de Lotes"		 [height=0.5,
+			pos="477.5,523",
+			width=1.6528];
+		"Lista de Vehiculos"		 [height=0.5,
+			pos="477.5,586",
+			width=2.0417];
+	}
+	{
+		graph [rank=same];
+		"Datos del Usuario"		 [height=0.5,
+			pos="2790.3,73",
+			width=2.0139];
+		"Datos del Lugar"		 [height=0.5,
+			pos="2790.3,192",
+			width=1.8194];
+	}
+	subgraph cluster_consultas {
+		graph [bb="1501,218,3622.3,1178",
+			label=Consultas,
+			lheight=0.21,
+			lp="2561.6,1166.5",
+			lwidth=1.00,
+			rank=max,
+			style=dotted
+		];
+		node [shape=oval];
+		{
+			graph [rank=same];
+			"Actualizar Informe"			 [height=0.5,
+				pos="1713.7,805",
+				shape=oval,
+				width=2.7442];
+			"Actualizar Registro"			 [height=0.5,
+				pos="1713.7,514",
+				shape=oval,
+				width=2.7984];
+			"Actualizar Vehiculo"			 [height=0.5,
+				pos="1713.7,967",
+				shape=oval,
+				width=2.7984];
+			"Actualizar Lote"			 [height=0.5,
+				pos="1713.7,298",
+				shape=oval,
+				width=2.2929];
+		}
+		{
+			graph [rank=same];
+			"Anadir Registro"			 [height=0.5,
+				pos="1713.7,460",
+				shape=oval,
+				width=2.347];
+			"Anadir Informe"			 [height=0.5,
+				pos="1713.7,913",
+				shape=oval,
+				width=2.2748];
+			"Anadir Lote"			 [height=0.5,
+				pos="1713.7,1129",
+				shape=oval,
+				width=1.8234];
+		}
+		{
+			graph [rank=same];
+			"Detalles de Usuario"			 [height=0.5,
+				pos="3004.5,244",
+				shape=oval,
+				width=2.8525];
+			"Detalles de vehiculo"			 [height=0.5,
+				pos="3004.5,610",
+				shape=oval,
+				width=2.9067];
+			"Detalles de lugar"			 [height=0.5,
+				pos="3004.5,470",
+				shape=oval,
+				width=2.5095];
+		}
+		subgraph cluster_consultas_genericas {
+			graph [bb="2207.5,666,3614.3,741",
+				label="Consultas genericas",
+				lheight=0.21,
+				lp="2910.9,729.5",
+				lwidth=2.03,
+				rankdir=LR
+			];
+			"Informacion basica de entidades segun Criterio"			 [height=0.5,
+				pos="2448.1,692",
+				shape=oval,
+				width=6.4633];
+			"Informacion basica de entidad"			 [height=0.5,
+				pos="3454.2,692",
+				shape=oval,
+				width=4.2246];
+			"Informacion basica de entidades segun Criterio" -> "Informacion basica de entidad"			 [label=Extends,
+				lp="3004.5,699.5",
+				pos="e,3302,692 2681,692 2717.6,692 2755,692 2790.3,692 2790.3,692 2790.3,692 3205.6,692 3233.5,692 3263.1,692 3291.9,692"];
+		}
+		subgraph cluster_seguridad {
+			graph [bb="1615.4,596,1812.1,725",
+				label=Criptografia,
+				lheight=0.21,
+				lp="1713.7,713.5",
+				lwidth=1.22,
+				rank=same
+			];
+			"Iniciar sesion"			 [height=0.5,
+				pos="1713.7,622",
+				shape=oval,
+				width=2.0401];
+			"Verificar Usuario"			 [height=0.5,
+				pos="1713.7,676",
+				shape=oval,
+				width=2.5095];
+		}
+		"Detalles de Usuario" -> "Informacion basica de entidad"		 [label="Could encapsule",
+			lp="3205.6,510.5",
+			pos="e,3436.2,674.11 3022.4,261.84 3092.3,331.52 3347.3,585.51 3428.9,666.8"];
+		"Detalles de vehiculo" -> "Informacion basica de entidad"		 [label="Could encapsule",
+			lp="3205.6,664.5",
+			pos="e,3371,676.84 3076.7,623.17 3154,637.26 3276.8,659.65 3361.2,675.04"];
+		"Detalles de lugar" -> "Informacion basica de entidad"		 [label="Could encapsule",
+			lp="3205.6,605.5",
+			pos="e,3418.5,674.39 3038.6,486.87 3118.9,526.5 3319.5,625.52 3409.4,669.89"];
+		"Posiciones en subzonas del vehiculo"		 [height=0.5,
+			pos="1713.7,406",
+			shape=oval,
+			width=4.9648];
+		"(Re)posicionar vehiculo"		 [height=0.5,
+			pos="1713.7,352",
+			shape=oval,
+			width=3.34];
+		"Informes de vehiculo"		 [height=0.5,
+			pos="1713.7,751",
+			shape=oval,
+			width=3.015];
+		"Informes de vehiculo" -> "Informacion basica de entidades segun Criterio"		 [label="Could encapsule",
+			lp="2067,738.5",
+			pos="e,2286.7,704.97 1811.6,743.13 1930.1,733.61 2131.8,717.42 2276.4,705.8"];
+		"Registros de Informe"		 [height=0.5,
+			pos="1713.7,859",
+			shape=oval,
+			width=3.0331];
+		"Registros de Informe" -> "Informacion basica de entidades segun Criterio"		 [label="Could encapsule",
+			lp="2067,831.5",
+			pos="e,2391.5,709.53 1806.1,849.35 1841.4,845 1882,839.2 1918.5,832 2087.3,798.69 2282.2,742.51 2381.8,712.44"];
+		"Cargar Vehiculo"		 [height=0.5,
+			pos="1713.7,1075",
+			shape=oval,
+			width=2.3831];
+		"Fechas y Lugares de llegadas de Vehiculo"		 [height=0.5,
+			pos="1713.7,568",
+			shape=oval,
+			width=5.687];
+		"Vehiculos en Lote"		 [height=0.5,
+			pos="1713.7,244",
+			shape=oval,
+			width=2.5817];
+		"Estado registral de vehiculo"		 [height=0.5,
+			pos="1713.7,1021",
+			shape=oval,
+			width=3.9358];
+	}
+	subgraph cluster_genericos {
+		graph [bb="588,455,746,530",
+			label="Funciones comunes",
+			lheight=0.21,
+			lp="667,518.5",
+			lwidth=1.97,
+			rank=min,
+			style=solid
+		];
+		Buscar		 [height=0.5,
+			pos="666.5,481",
+			width=0.93056];
+	}
+	Buscar -> "Informacion basica de entidades segun Criterio"	 [pos="e,2445.7,673.82 667.18,462.8 671.02,388.75 695.93,114 854.5,114 854.5,114 854.5,114 1937,114 2044.8,114 2090,76.35 2178.5,138 2367,\
+269.3 2429,570.15 2444.1,663.71"];
+	Login	 [height=0.5,
+		pos="28.5,687",
+		width=0.79167];
+	Login -> "Verificar Usuario"	 [pos="e,1632.4,683.94 36.265,705.11 54.12,743.59 102.01,830 172,830 172,830 172,830 854.5,830 910.26,830 910.19,784.9 963,767 1191.3,689.61 \
+1261.5,725.73 1501,698 1540.6,693.41 1584.4,688.8 1622,684.99"];
+	"Lugares de Trabajo"	 [height=0.5,
+		pos="172,448",
+		width=2.1667];
+	Login -> "Lugares de Trabajo"	 [pos="e,161.14,466.09 39.522,668.64 64.678,626.75 126.42,523.92 155.86,474.87"];
+	"Lugares de Trabajo" -> "Detalles de Usuario"	 [pos="e,2998.5,225.66 174.2,429.88 184.84,346.07 234.41,0 327,0 327,0 327,0 2790.3,0 2904.3,0 2971.8,152.2 2995.2,216.18"];
+	"Lugares de Trabajo" -> "Iniciar sesion"	 [pos="e,1643.6,616.42 250.35,438.87 274.86,436.7 302.02,435 327,435 327,435 327,435 944.5,435 1069.9,435 1085.9,504.99 1206,541 1334.1,\
+579.39 1368.8,579.99 1501,600 1544.6,606.59 1593.5,611.8 1633.4,615.49"];
+	Operario	 [height=0.5,
+		pos="327,523",
+		width=1.1111];
+	"Lugares de Trabajo" -> Operario	 [pos="e,289.56,504.88 209.52,466.16 230.86,476.48 257.77,489.5 280.45,500.48"];
+	Operario -> Home	 [pos="e,471.34,94.301 333.09,504.92 356.37,435.78 439.88,187.74 468.1,103.91"];
+	Operario -> "Lista de zonas"	 [pos="e,466.42,750.88 338.07,541.09 364.27,583.92 430.21,691.7 461.08,742.16"];
+	Operario -> "Lista de Lotes"	 [pos="e,417.81,523 367.33,523 379.8,523 393.92,523 407.78,523"];
+	Operario -> "Lista de Vehiculos"	 [pos="e,434.42,567.97 367.33,539.88 385.06,547.3 406.11,556.12 425.04,564.04"];
+	Home -> "Datos del Usuario"	 [pos="e,2717.8,61.248 507.24,66.214 544.17,54.955 609.27,38 666.5,38 666.5,38 666.5,38 2448.1,38 2537.2,38 2638.7,49.883 2707.8,59.801"];
+	Home -> "Datos del Lugar"	 [pos="e,2759.4,173.88 507.29,76 544.53,76 610.23,76 666.5,76 666.5,76 666.5,76 2448.1,76 2562.7,76 2687.9,135.03 2750.3,168.87"];
+	"Datos del Usuario" -> "Detalles de Usuario"	 [pos="e,2982.4,226.34 2813.2,91.3 2852.2,122.38 2931.2,185.47 2974.4,220.03"];
+	"Datos del Lugar" -> "Detalles de lugar"	 [pos="e,2994.1,451.98 2855.9,205.62 2865.7,210.11 2874.8,216.07 2881.8,224 2896.7,240.73 2890.6,250.62 2899.8,271 2928.4,334.11 2967.6,\
+405.35 2989,443.12"];
+	"Lista de zonas" -> "Informacion basica de entidades segun Criterio"	 [pos="e,2445.2,710.21 484.27,787.02 518.46,874.52 680.88,1251 944.5,1251 944.5,1251 944.5,1251 2067,1251 2117.7,1251 2137.1,1256.3 2178.5,\
+1227 2359.9,1098.4 2426.4,811.43 2443.4,720.33"];
+	"Lista de subzonas"	 [height=0.5,
+		pos="666.5,769",
+		width=2.0139];
+	"Lista de zonas" -> "Lista de subzonas"	 [pos="e,593.99,769 537.04,769 551.86,769 568.02,769 583.74,769"];
+	"Lista de subzonas" -> "Informacion basica de entidades segun Criterio"	 [pos="e,2444,710.07 672.12,787.23 698.11,870.78 807.47,1213 854.5,1213 854.5,1213 854.5,1213 2067,1213 2126.6,1213 2152.9,1221.6 2197.5,\
+1182 2348.1,1048.4 2420.6,802.65 2441.5,719.98"];
+	"Lista de subzonas" -> "Info de vehiculo"	 [pos="e,834.53,616.17 686.62,750.7 720.4,719.97 788.57,657.96 826.84,623.16"];
+	"Info de vehiculo" -> "Informacion basica de entidad"	 [label="Cuando no se llama desde lista",
+		lp="2067,1189.5",
+		pos="e,3453.5,710.15 855.35,616.05 860.11,694.28 889.94,1000 1066,1000 1066,1000 1066,1000 1347.5,1000 1446.4,1000 1410.4,1121.5 1501,\
+1161 1642.8,1222.8 2042.3,1170 2197,1170 2197,1170 2197,1170 3205.6,1170 3409.6,1170 3446.4,823.2 3452.9,720.39",
+		style=dotted];
+	"Info de vehiculo" -> "Detalles de vehiculo"	 [pos="e,2971,592.95 858.25,579.92 867.89,538.08 897.5,433.95 963,379 1042.8,312.02 1088.2,342.95 1188,313 1327.4,271.19 1357.1,238.57 \
+1501,217 1684.5,189.49 1735.7,184.95 1918.5,217 2342.2,291.32 2818.6,517.14 2961.6,588.29"];
+	"Info de vehiculo" -> "Posiciones en subzonas del vehiculo"	 [pos="e,1562.7,415.66 894.42,579.92 958.67,551.62 1089.6,497.19 1206,469 1320.1,441.36 1451.8,425.47 1552.4,416.56"];
+	"Info de vehiculo" -> "(Re)posicionar vehiculo"	 [pos="e,1622.4,363.72 861.88,579.67 884.16,527.68 956.04,383 1066,383 1066,383 1066,383 1419,383 1455.5,383 1542.2,373.46 1612.2,364.96"];
+	"Info de vehiculo" -> "Actualizar Vehiculo"	 [pos="e,1615.8,962.68 858.25,616.29 867.87,658.65 897.44,764.18 963,821 1042.2,889.63 1082.7,893 1187.5,893 1187.5,893 1187.5,893 1419,\
+893 1461,893 1461.2,926.65 1501,940 1534.2,951.12 1571.7,957.71 1605.8,961.6"];
+	"Info de vehiculo" -> "Fechas y Lugares de llegadas de Vehiculo"	 [pos="e,1594.8,582.69 920.24,598 961.99,598 1017.2,598 1066,598 1066,598 1066,598 1347.5,598 1426.4,598 1514.5,591 1584.6,583.76"];
+	"Info de vehiculo" -> "Info de Lote"	 [dir=both,
+		pos="s,854.5,579.9 e,854.5,317.1 854.5,569.53 854.5,488.72 854.5,407.92 854.5,327.11"];
+	"Lista informes de vehiculo"	 [height=0.5,
+		pos="1066,794",
+		width=2.8611];
+	"Info de vehiculo" -> "Lista informes de vehiculo"	 [pos="e,1046.5,775.96 874.02,616.09 911.95,651.24 995.68,728.83 1038.9,768.92"];
+	"Lista de Lotes" -> Buscar	 [pos="e,632.83,488.48 537.04,509.77 564.81,503.6 597.27,496.38 622.74,490.73"];
+	"Lista de Lotes" -> "Info de Lote"	 [pos="e,852.58,317.02 527.72,541.06 585.26,558.35 680.07,576.17 746,534 818.62,487.54 843.33,378.73 851.16,327.12"];
+	"Info de Lote" -> "Informacion basica de entidad"	 [label="Cuando no se llama desde lista",
+		lp="2067,166.5",
+		pos="e,3450.2,673.83 868.75,280.83 900.06,243.15 979,160 1066,160 1066,160 1066,160 1937,160 2356.7,160 2461.6,146 2881.3,146 2881.3,\
+146 2881.3,146 3205.6,146 3320.6,146 3422.2,552.45 3447.9,663.98",
+		style=dotted];
+	"Info de Lote" -> "Actualizar Lote"	 [pos="e,1631.2,298.43 906.65,299 949.46,299 1011.7,299 1066,299 1066,299 1066,299 1419,299 1486.6,299 1562.9,298.73 1620.9,298.48"];
+	"Info de Lote" -> "Vehiculos en Lote"	 [pos="e,1632.8,235.12 884.12,280.99 923.96,258.51 997.72,223 1066,223 1066,223 1066,223 1419,223 1487.4,223 1564.4,228.69 1622.6,234.15"];
+	"Lista de Vehiculos" -> Buscar	 [pos="e,637.46,499.26 515.95,567.91 527.34,562.36 539.76,556.1 551,550 577.46,535.65 606.56,518.26 628.93,504.52"];
+	"Lista de Vehiculos" -> "Info de vehiculo"	 [pos="e,788.98,595.91 551.08,588.34 616.68,590.43 712.3,593.47 778.6,595.58"];
+	"Lista de Vehiculos" -> "Ingresar Vehiculo"	 [pos="e,852.2,1019.9 530.24,604.03 590.35,627.11 687.8,672.61 746,742 814.73,823.94 841.75,953.25 850.69,1009.9"];
+	"Ingresar Vehiculo" -> "Cargar Vehiculo"	 [pos="e,1627.6,1075.4 920.63,1056.1 962.06,1065.9 1016.8,1076 1066,1076 1066,1076 1066,1076 1419,1076 1485.3,1076 1559.9,1075.7 1617.5,\
+1075.5"];
+	"Ingresar Vehiculo" -> "Estado registral de vehiculo"	 [pos="e,1595.5,1030.9 926.45,1038 967.36,1038 1019.6,1038 1066,1038 1066,1038 1066,1038 1419,1038 1473.5,1038 1533.7,1035.1 1585.3,1031.6"];
+	"Ingresar Vehiculo" -> "Nuevo lote"	 [pos="e,1219.9,1126.8 879.01,1056 896.28,1067.7 920.45,1082.2 944,1090 1033.5,1119.5 1143.8,1125.9 1209.7,1126.7"];
+	"Ingresar Vehiculo" -> "Crear Informe"	 [pos="e,1228.5,865.02 893.73,1019.9 969.73,984.71 1136.8,907.44 1219.4,869.26"];
+	"Nuevo lote" -> "Anadir Lote"	 [pos="e,1648,1128.6 1315.3,1126.3 1392.5,1126.8 1545.6,1127.9 1637.9,1128.5"];
+	"Crear Informe" -> "Anadir Informe"	 [pos="e,1631.9,911.81 1327.3,848.05 1373.5,850.61 1438.1,858.1 1491,879 1496,880.99 1495.9,884.05 1501,886 1539,900.68 1583.4,907.74 1621.8,\
+911.02"];
+	"Crear Informe" -> "Ver Informe"	 [pos="e,1367.9,821.82 1327.4,831.98 1337.4,829.46 1347.9,826.84 1357.9,824.31"];
+	"Crear Informe" -> "Crear Registro"	 [pos="e,1267.5,514.17 1267.5,828.8 1267.5,727.3 1267.5,625.8 1267.5,524.31"];
+	"Ver Informe" -> "Registros de Informe"	 [pos="e,1619,850 1470.3,824.65 1480.4,827.37 1491,829.97 1501,832 1535.9,839.06 1574.4,844.62 1608.9,848.8"];
+	"Ver Informe" -> "Actualizar Informe"	 [pos="e,1615.1,806.34 1470,808.31 1507.1,807.8 1558.8,807.1 1605.1,806.47"];
+	"Ver Informe" -> "Ver Registro"	 [pos="e,1419,532.15 1419,790.89 1419,708.01 1419,625.13 1419,542.26"];
+	"Lista informes de vehiculo" -> "Informes de vehiculo"	 [pos="e,1612.9,757.7 1169.4,787.14 1287.8,779.27 1481.2,766.43 1602.8,758.36"];
+	"Lista informes de vehiculo" -> "Crear Informe"	 [pos="e,1207.9,831.34 1134.5,812.02 1155,817.41 1177.5,823.32 1198,828.73"];
+	"Lista informes de vehiculo" -> "Ver Informe"	 [pos="e,1367.9,806.83 1169.1,798.38 1230.3,800.98 1305.9,804.19 1357.8,806.4"];
+	"Crear Registro" -> "Anadir Registro"	 [pos="e,1633.6,465.91 1329.2,490.23 1341.4,489.13 1354.1,488 1366,487 1453.4,479.61 1553.3,471.94 1623.5,466.67"];
+	"Crear Registro" -> "Crear Registro"	 [pos="e,1282,514.15 1253,514.15 1250.8,523.54 1255.6,532 1267.5,532 1274.7,532 1279.4,528.86 1281.4,524.28"];
+	"Crear Registro" -> "Ver Registro"	 [pos="e,1365.7,507.67 1329.1,503.32 1337.8,504.36 1346.8,505.42 1355.6,506.46"];
+	"Ver Registro" -> "Actualizar Registro"	 [pos="e,1612.8,514 1472,514 1508.4,514 1558,514 1602.8,514"];
+}
