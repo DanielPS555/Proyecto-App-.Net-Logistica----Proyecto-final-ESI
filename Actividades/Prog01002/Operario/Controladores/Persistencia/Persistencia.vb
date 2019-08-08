@@ -546,9 +546,20 @@ Public Class Persistencia
         Return com.ExecuteNonQuery() > 0
     End Function
 
-    Public Function updateVehiculo(idvehiculo As Integer, vin As String, marca As String, modelo As String, color As String, tipo As String, año As Integer, idcliente As Integer)
-        Dim com As New OdbcCommand("update vehiculo set VIN=?,Marca=?,Modelo=?,color=?,tipo=?,anio=?,cliente=? where idvehiculo=?", Conexcion)
 
+    Public Function updateVehiculo(idvehiculo As Integer, vin As String, marca As String, modelo As String, color As String, tipo As String, año As Integer, idcliente As Integer)
+        Dim com As New OdbcCommand("update vehiculo set
+                                    VIN=?,Marca=?,Modelo=?,color=?,tipo=?
+                                    ,anio=?,cliente=? where idvehiculo=?", Conexcion)
+        com.CrearParametro(DbType.String, vin)
+        com.CrearParametro(DbType.String, marca)
+        com.CrearParametro(DbType.String, modelo)
+        com.CrearParametro(DbType.String, color)
+        com.CrearParametro(DbType.String, tipo)
+        com.CrearParametro(DbType.Int32, año)
+        com.CrearParametro(DbType.Int32, idcliente)
+        com.CrearParametro(DbType.Int32, idvehiculo)
+        Return com.ExecuteNonQuery() > 0
     End Function
 
     Public Function InsertIntegra(idlote As Integer, idvehiculo As Integer, fechaIntegracion As DateTime, invalido As Boolean, idusuario As Integer) As Boolean
@@ -558,6 +569,15 @@ Public Class Persistencia
         com.CrearParametro(DbType.DateTime, fechaIntegracion)
         com.CrearParametro(DbType.Boolean, invalido)
         com.CrearParametro(DbType.Int32, idusuario)
+        Return com.ExecuteNonQuery() > 0
+    End Function
+
+    Public Function insertVehiculoIngresa(idvehiculo As Integer, fecha As DateTime, tipoIngreso As String, usuario As Integer) As Boolean
+        Dim com As New OdbcCommand("insert into vehiculoIngresa values (?,?,?,?)", Conexcion)
+        com.CrearParametro(DbType.Int32, idvehiculo)
+        com.CrearParametro(DbType.DateTime, fecha)
+        com.CrearParametro(DbType.String, tipoIngreso)
+        com.CrearParametro(DbType.Int32, usuario)
         Return com.ExecuteNonQuery() > 0
     End Function
 
@@ -621,6 +641,13 @@ Public Class Persistencia
 
     Public Function EliminarRegistrosDeUnInforme(idvehiculo As Integer, idinforme As Integer)
         Dim com As New OdbcCommand("delete from registrodanios where idvehiculo=? and informedanios=? ;", Conexcion)
+        com.CrearParametro(DbType.Int32, idvehiculo)
+        com.CrearParametro(DbType.Int32, idinforme)
+        Return com.ExecuteNonQuery() > 0
+    End Function
+
+    Public Function EliminarActualizaDeUnRegistro(idvehiculo As Integer, idinforme As Integer)
+        Dim com As New OdbcCommand("delete from actualiza where vehiculo1=? and informe1=?;", Conexcion)
         com.CrearParametro(DbType.Int32, idvehiculo)
         com.CrearParametro(DbType.Int32, idinforme)
         Return com.ExecuteNonQuery() > 0

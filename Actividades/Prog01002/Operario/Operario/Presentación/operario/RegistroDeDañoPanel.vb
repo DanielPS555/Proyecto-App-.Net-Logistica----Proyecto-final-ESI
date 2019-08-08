@@ -181,6 +181,17 @@ Public Class RegistroDeDañoPanel
             End If
         End If
 
+        Dim imgs As New List(Of Bitmap)
+        For Each im As Bitmap In imagenes
+            Dim d As New Bitmap(320, 320) 'New Bitmap(ofd.OpenFile)
+            Dim g = Graphics.FromImage(d)
+            g.DrawImage(New Bitmap(im), 0, 0, 320, 320)
+            panelFotografias.Image = d
+            imgs.Add(d)
+        Next
+        imagenes = imgs
+
+
 
         Dim reg As New Controladores.RegistroDaños(padre.InformeDeDaños)
         reg.Descripcion = descipt.Text.Trim

@@ -159,6 +159,8 @@ Public Class panelInfoVehiculo
             If reg.Imagenes.Count = 1 Then
                 SigienteImagen.Enabled = False
                 AnteriorImagen.Enabled = False
+            Else
+                SigienteImagen.Enabled = True
             End If
             SigienteImagen.Visible = True
             AnteriorImagen.Visible = True
