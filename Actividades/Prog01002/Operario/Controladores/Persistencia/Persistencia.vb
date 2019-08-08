@@ -28,8 +28,8 @@ Public Class Persistencia
     End Function
 
     Public Function InformesDaño(id As Integer) As DataTable
-        Dim selcmd As New OdbcCommand("select informedanios.id,Descripcion,concat(usuario.primernombre, concat(' ', usuario.primerapellido)),
-                                        Fecha,lugar.nombre, lugar.idlugar
+        Dim selcmd As New OdbcCommand(" select informedanios.id,Descripcion,concat(usuario.primernombre, concat(' ', usuario.primerapellido)),
+                                        Fecha,lugar.nombre, lugar.idlugar,usuario.idusuario
                                         from Informedanios inner join usuario on informedanios.idusuario=usuario.idusuario
                                         inner join lugar on informedanios.idlugar=lugar.idlugar
                                         where idvehiculo=? order by informedanios.id", _con)
@@ -599,11 +599,30 @@ Public Class Persistencia
         Return com.ExecuteNonQuery() > 0
     End Function
 
-    Public Function eliminarImagenesDeUnregistro(idvehiculo As Integer, idInforme As Integer, idregistro As Integer) As Boolean
-        Dim com As New OdbcCommand("delete from imagenregistro where vehiculo=? and informe=? and nrolista=?;", Conexcion)
+    Public Function eliminarImagenesDeUnInforme(idvehiculo As Integer, idInforme As Integer) As Boolean
+        Dim com As New OdbcCommand("delete from imagenregistro where vehiculo=? and informe=? ;", Conexcion)
         com.CrearParametro(DbType.Int32, idvehiculo)
         com.CrearParametro(DbType.Int32, idInforme)
-        com.CrearParametro(DbType.Int32, idregistro)
+        Return com.ExecuteNonQuery() > 0
+    End Function
+
+    Public Function ActualizarInformeDaños(id As Integer, descripcion As String, fecha As DateTime, tipo As String, idvehiculo As Integer, idlugar As Integer, idUsuario As Integer)
+        Dim com As New OdbcCommand("update informedanios set descripcion=?, fecha=?, tipo=?, idvehiculo=?, idlugar=?, idusuario=? 
+                                    where ID=?;", Conexcion)
+        com.CrearParametro(DbType.String, descripcion)
+        com.CrearParametro(DbType.DateTime, fecha)
+        com.CrearParametro(DbType.String, tipo)
+        com.CrearParametro(DbType.Int32, idvehiculo)
+        com.CrearParametro(DbType.Int32, idlugar)
+        com.CrearParametro(DbType.Int32, idUsuario)
+        com.CrearParametro(DbType.Int32, id)
+        Return com.ExecuteNonQuery() > 0
+    End Function
+
+    Public Function EliminarRegistrosDeUnInforme(idvehiculo As Integer, idinforme As Integer)
+        Dim com As New OdbcCommand("delete from registrodanios where idvehiculo=? and informedanios=? ;", Conexcion)
+        com.CrearParametro(DbType.Int32, idvehiculo)
+        com.CrearParametro(DbType.Int32, idinforme)
         Return com.ExecuteNonQuery() > 0
     End Function
 

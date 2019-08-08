@@ -378,7 +378,18 @@ Public Class panelInfoVehiculo
     End Sub
 
     Private Sub Modificar_Click(sender As Object, e As EventArgs) Handles modificar.Click
-        Marco.getInstancia.cargarPanel(Of crearInformaDeDaños)(New crearInformaDeDaños(informesElementos(actualInfore), False, Me) With {.ListaDeTodosLosInformes = informesElementos})
+        If Fachada.getInstancia.DevolverUsuarioActual.ID_usuario = informesElementos(actualInfore).Creador.ID_usuario Then
+            'COMPROBAR QUE NO HAYA PASADO MAS DE 2 DIAS 
+            If informesElementos.Count - 1 = actualInfore Then
+                Marco.getInstancia.cargarPanel(Of crearInformaDeDaños)(New crearInformaDeDaños(informesElementos(actualInfore), False, Me) With {.ListaDeTodosLosInformes = informesElementos})
+            Else
+                MsgBox("Solo se puede modificar el ultimo informe", MsgBoxStyle.Critical)
+            End If
+        Else
+                MsgBox("Solo el creador puede modificar este informe", MsgBoxStyle.Critical)
+        End If
+
+
     End Sub
 
     Public Sub NotificarLote(lote As Lote) Implements NotificacionDeLote.NotificarLote

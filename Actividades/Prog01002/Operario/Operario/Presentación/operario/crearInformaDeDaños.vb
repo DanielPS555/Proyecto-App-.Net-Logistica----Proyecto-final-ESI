@@ -163,7 +163,7 @@ Public Class crearInformaDeDaños
             If subida Then
                 Controladores.Fachada.getInstancia.nuevoInformeDeDaños(Info)
             Else
-
+                Controladores.Fachada.getInstancia.actualizarInforme(Info)
             End If
             panelVehiculo.ActualizarLotesExternos()
         Else

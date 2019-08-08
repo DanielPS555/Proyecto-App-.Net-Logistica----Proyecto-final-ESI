@@ -415,7 +415,7 @@ Public Class Fachada
         For Each r As DataRow In dt.Rows
             Dim l As New InformeDeDaños(vehi) With {.ID = r.Item(0),
                                                     .Descripcion = r.Item(1),
-                                                    .Creador = New Usuario With {.Nombre = r.Item(2)},
+                                                    .Creador = New Usuario With {.Nombre = r.Item(2), .ID_usuario = r.Item(6)},
                                                     .Fecha = r.Item(3),
                                                     .Lugar = New Lugar() With {.IDLugar = r.Item(5), .Nombre = r.Item(4)}}
             Dim dt2 As DataTable = Persistencia.getInstancia.RegistrosDaño(vehi.IdVehiculo, l.ID)
@@ -523,6 +523,22 @@ Public Class Fachada
             Persistencia.getInstancia.anularPosicionAnterior(posicion.Vehiculo.IdVehiculo)
         End If
         Persistencia.getInstancia.insertPosicion(posicion.IngresadoPor.ID_usuario, posicion.Subzona.IDSubzona, posicion.Vehiculo.IdVehiculo, posicion.Posicion)
+    End Sub
+
+    Public Sub actualizarInforme(info As InformeDeDaños)
+        Persistencia.getInstancia.ActualizarInformeDaños(info.ID, info.Descripcion, info.Fecha, info.Tipo, info.VehiculoPadre.IdVehiculo, info.Lugar.IDLugar, info.Creador.ID_usuario)
+        Persistencia.getInstancia.eliminarImagenesDeUnInforme(info.VehiculoPadre.IdVehiculo, info.ID)
+        Persistencia.getInstancia.EliminarRegistrosDeUnInforme(info.VehiculoPadre.IdVehiculo, info.ID)
+        For Each reg As RegistroDaños In info.Registros
+            Persistencia.getInstancia.InsertRegistroDaño(info.VehiculoPadre.IdVehiculo, info.ID, reg.Descripcion)
+            Dim idReg As Integer = Persistencia.getInstancia.ultimoIDRegistro(info.VehiculoPadre.IdVehiculo, info.ID)
+            If reg.TipoActualizacion <> RegistroDaños.TIPO_ACTUALIZACION_REGULAR Then
+                Persistencia.getInstancia.insertarActualizacion(info.VehiculoPadre.IdVehiculo, info.ID, idReg, reg.Actualiza.InformePadre.ID, reg.Actualiza.ID, reg.TipoActualizacion)
+            End If
+            For Each img As Bitmap In reg.Imagenes
+                Persistencia.getInstancia.insertarImagendeUnRegistro(info.VehiculoPadre.IdVehiculo, info.ID, idReg, Funciones_comunes.ConvertToByteArray(img))
+            Next
+        Next
     End Sub
 
     Public Sub NuevoLote(lote As Controladores.Lote)
