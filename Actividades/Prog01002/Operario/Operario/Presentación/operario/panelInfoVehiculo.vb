@@ -58,8 +58,7 @@ Public Class panelInfoVehiculo
             End If
         Next
 
-        traslados.Columns.Clear()
-        traslados.DataSource = Controladores.Persistencia.getInstancia.PosicionesDeVehiculoEnLugar(lugar.Item(0), vin)
+
         informesElementos = Controladores.Fachada.getInstancia.devolverTodosLosInformesYregistrosCompletos(vehiculo)
         If informesElementos.Count = 0 Then
 
@@ -73,6 +72,45 @@ Public Class panelInfoVehiculo
             cargarInformes()
         End If
         Me.vehiculo = vehiculo
+        CargarTrasportes()
+    End Sub
+
+    Private Sub CargarTrasportes()
+        Dim ultpos = Controladores.Fachada.getInstancia.UltimaPosicionVehiculoEnLugar(vin, Controladores.Persistencia.getInstancia.TrabajaEn.Lugar.Nombre)
+        SubzonaLabel.Text = ultpos.Item(1)
+        Dim zona = Controladores.Persistencia.getInstancia.PadreDeLugar(ultpos.Item(0))
+        ZonaLabel.Text = zona.Item(0)
+        PosicionLabel.Text = ultpos.Item(2) & " desde " & CType(ultpos.Item(3), Date?).DarFormato
+        traslados.Columns.Clear()
+        Dim dt As New DataTable
+        dt.Columns.Add(New DataColumn("Lugar"))
+        dt.Columns.Add(New DataColumn("Posicion"))
+        dt.Columns.Add(New DataColumn("Desde"))
+        dt.Columns.Add(New DataColumn("Hasta"))
+        dt.Columns.Add(New DataColumn("Por"))
+        For Each pos As Posicion In Controladores.Fachada.getInstancia.TodasLasPosicionesPorLugar(vehiculo.IdVehiculo, Controladores.Fachada.getInstancia.TrabajaEnAcutual.Lugar.IDLugar)
+            Dim r As DataRow = dt.NewRow
+            r.Item(0) = pos.Subzona.ZonaPadre.LugarPadre.Nombre
+            r.Item(1) = pos.Posicion
+            r.Item(2) = pos.Desde
+            r.Item(4) = pos.IngresadoPor.NombreDeUsuario
+            r.Item(3) = If(pos.Hasta = DateTime.MinValue, DBNull.Value, pos.Hasta)
+            dt.Rows.Add(r)
+        Next
+        traslados.DataSource = dt
+    End Sub
+
+    Public Sub actualizarTrasportesDeFormaExterna()
+        CargarTrasportes()
+    End Sub
+
+    Public Sub ActualizarLotesExternos()
+        informesElementos = Controladores.Fachada.getInstancia.devolverTodosLosInformesYregistrosCompletos(vehiculo)
+        actualInfore = 0
+        actualRegistro = 0
+        actualImagen = 0
+        sigienteInforme.Enabled = True
+        cargarInformes()
     End Sub
 
     Public Sub cargarInformes()
@@ -192,8 +230,8 @@ Public Class panelInfoVehiculo
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        'Dim tInterno = New trasladoInterno(vin, Me)
-        'tInterno.ShowDialog()
+        Dim tInterno = New trasladoInterno(vehiculo.IdVehiculo, Me)
+        tInterno.ShowDialog()
     End Sub
 
     Private Sub informes_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs)
@@ -237,7 +275,10 @@ Public Class panelInfoVehiculo
     End Sub
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
-        Marco.getInstancia.cargarPanel(Of crearInformaDeDaños)(New crearInformaDeDaños(New Controladores.InformeDeDaños(vehiculo), True) With {.ListaDeTodosLosInformes = informesElementos})
+        Marco.getInstancia.cargarPanel(Of crearInformaDeDaños)(New crearInformaDeDaños(New Controladores.InformeDeDaños(vehiculo) With {.Creador = Fachada.getInstancia.TrabajaEnAcutual.Usuario,
+                                                                                                                                        .Lugar = Fachada.getInstancia.TrabajaEnAcutual.Lugar,
+                                                                                                                                        .Fecha = DateTime.Now}, True, Me) With {.ListaDeTodosLosInformes = informesElementos})
+
     End Sub
 
 
@@ -337,7 +378,7 @@ Public Class panelInfoVehiculo
     End Sub
 
     Private Sub Modificar_Click(sender As Object, e As EventArgs) Handles modificar.Click
-        Marco.getInstancia.cargarPanel(Of crearInformaDeDaños)(New crearInformaDeDaños(informesElementos(actualInfore), False) With {.ListaDeTodosLosInformes = informesElementos})
+        Marco.getInstancia.cargarPanel(Of crearInformaDeDaños)(New crearInformaDeDaños(informesElementos(actualInfore), False, Me) With {.ListaDeTodosLosInformes = informesElementos})
     End Sub
 
     Public Sub NotificarLote(lote As Lote) Implements NotificacionDeLote.NotificarLote
@@ -391,4 +432,6 @@ Public Class panelInfoVehiculo
         vermasLote.Enabled = True
         loteTemp = Nothing
     End Sub
+
+
 End Class

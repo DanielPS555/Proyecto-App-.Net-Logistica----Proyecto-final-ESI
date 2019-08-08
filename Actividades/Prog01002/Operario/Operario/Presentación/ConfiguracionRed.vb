@@ -5,6 +5,7 @@ Public Class ConfiguracionRed
     Public Sub New(p As Login)
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
+        StartPosition = FormStartPosition.CenterScreen
         papa = p
         Config = Controladores.FachadaRegistro.LeerConfiguracion
         ip.Text = Config.IP

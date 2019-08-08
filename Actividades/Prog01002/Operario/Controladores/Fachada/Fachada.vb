@@ -236,6 +236,7 @@ Public Class Fachada
             End If
         Next
         InfoUsuario = True
+        Persistencia.getInstancia.TrabajaEn.Usuario = user
     End Sub
 
     Public Function DevolverUsuarioActual() As Usuario
@@ -409,7 +410,7 @@ Public Class Fachada
     End Function
 
     Public Function devolverTodosLosInformesYregistrosCompletos(vehi As Vehiculo) As List(Of InformeDeDaños)
-        Dim dt As DataTable = Persistencia.getInstancia.InformesDaño(vehi.VIN)
+        Dim dt As DataTable = Persistencia.getInstancia.InformesDaño(vehi.IdVehiculo)
         Dim lista As New List(Of InformeDeDaños)
         For Each r As DataRow In dt.Rows
             Dim l As New InformeDeDaños(vehi) With {.ID = r.Item(0),
@@ -434,8 +435,8 @@ Public Class Fachada
                 End If
                 Dim dt3 As DataTable = Persistencia.getInstancia.Imagenes(l.ID, reg.ID)
                     For Each r3 As DataRow In dt3.Rows
-                        reg.Imagenes.Add(Funciones_comunes.BitmapFromByteArray(r3.Item(2)))
-                    Next
+                    reg.Imagenes.Add(Funciones_comunes.BitmapFromByteArray(r3.Item(1)))
+                Next
 
                 l.Registros.Add(reg)
             Next
@@ -470,7 +471,7 @@ Public Class Fachada
     End Function
 
     Public Sub nuevoInformeDeDaños(info As InformeDeDaños)
-        If Not Persistencia.getInstancia.InsertInformedeDaños(info.Descripcion, info.Fecha, info.Tipo, info.VehiculoPadre.IdVehiculo, info.Lugar.IDLugar, info.Creador.ID_usuario) Then
+        If Persistencia.getInstancia.InsertInformedeDaños(info.Descripcion, info.Fecha, info.Tipo, info.VehiculoPadre.IdVehiculo, info.Lugar.IDLugar, info.Creador.ID_usuario) Then
             Dim idInfo As Integer = Persistencia.getInstancia.ultimoIdInforme(info.VehiculoPadre.IdVehiculo)
             For Each reg As RegistroDaños In info.Registros
                 Persistencia.getInstancia.InsertRegistroDaño(info.VehiculoPadre.IdVehiculo, idInfo, reg.Descripcion)
@@ -478,11 +479,50 @@ Public Class Fachada
                 If reg.TipoActualizacion <> RegistroDaños.TIPO_ACTUALIZACION_REGULAR Then
                     Persistencia.getInstancia.insertarActualizacion(info.VehiculoPadre.IdVehiculo, idInfo, idReg, reg.Actualiza.InformePadre.ID, reg.Actualiza.ID, reg.TipoActualizacion)
                 End If
-                For Each img As Image In reg.Imagenes
-                    Persistencia.getInstancia.insertarImagendeUnRegistro(info.VehiculoPadre.IdVehiculo, idInfo, idReg, img)
+                For Each img As Bitmap In reg.Imagenes
+                    Persistencia.getInstancia.insertarImagendeUnRegistro(info.VehiculoPadre.IdVehiculo, idInfo, idReg, Funciones_comunes.ConvertToByteArray(img))
                 Next
             Next
         End If
+    End Sub
+
+    Public Function DevolverPosicionActual(idvehiculo As Integer) As Posicion
+        Dim p As New Posicion()
+        Dim dt As DataRow = Persistencia.getInstancia.PosicionActualVehiculo(idvehiculo)
+        Dim lug As DataTable = Persistencia.getInstancia.zonaylugarDeUnaSubzona(dt.Item(3))
+        p.Subzona = New Subzona(New Zona(New Lugar With {.IDLugar = lug.Rows(1).Item(0),
+                                         .Nombre = lug.Rows(1).Item(1)}) With {.IDZona = lug.Rows(0).Item(0),
+                                         .Nombre = lug.Rows(0).Item(1)}) With {.IDSubzona = dt.Item(3), .Nombre = dt.Item(6)}
+        p.Posicion = dt.Item(0)
+        p.Desde = dt.Item(1)
+        p.Hasta = Funciones_comunes.AutoNull(Of Object)(dt.Item(2))
+        p.IngresadoPor = New Usuario With {.ID_usuario = dt.Item(4), .NombreDeUsuario = dt.Item(5)}
+        Return p
+    End Function
+
+    Public Function TodasLasPosicionesPorLugar(idvehiculo As Integer, idlugar As Integer) As List(Of Posicion)
+        Dim pos As New List(Of Posicion)
+        Dim dt As DataTable = Persistencia.getInstancia.TodasLasPosicionesDeVehiculo(idvehiculo)
+        For Each r As DataRow In dt.Rows
+            Dim p As New Posicion()
+            Dim lug As DataRow = Persistencia.getInstancia.zonaylugarDeUnaSubzona(r.Item(3)).Rows(1)
+            p.Subzona = New Subzona(New Zona(New Lugar With {.IDLugar = lug.Item(0), .Nombre = lug.Item(1)}))
+            p.Posicion = r.Item(0)
+            p.Desde = r.Item(1)
+            p.Hasta = Funciones_comunes.AutoNull(Of Object)(r.Item(2))
+            p.IngresadoPor = New Usuario With {.ID_usuario = r.Item(4), .NombreDeUsuario = r.Item(5)}
+            If lug.Item(0) = idlugar Then
+                pos.Add(p)
+            End If
+        Next
+        Return pos
+    End Function
+
+    Public Sub AsignarNuevaPosicion(posicion As Posicion, inavilitarAnterior As Boolean)
+        If inavilitarAnterior Then
+            Persistencia.getInstancia.anularPosicionAnterior(posicion.Vehiculo.IdVehiculo)
+        End If
+        Persistencia.getInstancia.insertPosicion(posicion.IngresadoPor.ID_usuario, posicion.Subzona.IDSubzona, posicion.Vehiculo.IdVehiculo, posicion.Posicion)
     End Sub
 
     Public Sub NuevoLote(lote As Controladores.Lote)

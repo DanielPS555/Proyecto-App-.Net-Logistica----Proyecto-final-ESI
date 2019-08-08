@@ -27,21 +27,13 @@ Public Class Persistencia
         Return ds.Tables.Item(0)
     End Function
 
-    Public Function InformesDaño(VIN As String) As DataTable
-        Dim selcmd As New OdbcCommand("select idan.id, informedanios.descripcion,
-                                        concat(usuario.primernombre, concat(' ', usuario.primerapellido)) as autor,
-                                        informedanios.fecha as fecha,
-                                        lugar.nombre as lugar, lugar.idlugar,
-                                        idan.regs from
-                                        (select informedanios.id, count(*) as regs from informedanios
-                                        inner join registrodanios on informedanios.id=registrodanios.informedanios
-                                        group by informedanios.id) as idan
-                                        inner join informedanios on idan.id=informedanios.id
-                                        inner join vehiculo on informedanios.idvehiculo=vehiculo.idvehiculo and vehiculo.vin=?
-                                        inner join usuario on informedanios.idusuario=usuario.idusuario
+    Public Function InformesDaño(id As Integer) As DataTable
+        Dim selcmd As New OdbcCommand("select informedanios.id,Descripcion,concat(usuario.primernombre, concat(' ', usuario.primerapellido)),
+                                        Fecha,lugar.nombre, lugar.idlugar
+                                        from Informedanios inner join usuario on informedanios.idusuario=usuario.idusuario
                                         inner join lugar on informedanios.idlugar=lugar.idlugar
-                                        ", _con)
-        selcmd.CrearParametro(DbType.String, VIN)
+                                        where idvehiculo=? order by informedanios.id", _con)
+        selcmd.CrearParametro(DbType.Int32, id)
         Dim dt As New DataTable
         dt.Load(selcmd.ExecuteReader)
         Return dt
@@ -570,7 +562,8 @@ Public Class Persistencia
     End Function
 
     Public Function InsertInformedeDaños(descripcion As String, fecha As DateTime, tipo As String, idvehiculo As Integer, idlugar As Integer, idUsuario As Integer)
-        Dim com As New OdbcCommand("insert into informedanios(id, descripcion, fecha, tipo, idvehiculo, idlugar, idusuario) values(0,?,?,?,?,?,?);", Conexcion)
+        Dim com As New OdbcCommand("insert into informedanios(id, descripcion, fecha, tipo, idvehiculo, idlugar, idusuario) 
+                                    values(0,?,?,?,?,?,?);", Conexcion)
         com.CrearParametro(DbType.String, descripcion)
         com.CrearParametro(DbType.DateTime, fecha)
         com.CrearParametro(DbType.String, tipo)
@@ -581,8 +574,9 @@ Public Class Persistencia
     End Function
 
     Public Function ultimoIdInforme(idvehiculo As Integer) As Integer
-        Dim com As New OdbcCommand("select first 1 informedanios.ID, fecha from informedanios
-                                    where IDVehiculo=? order by fecha desc", Conexcion)
+        Dim com As New OdbcCommand("select first 1  informedanios.ID, fecha from informedanios
+                                    where IDVehiculo=? order by fecha desc, ID desc
+", Conexcion)
         com.CrearParametro(DbType.Int32, idvehiculo)
         Return com.ExecuteScalar
     End Function
@@ -591,7 +585,7 @@ Public Class Persistencia
     Public Function ultimoIDRegistro(idvehiculo As Integer, idinforme As Integer) As Integer
         Dim com As New OdbcCommand("select first 1 idregistro,informedanios.ID from registrodanios inner join informedanios
                                     on registrodanios.informedanios=informedanios.ID
-                                    where  informedanios.IDVehiculo=? and informedanios.ID=? order by fecha desc", Conexcion)
+                                    where  informedanios.IDVehiculo=? and informedanios.ID=? order by fecha desc,idregistro desc", Conexcion)
         com.CrearParametro(DbType.Int32, idvehiculo)
         com.CrearParametro(DbType.Int32, idinforme)
         Return com.ExecuteScalar
@@ -613,12 +607,12 @@ Public Class Persistencia
         Return com.ExecuteNonQuery() > 0
     End Function
 
-    Public Function insertarImagendeUnRegistro(idvehiculo As Integer, idInforme As Integer, idregistro As Integer, img As Bitmap) As Boolean
+    Public Function insertarImagendeUnRegistro(idvehiculo As Integer, idInforme As Integer, idregistro As Integer, img As Byte()) As Boolean
         Dim com As New OdbcCommand("insert into imagenregistro values (?,?,?,0,? );", Conexcion)
         com.CrearParametro(DbType.Int32, idvehiculo)
         com.CrearParametro(DbType.Int32, idInforme)
         com.CrearParametro(DbType.Int32, idregistro)
-        com.CrearParametro(DbType.Byte, img)
+        com.CrearParametro(DbType.Binary, img)
         Return com.ExecuteNonQuery() > 0
     End Function
 
@@ -633,5 +627,55 @@ Public Class Persistencia
         com.CrearParametro(DbType.String, tipo)
         Return com.ExecuteNonQuery() > 0
     End Function
+
+    Public Function TodasLasPosicionesDeVehiculo(idvehiculo As Integer) As DataTable
+        Dim com As New OdbcCommand("select posicion,desde,hasta,idlugar,usuario.idusuario,usuario.nombredeusuario
+                                    from posicionado inner join usuario on posicionado.idusuario = usuario.idusuario
+                                    where idvehiculo=? order by desde desc", Conexcion)
+        com.CrearParametro(DbType.Int32, idvehiculo)
+        Dim dt As New DataTable()
+        dt.Load(com.ExecuteReader)
+        Return dt
+    End Function
+
+    Public Function PosicionActualVehiculo(idvehiculo As Integer) As DataRow
+        Dim com As New OdbcCommand("select first 1 posicion,desde,hasta,lugar.idlugar,usuario.idusuario,usuario.nombredeusuario,lugar.nombre
+                                     from posicionado inner join usuario
+                                     on posicionado.idusuario = usuario.idusuario
+                                     inner join lugar on posicionado.idlugar = lugar.idlugar
+                                     where idvehiculo=? order by desde desc", Conexcion)
+        com.CrearParametro(DbType.Int32, idvehiculo)
+        Dim dt As New DataTable()
+        dt.Load(com.ExecuteReader)
+        Return dt.Rows(0)
+    End Function
+
+    Public Function zonaylugarDeUnaSubzona(idsubzona As Integer) As DataTable
+        Dim con As New OdbcCommand("select lugar.idlugar, lugar.nombre from lugar inner join 
+                                (select mayor as idlugar from incluye start with menor=? connect by menor = prior mayor) as parent 
+                                on parent.idlugar = lugar.idlugar", Conexcion)
+        con.CrearParametro(DbType.Int32, idsubzona)
+        Dim dt As New DataTable
+        dt.Load(con.ExecuteReader)
+        Return dt
+
+    End Function
+
+    Public Function anularPosicionAnterior(idvehiculo As Integer) As Boolean
+        Dim com As New OdbcCommand("update posicionado set hasta=current year to second where idvehiculo=? and hasta is null;", Conexcion)
+        com.CrearParametro(DbType.Int32, idvehiculo)
+        Return com.ExecuteNonQuery() > 0
+    End Function
+
+    Public Function insertPosicion(idusuario As Integer, idsubzona As Integer, idvehiculo As Integer, posicion As Integer) As Boolean
+        Dim com As New OdbcCommand("insert into posicionado(idusuario, idlugar, idvehiculo, desde, posicion) values(?,?,?,current year to second, ?);", Conexcion)
+        com.CrearParametro(DbType.Int32, idusuario)
+        com.CrearParametro(DbType.Int32, idsubzona)
+        com.CrearParametro(DbType.Int32, idvehiculo)
+        com.CrearParametro(DbType.Int32, posicion)
+        Return com.ExecuteNonQuery() > 0
+    End Function
+
+
 
 End Class

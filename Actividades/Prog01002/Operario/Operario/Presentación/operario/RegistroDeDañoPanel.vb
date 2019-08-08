@@ -1,4 +1,6 @@
-﻿Public Class RegistroDeDañoPanel
+﻿Imports System.Drawing.Imaging
+
+Public Class RegistroDeDañoPanel
 
     Private padre As crearInformaDeDaños
     Private regitro As Controladores.RegistroDaños
@@ -206,7 +208,11 @@
         Dim ofd As New OpenFileDialog()
         ofd.Filter = "Imagenes|*.jpg"
         If ofd.ShowDialog() = DialogResult.OK Then
-            imagenes.Add(New Bitmap(ofd.OpenFile))
+            Dim d As New Bitmap(320, 320) 'New Bitmap(ofd.OpenFile)
+            Dim g = Graphics.FromImage(d)
+            g.DrawImage(New Bitmap(ofd.OpenFile), 0, 0, 320, 320)
+            panelFotografias.Image = d
+            imagenes.Add(d)
             panelFotografias.Image = New Bitmap(ofd.OpenFile)
             If imagenes.Count > 3 Then
                 piso = imagenes.Count - 3
@@ -218,7 +224,7 @@
                 'marcarImg(actual)
                 actualizarImagenes()
             End If
-            panelFotografias.Image = New Bitmap(ofd.OpenFile)
+            panelFotografias.Image = d
         End If
         ofd.Dispose()
     End Sub

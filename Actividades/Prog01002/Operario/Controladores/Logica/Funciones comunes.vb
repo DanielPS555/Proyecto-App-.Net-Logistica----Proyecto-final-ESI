@@ -15,6 +15,14 @@ Public Class Funciones_comunes
         Return bm
     End Function
 
+    Public Shared Function ConvertToByteArray(ByVal value As Bitmap) As Byte()
+        Dim bitmapBytes As Byte()
+        Using stream As New System.IO.MemoryStream
+            value.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg)
+            bitmapBytes = stream.ToArray
+        End Using
+        Return bitmapBytes
+    End Function
     Public Shared Function AutoNull(Of T)(data As Object) As T
         If data Is DBNull.Value Then
             Return Nothing
