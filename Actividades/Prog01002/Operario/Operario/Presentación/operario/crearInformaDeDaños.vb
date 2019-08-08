@@ -152,6 +152,16 @@ Public Class crearInformaDeDaños
             MsgBox("Nesesita una descripcion", MsgBoxStyle.Critical)
             Return
         End If
+        For Each reg As Controladores.RegistroDaños In Info.Registros
+            Dim imgs As New List(Of Image)
+            For Each im As Bitmap In reg.Imagenes
+                Dim d As New Bitmap(320, 320) 'New Bitmap(ofd.OpenFile)
+                Dim g = Graphics.FromImage(d)
+                g.DrawImage(New Bitmap(im), 0, 0, 320, 320)
+                imgs.Add(d)
+            Next
+            reg.Imagenes = imgs
+        Next
         Info.Descripcion = descipt.Text
         Select Case tipo.SelectedIndex
             Case 0
