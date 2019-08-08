@@ -541,7 +541,7 @@ Public Class Fachada
         Next
     End Sub
 
-    Public Sub NuevoLote(lote As Controladores.Lote, integra As )
+    'Public Sub NuevoLote(lote As Controladores.Lote, integra As )
 
-    End Sub
+    'End Sub
 End Class
