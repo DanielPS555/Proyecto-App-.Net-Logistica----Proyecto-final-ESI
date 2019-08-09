@@ -320,36 +320,36 @@ insert into permite values (2,"La virgen del Rio de la Plata",(select idusuario 
 
       insert into lote values (0,"pl_1", (select IDLugar from lugar where Nombre="Puerto de aguas profundas rocha"),
       (select IDLugar from lugar where Nombre="Puerto de montevideo"),
-       (select idusuario from usuario where primernombre = "Pepe"), "2019-5-20", "Normal", "Cerrado");
+       (select idusuario from usuario where primernombre = "Pepe"), "2019-5-20", "Normal", "Cerrado",'f');
 
        insert into lote values (0, "il_1", (select IDLugar from lugar where Nombre="Puerto de montevideo"),
        (select IDLugar from lugar where nombre = "Deposito de maldonado"),
        (select IDUsuario from usuario where primernombre = "Pepe"), "2019-6-26",
-       'Normal', 'Cerrado');
+       'Normal', 'Cerrado','f');
 
       insert into lote values (0,"l_1",(select IDLugar from lugar where Nombre="Puerto de aguas profundas rocha"),
       (select IDLugar from lugar where Nombre="Deposito de maldonado"),
-       (select idusuario from usuario where primernombre = "Pepe"), "2019-6-26", 'Normal', 'Cerrado');
+       (select idusuario from usuario where primernombre = "Pepe"), "2019-6-26", 'Normal', 'Cerrado','f');
 
       insert into lote values (0,"l_2",(select IDLugar from lugar where Nombre="Puerto de montevideo"),
       (select IDLugar from lugar where Nombre="Deposito piedras blancas"),
-       (select idusuario from usuario where primernombre = "Juan"), "2019-6-29",'Normal','Cerrado');
+       (select idusuario from usuario where primernombre = "Juan"), "2019-6-29",'Normal','Cerrado','f');
 
       insert into lote values (0,"l_3",(select IDLugar from lugar where Nombre="Deposito de maldonado"),
       (select IDLugar from lugar where Nombre="Deposito piedras blancas"),
-       (select idusuario from usuario where primernombre = "Pepe"), "2019-7-4",'Normal','Cerrado');
+       (select idusuario from usuario where primernombre = "Pepe"), "2019-7-4",'Normal','Cerrado','f');
 		
 		insert into lote values (0,"l_4",(select IDLugar from lugar where Nombre="Deposito piedras blancas"),
       (select IDLugar from lugar where Nombre="Patio de Sevel"),
-       (select idusuario from usuario where primernombre = "Juan"),"2019-6-29",'Normal','Abierto');
+       (select idusuario from usuario where primernombre = "Juan"),"2019-6-29",'Normal','Abierto','f');
 	   
 	   insert into lote values (0,"l_5",(select IDLugar from lugar where Nombre="Deposito de maldonado"),
       (select IDLugar from lugar where Nombre="Patio de Chevrolet Ur a gay"),
-       (select idusuario from usuario where primernombre = "Pepe"),"2019-6-30",'Normal','Cerrado');
+       (select idusuario from usuario where primernombre = "Pepe"),"2019-6-30",'Normal','Cerrado','f');
 
       insert into lote values (0,"l_6",(select IDLugar from lugar where Nombre="Deposito piedras blancas"),
 	(select IDLugar from lugar where Nombre="Patio de Sevel"),
-	(select IDUsuario from usuario where primernombre = "Pepe"), "2019-7-4", "Normal", "Cerrado");
+	(select IDUsuario from usuario where primernombre = "Pepe"), "2019-7-4", "Normal", "Cerrado",'f');
 
 insert into integra values ((select idvehiculo from vehiculo where VIN="1GH2J83LED0987547"),3,"2019-6-28 14:02",'t',(select idusuario from usuario where primernombre = "Pepe"));
 insert into integra values ((select idvehiculo from vehiculo where VIN="1GH2J83LED0987547"),1,"2019-6-29 14:00",'f',(select idusuario from usuario where primernombre = "Pepe"));

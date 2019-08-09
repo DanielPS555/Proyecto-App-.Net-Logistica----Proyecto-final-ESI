@@ -117,10 +117,12 @@ Public Class nuevoVehiculo
             infoDaños.Enabled = True
             habilitar(True)
             cargarDatosDeLaPrecarga()
+            ingresar.Enabled = True
         Else
             EstadoBusqueda.Text = "Vin sin precarga o no existe"
             EstadoBusqueda.ForeColor = Drawing.Color.FromArgb(180, 20, 20)
             habilitar(False)
+            ingresar.Enabled = False
         End If
 
     End Sub
@@ -135,8 +137,9 @@ Public Class nuevoVehiculo
         subzonas.Enabled = j
         lote.Enabled = j
         infoDaños.Enabled = j
-        infoDaños.Enabled = j
-
+        posDis.Enabled = j
+        crearomodificarLote.Enabled = j
+        ingresar.Enabled = j
 
     End Sub
 
@@ -144,25 +147,32 @@ Public Class nuevoVehiculo
         If vehi.Marca IsNot Nothing Then
             marca.Text = vehi.Marca
             marca.Enabled = False 'si el dato esta precargado no puede ser modificado
-
+        Else
+            marca.Enabled = True
         End If
         If vehi.Modelo IsNot Nothing Then
             modelo.Text = vehi.Modelo
             modelo.Enabled = False
-
+        Else
+            modelo.Enabled = True
         End If
         If vehi.Año <> 0 Then
             anio.SelectedItem = vehi.Año
             anio.Enabled = False
-
+        Else
+            anio.Enabled = True
         End If
         If vehi.Tipo IsNot Nothing Then
             tipo.SelectedItem = vehi.Tipo
             tipo.Enabled = False
+        Else
+            tipo.Enabled = True
         End If
         If vehi.Tipo IsNot Nothing Then
             tipo.SelectedItem = vehi.Tipo
             tipo.Enabled = False
+        Else
+            tipo.Enabled = True
         End If
 
         If vehi.Cliente IsNot Nothing Then
@@ -178,8 +188,10 @@ Public Class nuevoVehiculo
         End If
         If vehi.Color <> Drawing.Color.Empty Then
             muestra_color.BackColor = Drawing.Color.FromArgb(vehi.Color.R, vehi.Color.G, vehi.Color.B)
-        Else
             color.Enabled = False
+        Else
+            muestra_color.BackColor = Drawing.Color.FromArgb(255, 255, 255)
+            color.Enabled = True
         End If
 
     End Sub
@@ -204,11 +216,60 @@ Public Class nuevoVehiculo
     End Sub
 
     Private Sub ingresar_Click(sender As Object, e As EventArgs) Handles ingresar.Click
-        If (buscador.Text.Trim.Count * marca.Text.Trim.Count * modelo.Text.Trim.Count * anio.Text.Trim.Count * lote.Text.Trim.Count) = 0 Then
-            MsgBox("Todos los datos deben estar llenados para ingresar un vehiculo")
+        If marca.Text.Trim.Length = 0 Then
+            MsgBox("Debe ingresar la marca")
+            Return
         End If
-        'NOS COMUNICAMOS CON FACHADA PARA EL TRASLADO DE INFORMACION MASIVO
+        vehi.Marca = marca.Text
 
+        If modelo.Text.Trim.Length = 0 Then
+            MsgBox("Debe ingresar el modelo del vehiculo")
+            Return
+        Else
+            vehi.Modelo = modelo.Text
+        End If
+
+        If anio.SelectedIndex = -1 Then
+            MsgBox("Debe ingresar el año ")
+            Return
+        Else
+            vehi.Año = anio.SelectedItem
+        End If
+
+        If tipo.SelectedIndex = -1 Then
+            MsgBox("Debe ingresar el tipo de vehiculo")
+            Return
+        Else
+            vehi.Tipo = tipo.SelectedItem
+        End If
+
+        If clientes.SelectedIndex = -1 Then
+            MsgBox("Debe ingresar el cliente del vehiculo")
+            Return
+        Else
+            vehi.Cliente = clienteshabi(clientes.SelectedIndex)
+        End If
+
+        vehi.Color = muestra_color.BackColor
+
+        Fachada.getInstancia.altaVehiculoConUpdate(vehi, Fachada.getInstancia.TrabajaEnAcutual.Usuario)
+        If LoteFinal IsNot Nothing Then
+            LoteFinal.IDLote = Fachada.getInstancia.nuevoLote(LoteFinal)
+            Fachada.getInstancia.insertIntegra(LoteFinal, vehi, Fachada.getInstancia.TrabajaEnAcutual.Usuario, False)
+        Else
+            Fachada.getInstancia.insertIntegra(lotesDisponibles(lote.SelectedIndex), vehi, Fachada.getInstancia.TrabajaEnAcutual.Usuario, False)
+        End If
+
+        If informe IsNot Nothing Then
+            Fachada.getInstancia.nuevoInformeDeDaños(informe)
+        End If
+        Fachada.getInstancia.AsignarNuevaPosicion(New Posicion() With {.Subzona = zonasDisponibles(zonas.SelectedIndex).Subzonas(subzonas.SelectedIndex),
+                                                  .Posicion = posDis.SelectedItem,
+                                                  .IngresadoPor = Fachada.getInstancia.TrabajaEnAcutual.Usuario,
+                                                  .Desde = DateTime.Now,
+                                                  .Vehiculo = vehi}, False)
+        Marco.getInstancia.cargarPanel(Of ListaVehiculos)(New ListaVehiculos)
+        Me.Dispose()
     End Sub
 
     Private completionIndex As Integer = 0

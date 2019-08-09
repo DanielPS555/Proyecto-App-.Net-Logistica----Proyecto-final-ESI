@@ -14,6 +14,8 @@ Public Class panelInfoVehiculo
     Private actualRegistro As Integer = 0
     Private actualImagen As Integer = 0
     Private loteTemp As Controladores.Lote
+    Private todosLosLotesDisponibles As List(Of Controladores.Lote)
+    Private loteActual As Controladores.Lote
     Public Sub New(VIN As String, aqui As Boolean)
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
@@ -36,6 +38,7 @@ Public Class panelInfoVehiculo
             MsgBox("No se encontró el vehículo con VIN " + vin + ", reporte este error")
             Close()
         End If
+        id.Text = vehiculo.IdVehiculo
         MarcaBox.Text = vehiculo.Marca
         ModeloBox.Text = vehiculo.Modelo
         ClienteBox.Text = vehiculo.Cliente.Nombre
@@ -49,15 +52,6 @@ Public Class panelInfoVehiculo
         PosicionLabel.Text = ultpos.Item(2) & " desde " & CType(ultpos.Item(3), Date?).DarFormato
         lugar = Controladores.Persistencia.getInstancia.PadreDeLugar(zona.Item(1))
         lugarLabel.Text = lugar.Item(0)
-        Dim lotes = Controladores.Fachada.getInstancia.LotesDisponiblesPorLugarActual.Select(Function(x) x.Nombre).ToArray
-        LoteCombo.Items.AddRange(lotes)
-        Dim loteVehiculo As String = Controladores.Fachada.getInstancia.LoteVehiculo(vin, lugar.Item(0)).Nombre
-        For i = 0 To lotes.Count - 1
-            If lotes(i) = loteVehiculo Then
-                LoteCombo.SelectedIndex = i
-            End If
-        Next
-
 
         informesElementos = Controladores.Fachada.getInstancia.devolverTodosLosInformesYregistrosCompletos(vehiculo)
         If informesElementos.Count = 0 Then
@@ -72,7 +66,27 @@ Public Class panelInfoVehiculo
             cargarInformes()
         End If
         Me.vehiculo = vehiculo
+        cargarMiLote()
         CargarTrasportes()
+    End Sub
+
+    Public Sub cargarLotes()
+        todosLosLotesDisponibles = Controladores.Fachada.getInstancia.LotesDisponiblesPorLugarActual
+        LoteCombo.Items.Clear()
+        For Each l As Controladores.Lote In todosLosLotesDisponibles
+            LoteCombo.Items.Add($"ID: {l.IDLote} / NOM: {l.Nombre}")
+        Next
+        If todosLosLotesDisponibles.Count > 0 Then
+            LoteCombo.SelectedIndex = 0
+        End If
+
+    End Sub
+
+    Public Sub cargarMiLote()
+        loteActual = Fachada.getInstancia.DatosLoteDelVehiculoEnLugar(vehiculo, Fachada.getInstancia.TrabajaEnAcutual.Lugar)
+        LoteCombo.Items.Clear()
+        LoteCombo.Items.Add($"ID: {loteActual.IDLote} / NOM: {loteActual.Nombre}")
+        LoteCombo.SelectedIndex = 0
     End Sub
 
     Private Sub CargarTrasportes()
@@ -284,13 +298,7 @@ Public Class panelInfoVehiculo
     End Sub
 
 
-    Private Sub LoteCombo_SelectedIndexChanged(sender As Object, e As EventArgs) Handles LoteCombo.SelectedIndexChanged
-        If Controladores.Fachada.getInstancia.InfoLote(Nombre:=LoteCombo.SelectedItem).Estado = Controladores.Lote.TIPO_ESTADO_ABIERTO Then
-            If Not Controladores.Fachada.getInstancia.AsignarLote(vin, LoteCombo.SelectedItem) Then ' FALTA IMPLEMENTACIÓN
-                MsgBox("No se pudo asignar el lote por alguna razón. ACTUALMENTE SIN IMPLEMENTAR")
-            End If
-        End If
-    End Sub
+
 
     Private Sub LinkLabel2_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles nuevoLote.LinkClicked
         LoteCombo.Enabled = False
@@ -304,7 +312,7 @@ Public Class panelInfoVehiculo
     End Sub
 
     Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles vermasLote.LinkClicked
-        Marco.getInstancia.cargarPanel(New PanelInfoLote(LoteCombo.Text))
+        Marco.getInstancia.cargarPanel(New PanelInfoLote(loteActual.Nombre))
     End Sub
 
     Private Sub SigienteInforme_Click(sender As Object, e As EventArgs) Handles sigienteInforme.Click
@@ -413,6 +421,7 @@ Public Class panelInfoVehiculo
 
     Private Sub CambiarGuardarLote_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles cambiarGuardarLote.LinkClicked
         If cambiarGuardarLote.Text.Equals("Cambiar lote ") Then
+            cargarLotes()
             cambiarGuardarLote.Text = "Guardar"
             nuevoLote.Visible = True
             EliminarLoteSelecion.Visible = True
@@ -428,10 +437,17 @@ Public Class panelInfoVehiculo
             Cancelar.Visible = False
             vermasLote.Enabled = True
             LoteCombo.Enabled = False
-            'COMUNICAR CON FACHADA PARA LA SUBIDA
 
-            'SINCRONIZAR INFORMACION 
+            If loteTemp IsNot Nothing Then
+                Dim idlote As Integer = Fachada.getInstancia.nuevoLote(loteTemp)
+                loteTemp.IDLote = idlote
+                Fachada.getInstancia.insertIntegra(loteTemp, vehiculo, Fachada.getInstancia.TrabajaEnAcutual.Usuario, True)
+            Else
+                Fachada.getInstancia.insertIntegra(todosLosLotesDisponibles(LoteCombo.SelectedIndex), vehiculo, Fachada.getInstancia.TrabajaEnAcutual.Usuario, True)
+            End If
+            Fachada.getInstancia.eliminarLoteSiNoTieneVehiculos(loteActual)
 
+            cargarMiLote()
             loteTemp = Nothing
         End If
     End Sub
@@ -443,6 +459,7 @@ Public Class panelInfoVehiculo
         Cancelar.Visible = False
         LoteCombo.Enabled = False
         vermasLote.Enabled = True
+        cargarMiLote()
         loteTemp = Nothing
     End Sub
 

@@ -62,7 +62,8 @@ Public Class NuevoLote
                                                     .Estado = Controladores.Lote.TIPO_ESTADO_ABIERTO,
                                                     .Prioridad = Controladores.Lote.TIPO_PRIORIDAD_NORMAL,
                                                     .Origen = Controladores.Fachada.getInstancia.TrabajaEnAcutual.Lugar,
-                                                    .Creador = Controladores.Fachada.getInstancia.DevolverUsuarioActual}
+                                                    .Creador = Controladores.Fachada.getInstancia.DevolverUsuarioActual,
+                                                    .FechaCreacion = DateTime.Now}
             padre.NotificarLote(lo)
             Me.Dispose()
         Else

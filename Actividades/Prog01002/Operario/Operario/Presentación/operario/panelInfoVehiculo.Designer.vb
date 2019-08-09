@@ -110,6 +110,8 @@ Partial Class panelInfoVehiculo
         Me.trasportadoPor = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
         Me.Label4 = New System.Windows.Forms.Label()
+        Me.Label22 = New System.Windows.Forms.Label()
+        Me.id = New System.Windows.Forms.TextBox()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.QR, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -151,6 +153,8 @@ Partial Class panelInfoVehiculo
         'TabPage1
         '
         Me.TabPage1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TabPage1.Controls.Add(Me.id)
+        Me.TabPage1.Controls.Add(Me.Label22)
         Me.TabPage1.Controls.Add(Me.Cancelar)
         Me.TabPage1.Controls.Add(Me.EliminarLoteSelecion)
         Me.TabPage1.Controls.Add(Me.cambiarGuardarLote)
@@ -294,7 +298,7 @@ Partial Class panelInfoVehiculo
         Me.LoteCombo.FormattingEnabled = True
         Me.LoteCombo.Location = New System.Drawing.Point(90, 531)
         Me.LoteCombo.Name = "LoteCombo"
-        Me.LoteCombo.Size = New System.Drawing.Size(155, 32)
+        Me.LoteCombo.Size = New System.Drawing.Size(306, 32)
         Me.LoteCombo.TabIndex = 130
         '
         'TipoCombo
@@ -399,7 +403,7 @@ Partial Class panelInfoVehiculo
         Me.vermasLote.AutoSize = True
         Me.vermasLote.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.vermasLote.LinkColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Me.vermasLote.Location = New System.Drawing.Point(251, 537)
+        Me.vermasLote.Location = New System.Drawing.Point(402, 537)
         Me.vermasLote.Name = "vermasLote"
         Me.vermasLote.Size = New System.Drawing.Size(76, 21)
         Me.vermasLote.TabIndex = 106
@@ -1033,6 +1037,25 @@ Partial Class panelInfoVehiculo
         Me.Label4.TabIndex = 0
         Me.Label4.Text = "2º ENTREGA, Coresponde a la Aplicacion del administrador"
         '
+        'Label22
+        '
+        Me.Label22.AutoSize = True
+        Me.Label22.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label22.Location = New System.Drawing.Point(662, 209)
+        Me.Label22.Name = "Label22"
+        Me.Label22.Size = New System.Drawing.Size(36, 24)
+        Me.Label22.TabIndex = 141
+        Me.Label22.Text = "ID:"
+        '
+        'id
+        '
+        Me.id.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.id.Enabled = False
+        Me.id.Location = New System.Drawing.Point(704, 209)
+        Me.id.Name = "id"
+        Me.id.Size = New System.Drawing.Size(149, 26)
+        Me.id.TabIndex = 142
+        '
         'panelInfoVehiculo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1148,4 +1171,6 @@ Partial Class panelInfoVehiculo
     Friend WithEvents SinInformes As Label
     Friend WithEvents Cancelar As LinkLabel
     Friend WithEvents EliminarLoteSelecion As LinkLabel
+    Friend WithEvents id As TextBox
+    Friend WithEvents Label22 As Label
 End Class

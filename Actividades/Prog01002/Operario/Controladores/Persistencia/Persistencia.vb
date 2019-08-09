@@ -376,6 +376,8 @@ Public Class Persistencia
 
     End Function
 
+
+
     Public Function IDLotePor_IDvehiculo_y_IDLugar(idve As Integer, id As Integer) As Integer
         Try
             Dim com As New OdbcCommand("select lote.idlote from integra, lote where idvehiculo=?
@@ -389,6 +391,21 @@ Public Class Persistencia
         Catch ex As Exception
             Return -1
         End Try
+
+    End Function
+
+    Public Function DatosBasicosDelLote_IDvehiculo_y_IDLugar(idve As Integer, id As Integer) As DataTable
+        Dim com As New OdbcCommand("select lote.idlote,lote.nombre,lote.creadorid from integra, lote where idvehiculo=?
+                                    and invalidado ='f' and integra.lote=lote.idlote
+                                    and fecha in (select max(fecha) from lote, integra where idvehiculo=? and
+                                    integra.lote =lote.idlote and lote.Origen=?)", Conexcion)
+        com.CrearParametro(DbType.Int32, idve)
+        com.CrearParametro(DbType.Int32, idve)
+        com.CrearParametro(DbType.Int32, id)
+        Dim dt As New DataTable
+        dt.Load(com.ExecuteReader)
+        Return dt
+
 
     End Function
 
@@ -456,7 +473,10 @@ Public Class Persistencia
         If id Is Nothing Then
             Return Nothing
         End If
-        Dim com As New OdbcCommand("select lote.idlote, lote.nombre, lote.estado, (select count(*) from integra where integra.lote=lote.idlote and integra.invalidado='f'), (select count(*) from transporta inner join transporte on transporta.transporteID=transporte.transporteID where transporta.IDLote=lote.IDLote) from lote inner join lugar on lote.origen = lugar.idlugar where lugar.idlugar = ?;", Conexcion)
+        Dim com As New OdbcCommand("select lote.idlote, lote.nombre, lote.estado, 
+                                    (select count(*) from integra where integra.lote=lote.idlote and integra.invalidado='f' and lote.invalido='f'), 
+                                    (select count(*) from transporta inner join transporte on transporta.transporteID=transporte.transporteID where transporta.IDLote=lote.IDLote and transporte.Estado='Exitoso')
+                                    from lote inner join lugar on lote.origen = lugar.idlugar where lugar.idlugar = ? and lote.invalido='f';", Conexcion)
         com.CrearParametro(DbType.Int32, id)
         Dim dt As New DataTable
         dt.Load(com.ExecuteReader)
@@ -469,6 +489,17 @@ Public Class Persistencia
             i.Item(5) = CType(i.Item(4), Integer) > 0
         Next
         dt.Columns.RemoveAt(4)
+        Return dt
+    End Function
+
+    Public Function DevolverTodosLosLotesPor_IdLugar_COPIA(id As Integer?) As DataTable
+        If id Is Nothing Then
+            Return Nothing
+        End If
+        Dim com As New OdbcCommand("select lote.idlote, lote.nombre, lote.estado, lote.invalido from lote inner join lugar on lote.origen = lugar.idlugar where lugar.idlugar = ?;", Conexcion)
+        com.CrearParametro(DbType.Int32, id)
+        Dim dt As New DataTable
+        dt.Load(com.ExecuteReader)
         Return dt
     End Function
 
@@ -486,10 +517,10 @@ Public Class Persistencia
         End Try
     End Function
 
-    Public Function ExistenciaDeVehiculoPRecargado(vin As String) As Boolean
-        Dim com As New OdbcCommand("select count(vehiculo.idvehiculo) from vehiculoIngresa, vehiculo where vehiculo.idvehiculo=vehiculoIngresa.idvehiculo and vin=? and tipoIngreso='Precarga'", Conexcion)
+    Public Function ExistenciaDeVehiculoPRecargado(vin As String) As Integer
+        Dim com As New OdbcCommand("select count(vehiculo.idvehiculo) from vehiculoIngresa, vehiculo where vehiculo.idvehiculo=vehiculoIngresa.idvehiculo and vin=? and tipoIngreso='Alta'", Conexcion)
         com.CrearParametro(DbType.String, vin)
-        Return com.ExecuteScalar > 0
+        Return com.ExecuteScalar
     End Function
 
     Public Function PoscionesOcupadasPor_ID_Subzona(id As Integer) As DataTable
@@ -535,7 +566,7 @@ Public Class Persistencia
     End Function
 
     Public Function InsertLote(nombre As String, idorigen As Integer, destinoId As Integer, prioridad As String, creadorid As Integer, fechacreacion As DateTime, estado As String) As Boolean
-        Dim com As New OdbcCommand("insert into lote values (0,?,?,?,?,?,?,?)", Conexcion)
+        Dim com As New OdbcCommand("insert into lote values (0,?,?,?,?,?,?,?,'f')", Conexcion)
         com.CrearParametro(DbType.String, nombre)
         com.CrearParametro(DbType.Int32, idorigen)
         com.CrearParametro(DbType.Int32, destinoId)
@@ -720,6 +751,43 @@ Public Class Persistencia
         com.CrearParametro(DbType.Int32, idvehiculo)
         com.CrearParametro(DbType.Int32, posicion)
         Return com.ExecuteNonQuery() > 0
+    End Function
+
+
+
+    Public Function anularAnteriorIntegra(idvehiculo As Integer)
+        Dim consultaPrevia As New OdbcCommand("select first 1 fecha
+                                    from integra where idvehiculo=? order by fecha desc", Conexcion)
+        consultaPrevia.CrearParametro(DbType.Int32, idvehiculo)
+
+        Dim com As New OdbcCommand("update integra set invalidado=? 
+                                    where idvehiculo=? and fecha=?", Conexcion)
+        com.CrearParametro(DbType.Boolean, True)
+        com.CrearParametro(DbType.Int32, idvehiculo)
+        com.CrearParametro(DbType.DateTime, consultaPrevia.ExecuteScalar)
+        Return com.ExecuteNonQuery() > 0
+    End Function
+
+    Public Function eliminarlote(idlote As Integer)
+        Dim com As New OdbcCommand("update lote set invalido=? where idlote=?", Conexcion)
+        com.CrearParametro(DbType.Boolean, True)
+        com.CrearParametro(DbType.Int32, idlote)
+        Return com.ExecuteNonQuery() > 0
+    End Function
+
+    Public Function numeroDeVehiculosDeUnLote(idlote As Integer) As Integer
+        Dim com As New OdbcCommand("select count(vehiculo.idvehiculo) from
+                                    lote inner join integra on idlote = lote
+                                     inner join vehiculo on integra.idvehiculo=vehiculo.idvehiculo
+                                    where idlote=? and invalidado='f'", Conexcion)
+        com.CrearParametro(DbType.Int32, idlote)
+        Return com.ExecuteScalar
+    End Function
+
+    Public Function idUltimoLoteDelUsuario(idusuario As Integer)
+        Dim com As New OdbcCommand("select first 1 idlote from lote where creadorid=? order by fechacreacion desc,idlote desc", Conexcion)
+        com.CrearParametro(DbType.Int32, idusuario)
+        Return com.ExecuteScalar
     End Function
 
 

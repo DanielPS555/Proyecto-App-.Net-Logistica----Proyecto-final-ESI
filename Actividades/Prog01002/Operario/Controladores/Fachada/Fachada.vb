@@ -313,12 +313,11 @@ Public Class Fachada
 
     Public Function LotesDisponiblesPorLugarActual() As List(Of Lote) ' ¿En qué parte del programa necesitamos ver solamente lotes abiertos?
         Dim lista As New List(Of Lote)
-        For Each r1 As DataRow In Persistencia.getInstancia.DevolverTodosLosLotesPor_IdLugar(Persistencia.getInstancia.TrabajaEn.Lugar.IDLugar).Rows
+        For Each r1 As DataRow In Persistencia.getInstancia.DevolverTodosLosLotesPor_IdLugar_COPIA(Persistencia.getInstancia.TrabajaEn.Lugar.IDLugar).Rows
             Dim lote As New Lote With {.IDLote = r1.Item(0), .Nombre = r1.Item(1), .Estado = r1.Item(2)}
-            If lote.Estado = Lote.TIPO_ESTADO_ABIERTO Then
+            If lote.Estado = Lote.TIPO_ESTADO_ABIERTO And Not r1.Item(3) Then
                 lista.Add(lote)
             End If
-
         Next
         Return lista
     End Function
@@ -358,7 +357,7 @@ Public Class Fachada
     End Function
 
     Public Function ExistenciaDevehiculoPrecargado(vin As String) As Boolean
-        Return Persistencia.getInstancia.ExistenciaDeVehiculoPRecargado(vin)
+        Return Persistencia.getInstancia.ExistenciaDeVehiculoPRecargado(vin) = 0
     End Function
 
     Public Function ClientesDelSistema() As List(Of Cliente)
@@ -541,7 +540,42 @@ Public Class Fachada
         Next
     End Sub
 
-    'Public Sub NuevoLote(lote As Controladores.Lote, integra As )
+    Public Sub altaVehiculoConUpdate(vehiculo As Vehiculo, user As Usuario)
+        Persistencia.getInstancia.updateVehiculo(vehiculo.IdVehiculo, vehiculo.VIN, vehiculo.Marca, vehiculo.Modelo, vehiculo.Color.ToArgb.ToString("X6"), vehiculo.Tipo, vehiculo.Año, vehiculo.Cliente.IDCliente)
+        Persistencia.getInstancia.insertVehiculoIngresa(vehiculo.IdVehiculo, DateTime.Now, "Alta", user.ID_usuario)
+    End Sub
 
-    'End Sub
+    Public Function nuevoLote(Lote As Lote) As Integer
+        Persistencia.getInstancia.InsertLote(Lote.Nombre, Lote.Origen.IDLugar, Lote.Destino.IDLugar, Lote.Prioridad, Lote.Creador.ID_usuario, Lote.FechaCreacion, Lote.Estado)
+        Return Persistencia.getInstancia.idUltimoLoteDelUsuario(Lote.Creador.ID_usuario)
+    End Function
+
+    Public Sub insertIntegra(l As Lote, vehi As Vehiculo, usuario As Usuario, inavilitarAnterior As Boolean)
+        If inavilitarAnterior Then
+            Persistencia.getInstancia.anularAnteriorIntegra(vehi.IdVehiculo)
+        End If
+        Persistencia.getInstancia.InsertIntegra(l.IDLote, vehi.IdVehiculo, DateTime.Now, False, usuario.ID_usuario)
+    End Sub
+
+    Public Function eliminarLoteSiNoTieneVehiculos(l As Lote) As Boolean
+        If Persistencia.getInstancia.numeroDeVehiculosDeUnLote(l.IDLote) = 0 Then
+            Persistencia.getInstancia.eliminarlote(l.IDLote)
+            Return True
+        Else
+            Return False
+        End If
+    End Function
+
+    'Public Function idLoteDelVehiculoEnLugar(vehi As Vehiculo, lugar As Lugar) As Integer
+    '    Return Persistencia.getInstancia.IDLotePor_IDvehiculo_y_IDLugar(vehi.IdVehiculo, lugar.IDLugar)
+    'End Function
+
+
+    Public Function DatosLoteDelVehiculoEnLugar(vehi As Vehiculo, lugar As Lugar) As Lote
+        Dim dt As DataRow = Persistencia.getInstancia.DatosBasicosDelLote_IDvehiculo_y_IDLugar(vehi.IdVehiculo, lugar.IDLugar).Rows(0)
+        Dim l As New Lote With {.IDLote = dt.Item(0),
+                                 .Nombre = dt.Item(1),
+                                 .Creador = New Usuario() With {.ID_usuario = dt.Item(2)}}
+        Return l
+    End Function
 End Class
