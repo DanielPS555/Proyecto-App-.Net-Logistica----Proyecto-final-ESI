@@ -82,7 +82,7 @@ CREATE table
 CREATE table
 	vehiculo(
 	IDVehiculo serial primary key,
-	VIN char(17) unique,
+	VIN char(17) unique not null,
 	Marca varchar(50),
 	Modelo varchar(50),
 	Color char(6), /* representación ineficiente; 6char = 6hex = 16^6 = 2^24 < 2^32 = int (4char) < 6char */
