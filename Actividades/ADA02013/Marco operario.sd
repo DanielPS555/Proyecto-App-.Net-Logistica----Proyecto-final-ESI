@@ -1,0 +1,28 @@
+#![Aplicativo del operario]
+usuario:Actor
+interfaz:Marco
+/inicio:Forms.Form
+/listaLotes:Forms.Form
+/listaVehiculos:Forms.Form
+/listaZonas:Forms.Form
+/nuevoVehiculo:Forms.form
+
+usuario:interfaz.Inicio
+interfaz:ver diagrama de secuencia de inicio=inicio.new
+
+usuario:interfaz.Mi Cuenta
+interfaz:ver diagrama de secuencia de inicio=inicio.
+
+usuario:interfaz.Lista de Vehiculos
+interfaz:ver diagrama de secuencia de lista de vehiculos=listaVehiculos.new
+usuario:interfaz.Nuevo vehiculo
+interfaz:ver diagrama de secuencia de nuevo vehiculo=nuevoVehiculo.new
+
+usuario:interfaz.Lista de Lotes
+interfaz:ver diagrama de secuencia de lista lotes=listaLotes.new
+
+usuario:interfaz.Lista de Zonas
+interfaz:ver diagrama de secuencia de lista de zonas=listaZonas.new
+
+usuario:interfaz.Atrás
+interfaz:interfaz.Cerrar ultimo panel

@@ -27,6 +27,7 @@ Public Class RestablecerContraseña
             newpwd.Visible = True
             Label5.Visible = True
             Button1.Visible = True
+            preg.Visible = True
         Else
             MsgBox("Nombre de usuario incorrecto", MsgBoxStyle.Critical)
         End If

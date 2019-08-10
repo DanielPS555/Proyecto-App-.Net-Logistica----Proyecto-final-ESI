@@ -40,7 +40,6 @@ Partial Class trasladoInterno
         Me.DeZona = New System.Windows.Forms.Label()
         Me.deSubzona = New System.Windows.Forms.Label()
         Me.dePosicion = New System.Windows.Forms.Label()
-        Me.Label6 = New System.Windows.Forms.Label()
         ingresar = New System.Windows.Forms.Button()
         Button1 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
@@ -243,22 +242,12 @@ Partial Class trasladoInterno
         Me.dePosicion.TabIndex = 120
         Me.dePosicion.Text = "//"
         '
-        'Label6
-        '
-        Me.Label6.Location = New System.Drawing.Point(13, 374)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(367, 38)
-        Me.Label6.TabIndex = 125
-        Me.Label6.Text = "NOTA: Debido a limitaciones de la DDL, al intentar posicionar el vehiculo en una " &
-    "subzona en la que ya ha estado en esta hora puede producirse un error"
-        '
         'trasladoInterno
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(392, 514)
-        Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Button1)
         Me.Controls.Add(ingresar)
         Me.Controls.Add(Me.dePosicion)
@@ -301,5 +290,4 @@ Partial Class trasladoInterno
     Friend WithEvents DeZona As Label
     Friend WithEvents deSubzona As Label
     Friend WithEvents dePosicion As Label
-    Friend WithEvents Label6 As Label
 End Class

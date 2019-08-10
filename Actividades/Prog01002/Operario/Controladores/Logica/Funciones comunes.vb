@@ -8,6 +8,21 @@ Public Class Funciones_comunes
         Return BCrypt.Net.BCrypt.EnhancedHashPassword(password, hashType:=BCrypt.Net.HashType.SHA256)
     End Function
 
+    Public Shared Function BitmapFromByteArray(v As Byte()) As Bitmap
+        Dim br = New IO.MemoryStream(v)
+        Dim bm = New Bitmap(br)
+        br.Close()
+        Return bm
+    End Function
+
+    Public Shared Function ConvertToByteArray(ByVal value As Bitmap) As Byte()
+        Dim bitmapBytes As Byte()
+        Using stream As New System.IO.MemoryStream
+            value.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg)
+            bitmapBytes = stream.ToArray
+        End Using
+        Return bitmapBytes
+    End Function
     Public Shared Function AutoNull(Of T)(data As Object) As T
         If data Is DBNull.Value Then
             Return Nothing

@@ -1,4 +1,5 @@
 ﻿
+Imports System.IO
 Imports Controladores
 Imports Controladores.Extenciones
 
@@ -235,6 +236,7 @@ Public Class Fachada
             End If
         Next
         InfoUsuario = True
+        Persistencia.getInstancia.TrabajaEn.Usuario = user
     End Sub
 
     Public Function DevolverUsuarioActual() As Usuario
@@ -311,12 +313,11 @@ Public Class Fachada
 
     Public Function LotesDisponiblesPorLugarActual() As List(Of Lote) ' ¿En qué parte del programa necesitamos ver solamente lotes abiertos?
         Dim lista As New List(Of Lote)
-        For Each r1 As DataRow In Persistencia.getInstancia.DevolverTodosLosLotesPor_IdLugar(Persistencia.getInstancia.TrabajaEn.Lugar.IDLugar).Rows
+        For Each r1 As DataRow In Persistencia.getInstancia.DevolverTodosLosLotesPor_IdLugar_COPIA(Persistencia.getInstancia.TrabajaEn.Lugar.IDLugar).Rows
             Dim lote As New Lote With {.IDLote = r1.Item(0), .Nombre = r1.Item(1), .Estado = r1.Item(2)}
-            If lote.Estado = Lote.TIPO_ESTADO_ABIERTO Then
+            If lote.Estado = Lote.TIPO_ESTADO_ABIERTO And Not r1.Item(3) Then
                 lista.Add(lote)
             End If
-
         Next
         Return lista
     End Function
@@ -337,6 +338,7 @@ Public Class Fachada
             End If
 
             Dim vehi As New Vehiculo With {
+                                    .IdVehiculo = Funciones_comunes.AutoNull(Of Object)(r.Item(9)),
                                    .VIN = Funciones_comunes.AutoNull(Of Object)(r.Item(0)),
                                    .Marca = Funciones_comunes.AutoNull(Of Object)(r.Item(1)),
                                    .Modelo = Funciones_comunes.AutoNull(Of Object)(r.Item(2)),
@@ -355,7 +357,7 @@ Public Class Fachada
     End Function
 
     Public Function ExistenciaDevehiculoPrecargado(vin As String) As Boolean
-        Return Persistencia.getInstancia.ExistenciaDeVehiculoPRecargado(vin)
+        Return Persistencia.getInstancia.ExistenciaDeVehiculoPRecargado(vin) = 0
     End Function
 
     Public Function ClientesDelSistema() As List(Of Cliente)
@@ -406,6 +408,42 @@ Public Class Fachada
         Return list
     End Function
 
+    Public Function devolverTodosLosInformesYregistrosCompletos(vehi As Vehiculo) As List(Of InformeDeDaños)
+        Dim dt As DataTable = Persistencia.getInstancia.InformesDaño(vehi.IdVehiculo)
+        Dim lista As New List(Of InformeDeDaños)
+        For Each r As DataRow In dt.Rows
+            Dim l As New InformeDeDaños(vehi) With {.ID = r.Item(0),
+                                                    .Descripcion = r.Item(1),
+                                                    .Creador = New Usuario With {.Nombre = r.Item(2), .ID_usuario = r.Item(6)},
+                                                    .Fecha = r.Item(3),
+                                                    .Lugar = New Lugar() With {.IDLugar = r.Item(5), .Nombre = r.Item(4)}}
+            Dim dt2 As DataTable = Persistencia.getInstancia.RegistrosDaño(vehi.IdVehiculo, l.ID)
+            For Each r2 As DataRow In dt2.Rows
+                Dim tipo As String
+                Dim reg2 As RegistroDaños
+                If r2.Item(2).Equals("No actualiza") Then
+                    tipo = RegistroDaños.TIPO_ACTUALIZACION_REGULAR
+                Else
+                    tipo = r2.Item(2)
+                    reg2 = New RegistroDaños(New InformeDeDaños(vehi) With {.ID = Funciones_comunes.AutoNull(Of Object)(r2.Item(3))}) With {.ID = Funciones_comunes.AutoNull(Of Object)(r2.Item(4))}
+                End If
+                Dim reg As New RegistroDaños(l) With {.ID = r2.Item(0), .Descripcion = r2.Item(1),
+                        .TipoActualizacion = tipo}
+                If reg.TipoActualizacion <> RegistroDaños.TIPO_ACTUALIZACION_REGULAR Then
+                    reg.Actualiza = reg2
+                End If
+                Dim dt3 As DataTable = Persistencia.getInstancia.Imagenes(l.ID, reg.ID)
+                    For Each r3 As DataRow In dt3.Rows
+                    reg.Imagenes.Add(Funciones_comunes.BitmapFromByteArray(r3.Item(1)))
+                Next
+
+                l.Registros.Add(reg)
+            Next
+            lista.Add(l)
+        Next
+        Return lista
+    End Function
+
     Public Function id_vehiculoPorVin(vin As String) As Integer
         Return Persistencia.getInstancia.vinPorId(vin)
     End Function
@@ -429,5 +467,115 @@ Public Class Fachada
             End If
         Next
         Return lista
+    End Function
+
+    Public Sub nuevoInformeDeDaños(info As InformeDeDaños)
+        If Persistencia.getInstancia.InsertInformedeDaños(info.Descripcion, info.Fecha, info.Tipo, info.VehiculoPadre.IdVehiculo, info.Lugar.IDLugar, info.Creador.ID_usuario) Then
+            Dim idInfo As Integer = Persistencia.getInstancia.ultimoIdInforme(info.VehiculoPadre.IdVehiculo)
+            For Each reg As RegistroDaños In info.Registros
+                Persistencia.getInstancia.InsertRegistroDaño(info.VehiculoPadre.IdVehiculo, idInfo, reg.Descripcion)
+                Dim idReg As Integer = Persistencia.getInstancia.ultimoIDRegistro(info.VehiculoPadre.IdVehiculo, idInfo)
+                If reg.TipoActualizacion <> RegistroDaños.TIPO_ACTUALIZACION_REGULAR Then
+                    Persistencia.getInstancia.insertarActualizacion(info.VehiculoPadre.IdVehiculo, idInfo, idReg, reg.Actualiza.InformePadre.ID, reg.Actualiza.ID, reg.TipoActualizacion)
+                End If
+                For Each img As Bitmap In reg.Imagenes
+                    Persistencia.getInstancia.insertarImagendeUnRegistro(info.VehiculoPadre.IdVehiculo, idInfo, idReg, Funciones_comunes.ConvertToByteArray(img))
+                Next
+            Next
+        End If
+    End Sub
+
+    Public Function DevolverPosicionActual(idvehiculo As Integer) As Posicion
+        Dim p As New Posicion()
+        Dim dt As DataRow = Persistencia.getInstancia.PosicionActualVehiculo(idvehiculo)
+        Dim lug As DataTable = Persistencia.getInstancia.zonaylugarDeUnaSubzona(dt.Item(3))
+        p.Subzona = New Subzona(New Zona(New Lugar With {.IDLugar = lug.Rows(1).Item(0),
+                                         .Nombre = lug.Rows(1).Item(1)}) With {.IDZona = lug.Rows(0).Item(0),
+                                         .Nombre = lug.Rows(0).Item(1)}) With {.IDSubzona = dt.Item(3), .Nombre = dt.Item(6)}
+        p.Posicion = dt.Item(0)
+        p.Desde = dt.Item(1)
+        p.Hasta = Funciones_comunes.AutoNull(Of Object)(dt.Item(2))
+        p.IngresadoPor = New Usuario With {.ID_usuario = dt.Item(4), .NombreDeUsuario = dt.Item(5)}
+        Return p
+    End Function
+
+    Public Function TodasLasPosicionesPorLugar(idvehiculo As Integer, idlugar As Integer) As List(Of Posicion)
+        Dim pos As New List(Of Posicion)
+        Dim dt As DataTable = Persistencia.getInstancia.TodasLasPosicionesDeVehiculo(idvehiculo)
+        For Each r As DataRow In dt.Rows
+            Dim p As New Posicion()
+            Dim lug As DataRow = Persistencia.getInstancia.zonaylugarDeUnaSubzona(r.Item(3)).Rows(1)
+            p.Subzona = New Subzona(New Zona(New Lugar With {.IDLugar = lug.Item(0), .Nombre = lug.Item(1)}))
+            p.Posicion = r.Item(0)
+            p.Desde = r.Item(1)
+            p.Hasta = Funciones_comunes.AutoNull(Of Object)(r.Item(2))
+            p.IngresadoPor = New Usuario With {.ID_usuario = r.Item(4), .NombreDeUsuario = r.Item(5)}
+            If lug.Item(0) = idlugar Then
+                pos.Add(p)
+            End If
+        Next
+        Return pos
+    End Function
+
+    Public Sub AsignarNuevaPosicion(posicion As Posicion, inavilitarAnterior As Boolean)
+        If inavilitarAnterior Then
+            Persistencia.getInstancia.anularPosicionAnterior(posicion.Vehiculo.IdVehiculo)
+        End If
+        Persistencia.getInstancia.insertPosicion(posicion.IngresadoPor.ID_usuario, posicion.Subzona.IDSubzona, posicion.Vehiculo.IdVehiculo, posicion.Posicion)
+    End Sub
+
+    Public Sub actualizarInforme(info As InformeDeDaños)
+        Persistencia.getInstancia.ActualizarInformeDaños(info.ID, info.Descripcion, info.Fecha, info.Tipo, info.VehiculoPadre.IdVehiculo, info.Lugar.IDLugar, info.Creador.ID_usuario)
+        Persistencia.getInstancia.eliminarImagenesDeUnInforme(info.VehiculoPadre.IdVehiculo, info.ID)
+        Persistencia.getInstancia.EliminarRegistrosDeUnInforme(info.VehiculoPadre.IdVehiculo, info.ID)
+        For Each reg As RegistroDaños In info.Registros
+            Persistencia.getInstancia.InsertRegistroDaño(info.VehiculoPadre.IdVehiculo, info.ID, reg.Descripcion)
+            Dim idReg As Integer = Persistencia.getInstancia.ultimoIDRegistro(info.VehiculoPadre.IdVehiculo, info.ID)
+            If reg.TipoActualizacion <> RegistroDaños.TIPO_ACTUALIZACION_REGULAR Then
+                Persistencia.getInstancia.insertarActualizacion(info.VehiculoPadre.IdVehiculo, info.ID, idReg, reg.Actualiza.InformePadre.ID, reg.Actualiza.ID, reg.TipoActualizacion)
+            End If
+            For Each img As Bitmap In reg.Imagenes
+                Persistencia.getInstancia.insertarImagendeUnRegistro(info.VehiculoPadre.IdVehiculo, info.ID, idReg, Funciones_comunes.ConvertToByteArray(img))
+            Next
+        Next
+    End Sub
+
+    Public Sub altaVehiculoConUpdate(vehiculo As Vehiculo, user As Usuario)
+        Persistencia.getInstancia.updateVehiculo(vehiculo.IdVehiculo, vehiculo.VIN, vehiculo.Marca, vehiculo.Modelo, vehiculo.Color.ToArgb.ToString("X6"), vehiculo.Tipo, vehiculo.Año, vehiculo.Cliente.IDCliente)
+        Persistencia.getInstancia.insertVehiculoIngresa(vehiculo.IdVehiculo, DateTime.Now, "Alta", user.ID_usuario)
+    End Sub
+
+    Public Function nuevoLote(Lote As Lote) As Integer
+        Persistencia.getInstancia.InsertLote(Lote.Nombre, Lote.Origen.IDLugar, Lote.Destino.IDLugar, Lote.Prioridad, Lote.Creador.ID_usuario, Lote.FechaCreacion, Lote.Estado)
+        Return Persistencia.getInstancia.idUltimoLoteDelUsuario(Lote.Creador.ID_usuario)
+    End Function
+
+    Public Sub insertIntegra(l As Lote, vehi As Vehiculo, usuario As Usuario, inavilitarAnterior As Boolean)
+        If inavilitarAnterior Then
+            Persistencia.getInstancia.anularAnteriorIntegra(vehi.IdVehiculo)
+        End If
+        Persistencia.getInstancia.InsertIntegra(l.IDLote, vehi.IdVehiculo, DateTime.Now, False, usuario.ID_usuario)
+    End Sub
+
+    Public Function eliminarLoteSiNoTieneVehiculos(l As Lote) As Boolean
+        If Persistencia.getInstancia.numeroDeVehiculosDeUnLote(l.IDLote) = 0 Then
+            Persistencia.getInstancia.eliminarlote(l.IDLote)
+            Return True
+        Else
+            Return False
+        End If
+    End Function
+
+    'Public Function idLoteDelVehiculoEnLugar(vehi As Vehiculo, lugar As Lugar) As Integer
+    '    Return Persistencia.getInstancia.IDLotePor_IDvehiculo_y_IDLugar(vehi.IdVehiculo, lugar.IDLugar)
+    'End Function
+
+
+    Public Function DatosLoteDelVehiculoEnLugar(vehi As Vehiculo, lugar As Lugar) As Lote
+        Dim dt As DataRow = Persistencia.getInstancia.DatosBasicosDelLote_IDvehiculo_y_IDLugar(vehi.IdVehiculo, lugar.IDLugar).Rows(0)
+        Dim l As New Lote With {.IDLote = dt.Item(0),
+                                 .Nombre = dt.Item(1),
+                                 .Creador = New Usuario() With {.ID_usuario = dt.Item(2)}}
+        Return l
     End Function
 End Class

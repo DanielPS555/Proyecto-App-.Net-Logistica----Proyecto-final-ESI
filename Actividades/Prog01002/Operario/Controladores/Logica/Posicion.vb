@@ -28,11 +28,9 @@ Public Class Posicion
             Return _ingresadoPor
         End Get
         Set(ByVal value As Usuario)
-            If value.Rol = Usuario.TIPO_ROL_OPERARIO Then
-                _ingresadoPor = value
-            Else
-                Throw New Exception("Solo puede un Operario posicionar un vehiculo")
-            End If
+
+            _ingresadoPor = value
+
 
         End Set
     End Property
@@ -66,12 +64,20 @@ Public Class Posicion
             Return _hasta
         End Get
         Set(ByVal value As DateTime)
-            If DateTime.Compare(value, Me.Desde) >= 0 Then
-                _hasta = value
-            Else
-                Throw New Exception("La fecha de finalizacion de la estatida debe ser posterior a la de ingreso")
-            End If
 
+            _hasta = value
+
+
+        End Set
+    End Property
+
+    Private _vehiculo As Vehiculo
+    Public Property Vehiculo() As Vehiculo
+        Get
+            Return _vehiculo
+        End Get
+        Set(ByVal value As Vehiculo)
+            _vehiculo = value
         End Set
     End Property
 

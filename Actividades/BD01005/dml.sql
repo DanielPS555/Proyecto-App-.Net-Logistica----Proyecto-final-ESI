@@ -168,20 +168,15 @@ insert into trabajaen values (0,(select IDLugar from lugar where Nombre="Deposit
 		and lugar.idlugar = zona.idlugar and zona.nombre = "Zona C"),0,"Zona C_2",500);*/
 		/*VEHIUCLO*/
 		insert into vehiculo values(0, "1GH2J83LED0987547","Fiat","Cronos", "6ead26",
-		"Auto", 2011, (select IDCliente from cliente where Nombre="Sevel"),
-		"2019-6-27");
+		"Auto", 2011, (select IDCliente from cliente where Nombre="Sevel"));
 		insert into vehiculo values(0, "1HGYN4HTEL8372649","Fiat","Toro", "cecece",
-		"Auto", 2015, (select IDCliente from cliente where Nombre="Sevel"),
-		"2019-6-28");
+		"Auto", 2015, (select IDCliente from cliente where Nombre="Sevel"));
 		insert into vehiculo values(0, "2GH2JJEBTE0987547","Chevrolet","Aveo",
-		"c92222", "SUV", 2016, (select IDCliente from cliente where Nombre="Chevrolet UY"),
-		"2019-7-1");
+		"c92222", "SUV", 2016, (select IDCliente from cliente where Nombre="Chevrolet UY"));
 		insert into vehiculo values(0, "1GH2HGRLED0988472","Chevrolet","Volt",
-		"6ead26", "MiniVan", 2018, (select IDCliente from cliente where Nombre="Chevrolet UY"),
-		"2019-6-26");
+		"6ead26", "MiniVan", 2018, (select IDCliente from cliente where Nombre="Chevrolet UY"));
 		insert into vehiculo values(0, "KHBEHGRLED0988442","Chevrolet","Volt",
-		"6e2327", "MiniVan", 2018, (select IDCliente from cliente where Nombre="Chevrolet UY"),
-		"2019-6-26");
+		"6e2327", "MiniVan", 2018, (select IDCliente from cliente where Nombre="Chevrolet UY"));
 		insert into vehiculo(vin, cliente, tipo)
 		       values("1L0V36I113UWU1112", (select IDCliente from cliente where Nombre="Sevel"), "Auto");
 
@@ -290,77 +285,12 @@ insert into habilitado values
 insert into habilitado values
 ((select idlugar from lugar where nombre='Patio de Chevrolet Ur a gay'), 1);
 
-insert into habilitado values
-((select idlugar from lugar where nombre='Zona A_pb'), 1);
-
-insert into habilitado values
-((select idlugar from lugar where nombre='Zona B_pb'), 1);
-
-insert into habilitado values
-((select idlugar from lugar where nombre='Zona A_md'), 1);
-
-insert into habilitado values
-((select idlugar from lugar where nombre='Zona A_mvd'), 1);
-
-insert into habilitado values
-((select idlugar from lugar where nombre='Zona B_mvd'), 1);
-
-insert into habilitado values((select idlugar from lugar where nombre='Zona A_papr'), 1);
-
-insert into habilitado values((select idlugar from lugar where nombre='Zona B_papr'), 1);
-
-insert into habilitado values((select idlugar from lugar where nombre='Zona C_papr'), 1);
-
-insert into habilitado values((select idlugar from lugar where nombre='Zona A_1_pb'), 1);
-
-insert into habilitado values((select idlugar from lugar where nombre='Zona A_2_pb'), 1);
-
-insert into habilitado values((select idlugar from lugar where nombre='Zona B_1_pb'), 1);
-
-insert into habilitado values((select idlugar from lugar where nombre='Zona B_2_pb'), 1);
-
-insert into habilitado values((select idlugar from lugar where nombre='Zona A_1_md'), 1);
-
-insert into habilitado values((select idlugar from lugar where nombre='Zona A_1_mvd'), 1);
-
-insert into habilitado values((select idlugar from lugar where nombre='Zona A_2_mvd'), 1);
-
-insert into habilitado values((select idlugar from lugar where nombre='Zona B_1_mvd'), 1);
-
-insert into habilitado values((select idlugar from lugar where nombre='Zona A_1_papr'), 1);
-
-insert into habilitado values((select idlugar from lugar where nombre='Zona B_1_papr'), 1);
-
-insert into habilitado values((select idlugar from lugar where nombre='Zona C_1_papr'), 1);
-
-insert into habilitado values((select idlugar from lugar where nombre='Zona C_2_papr'), 1);
-
 insert into habilitado values((select idlugar from lugar where nombre = 'Deposito piedras blancas'), 2);
 insert into habilitado values((select idlugar from lugar where nombre = 'Deposito de maldonado'), 2);
 insert into habilitado values((select idlugar from lugar where nombre = 'Puerto de montevideo'), 2);
 insert into habilitado values((select idlugar from lugar where nombre = 'Puerto de aguas profundas rocha'), 2);
 insert into habilitado values((select idlugar from lugar where nombre = 'Patio de Sevel'), 2);
 insert into habilitado values((select idlugar from lugar where nombre = 'Patio de Chevrolet Ur a gay'), 2);
-insert into habilitado values((select idlugar from lugar where nombre = 'Zona A_pb'), 2);
-insert into habilitado values((select idlugar from lugar where nombre = 'Zona B_pb'), 2);
-insert into habilitado values((select idlugar from lugar where nombre = 'Zona A_md'), 2);
-insert into habilitado values((select idlugar from lugar where nombre = 'Zona A_mvd'), 2);
-insert into habilitado values((select idlugar from lugar where nombre = 'Zona B_mvd'), 2);
-insert into habilitado values((select idlugar from lugar where nombre = 'Zona A_papr'), 2);
-insert into habilitado values((select idlugar from lugar where nombre = 'Zona B_papr'), 2);
-insert into habilitado values((select idlugar from lugar where nombre = 'Zona C_papr'), 2);
-insert into habilitado values((select idlugar from lugar where nombre = 'Zona A_1_pb'), 2);
-insert into habilitado values((select idlugar from lugar where nombre = 'Zona A_2_pb'), 2);
-insert into habilitado values((select idlugar from lugar where nombre = 'Zona B_1_pb'), 2);
-insert into habilitado values((select idlugar from lugar where nombre = 'Zona B_2_pb'), 2);
-insert into habilitado values((select idlugar from lugar where nombre = 'Zona A_1_md'), 2);
-insert into habilitado values((select idlugar from lugar where nombre = 'Zona A_1_mvd'), 2);
-insert into habilitado values((select idlugar from lugar where nombre = 'Zona A_2_mvd'), 2);
-insert into habilitado values((select idlugar from lugar where nombre = 'Zona B_1_mvd'), 2);
-insert into habilitado values((select idlugar from lugar where nombre = 'Zona A_1_papr'), 2);
-insert into habilitado values((select idlugar from lugar where nombre = 'Zona B_1_papr'), 2);
-insert into habilitado values((select idlugar from lugar where nombre = 'Zona C_1_papr'), 2);
-insert into habilitado values((select idlugar from lugar where nombre = 'Zona C_2_papr'), 2);
 
 insert into Habilitado values ((select idlugar from lugar where nombre="Puerto de montevideo"), 3);
 insert into Habilitado values ((select idlugar from lugar where nombre="Deposito piedras blancas"), 3);
@@ -390,36 +320,36 @@ insert into permite values (2,"La virgen del Rio de la Plata",(select idusuario 
 
       insert into lote values (0,"pl_1", (select IDLugar from lugar where Nombre="Puerto de aguas profundas rocha"),
       (select IDLugar from lugar where Nombre="Puerto de montevideo"),
-       (select idusuario from usuario where primernombre = "Pepe"), "2019-5-20", "Normal", "Cerrado");
+       (select idusuario from usuario where primernombre = "Pepe"), "2019-5-20", "Normal", "Cerrado",'f');
 
        insert into lote values (0, "il_1", (select IDLugar from lugar where Nombre="Puerto de montevideo"),
        (select IDLugar from lugar where nombre = "Deposito de maldonado"),
        (select IDUsuario from usuario where primernombre = "Pepe"), "2019-6-26",
-       'Normal', 'Cerrado');
+       'Normal', 'Cerrado','f');
 
       insert into lote values (0,"l_1",(select IDLugar from lugar where Nombre="Puerto de aguas profundas rocha"),
       (select IDLugar from lugar where Nombre="Deposito de maldonado"),
-       (select idusuario from usuario where primernombre = "Pepe"), "2019-6-26", 'Normal', 'Cerrado');
+       (select idusuario from usuario where primernombre = "Pepe"), "2019-6-26", 'Normal', 'Cerrado','f');
 
       insert into lote values (0,"l_2",(select IDLugar from lugar where Nombre="Puerto de montevideo"),
       (select IDLugar from lugar where Nombre="Deposito piedras blancas"),
-       (select idusuario from usuario where primernombre = "Juan"), "2019-6-29",'Normal','Cerrado');
+       (select idusuario from usuario where primernombre = "Juan"), "2019-6-29",'Normal','Cerrado','f');
 
       insert into lote values (0,"l_3",(select IDLugar from lugar where Nombre="Deposito de maldonado"),
       (select IDLugar from lugar where Nombre="Deposito piedras blancas"),
-       (select idusuario from usuario where primernombre = "Pepe"), "2019-7-4",'Normal','Cerrado');
+       (select idusuario from usuario where primernombre = "Pepe"), "2019-7-4",'Normal','Cerrado','f');
 		
 		insert into lote values (0,"l_4",(select IDLugar from lugar where Nombre="Deposito piedras blancas"),
       (select IDLugar from lugar where Nombre="Patio de Sevel"),
-       (select idusuario from usuario where primernombre = "Juan"),"2019-6-29",'Normal','Abierto');
+       (select idusuario from usuario where primernombre = "Juan"),"2019-6-29",'Normal','Abierto','f');
 	   
 	   insert into lote values (0,"l_5",(select IDLugar from lugar where Nombre="Deposito de maldonado"),
       (select IDLugar from lugar where Nombre="Patio de Chevrolet Ur a gay"),
-       (select idusuario from usuario where primernombre = "Pepe"),"2019-6-30",'Normal','Cerrado');
+       (select idusuario from usuario where primernombre = "Pepe"),"2019-6-30",'Normal','Cerrado','f');
 
       insert into lote values (0,"l_6",(select IDLugar from lugar where Nombre="Deposito piedras blancas"),
 	(select IDLugar from lugar where Nombre="Patio de Sevel"),
-	(select IDUsuario from usuario where primernombre = "Pepe"), "2019-7-4", "Normal", "Cerrado");
+	(select IDUsuario from usuario where primernombre = "Pepe"), "2019-7-4", "Normal", "Cerrado",'f');
 
 insert into integra values ((select idvehiculo from vehiculo where VIN="1GH2J83LED0987547"),3,"2019-6-28 14:02",'t',(select idusuario from usuario where primernombre = "Pepe"));
 insert into integra values ((select idvehiculo from vehiculo where VIN="1GH2J83LED0987547"),1,"2019-6-29 14:00",'f',(select idusuario from usuario where primernombre = "Pepe"));

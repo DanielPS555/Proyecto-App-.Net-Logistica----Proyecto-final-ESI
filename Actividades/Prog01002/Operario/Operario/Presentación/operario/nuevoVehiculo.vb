@@ -1,7 +1,10 @@
 ﻿Imports Operario
 Imports Controladores.Extenciones.Extensiones
+Imports Controladores
 
 Public Class nuevoVehiculo
+    Implements NotificacionDeLote
+
     'crear una entidad lote y hacer una propery publica para acceder a ella desde el panel nuevoLote y enviar el lote creado  
     Private vehi As New Controladores.Vehiculo()
     Private lotesDisponibles As New List(Of Controladores.Lote)
@@ -63,7 +66,7 @@ Public Class nuevoVehiculo
         lote.Items.Clear()
         lotesDisponibles = Controladores.Fachada.getInstancia.LotesDisponiblesPorLugarActual()
         For Each l As Controladores.Lote In lotesDisponibles
-            lote.Items.Add("Nom:" & l.Nombre & "ID:" & l.IDLote)
+            lote.Items.Add("Nom: " & l.Nombre & "ID: " & l.IDLote)
         Next
         If lote.Items.Count > 0 Then
             lote.SelectedIndex = 0
@@ -74,7 +77,7 @@ Public Class nuevoVehiculo
         clientes.Items.Clear()
         clienteshabi = Controladores.Fachada.getInstancia.ClientesDelSistema()
         For Each ce As Controladores.Cliente In clienteshabi
-            clientes.Items.Add("Nom:" & ce.Nombre & "RUT:" & ce.RUT)
+            clientes.Items.Add("Nom: " & ce.Nombre & "RUT: " & ce.RUT)
         Next
     End Sub
 
@@ -96,7 +99,7 @@ Public Class nuevoVehiculo
 
 
     Private Sub infoDaños_Click(sender As Object, e As EventArgs) Handles infoDaños.Click
-        Marco.getInstancia.cargarPanel(Of crearInformaDeDaños)(New crearInformaDeDaños(Controladores.Fachada.getInstancia.id_vehiculoPorVin(buscador.Text.Trim), Me))
+        Marco.getInstancia.cargarPanel(Of crearInformaDeDaños)(New crearInformaDeDaños(Controladores.Fachada.getInstancia.id_vehiculoPorVin(buscador.Text.Trim), Me) With {.ListaDeTodosLosInformes = Controladores.Fachada.getInstancia.devolverTodosLosInformesYregistrosCompletos(Vehiculo)})
 
     End Sub
 
@@ -114,10 +117,12 @@ Public Class nuevoVehiculo
             infoDaños.Enabled = True
             habilitar(True)
             cargarDatosDeLaPrecarga()
+            ingresar.Enabled = True
         Else
             EstadoBusqueda.Text = "Vin sin precarga o no existe"
             EstadoBusqueda.ForeColor = Drawing.Color.FromArgb(180, 20, 20)
             habilitar(False)
+            ingresar.Enabled = False
         End If
 
     End Sub
@@ -132,8 +137,9 @@ Public Class nuevoVehiculo
         subzonas.Enabled = j
         lote.Enabled = j
         infoDaños.Enabled = j
-        infoDaños.Enabled = j
-
+        posDis.Enabled = j
+        crearomodificarLote.Enabled = j
+        ingresar.Enabled = j
 
     End Sub
 
@@ -141,25 +147,32 @@ Public Class nuevoVehiculo
         If vehi.Marca IsNot Nothing Then
             marca.Text = vehi.Marca
             marca.Enabled = False 'si el dato esta precargado no puede ser modificado
-
+        Else
+            marca.Enabled = True
         End If
         If vehi.Modelo IsNot Nothing Then
             modelo.Text = vehi.Modelo
             modelo.Enabled = False
-
+        Else
+            modelo.Enabled = True
         End If
         If vehi.Año <> 0 Then
             anio.SelectedItem = vehi.Año
             anio.Enabled = False
-
+        Else
+            anio.Enabled = True
         End If
         If vehi.Tipo IsNot Nothing Then
             tipo.SelectedItem = vehi.Tipo
             tipo.Enabled = False
+        Else
+            tipo.Enabled = True
         End If
         If vehi.Tipo IsNot Nothing Then
             tipo.SelectedItem = vehi.Tipo
             tipo.Enabled = False
+        Else
+            tipo.Enabled = True
         End If
 
         If vehi.Cliente IsNot Nothing Then
@@ -169,13 +182,16 @@ Public Class nuevoVehiculo
                     Exit For
                 End If
             Next
-        Else
             clientes.Enabled = False
+        Else
+            clientes.Enabled = True
         End If
         If vehi.Color <> Drawing.Color.Empty Then
             muestra_color.BackColor = Drawing.Color.FromArgb(vehi.Color.R, vehi.Color.G, vehi.Color.B)
-        Else
             color.Enabled = False
+        Else
+            muestra_color.BackColor = Drawing.Color.FromArgb(255, 255, 255)
+            color.Enabled = True
         End If
 
     End Sub
@@ -185,6 +201,7 @@ Public Class nuevoVehiculo
         For Each su As Controladores.Subzona In zonasDisponibles(zonas.SelectedIndex).Subzonas
             subzonas.Items.Add(su.Nombre)
         Next
+        subzonas.SelectedIndex = 0
     End Sub
 
     Private Sub subzonas_SelectedIndexChanged(sender As Object, e As EventArgs) Handles subzonas.SelectedIndexChanged
@@ -195,24 +212,64 @@ Public Class nuevoVehiculo
                 posDis.Items.Add(i)
             End If
         Next
+        posDis.SelectedIndex = 0
     End Sub
 
     Private Sub ingresar_Click(sender As Object, e As EventArgs) Handles ingresar.Click
-        If (buscador.Text.Count * marca.Text.Count * modelo.Text.Count * anio.Text.Count * lote.Text.Count) = 0 Then
-            MsgBox("Todos los datos deben estar llenados para ingresar un vehiculo")
-        End If
-        Dim v = VRepo.VehiculoIncompleto(buscador.Text)
-        If v Is Nothing Then
-            MsgBox("Ese vehículo no existe, por favor verifique el VIN.")
+        If marca.Text.Trim.Length = 0 Then
+            MsgBox("Debe ingresar la marca")
             Return
         End If
-        If URepo.AltaVehiculo(buscador.Text, marca.Text, modelo.Text, Integer.Parse(anio.Text), zonas.SelectedItem, subzonas.SelectedItem, Integer.Parse(posDis.SelectedItem), ColorDialog1.Color, lote.Text) Then
-            Marco.getInstancia.cerrarPanel(Of ListaVehiculos)()
-            Marco.getInstancia.cargarPanel(New ListaVehiculos)
-            Marco.getInstancia.cerrarPanel(Of nuevoVehiculo)()
+        vehi.Marca = marca.Text
+
+        If modelo.Text.Trim.Length = 0 Then
+            MsgBox("Debe ingresar el modelo del vehiculo")
+            Return
         Else
-            MsgBox("No pudo ingresarse ese vehículo. Confirme que no ha sido ingresado aún.")
+            vehi.Modelo = modelo.Text
         End If
+
+        If anio.SelectedIndex = -1 Then
+            MsgBox("Debe ingresar el año ")
+            Return
+        Else
+            vehi.Año = anio.SelectedItem
+        End If
+
+        If tipo.SelectedIndex = -1 Then
+            MsgBox("Debe ingresar el tipo de vehiculo")
+            Return
+        Else
+            vehi.Tipo = tipo.SelectedItem
+        End If
+
+        If clientes.SelectedIndex = -1 Then
+            MsgBox("Debe ingresar el cliente del vehiculo")
+            Return
+        Else
+            vehi.Cliente = clienteshabi(clientes.SelectedIndex)
+        End If
+
+        vehi.Color = muestra_color.BackColor
+
+        Fachada.getInstancia.altaVehiculoConUpdate(vehi, Fachada.getInstancia.TrabajaEnAcutual.Usuario)
+        If LoteFinal IsNot Nothing Then
+            LoteFinal.IDLote = Fachada.getInstancia.nuevoLote(LoteFinal)
+            Fachada.getInstancia.insertIntegra(LoteFinal, vehi, Fachada.getInstancia.TrabajaEnAcutual.Usuario, False)
+        Else
+            Fachada.getInstancia.insertIntegra(lotesDisponibles(lote.SelectedIndex), vehi, Fachada.getInstancia.TrabajaEnAcutual.Usuario, False)
+        End If
+
+        If informe IsNot Nothing Then
+            Fachada.getInstancia.nuevoInformeDeDaños(informe)
+        End If
+        Fachada.getInstancia.AsignarNuevaPosicion(New Posicion() With {.Subzona = zonasDisponibles(zonas.SelectedIndex).Subzonas(subzonas.SelectedIndex),
+                                                  .Posicion = posDis.SelectedItem,
+                                                  .IngresadoPor = Fachada.getInstancia.TrabajaEnAcutual.Usuario,
+                                                  .Desde = DateTime.Now,
+                                                  .Vehiculo = vehi}, False)
+        Marco.getInstancia.cargarPanel(Of ListaVehiculos)(New ListaVehiculos)
+        Me.Dispose()
     End Sub
 
     Private completionIndex As Integer = 0
@@ -243,26 +300,17 @@ Public Class nuevoVehiculo
         End If
     End Sub
 
-    Private Sub buscador_Leave(sender As Object, e As EventArgs) Handles buscador.Leave
-        'cliente.Text = VRepo.Cliente(buscador.Text)
-    End Sub
-
     Private Sub LinkLabel2_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles crearomodificarLote.LinkClicked
-        Dim d As New NuevoLote(Me)
-        d.ShowDialog()
+        If LoteFinal Is Nothing Then
+            Dim d As New NuevoLote(Me)
+            d.ShowDialog()
+        Else
+            Dim d As New NuevoLote(Me, LoteFinal)
+            d.ShowDialog()
+        End If
+
     End Sub
 
-    Public Sub NotificarDeLote(l As Controladores.Lote)
-
-    End Sub
-
-    Public Sub NotificarDeInforme(info As Controladores.InformeDeDaños)
-        eliminarInforme.Visible = True
-        ModificarInforme.Visible = True
-        informe = info
-        EstadoInforme.Text = "Informe realizado"
-        infoDaños.Enabled = False
-    End Sub
 
     Private Sub ModificarInforme_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles ModificarInforme.LinkClicked
         Marco.getInstancia.cargarPanel(Of crearInformaDeDaños)(New crearInformaDeDaños(informe, Me))
@@ -275,4 +323,30 @@ Public Class nuevoVehiculo
         infoDaños.Enabled = True
         informe = Nothing
     End Sub
+
+    Private Sub Eliminarlote_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles eliminarlote.LinkClicked
+        lote.Enabled = True
+        LoteFinal = Nothing
+        eliminarlote.Visible = False
+        crearomodificarLote.Text = "Crear lote"
+    End Sub
+
+    Public Sub NotificarDeInforme(info As InformeDeDaños)
+        eliminarInforme.Visible = True
+        ModificarInforme.Visible = True
+        informe = info
+        EstadoInforme.Text = "Informe realizado"
+        infoDaños.Enabled = False
+    End Sub
+
+    Public Sub NotificarLote(l As Lote) Implements NotificacionDeLote.NotificarLote
+        lote.Enabled = False
+        crearomodificarLote.Text = "Modifica lote"
+        eliminarlote.Visible = True
+        LoteFinal = l
+    End Sub
+
+    Public Function dameVehiculoalLote() As Object Implements NotificacionDeLote.dameVehiculoalLote
+        Return Vehiculo
+    End Function
 End Class

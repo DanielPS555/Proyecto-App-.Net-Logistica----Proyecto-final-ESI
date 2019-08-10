@@ -274,7 +274,6 @@ Partial Class RegistroDeDañoPanel
         Me.Label5.Size = New System.Drawing.Size(109, 22)
         Me.Label5.TabIndex = 8
         Me.Label5.Text = "De informe"
-        Me.Label5.Visible = False
         '
         'infoOrigen
         '
@@ -296,7 +295,6 @@ Partial Class RegistroDeDañoPanel
         Me.Label6.Size = New System.Drawing.Size(115, 22)
         Me.Label6.TabIndex = 10
         Me.Label6.Text = "Del registro "
-        Me.Label6.Visible = False
         '
         'registroOrigen
         '

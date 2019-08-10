@@ -82,7 +82,7 @@ CREATE table
 CREATE table
 	vehiculo(
 	IDVehiculo serial primary key,
-	VIN char(17) unique,
+	VIN char(17) unique not null,
 	Marca varchar(50),
 	Modelo varchar(50),
 	Color char(6), /* representación ineficiente; 6char = 6hex = 16^6 = 2^24 < 2^32 = int (4char) < 6char */
@@ -90,7 +90,6 @@ CREATE table
 	Tipo varchar(7) NOT null check(Tipo in ('Auto', 'MiniVan', 'SUV', 'Camion', 'Van')),
 	Anio integer check(Anio >= 1900 and Anio <= 10000),
 	Cliente Integer NOT null,
-	FechaArribo datetime year to day,
 	foreign key(Cliente) references Cliente(IDCliente) ON DELETE CASCADE
 );
 
@@ -212,13 +211,14 @@ CREATE table
 CREATE table
 	lote(
 	IDLote serial,
-	nombre varchar(20) unique,
+	nombre varchar(20),
 	Origen integer NOT null,
 	Destino integer NOT null,
 	CreadorID integer NOT null,
 	FechaCreacion datetime year to day not null,
 	Prioridad varchar(10) NOT null check (Prioridad in ('Normal', 'Alta')),
 	Estado varchar(10) not null check (Estado in ('Abierto', 'Cerrado', 'Eliminado')),
+	invalido boolean not null default 'f', 
 	primary key(IDLote),
 	foreign key(Origen) references lugar(IDLugar) ON DELETE CASCADE,
 	foreign key(Destino) references lugar(IDLugar) ON DELETE CASCADE,

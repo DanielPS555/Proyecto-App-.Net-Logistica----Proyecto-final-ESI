@@ -5,13 +5,21 @@ Public Class crearInformaDeDaños
     Private _listaDeTodosLosinformes As List(Of Controladores.InformeDeDaños)
     Private numRegistroAEditar = -1
     Private PanelDelVehiculo As nuevoVehiculo
+    Private subida As Boolean
+    Private Info As Controladores.InformeDeDaños
+    Private panelVehiculo As panelInfoVehiculo
 
     Public Property ListaDeTodosLosInformes() As List(Of Controladores.InformeDeDaños)
         Get
             Return _listaDeTodosLosinformes
         End Get
         Set(ByVal value As List(Of Controladores.InformeDeDaños))
-            _listaDeTodosLosinformes = value
+            For Each e As Controladores.InformeDeDaños In value
+                If e.Fecha < Info.Fecha And e.ID <> Info.ID Then
+                    _listaDeTodosLosinformes.Add(e)
+                End If
+            Next
+
         End Set
     End Property
 
@@ -23,7 +31,9 @@ Public Class crearInformaDeDaños
 
     End Property
 
-    Private Info As Controladores.InformeDeDaños
+
+
+
     Public Sub New(id As Integer, padre As nuevoVehiculo)
         idvehiculo = id
         InitializeComponent()
@@ -34,14 +44,18 @@ Public Class crearInformaDeDaños
             tipo.Enabled = False
         End If
         _listaDeTodosLosinformes = New List(Of Controladores.InformeDeDaños)
-        TodosLosInformesYRegistros()
-        Info = New Controladores.InformeDeDaños(New Controladores.Vehiculo With {.IdVehiculo = id})
+        Info = New Controladores.InformeDeDaños(New Controladores.Vehiculo With {.IdVehiculo = id}) With {.Fecha = DateTime.Now,
+                                                                                                        .Lugar = Controladores.Fachada.getInstancia.TrabajaEnAcutual.Lugar,
+                                                                                                        .Creador = Controladores.Fachada.getInstancia.TrabajaEnAcutual.Usuario}
         _nuevo = True
         PanelDelVehiculo = padre
+        tipo.SelectedIndex = 0
     End Sub
 
-    Public Sub New(informePrevio As Controladores.InformeDeDaños)
+    Public Sub New(informePrevio As Controladores.InformeDeDaños, subida As Boolean, papote As panelInfoVehiculo) 'FALSE PARA ENVIO POR ACTULIZACION, TRUE POR INSERCION TOTAL
         InitializeComponent()
+        Me.subida = subida
+        panelVehiculo = papote
         Info = informePrevio
         _nuevo = False
         If Controladores.Fachada.getInstancia.DevolverUsuarioActual.Rol = Controladores.Usuario.TIPO_ROL_ADMINISTRADOR Then
@@ -49,7 +63,26 @@ Public Class crearInformaDeDaños
         Else
             tipo.Enabled = False
         End If
-        'FALTA
+        descipt.Text = informePrevio.Descripcion
+        For Each reg As Controladores.RegistroDaños In informePrevio.Registros
+            If reg.Descripcion.Length > 30 Then
+                Registros.Items.Add(reg.Descripcion.Substring(0, 30))
+            Else
+                Registros.Items.Add(reg.Descripcion)
+            End If
+        Next
+        _listaDeTodosLosinformes = New List(Of Controladores.InformeDeDaños)
+        If informePrevio.Tipo IsNot Nothing Then
+            Select Case informePrevio.Tipo
+                Case Controladores.InformeDeDaños.TIPO_INFORME_PARCIAL
+                    tipo.SelectedIndex = 0
+                Case Controladores.InformeDeDaños.TIPO_INFORME_TOTAL
+                    tipo.SelectedIndex = 1
+            End Select
+        Else
+            tipo.SelectedIndex = 0
+        End If
+
     End Sub
 
     Public Sub New(InformePrevio As Controladores.InformeDeDaños, padre As nuevoVehiculo)
@@ -71,12 +104,17 @@ Public Class crearInformaDeDaños
             End If
         Next
         _listaDeTodosLosinformes = New List(Of Controladores.InformeDeDaños)
-        TodosLosInformesYRegistros()
+        If InformePrevio.Tipo IsNot Nothing Then
+            Select Case InformePrevio.Tipo
+                Case Controladores.InformeDeDaños.TIPO_INFORME_PARCIAL
+                    tipo.SelectedIndex = 0
+                Case Controladores.InformeDeDaños.TIPO_INFORME_TOTAL
+                    tipo.SelectedIndex = 1
+            End Select
+        Else
+            tipo.SelectedIndex = 0
+        End If
 
-    End Sub
-
-    Private Sub TodosLosInformesYRegistros()
-        _listaDeTodosLosinformes = Controladores.Fachada.getInstancia.devolverInformesSoloConRegistros_IdYIdPropio(idvehiculo)
     End Sub
 
     Public ReadOnly Property InformeDeDaños() As Controladores.InformeDeDaños
@@ -110,8 +148,34 @@ Public Class crearInformaDeDaños
     End Sub
 
     Private Sub ingresarBtn_Click(sender As Object, e As EventArgs)
+        If descipt.Text.Trim.Length = 0 Then
+            MsgBox("Nesesita una descripcion", MsgBoxStyle.Critical)
+            Return
+        End If
+        For Each reg As Controladores.RegistroDaños In Info.Registros
+            Dim imgs As New List(Of Image)
+            For Each im As Bitmap In reg.Imagenes
+                Dim d As New Bitmap(320, 320) 'New Bitmap(ofd.OpenFile)
+                Dim g = Graphics.FromImage(d)
+                g.DrawImage(New Bitmap(im), 0, 0, 320, 320)
+                imgs.Add(d)
+            Next
+            reg.Imagenes = imgs
+        Next
+        Info.Descripcion = descipt.Text
+        Select Case tipo.SelectedIndex
+            Case 0
+                Info.Tipo = Controladores.InformeDeDaños.TIPO_INFORME_PARCIAL
+            Case 1
+                Info.Tipo = Controladores.InformeDeDaños.TIPO_INFORME_PARCIAL
+        End Select
         If PanelDelVehiculo Is Nothing Then
-            'LLAMAR A FACHADA PARA QUE LO HAGA ELLA 
+            If subida Then
+                Controladores.Fachada.getInstancia.nuevoInformeDeDaños(Info)
+            Else
+                Controladores.Fachada.getInstancia.actualizarInforme(Info)
+            End If
+            panelVehiculo.ActualizarLotesExternos()
         Else
             Info.Descripcion = descipt.Text.Trim
             Select Case tipo.SelectedIndex
@@ -150,10 +214,6 @@ Public Class crearInformaDeDaños
             numRegistroAEditar = -1
         End If
 
-
-    End Sub
-
-    Private Sub Tipo_SelectedIndexChanged(sender As Object, e As EventArgs) Handles tipo.SelectedIndexChanged
 
     End Sub
 
