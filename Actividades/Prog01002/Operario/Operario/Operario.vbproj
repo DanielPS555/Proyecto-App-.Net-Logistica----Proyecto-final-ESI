@@ -100,20 +100,6 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Fachada\Repositorios.vb" />
-    <Compile Include="Lógica\Conexion.vb" />
-    <Compile Include="Lógica\Constantes.vb" />
-    <Compile Include="Lógica\InformeDaños.vb" />
-    <Compile Include="Lógica\Lote.vb" />
-    <Compile Include="Lógica\Lugar.vb" />
-    <Compile Include="Lógica\RegistroDaños.vb" />
-    <Compile Include="Lógica\Role.vb" />
-    <Compile Include="Lógica\Subzona.vb" />
-    <Compile Include="Lógica\TrabajaEn.vb" />
-    <Compile Include="Lógica\Usuario.vb" />
-    <Compile Include="Lógica\Vehiculo.vb" />
-    <Compile Include="Lógica\Zona.vb" />
-    <Compile Include="Persistencia\RepositorioSQL.vb" />
     <Compile Include="Presentación\cargador.Designer.vb">
       <DependentUpon>cargador.vb</DependentUpon>
     </Compile>
