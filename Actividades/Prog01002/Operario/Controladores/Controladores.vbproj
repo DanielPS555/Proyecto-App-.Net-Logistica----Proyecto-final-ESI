@@ -72,7 +72,16 @@
     <Reference Include="BCrypt.Net-Next">
       <HintPath>..\BCrypt.Net-Next.dll</HintPath>
     </Reference>
+    <Reference Include="GMap.NET.Core">
+      <HintPath>..\GMap.NET.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="GMap.NET.WindowsForms">
+      <HintPath>..\GMap.NET.WindowsForms.dll</HintPath>
+    </Reference>
     <Reference Include="IBM.Data.DB2, Version=9.7.4.4, Culture=neutral, PublicKeyToken=7c307b91aa13d208, processorArchitecture=x86" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="QRCoder">
       <HintPath>..\QRCoder.dll</HintPath>
     </Reference>
@@ -136,6 +145,12 @@
     </Compile>
     <Compile Include="Persistencia\Extensiones.vb" />
     <Compile Include="Persistencia\Persistencia.vb" />
+    <Compile Include="Presentacion_comun\MapaPanelGrande.Designer.vb">
+      <DependentUpon>MapaPanelGrande.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion_comun\MapaPanelGrande.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -143,6 +158,9 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion_comun\MapaPanelGrande.resx">
+      <DependentUpon>MapaPanelGrande.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

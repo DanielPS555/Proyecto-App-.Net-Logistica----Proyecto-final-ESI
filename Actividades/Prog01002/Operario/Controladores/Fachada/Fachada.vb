@@ -596,8 +596,8 @@ Public Class Fachada
         Dim dt As DataTable = Persistencia.getInstancia.LotesDisponiblesATrasportar
         For Each r As DataRow In dt.Rows
             Dim lo As New Lote With {.IDLote = r.Item(0), .Nombre = r.Item(1), .Prioridad = r.Item(2)}
-            Dim l1 As New Lugar With {.IDLugar = r.Item(3), .Nombre = r.Item(4)}
-            Dim l2 As New Lugar With {.IDLugar = r.Item(5), .Nombre = r.Item(6)}
+            Dim l1 As New Lugar With {.IDLugar = r.Item(3), .Nombre = r.Item(4), .PosicionX = r.Item(7), .PosicionY = r.Item(8)}
+            Dim l2 As New Lugar With {.IDLugar = r.Item(5), .Nombre = r.Item(6), .PosicionX = r.Item(9), .PosicionY = r.Item(10)}
             Dim dt_l1 As DataTable = Persistencia.getInstancia.HabilitacionPorIdlugar(l1.IDLugar)
             For Each r2 As DataRow In dt_l1.Rows
                 l1.TiposDeMediosDeTrasporteHabilitados.Add(New TipoMedioTransporte(r2.Item(1)) With {.ID = r2.Item(0)})

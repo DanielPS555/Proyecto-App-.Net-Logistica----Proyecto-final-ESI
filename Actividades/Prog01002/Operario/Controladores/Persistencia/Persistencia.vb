@@ -797,7 +797,7 @@ Public Class Persistencia
     End Function
 
     Public Function LotesDisponiblesATrasportar() As DataTable
-        Dim com As New OdbcCommand("select lote.idlote,lote.nombre,Prioridad, l1.idlugar as idlugarOrigen, l1.nombre as nombreorigen, l2.idlugar, l2.nombre from
+        Dim com As New OdbcCommand("select lote.idlote,lote.nombre,Prioridad, l1.idlugar as idlugarOrigen, l1.nombre as nombreorigen, l2.idlugar, l2.nombre, l1.GeoX, L1.GeoY, l2.Geox, l2.GeoY from
                                     lote left  join transporta on lote.idlote=transporta.idlote
                                     left  join transporte on transporta.transporteID=transporte.transporteID
                                     inner  join lugar as l1 on origen=l1.idlugar inner join lugar as l2 on destino=l2.idlugar

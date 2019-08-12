@@ -33,6 +33,7 @@ Partial Class SUB_informeLote
         Me.numeroDeVehiculos = New System.Windows.Forms.Label()
         Me.nombre = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.LinkLabel2 = New System.Windows.Forms.LinkLabel()
         Me.SuspendLayout()
         '
         'Label1
@@ -147,12 +148,23 @@ Partial Class SUB_informeLote
         Me.Panel1.Size = New System.Drawing.Size(840, 2)
         Me.Panel1.TabIndex = 11
         '
+        'LinkLabel2
+        '
+        Me.LinkLabel2.AutoSize = True
+        Me.LinkLabel2.Location = New System.Drawing.Point(250, 51)
+        Me.LinkLabel2.Name = "LinkLabel2"
+        Me.LinkLabel2.Size = New System.Drawing.Size(68, 20)
+        Me.LinkLabel2.TabIndex = 12
+        Me.LinkLabel2.TabStop = True
+        Me.LinkLabel2.Text = "Ver ruta"
+        '
         'SUB_informeLote
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(840, 80)
+        Me.Controls.Add(Me.LinkLabel2)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.nombre)
         Me.Controls.Add(Me.numeroDeVehiculos)
@@ -186,4 +198,5 @@ Partial Class SUB_informeLote
     Friend WithEvents numeroDeVehiculos As Label
     Friend WithEvents nombre As Label
     Friend WithEvents Panel1 As Panel
+    Friend WithEvents LinkLabel2 As LinkLabel
 End Class

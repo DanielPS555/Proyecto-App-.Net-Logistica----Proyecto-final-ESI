@@ -109,6 +109,7 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="GMap.NET.Core, Version=1.9.3.0, Culture=neutral, PublicKeyToken=b85b9027b614afef" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -185,6 +186,12 @@
     <Compile Include="Presentacion\Marco.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Presentacion\PanelInfoLote.Designer.vb">
+      <DependentUpon>PanelInfoLote.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\PanelInfoLote.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Presentacion\PanelMedioDeTrasporte.Designer.vb">
       <DependentUpon>PanelMedioDeTrasporte.vb</DependentUpon>
     </Compile>
@@ -246,6 +253,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\Marco.resx">
       <DependentUpon>Marco.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\PanelInfoLote.resx">
+      <DependentUpon>PanelInfoLote.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\PanelMedioDeTrasporte.resx">
       <DependentUpon>PanelMedioDeTrasporte.vb</DependentUpon>
