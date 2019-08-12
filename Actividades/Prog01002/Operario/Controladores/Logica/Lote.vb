@@ -26,12 +26,12 @@ Public Class Lote
         Me.Destino = des
         Me.Estado = es
         Me.Nombre = nom
-        Me.Vehiculos = New List(Of Tuple(Of Tuple(Of Date, Usuario), Vehiculo))
+        Me.Vehiculos = New List(Of Vehiculo)
         Me.FechaCreacion = fechaCreacion
     End Sub
 
     Public Sub New()
-        Me.Vehiculos = New List(Of Tuple(Of Tuple(Of Date, Usuario), Vehiculo))
+        Me.Vehiculos = New List(Of Vehiculo)
     End Sub
 
     Private _creador As Usuario
@@ -107,12 +107,12 @@ Public Class Lote
         End Set
     End Property
 
-    Private _vehiculo As List(Of Tuple(Of Tuple(Of DateTime, Usuario), Vehiculo))
-    Public Property Vehiculos() As List(Of Tuple(Of Tuple(Of DateTime, Usuario), Vehiculo))
+    Private _vehiculo As List(Of Vehiculo)
+    Public Property Vehiculos() As List(Of Vehiculo)
         Get
             Return _vehiculo
         End Get
-        Set(ByVal value As List(Of Tuple(Of Tuple(Of DateTime, Usuario), Vehiculo)))
+        Set(ByVal value As List(Of Vehiculo))
             _vehiculo = value
         End Set
     End Property

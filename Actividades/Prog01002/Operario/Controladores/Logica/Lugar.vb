@@ -141,5 +141,6 @@ Public Class Lugar
 
     Public Sub New()
         Me.Zonas = New List(Of Zona)
+        Me.TiposDeMediosDeTrasporteHabilitados = New List(Of TipoMedioTransporte)
     End Sub
 End Class

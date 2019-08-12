@@ -818,5 +818,15 @@ Public Class Persistencia
         Return dt
     End Function
 
+    Public Function vehiculosSemiCompletoPorLote(idlote As Integer) As DataTable
+        Dim com As New OdbcCommand("select vehiculo.idvehiculo,tipo,vin,modelo,marca from
+                                    vehiculo inner join integra on vehiculo.idvehiculo = integra.idvehiculo
+                                    inner join lote on integra.lote=lote.idlote
+                                    where integra.invalidado='f' and idlote=?", Conexcion)
+        com.CrearParametro(DbType.Int32, idlote)
+        Dim dt As New DataTable
+        dt.Load(com.ExecuteReader)
+        Return dt
+    End Function
 
 End Class

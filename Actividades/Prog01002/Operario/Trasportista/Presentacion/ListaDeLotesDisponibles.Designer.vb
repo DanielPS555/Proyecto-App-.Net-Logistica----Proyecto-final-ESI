@@ -23,22 +23,34 @@ Partial Class Lista_de_trasportes
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.ele1 = New System.Windows.Forms.Panel()
         Me.ComboBox1 = New System.Windows.Forms.ComboBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.ComboBox2 = New System.Windows.Forms.ComboBox()
         Me.Button2 = New System.Windows.Forms.Button()
-        Me.VScrollBar1 = New System.Windows.Forms.VScrollBar()
+        Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
         'Panel1
         '
+        Me.Panel1.AutoScroll = True
         Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(250, Byte), Integer), CType(CType(250, Byte), Integer), CType(CType(250, Byte), Integer))
+        Me.Panel1.Controls.Add(Me.ele1)
         Me.Panel1.Location = New System.Drawing.Point(21, 45)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(840, 480)
         Me.Panel1.TabIndex = 2
+        '
+        'ele1
+        '
+        Me.ele1.BackColor = System.Drawing.Color.White
+        Me.ele1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.ele1.Location = New System.Drawing.Point(0, 0)
+        Me.ele1.Name = "ele1"
+        Me.ele1.Size = New System.Drawing.Size(823, 5000)
+        Me.ele1.TabIndex = 0
         '
         'ComboBox1
         '
@@ -105,22 +117,12 @@ Partial Class Lista_de_trasportes
         Me.Button2.Text = "Buscar"
         Me.Button2.UseVisualStyleBackColor = False
         '
-        'VScrollBar1
-        '
-        Me.VScrollBar1.LargeChange = 1
-        Me.VScrollBar1.Location = New System.Drawing.Point(854, 45)
-        Me.VScrollBar1.Maximum = 0
-        Me.VScrollBar1.Name = "VScrollBar1"
-        Me.VScrollBar1.Size = New System.Drawing.Size(17, 476)
-        Me.VScrollBar1.TabIndex = 0
-        '
         'Lista_de_trasportes
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(10.0!, 21.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(880, 650)
-        Me.Controls.Add(Me.VScrollBar1)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.ComboBox2)
         Me.Controls.Add(Me.TextBox1)
@@ -134,6 +136,7 @@ Partial Class Lista_de_trasportes
         Me.Margin = New System.Windows.Forms.Padding(5)
         Me.Name = "Lista_de_trasportes"
         Me.Text = "Lista_de_trasportes"
+        Me.Panel1.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -145,5 +148,5 @@ Partial Class Lista_de_trasportes
     Friend WithEvents TextBox1 As TextBox
     Friend WithEvents ComboBox2 As ComboBox
     Friend WithEvents Button2 As Button
-    Friend WithEvents VScrollBar1 As VScrollBar
+    Friend WithEvents ele1 As Panel
 End Class

@@ -32,6 +32,7 @@ Partial Class SUB_informeLote
         Me.destino = New System.Windows.Forms.LinkLabel()
         Me.numeroDeVehiculos = New System.Windows.Forms.Label()
         Me.nombre = New System.Windows.Forms.Label()
+        Me.Panel1 = New System.Windows.Forms.Panel()
         Me.SuspendLayout()
         '
         'Label1
@@ -78,7 +79,7 @@ Partial Class SUB_informeLote
         '
         Me.LinkLabel1.AutoSize = True
         Me.LinkLabel1.LinkColor = System.Drawing.Color.FromArgb(CType(CType(20, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(186, Byte), Integer))
-        Me.LinkLabel1.Location = New System.Drawing.Point(760, 51)
+        Me.LinkLabel1.Location = New System.Drawing.Point(736, 51)
         Me.LinkLabel1.Name = "LinkLabel1"
         Me.LinkLabel1.Size = New System.Drawing.Size(68, 20)
         Me.LinkLabel1.TabIndex = 4
@@ -89,7 +90,7 @@ Partial Class SUB_informeLote
         '
         Me.selecionar.AutoSize = True
         Me.selecionar.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.selecionar.Location = New System.Drawing.Point(719, 4)
+        Me.selecionar.Location = New System.Drawing.Point(695, 4)
         Me.selecionar.Name = "selecionar"
         Me.selecionar.Size = New System.Drawing.Size(109, 25)
         Me.selecionar.TabIndex = 5
@@ -138,12 +139,21 @@ Partial Class SUB_informeLote
         Me.nombre.TabIndex = 10
         Me.nombre.Text = "///"
         '
+        'Panel1
+        '
+        Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
+        Me.Panel1.Location = New System.Drawing.Point(0, 78)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(840, 2)
+        Me.Panel1.TabIndex = 11
+        '
         'SUB_informeLote
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(840, 80)
+        Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.nombre)
         Me.Controls.Add(Me.numeroDeVehiculos)
         Me.Controls.Add(Me.destino)
@@ -175,4 +185,5 @@ Partial Class SUB_informeLote
     Friend WithEvents destino As LinkLabel
     Friend WithEvents numeroDeVehiculos As Label
     Friend WithEvents nombre As Label
+    Friend WithEvents Panel1 As Panel
 End Class
