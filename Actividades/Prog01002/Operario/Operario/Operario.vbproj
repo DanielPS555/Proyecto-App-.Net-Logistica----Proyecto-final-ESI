@@ -74,6 +74,29 @@
   <PropertyGroup>
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DocumentationFile>Operario.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DocumentationFile>Operario.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -125,17 +148,16 @@
     <Compile Include="Presentación\operario\ListaZonas.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Presentación\operario\Login.Designer.vb">
+      <DependentUpon>Login.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentación\operario\Login.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Presentación\operario\nuevoVehiculo.Designer.vb">
       <DependentUpon>nuevoVehiculo.vb</DependentUpon>
     </Compile>
     <Compile Include="Presentación\operario\nuevoVehiculo.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentación\Login.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentación\Login.Designer.vb">
-      <DependentUpon>Login.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -245,11 +267,11 @@
     <EmbeddedResource Include="Presentación\operario\ListaZonas.resx">
       <DependentUpon>ListaZonas.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentación\operario\Login.resx">
+      <DependentUpon>Login.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentación\operario\nuevoVehiculo.resx">
       <DependentUpon>nuevoVehiculo.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentación\Login.resx">
-      <DependentUpon>Login.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

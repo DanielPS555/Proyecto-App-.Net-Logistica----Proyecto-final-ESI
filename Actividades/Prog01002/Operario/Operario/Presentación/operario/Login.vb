@@ -108,13 +108,18 @@ Public Class Login
         If Not Controladores.Fachada.getInstancia.IngresoDeUsuarioConComprobacion(user.Text, pass.Text) Then 'YA CARGA EN EL METODO AL USUARIO QUE INGRESO 
             MsgBox("Credenciales incorrectas. Intente nuevamente", MsgBoxStyle.Critical)
         Else
-            Principal.getInstancia.cargarPanel(Of LugarDeTrabajo)(New LugarDeTrabajo)
+            If Controladores.Fachada.getInstancia.rolDeUnUsuarioPorElNombreDeUsuario(user.Text) = Controladores.Usuario.TIPO_ROL_OPERARIO Then 'POR LA APLICACION
+                'Principal.getInstancia.cargarPanel(Of LugarDeTrabajo)(New LugarDeTrabajo)
+            Else
+                MsgBox("Esta aplicacion es unicamente para los Operarios", MsgBoxStyle.Critical)
+            End If
+
         End If
     End Sub
 
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
-        Principal.getInstancia.cargarPanel(Of RestablecerContraseña)(New RestablecerContraseña)
+        'Principal.getInstancia.cargarPanel(Of RestablecerContraseña)(New RestablecerContraseña)
     End Sub
 
     Public Sub NotificarDeConexcion(j As Boolean)

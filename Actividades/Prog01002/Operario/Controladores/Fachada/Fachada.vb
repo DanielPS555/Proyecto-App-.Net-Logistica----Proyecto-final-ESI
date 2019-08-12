@@ -84,6 +84,18 @@ Public Class Fachada
         End If
     End Function
 
+    Public Function rolDeUnUsuarioPorElNombreDeUsuario(Nombre As String) As String
+        Dim l As Char = Persistencia.getInstancia.rolDeUsuario(Nombre)
+        Select Case l
+            Case "O"
+                Return Usuario.TIPO_ROL_OPERARIO
+            Case "A"
+                Return Usuario.TIPO_ROL_ADMINISTRADOR
+            Case "T"
+                Return Usuario.TIPO_ROL_TRANSPORTISTA
+        End Select
+    End Function
+
     Public Function PreguntaSecretaUsuario(NombreUser As String) As String
         Return Persistencia.getInstancia.PreguntaSecretaUsuario(NombreUser)
     End Function
@@ -577,5 +589,10 @@ Public Class Fachada
                                  .Nombre = dt.Item(1),
                                  .Creador = New Usuario() With {.ID_usuario = dt.Item(2)}}
         Return l
+    End Function
+
+    Public Function DevolverLotesDisponblesCompletos() As List(Of Lote)
+        ' MIRAR FUNCION VehiculosEnLote
+
     End Function
 End Class

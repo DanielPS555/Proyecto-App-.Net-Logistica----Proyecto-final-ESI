@@ -15,11 +15,11 @@ Public Class PanelInfoUsuario
 
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        If URepo.CambiarPregunta(NPregunta.Text, NRespuesta.Text, Contraseña.Text) Then
-            MsgBox("Pregunta cambiada con éxito.")
-        Else
-            MsgBox("Hubo un error cambiando la pregunta. Por favor verifique su contraseña.")
-        End If
+        'If URepo.CambiarPregunta(NPregunta.Text, NRespuesta.Text, Contraseña.Text) Then
+        '    MsgBox("Pregunta cambiada con éxito.")
+        'Else
+        '    MsgBox("Hubo un error cambiando la pregunta. Por favor verifique su contraseña.")
+        'End If
     End Sub
 
     Private editados As New Dictionary(Of String, String)
@@ -35,9 +35,9 @@ Public Class PanelInfoUsuario
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs)
-        For Each i In editados
-            SRepo.ConsultarSinRetorno($"update usuario set {i.Key}='{i.Value}' where idusuario={usuario};")
-        Next
-        editados.Clear()
+        'For Each i In editados
+        '    SRepo.ConsultarSinRetorno($"update usuario set {i.Key}='{i.Value}' where idusuario={usuario};")
+        'Next
+        'editados.Clear()
     End Sub
 End Class

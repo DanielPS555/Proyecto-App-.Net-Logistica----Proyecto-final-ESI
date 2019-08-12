@@ -210,7 +210,7 @@ Partial Class Login
         '
         Me.PictureBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.PictureBox1.Image = Global.Operario.My.Resources.Resources.logo
+        Me.PictureBox1.Image = Global.Operario.My.Resources.Resources.logo1
         Me.PictureBox1.Location = New System.Drawing.Point(435, 12)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(235, 194)

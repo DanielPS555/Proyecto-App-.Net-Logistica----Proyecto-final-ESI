@@ -26,7 +26,7 @@ Public Class panelInfoVehiculo
         LoteCombo.Enabled = False
         Me.vin = VIN
         TipoCombo.Items.Clear()
-        TipoCombo.Items.AddRange([Enum].GetNames(GetType(Logica.TipoVehiculo)))
+        TipoCombo.Items.AddRange(Controladores.Vehiculo.TIPOS_VEHICULOS)
         RegularTamañoColumnas()
         TomarValores()
     End Sub
@@ -49,7 +49,7 @@ Public Class panelInfoVehiculo
         SubzonaLabel.Text = ultpos.Item(1)
         Dim zona = Controladores.Persistencia.getInstancia.PadreDeLugar(ultpos.Item(0))
         ZonaLabel.Text = zona.Item(0)
-        PosicionLabel.Text = ultpos.Item(2) & " desde " & CType(ultpos.Item(3), Date?).DarFormato
+        PosicionLabel.Text = ultpos.Item(2) & " desde " & Funciones_comunes.DarFormato(CType(ultpos.Item(3), Date?))
         lugar = Controladores.Persistencia.getInstancia.PadreDeLugar(zona.Item(1))
         lugarLabel.Text = lugar.Item(0)
 
@@ -94,7 +94,7 @@ Public Class panelInfoVehiculo
         SubzonaLabel.Text = ultpos.Item(1)
         Dim zona = Controladores.Persistencia.getInstancia.PadreDeLugar(ultpos.Item(0))
         ZonaLabel.Text = zona.Item(0)
-        PosicionLabel.Text = ultpos.Item(2) & " desde " & CType(ultpos.Item(3), Date?).DarFormato
+        PosicionLabel.Text = ultpos.Item(2) & " desde " & Controladores.Funciones_comunes.DarFormato(CType(ultpos.Item(3), Date?))
         traslados.Columns.Clear()
         Dim dt As New DataTable
         dt.Columns.Add(New DataColumn("Lugar"))

@@ -39,6 +39,12 @@ Public Class Persistencia
         Return dt
     End Function
 
+    Public Function rolDeUsuario(nombredeUsuario As String) As Char
+        Dim com As New OdbcCommand("select rol from usuario where nombredeusuario=?", _con)
+        com.CrearParametro(DbType.String, nombredeUsuario)
+        Return com.ExecuteScalar
+    End Function
+
     Public Function RegistrosDaño(idvehiculo As Integer, idinforme As Integer) As DataTable
         Dim selcmd As New OdbcCommand("select registrodanios.idregistro,registrodanios.descripcion,
                       nvl(actualiza.tipo, 'No actualiza'), actualiza.informe2, actualiza.registro2
@@ -790,6 +796,27 @@ Public Class Persistencia
         Return com.ExecuteScalar
     End Function
 
+    Public Function LotesDisponiblesATrasportar() As DataTable
+        Dim com As New OdbcCommand("select lote.idlote,lote.nombre,Prioridad, l1.idlugar as idlugarOrigen, l1.nombre as nombreorigen, l2.idlugar, l2.nombre from
+                                    lote left  join transporta on lote.idlote=transporta.idlote
+                                    left  join transporte on transporta.transporteID=transporte.transporteID
+                                    inner  join lugar as l1 on origen=l1.idlugar inner join lugar as l2 on destino=l2.idlugar
+                                    where transporte.estado is null or  transporte.estado='Fallo' and lote.invalido='f' and lote.estado='Cerrado'", Conexcion)
+        Dim dt As New DataTable
+        dt.Load(com.ExecuteReader)
+        Return dt
+    End Function
+
+    Public Function HabilitacionPorIdlugar(idlugar As Integer) As DataTable
+        Dim com As New OdbcCommand("select TipoTransporte.idtipo , TipoTransporte.nombre
+                                    from lugar inner join habilitado on lugar.idlugar = habilitado.idlugar
+                                    inner join TipoTransporte on habilitado.idtipo = TipoTransporte.idtipo
+                                    where lugar.idlugar=?", Conexcion)
+        com.CrearParametro(DbType.Int32, idlugar)
+        Dim dt As New DataTable
+        dt.Load(com.ExecuteReader)
+        Return dt
+    End Function
 
 
 End Class

@@ -293,7 +293,7 @@ insert into habilitado values((select idlugar from lugar where nombre = 'Patio d
 insert into habilitado values((select idlugar from lugar where nombre = 'Patio de Chevrolet Ur a gay'), 2);
 
 insert into Habilitado values ((select idlugar from lugar where nombre="Puerto de montevideo"), 3);
-insert into Habilitado values ((select idlugar from lugar where nombre="Deposito piedras blancas"), 3);
+insert into Habilitado values ((select idlugar from lugar where nombre="Puerto de aguas profundas rocha"), 3);
 
       insert into MedioTransporte values (1, "24GHBYEGV81874679","Fiat Moustro1","Camion",
         (select idusuario from usuario where primernombre = "Felipe"), "4-5-17", 1,10,5,3,5);
