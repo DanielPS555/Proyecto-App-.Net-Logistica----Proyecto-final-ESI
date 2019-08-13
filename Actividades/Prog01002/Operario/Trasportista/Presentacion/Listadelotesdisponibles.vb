@@ -7,7 +7,6 @@ Public Class Lista_de_trasportes
 
     Public Sub New()
         InitializeComponent()
-        'sub_paneles = {ele1, ele2, ele3, ele4, ele5, ele6}
         lotes = Controladores.Fachada.getInstancia.DevolverLotesDisponblesCompletos()
         crearPanelesPorLote()
         cargarLosPaneles()

@@ -2,12 +2,12 @@
 
 Public Class MedioDeTransporte
 
-    Private _id As Integer
-    Public Property ID() As Integer
+    Private _id As String
+    Public Property ID() As String
         Get
             Return _id
         End Get
-        Set(ByVal value As Integer)
+        Set(ByVal value As String)
             _id = value
         End Set
     End Property
@@ -92,11 +92,31 @@ Public Class MedioDeTransporte
         End Set
     End Property
 
-    Public Sub New()
+    Private _conductores As List(Of Usuario)
+    Public Property Conductores() As List(Of Usuario)
+        Get
+            Return _conductores
+        End Get
+        Set(ByVal value As List(Of Usuario))
+            _conductores = value
+        End Set
+    End Property
 
+    Private _fecha As DateTime
+    Public Property FechaCreacion() As DateTime
+        Get
+            Return _fecha
+        End Get
+        Set(ByVal value As DateTime)
+            _fecha = value
+        End Set
+    End Property
+
+    Public Sub New()
+        _conductores = New List(Of Usuario)
     End Sub
 
-    Public Sub New(iD As Integer, nombre As String, tipo As TipoMedioTransporte, creador As Usuario, cantAutos As Integer, cantVAN As Integer, cantMiniVan As Integer, cantSUV As Integer, cantCamiones As Integer)
+    Public Sub New(iD As String, nombre As String, tipo As TipoMedioTransporte, creador As Usuario, cantAutos As Integer, cantVAN As Integer, cantMiniVan As Integer, cantSUV As Integer, cantCamiones As Integer)
         Me.ID = iD
         Me.Nombre = nombre
         Me.Tipo = tipo

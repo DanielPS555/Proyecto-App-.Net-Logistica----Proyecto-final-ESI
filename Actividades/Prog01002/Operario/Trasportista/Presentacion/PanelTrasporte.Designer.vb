@@ -33,16 +33,26 @@ Partial Class PanelTrasporte
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
-        Me.trasportes = New System.Windows.Forms.DataGridView()
-        Me.Button1 = New System.Windows.Forms.Button()
-        CType(Me.trasportes, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.lote = New System.Windows.Forms.DataGridView()
+        Me.verUbicacion = New System.Windows.Forms.Button()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.id = New System.Windows.Forms.Label()
+        Me.conductor = New System.Windows.Forms.Label()
+        Me.nombreMedio = New System.Windows.Forms.Label()
+        Me.tipoMedio = New System.Windows.Forms.Label()
+        Me.HoraDeCreacion = New System.Windows.Forms.Label()
+        Me.FechaDeInico = New System.Windows.Forms.Label()
+        Me.FechaDeFinalizacionEstimada = New System.Windows.Forms.Label()
+        Me.FechaDeFinalizacionReal = New System.Windows.Forms.Label()
+        Me.estado = New System.Windows.Forms.Label()
+        CType(Me.lote, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label1
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(12, 41)
+        Me.Label1.Location = New System.Drawing.Point(12, 12)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(29, 24)
         Me.Label1.TabIndex = 0
@@ -52,7 +62,7 @@ Partial Class PanelTrasporte
         '
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(12, 91)
+        Me.Label2.Location = New System.Drawing.Point(12, 56)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(119, 24)
         Me.Label2.TabIndex = 1
@@ -62,7 +72,7 @@ Partial Class PanelTrasporte
         '
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(12, 143)
+        Me.Label3.Location = New System.Drawing.Point(12, 102)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(159, 24)
         Me.Label3.TabIndex = 2
@@ -128,10 +138,10 @@ Partial Class PanelTrasporte
         Me.Label9.TabIndex = 8
         Me.Label9.Text = "Lotes"
         '
-        'trasportes
+        'lote
         '
-        Me.trasportes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
-        Me.trasportes.BackgroundColor = System.Drawing.Color.White
+        Me.lote.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.lote.BackgroundColor = System.Drawing.Color.White
         DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
         DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(130, Byte), Integer), CType(CType(199, Byte), Integer))
         DataGridViewCellStyle1.Font = New System.Drawing.Font("Century Gothic", 11.25!)
@@ -139,9 +149,8 @@ Partial Class PanelTrasporte
         DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
         DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.trasportes.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
-        Me.trasportes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.trasportes.ColumnHeadersVisible = False
+        Me.lote.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        Me.lote.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle2.BackColor = System.Drawing.Color.White
         DataGridViewCellStyle2.Font = New System.Drawing.Font("Century Gothic", 11.25!)
@@ -149,25 +158,125 @@ Partial Class PanelTrasporte
         DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
         DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.trasportes.DefaultCellStyle = DataGridViewCellStyle2
-        Me.trasportes.Location = New System.Drawing.Point(13, 462)
-        Me.trasportes.Name = "trasportes"
-        Me.trasportes.Size = New System.Drawing.Size(855, 176)
-        Me.trasportes.TabIndex = 9
+        Me.lote.DefaultCellStyle = DataGridViewCellStyle2
+        Me.lote.Location = New System.Drawing.Point(13, 462)
+        Me.lote.Name = "lote"
+        Me.lote.Size = New System.Drawing.Size(855, 176)
+        Me.lote.TabIndex = 9
         '
-        'Button1
+        'verUbicacion
         '
-        Me.Button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(147, Byte), Integer), CType(CType(227, Byte), Integer))
-        Me.Button1.FlatAppearance.BorderSize = 2
-        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(147, Byte), Integer), CType(CType(227, Byte), Integer))
-        Me.Button1.Location = New System.Drawing.Point(657, 12)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(211, 44)
-        Me.Button1.TabIndex = 10
-        Me.Button1.Text = "Ver ubicacion "
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.verUbicacion.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(147, Byte), Integer), CType(CType(227, Byte), Integer))
+        Me.verUbicacion.FlatAppearance.BorderSize = 2
+        Me.verUbicacion.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.verUbicacion.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.verUbicacion.ForeColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(147, Byte), Integer), CType(CType(227, Byte), Integer))
+        Me.verUbicacion.Location = New System.Drawing.Point(657, 12)
+        Me.verUbicacion.Name = "verUbicacion"
+        Me.verUbicacion.Size = New System.Drawing.Size(211, 44)
+        Me.verUbicacion.TabIndex = 10
+        Me.verUbicacion.Text = "Ver ubicacion "
+        Me.verUbicacion.UseVisualStyleBackColor = True
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label10.Location = New System.Drawing.Point(12, 149)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(161, 24)
+        Me.Label10.TabIndex = 11
+        Me.Label10.Text = "Tipo de medio "
+        '
+        'id
+        '
+        Me.id.AutoSize = True
+        Me.id.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.id.Location = New System.Drawing.Point(437, 12)
+        Me.id.Name = "id"
+        Me.id.Size = New System.Drawing.Size(46, 24)
+        Me.id.TabIndex = 12
+        Me.id.Text = "////"
+        '
+        'conductor
+        '
+        Me.conductor.AutoSize = True
+        Me.conductor.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.conductor.Location = New System.Drawing.Point(437, 56)
+        Me.conductor.Name = "conductor"
+        Me.conductor.Size = New System.Drawing.Size(46, 24)
+        Me.conductor.TabIndex = 13
+        Me.conductor.Text = "////"
+        '
+        'nombreMedio
+        '
+        Me.nombreMedio.AutoSize = True
+        Me.nombreMedio.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.nombreMedio.Location = New System.Drawing.Point(437, 102)
+        Me.nombreMedio.Name = "nombreMedio"
+        Me.nombreMedio.Size = New System.Drawing.Size(46, 24)
+        Me.nombreMedio.TabIndex = 14
+        Me.nombreMedio.Text = "////"
+        '
+        'tipoMedio
+        '
+        Me.tipoMedio.AutoSize = True
+        Me.tipoMedio.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.tipoMedio.Location = New System.Drawing.Point(437, 149)
+        Me.tipoMedio.Name = "tipoMedio"
+        Me.tipoMedio.Size = New System.Drawing.Size(46, 24)
+        Me.tipoMedio.TabIndex = 15
+        Me.tipoMedio.Text = "////"
+        '
+        'HoraDeCreacion
+        '
+        Me.HoraDeCreacion.AutoSize = True
+        Me.HoraDeCreacion.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.HoraDeCreacion.Location = New System.Drawing.Point(437, 195)
+        Me.HoraDeCreacion.Name = "HoraDeCreacion"
+        Me.HoraDeCreacion.Size = New System.Drawing.Size(46, 24)
+        Me.HoraDeCreacion.TabIndex = 16
+        Me.HoraDeCreacion.Text = "////"
+        '
+        'FechaDeInico
+        '
+        Me.FechaDeInico.AutoSize = True
+        Me.FechaDeInico.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.FechaDeInico.Location = New System.Drawing.Point(437, 241)
+        Me.FechaDeInico.Name = "FechaDeInico"
+        Me.FechaDeInico.Size = New System.Drawing.Size(46, 24)
+        Me.FechaDeInico.TabIndex = 17
+        Me.FechaDeInico.Text = "////"
+        '
+        'FechaDeFinalizacionEstimada
+        '
+        Me.FechaDeFinalizacionEstimada.AutoSize = True
+        Me.FechaDeFinalizacionEstimada.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.FechaDeFinalizacionEstimada.Location = New System.Drawing.Point(437, 289)
+        Me.FechaDeFinalizacionEstimada.Name = "FechaDeFinalizacionEstimada"
+        Me.FechaDeFinalizacionEstimada.Size = New System.Drawing.Size(46, 24)
+        Me.FechaDeFinalizacionEstimada.TabIndex = 18
+        Me.FechaDeFinalizacionEstimada.Text = "////"
+        '
+        'FechaDeFinalizacionReal
+        '
+        Me.FechaDeFinalizacionReal.AutoSize = True
+        Me.FechaDeFinalizacionReal.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.FechaDeFinalizacionReal.Location = New System.Drawing.Point(437, 339)
+        Me.FechaDeFinalizacionReal.Name = "FechaDeFinalizacionReal"
+        Me.FechaDeFinalizacionReal.Size = New System.Drawing.Size(46, 24)
+        Me.FechaDeFinalizacionReal.TabIndex = 19
+        Me.FechaDeFinalizacionReal.Text = "////"
+        '
+        'estado
+        '
+        Me.estado.AutoSize = True
+        Me.estado.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.estado.Location = New System.Drawing.Point(437, 391)
+        Me.estado.Name = "estado"
+        Me.estado.Size = New System.Drawing.Size(46, 24)
+        Me.estado.TabIndex = 20
+        Me.estado.Text = "////"
         '
         'PanelTrasporte
         '
@@ -175,8 +284,18 @@ Partial Class PanelTrasporte
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(880, 650)
-        Me.Controls.Add(Me.Button1)
-        Me.Controls.Add(Me.trasportes)
+        Me.Controls.Add(Me.estado)
+        Me.Controls.Add(Me.FechaDeFinalizacionReal)
+        Me.Controls.Add(Me.FechaDeFinalizacionEstimada)
+        Me.Controls.Add(Me.FechaDeInico)
+        Me.Controls.Add(Me.HoraDeCreacion)
+        Me.Controls.Add(Me.tipoMedio)
+        Me.Controls.Add(Me.nombreMedio)
+        Me.Controls.Add(Me.conductor)
+        Me.Controls.Add(Me.id)
+        Me.Controls.Add(Me.Label10)
+        Me.Controls.Add(Me.verUbicacion)
+        Me.Controls.Add(Me.lote)
         Me.Controls.Add(Me.Label9)
         Me.Controls.Add(Me.Label8)
         Me.Controls.Add(Me.Label7)
@@ -191,7 +310,7 @@ Partial Class PanelTrasporte
         Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Name = "PanelTrasporte"
         Me.Text = "PanelTrasporte"
-        CType(Me.trasportes, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.lote, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -206,6 +325,16 @@ Partial Class PanelTrasporte
     Friend WithEvents Label7 As Label
     Friend WithEvents Label8 As Label
     Friend WithEvents Label9 As Label
-    Friend WithEvents trasportes As DataGridView
-    Friend WithEvents Button1 As Button
+    Friend WithEvents lote As DataGridView
+    Friend WithEvents verUbicacion As Button
+    Friend WithEvents Label10 As Label
+    Friend WithEvents id As Label
+    Friend WithEvents conductor As Label
+    Friend WithEvents nombreMedio As Label
+    Friend WithEvents tipoMedio As Label
+    Friend WithEvents HoraDeCreacion As Label
+    Friend WithEvents FechaDeInico As Label
+    Friend WithEvents FechaDeFinalizacionEstimada As Label
+    Friend WithEvents FechaDeFinalizacionReal As Label
+    Friend WithEvents estado As Label
 End Class

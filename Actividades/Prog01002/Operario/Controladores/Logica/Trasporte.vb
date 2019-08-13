@@ -100,12 +100,7 @@ Public Class Trasporte
             Return _trasportista
         End Get
         Set(ByVal value As Usuario)
-            If value.Rol = Usuario.TIPO_ROL_TRANSPORTISTA Then
-                _trasportista = value
-            Else
-                Throw New Exception("El usuario debe ser trasportista")
-            End If
-
+            _trasportista = value
         End Set
     End Property
 End Class

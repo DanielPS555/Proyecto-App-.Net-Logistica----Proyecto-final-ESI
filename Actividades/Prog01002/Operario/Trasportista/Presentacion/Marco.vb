@@ -5,7 +5,7 @@ Public Class Marco
     Public Sub New()
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
-
+        Controladores.Fachada.getInstancia.CargarDataBaseDelUsuario()
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
 
     End Sub

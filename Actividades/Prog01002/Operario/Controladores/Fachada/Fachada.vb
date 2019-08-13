@@ -248,7 +248,10 @@ Public Class Fachada
             End If
         Next
         InfoUsuario = True
-        Persistencia.getInstancia.TrabajaEn.Usuario = user
+        If user.Rol = Usuario.TIPO_ROL_OPERARIO Then
+            Persistencia.getInstancia.TrabajaEn.Usuario = user
+        End If
+
     End Sub
 
     Public Function DevolverUsuarioActual() As Usuario
@@ -617,4 +620,46 @@ Public Class Fachada
         Next
         Return lista
     End Function
+
+    Public Function ListaDeMediosDisponiblesPorUsuario(idusuario As Integer) As DataTable
+        Dim dt As DataTable = Persistencia.getInstancia.MediosDisponiblesPorUsuario(idusuario)
+        dt.Columns.Add(New DataColumn("Estado"))
+        For Each r As DataRow In dt.Rows
+            r.Item(4) = Me.estadoDeUnMedioDeTrasporte(r.Item(0))
+        Next
+        Return dt
+    End Function
+
+    Public Function estadoDeUnMedioDeTrasporte(idlegal As String)
+        Dim estate As String = Persistencia.getInstancia.UltimoEstadoDelTrasporteDeUnMedio(idlegal)
+        If Not estate.Equals("Proceso") Then
+            Return "Disponible"
+        Else
+            Return "Ocupado"
+        End If
+    End Function
+
+    Public Function devolverInformacionCompletaDelMedioDeTrasporte(idlegal As String) As MedioDeTransporte
+        Dim r As DataRow = Persistencia.getInstancia.InfoMedioDeTrasporte(idlegal)
+        Dim m As New MedioDeTransporte With {.ID = idlegal,
+                                             .Nombre = r.Item(0),
+                                             .Tipo = New TipoMedioTransporte(r.Item(2)),
+                                             .FechaCreacion = r.Item(3),
+                                             .Creador = New Usuario() With {.NombreDeUsuario = r.Item(4)},
+                                             .CantAutos = r.Item(5),
+                                             .CantCamiones = r.Item(6),
+                                             .CantSUV = r.Item(7),
+                                             .CantVAN = r.Item(8),
+                                             .CantMiniVan = r.Item(9)}
+        For Each r2 As DataRow In Persistencia.getInstancia.UsuariosHabilitadosAUsarUnMedioDeTrasporte(idlegal).Rows
+            Dim user As New Usuario With {.ID_usuario = r2.Item(0), .NombreDeUsuario = r2.Item(1)}
+            m.Conductores.Add(user)
+        Next
+        Return m
+    End Function
+
+    Public Function ListaDeTrasportesPorIdUsuario(idusuario As Integer)
+        Return Persistencia.getInstancia.TrasportesRealizadosPorIdUsuario(idusuario)
+    End Function
+
 End Class

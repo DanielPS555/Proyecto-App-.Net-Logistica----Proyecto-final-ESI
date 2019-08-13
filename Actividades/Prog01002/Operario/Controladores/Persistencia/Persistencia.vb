@@ -801,7 +801,7 @@ Public Class Persistencia
                                     lote left  join transporta on lote.idlote=transporta.idlote
                                     left  join transporte on transporta.transporteID=transporte.transporteID
                                     inner  join lugar as l1 on origen=l1.idlugar inner join lugar as l2 on destino=l2.idlugar
-                                    where transporte.estado is null or  transporte.estado='Fallo' and lote.invalido='f' and lote.estado='Cerrado'", Conexcion)
+                                    where (transporte.estado is null or  transporte.estado='Fallo') and lote.invalido='f' and lote.estado='Cerrado'", Conexcion)
         Dim dt As New DataTable
         dt.Load(com.ExecuteReader)
         Return dt
@@ -824,6 +824,57 @@ Public Class Persistencia
                                     inner join lote on integra.lote=lote.idlote
                                     where integra.invalidado='f' and idlote=?", Conexcion)
         com.CrearParametro(DbType.Int32, idlote)
+        Dim dt As New DataTable
+        dt.Load(com.ExecuteReader)
+        Return dt
+    End Function
+
+    Public Function MediosDisponiblesPorUsuario(idusuario As Integer) As DataTable
+        Dim com As New OdbcCommand("select MedioTransporte.idlegal, MedioTransporte.nombre, TipoTransporte.nombre, fechacreacion
+                                    from TipoTransporte inner join MedioTransporte on TipoTransporte.idtipo=MedioTransporte.idtipo
+                                    inner join permite on MedioTransporte.idtipo=permite.idtipo and MedioTransporte.idlegal= permite.idlegal
+                                    where usuario=? and invalido='f'", Conexcion)
+        com.CrearParametro(DbType.Int32, idusuario)
+        Dim dt As New DataTable
+        dt.Load(com.ExecuteReader)
+        Return dt
+    End Function
+
+    Public Function InfoMedioDeTrasporte(idlegal As String) As DataRow
+        Dim com As New OdbcCommand("select MedioTransporte.nombre,idlegal,TipoTransporte.nombre,MedioTransporte.FechaCreacion, usuario.nombredeusuario
+                                    ,CantAutos,CantCamiones,CantSUV,CantVan,CantMinivan
+                                    from MedioTransporte inner join TipoTransporte on MedioTransporte.idtipo=TipoTransporte.idtipo
+                                    inner join usuario on MedioTransporte.Creador=usuario.idusuario where idlegal=?", Conexcion)
+        com.CrearParametro(DbType.String, idlegal)
+        Dim dt As New DataTable
+        dt.Load(com.ExecuteReader)
+        Return dt.Rows(0)
+    End Function
+
+    Public Function UltimoEstadoDelTrasporteDeUnMedio(idlegal As String) As String
+        Dim com As New OdbcCommand("select first 1 estado, FechaHoraCreacion from transporte
+                                    where idlegal=? order by FechaHoraCreacion desc", Conexcion)
+        com.CrearParametro(DbType.String, idlegal)
+        Return com.ExecuteScalar
+    End Function
+
+    Public Function UsuariosHabilitadosAUsarUnMedioDeTrasporte(idlegal As String) As DataTable
+        Dim com As New OdbcCommand("select idusuario, usuario.nombredeusuario
+                                    from permite inner join usuario on usuario.idusuario = permite.usuario
+                                    where permite.invalido='f' and permite.idlegal=?", Conexcion)
+        com.CrearParametro(DbType.String, idlegal)
+        Dim dt As New DataTable
+        dt.Load(com.ExecuteReader)
+        Return dt
+    End Function
+
+    Public Function TrasportesRealizadosPorIdUsuario(idusuario As Integer) As DataTable
+        Dim com As New OdbcCommand("select transporte.transporteID, IDLegal,FechaHoraCreacion,FechaHoraLlegadaReal,transporte.Estado, lote.origen, count(transporte.transporteID) as Numero_Lotes
+                                    from transporte inner join transporta on transporte.transporteID = transporta.transporteID
+                                    inner join lote on transporta.idlote = lote.idlote
+                                    where usuario=?
+                                    group by transporte.transporteID, IDLegal,FechaHoraCreacion,FechaHoraLlegadaReal,Estado, lote.origen", Conexcion)
+        com.CrearParametro(DbType.String, idusuario)
         Dim dt As New DataTable
         dt.Load(com.ExecuteReader)
         Return dt

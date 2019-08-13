@@ -45,6 +45,9 @@ Partial Class PanelMedioDeTrasporte
         Me.n_suv = New System.Windows.Forms.Label()
         Me.n_van = New System.Windows.Forms.Label()
         Me.n_minivan = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.userA = New System.Windows.Forms.DataGridView()
+        CType(Me.userA, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label2
@@ -267,12 +270,34 @@ Partial Class PanelMedioDeTrasporte
         Me.n_minivan.TabIndex = 24
         Me.n_minivan.Text = "///"
         '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Century Gothic", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(377, 418)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(257, 30)
+        Me.Label1.TabIndex = 25
+        Me.Label1.Text = "Ususarios habilitados"
+        '
+        'userA
+        '
+        Me.userA.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.userA.BackgroundColor = System.Drawing.Color.White
+        Me.userA.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.userA.Location = New System.Drawing.Point(382, 451)
+        Me.userA.Name = "userA"
+        Me.userA.Size = New System.Drawing.Size(486, 187)
+        Me.userA.TabIndex = 26
+        '
         'PanelMedioDeTrasporte
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(880, 650)
+        Me.Controls.Add(Me.userA)
+        Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.n_minivan)
         Me.Controls.Add(Me.n_van)
         Me.Controls.Add(Me.n_suv)
@@ -301,6 +326,7 @@ Partial Class PanelMedioDeTrasporte
         Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Name = "PanelMedioDeTrasporte"
         Me.Text = "PanelMedioDeTrasporte"
+        CType(Me.userA, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -328,4 +354,6 @@ Partial Class PanelMedioDeTrasporte
     Friend WithEvents n_suv As Label
     Friend WithEvents n_van As Label
     Friend WithEvents n_minivan As Label
+    Friend WithEvents Label1 As Label
+    Friend WithEvents userA As DataGridView
 End Class

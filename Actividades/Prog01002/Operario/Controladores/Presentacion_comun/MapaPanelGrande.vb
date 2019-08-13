@@ -10,7 +10,7 @@ Public Class MapaPanelGrande
         mapa.MarkersEnabled = True
         mapa.MinZoom = 0
         mapa.MaxZoom = 24
-        mapa.Zoom = 18
+        mapa.Zoom = 11
         mapa.AutoScroll = True
         Dim overlay = New GMap.NET.WindowsForms.GMapOverlay("markers")
         overlay.Markers.Add(New GMap.NET.WindowsForms.Markers.GMarkerGoogle(point, WindowsForms.Markers.GMarkerGoogleType.red))
