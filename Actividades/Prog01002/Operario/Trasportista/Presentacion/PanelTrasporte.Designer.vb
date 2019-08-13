@@ -94,9 +94,9 @@ Partial Class PanelTrasporte
         Me.Label5.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.Location = New System.Drawing.Point(12, 241)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(241, 24)
+        Me.Label5.Size = New System.Drawing.Size(243, 24)
         Me.Label5.TabIndex = 4
-        Me.Label5.Text = "Fecha y hora de inicio "
+        Me.Label5.Text = "Fecha y hora de salida"
         '
         'Label6
         '

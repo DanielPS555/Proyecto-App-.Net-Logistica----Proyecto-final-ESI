@@ -442,10 +442,9 @@ Public Class Persistencia
     End Function
 
     Public Function ComprobarLoteTrasladoRealizado(id As Integer) As Boolean
-        Dim com As New OdbcCommand("select count(transporte.estado) from lote
+        Dim com As New OdbcCommand("select count(transporta.estado) from lote
                                       inner join transporta on transporta.idlote=lote.idlote
-                                      inner join transporte on transporte.transporteid=transporta.transporteid
-                                    where lote.idlote=? and transporte.estado='Exitoso'", Conexcion)
+                                    where lote.idlote=? and transporta.estado='Exitoso'", Conexcion)
         com.CrearParametro(DbType.Int32, id)
         Return com.ExecuteScalar > 0
     End Function
@@ -479,10 +478,10 @@ Public Class Persistencia
         If id Is Nothing Then
             Return Nothing
         End If
-        Dim com As New OdbcCommand("select lote.idlote, lote.nombre, lote.estado, 
-                                    (select count(*) from integra where integra.lote=lote.idlote and integra.invalidado='f' and lote.invalido='f'), 
-                                    (select count(*) from transporta inner join transporte on transporta.transporteID=transporte.transporteID where transporta.IDLote=lote.IDLote and transporte.Estado='Exitoso')
-                                    from lote inner join lugar on lote.origen = lugar.idlugar where lugar.idlugar = ? and lote.invalido='f';", Conexcion)
+        Dim com As New OdbcCommand("select lote.idlote, lote.nombre, lote.estado,
+                                  (select count(*) from integra where integra.lote=lote.idlote and integra.invalidado='f' and lote.invalido='f'),
+                                  (select count(*) from transporta  where transporta.IDLote=lote.IDLote and transporta.Estado='Exitoso')
+                                  from lote inner join lugar on lote.origen = lugar.idlugar where lugar.idlugar = ? and lote.invalido='f';", Conexcion)
         com.CrearParametro(DbType.Int32, id)
         Dim dt As New DataTable
         dt.Load(com.ExecuteReader)
@@ -799,9 +798,8 @@ Public Class Persistencia
     Public Function LotesDisponiblesATrasportar() As DataTable
         Dim com As New OdbcCommand("select lote.idlote,lote.nombre,Prioridad, l1.idlugar as idlugarOrigen, l1.nombre as nombreorigen, l2.idlugar, l2.nombre, l1.GeoX, L1.GeoY, l2.Geox, l2.GeoY from
                                     lote left  join transporta on lote.idlote=transporta.idlote
-                                    left  join transporte on transporta.transporteID=transporte.transporteID
                                     inner  join lugar as l1 on origen=l1.idlugar inner join lugar as l2 on destino=l2.idlugar
-                                    where (transporte.estado is null or  transporte.estado='Fallo') and lote.invalido='f' and lote.estado='Cerrado'", Conexcion)
+                                    where (transporta.estado is null or  transporta.estado='Fallo') and lote.invalido='f' and lote.estado='Cerrado'", Conexcion)
         Dim dt As New DataTable
         dt.Load(com.ExecuteReader)
         Return dt
@@ -852,10 +850,25 @@ Public Class Persistencia
     End Function
 
     Public Function UltimoEstadoDelTrasporteDeUnMedio(idlegal As String) As String
-        Dim com As New OdbcCommand("select first 1 estado, FechaHoraCreacion from transporte
-                                    where idlegal=? order by FechaHoraCreacion desc", Conexcion)
+        Dim com As New OdbcCommand("select first 1 count(estado), FechaHoraCreacion
+                                    from transporte left join transporta on transporta.transporteID=transporte.transporteID
+                                     where idlegal=?  and estado='Proceso'
+                                    group by FechaHoraCreacion
+                                    order by FechaHoraCreacion desc", Conexcion)
         com.CrearParametro(DbType.String, idlegal)
         Return com.ExecuteScalar
+    End Function
+
+    Public Function EstadosDeUnTrasporte(trasporteid As Integer) As DataTable
+        Dim com As New OdbcCommand("select count(*),transporta.estado
+                                    from transporta inner join transporte on transporta.transporteID = transporte.transporteID
+                                    where transporte.transporteID=?
+                                    group by transporta.estado
+                                    order by transporta.estado desc", Conexcion)
+        com.CrearParametro(DbType.Int32, trasporteid)
+        Dim dt As New DataTable
+        dt.Load(com.ExecuteReader)
+        Return dt
     End Function
 
     Public Function UsuariosHabilitadosAUsarUnMedioDeTrasporte(idlegal As String) As DataTable
@@ -869,15 +882,43 @@ Public Class Persistencia
     End Function
 
     Public Function TrasportesRealizadosPorIdUsuario(idusuario As Integer) As DataTable
-        Dim com As New OdbcCommand("select transporte.transporteID, IDLegal,FechaHoraCreacion,FechaHoraLlegadaReal,transporte.Estado, lote.origen, count(transporte.transporteID) as Numero_Lotes
+        Dim com As New OdbcCommand("select transporte.transporteID, IDLegal,FechaHoraCreacion,FechaHoraLlegadaReal, lote.origen, count(transporte.transporteID) as Numero_Lotes
                                     from transporte inner join transporta on transporte.transporteID = transporta.transporteID
                                     inner join lote on transporta.idlote = lote.idlote
                                     where usuario=?
-                                    group by transporte.transporteID, IDLegal,FechaHoraCreacion,FechaHoraLlegadaReal,Estado, lote.origen", Conexcion)
+                                    group by transporte.transporteID, IDLegal,FechaHoraCreacion,FechaHoraLlegadaReal, lote.origen", Conexcion)
         com.CrearParametro(DbType.String, idusuario)
         Dim dt As New DataTable
         dt.Load(com.ExecuteReader)
         Return dt
     End Function
+
+    Public Function InformacionBasicaDelTrasporte(idtrasporte As Integer) As DataRow
+        Dim com As New OdbcCommand("select transporte.transporteid,Usuario.nombredeusuario, transporte.idlegal, TipoTransporte.nombre,
+                                    FechaHoraCreacion,FechaHoraSalida,FechaHoraLlegadaEstm,FechaHoraLlegadaReal from
+                                    transporte inner join usuario on transporte.usuario= usuario.idusuario
+                                    inner join TipoTransporte on TipoTransporte.idtipo=transporte.idtipo
+                                    where transporteid=?", Conexcion)
+        com.CrearParametro(DbType.String, idtrasporte)
+        Dim dt As New DataTable
+        dt.Load(com.ExecuteReader)
+        Return dt.Rows(0)
+    End Function
+
+    Public Function LotesEnUnTransporte(idtrasporte As Integer) As DataTable
+        Dim com As New OdbcCommand("select lote.nombre, l1.nombre, l2.nombre, lote.Prioridad, transporta.estado from
+                                    lote inner join lugar as l1 on lote.origen=l1.idlugar
+                                    inner join lugar as l2 on lote.destino=l2.idlugar
+                                    inner join transporta on lote.idlote = transporta.idlote
+                                    inner join transporte on transporta.transporteID=transporte.transporteID
+                                    where transporte.transporteID=?", Conexcion)
+        com.CrearParametro(DbType.String, idtrasporte)
+        Dim dt As New DataTable
+        dt.Load(com.ExecuteReader)
+        Return dt
+    End Function
+
+
+
 
 End Class

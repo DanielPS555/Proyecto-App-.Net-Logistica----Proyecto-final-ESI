@@ -69,6 +69,26 @@ Public Class Trasporte
         End Set
     End Property
 
+    Private _fechaCreacion As DateTime
+    Public Property FechaCreacion() As DateTime
+        Get
+            Return _fechaCreacion
+        End Get
+        Set(ByVal value As DateTime)
+            _fechaCreacion = value
+        End Set
+    End Property
+
+    Private _fechaSalida As DateTime
+    Public Property FechaSalida() As DateTime
+        Get
+            Return _fechaSalida
+        End Get
+        Set(ByVal value As DateTime)
+            _fechaSalida = value
+        End Set
+    End Property
+
     Private _estado As String
     Public Property Estado() As String
         Get

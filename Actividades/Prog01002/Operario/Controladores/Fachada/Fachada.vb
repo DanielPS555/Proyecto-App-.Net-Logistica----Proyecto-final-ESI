@@ -581,11 +581,6 @@ Public Class Fachada
         End If
     End Function
 
-    'Public Function idLoteDelVehiculoEnLugar(vehi As Vehiculo, lugar As Lugar) As Integer
-    '    Return Persistencia.getInstancia.IDLotePor_IDvehiculo_y_IDLugar(vehi.IdVehiculo, lugar.IDLugar)
-    'End Function
-
-
     Public Function DatosLoteDelVehiculoEnLugar(vehi As Vehiculo, lugar As Lugar) As Lote
         Dim dt As DataRow = Persistencia.getInstancia.DatosBasicosDelLote_IDvehiculo_y_IDLugar(vehi.IdVehiculo, lugar.IDLugar).Rows(0)
         Dim l As New Lote With {.IDLote = dt.Item(0),
@@ -632,10 +627,21 @@ Public Class Fachada
 
     Public Function estadoDeUnMedioDeTrasporte(idlegal As String)
         Dim estate As String = Persistencia.getInstancia.UltimoEstadoDelTrasporteDeUnMedio(idlegal)
-        If Not estate.Equals("Proceso") Then
+        If estate Is Nothing OrElse estate = 0 Then
             Return "Disponible"
         Else
             Return "Ocupado"
+        End If
+    End Function
+
+    Public Function estadoDeUnTrasporte(idtrasporte As Integer)
+        Dim estados As DataTable = Persistencia.getInstancia.EstadosDeUnTrasporte(idtrasporte)
+        If estados.Rows(0).Item(1) = Trasporte.TIPO_ESTADO_PROSESO AndAlso estados.Rows(0).Item(0) > 0 Then
+            Return "En proseso"
+        ElseIf estados.Rows(0).Item(1) = Trasporte.TIPO_ESTADO_FALLO AndAlso estados.Rows(0).Item(0) > 0 Then
+            Return "Fallido"
+        Else
+            Return "Exitoso"
         End If
     End Function
 
@@ -659,7 +665,31 @@ Public Class Fachada
     End Function
 
     Public Function ListaDeTrasportesPorIdUsuario(idusuario As Integer)
-        Return Persistencia.getInstancia.TrasportesRealizadosPorIdUsuario(idusuario)
+        Dim dt As DataTable = Persistencia.getInstancia.TrasportesRealizadosPorIdUsuario(idusuario)
+        dt.Columns.Add(New DataColumn("Estado"))
+        For Each r As DataRow In dt.Rows
+            r.Item(6) = estadoDeUnTrasporte(r.Item(0))
+        Next
+        Return dt
     End Function
+
+    Public Function InformacionCompletaDelTrasporteSIN_LOTES(idtrasporte As Integer)
+        Dim dt As DataRow = Persistencia.getInstancia.InformacionBasicaDelTrasporte(idtrasporte)
+        Dim t As New Trasporte With {.ID = idtrasporte,
+                                     .Trasportista = New Usuario() With {.NombreDeUsuario = dt.Item(1)},
+                                     .Estado = Me.estadoDeUnTrasporte(idtrasporte),
+                                     .MedioDeTrasporte = New MedioDeTransporte() With {.Nombre = dt.Item(2), .Tipo = New TipoMedioTransporte(dt.Item(3))},
+                                     .FechaCreacion = dt.Item(4),
+                                     .FechaSalida = dt.Item(5),
+                                     .FechaLLegadaEstimada = dt.Item(6),
+                                     .FechaLLegadaReal = dt.Item(7)}
+        Return t
+    End Function
+
+    Public Function listaDeLotesPorTransporte(idtransporte As Integer) As DataTable
+        Return Persistencia.getInstancia.LotesEnUnTransporte(idtransporte)
+    End Function
+
+
 
 End Class

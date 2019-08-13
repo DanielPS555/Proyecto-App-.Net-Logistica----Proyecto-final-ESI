@@ -246,12 +246,12 @@ CREATE table
 	FechaHoraSalida datetime year to minute not null,
 	FechaHoraLlegadaEstm datetime year to minute not null,
 	FechaHoraLlegadaReal datetime year to minute,
-	Estado varchar(10) NOT null check (Estado in ("Proceso", "Fallo", "Exitoso")),
 	foreign key(IDTipo, IDLegal, Usuario) references Permite(IDTipo, IDLegal, Usuario) ON DELETE CASCADE
 	);
 CREATE table
 	transporta( transporteID integer,
 	IDLote integer,
+	Estado varchar(10) NOT null check (Estado in ("Proceso", "Fallo", "Exitoso")),
 	primary key(transporteID, IDLote),
 	foreign key(transporteID) references transporte(transporteID) ON DELETE CASCADE,
 	foreign key(IDLote) references lote(IDLote) ON DELETE CASCADE );
