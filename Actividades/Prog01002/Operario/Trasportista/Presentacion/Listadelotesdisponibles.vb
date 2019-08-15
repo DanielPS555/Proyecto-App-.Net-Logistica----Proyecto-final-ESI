@@ -150,7 +150,7 @@ Public Class Lista_de_trasportes
 
         Dim medioSelecionado As Controladores.MedioDeTransporte
         For Each m As Controladores.MedioDeTransporte In listaDeMedios
-            If m.Equals(m.Nombre) Then
+            If mediosAutorizados.SelectedItem.Equals(m.Nombre) Then
                 medioSelecionado = m
                 Exit For
             End If
@@ -162,8 +162,9 @@ Public Class Lista_de_trasportes
         End If
 
         MsgBox("El calculo que se realiza para aprobar el transporte no es exsacto, si el medio selecionado realmente no lo soporta cancele el translado el mismo")
-
-
+        Dim pepe As New PanelTrasporteEnAccion
+        pepe.Location = New Point(0, 0)
+        Marco.getInstancia.cargarPanel(Of PanelTrasporteEnAccion)(pepe)
 
     End Sub
 

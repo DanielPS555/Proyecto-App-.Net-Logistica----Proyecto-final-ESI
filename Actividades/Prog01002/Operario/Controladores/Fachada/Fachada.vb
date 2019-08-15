@@ -702,9 +702,7 @@ Public Class Fachada
                                      .Estado = Me.estadoDeUnTrasporte(idtrasporte),
                                      .MedioDeTrasporte = New MedioDeTransporte() With {.Nombre = dt.Item(2), .Tipo = New TipoMedioTransporte(dt.Item(3))},
                                      .FechaCreacion = dt.Item(4),
-                                     .FechaSalida = dt.Item(5),
-                                     .FechaLLegadaEstimada = dt.Item(6),
-                                     .FechaLLegadaReal = dt.Item(7)}
+                                     .FechaSalida = dt.Item(5)}
         Return t
     End Function
 

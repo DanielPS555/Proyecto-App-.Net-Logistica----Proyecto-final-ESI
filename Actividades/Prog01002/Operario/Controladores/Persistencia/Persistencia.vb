@@ -914,7 +914,7 @@ Public Class Persistencia
 
     Public Function InformacionBasicaDelTrasporte(idtrasporte As Integer) As DataRow
         Dim com As New OdbcCommand("select transporte.transporteid,Usuario.nombredeusuario, transporte.idlegal, TipoTransporte.nombre,
-                                    FechaHoraCreacion,FechaHoraSalida,FechaHoraLlegadaEstm,FechaHoraLlegadaReal from
+                                    FechaHoraCreacion,FechaHoraSalida from
                                     transporte inner join usuario on transporte.usuario= usuario.idusuario
                                     inner join TipoTransporte on TipoTransporte.idtipo=transporte.idtipo
                                     where transporteid=?", Conexcion)
@@ -925,7 +925,7 @@ Public Class Persistencia
     End Function
 
     Public Function LotesEnUnTransporte(idtrasporte As Integer) As DataTable
-        Dim com As New OdbcCommand("select lote.nombre, l1.nombre, l2.nombre, lote.Prioridad, transporta.estado from
+        Dim com As New OdbcCommand("select lote.nombre, l1.nombre, l2.nombre, lote.Prioridad, transporta.estado,transporta.FechaHoraLlegadaEstm ,transporta.FechaHoraLlegadaReal from
                                     lote inner join lugar as l1 on lote.origen=l1.idlugar
                                     inner join lugar as l2 on lote.destino=l2.idlugar
                                     inner join transporta on lote.idlote = transporta.idlote

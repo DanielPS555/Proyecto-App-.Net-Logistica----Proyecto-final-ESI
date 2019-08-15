@@ -368,43 +368,44 @@ insert into integra values ((select idvehiculo from vehiculo where VIN="1GH2J83L
 insert into transporte values (0,
        (select idusuario from usuario
        where primernombre = "Antonio"),2, "La virgen del Rio de la Plata",
-       "2019-6-29 06:00", "2019-6-29 06:05",
-       "2019-6-29 08:00", "2019-6-29 08:30");
+       "2019-6-29 06:00", "2019-6-29 06:05");
 
 insert into transporte values (0,
        (select idusuario from usuario
        where primernombre = "Antonio"),1,"24GHBYEGV81874679",
-       "2019-6-30 12:00", "2019-6-30 12:02",
-       "2019-6-30 16:30", "2019-6-30 16:53");
+       "2019-6-30 12:00", "2019-6-30 12:02");
 
       insert into transporte values (0,
       (select idusuario from usuario
        where primernombre = "Antonio"),1,"24GHBYEGV81874679",
-      "2019-7-2 15:00", "2019-7-2 15:00",
-      "2019-7-2 16:00", "2019-7-2 16:02");
+      "2019-7-2 15:00", "2019-7-2 15:00");
 
       insert into transporte values (0,
       (select idusuario from usuario
        where primernombre = "Julio"),3,"AFE:32",
-      "2019-7-5 9:40", "2019-7-5 10:00",
+      "2019-7-5 9:40", "2019-7-5 10:00");
+
+      insert into transporte values (0,
+      (select idusuario from usuario
+       where primernombre = "Antonio"),1,"24GHBYEGV81874679",
+      "2019-7-2 15:00", "2019-7-4 15:00");
+
+      insert into transporte values (0,
+      (select idusuario from usuario
+       where primernombre = "Antonio"),1,"24GHBYEGV81874679",
+      "2019-7-8 15:00", "2019-7-8 15:00");
+
+      insert into transporta values (1,1, "Exitoso",
+       "2019-6-29 08:00", "2019-6-29 08:30");
+      insert into transporta values (2,2, "Exitoso",
+       "2019-6-30 16:30", "2019-6-30 16:53");
+      insert into transporta values (3,3, "Exitoso",
+      "2019-7-2 16:00", "2019-7-2 16:02");
+      insert into transporta values (4,4, "Exitoso",
       "2019-7-5 12:00", "2019-7-5 12:25");
-
-      insert into transporte values (0,
-      (select idusuario from usuario
-       where primernombre = "Antonio"),1,"24GHBYEGV81874679",
-      "2019-7-2 15:00", "2019-7-4 15:00",
+      insert into transporta values (5,5, "Exitoso",
       "2019-7-4 18:00", "2019-7-4 17:45");
-
-      insert into transporte values (0,
-      (select idusuario from usuario
-       where primernombre = "Antonio"),1,"24GHBYEGV81874679",
-      "2019-7-8 15:00", "2019-7-8 15:00",
-      "2019-7-8 18:00", "2019-7-9 01:45");
-
-      insert into transporta values (1,1, "Exitoso");
-      insert into transporta values (2,2, "Exitoso");
-      insert into transporta values (3,3, "Exitoso");
-      insert into transporta values (4,4, "Exitoso");
-      insert into transporta values (5,5, "Exitoso");
-      insert into transporta values (6,7, "Exitoso");
-      insert into transporta values (6,8, "Exitoso");
+      insert into transporta values (6,7, "Exitoso",
+      "2019-7-8 18:00", "2019-7-8 22:00");
+      insert into transporta values (6,8, "Exitoso",
+      "2019-7-8 23:00", "2019-7-9 01:00");
