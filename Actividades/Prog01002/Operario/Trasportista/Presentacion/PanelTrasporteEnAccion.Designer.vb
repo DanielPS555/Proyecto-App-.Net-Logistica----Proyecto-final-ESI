@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class PanelTrasporteEnAccion
     Inherits System.Windows.Forms.Form
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class PanelTrasporteEnAccion
     'NOTA: el Diseñador de Windows Forms necesita el siguiente procedimiento
     'Se puede modificar usando el Diseñador de Windows Forms.  
     'No lo modifique con el editor de código.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.anterior = New System.Windows.Forms.PictureBox()
         Me.sigiente = New System.Windows.Forms.PictureBox()
@@ -85,7 +85,7 @@ Partial Class PanelTrasporteEnAccion
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(13, 272)
+        Me.Label1.Location = New System.Drawing.Point(8, 394)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(154, 24)
         Me.Label1.TabIndex = 5
@@ -95,7 +95,7 @@ Partial Class PanelTrasporteEnAccion
         '
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(13, 377)
+        Me.Label2.Location = New System.Drawing.Point(8, 329)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(308, 24)
         Me.Label2.TabIndex = 6
@@ -105,7 +105,7 @@ Partial Class PanelTrasporteEnAccion
         '
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(13, 325)
+        Me.Label3.Location = New System.Drawing.Point(8, 263)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(195, 24)
         Me.Label3.TabIndex = 7
@@ -156,7 +156,7 @@ Partial Class PanelTrasporteEnAccion
         '
         Me.tiempo.AutoSize = True
         Me.tiempo.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tiempo.Location = New System.Drawing.Point(337, 325)
+        Me.tiempo.Location = New System.Drawing.Point(32, 287)
         Me.tiempo.Name = "tiempo"
         Me.tiempo.Size = New System.Drawing.Size(37, 24)
         Me.tiempo.TabIndex = 13
@@ -166,7 +166,7 @@ Partial Class PanelTrasporteEnAccion
         '
         Me.inicio.AutoSize = True
         Me.inicio.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.inicio.Location = New System.Drawing.Point(337, 272)
+        Me.inicio.Location = New System.Drawing.Point(32, 427)
         Me.inicio.Name = "inicio"
         Me.inicio.Size = New System.Drawing.Size(37, 24)
         Me.inicio.TabIndex = 14
@@ -176,7 +176,7 @@ Partial Class PanelTrasporteEnAccion
         '
         Me.finalizacionEstimada.AutoSize = True
         Me.finalizacionEstimada.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.finalizacionEstimada.Location = New System.Drawing.Point(337, 377)
+        Me.finalizacionEstimada.Location = New System.Drawing.Point(32, 353)
         Me.finalizacionEstimada.Name = "finalizacionEstimada"
         Me.finalizacionEstimada.Size = New System.Drawing.Size(37, 24)
         Me.finalizacionEstimada.TabIndex = 15
