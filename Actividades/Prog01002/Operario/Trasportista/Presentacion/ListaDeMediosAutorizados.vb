@@ -4,7 +4,7 @@
 
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
-        dataTabla = Controladores.Fachada.getInstancia.ListaDeMediosDisponiblesPorUsuario(Controladores.Fachada.getInstancia.DevolverUsuarioActual.ID_usuario)
+        dataTabla = Controladores.Fachada.getInstancia.TablaDeMediosPorIDUsuario(Controladores.Fachada.getInstancia.DevolverUsuarioActual.ID_usuario)
         medios.DataSource = dataTabla
 
     End Sub

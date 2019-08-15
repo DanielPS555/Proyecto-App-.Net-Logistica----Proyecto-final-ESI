@@ -827,6 +827,25 @@ Public Class Persistencia
         Return dt
     End Function
 
+    Public Function listaDeMediosPorIdUsuario(idusuario As Integer)
+        Dim com As New OdbcCommand("select  MedioTransporte.idlegal, MedioTransporte.nombre, TipoTransporte.nombre, fechacreacion
+                                    ,CantAutos,CantCamiones,CantSUV,CantVan,CantMinivan
+                                    from TipoTransporte inner join MedioTransporte on TipoTransporte.idtipo=MedioTransporte.idtipo
+                                    inner join permite on MedioTransporte.idtipo=permite.idtipo and MedioTransporte.idlegal= permite.idlegal
+                                    where usuario=? and invalido='f'", Conexcion)
+        com.CrearParametro(DbType.Int32, idusuario)
+        Dim dt As New DataTable
+        dt.Load(com.ExecuteReader)
+        Return dt
+    End Function
+
+    Public Function ListarTodosLosTiposDeMedioDeVehiculo() As DataTable
+        Dim com As New OdbcCommand("select * from TipoTransporte", Conexcion)
+        Dim dt As New DataTable
+        dt.Load(com.ExecuteReader)
+        Return dt
+    End Function
+
     Public Function MediosDisponiblesPorUsuario(idusuario As Integer) As DataTable
         Dim com As New OdbcCommand("select MedioTransporte.idlegal, MedioTransporte.nombre, TipoTransporte.nombre, fechacreacion
                                     from TipoTransporte inner join MedioTransporte on TipoTransporte.idtipo=MedioTransporte.idtipo

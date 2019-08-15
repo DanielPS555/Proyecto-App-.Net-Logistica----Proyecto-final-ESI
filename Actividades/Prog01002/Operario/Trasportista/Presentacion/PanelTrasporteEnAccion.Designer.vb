@@ -206,7 +206,7 @@ Partial Class PanelTrasporteEnAccion
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Margin = New System.Windows.Forms.Padding(5)
         Me.Name = "PanelTrasporteEnAccion"
-        Me.Text = "PanelTrasporteEnAccion"
+        Me.Text = "9+++++++"
         CType(Me.anterior, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.sigiente, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)

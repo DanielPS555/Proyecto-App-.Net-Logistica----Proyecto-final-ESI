@@ -616,7 +616,7 @@ Public Class Fachada
         Return lista
     End Function
 
-    Public Function ListaDeMediosDisponiblesPorUsuario(idusuario As Integer) As DataTable
+    Public Function TablaDeMediosPorIDUsuario(idusuario As Integer) As DataTable
         Dim dt As DataTable = Persistencia.getInstancia.MediosDisponiblesPorUsuario(idusuario)
         dt.Columns.Add(New DataColumn("Estado"))
         For Each r As DataRow In dt.Rows
@@ -624,6 +624,28 @@ Public Class Fachada
         Next
         Return dt
     End Function
+
+
+    Public Function listadeMediosPorIdUsuario(idusuario As Integer) As List(Of MedioDeTransporte)
+        Dim dt As DataTable = Persistencia.getInstancia.listaDeMediosPorIdUsuario(idusuario)
+        Dim lista As New List(Of MedioDeTransporte)
+        For Each r As DataRow In dt.Rows
+            If estadoDeUnMedioDeTrasporte(r.Item(0)).Equals("Disponible") Then
+                Dim m As New MedioDeTransporte With {.ID = r.Item(0),
+                                             .Nombre = r.Item(1),
+                                             .Tipo = New TipoMedioTransporte(r.Item(2)),
+                                             .FechaCreacion = r.Item(3),
+                                             .CantAutos = r.Item(4),
+                                             .CantCamiones = r.Item(5),
+                                             .CantSUV = r.Item(6),
+                                             .CantVAN = r.Item(7),
+                                             .CantMiniVan = r.Item(8)}
+                lista.Add(m)
+            End If
+        Next
+        Return lista
+    End Function
+
 
     Public Function estadoDeUnMedioDeTrasporte(idlegal As String)
         Dim estate As String = Persistencia.getInstancia.UltimoEstadoDelTrasporteDeUnMedio(idlegal)
@@ -690,6 +712,14 @@ Public Class Fachada
         Return Persistencia.getInstancia.LotesEnUnTransporte(idtransporte)
     End Function
 
-
+    Public Function TodosLosTiposDeMediosDisponibles() As List(Of TipoMedioTransporte)
+        Dim dt As DataTable = Persistencia.getInstancia.ListarTodosLosTiposDeMedioDeVehiculo()
+        Dim lista As New List(Of TipoMedioTransporte)
+        For Each r As DataRow In dt.Rows
+            Dim tipo As New TipoMedioTransporte(r.Item(1))
+            lista.Add(tipo)
+        Next
+        Return lista
+    End Function
 
 End Class

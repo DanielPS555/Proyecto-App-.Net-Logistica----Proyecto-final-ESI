@@ -251,7 +251,7 @@ CREATE table
 CREATE table
 	transporta( transporteID integer,
 	IDLote integer,
-	Estado varchar(10) NOT null check (Estado in ("Proceso", "Fallo", "Exitoso")),
+	Estado varchar(10) NOT null check (Estado in ("Proceso", "Fallo", "Exitoso","Cancelado")),
 	primary key(transporteID, IDLote),
 	foreign key(transporteID) references transporte(transporteID) ON DELETE CASCADE,
 	foreign key(IDLote) references lote(IDLote) ON DELETE CASCADE );
