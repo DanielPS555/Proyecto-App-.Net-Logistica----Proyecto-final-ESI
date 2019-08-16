@@ -31,9 +31,7 @@ Partial Class PanelTrasporteEnAccion
         Me.tiempo = New System.Windows.Forms.Label()
         Me.inicio = New System.Windows.Forms.Label()
         Me.finalizacionEstimada = New System.Windows.Forms.Label()
-        Me.eee = New System.Windows.Forms.Panel()
-        Me.des = New System.Windows.Forms.Panel()
-        Me.eee.SuspendLayout()
+        Me.ListaDestinos = New System.Windows.Forms.CheckedListBox()
         Me.SuspendLayout()
         '
         'Label1
@@ -138,23 +136,13 @@ Partial Class PanelTrasporteEnAccion
         Me.finalizacionEstimada.TabIndex = 15
         Me.finalizacionEstimada.Text = "///"
         '
-        'eee
+        'ListaDestinos
         '
-        Me.eee.AutoScroll = True
-        Me.eee.Controls.Add(Me.des)
-        Me.eee.Location = New System.Drawing.Point(12, 12)
-        Me.eee.Name = "eee"
-        Me.eee.Size = New System.Drawing.Size(420, 540)
-        Me.eee.TabIndex = 16
-        '
-        'des
-        '
-        Me.des.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.des.Dock = System.Windows.Forms.DockStyle.Top
-        Me.des.Location = New System.Drawing.Point(0, 0)
-        Me.des.Name = "des"
-        Me.des.Size = New System.Drawing.Size(420, 540)
-        Me.des.TabIndex = 0
+        Me.ListaDestinos.FormattingEnabled = True
+        Me.ListaDestinos.Location = New System.Drawing.Point(13, 13)
+        Me.ListaDestinos.Name = "ListaDestinos"
+        Me.ListaDestinos.Size = New System.Drawing.Size(441, 532)
+        Me.ListaDestinos.TabIndex = 16
         '
         'PanelTrasporteEnAccion
         '
@@ -162,7 +150,7 @@ Partial Class PanelTrasporteEnAccion
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(880, 650)
-        Me.Controls.Add(Me.eee)
+        Me.Controls.Add(Me.ListaDestinos)
         Me.Controls.Add(Me.finalizacionEstimada)
         Me.Controls.Add(Me.inicio)
         Me.Controls.Add(Me.tiempo)
@@ -177,7 +165,6 @@ Partial Class PanelTrasporteEnAccion
         Me.Margin = New System.Windows.Forms.Padding(5)
         Me.Name = "PanelTrasporteEnAccion"
         Me.Text = "9+++++++"
-        Me.eee.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -191,6 +178,5 @@ Partial Class PanelTrasporteEnAccion
     Friend WithEvents tiempo As Label
     Friend WithEvents inicio As Label
     Friend WithEvents finalizacionEstimada As Label
-    Friend WithEvents eee As Panel
-    Friend WithEvents des As Panel
+    Friend WithEvents ListaDestinos As CheckedListBox
 End Class

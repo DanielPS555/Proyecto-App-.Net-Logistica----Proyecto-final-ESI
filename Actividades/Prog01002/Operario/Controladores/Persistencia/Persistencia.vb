@@ -937,6 +937,34 @@ Public Class Persistencia
         Return dt
     End Function
 
+    Public Function Nuevotransporte(idusuario As Integer, idtipotransporte As Integer, idlegal As Integer, fechaCreacion As DateTime)
+
+    End Function
+
+    Public Function devolverUltimoidTransportaPorIdUsuario(idusuario As Integer)
+
+    End Function
+
+    Public Function actualizarHoraSalidaDelTransporte(idtransporte As Integer, horaSalida As DateTime)
+
+    End Function
+
+    Public Function crearTransportaParaUnLote(idtransporte As Integer, idlote As Integer, estado As String, llegadaestimada As DateTime)
+
+    End Function
+
+    Public Function updatefechallegadarealAlTransportaDeUnLote(idtransporte As Integer, idlote As Integer)
+
+    End Function
+
+    Public Function updateEstadoDeUnTransporta(idtransporte As Integer, idlote As Integer, estado As String)
+
+    End Function
+
+    Public Function updatePrioridadlote(idlote As Integer, prio As String)
+
+    End Function
+
 
 
 

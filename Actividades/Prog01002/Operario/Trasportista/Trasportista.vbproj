@@ -234,6 +234,12 @@
     <Compile Include="Presentacion\SUB_lote.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Presentacion\SUB_lotev2.Designer.vb">
+      <DependentUpon>SUB_lotev2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\SUB_lotev2.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ConfiguracionRed.resx">
@@ -283,6 +289,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\SUB_lote.resx">
       <DependentUpon>SUB_lote.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\SUB_lotev2.resx">
+      <DependentUpon>SUB_lotev2.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
