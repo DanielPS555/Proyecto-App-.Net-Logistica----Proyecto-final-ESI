@@ -22,11 +22,6 @@ Partial Class PanelTrasporteEnAccion
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.anterior = New System.Windows.Forms.PictureBox()
-        Me.sigiente = New System.Windows.Forms.PictureBox()
-        Me.l1 = New System.Windows.Forms.Panel()
-        Me.l2 = New System.Windows.Forms.Panel()
-        Me.l3 = New System.Windows.Forms.Panel()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -36,56 +31,16 @@ Partial Class PanelTrasporteEnAccion
         Me.tiempo = New System.Windows.Forms.Label()
         Me.inicio = New System.Windows.Forms.Label()
         Me.finalizacionEstimada = New System.Windows.Forms.Label()
-        CType(Me.anterior, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.sigiente, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.eee = New System.Windows.Forms.Panel()
+        Me.des = New System.Windows.Forms.Panel()
+        Me.eee.SuspendLayout()
         Me.SuspendLayout()
-        '
-        'anterior
-        '
-        Me.anterior.Image = Global.Trasportista.My.Resources.Resources.anterior
-        Me.anterior.Location = New System.Drawing.Point(12, 71)
-        Me.anterior.Name = "anterior"
-        Me.anterior.Size = New System.Drawing.Size(57, 100)
-        Me.anterior.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.anterior.TabIndex = 0
-        Me.anterior.TabStop = False
-        '
-        'sigiente
-        '
-        Me.sigiente.Image = Global.Trasportista.My.Resources.Resources.sigiente
-        Me.sigiente.Location = New System.Drawing.Point(811, 71)
-        Me.sigiente.Name = "sigiente"
-        Me.sigiente.Size = New System.Drawing.Size(57, 100)
-        Me.sigiente.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.sigiente.TabIndex = 1
-        Me.sigiente.TabStop = False
-        '
-        'l1
-        '
-        Me.l1.Location = New System.Drawing.Point(75, 12)
-        Me.l1.Name = "l1"
-        Me.l1.Size = New System.Drawing.Size(220, 220)
-        Me.l1.TabIndex = 2
-        '
-        'l2
-        '
-        Me.l2.Location = New System.Drawing.Point(329, 12)
-        Me.l2.Name = "l2"
-        Me.l2.Size = New System.Drawing.Size(220, 220)
-        Me.l2.TabIndex = 3
-        '
-        'l3
-        '
-        Me.l3.Location = New System.Drawing.Point(576, 12)
-        Me.l3.Name = "l3"
-        Me.l3.Size = New System.Drawing.Size(220, 220)
-        Me.l3.TabIndex = 4
         '
         'Label1
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(8, 394)
+        Me.Label1.Location = New System.Drawing.Point(460, 201)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(154, 24)
         Me.Label1.TabIndex = 5
@@ -95,7 +50,7 @@ Partial Class PanelTrasporteEnAccion
         '
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(8, 329)
+        Me.Label2.Location = New System.Drawing.Point(460, 123)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(308, 24)
         Me.Label2.TabIndex = 6
@@ -105,7 +60,7 @@ Partial Class PanelTrasporteEnAccion
         '
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(8, 263)
+        Me.Label3.Location = New System.Drawing.Point(460, 42)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(195, 24)
         Me.Label3.TabIndex = 7
@@ -121,6 +76,7 @@ Partial Class PanelTrasporteEnAccion
         Me.emergencia.TabIndex = 10
         Me.emergencia.TabStop = True
         Me.emergencia.Text = "Cancelacion de emergencia"
+        Me.emergencia.Visible = False
         '
         'Button3
         '
@@ -134,7 +90,7 @@ Partial Class PanelTrasporteEnAccion
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(264, 56)
         Me.Button3.TabIndex = 11
-        Me.Button3.Text = "Listo"
+        Me.Button3.Text = "Comenzar"
         Me.Button3.UseVisualStyleBackColor = False
         '
         'cancelar
@@ -156,7 +112,7 @@ Partial Class PanelTrasporteEnAccion
         '
         Me.tiempo.AutoSize = True
         Me.tiempo.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tiempo.Location = New System.Drawing.Point(32, 287)
+        Me.tiempo.Location = New System.Drawing.Point(510, 66)
         Me.tiempo.Name = "tiempo"
         Me.tiempo.Size = New System.Drawing.Size(37, 24)
         Me.tiempo.TabIndex = 13
@@ -166,7 +122,7 @@ Partial Class PanelTrasporteEnAccion
         '
         Me.inicio.AutoSize = True
         Me.inicio.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.inicio.Location = New System.Drawing.Point(32, 427)
+        Me.inicio.Location = New System.Drawing.Point(510, 234)
         Me.inicio.Name = "inicio"
         Me.inicio.Size = New System.Drawing.Size(37, 24)
         Me.inicio.TabIndex = 14
@@ -176,11 +132,29 @@ Partial Class PanelTrasporteEnAccion
         '
         Me.finalizacionEstimada.AutoSize = True
         Me.finalizacionEstimada.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.finalizacionEstimada.Location = New System.Drawing.Point(32, 353)
+        Me.finalizacionEstimada.Location = New System.Drawing.Point(510, 147)
         Me.finalizacionEstimada.Name = "finalizacionEstimada"
         Me.finalizacionEstimada.Size = New System.Drawing.Size(37, 24)
         Me.finalizacionEstimada.TabIndex = 15
         Me.finalizacionEstimada.Text = "///"
+        '
+        'eee
+        '
+        Me.eee.AutoScroll = True
+        Me.eee.Controls.Add(Me.des)
+        Me.eee.Location = New System.Drawing.Point(12, 12)
+        Me.eee.Name = "eee"
+        Me.eee.Size = New System.Drawing.Size(420, 540)
+        Me.eee.TabIndex = 16
+        '
+        'des
+        '
+        Me.des.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.des.Dock = System.Windows.Forms.DockStyle.Top
+        Me.des.Location = New System.Drawing.Point(0, 0)
+        Me.des.Name = "des"
+        Me.des.Size = New System.Drawing.Size(420, 540)
+        Me.des.TabIndex = 0
         '
         'PanelTrasporteEnAccion
         '
@@ -188,6 +162,7 @@ Partial Class PanelTrasporteEnAccion
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(880, 650)
+        Me.Controls.Add(Me.eee)
         Me.Controls.Add(Me.finalizacionEstimada)
         Me.Controls.Add(Me.inicio)
         Me.Controls.Add(Me.tiempo)
@@ -197,28 +172,16 @@ Partial Class PanelTrasporteEnAccion
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.l3)
-        Me.Controls.Add(Me.l2)
-        Me.Controls.Add(Me.l1)
-        Me.Controls.Add(Me.sigiente)
-        Me.Controls.Add(Me.anterior)
         Me.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Margin = New System.Windows.Forms.Padding(5)
         Me.Name = "PanelTrasporteEnAccion"
         Me.Text = "9+++++++"
-        CType(Me.anterior, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.sigiente, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.eee.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
-
-    Friend WithEvents anterior As PictureBox
-    Friend WithEvents sigiente As PictureBox
-    Friend WithEvents l1 As Panel
-    Friend WithEvents l2 As Panel
-    Friend WithEvents l3 As Panel
     Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents Label3 As Label
@@ -228,4 +191,6 @@ Partial Class PanelTrasporteEnAccion
     Friend WithEvents tiempo As Label
     Friend WithEvents inicio As Label
     Friend WithEvents finalizacionEstimada As Label
+    Friend WithEvents eee As Panel
+    Friend WithEvents des As Panel
 End Class

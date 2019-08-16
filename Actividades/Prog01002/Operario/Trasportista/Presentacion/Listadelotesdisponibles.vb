@@ -82,22 +82,22 @@ Public Class Lista_de_trasportes
     End Sub
 
     Private Sub Aceptar_Click(sender As Object, e As EventArgs) Handles aceptar.Click
-        Dim lugaresElegidos As New List(Of Controladores.Lote)
+        Dim lotesElegidos As New List(Of Controladores.Lote)
         For Each p As SUB_informeLote In paneles
             If p.Selecionado Then
-                lugaresElegidos.Add(p.Lote)
+                lotesElegidos.Add(p.Lote)
             End If
         Next
 
-        If lugaresElegidos.Count = 0 Then
+        If lotesElegidos.Count = 0 Then
             MsgBox("Debe escojer al menos 1 lote", MsgBoxStyle.Critical)
             Return
         End If
 
         'COMRPOBACION 1: Los lotes tiene que tener el mismo lugar de origen
 
-        Dim lugarmuestra As Integer = lugaresElegidos(0).Origen.IDLugar
-        For Each origen As Controladores.Lote In lugaresElegidos
+        Dim lugarmuestra As Integer = lotesElegidos(0).Origen.IDLugar
+        For Each origen As Controladores.Lote In lotesElegidos
             If origen.Origen.IDLugar <> lugarmuestra Then
                 MsgBox("Todos los lotes deben tener como origen el mismo lugar", MsgBoxStyle.Critical)
                 Return
@@ -111,12 +111,12 @@ Public Class Lista_de_trasportes
             Return
         End If
 
-        If Not lugaresElegidos(0).Origen.TiposDeMediosDeTrasporteHabilitados.Select(Function(x) x.Nombre).ToList.Contains(tiposDeMedio(TiposDeMedioAutorizados.SelectedIndex).Nombre) Then
+        If Not lotesElegidos(0).Origen.TiposDeMediosDeTrasporteHabilitados.Select(Function(x) x.Nombre).ToList.Contains(tiposDeMedio(TiposDeMedioAutorizados.SelectedIndex).Nombre) Then
             MsgBox("El origen debe soportar el medio de trasporte selecionado", MsgBoxStyle.Critical)
             Return
         End If
 
-        For Each lug As Controladores.Lugar In lugaresElegidos.Select(Function(x) x.Destino).ToList
+        For Each lug As Controladores.Lugar In lotesElegidos.Select(Function(x) x.Destino).ToList
             If Not lug.TiposDeMediosDeTrasporteHabilitados.Select(Function(x) x.Nombre).ToList.Contains(tiposDeMedio(TiposDeMedioAutorizados.SelectedIndex).Nombre) Then
                 MsgBox("Todos los destinos debe soportar el medio de trasporte selecionado", MsgBoxStyle.Critical)
                 Return
@@ -131,7 +131,7 @@ Public Class Lista_de_trasportes
         Dim minivan As Integer = 0
         Dim suv As Integer = 0
 
-        For Each l As Controladores.Lote In lugaresElegidos
+        For Each l As Controladores.Lote In lotesElegidos
             For Each v As Controladores.Vehiculo In l.Vehiculos
                 Select Case v.Tipo
                     Case Controladores.Vehiculo.TIPO_VEHICULO_AUTO
@@ -161,8 +161,10 @@ Public Class Lista_de_trasportes
             Return
         End If
 
+        'COMPROBACION 4: COMPROBAR QUE LOS LOTES SIGAN DISPONBLES
+
         MsgBox("El calculo que se realiza para aprobar el transporte no es exsacto, si el medio selecionado realmente no lo soporta cancele el translado el mismo")
-        Dim pepe As New PanelTrasporteEnAccion
+        Dim pepe As New PanelTrasporteEnAccion(lotesElegidos, medioSelecionado)
         pepe.Location = New Point(0, 0)
         Marco.getInstancia.cargarPanel(Of PanelTrasporteEnAccion)(pepe)
 
