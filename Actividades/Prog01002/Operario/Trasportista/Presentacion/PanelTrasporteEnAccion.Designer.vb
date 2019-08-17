@@ -22,6 +22,7 @@ Partial Class PanelTrasporteEnAccion
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -32,6 +33,7 @@ Partial Class PanelTrasporteEnAccion
         Me.inicio = New System.Windows.Forms.Label()
         Me.finalizacionEstimada = New System.Windows.Forms.Label()
         Me.ListaDestinos = New System.Windows.Forms.CheckedListBox()
+        Me.tiempo1 = New System.Windows.Forms.Timer(Me.components)
         Me.SuspendLayout()
         '
         'Label1
@@ -112,9 +114,9 @@ Partial Class PanelTrasporteEnAccion
         Me.tiempo.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tiempo.Location = New System.Drawing.Point(510, 66)
         Me.tiempo.Name = "tiempo"
-        Me.tiempo.Size = New System.Drawing.Size(37, 24)
+        Me.tiempo.Size = New System.Drawing.Size(185, 24)
         Me.tiempo.TabIndex = 13
-        Me.tiempo.Text = "///"
+        Me.tiempo.Text = "INDETERMINADO "
         '
         'inicio
         '
@@ -122,9 +124,9 @@ Partial Class PanelTrasporteEnAccion
         Me.inicio.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.inicio.Location = New System.Drawing.Point(510, 234)
         Me.inicio.Name = "inicio"
-        Me.inicio.Size = New System.Drawing.Size(37, 24)
+        Me.inicio.Size = New System.Drawing.Size(185, 24)
         Me.inicio.TabIndex = 14
-        Me.inicio.Text = "///"
+        Me.inicio.Text = "INDETERMINADO "
         '
         'finalizacionEstimada
         '
@@ -132,17 +134,22 @@ Partial Class PanelTrasporteEnAccion
         Me.finalizacionEstimada.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.finalizacionEstimada.Location = New System.Drawing.Point(510, 147)
         Me.finalizacionEstimada.Name = "finalizacionEstimada"
-        Me.finalizacionEstimada.Size = New System.Drawing.Size(37, 24)
+        Me.finalizacionEstimada.Size = New System.Drawing.Size(185, 24)
         Me.finalizacionEstimada.TabIndex = 15
-        Me.finalizacionEstimada.Text = "///"
+        Me.finalizacionEstimada.Text = "INDETERMINADO "
         '
         'ListaDestinos
         '
+        Me.ListaDestinos.Enabled = False
         Me.ListaDestinos.FormattingEnabled = True
         Me.ListaDestinos.Location = New System.Drawing.Point(13, 13)
         Me.ListaDestinos.Name = "ListaDestinos"
         Me.ListaDestinos.Size = New System.Drawing.Size(441, 532)
         Me.ListaDestinos.TabIndex = 16
+        '
+        'tiempo1
+        '
+        Me.tiempo1.Interval = 500
         '
         'PanelTrasporteEnAccion
         '
@@ -179,4 +186,5 @@ Partial Class PanelTrasporteEnAccion
     Friend WithEvents inicio As Label
     Friend WithEvents finalizacionEstimada As Label
     Friend WithEvents ListaDestinos As CheckedListBox
+    Friend WithEvents tiempo1 As Timer
 End Class

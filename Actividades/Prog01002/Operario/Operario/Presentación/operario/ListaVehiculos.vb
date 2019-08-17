@@ -5,15 +5,19 @@ Public Class ListaVehiculos
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
-        CargarDatos()
+        asignados()
         DataGridView1.MultiSelect = False
         criterios.SelectedIndex = 0
     End Sub
 
     Dim t As DataTable
 
-    Public Sub CargarDatos()
+    Public Sub asignados()
         DataGridView1.DataSource = Controladores.Fachada.getInstancia.ListaVehiculos()
+    End Sub
+
+    Public Sub Noasignados()
+        DataGridView1.DataSource = Controladores.Fachada.getInstancia.listaDeVehiculosSinLoteNiPosicion(Controladores.Fachada.getInstancia.TrabajaEnAcutual.Lugar.IDLugar)
     End Sub
 
     Private Sub ListaVehiculos_Paint(sender As Object, e As PaintEventArgs) Handles MyBase.Paint
@@ -32,6 +36,14 @@ Public Class ListaVehiculos
 
     Private Sub buscar_Click(sender As Object, e As EventArgs)
         'CargarDatos(DataGridView1.Columns)
+    End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs)
+        Noasignados()
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs)
+        asignados()
     End Sub
 End Class
 

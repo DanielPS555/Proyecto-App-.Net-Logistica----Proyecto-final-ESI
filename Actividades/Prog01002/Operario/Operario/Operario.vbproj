@@ -136,6 +136,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Presentación\NotificacionDeLote.vb" />
+    <Compile Include="Presentación\operario\Asignacion.Designer.vb">
+      <DependentUpon>Asignacion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentación\operario\Asignacion.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Presentación\operario\crearInformaDeDaños.Designer.vb">
       <DependentUpon>crearInformaDeDaños.vb</DependentUpon>
     </Compile>
@@ -260,6 +266,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentación\ConfiguracionRed.resx">
       <DependentUpon>ConfiguracionRed.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentación\operario\Asignacion.resx">
+      <DependentUpon>Asignacion.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentación\operario\crearInformaDeDaños.resx">
       <DependentUpon>crearInformaDeDaños.vb</DependentUpon>

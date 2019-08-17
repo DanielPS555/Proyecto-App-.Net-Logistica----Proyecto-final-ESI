@@ -13,22 +13,22 @@
         Dim lotes As DataTable = Controladores.Fachada.getInstancia.listaDeLotesPorTransporte(idtransporte)
         lote.DataSource = lotes
 
-        Dim real As DateTime = lotes.Rows(0).Item(6)
-        Dim estimada As DateTime = lotes.Rows(0).Item(5)
+        Dim real As DateTime? = Controladores.Funciones_comunes.AutoNull(Of Object)(lotes.Rows(0).Item(6))
+        Dim estimada As DateTime? = Controladores.Funciones_comunes.AutoNull(Of Object)(lotes.Rows(0).Item(5))
 
         For Each l As DataRow In lotes.Rows
-            If l.Item(6) > real Then
+            If real IsNot Nothing AndAlso l.Item(6) > real Then
                 real = l.Item(6)
             End If
 
-            If l.Item(5) > estimada Then
+            If estimada IsNot Nothing AndAlso l.Item(5) > estimada Then
                 estimada = l.Item(5)
             End If
         Next
 
 
-        FechaDeFinalizacionEstimada.Text = estimada
-        FechaDeFinalizacionReal.Text = real
+        FechaDeFinalizacionEstimada.Text = If(estimada Is Nothing, "SIN INFORMACION", estimada)
+        FechaDeFinalizacionReal.Text = If(real Is Nothing, "SIN INFORMACION", real)
 
     End Sub
 End Class

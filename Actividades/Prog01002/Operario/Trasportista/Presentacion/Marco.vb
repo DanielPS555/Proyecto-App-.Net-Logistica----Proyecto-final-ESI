@@ -59,6 +59,19 @@ Public Class Marco
         Return obj
     End Function
 
+    Public Function cargarPanelv2(Of T As {Form})(obj As T) As T
+        cerrarPanel(Of T)()
+
+        obj.TopLevel = False
+        obj.FormBorderStyle = FormBorderStyle.None
+
+        contenedor.Controls.Add(obj)
+        contenedor.Tag = obj
+        obj.Show()
+        obj.BringToFront()
+        Return obj
+    End Function
+
     Private Sub Marco_Load(sender As Object, e As EventArgs) Handles Me.Load
         inicio.Font = New Font("Century Gothic", 15.75!, FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.cargarPanel(Of Lista_de_trasportes)(New Lista_de_trasportes)
@@ -98,4 +111,20 @@ Public Class Marco
     Private Sub Button8_Click(sender As Object, e As EventArgs)
         MsgBox("¡Sin imploementar!")
     End Sub
+
+    Public Sub Bloquear()
+        accion(False)
+    End Sub
+
+    Public Sub Desbloquear()
+        accion(True)
+    End Sub
+
+    Private Sub accion(j As Boolean)
+        Label1.Enabled = j
+        inicio.Enabled = j
+        veiculos.Enabled = j
+        lotes.Enabled = j
+    End Sub
+
 End Class

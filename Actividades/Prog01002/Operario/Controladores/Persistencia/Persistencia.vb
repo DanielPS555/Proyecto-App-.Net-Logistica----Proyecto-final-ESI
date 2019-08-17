@@ -796,8 +796,9 @@ Public Class Persistencia
     End Function
 
     Public Function LotesDisponiblesATrasportar() As DataTable
-        Dim com As New OdbcCommand("select lote.idlote,lote.nombre,Prioridad, l1.idlugar as idlugarOrigen, l1.nombre as nombreorigen, l2.idlugar, l2.nombre, l1.GeoX, L1.GeoY, l2.Geox, l2.GeoY from
-                                    lote left  join transporta on lote.idlote=transporta.idlote
+        Dim com As New OdbcCommand("select DISTINCT lote.idlote,lote.nombre,Prioridad, l1.idlugar as idlugarOrigen, l1.nombre as nombreorigen, l2.idlugar, l2.nombre, l1.GeoX, L1.GeoY, l2.Geox, l2.GeoY,transporta.estado from
+                                    lote left  join (select idlote,max(FechaHoraLlegadaReal) as ccc from transporta group by idlote) as maxi on maxi.idlote=lote.idlote
+                                    left  join transporta on maxi.idlote=transporta.idlote and maxi.ccc=transporta.FechaHoraLlegadaReal
                                     inner  join lugar as l1 on origen=l1.idlugar inner join lugar as l2 on destino=l2.idlugar
                                     where (transporta.estado is null or  transporta.estado='Fallo' or transporta.estado='Cancelado') and lote.invalido='f' and lote.estado='Cerrado'", Conexcion)
         Dim dt As New DataTable
@@ -829,7 +830,7 @@ Public Class Persistencia
 
     Public Function listaDeMediosPorIdUsuario(idusuario As Integer)
         Dim com As New OdbcCommand("select  MedioTransporte.idlegal, MedioTransporte.nombre, TipoTransporte.nombre, fechacreacion
-                                    ,CantAutos,CantCamiones,CantSUV,CantVan,CantMinivan
+                                    ,CantAutos,CantCamiones,CantSUV,CantVan,CantMinivan, MedioTransporte.IDTipo
                                     from TipoTransporte inner join MedioTransporte on TipoTransporte.idtipo=MedioTransporte.idtipo
                                     inner join permite on MedioTransporte.idtipo=permite.idtipo and MedioTransporte.idlegal= permite.idlegal
                                     where usuario=? and invalido='f'", Conexcion)
@@ -937,32 +938,88 @@ Public Class Persistencia
         Return dt
     End Function
 
-    Public Function Nuevotransporte(idusuario As Integer, idtipotransporte As Integer, idlegal As Integer, fechaCreacion As DateTime)
-
+    Public Function Inserttransporte(idusuario As Integer, idtipotransporte As Integer, idlegal As String, fechaCreacion As DateTime)
+        Dim com As New OdbcCommand("insert into transporte(transporteID, Usuario, IDTipo, IDLegal, FechaHoraCreacion) values (0,?,?,?,?);", Conexcion)
+        com.CrearParametro(DbType.Int32, idusuario)
+        com.CrearParametro(DbType.Int32, idtipotransporte)
+        com.CrearParametro(DbType.String, idlegal)
+        com.CrearParametro(DbType.DateTime, fechaCreacion)
+        Return com.ExecuteNonQuery() > 0
     End Function
 
     Public Function devolverUltimoidTransportaPorIdUsuario(idusuario As Integer)
-
+        Dim com As New OdbcCommand("select first 1 transporteid
+                                    from transporte
+                                    where usuario=?
+                                    order by FechaHoraCreacion desc", Conexcion)
+        com.CrearParametro(DbType.Int32, idusuario)
+        Return com.ExecuteScalar
     End Function
 
-    Public Function actualizarHoraSalidaDelTransporte(idtransporte As Integer, horaSalida As DateTime)
-
+    Public Function UpdateHoraSalidaDelTransporte(idtransporte As Integer, horaSalida As DateTime)
+        Dim com As New OdbcCommand("update transporte set FechaHoraSalida=? where transporteid=?", Conexcion)
+        com.CrearParametro(DbType.DateTime, horaSalida)
+        com.CrearParametro(DbType.Int32, idtransporte)
+        Return com.ExecuteNonQuery() > 0
     End Function
 
-    Public Function crearTransportaParaUnLote(idtransporte As Integer, idlote As Integer, estado As String, llegadaestimada As DateTime)
-
+    Public Function InsertTransportaParaUnLote(idtransporte As Integer, idlote As Integer, estado As String)
+        Dim com As New OdbcCommand("insert into transporta(transporteID,IDLote,Estado) values (?,?,?);", Conexcion)
+        com.CrearParametro(DbType.Int32, idtransporte)
+        com.CrearParametro(DbType.Int32, idlote)
+        com.CrearParametro(DbType.String, estado)
+        Return com.ExecuteNonQuery() > 0
     End Function
 
-    Public Function updatefechallegadarealAlTransportaDeUnLote(idtransporte As Integer, idlote As Integer)
+    Public Function updatefechallegadarealAlTransportaDeUnLote(idtransporte As Integer, idlote As Integer, llegada As DateTime)
+        Dim com As New OdbcCommand("update transporta set FechaHoraLlegadaReal=? where transporteID=? and idlote=?", Conexcion)
+        com.CrearParametro(DbType.DateTime, llegada)
+        com.CrearParametro(DbType.Int32, idtransporte)
+        com.CrearParametro(DbType.Int32, idlote)
+        Return com.ExecuteNonQuery() > 0
+    End Function
 
+    Public Function updatefechallegadaEstimadaAlTransportaDeUnLote(idtransporte As Integer, idlote As Integer, llegada As DateTime)
+        Dim com As New OdbcCommand("update transporta set FechaHoraLlegadaEstm=? where transporteID=? and idlote=?", Conexcion)
+        com.CrearParametro(DbType.DateTime, llegada)
+        com.CrearParametro(DbType.Int32, idtransporte)
+        com.CrearParametro(DbType.Int32, idlote)
+        Return com.ExecuteNonQuery() > 0
     End Function
 
     Public Function updateEstadoDeUnTransporta(idtransporte As Integer, idlote As Integer, estado As String)
-
+        Dim com As New OdbcCommand("update transporta set Estado=? where transporteID=? and idlote=?", Conexcion)
+        com.CrearParametro(DbType.String, estado)
+        com.CrearParametro(DbType.Int32, idtransporte)
+        com.CrearParametro(DbType.Int32, idlote)
+        Return com.ExecuteNonQuery() > 0
     End Function
 
     Public Function updatePrioridadlote(idlote As Integer, prio As String)
+        Dim com As New OdbcCommand("update lote set Prioridad=? where idlote=?", Conexcion)
+        com.CrearParametro(DbType.String, prio)
+        com.CrearParametro(DbType.Int32, idlote)
+        Return com.ExecuteNonQuery() > 0
+    End Function
 
+    Public Function lotesCuyoDestinoEs(idlugar As Integer)
+        Dim com As New OdbcCommand("select vehiculo.idvehiculo, vin, marca, modelo, Lote.IDLote, Lote.Nombre, FechaHoraLlegadaReal
+                                    From vehiculo inner Join integra On vehiculo.idvehiculo=integra.idvehiculo
+                                    inner Join transporta on integra.lote = transporta.idlote
+                                    inner Join lote on lote.idlote = integra.lote
+                                    where integra.invalidado ='f' and transporta.estado='Exitoso' and lote.destino=?", Conexcion)
+        com.CrearParametro(DbType.Int32, idlugar)
+        Dim dt As New DataTable
+        dt.Load(com.ExecuteReader)
+        Return dt
+    End Function
+
+    Public Function UltimoPosicionadoPorIdlugaryIdvehiculo(idlugar As Integer, idvehiculo As Integer)
+        Dim com As New OdbcCommand($"select first 1 desde from posicionado
+                                    where idlugar in (select unnamed_col_1 from table(subzonas_en_lugar({idlugar})))
+                                    and idvehiculo=? order by desde desc", Conexcion)
+        com.CrearParametro(DbType.Int32, idvehiculo)
+        Return com.ExecuteScalar
     End Function
 
 

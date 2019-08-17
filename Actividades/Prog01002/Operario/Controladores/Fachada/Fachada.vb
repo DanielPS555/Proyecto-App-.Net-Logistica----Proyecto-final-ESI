@@ -534,9 +534,13 @@ Public Class Fachada
 
     Public Sub AsignarNuevaPosicion(posicion As Posicion, inavilitarAnterior As Boolean)
         If inavilitarAnterior Then
-            Persistencia.getInstancia.anularPosicionAnterior(posicion.Vehiculo.IdVehiculo)
+            AnularAnteriorPosicion(posicion.Vehiculo.IdVehiculo)
         End If
         Persistencia.getInstancia.insertPosicion(posicion.IngresadoPor.ID_usuario, posicion.Subzona.IDSubzona, posicion.Vehiculo.IdVehiculo, posicion.Posicion)
+    End Sub
+
+    Public Sub AnularAnteriorPosicion(idvehiculo As Integer)
+        Persistencia.getInstancia.anularPosicionAnterior(idvehiculo)
     End Sub
 
     Public Sub actualizarInforme(info As InformeDeDaños)
@@ -633,7 +637,7 @@ Public Class Fachada
             If estadoDeUnMedioDeTrasporte(r.Item(0)).Equals("Disponible") Then
                 Dim m As New MedioDeTransporte With {.ID = r.Item(0),
                                              .Nombre = r.Item(1),
-                                             .Tipo = New TipoMedioTransporte(r.Item(2)),
+                                             .Tipo = New TipoMedioTransporte(r.Item(2)) With {.ID = r.Item(9)},
                                              .FechaCreacion = r.Item(3),
                                              .CantAutos = r.Item(4),
                                              .CantCamiones = r.Item(5),
@@ -645,6 +649,7 @@ Public Class Fachada
         Next
         Return lista
     End Function
+
 
 
     Public Function estadoDeUnMedioDeTrasporte(idlegal As String)
@@ -702,7 +707,7 @@ Public Class Fachada
                                      .Estado = Me.estadoDeUnTrasporte(idtrasporte),
                                      .MedioDeTrasporte = New MedioDeTransporte() With {.Nombre = dt.Item(2), .Tipo = New TipoMedioTransporte(dt.Item(3))},
                                      .FechaCreacion = dt.Item(4),
-                                     .FechaSalida = dt.Item(5)}
+                                     .FechaSalida = Funciones_comunes.AutoNull(Of Object)(dt.Item(5))}
         Return t
     End Function
 
@@ -718,6 +723,47 @@ Public Class Fachada
             lista.Add(tipo)
         Next
         Return lista
+    End Function
+
+    Public Function NuevoTransporteConSusLotes(tran As Controladores.Trasporte) As Integer
+        Persistencia.getInstancia.Inserttransporte(tran.Trasportista.ID_usuario, tran.MedioDeTrasporte.Tipo.ID, tran.MedioDeTrasporte.ID, DateTime.Now)
+        Dim idTransporte As Integer = Persistencia.getInstancia.devolverUltimoidTransportaPorIdUsuario(tran.Trasportista.ID_usuario)
+        For Each l As Lote In tran.Lotes
+            Persistencia.getInstancia.InsertTransportaParaUnLote(idTransporte, l.IDLote, "Proceso")
+        Next
+        Return idTransporte
+    End Function
+
+    Public Function cambiarEstadoDelTransporta(lote As Controladores.Lote, transporte As Controladores.Trasporte, estado As String)
+        Persistencia.getInstancia.updatefechallegadarealAlTransportaDeUnLote(transporte.ID, lote.IDLote, DateTime.Now)
+        Return Persistencia.getInstancia.updateEstadoDeUnTransporta(transporte.ID, lote.IDLote, estado)
+
+    End Function
+
+    Public Function comenzarTransporte(Transporte As Controladores.Trasporte)
+        Return Persistencia.getInstancia.UpdateHoraSalidaDelTransporte(Transporte.ID, DateTime.Now)
+    End Function
+
+    Public Function listaDeVehiculosSinLoteNiPosicion(idlugar As Integer) As DataTable
+        Dim tablaFinal As New DataTable
+        tablaFinal.Columns.Add(New DataColumn("IdVehiculo"))
+        tablaFinal.Columns.Add(New DataColumn("Vin"))
+        tablaFinal.Columns.Add(New DataColumn("Modelo"))
+        tablaFinal.Columns.Add(New DataColumn("Lote origen"))
+        tablaFinal.Columns.Add(New DataColumn("Fecha llegada"))
+        Dim dt As DataTable = Persistencia.getInstancia.lotesCuyoDestinoEs(idlugar)
+        For Each r As DataRow In dt.Rows
+            If Persistencia.getInstancia.UltimoPosicionadoPorIdlugaryIdvehiculo(idlugar, r.Item(0)) < r.Item(6) Then
+                Dim rrr As DataRow = tablaFinal.NewRow
+                rrr.Item(0) = r.Item(0)
+                rrr.Item(1) = r.Item(1)
+                rrr.Item(2) = r.Item(3)
+                rrr.Item(3) = r.Item(5)
+                rrr.Item(4) = r.Item(6)
+                tablaFinal.Rows.Add(rrr)
+            End If
+        Next
+        Return tablaFinal
     End Function
 
 End Class
