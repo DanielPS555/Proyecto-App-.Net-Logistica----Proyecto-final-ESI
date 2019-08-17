@@ -2,6 +2,7 @@
     Dim listaDeSUBLote As List(Of ContenedorLote)
     Dim elementosSelecionados As List(Of Integer)
     Dim transporte As Controladores.Trasporte
+
     Public Sub New(listaLotes As List(Of Controladores.Lote), medio As Controladores.MedioDeTransporte)
         InitializeComponent()
         Marco.getInstancia.Bloquear()
@@ -15,6 +16,7 @@
         Marco.getInstancia.cerrarPanel(Of PanelTrasporteEnAccion)()
         CargarPanales()
         crearTransporte()
+
     End Sub
 
     Private Sub crearTransporte()
@@ -59,6 +61,7 @@
                     tiempo1.Stop()
                     Marco.getInstancia.Desbloquear()
                     MsgBox("Todos los lotes han sido entregados, entonces el transporte se da por finalizado")
+                    Marco.getInstancia.cargarPanel(Of Lista_de_trasportes)(New Lista_de_trasportes)
                     Me.Close()
                     Me.Dispose()
                 End If
@@ -107,6 +110,7 @@
                 End If
             Next
         End If
+        Marco.getInstancia.cargarPanel(Of Lista_de_trasportes)(New Lista_de_trasportes)
         Marco.getInstancia.Desbloquear()
         Me.Close()
         Me.Dispose()
@@ -115,6 +119,8 @@
     Private Sub Tiempo1_Tick(sender As Object, e As EventArgs) Handles tiempo1.Tick
         tiempo.Text = (DateTime.Now - transporte.FechaSalida).ToString("dd\.hh\:mm\:ss")
     End Sub
+
+
 End Class
 
 Public Class ContenedorLote

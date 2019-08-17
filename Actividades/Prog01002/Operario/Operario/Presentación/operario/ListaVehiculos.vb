@@ -1,6 +1,6 @@
 Imports Controladores.Fachada
 Public Class ListaVehiculos
-
+    Private tipolista As Boolean = True
     Public Sub New()
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
@@ -30,8 +30,14 @@ Public Class ListaVehiculos
     End Sub
 
     Private Sub DataGridView1_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellDoubleClick
-        Dim row = DataGridView1.Rows()(e.RowIndex)
-        Marco.getInstancia.cargarPanel(New panelInfoVehiculo(row.Cells(1).Value, "Fuera del lugar" <> row.Cells(6).Value)).Show()
+        If tipolista Then
+            Dim row = DataGridView1.Rows()(e.RowIndex)
+            Marco.getInstancia.cargarPanel(New panelInfoVehiculo(row.Cells(1).Value, "Fuera del lugar" <> row.Cells(6).Value)).Show()
+        Else
+            Dim eleme As New Asignacion(DataGridView1.Rows(e.RowIndex).Cells(1).Value)
+            eleme.ShowDialog()
+        End If
+
     End Sub
 
     Private Sub buscar_Click(sender As Object, e As EventArgs)
@@ -40,10 +46,14 @@ Public Class ListaVehiculos
 
     Private Sub Button2_Click(sender As Object, e As EventArgs)
         Noasignados()
+        tipolista = False
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs)
         asignados()
+        tipolista = True
     End Sub
+
+
 End Class
 
