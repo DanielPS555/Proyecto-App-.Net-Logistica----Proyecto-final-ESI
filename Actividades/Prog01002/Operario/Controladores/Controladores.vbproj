@@ -145,6 +145,7 @@
     </Compile>
     <Compile Include="Persistencia\Extensiones.vb" />
     <Compile Include="Persistencia\Persistencia.vb" />
+    <Compile Include="Presentacion_comun\Actualiza.vb" />
     <Compile Include="Presentacion_comun\MapaPanelGrande.Designer.vb">
       <DependentUpon>MapaPanelGrande.vb</DependentUpon>
     </Compile>

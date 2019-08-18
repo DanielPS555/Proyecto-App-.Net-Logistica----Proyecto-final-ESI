@@ -70,6 +70,8 @@ Public Class nuevoVehiculo
         Next
         If lote.Items.Count > 0 Then
             lote.SelectedIndex = 0
+        Else
+            lote.Enabled = False
         End If
     End Sub
 

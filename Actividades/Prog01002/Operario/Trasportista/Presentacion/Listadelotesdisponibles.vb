@@ -1,4 +1,5 @@
-﻿Imports Controladores.Fachada
+﻿Imports Controladores
+Imports Controladores.Fachada
 Public Class Lista_de_trasportes
     Private lotes As New List(Of Controladores.Lote)
     Private paneles As New List(Of SUB_informeLote)
@@ -173,4 +174,6 @@ Public Class Lista_de_trasportes
     Private Sub TiposDeMedioAutorizados_SelectedIndexChanged(sender As Object, e As EventArgs) Handles TiposDeMedioAutorizados.SelectedIndexChanged
         cargarmediosPortipo()
     End Sub
+
+
 End Class
