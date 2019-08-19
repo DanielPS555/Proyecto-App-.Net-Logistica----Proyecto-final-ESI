@@ -1,4 +1,4 @@
-CREATE table
+﻿CREATE table
 	usuario(
 	IDUsuario serial primary key,
 	NombreDeUsuario varchar(20) not null unique,
@@ -62,7 +62,7 @@ create table
 CREATE table
 	trabajaen(
 	ID serial primary key,
-	IDLugar integer not null,
+	IDLugar integer, /* LA PUTA MADRE QUE TE PARIO BARREIRA */
 	IDUsuario integer not null,
 	FechaInicio date NOT null,
 	FechaFin date,
