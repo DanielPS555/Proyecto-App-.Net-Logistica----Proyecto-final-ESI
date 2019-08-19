@@ -8,7 +8,6 @@ Public Class Login
     Private contraseñaVisible As Boolean = False
 
     Public Sub New()
-
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
         Button1.Visible = True
@@ -21,7 +20,6 @@ Public Class Login
     End Sub
 
     Public Sub New(j As Boolean)
-
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
         Button1.Visible = True
@@ -76,10 +74,10 @@ Public Class Login
         If pass.Text = "Contraseña" Then
             pass.Text = ""
             If contraseñaVisible Then ' asignar diseño de acuerdo al estado de contraseñaVisible
-                ver.Image = Global.Operario.My.Resources.ojo_no
+                ver.Image = Global.Administrador.My.Resources.ojo_no
                 pass.PasswordChar = ""
             Else
-                ver.Image = Global.Operario.My.Resources.ojo
+                ver.Image = Global.Administrador.My.Resources.ojo
                 pass.PasswordChar = "*"
             End If
             ver.Enabled = True
@@ -92,11 +90,11 @@ Public Class Login
         If Not contraseñaVisible Then
             contraseñaVisible = True
             pass.PasswordChar = ""
-            ver.Image = Global.Operario.My.Resources.ojo_no
+            ver.Image = Global.Administrador.My.Resources.ojo_no
         Else
             contraseñaVisible = False
             pass.PasswordChar = "*"
-            ver.Image = Global.Operario.My.Resources.ojo
+            ver.Image = Global.Administrador.My.Resources.ojo
         End If
     End Sub
 
@@ -108,8 +106,8 @@ Public Class Login
         If Not Controladores.Fachada.getInstancia.IngresoDeUsuarioConComprobacion(user.Text, pass.Text) Then 'YA CARGA EN EL METODO AL USUARIO QUE INGRESO 
             MsgBox("Credenciales incorrectas. Intente nuevamente", MsgBoxStyle.Critical)
         Else
-            If Controladores.Fachada.getInstancia.rolDeUnUsuarioPorElNombreDeUsuario(user.Text) = Controladores.Usuario.TIPO_ROL_OPERARIO Then 'POR LA APLICACION
-                Principal.getInstancia.cargarPanel(Of LugarDeTrabajo)(New LugarDeTrabajo)
+            If Controladores.Fachada.getInstancia.rolDeUnUsuarioPorElNombreDeUsuario(user.Text) = Controladores.Usuario.TIPO_ROL_ADMINISTRADOR Then 'POR LA APLICACION
+                Principal.getInstancia.cargarPanel(Of Marco)(New Marco)
             Else
                 MsgBox("Esta aplicacion es unicamente para los Operarios", MsgBoxStyle.Critical)
             End If
@@ -143,7 +141,6 @@ Public Class Login
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
         Dim config As New ConfiguracionRed(Me)
         config.ShowDialog()
-
     End Sub
 
 End Class

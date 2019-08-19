@@ -55,6 +55,8 @@ Public Class ListaVehiculos
         tipolista = True
     End Sub
 
+    Private Sub tiposListas_SelectedIndexChanged(sender As Object, e As EventArgs) Handles tiposListas.SelectedIndexChanged
 
+    End Sub
 End Class
 

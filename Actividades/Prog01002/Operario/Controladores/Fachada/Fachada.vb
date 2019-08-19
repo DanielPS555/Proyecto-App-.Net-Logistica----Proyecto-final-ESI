@@ -162,7 +162,7 @@ Public Class Fachada
     End Sub
 
     Public Sub CerrarSeccion()
-        Persistencia.getInstancia.Cerrarseccion(Persistencia.getInstancia.TrabajaEn.Id, Persistencia.getInstancia.HoraDeLaConexcionActual)
+        'Persistencia.getInstancia.Cerrarseccion(Persistencia.getInstancia.TrabajaEn.Id, Persistencia.getInstancia.HoraDeLaConexcionActual)
     End Sub
 
     Public Function SeccionExsistente() As Boolean
