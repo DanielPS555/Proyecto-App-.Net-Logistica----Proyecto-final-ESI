@@ -368,8 +368,8 @@ Partial Class RegistroDeDañoPanel
         'panelFotografias
         '
         Me.panelFotografias.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.panelFotografias.Image = Global.Operario.My.Resources.Resources.sinContenidoFotografico
-        Me.panelFotografias.InitialImage = Global.Operario.My.Resources.Resources.sinContenidoFotografico
+        Me.panelFotografias.Image = Global.Administrador.My.Resources.Resources.sinContenidoFotografico
+        Me.panelFotografias.InitialImage = Global.Administrador.My.Resources.Resources.sinContenidoFotografico
         Me.panelFotografias.Location = New System.Drawing.Point(0, 0)
         Me.panelFotografias.Name = "panelFotografias"
         Me.panelFotografias.Size = New System.Drawing.Size(392, 364)

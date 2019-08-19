@@ -57,9 +57,9 @@ Public Class Principal
     End Function
 
     Private Sub Principal_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
-        If Fachada.getInstancia.SeccionExsistente() Then
-            Fachada.getInstancia.CerrarSeccion()
-        End If
+        'If Fachada.getInstancia.SeccionExsistente() Then
+        '    Fachada.getInstancia.CerrarSeccion()
+        'End If
 
 
     End Sub

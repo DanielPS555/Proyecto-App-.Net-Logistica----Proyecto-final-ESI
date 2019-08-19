@@ -51,7 +51,6 @@ Partial Class RestablecerContraseña
         Me.secretanswer.Font = New System.Drawing.Font("Century Gothic", 14.25!)
         Me.secretanswer.Location = New System.Drawing.Point(249, 253)
         Me.secretanswer.Name = "secretanswer"
-        Me.secretanswer.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.secretanswer.Size = New System.Drawing.Size(362, 31)
         Me.secretanswer.TabIndex = 4
         Me.secretanswer.Visible = False

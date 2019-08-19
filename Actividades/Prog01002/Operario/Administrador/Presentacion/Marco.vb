@@ -60,10 +60,6 @@ Public Class Marco
 
     Private Sub Marco_Load(sender As Object, e As EventArgs) Handles Me.Load
         b1.Font = New Font("Century Gothic", 15.75!, FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
-        If Fachada.getInstancia.TrabajaEnAcutual.Lugar.Tipo = Lugar.TIPO_LUGAR_PATIO Then
-            b3.Visible = False
-            b3.Enabled = False
-        End If
         Me.cargarPanel(Of AdministradorHome)(New AdministradorHome) 'despues se pasa por parametro un operario
     End Sub
 

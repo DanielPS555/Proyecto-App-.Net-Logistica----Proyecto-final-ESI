@@ -17,9 +17,9 @@ Public Class RegistroDeDañoPanel
         tipo.SelectedIndex = 0
 
         imagenes = New List(Of Bitmap)
-        p1.Image = Operario.My.Resources.sinContenidoFotografico
-        p2.Image = Operario.My.Resources.sinContenidoFotografico
-        p3.Image = Operario.My.Resources.sinContenidoFotografico
+        p1.Image = Administrador.My.Resources.sinContenidoFotografico
+        p2.Image = Administrador.My.Resources.sinContenidoFotografico
+        p3.Image = Administrador.My.Resources.sinContenidoFotografico
         If informe.NuevoVehiculo Then
             tipo.Enabled = False
             infoOrigen.Visible = False
@@ -77,9 +77,9 @@ Public Class RegistroDeDañoPanel
         piso = 0
         If imagenes.Count > 0 Then
             panelFotografias.Image = imagenes(0)
-            p1.Image = Operario.My.Resources.sinContenidoFotografico
-            p2.Image = Operario.My.Resources.sinContenidoFotografico
-            p3.Image = Operario.My.Resources.sinContenidoFotografico
+            p1.Image = Administrador.My.Resources.sinContenidoFotografico
+            p2.Image = Administrador.My.Resources.sinContenidoFotografico
+            p3.Image = Administrador.My.Resources.sinContenidoFotografico
             actualizarImagenes()
         End If
         descipt.Text = registroPadre.Descripcion.Trim
@@ -144,7 +144,7 @@ Public Class RegistroDeDañoPanel
             If imagenes.Count >= i + 1 Then
                 pc(c).Image = imagenes(i)
             Else
-                pc(c).Image = Operario.My.Resources.sinContenidoFotografico
+                pc(c).Image = Administrador.My.Resources.sinContenidoFotografico
             End If
             c += 1
         Next
@@ -316,7 +316,7 @@ Public Class RegistroDeDañoPanel
             imagenes.RemoveAt(actual)
             If actual = 0 Then
                 If imagenes.Count = 0 Then
-                    panelFotografias.Image = Operario.My.Resources.sinContenidoFotografico
+                    panelFotografias.Image = Administrador.My.Resources.sinContenidoFotografico
                 Else
                     panelFotografias.Image = imagenes(0)
                 End If
