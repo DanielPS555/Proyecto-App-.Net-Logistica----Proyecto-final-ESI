@@ -80,7 +80,7 @@ Public Class Persistencia
     End Function
 
     Public Function TransportesDeVehiculo(VIN As String) As DataTable
-        Dim selcmd As New Odbc.OdbcCommand("select l1.nombre as origen, l2.nombre as destino, lote.nombre as lote, mediotransporte.nombre as medio, transporte.fechahorasalida from vehiculo
+        Dim selcmd As New Odbc.OdbcCommand("select l1.nombre as origen, l2.nombre as destino, lote.nombre as lote, mediotransporte.nombre as medio, transporte.fechahorasalida, l1.geox, l1.geoy, l2.geox, l2.geoy from vehiculo
                                             inner join integra on integra.idvehiculo=vehiculo.idvehiculo and integra.invalidado='f'
                                             inner join lote on integra.lote=lote.idlote
                                             inner join transporta on transporta.idlote=lote.idlote
@@ -626,7 +626,7 @@ Public Class Persistencia
         con.CrearParametro(DbType.String, tipo)
         con.CrearParametro(DbType.Int32, anio)
         con.CrearParametro(DbType.Int32, idcliente)
-        Return com.ExecuteNonQuery() > 0
+        Return con.ExecuteNonQuery() > 0
     End Function
 
     Public Function InsertInformedeDaños(descripcion As String, fecha As DateTime, tipo As String, idvehiculo As Integer, idlugar As Integer, idUsuario As Integer)

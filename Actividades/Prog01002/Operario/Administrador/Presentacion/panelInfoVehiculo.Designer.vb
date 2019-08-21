@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class panelInfoVehiculo
     Inherits System.Windows.Forms.Form
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,15 +20,17 @@ Partial Class panelInfoVehiculo
     'NOTA: el Diseñador de Windows Forms necesita el siguiente procedimiento
     'Se puede modificar usando el Diseñador de Windows Forms.  
     'No lo modifique con el editor de código.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.TabControl1 = New System.Windows.Forms.TabControl()
+        Me.RutaVehiculo = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.id = New System.Windows.Forms.TextBox()
+        Me.Label22 = New System.Windows.Forms.Label()
         Me.Cancelar = New System.Windows.Forms.LinkLabel()
         Me.EliminarLoteSelecion = New System.Windows.Forms.LinkLabel()
         Me.cambiarGuardarLote = New System.Windows.Forms.LinkLabel()
@@ -110,9 +112,7 @@ Partial Class panelInfoVehiculo
         Me.trasportadoPor = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.Label22 = New System.Windows.Forms.Label()
-        Me.id = New System.Windows.Forms.TextBox()
-        Me.TabControl1.SuspendLayout()
+        Me.RutaVehiculo.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.QR, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage2.SuspendLayout()
@@ -135,20 +135,20 @@ Partial Class panelInfoVehiculo
         Me.Panel2.Size = New System.Drawing.Size(880, 0)
         Me.Panel2.TabIndex = 85
         '
-        'TabControl1
+        'RutaVehiculo
         '
-        Me.TabControl1.Controls.Add(Me.TabPage1)
-        Me.TabControl1.Controls.Add(Me.TabPage2)
-        Me.TabControl1.Controls.Add(Me.TabPage3)
-        Me.TabControl1.Controls.Add(Me.TabPage4)
-        Me.TabControl1.Controls.Add(Me.TabPage5)
-        Me.TabControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TabControl1.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TabControl1.Location = New System.Drawing.Point(0, 0)
-        Me.TabControl1.Name = "TabControl1"
-        Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(880, 650)
-        Me.TabControl1.TabIndex = 86
+        Me.RutaVehiculo.Controls.Add(Me.TabPage1)
+        Me.RutaVehiculo.Controls.Add(Me.TabPage2)
+        Me.RutaVehiculo.Controls.Add(Me.TabPage3)
+        Me.RutaVehiculo.Controls.Add(Me.TabPage4)
+        Me.RutaVehiculo.Controls.Add(Me.TabPage5)
+        Me.RutaVehiculo.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.RutaVehiculo.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RutaVehiculo.Location = New System.Drawing.Point(0, 0)
+        Me.RutaVehiculo.Name = "RutaVehiculo"
+        Me.RutaVehiculo.SelectedIndex = 0
+        Me.RutaVehiculo.Size = New System.Drawing.Size(880, 650)
+        Me.RutaVehiculo.TabIndex = 86
         '
         'TabPage1
         '
@@ -193,6 +193,25 @@ Partial Class panelInfoVehiculo
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "General"
         Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        'id
+        '
+        Me.id.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.id.Enabled = False
+        Me.id.Location = New System.Drawing.Point(704, 209)
+        Me.id.Name = "id"
+        Me.id.Size = New System.Drawing.Size(149, 26)
+        Me.id.TabIndex = 142
+        '
+        'Label22
+        '
+        Me.Label22.AutoSize = True
+        Me.Label22.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label22.Location = New System.Drawing.Point(662, 209)
+        Me.Label22.Name = "Label22"
+        Me.Label22.Size = New System.Drawing.Size(36, 24)
+        Me.Label22.TabIndex = 141
+        Me.Label22.Text = "ID:"
         '
         'Cancelar
         '
@@ -1037,37 +1056,18 @@ Partial Class panelInfoVehiculo
         Me.Label4.TabIndex = 0
         Me.Label4.Text = "2º ENTREGA, Coresponde a la Aplicacion del administrador"
         '
-        'Label22
-        '
-        Me.Label22.AutoSize = True
-        Me.Label22.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label22.Location = New System.Drawing.Point(662, 209)
-        Me.Label22.Name = "Label22"
-        Me.Label22.Size = New System.Drawing.Size(36, 24)
-        Me.Label22.TabIndex = 141
-        Me.Label22.Text = "ID:"
-        '
-        'id
-        '
-        Me.id.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.id.Enabled = False
-        Me.id.Location = New System.Drawing.Point(704, 209)
-        Me.id.Name = "id"
-        Me.id.Size = New System.Drawing.Size(149, 26)
-        Me.id.TabIndex = 142
-        '
         'panelInfoVehiculo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(880, 650)
-        Me.Controls.Add(Me.TabControl1)
+        Me.Controls.Add(Me.RutaVehiculo)
         Me.Controls.Add(Me.Panel2)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "panelInfoVehiculo"
         Me.Text = "panelInfoUsuario"
-        Me.TabControl1.ResumeLayout(False)
+        Me.RutaVehiculo.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage1.PerformLayout()
         CType(Me.QR, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1088,7 +1088,7 @@ Partial Class panelInfoVehiculo
 
     End Sub
     Friend WithEvents Panel2 As Panel
-    Friend WithEvents TabControl1 As TabControl
+    Friend WithEvents RutaVehiculo As TabControl
     Friend WithEvents TabPage1 As TabPage
     Friend WithEvents TabPage2 As TabPage
     Friend WithEvents Label1 As Label

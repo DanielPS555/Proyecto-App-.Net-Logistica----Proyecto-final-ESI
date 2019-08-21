@@ -18,7 +18,9 @@ Public Class Zona
         Me.Subzonas = New List(Of Subzona)
     End Sub
 
-
+    Public Overrides Function ToString() As String
+        Return Nombre
+    End Function
 
     Private _nombre As String
     Public Property Nombre() As String

@@ -1,0 +1,27 @@
+#![Login]
+usuario:Actor
+Marco:Marco
+GUI:Login
+Fachada:Fachada
+Persistencia:Persistencia
+Informix:Base de datos externa
+/BCrypt:Librería criptográfica
+
+usuario:GUI.Ingresa sus datos
+GUI:Fachada.IngresoDeUsuarioConComprobacion
+Fachada:Fachada.ComprobarUsuario
+Fachada:Persistencia.VerificarCredenciales
+Persistencia:Informix.Consulta
+Persistencia:BCrypt.new
+Persistencia:BCrypt.EnhancedVerify(password, hash)
+Persistencia:BCrypt.delete
+[c:Credenciales_Validas]
+GUI:Fachada.RolDeUsuarioPorNombreDeUsuario
+Fachada:Persistencia.rolDeUsuario
+Persistencia:Informix.Consulta
+[c:Es_operario]
+GUI:Marco.LugarDeTrabajo
+[/c]
+-- Credenciales_Incorrectas_O_NoOperario
+GUI:usuario.Avisar de fallo de autenticación
+[/c]
