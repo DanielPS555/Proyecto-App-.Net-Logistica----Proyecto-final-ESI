@@ -397,7 +397,7 @@ Public Class panelInfoVehiculo
                 MsgBox("Solo se puede modificar el ultimo informe", MsgBoxStyle.Critical)
             End If
         Else
-                MsgBox("Solo el creador puede modificar este informe", MsgBoxStyle.Critical)
+            MsgBox("Solo el creador puede modificar este informe", MsgBoxStyle.Critical)
         End If
 
 
@@ -463,6 +463,5 @@ Public Class panelInfoVehiculo
         cargarMiLote()
         loteTemp = Nothing
     End Sub
-
 
 End Class

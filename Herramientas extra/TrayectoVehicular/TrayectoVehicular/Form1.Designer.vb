@@ -26,6 +26,7 @@ Partial Class TrayectoVehicular
         Me.ListBox2 = New System.Windows.Forms.ListBox()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
+        Me.GMapControl1 = New GMap.NET.WindowsForms.GMapControl()
         Me.ToolStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -42,7 +43,7 @@ Partial Class TrayectoVehicular
         Me.ListBox2.FormattingEnabled = True
         Me.ListBox2.Location = New System.Drawing.Point(134, 25)
         Me.ListBox2.Name = "ListBox2"
-        Me.ListBox2.Size = New System.Drawing.Size(569, 251)
+        Me.ListBox2.Size = New System.Drawing.Size(452, 251)
         Me.ListBox2.TabIndex = 1
         '
         'ToolStrip1
@@ -50,7 +51,7 @@ Partial Class TrayectoVehicular
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(715, 25)
+        Me.ToolStrip1.Size = New System.Drawing.Size(947, 25)
         Me.ToolStrip1.TabIndex = 2
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -62,11 +63,38 @@ Partial Class TrayectoVehicular
         Me.ToolStripButton1.Size = New System.Drawing.Size(82, 22)
         Me.ToolStripButton1.Text = "Consulta SQL"
         '
+        'GMapControl1
+        '
+        Me.GMapControl1.Bearing = 0!
+        Me.GMapControl1.CanDragMap = True
+        Me.GMapControl1.EmptyTileColor = System.Drawing.Color.Navy
+        Me.GMapControl1.GrayScaleMode = False
+        Me.GMapControl1.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow
+        Me.GMapControl1.LevelsKeepInMemmory = 5
+        Me.GMapControl1.Location = New System.Drawing.Point(592, 25)
+        Me.GMapControl1.MarkersEnabled = True
+        Me.GMapControl1.MaxZoom = 2
+        Me.GMapControl1.MinZoom = 2
+        Me.GMapControl1.MouseWheelZoomEnabled = True
+        Me.GMapControl1.MouseWheelZoomType = GMap.NET.MouseWheelZoomType.MousePositionAndCenter
+        Me.GMapControl1.Name = "GMapControl1"
+        Me.GMapControl1.NegativeMode = False
+        Me.GMapControl1.PolygonsEnabled = True
+        Me.GMapControl1.RetryLoadTile = 0
+        Me.GMapControl1.RoutesEnabled = True
+        Me.GMapControl1.ScaleMode = GMap.NET.WindowsForms.ScaleModes.[Integer]
+        Me.GMapControl1.SelectedAreaFillColor = System.Drawing.Color.FromArgb(CType(CType(33, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(105, Byte), Integer), CType(CType(225, Byte), Integer))
+        Me.GMapControl1.ShowTileGridLines = False
+        Me.GMapControl1.Size = New System.Drawing.Size(343, 249)
+        Me.GMapControl1.TabIndex = 3
+        Me.GMapControl1.Zoom = 0R
+        '
         'TrayectoVehicular
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(715, 286)
+        Me.ClientSize = New System.Drawing.Size(947, 286)
+        Me.Controls.Add(Me.GMapControl1)
         Me.Controls.Add(Me.ToolStrip1)
         Me.Controls.Add(Me.ListBox2)
         Me.Controls.Add(Me.ListBox1)
@@ -83,4 +111,5 @@ Partial Class TrayectoVehicular
     Friend WithEvents ListBox2 As ListBox
     Friend WithEvents ToolStrip1 As ToolStrip
     Friend WithEvents ToolStripButton1 As ToolStripButton
+    Friend WithEvents GMapControl1 As GMap.NET.WindowsForms.GMapControl
 End Class
