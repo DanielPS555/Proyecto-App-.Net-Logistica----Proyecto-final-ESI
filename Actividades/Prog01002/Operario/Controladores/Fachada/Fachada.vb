@@ -6,7 +6,6 @@ Imports Controladores.Extenciones
 Public Class Fachada
     Private Shared initi As Fachada
 
-
     Private Sub New()
 
     End Sub
@@ -764,6 +763,11 @@ Public Class Fachada
             End If
         Next
         Return tablaFinal
+    End Function
+
+    Public Function nuevaPrecarga(vehi As Vehiculo, user As Usuario)
+        Persistencia.getInstancia.insertVehiculo(vehi.IdVehiculo, vehi.Marca, vehi.Modelo, vehi.Color.ToArgb.ToString("X6"), vehi.Tipo, vehi.Año, vehi.Cliente.IDCliente)
+        Return Persistencia.getInstancia.insertVehiculoIngresa(vehi.IdVehiculo, DateTime.Now, "Precarga", user.ID_usuario)
     End Function
 
 End Class

@@ -63,12 +63,12 @@ Public Class Marco
         Me.cargarPanel(Of AdministradorHome)(New AdministradorHome) 'despues se pasa por parametro un operario
     End Sub
 
-    Private Sub botones_Click(sender As Object, e As EventArgs) Handles b1.Click, b2.Click, b3.Click, b4.Click, b5.Click, b6.Click, b7.Click, b8.Click, b9.Click, b10.Click, b11.Click, b12.Click, b13.Click, b14.Click
-        Dim botones() As Button = {b1, b2, b3, b4, b5, b6, b7, b8, b9, b10, b11, b12, b13, b14}
+    Private Sub botones_Click(sender As Object, e As EventArgs) Handles b1.Click, b2.Click, b3.Click, b4.Click, b5.Click, b6.Click, b7.Click, b8.Click, b9.Click, b10.Click, b11.Click, b12.Click, b13.Click, b14.Click, b15.Click
+        Dim botones() As Button = {b1, b2, b3, b4, b5, b6, b7, b8, b9, b10, b11, b12, b13, b14, b15}
         Dim selec As Button = DirectCast(sender, Button)
         For i As Integer = 0 To botones.Length - 1
             If botones(i).Equals(selec) Then
-                If botones(i).Equals(b3) Or botones(i).Equals(b6) Or botones(i).Equals(b8) Or botones(i).Equals(b12) Or botones(i).Equals(b14) Then
+                If botones(i).Equals(b3) Or botones(i).Equals(b6) Or botones(i).Equals(b8) Or botones(i).Equals(b12) Or botones(i).Equals(b14) Or botones(i).Equals(b15) Then
                     botones(i).Font = New Font("Century Gothic", 12, FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
                 Else
                     botones(i).Font = New Font("Century Gothic", 15.75!, FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
@@ -113,6 +113,8 @@ Public Class Marco
                 ' LISTA DE CLIENTES
             Case "b14"
                 ' NUEVO CLIENTE 
+            Case "b15"
+                cargarPanel(Of NuevaPrecarga)(New NuevaPrecarga)
         End Select
 
     End Sub

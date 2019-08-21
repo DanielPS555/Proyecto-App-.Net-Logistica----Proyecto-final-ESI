@@ -43,7 +43,6 @@ Partial Class NuevaPrecarga
         '
         'clientes
         '
-        Me.clientes.Enabled = False
         Me.clientes.Font = New System.Drawing.Font("Century Gothic", 15.0!)
         Me.clientes.FormattingEnabled = True
         Me.clientes.Location = New System.Drawing.Point(123, 487)
@@ -84,7 +83,6 @@ Partial Class NuevaPrecarga
         Me.color.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.color.BackColor = System.Drawing.Color.White
-        Me.color.Enabled = False
         Me.color.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
         Me.color.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
         Me.color.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White
@@ -102,7 +100,6 @@ Partial Class NuevaPrecarga
         '
         'tipo
         '
-        Me.tipo.Enabled = False
         Me.tipo.Font = New System.Drawing.Font("Century Gothic", 15.0!)
         Me.tipo.FormattingEnabled = True
         Me.tipo.Items.AddRange(New Object() {"Auto", "Camion", "SUV", "Van", "MiniVan"})
@@ -143,7 +140,6 @@ Partial Class NuevaPrecarga
         '
         'anio
         '
-        Me.anio.Enabled = False
         Me.anio.Font = New System.Drawing.Font("Century Gothic", 15.0!)
         Me.anio.FormattingEnabled = True
         Me.anio.Location = New System.Drawing.Point(123, 212)
@@ -174,7 +170,6 @@ Partial Class NuevaPrecarga
         'modelo
         '
         Me.modelo.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.modelo.Enabled = False
         Me.modelo.Font = New System.Drawing.Font("Century Gothic", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.modelo.Location = New System.Drawing.Point(123, 151)
         Me.modelo.Name = "modelo"
@@ -184,7 +179,6 @@ Partial Class NuevaPrecarga
         'marca
         '
         Me.marca.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.marca.Enabled = False
         Me.marca.Font = New System.Drawing.Font("Century Gothic", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.marca.Location = New System.Drawing.Point(123, 92)
         Me.marca.Name = "marca"
@@ -214,7 +208,6 @@ Partial Class NuevaPrecarga
         'vin
         '
         Me.vin.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.vin.Enabled = False
         Me.vin.Font = New System.Drawing.Font("Century Gothic", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.vin.Location = New System.Drawing.Point(123, 33)
         Me.vin.Name = "vin"
@@ -225,16 +218,16 @@ Partial Class NuevaPrecarga
         '
         Me.Button2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button2.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.Button2.BackColor = System.Drawing.Color.White
         Me.Button2.Enabled = False
         Me.Button2.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Me.Button2.FlatAppearance.BorderSize = 0
+        Me.Button2.FlatAppearance.BorderSize = 2
         Me.Button2.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
         Me.Button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
         Me.Button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button2.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button2.ForeColor = System.Drawing.Color.White
+        Me.Button2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
         Me.Button2.Location = New System.Drawing.Point(28, 586)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(272, 52)

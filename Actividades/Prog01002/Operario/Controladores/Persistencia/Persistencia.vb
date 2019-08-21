@@ -617,6 +617,18 @@ Public Class Persistencia
         Return com.ExecuteNonQuery() > 0
     End Function
 
+    Public Function insertVehiculo(vin As String, marca As String, modelo As String, color As String, tipo As String, anio As Integer, idcliente As Integer)
+        Dim con As New OdbcCommand("insert into vehiculo values (0,?,?,?,?,?,?,?)", Conexcion)
+        con.CrearParametro(DbType.String, vin)
+        con.CrearParametro(DbType.String, marca)
+        con.CrearParametro(DbType.String, modelo)
+        con.CrearParametro(DbType.String, color)
+        con.CrearParametro(DbType.String, tipo)
+        con.CrearParametro(DbType.Int32, anio)
+        con.CrearParametro(DbType.Int32, idcliente)
+        Return com.ExecuteNonQuery() > 0
+    End Function
+
     Public Function InsertInformedeDaños(descripcion As String, fecha As DateTime, tipo As String, idvehiculo As Integer, idlugar As Integer, idUsuario As Integer)
         Dim com As New OdbcCommand("insert into informedanios(id, descripcion, fecha, tipo, idvehiculo, idlugar, idusuario) 
                                     values(0,?,?,?,?,?,?);", Conexcion)

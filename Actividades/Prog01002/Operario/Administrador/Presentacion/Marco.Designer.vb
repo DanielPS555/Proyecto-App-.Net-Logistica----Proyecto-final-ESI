@@ -27,6 +27,7 @@ Partial Class Marco
         Me.contpr = New System.Windows.Forms.Panel()
         Me.contenedor = New System.Windows.Forms.Panel()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.b15 = New System.Windows.Forms.Button()
         Me.b14 = New System.Windows.Forms.Button()
         Me.b13 = New System.Windows.Forms.Button()
         Me.b6 = New System.Windows.Forms.Button()
@@ -112,6 +113,7 @@ Partial Class Marco
         'Panel2
         '
         Me.Panel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.Panel2.Controls.Add(Me.b15)
         Me.Panel2.Controls.Add(Me.b14)
         Me.Panel2.Controls.Add(Me.b13)
         Me.Panel2.Controls.Add(Me.b6)
@@ -135,6 +137,28 @@ Partial Class Marco
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(220, 650)
         Me.Panel2.TabIndex = 0
+        '
+        'b15
+        '
+        Me.b15.AccessibleRole = System.Windows.Forms.AccessibleRole.Grip
+        Me.b15.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.b15.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.b15.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.b15.FlatAppearance.BorderSize = 0
+        Me.b15.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.b15.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        Me.b15.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        Me.b15.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.b15.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.b15.ForeColor = System.Drawing.Color.White
+        Me.b15.Location = New System.Drawing.Point(3, 98)
+        Me.b15.Name = "b15"
+        Me.b15.Size = New System.Drawing.Size(214, 32)
+        Me.b15.TabIndex = 19
+        Me.b15.Text = "      - Nuevo Precarga"
+        Me.b15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.b15.UseVisualStyleBackColor = False
         '
         'b14
         '
@@ -374,7 +398,7 @@ Partial Class Marco
         Me.b4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.b4.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.b4.ForeColor = System.Drawing.Color.White
-        Me.b4.Location = New System.Drawing.Point(3, 107)
+        Me.b4.Location = New System.Drawing.Point(3, 120)
         Me.b4.Name = "b4"
         Me.b4.Size = New System.Drawing.Size(214, 35)
         Me.b4.TabIndex = 5
@@ -497,4 +521,5 @@ Partial Class Marco
     Friend WithEvents b10 As Button
     Friend WithEvents b9 As Button
     Friend WithEvents b7 As Button
+    Friend WithEvents b15 As Button
 End Class
