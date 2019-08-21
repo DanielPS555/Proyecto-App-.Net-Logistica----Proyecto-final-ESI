@@ -17,37 +17,28 @@ Public Class ListaZonas
         zonas.SelectedIndex = 0
     End Sub
 
-    Public zkvs As New Dictionary(Of String, Tuple(Of Integer, Integer)) ' zonas keyvalue store
     Private Sub cargarZonas()
-        Dim r As DataTable = Persistencia.getInstancia.DevolverInformacionBasicaDeZonasPorID_lugar(Persistencia.getInstancia.TrabajaEn.Lugar.IDLugar)
+        Fachada.getInstancia.CargarTrabajaEnConLugarZonasySubzonas() ' por las dudas
+        Dim zonaslist = Persistencia.getInstancia.TrabajaEn.Lugar.Zonas
         zonas.Items.Clear()
-        zkvs.Clear()
-        For i As Integer = 0 To r.Rows.Count - 1
-            zkvs.Add(r.Rows(i).Item(1), New Tuple(Of Integer, Integer)(r.Rows(i).Item(0), r.Rows(i).Item(2)))
-            zonas.Items.Add(r.Rows(i).Item(1))
-        Next
+        zonas.Items.AddRange(zonaslist.ToArray)
     End Sub
 
-    Private szkvs As New Dictionary(Of String, Tuple(Of Integer, Integer))
-    Private Sub CargarSubzonas(zona As String)
-        Dim r As DataTable = Persistencia.getInstancia.DevolverInformacionDeSubzonaPorIdZona(zkvs(zona).Item1, Persistencia.getInstancia.TrabajaEn.Lugar.IDLugar)
-        subzonas.Items.Clear()
-        szkvs.Clear()
+    Private subzonaslist As List(Of Subzona)
 
-        For i As Integer = 0 To r.Rows.Count - 1
-            szkvs.Add(r.Rows(i).Item(1), New Tuple(Of Integer, Integer)(r.Rows(i).Item(0), r.Rows(i).Item(2)))
-            subzonas.Items.Add(r.Rows(i).Item(1))
-        Next
+    Private Sub CargarSubzonas(zona As Zona)
+        subzonas.Items.Clear()
+        subzonaslist = zona.Subzonas
+        subzonas.Items.AddRange(subzonaslist.ToArray)
     End Sub
 
     Private Sub zonas_SelectedIndexChanged(sender As Object, e As EventArgs) Handles zonas.SelectedIndexChanged
-
         CargarSubzonas(zonas.SelectedItem)
         subzonas.SelectedIndex = 0
-        zonaNombre.Text = zonas.SelectedItem
-        zonaCapasidad.Text = zkvs(zonas.SelectedItem).Item2
+        zonaNombre.Text = zonas.SelectedItem.ToString
+        zonaCapasidad.Text = CType(zonas.SelectedItem, Zona).Capacidad
         Try
-            zonaUso.Text = Persistencia.getInstancia.PosicionesOcupadasEnLugar(zkvs(zonas.SelectedItem).Item1)
+            zonaUso.Text = Persistencia.getInstancia.PosicionesOcupadasEnLugar(CType(zonas.SelectedItem, Zona).IDZona)
         Catch ex As Exception
             zonaUso.Text = "0"
         End Try
@@ -55,19 +46,19 @@ Public Class ListaZonas
     End Sub
 
     Private Sub subzonas_SelectedIndexChanged(sender As Object, e As EventArgs) Handles subzonas.SelectedIndexChanged
-        subnombre.Text = subzonas.SelectedItem
-        subcapasidad.Text = szkvs(subzonas.SelectedItem).Item2
+        subnombre.Text = subzonas.SelectedItem.ToString
+        subcapasidad.Text = CType(subzonas.SelectedItem, Subzona).Capasidad
         Try
-            subUso.Text = Persistencia.getInstancia.PosicionesOcupadasEnLugar(szkvs(subzonas.SelectedItem).Item1)
+            subUso.Text = Persistencia.getInstancia.PosicionesOcupadasEnLugar(CType(subzonas.SelectedItem, Subzona).IDSubzona)
         Catch ex As Exception
             subUso.Text = "0"
         End Try
         cargarTablaVehiculos(subzonas.SelectedItem)
     End Sub
 
-    Private Sub cargarTablaVehiculos(subzona As String)
+    Private Sub cargarTablaVehiculos(subzona As Subzona)
 
-        Dim r As DataTable = Persistencia.getInstancia.DatosBasicosParaListarVehiculosPorSubzona(szkvs(subzona).Item1)
+        Dim r As DataTable = Persistencia.getInstancia.DatosBasicosParaListarVehiculosPorSubzona(subzona.IDSubzona)
 
         vehi.DataSource = r
     End Sub

@@ -447,7 +447,7 @@ Public Class Fachada
                     reg.Actualiza = reg2
                 End If
                 Dim dt3 As DataTable = Persistencia.getInstancia.Imagenes(l.ID, reg.ID)
-                    For Each r3 As DataRow In dt3.Rows
+                For Each r3 As DataRow In dt3.Rows
                     reg.Imagenes.Add(Funciones_comunes.BitmapFromByteArray(r3.Item(1)))
                 Next
 

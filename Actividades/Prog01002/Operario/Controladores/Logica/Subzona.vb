@@ -53,6 +53,9 @@ Public Class Subzona
 
     End Sub
 
+    Public Overrides Function ToString() As String
+        Return Nombre
+    End Function
 
     Public Sub New(zonaPadre As Zona)
         Me.ZonaPadre = zonaPadre
