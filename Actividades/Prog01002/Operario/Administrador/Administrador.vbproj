@@ -306,6 +306,9 @@
     <EmbeddedResource Include="Presentacion\Marco.resx">
       <DependentUpon>Marco.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\NuevaPrecarga.resx">
+      <DependentUpon>NuevaPrecarga.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\NuevoLote.resx">
       <DependentUpon>NuevoLote.vb</DependentUpon>
     </EmbeddedResource>
