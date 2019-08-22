@@ -1121,15 +1121,27 @@ Public Class Persistencia
     End Function
 
     Public Function ultimoVehiculoIngresadoPorIdUsuario(idusuario As Integer)
-
+        Dim com As New OdbcCommand("select first 1 idvehiculo, Fecha from vehiculoIngresa
+                                    where usuario=? and TipoIngreso='Precarga'
+                                    order by fecha desc, idvehiculo desc", Conexcion)
+        com.CrearParametro(DbType.Int32, idusuario)
+        Return com.ExecuteScalar
     End Function
 
     Public Function ultimoClienteIngresadoPorIdUsuario(idusuario As Integer)
-
+        Dim com As New OdbcCommand("select first 1  idcliente, fechaRegistro from cliente
+                                    where UsuarioRegistro=?
+                                    order by fechaRegistro desc, idcliente desc", Conexcion)
+        com.CrearParametro(DbType.Int32, idusuario)
+        Return com.ExecuteScalar
     End Function
 
     Public Function ultimoLugarIngresadoPorIdusuario(idusuario As Integer)
-
+        Dim com As New OdbcCommand("select first 1 idlugar, fechaRegistro from lugar
+                                    where UsuarioCreador=?
+                                    order by fechaRegistro desc, idlugar desc", Conexcion)
+        com.CrearParametro(DbType.Int32, idusuario)
+        Return com.ExecuteScalar
     End Function
 
 

@@ -135,10 +135,16 @@
     <Compile Include="Presentacion\crearInformaDeDaños.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Presentacion\ListaClientes.Designer.vb">
-      <DependentUpon>ListaClientes.vb</DependentUpon>
+    <Compile Include="Presentacion\ListaDeMediosAutorizados.Designer.vb">
+      <DependentUpon>ListaDeMediosAutorizados.vb</DependentUpon>
     </Compile>
-    <Compile Include="Presentacion\ListaClientes.vb">
+    <Compile Include="Presentacion\ListaDeMediosAutorizados.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ListaDeTrasportes.Designer.vb">
+      <DependentUpon>ListaDeTrasportes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ListaDeTrasportes.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Presentacion\ListaLotes.Designer.vb">
@@ -147,16 +153,16 @@
     <Compile Include="Presentacion\ListaLotes.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Presentacion\ListaLugares.Designer.vb">
-      <DependentUpon>ListaLugares.vb</DependentUpon>
+    <Compile Include="Presentacion\ListarClientes.Designer.vb">
+      <DependentUpon>ListarClientes.vb</DependentUpon>
     </Compile>
-    <Compile Include="Presentacion\ListaLugares.vb">
+    <Compile Include="Presentacion\ListarClientes.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Presentacion\ListaUsuarios.Designer.vb">
-      <DependentUpon>ListaUsuarios.vb</DependentUpon>
+    <Compile Include="Presentacion\ListarLugares.Designer.vb">
+      <DependentUpon>ListarLugares.vb</DependentUpon>
     </Compile>
-    <Compile Include="Presentacion\ListaUsuarios.vb">
+    <Compile Include="Presentacion\ListarLugares.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Presentacion\ListaVehiculos.Designer.vb">
@@ -169,6 +175,12 @@
       <DependentUpon>ListaZonas.vb</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\ListaZonas.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ListarUsuario.Designer.vb">
+      <DependentUpon>ListarUsuario.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ListarUsuario.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Presentacion\Login.Designer.vb">
@@ -256,6 +268,18 @@
     <Compile Include="Presentacion\PanelLugar.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Presentacion\PanelMedioDeTrasporte.Designer.vb">
+      <DependentUpon>PanelMedioDeTrasporte.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\PanelMedioDeTrasporte.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\PanelTrasporte.Designer.vb">
+      <DependentUpon>PanelTrasporte.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\PanelTrasporte.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Presentacion\Principal.Designer.vb">
       <DependentUpon>Principal.vb</DependentUpon>
     </Compile>
@@ -297,6 +321,12 @@
     <EmbeddedResource Include="Presentacion\crearInformaDeDaños.resx">
       <DependentUpon>crearInformaDeDaños.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ListaDeMediosAutorizados.resx">
+      <DependentUpon>ListaDeMediosAutorizados.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ListaDeTrasportes.resx">
+      <DependentUpon>ListaDeTrasportes.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\ListaLotes.resx">
       <DependentUpon>ListaLotes.vb</DependentUpon>
     </EmbeddedResource>
@@ -332,6 +362,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\panelInfoVehiculo.resx">
       <DependentUpon>panelInfoVehiculo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\PanelMedioDeTrasporte.resx">
+      <DependentUpon>PanelMedioDeTrasporte.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\PanelTrasporte.resx">
+      <DependentUpon>PanelTrasporte.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\Principal.resx">
       <DependentUpon>Principal.vb</DependentUpon>
