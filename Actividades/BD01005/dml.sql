@@ -27,13 +27,13 @@ insert into cliente(IDCliente, RUT, Nombre, fechaRegistro, invalido, usuarioregi
 insert into cliente(IDCliente, RUT, Nombre, fechaRegistro, invalido, usuarioregistro) values(0, 785349658722, "Chevrolet UY", "2014-8-8", 'f', 1);
 
 	/*LUGAR*/
-insert into lugar(idlugar, nombre, capacidad, geox, geoy, usuariocreador, tipo) values (0,"Deposito piedras blancas", 3500, -34.882456, -56.194172,(select idusuario from usuario where primernombre = "Felipe"),"Patio");
-insert into lugar(idlugar, nombre, capacidad, geox, geoy, usuariocreador, tipo) values (0,"Deposito de maldonado", 500, -34.948760, -54.924569,(select idusuario from usuario where primernombre = "Felipe"),"Patio");
-insert into lugar(idlugar, nombre, capacidad, geox, geoy, usuariocreador, tipo) values (0,"Puerto de montevideo", 1200, -34.987460, -56.254790,(select idusuario from usuario where primernombre = "Felipe"),"Puerto");
-insert into lugar(idlugar, nombre, capacidad, geox, geoy, usuariocreador, tipo) values (0,"Puerto de aguas profundas rocha", 2000, -34.658827, -54.152534,(select idusuario from usuario where primernombre = "Felipe"),"Puerto");
-insert into lugar(idlugar, nombre, capacidad, geox, geoy, usuariocreador, tipo) values (0,"Patio de Sevel", 95, -34.882799, -56.088555, (select idusuario from usuario where primernombre = "Felipe"), "Establecimiento");
+insert into lugar(idlugar, nombre, capacidad, geox, geoy, usuariocreador,fechaRegistro, tipo) values (0,"Deposito piedras blancas", 3500, -34.882456, -56.194172,(select idusuario from usuario where primernombre = "Felipe"),'2019-5-2 19:21:00',"Patio");
+insert into lugar(idlugar, nombre, capacidad, geox, geoy, usuariocreador,fechaRegistro, tipo) values (0,"Deposito de maldonado", 500, -34.948760, -54.924569,(select idusuario from usuario where primernombre = "Felipe"),'2019-5-3 19:21:00',"Patio");
+insert into lugar(idlugar, nombre, capacidad, geox, geoy, usuariocreador,fechaRegistro, tipo) values (0,"Puerto de montevideo", 1200, -34.987460, -56.254790,(select idusuario from usuario where primernombre = "Felipe"),'2019-4-2 16:21:00',"Puerto");
+insert into lugar(idlugar, nombre, capacidad, geox, geoy, usuariocreador,fechaRegistro, tipo) values (0,"Puerto de aguas profundas rocha", 2000, -34.658827, -54.152534,(select idusuario from usuario where primernombre = "Felipe"),'2019-5-1 12:01:00',"Puerto");
+insert into lugar(idlugar, nombre, capacidad, geox, geoy, usuariocreador,fechaRegistro, tipo) values (0,"Patio de Sevel", 95, -34.882799, -56.088555, (select idusuario from usuario where primernombre = "Felipe"),'2019-2-1 12:01:00', "Establecimiento");
 insert into perteneceA(IDLugar, ClienteID) values ((select idlugar from lugar where nombre="Patio de Sevel"), (select IDCliente from cliente where Nombre="Sevel"));
-insert into lugar(idlugar, nombre, capacidad, geox, geoy, usuariocreador, tipo) values (0,"Patio de Chevrolet Ur a gay", 95, -34.882799, -56.088555, (select idusuario from usuario where primernombre = "Felipe"), "Establecimiento");
+insert into lugar(idlugar, nombre, capacidad, geox, geoy, usuariocreador,fechaRegistro, tipo) values (0,"Patio de Chevrolet Ur a gay", 95, -34.882799, -56.088555, (select idusuario from usuario where primernombre = "Felipe"),'2019-5-16 19:21:00', "Establecimiento");
 insert into perteneceA(IDLugar, ClienteID) values ((select idlugar from lugar where nombre="Patio de Chevrolet Ur a gay"), (select IDCliente from cliente where Nombre="Chevrolet UY"));
 
 /*20*/

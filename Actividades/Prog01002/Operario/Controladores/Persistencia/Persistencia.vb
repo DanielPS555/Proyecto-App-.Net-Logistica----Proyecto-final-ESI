@@ -1026,6 +1026,16 @@ Public Class Persistencia
         Return dt
     End Function
 
+    Public Function precargasActuales()
+        Dim com As New OdbcCommand("select vehiculo.IDVehiculo, vin, modelo, tipo, Fecha as Fecha_creacion_precarga   from
+                                    vehiculoIngresa inner join vehiculo on vehiculoingresa.idvehiculo=vehiculo.idvehiculo
+                                     where not vehiculoingresa.idvehiculo in
+                                    (select idvehiculo from vehiculoingresa where TipoIngreso='Alta' )", Conexcion)
+        Dim dt As New DataTable
+        dt.Load(com.ExecuteReader)
+        Return dt
+    End Function
+
     Public Function UltimoPosicionadoPorIdlugaryIdvehiculo(idlugar As Integer, idvehiculo As Integer)
         Dim com As New OdbcCommand($"select first 1 desde from posicionado
                                     where idlugar in (select unnamed_col_1 from table(subzonas_en_lugar({idlugar})))
@@ -1034,7 +1044,93 @@ Public Class Persistencia
         Return com.ExecuteScalar
     End Function
 
+    Public Function existenciaDel(vin As String)
+        Dim com As New OdbcCommand("select count(*) from vehiculo where vin=?", Conexcion)
+        com.CrearParametro(DbType.String, vin)
+        Return com.ExecuteScalar > 0
+    End Function
 
+    Public Function ListaLugares()
+        Dim com As New OdbcCommand("select lugar.idlugar,lugar.nombre,tipo, geox, geoy,idcliente, cliente.nombre
+                                    from lugar left join perteneceA on lugar.idlugar=perteneceA.idlugar
+                                    left  join cliente on perteneceA.clienteid=cliente.idcliente
+                                    where  not tipo in ('Zona', 'Subzona')", Conexcion)
+        Dim dt As New DataTable
+        dt.Load(com.ExecuteReader)
+        Return dt
+    End Function
+
+    Public Function insertLugar(nombre As String, capasidad As String, x As Integer, y As Integer, usercreador As String, tipo As String)
+        Dim com As New OdbcCommand("insert into lugar values (0,?,?,?,?,?,?)", Conexcion)
+        com.CrearParametro(DbType.String, nombre)
+        com.CrearParametro(DbType.Int32, capasidad)
+        com.CrearParametro(DbType.Double, x)
+        com.CrearParametro(DbType.Int32, y)
+        com.CrearParametro(DbType.Int32, usercreador)
+        com.CrearParametro(DbType.String, tipo)
+        Return com.ExecuteNonQuery() > 0
+    End Function
+
+    Public Function insertIncluye(idlugarHijo As Integer, idlugarPapa As Integer)
+        Dim com As New OdbcCommand("insert into incluye values (?,?)", Conexcion)
+        com.CrearParametro(DbType.Int32, idlugarHijo)
+        com.CrearParametro(DbType.Int32, idlugarPapa)
+        Return com.ExecuteNonQuery() > 0
+    End Function
+
+    Public Function insertHabilitado(idlugar As Integer, idtipoMedio As Integer)
+        Dim com As New OdbcCommand("insert into Habilitado values (?,?)", Conexcion)
+        com.CrearParametro(DbType.Int32, idlugar)
+        com.CrearParametro(DbType.Int32, idtipoMedio)
+        Return com.ExecuteNonQuery() > 0
+    End Function
+
+    Public Function insertPerteneceA(idlugar As Integer, idcliente As Integer)
+        Dim com As New OdbcCommand("insert into perteneceA values (?,?)", Conexcion)
+        com.CrearParametro(DbType.Int32, idlugar)
+        com.CrearParametro(DbType.Int32, idcliente)
+        Return com.ExecuteNonQuery() > 0
+    End Function
+
+    Public Function insertCliente(rut As String, nombre As String, fecha As DateTime, invalido As Boolean, user As Integer)
+        Dim com As New OdbcCommand("insert into cliente values (?,?,0,?,?,?)", Conexcion)
+        com.CrearParametro(DbType.String, rut)
+        com.CrearParametro(DbType.String, nombre)
+        com.CrearParametro(DbType.DateTime, fecha)
+        com.CrearParametro(DbType.Boolean, invalido)
+        com.CrearParametro(DbType.Int32, user)
+        Return com.ExecuteNonQuery() > 0
+    End Function
+
+    Public Function listaClienteActuales()
+        Dim com As New OdbcCommand("select idcliente, rut, nombre from cliente where invalido='f'", Conexcion)
+        Dim dt As New DataTable
+        dt.Load(com.ExecuteReader)
+        Return dt
+    End Function
+
+    Public Function listaDeLugaresPorIdcliente(idcliente As Integer)
+        Dim com As New OdbcCommand("select lugar.idlugar,lugar.nombre from
+                                    cliente inner join perteneceA on cliente.idcliente = perteneceA.clienteid
+                                    inner join lugar on perteneceA.idlugar=lugar.idlugar
+                                    where idcliente=?", Conexcion)
+        com.CrearParametro(DbType.Int32, idcliente)
+        Dim dt As New DataTable
+        dt.Load(com.ExecuteReader)
+        Return dt
+    End Function
+
+    Public Function ultimoVehiculoIngresadoPorIdUsuario(idusuario As Integer)
+
+    End Function
+
+    Public Function ultimoClienteIngresadoPorIdUsuario(idusuario As Integer)
+
+    End Function
+
+    Public Function ultimoLugarIngresadoPorIdusuario(idusuario As Integer)
+
+    End Function
 
 
 End Class

@@ -770,4 +770,10 @@ Public Class Fachada
         Return Persistencia.getInstancia.insertVehiculoIngresa(vehi.IdVehiculo, DateTime.Now, "Precarga", user.ID_usuario)
     End Function
 
+    Public Function verificarVinExistente(vin As String)
+        Return Persistencia.getInstancia.existenciaDel(vin)
+    End Function
+
+
+
 End Class

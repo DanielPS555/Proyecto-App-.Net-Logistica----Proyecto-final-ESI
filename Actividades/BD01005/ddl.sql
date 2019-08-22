@@ -42,6 +42,7 @@ CREATE table
 	GeoX FLOAT NOT null,
 	GeoY FLOAT NOT null,
 	UsuarioCreador integer NOT null references usuario(IDUsuario),
+	fechaRegistro datetime year to second not null, 
 	Tipo varchar(15) NOT null check (Tipo IN
 		    	         ("Patio","Puerto","Establecimiento", 'Zona', 'Subzona'))
 );
