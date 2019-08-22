@@ -363,6 +363,9 @@
     <EmbeddedResource Include="Presentacion\panelInfoVehiculo.resx">
       <DependentUpon>panelInfoVehiculo.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\PanelLugar.resx">
+      <DependentUpon>PanelLugar.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\PanelMedioDeTrasporte.resx">
       <DependentUpon>PanelMedioDeTrasporte.vb</DependentUpon>
     </EmbeddedResource>

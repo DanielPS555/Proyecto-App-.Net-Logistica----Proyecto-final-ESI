@@ -46,4 +46,8 @@
         Controladores.Fachada.getInstancia.nuevaPrecarga()
 
     End Sub
+
+    Private Sub Vin_TextChanged(sender As Object, e As EventArgs) Handles vin.TextChanged
+
+    End Sub
 End Class

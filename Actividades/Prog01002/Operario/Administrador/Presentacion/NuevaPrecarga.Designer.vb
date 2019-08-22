@@ -39,6 +39,7 @@ Partial Class NuevaPrecarga
         Me.Label1 = New System.Windows.Forms.Label()
         Me.vin = New System.Windows.Forms.TextBox()
         Me.Button2 = New System.Windows.Forms.Button()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'clientes
@@ -235,12 +236,23 @@ Partial Class NuevaPrecarga
         Me.Button2.Text = "Ingrezar Por CSV"
         Me.Button2.UseVisualStyleBackColor = False
         '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(180, Byte), Integer), CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer))
+        Me.Label2.Location = New System.Drawing.Point(120, 61)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(107, 13)
+        Me.Label2.TabIndex = 151
+        Me.Label2.Text = "Faltan 17 caracteres "
+        '
         'NuevaPrecarga
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(880, 650)
+        Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.vin)
         Me.Controls.Add(Me.Label1)
@@ -283,4 +295,5 @@ Partial Class NuevaPrecarga
     Friend WithEvents Label1 As Label
     Friend WithEvents vin As TextBox
     Friend WithEvents Button2 As Button
+    Friend WithEvents Label2 As Label
 End Class
