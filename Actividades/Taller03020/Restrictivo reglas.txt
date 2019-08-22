@@ -1,0 +1,21 @@
+## FLUSH de reglas
+iptables -F
+iptables -X
+iptables -Z
+iptables -t nat -F
+
+## Establecemos politica por defecto
+iptables -P INPUT DROP
+iptables -P OUTPUT DROP
+iptables -P FORWARD DROP
+iptables -t nat -P PREROUTING DROP
+iptables -t nat -P POSTROUTING DROP
+
+# puede entrar a la red todo lo que venga por Informix (9088)
+iptables -A FORWARD -p tcp -dport 9088 -j ACCEPT
+
+# solo los prog pueden conectarse al servidor por ssh (1112)
+iptables -A FORWARD -s ipprog/SM -p tcp -dport 1112 -j ACCEPT
+
+# solo pueden salir paquetes del firewall por ssh si hay conexion establecida con los prog
+iptables -A FORWARD -d ipprog/SM -dport 1112 -m state --state ESTABLISHED, RELATED -j ACCEPT
