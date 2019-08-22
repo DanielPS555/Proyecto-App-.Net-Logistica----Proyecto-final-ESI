@@ -39,7 +39,11 @@ Partial Class NuevaPrecarga
         Me.Label1 = New System.Windows.Forms.Label()
         Me.vin = New System.Windows.Forms.TextBox()
         Me.Button2 = New System.Windows.Forms.Button()
-        Me.Label2 = New System.Windows.Forms.Label()
+        Me.estado = New System.Windows.Forms.Label()
+        Me.ColorDialog1 = New System.Windows.Forms.ColorDialog()
+        Me.añoNoIngrezar = New System.Windows.Forms.CheckBox()
+        Me.tipoNoIngrezar = New System.Windows.Forms.CheckBox()
+        Me.colorNoIngrezar = New System.Windows.Forms.CheckBox()
         Me.SuspendLayout()
         '
         'clientes
@@ -53,6 +57,7 @@ Partial Class NuevaPrecarga
         '
         'muestra_color
         '
+        Me.muestra_color.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.muestra_color.Location = New System.Drawing.Point(260, 378)
         Me.muestra_color.Name = "muestra_color"
         Me.muestra_color.Size = New System.Drawing.Size(203, 53)
@@ -63,7 +68,6 @@ Partial Class NuevaPrecarga
         Me.ingresar.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.ingresar.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Me.ingresar.Enabled = False
         Me.ingresar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
         Me.ingresar.FlatAppearance.BorderSize = 0
         Me.ingresar.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
@@ -106,7 +110,7 @@ Partial Class NuevaPrecarga
         Me.tipo.Items.AddRange(New Object() {"Auto", "Camion", "SUV", "Van", "MiniVan"})
         Me.tipo.Location = New System.Drawing.Point(123, 288)
         Me.tipo.Name = "tipo"
-        Me.tipo.Size = New System.Drawing.Size(664, 31)
+        Me.tipo.Size = New System.Drawing.Size(630, 31)
         Me.tipo.TabIndex = 131
         '
         'l_tipo
@@ -143,9 +147,9 @@ Partial Class NuevaPrecarga
         '
         Me.anio.Font = New System.Drawing.Font("Century Gothic", 15.0!)
         Me.anio.FormattingEnabled = True
-        Me.anio.Location = New System.Drawing.Point(123, 212)
+        Me.anio.Location = New System.Drawing.Point(123, 217)
         Me.anio.Name = "anio"
-        Me.anio.Size = New System.Drawing.Size(664, 31)
+        Me.anio.Size = New System.Drawing.Size(630, 31)
         Me.anio.TabIndex = 127
         '
         'l_anio
@@ -236,15 +240,51 @@ Partial Class NuevaPrecarga
         Me.Button2.Text = "Ingrezar Por CSV"
         Me.Button2.UseVisualStyleBackColor = False
         '
-        'Label2
+        'estado
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(180, Byte), Integer), CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer))
-        Me.Label2.Location = New System.Drawing.Point(120, 61)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(107, 13)
-        Me.Label2.TabIndex = 151
-        Me.Label2.Text = "Faltan 17 caracteres "
+        Me.estado.AutoSize = True
+        Me.estado.ForeColor = System.Drawing.Color.FromArgb(CType(CType(180, Byte), Integer), CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer))
+        Me.estado.Location = New System.Drawing.Point(120, 61)
+        Me.estado.Name = "estado"
+        Me.estado.Size = New System.Drawing.Size(107, 13)
+        Me.estado.TabIndex = 151
+        Me.estado.Text = "Faltan 17 caracteres "
+        '
+        'añoNoIngrezar
+        '
+        Me.añoNoIngrezar.AutoSize = True
+        Me.añoNoIngrezar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.añoNoIngrezar.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.añoNoIngrezar.Location = New System.Drawing.Point(759, 218)
+        Me.añoNoIngrezar.Name = "añoNoIngrezar"
+        Me.añoNoIngrezar.Size = New System.Drawing.Size(118, 25)
+        Me.añoNoIngrezar.TabIndex = 152
+        Me.añoNoIngrezar.Text = "No ingrezar "
+        Me.añoNoIngrezar.UseVisualStyleBackColor = True
+        '
+        'tipoNoIngrezar
+        '
+        Me.tipoNoIngrezar.AutoSize = True
+        Me.tipoNoIngrezar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.tipoNoIngrezar.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.tipoNoIngrezar.Location = New System.Drawing.Point(759, 288)
+        Me.tipoNoIngrezar.Name = "tipoNoIngrezar"
+        Me.tipoNoIngrezar.Size = New System.Drawing.Size(118, 25)
+        Me.tipoNoIngrezar.TabIndex = 153
+        Me.tipoNoIngrezar.Text = "No ingrezar "
+        Me.tipoNoIngrezar.UseVisualStyleBackColor = True
+        '
+        'colorNoIngrezar
+        '
+        Me.colorNoIngrezar.AutoSize = True
+        Me.colorNoIngrezar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.colorNoIngrezar.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.colorNoIngrezar.Location = New System.Drawing.Point(469, 394)
+        Me.colorNoIngrezar.Name = "colorNoIngrezar"
+        Me.colorNoIngrezar.Size = New System.Drawing.Size(118, 25)
+        Me.colorNoIngrezar.TabIndex = 154
+        Me.colorNoIngrezar.Text = "No ingrezar "
+        Me.colorNoIngrezar.UseVisualStyleBackColor = True
         '
         'NuevaPrecarga
         '
@@ -252,7 +292,10 @@ Partial Class NuevaPrecarga
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(880, 650)
-        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.colorNoIngrezar)
+        Me.Controls.Add(Me.tipoNoIngrezar)
+        Me.Controls.Add(Me.añoNoIngrezar)
+        Me.Controls.Add(Me.estado)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.vin)
         Me.Controls.Add(Me.Label1)
@@ -295,5 +338,9 @@ Partial Class NuevaPrecarga
     Friend WithEvents Label1 As Label
     Friend WithEvents vin As TextBox
     Friend WithEvents Button2 As Button
-    Friend WithEvents Label2 As Label
+    Friend WithEvents estado As Label
+    Friend WithEvents ColorDialog1 As ColorDialog
+    Friend WithEvents añoNoIngrezar As CheckBox
+    Friend WithEvents tipoNoIngrezar As CheckBox
+    Friend WithEvents colorNoIngrezar As CheckBox
 End Class
