@@ -18,7 +18,15 @@ Public Class Lugar
         Dim d_y = Math.Abs(x.PosicionY - Me.PosicionY)
         Return Math.Sqrt((d_x * d_x) + (d_y * d_y))
     End Function
-
+    Private _fecha As DateTime
+    Public Property FechaCreacion() As DateTime
+        Get
+            Return _fecha
+        End Get
+        Set(ByVal value As DateTime)
+            _fecha = value
+        End Set
+    End Property
     Public ReadOnly Property Posicion As PointF
         Get
             Return New PointF(PosicionX, PosicionY)

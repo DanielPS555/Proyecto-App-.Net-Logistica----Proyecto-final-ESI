@@ -75,97 +75,27 @@ insert into trabajaen values (0,(select IDLugar from lugar where Nombre="Deposit
 
 		/*ZONA*/
 	execute function crear_zona("Zona A_pb", (select IDLugar from lugar where nombre="Deposito piedras blancas"), 1500);
-/*	insert into lugar values (0, "Zona A_pb", 1500, 0, 0, 1, 'Zona');
-	insert into incluye values ((select IDLugar from lugar where Nombre="Zona A_pb"),(select IDLugar from lugar where Nombre="Deposito piedras blancas"));*/
 	execute function crear_zona("Zona B_pb", (select IDLugar from lugar where nombre="Deposito piedras blancas"), 1500);
-/*	insert into lugar values (0, "Zona B_pb", 1500, 0, 0, 1, 'Zona');
-	insert into zona values ((select IDLugar from lugar where Nombre="Deposito piedras blancas"),
-	0,"Zona C", 500);*/
 	execute function crear_zona("Zona A_md", (select IDLugar from lugar where nombre="Deposito de maldonado"), 500);
-/*
-	insert into zona values ((select IDLugar from lugar where Nombre="Deposito de maldonado"),
-	0,"Zona A", 500);*/
 	execute function crear_zona("Zona A_mvd", (select IDLugar from lugar where nombre="Puerto de montevideo"), 800);
-/*
-	insert into zona values ((select IDLugar from lugar where Nombre="Puerto de montevideo"),
-	0,"Zona A", 800);*/
 	execute function crear_zona("Zona B_mvd", (select IDLugar from lugar where nombre="Puerto de montevideo"), 400);
-/*
-	insert into zona values ((select IDLugar from lugar where Nombre="Puerto de montevideo"),
-	0,"Zona B", 400);*/
 	execute function crear_zona("Zona A_papr", (select IDLugar from lugar where nombre="Puerto de aguas profundas rocha"), 200);
-/*
-	insert into zona values ((select IDLugar from lugar where Nombre="Puerto de aguas profundas rocha"),
-	0,"Zona A", 200);*/
 	execute function crear_zona("Zona B_papr", (select IDLugar from lugar where nombre="Puerto de aguas profundas rocha"), 800);
-/*
-	insert into zona values ((select IDLugar from lugar where Nombre="Puerto de aguas profundas rocha"),
-	0,"Zona B", 800);*/
 	execute function crear_zona("Zona C_papr", (select IDLugar from lugar where nombre="Puerto de aguas profundas rocha"), 1000);
-/*
-	insert into zona values ((select IDLugar from lugar where Nombre="Puerto de aguas profundas rocha"),
-	0,"Zona C", 1000);
-	/*SUBZONA*/
-	execute function crear_subzona("Zona A_1_pb",
-	(select idlugar from lugar where nombre="Zona A_pb"), 1000);
-/*	insert into subzona values ((select IDLugar from lugar where Nombre="Deposito piedras blancas"),
-		(select IDZona from lugar,zona where lugar.nombre="Deposito piedras blancas"
-		and lugar.idlugar = zona.idlugar and zona.nombre = "Zona A"),0,"Zona A_1",1000);
-*/
+	/*Subzona*/
+	execute function crear_subzona("Zona A_1_pb",(select idlugar from lugar where nombre="Zona A_pb"), 1000);
 	execute function crear_subzona("Zona A_2_pb", (select idlugar from lugar where nombre="Zona A_pb"), 500);
-/*	insert into subzona values ((select IDLugar from lugar where Nombre="Deposito piedras blancas"),
-		(select IDZona from lugar,zona where lugar.nombre="Deposito piedras blancas"
-		and lugar.idlugar = zona.idlugar and zona.nombre = "Zona A"),0,"Zona A_2",500);
-*/
 	execute function crear_subzona("Zona B_1_pb", (select IDLugar from lugar where nombre="Zona B_pb"), 800);
-/*	insert into subzona values ((select IDLugar from lugar where Nombre="Deposito piedras blancas"),
-		(select IDZona from lugar,zona where lugar.nombre="Deposito piedras blancas"
-		and lugar.idlugar = zona.idlugar and zona.nombre = "Zona B"),0,"Zona B_1",800);*/
-
 	execute function crear_subzona("Zona B_2_pb", (select idlugar from lugar where nombre="Zona B_pb"), 700);
-/*	insert into subzona values ((select IDLugar from lugar where Nombre="Deposito piedras blancas"),
-		(select IDZona from lugar,zona where lugar.nombre="Deposito piedras blancas"
-		and lugar.idlugar = zona.idlugar and zona.nombre = "Zona B"),0,"Zona B_2",700); */
-
 	execute function crear_subzona("Zona A_1_md", (select IDLugar from lugar where nombre="Zona A_md"), 500);
-/*	insert into subzona values ((select IDLugar from lugar where Nombre="Deposito de maldonado"),
-		(select IDZona from lugar,zona where lugar.nombre="Deposito de maldonado"
-		and lugar.idlugar = zona.idlugar and zona.nombre = "Zona A"),0,"Zona A_1",500);
-*/
 	execute function crear_subzona("Zona A_1_mvd", (select idlugar from lugar where nombre="Zona A_mvd"), 300);
-/*
-	insert into subzona values ((select IDLugar from lugar where Nombre="Puerto de montevideo"),
-		(select IDZona from lugar, zona
-		where lugar.nombre="Puerto de montevideo"
-		and lugar.idlugar = zona.idlugar and zona.nombre = "Zona A"),
-		0,"Zona A_1",300);*/
 	execute function crear_subzona("Zona A_2_mvd", (select idlugar from lugar where nombre="Zona A_mvd"), 500);
-/*	insert into subzona values ((select IDLugar from lugar where Nombre="Puerto de montevideo"),
-		(select IDZona from lugar,zona where lugar.nombre="Puerto de montevideo"
-		and lugar.idlugar = zona.idlugar and zona.nombre = "Zona A"),0,"Zona A_2",500);*/
 	execute function crear_subzona("Zona B_1_mvd", (select idlugar from lugar where nombre="Zona B_mvd"), 400);
-/*  insert into subzona values ((select IDLugar from lugar where Nombre="Puerto de montevideo"),
-	  (select IDZona from lugar,zona where lugar.nombre="Puerto de montevideo"
-		and lugar.idlugar = zona.idlugar and zona.nombre = "Zona B"),0,"Zona B_1",400);*/
 	execute function crear_subzona("Zona A_1_papr", (select idlugar from lugar where nombre="Zona A_papr"), 200);
-/*	insert into subzona values ((select IDLugar from lugar where Nombre="Puerto de aguas profundas rocha"),
-		(select IDZona from lugar,zona where lugar.nombre="Puerto de aguas profundas rocha"
-		and lugar.idlugar = zona.idlugar and zona.nombre = "Zona A"),0,"Zona A_1",200);*/
 	execute function crear_subzona("Zona B_1_papr", (select idlugar from lugar where nombre="Zona B_papr"), 480);
-/*	insert into subzona values ((select IDLugar from lugar
-	where Nombre="Puerto de aguas profundas rocha"),
-		(select IDZona from lugar,zona where lugar.nombre="Puerto de aguas profundas rocha"
-		and lugar.idlugar = zona.idlugar and zona.nombre = "Zona B"),
-		0,"Zona B_1",480);*/
 	execute function crear_subzona("Zona C_1_papr", (select idlugar from lugar where nombre="Zona C_papr"), 500);
-/*	insert into subzona values ((select IDLugar from lugar
-	where Nombre="Puerto de aguas profundas rocha"),
-		(select IDZona from lugar,zona where lugar.nombre="Puerto de aguas profundas rocha"
-		and lugar.idlugar = zona.idlugar and zona.nombre = "Zona C"),0,"Zona C_1",500);*/
 	execute function crear_subzona("Zona C_2_papr", (select idlugar from lugar where nombre="Zona C_papr"), 500);
-/*	insert into subzona values ((select IDLugar from lugar where Nombre="Puerto de aguas profundas rocha"),
-		(select IDZona from lugar,zona where lugar.nombre="Puerto de aguas profundas rocha"
-		and lugar.idlugar = zona.idlugar and zona.nombre = "Zona C"),0,"Zona C_2",500);*/
+
 		/*VEHIUCLO*/
 		insert into vehiculo values(0, "1GH2J83LED0987547","Fiat","Cronos", "6ead26",
 		"Auto", 2011, (select IDCliente from cliente where Nombre="Sevel"));

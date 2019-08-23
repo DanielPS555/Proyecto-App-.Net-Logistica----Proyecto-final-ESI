@@ -63,6 +63,7 @@ Namespace Extenciones
         Public Function CrearParametro([this] As OdbcCommand, type As DbType, value As Object) As OdbcParameter ' Posicional
             Dim par = this.Parameters.Add(New OdbcParameter())
             par.DbType = type
+            par.IsNullable = True
             par.Value = value
             Return par
         End Function

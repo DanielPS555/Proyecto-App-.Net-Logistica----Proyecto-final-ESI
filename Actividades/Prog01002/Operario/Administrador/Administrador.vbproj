@@ -330,6 +330,9 @@
     <EmbeddedResource Include="Presentacion\ListaLotes.resx">
       <DependentUpon>ListaLotes.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ListarLugares.resx">
+      <DependentUpon>ListarLugares.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\ListaVehiculos.resx">
       <DependentUpon>ListaVehiculos.vb</DependentUpon>
     </EmbeddedResource>

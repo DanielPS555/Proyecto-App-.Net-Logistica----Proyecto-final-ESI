@@ -22,8 +22,8 @@ Partial Class PanelLugar
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.fechacreacion = New System.Windows.Forms.Label()
         Me.usuariocreador = New System.Windows.Forms.Label()
         Me.capasidad = New System.Windows.Forms.Label()
@@ -88,23 +88,23 @@ Partial Class PanelLugar
         '
         Me.usuarios.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.usuarios.BackgroundColor = System.Drawing.Color.White
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(130, Byte), Integer), CType(CType(199, Byte), Integer))
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.usuarios.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(130, Byte), Integer), CType(CType(199, Byte), Integer))
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.usuarios.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle3
         Me.usuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.usuarios.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle4.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
+        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.usuarios.DefaultCellStyle = DataGridViewCellStyle4
         Me.usuarios.Location = New System.Drawing.Point(17, 330)
         Me.usuarios.Name = "usuarios"
         Me.usuarios.RowHeadersVisible = False
@@ -292,4 +292,40 @@ Partial Class PanelLugar
     Friend WithEvents tipoLugar As Label
     Friend WithEvents nombre As Label
     Friend WithEvents idlugar As Label
+
+
+    Private lugar As Controladores.Lugar
+
+    Public Sub New(idlugar As Integer)
+
+        ' Esta llamada es exigida por el diseñador.
+        InitializeComponent()
+        cargarInfoBasica(idlugar)
+        ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
+
+    End Sub
+
+    Private Sub cargarInfoBasica(idlugar As Integer)
+        lugar = Controladores.Fachada.getInstancia.informacionBaseDelLugarPorIdlugar(idlugar)
+        Me.idlugar.Text = lugar.IDLugar
+        Me.nombre.Text = lugar.Nombre
+        Me.tipoLugar.Text = lugar.Tipo
+        Me.usuariocreador.Text = lugar.Creador.Nombre
+        Me.fechacreacion.Text = lugar.FechaCreacion
+
+        If lugar.Tipo = Controladores.Lugar.TIPO_LUGAR_ESTABLECIMIENTO Then
+            Label2.Text = "Cliente dueño:"
+            Me.capasidad.Text = lugar.Dueño.Nombre
+            Label5.Text = "Vehiculos entregados"
+            usuarios.DataSource = Controladores.Fachada.getInstancia.todosLosVehiculosEntregadosEnUnLugar(lugar.IDLugar)
+            EditarSubzonas.Visible = False
+            verZonas.Visible = False
+        Else
+            Me.capasidad.Text = lugar.Capasidad
+            usuarios.DataSource = Controladores.Fachada.getInstancia.devolverListaDeTrabajaEnPorIdlugar(lugar.IDLugar)
+        End If
+
+    End Sub
+
+
 End Class

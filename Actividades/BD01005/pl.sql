@@ -16,8 +16,8 @@ create function crear_subzona(nombrez like lugar.Nombre, enLugar like lugar.IDLu
 		return 'f';
 	END IF;
 	insert into lugar(idlugar, nombre, capacidad, geox, geoy,
-			usuariocreador, tipo)
-		values(0, nombrez, capacidadz, gx, gy, creador, 'Subzona');
+			usuariocreador, tipo,fechaRegistro)
+		values(0, nombrez, capacidadz, gx, gy, creador, 'Subzona',current);
 	select dbinfo('sqlca.sqlerrd1') into lugarid from systables where tabid=1;
 	insert into incluye values(lugarid, enLugar);
 	return 't';
@@ -38,7 +38,7 @@ create function crear_zona(nombrez like lugar.Nombre, enLugar like lugar.IDLugar
 		return 'f';
 	END IF;
 	insert into lugar(idlugar, nombre, capacidad, geox, geoy,
-			usuariocreador, tipo) values(0, nombrez, capacidadz, gx, gy, creador, 'Zona');
+			usuariocreador, tipo,fechaRegistro) values(0, nombrez, capacidadz, gx, gy, creador, 'Zona', current);
 	select dbinfo('sqlca.sqlerrd1') into lugarid from systables where tabid=1;
 	insert into incluye values(lugarid, enLugar);
 	return 't';

@@ -620,11 +620,11 @@ Public Class Persistencia
     Public Function insertVehiculo(vin As String, marca As String, modelo As String, color As String, tipo As String, anio As Integer, idcliente As Integer)
         Dim con As New OdbcCommand("insert into vehiculo values (0,?,?,?,?,?,?,?)", Conexcion)
         con.CrearParametro(DbType.String, vin)
-        con.CrearParametro(DbType.String, marca)
-        con.CrearParametro(DbType.String, modelo)
-        con.CrearParametro(DbType.String, color)
-        con.CrearParametro(DbType.String, tipo)
-        con.CrearParametro(DbType.Int32, anio)
+        con.CrearParametro(DbType.String, If(marca Is Nothing, DBNull.Value, marca))
+        con.CrearParametro(DbType.String, If(modelo Is Nothing, DBNull.Value, modelo))
+        con.CrearParametro(DbType.String, If(color Is Nothing, DBNull.Value, color))
+        con.CrearParametro(DbType.String, If(tipo Is Nothing, DBNull.Value, tipo))
+        con.CrearParametro(DbType.Int32, If(anio = 0, DBNull.Value, anio))
         con.CrearParametro(DbType.Int32, idcliente)
         Return con.ExecuteNonQuery() > 0
     End Function
@@ -1051,10 +1051,50 @@ Public Class Persistencia
     End Function
 
     Public Function ListaLugares()
-        Dim com As New OdbcCommand("select lugar.idlugar,lugar.nombre,tipo, geox, geoy,idcliente, cliente.nombre
+        Dim com As New OdbcCommand("select lugar.idlugar,lugar.nombre,tipo,cliente.nombre
                                     from lugar left join perteneceA on lugar.idlugar=perteneceA.idlugar
                                     left  join cliente on perteneceA.clienteid=cliente.idcliente
                                     where  not tipo in ('Zona', 'Subzona')", Conexcion)
+        Dim dt As New DataTable
+        dt.Load(com.ExecuteReader)
+        Return dt
+    End Function
+
+    Public Function infoLugar(idlugar As Integer) As DataRow
+        Dim com As New OdbcCommand("select lugar.idlugar, lugar.nombre, capacidad, geox, geoy,lugar.tipo, usuario.nombredeusuario, cliente.nombre,lugar.fechaRegistro
+                                    from lugar inner join usuario on lugar.UsuarioCreador = usuario.idusuario
+                                    left join perteneceA on lugar.idlugar=perteneceA.idlugar
+                                    left  join cliente on perteneceA.clienteid=cliente.idcliente
+                                    where lugar.idlugar=?", Conexcion)
+        com.CrearParametro(DbType.Int32, idlugar)
+        Dim dt As New DataTable
+        dt.Load(com.ExecuteReader)
+        Return dt(0)
+    End Function
+
+    Public Function TodosLostrabajaEnPorIdLugares(idlugar As Integer) As DataTable
+        Dim com As New OdbcCommand("select usuario.nombredeusuario, FechaInicio, count(HoraIngreso) as numeroDeIngresos from
+                                    trabajaen inner join lugar on trabajaen.idlugar =lugar.idlugar
+                                    inner join usuario on trabajaen.idusuario = usuario.idusuario
+                                    left join conexion on trabajaen.id = conexion.IDTrabajaEn
+                                    where lugar.idlugar=?
+                                    group by usuario.nombredeusuario, FechaInicio", Conexcion)
+        com.CrearParametro(DbType.Int32, idlugar)
+        Dim dt As New DataTable
+        dt.Load(com.ExecuteReader)
+        Return dt
+    End Function
+
+
+    Public Function TodosLosVehiculosEntregadosEnIdLugar(idlugar As Integer) As DataTable
+        Dim com As New OdbcCommand("select vehiculo.vin, lote.nombre, transporta.FechaHoraLlegadaReal as fecha_de_llegada
+                                    from lugar inner join lote on lugar.idlugar = lote.Destino
+                                    inner join transporta on transporta.idlote = lote.idlote
+                                    inner join integra on integra.lote=lote.idlote
+                                    inner join vehiculo on integra.idvehiculo = vehiculo.idvehiculo
+                                    where lugar.idlugar=? and lote.invalido = 'f' and
+                                    integra.invalidado='f' and transporta.Estado='Exitoso'", Conexcion)
+        com.CrearParametro(DbType.Int32, idlugar)
         Dim dt As New DataTable
         dt.Load(com.ExecuteReader)
         Return dt
@@ -1143,6 +1183,9 @@ Public Class Persistencia
         com.CrearParametro(DbType.Int32, idusuario)
         Return com.ExecuteScalar
     End Function
+
+
+
 
 
 End Class

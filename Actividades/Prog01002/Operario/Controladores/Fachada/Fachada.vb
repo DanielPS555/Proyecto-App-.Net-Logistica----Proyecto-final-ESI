@@ -766,7 +766,8 @@ Public Class Fachada
     End Function
 
     Public Function nuevaPrecarga(vehi As Vehiculo, user As Usuario)
-        Persistencia.getInstancia.insertVehiculo(vehi.IdVehiculo, vehi.Marca, vehi.Modelo, vehi.Color.ToArgb.ToString("X6"), vehi.Tipo, vehi.Año, vehi.Cliente.IDCliente)
+        Persistencia.getInstancia.insertVehiculo(vehi.VIN, vehi.Marca, vehi.Modelo, vehi.Color.ToArgb.ToString("X6"), vehi.Tipo, vehi.Año, vehi.Cliente.IDCliente)
+        vehi.IdVehiculo = Persistencia.getInstancia.vinPorId(vehi.VIN)
         Return Persistencia.getInstancia.insertVehiculoIngresa(vehi.IdVehiculo, DateTime.Now, "Precarga", user.ID_usuario)
     End Function
 
@@ -774,6 +775,31 @@ Public Class Fachada
         Return Persistencia.getInstancia.existenciaDel(vin)
     End Function
 
+    Public Function listarTodosLosLugares() As DataTable
+        Return Persistencia.getInstancia.ListaLugares
+    End Function
+
+    Public Function informacionBaseDelLugarPorIdlugar(idlugar As Integer) As Lugar
+        Dim dt As DataRow = Persistencia.getInstancia.infoLugar(idlugar)
+        Dim lug As New Lugar With {.IDLugar = idlugar,
+                                    .Nombre = dt.Item(1),
+                                    .Capasidad = Funciones_comunes.AutoNull(Of Object)(dt.Item(2)),
+                                    .PosicionX = dt.Item(3),
+                                    .PosicionY = dt.Item(4),
+                                    .Tipo = dt.Item(5),
+                                    .Creador = New Usuario() With {.Nombre = dt.Item(6)},
+                                    .Dueño = If(Funciones_comunes.AutoNull(Of Object)(dt.Item(7)) Is Nothing, Nothing, New Cliente() With {.Nombre = dt.Item(7)}),
+                                    .FechaCreacion = dt.Item(8)}
+        Return lug
+    End Function
+
+    Public Function devolverListaDeTrabajaEnPorIdlugar(idlugar As Integer) As DataTable
+        Return Persistencia.getInstancia.TodosLostrabajaEnPorIdLugares(idlugar)
+    End Function
+
+    Public Function todosLosVehiculosEntregadosEnUnLugar(idlugar As Integer) As DataTable
+        Return Persistencia.getInstancia.TodosLosVehiculosEntregadosEnIdLugar(idlugar)
+    End Function
 
 
 End Class

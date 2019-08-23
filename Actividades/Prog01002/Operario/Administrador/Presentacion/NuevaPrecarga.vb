@@ -6,7 +6,6 @@
         cargarItem()
         cargarAños()
         cargarclientes()
-
     End Sub
 
     Private Sub cargarItem()
@@ -19,7 +18,7 @@
         For i As Integer = 1900 To DateTime.Now.Year
             anio.Items.Add(i)
         Next
-        anio.SelectedIndex = 0
+        anio.SelectedItem = DateTime.Now.Year
     End Sub
 
     Private Sub cargarclientes()
@@ -72,8 +71,8 @@
 
         Controladores.Fachada.getInstancia.nuevaPrecarga(vehi, Controladores.Fachada.getInstancia.DevolverUsuarioActual)
 
-        MsgBox("Precarga realizada")
-        ' Marco.getInstancia.cerrarPanel(Of NuevaPrecarga)
+        MsgBox("Precarga realizada", MsgBoxStyle.Information)
+        Marco.getInstancia.cerrarPanel(Of NuevaPrecarga)()
 
     End Sub
 
