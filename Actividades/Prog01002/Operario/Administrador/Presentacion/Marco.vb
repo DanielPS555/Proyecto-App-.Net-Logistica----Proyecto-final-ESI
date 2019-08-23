@@ -110,7 +110,7 @@ Public Class Marco
             Case "b12"
                 ' NUEVO USUARIO 
             Case "b13"
-                ' LISTA DE CLIENTES
+                cargarPanel(Of ListarClientes)(New ListarClientes)
             Case "b14"
                 ' NUEVO CLIENTE 
             Case "b15"

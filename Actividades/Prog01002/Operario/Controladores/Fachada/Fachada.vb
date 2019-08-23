@@ -801,5 +801,22 @@ Public Class Fachada
         Return Persistencia.getInstancia.TodosLosVehiculosEntregadosEnIdLugar(idlugar)
     End Function
 
+    Public Function listaDeClientesActuales() As DataTable
+        Return Persistencia.getInstancia.listaClienteActuales()
+    End Function
+
+    Public Function DevolverDatosBasicosCliente(idcliente As Integer) As Cliente
+        Dim dt As DataRow = Persistencia.getInstancia.infoCliente(idcliente)
+        Dim cliente As New Cliente With {.IDCliente = idcliente,
+                                         .RUT = dt.Item(1),
+                                         .Nombre = dt.Item(2),
+                                         .Creador = New Usuario() With {.Nombre = dt.Item(3)},
+                                         .FechaRegistro = dt.Item(4)}
+        Return cliente
+    End Function
+
+    Public Function EstablesimientoDeCliente(idcliente As Integer)
+        Return Persistencia.getInstancia.listaDeLugaresPorIdcliente(idcliente)
+    End Function
 
 End Class

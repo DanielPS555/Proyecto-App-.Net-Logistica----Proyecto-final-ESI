@@ -22,8 +22,8 @@ Partial Class PanelLugar
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.fechacreacion = New System.Windows.Forms.Label()
         Me.usuariocreador = New System.Windows.Forms.Label()
         Me.capasidad = New System.Windows.Forms.Label()
@@ -41,6 +41,7 @@ Partial Class PanelLugar
         Me.tipoLugar = New System.Windows.Forms.Label()
         Me.nombre = New System.Windows.Forms.Label()
         Me.idlugar = New System.Windows.Forms.Label()
+        Me.Button1 = New System.Windows.Forms.Button()
         CType(Me.usuarios, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -88,23 +89,23 @@ Partial Class PanelLugar
         '
         Me.usuarios.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.usuarios.BackgroundColor = System.Drawing.Color.White
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(130, Byte), Integer), CType(CType(199, Byte), Integer))
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle3.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.usuarios.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(130, Byte), Integer), CType(CType(199, Byte), Integer))
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.usuarios.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.usuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle4.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
-        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.usuarios.DefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.usuarios.DefaultCellStyle = DataGridViewCellStyle2
         Me.usuarios.Location = New System.Drawing.Point(17, 330)
         Me.usuarios.Name = "usuarios"
         Me.usuarios.RowHeadersVisible = False
@@ -118,9 +119,9 @@ Partial Class PanelLugar
         Me.EditarSubzonas.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.EditarSubzonas.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.EditarSubzonas.ForeColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(147, Byte), Integer), CType(CType(227, Byte), Integer))
-        Me.EditarSubzonas.Location = New System.Drawing.Point(76, 594)
+        Me.EditarSubzonas.Location = New System.Drawing.Point(243, 594)
         Me.EditarSubzonas.Name = "EditarSubzonas"
-        Me.EditarSubzonas.Size = New System.Drawing.Size(362, 44)
+        Me.EditarSubzonas.Size = New System.Drawing.Size(257, 44)
         Me.EditarSubzonas.TabIndex = 124
         Me.EditarSubzonas.Text = "Editar zonas y subzonas"
         Me.EditarSubzonas.UseVisualStyleBackColor = True
@@ -132,7 +133,7 @@ Partial Class PanelLugar
         Me.verZonas.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.verZonas.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.verZonas.ForeColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(147, Byte), Integer), CType(CType(227, Byte), Integer))
-        Me.verZonas.Location = New System.Drawing.Point(456, 594)
+        Me.verZonas.Location = New System.Drawing.Point(506, 594)
         Me.verZonas.Name = "verZonas"
         Me.verZonas.Size = New System.Drawing.Size(362, 44)
         Me.verZonas.TabIndex = 123
@@ -243,12 +244,27 @@ Partial Class PanelLugar
         Me.idlugar.TabIndex = 136
         Me.idlugar.Text = "////"
         '
+        'Button1
+        '
+        Me.Button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(147, Byte), Integer), CType(CType(227, Byte), Integer))
+        Me.Button1.FlatAppearance.BorderSize = 2
+        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button1.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(147, Byte), Integer), CType(CType(227, Byte), Integer))
+        Me.Button1.Location = New System.Drawing.Point(12, 594)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(225, 44)
+        Me.Button1.TabIndex = 137
+        Me.Button1.Text = "Editar habilitaciones"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'PanelLugar
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(880, 650)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.idlugar)
         Me.Controls.Add(Me.nombre)
         Me.Controls.Add(Me.tipoLugar)
@@ -327,5 +343,6 @@ Partial Class PanelLugar
 
     End Sub
 
+    Friend WithEvents Button1 As Button
 
 End Class

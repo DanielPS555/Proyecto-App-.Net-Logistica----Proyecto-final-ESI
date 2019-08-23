@@ -24,19 +24,60 @@ Partial Class ListarClientes
     Private Sub InitializeComponent()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim buscar As System.Windows.Forms.Button
-        Dim Button1 As System.Windows.Forms.Button
+        Me.buscar = New System.Windows.Forms.Button()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.clientes = New System.Windows.Forms.DataGridView()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.buscador = New System.Windows.Forms.TextBox()
         Me.criterios = New System.Windows.Forms.ComboBox()
-        buscar = New System.Windows.Forms.Button()
-        Button1 = New System.Windows.Forms.Button()
         CType(Me.clientes, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
+        'buscar
+        '
+        Me.buscar.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.buscar.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.buscar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.buscar.FlatAppearance.BorderSize = 0
+        Me.buscar.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.buscar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        Me.buscar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        Me.buscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.buscar.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.buscar.ForeColor = System.Drawing.Color.White
+        Me.buscar.Location = New System.Drawing.Point(779, 10)
+        Me.buscar.Name = "buscar"
+        Me.buscar.Size = New System.Drawing.Size(86, 35)
+        Me.buscar.TabIndex = 27
+        Me.buscar.Text = "Buscar"
+        Me.buscar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.buscar.UseVisualStyleBackColor = False
+        '
+        'Button1
+        '
+        Me.Button1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Button1.BackColor = System.Drawing.Color.White
+        Me.Button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.Button1.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.Button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        Me.Button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button1.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.Button1.Location = New System.Drawing.Point(700, 58)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(168, 35)
+        Me.Button1.TabIndex = 29
+        Me.Button1.Text = "Nuevo cliente"
+        Me.Button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button1.UseVisualStyleBackColor = False
+        '
         'clientes
         '
+        Me.clientes.AllowUserToAddRows = False
+        Me.clientes.AllowUserToDeleteRows = False
         Me.clientes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.clientes.BackgroundColor = System.Drawing.Color.White
         DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
@@ -58,30 +99,10 @@ Partial Class ListarClientes
         Me.clientes.DefaultCellStyle = DataGridViewCellStyle2
         Me.clientes.Location = New System.Drawing.Point(13, 99)
         Me.clientes.Name = "clientes"
+        Me.clientes.ReadOnly = True
         Me.clientes.RowHeadersVisible = False
         Me.clientes.Size = New System.Drawing.Size(855, 539)
         Me.clientes.TabIndex = 3
-        '
-        'buscar
-        '
-        buscar.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        buscar.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        buscar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        buscar.FlatAppearance.BorderSize = 0
-        buscar.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        buscar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        buscar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        buscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        buscar.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        buscar.ForeColor = System.Drawing.Color.White
-        buscar.Location = New System.Drawing.Point(779, 10)
-        buscar.Name = "buscar"
-        buscar.Size = New System.Drawing.Size(86, 35)
-        buscar.TabIndex = 27
-        buscar.Text = "Buscar"
-        buscar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        buscar.UseVisualStyleBackColor = False
         '
         'Panel2
         '
@@ -110,40 +131,20 @@ Partial Class ListarClientes
         Me.criterios.Size = New System.Drawing.Size(254, 33)
         Me.criterios.TabIndex = 28
         '
-        'Button1
-        '
-        Button1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Button1.BackColor = System.Drawing.Color.White
-        Button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Button1.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        Button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Button1.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Button1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Button1.Location = New System.Drawing.Point(700, 58)
-        Button1.Name = "Button1"
-        Button1.Size = New System.Drawing.Size(168, 35)
-        Button1.TabIndex = 29
-        Button1.Text = "Nuevo cliente"
-        Button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Button1.UseVisualStyleBackColor = False
-        '
-        'ListaClientes
+        'ListarClientes
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(880, 650)
-        Me.Controls.Add(Button1)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.criterios)
-        Me.Controls.Add(buscar)
+        Me.Controls.Add(Me.buscar)
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.buscador)
         Me.Controls.Add(Me.clientes)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
-        Me.Name = "ListaClientes"
+        Me.Name = "ListarClientes"
         Me.Text = "ListaClientes"
         CType(Me.clientes, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
@@ -155,4 +156,6 @@ Partial Class ListarClientes
     Friend WithEvents Panel2 As Panel
     Friend WithEvents buscador As TextBox
     Friend WithEvents criterios As ComboBox
+    Friend WithEvents buscar As Button
+    Friend WithEvents Button1 As Button
 End Class

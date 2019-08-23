@@ -14,6 +14,16 @@
         End Set
     End Property
 
+    Private _creador As Usuario
+    Public Property Creador() As Usuario
+        Get
+            Return _creador
+        End Get
+        Set(ByVal value As Usuario)
+            _creador = value
+        End Set
+    End Property
+
     Private _rut As String
     Public Property RUT() As String
         Get

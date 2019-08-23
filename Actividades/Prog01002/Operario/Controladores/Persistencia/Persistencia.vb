@@ -1072,6 +1072,16 @@ Public Class Persistencia
         Return dt(0)
     End Function
 
+    Public Function infoCliente(idcliente As Integer) As DataRow
+        Dim com As New OdbcCommand("select IDCliente,RUT,nombre,usuario.nombredeusuario,fechaRegistro
+                                    from cliente inner join usuario on cliente.UsuarioRegistro = usuario.idusuario
+                                    where idcliente=?", Conexcion)
+        com.CrearParametro(DbType.Int32, idcliente)
+        Dim dt As New DataTable
+        dt.Load(com.ExecuteReader)
+        Return dt(0)
+    End Function
+
     Public Function TodosLostrabajaEnPorIdLugares(idlugar As Integer) As DataTable
         Dim com As New OdbcCommand("select usuario.nombredeusuario, FechaInicio, count(HoraIngreso) as numeroDeIngresos from
                                     trabajaen inner join lugar on trabajaen.idlugar =lugar.idlugar

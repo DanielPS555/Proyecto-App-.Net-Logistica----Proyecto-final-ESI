@@ -330,6 +330,9 @@
     <EmbeddedResource Include="Presentacion\ListaLotes.resx">
       <DependentUpon>ListaLotes.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ListarClientes.resx">
+      <DependentUpon>ListarClientes.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\ListarLugares.resx">
       <DependentUpon>ListarLugares.vb</DependentUpon>
     </EmbeddedResource>
@@ -356,6 +359,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\AdministradorHome.resx">
       <DependentUpon>AdministradorHome.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\PanelCliente.resx">
+      <DependentUpon>PanelCliente.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\PanelInfoLote.resx">
       <DependentUpon>PanelInfoLote.vb</DependentUpon>

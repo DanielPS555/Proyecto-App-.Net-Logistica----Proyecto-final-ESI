@@ -107,6 +107,7 @@ Public Class Login
             MsgBox("Credenciales incorrectas. Intente nuevamente", MsgBoxStyle.Critical)
         Else
             If Controladores.Fachada.getInstancia.rolDeUnUsuarioPorElNombreDeUsuario(user.Text) = Controladores.Usuario.TIPO_ROL_ADMINISTRADOR Then 'POR LA APLICACION
+                Marco.reiniciarSingleton()
                 Principal.getInstancia.cargarPanel(Of Marco)(Marco.getInstancia)
             Else
                 MsgBox("Esta aplicacion es unicamente para los Operarios", MsgBoxStyle.Critical)
