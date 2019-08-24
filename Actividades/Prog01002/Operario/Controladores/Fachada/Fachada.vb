@@ -296,25 +296,29 @@ Public Class Fachada
     End Function
 
     Public Sub CargarTrabajaEnConLugarZonasySubzonas()
-        If Persistencia.getInstancia.TrabajaEn.Lugar.Zonas.Count = 0 Then
-            Dim dt1 As DataTable = Persistencia.getInstancia.DevolverInformacionBasicaDeZonasPorID_lugar(Persistencia.getInstancia.TrabajaEn.Lugar.IDLugar)
-            For Each r1 As DataRow In dt1.Rows
-                'Persistencia.getInstancia.TrabajaEn.Lugar.Zonas.Add(
-                Dim z As New Zona() With {.IDZona = r1.Item(0), .Nombre = r1.Item(1),
-                                           .Capacidad = r1.Item(2), .LugarPadre = Persistencia.getInstancia.TrabajaEn.Lugar}
-                Dim dt2 As DataTable = Persistencia.getInstancia.DevolverInformacionDeSubzonaPorIdZona(z.IDZona, Persistencia.getInstancia.TrabajaEn.Lugar.IDLugar)
-                For Each r2 As DataRow In dt2.Rows
-                    Dim id As Integer = r2.Item(0)
-                    Dim nom As String = r2.Item(1)
-                    Dim cap As Integer = r2.Item(2)
-
-                    z.Subzonas.Add(New Subzona(id, cap, nom, z))
-                    '.ZonaPadre = z
-                Next
-                Persistencia.getInstancia.TrabajaEn.Lugar.Zonas.Add(z)
-            Next
-        End If
+        Persistencia.getInstancia.TrabajaEn.Lugar = LugarZonasySubzonas(Persistencia.getInstancia.TrabajaEn.Lugar.IDLugar)
     End Sub
+
+    Public Function LugarZonasySubzonas(idlugar As Integer) As Lugar
+        Dim lugar = informacionBaseDelLugarPorIdlugar(idlugar)
+        Dim dt1 As DataTable = Persistencia.getInstancia.DevolverInformacionBasicaDeZonasPorID_lugar(idlugar)
+        For Each r1 As DataRow In dt1.Rows
+            'Persistencia.getInstancia.TrabajaEn.Lugar.Zonas.Add(
+            Dim z As New Zona() With {.IDZona = r1.Item(0), .Nombre = r1.Item(1),
+                                           .Capacidad = r1.Item(2), .LugarPadre = lugar}
+            Dim dt2 As DataTable = Persistencia.getInstancia.DevolverInformacionDeSubzonaPorIdZona(z.IDZona, idlugar)
+            For Each r2 As DataRow In dt2.Rows
+                Dim id As Integer = r2.Item(0)
+                Dim nom As String = r2.Item(1)
+                Dim cap As Integer = r2.Item(2)
+
+                z.Subzonas.Add(New Subzona(id, cap, nom, z))
+                '.ZonaPadre = z
+            Next
+            lugar.Zonas.Add(z)
+        Next
+        Return lugar
+    End Function
 
     Public Function LotesEnLugar() As List(Of Tuple(Of Lote, Integer, Boolean)) ' LOTE: IDLote, Nombre, Estado, TUPLE.2: Autos en Lote, TUPLE.3: Transportado?
         Dim retval As New List(Of Tuple(Of Lote, Integer, Boolean))

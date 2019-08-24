@@ -38,7 +38,6 @@ Public Class nuevoVehiculo
     End Sub
 
 
-
     Private Sub carcarComboBox()
         tipo.Items.Clear()
         tipo.Items.AddRange(Controladores.Vehiculo.TIPOS_VEHICULOS)
@@ -48,18 +47,11 @@ Public Class nuevoVehiculo
             anio.Items.Add(i)
         Next
         anio.SelectedItem = DateTime.Now.Year
+
+        lugares = Fachada.getInstancia.listarTodosLosLugares.ToList.ToDictionary(Function(x) x.Item(1), Function(x) x.Item(0))
+        lugar.Items.Clear()
+        lugar.Items.AddRange(lugares.Keys.ToArray)
         zonas.Items.Clear()
-        Controladores.Fachada.getInstancia().CargarTrabajaEnConLugarZonasySubzonas()
-        zonas.Items.Clear()
-
-        For Each z As Controladores.Zona In Controladores.Fachada.getInstancia.TrabajaEnAcutual.Lugar.Zonas
-            zonas.Items.Add(z.Nombre)
-        Next
-
-        zonasDisponibles = Controladores.Fachada.getInstancia.TrabajaEnAcutual.Lugar.Zonas
-        zonas.SelectedIndex = 0
-
-
     End Sub
 
     Private Sub loadLotes()
@@ -275,6 +267,8 @@ Public Class nuevoVehiculo
     End Sub
 
     Private completionIndex As Integer = 0
+    Private lugares As Dictionary(Of Object, Object)
+    Private lug As Lugar
 
     Private Sub buscador_TextChanged(sender As Object, e As EventArgs) Handles buscador.TextChanged
         If buscador.Text.Count > 0 Then
@@ -351,4 +345,16 @@ Public Class nuevoVehiculo
     Public Function dameVehiculoalLote() As Object Implements NotificacionDeLote.dameVehiculoalLote
         Return Vehiculo
     End Function
+
+
+    Private Sub lugar_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lugar.SelectedIndexChanged
+        zonas.Items.Clear()
+        lug = Fachada.getInstancia.LugarZonasySubzonas(lugares(lugar.SelectedItem))
+        For Each z As Controladores.Zona In lug.Zonas
+            zonas.Items.Add(z.Nombre)
+        Next
+
+        zonasDisponibles = lug.Zonas
+        zonas.SelectedIndex = 0
+    End Sub
 End Class
