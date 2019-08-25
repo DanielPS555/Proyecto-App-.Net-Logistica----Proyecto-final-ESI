@@ -3,8 +3,24 @@
 Public Class NuevoLote
     Private padre As NotificacionDeLote
     Private destinosPosibles As List(Of Controladores.Lugar)
+    Private origen As Controladores.Lugar
+    Public Sub New(padre As NotificacionDeLote, lugar As Controladores.Lugar)
+        ' Esta llamada es exigida por el diseñador.
+        Me.origen = lugar
+        Me.padre = padre
+        InitializeComponent()
+        StartPosition = FormStartPosition.CenterScreen
+        ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
+        destino.Items.Clear()
+        destinosPosibles = Controladores.Fachada.getInstancia.devolverPosiblesDestinos(lugar, padre.dameVehiculoalLote)
+        For Each l As Controladores.Lugar In destinosPosibles
+            destino.Items.Add($"{l.Nombre}/{l.Tipo}")
+        Next
+        destino.SelectedIndex = 0
+    End Sub
     Public Sub New(padre As NotificacionDeLote)
         Me.padre = padre
+        Me.origen = Controladores.Fachada.getInstancia.TrabajaEnAcutual.Lugar
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
         StartPosition = FormStartPosition.CenterScreen
@@ -19,6 +35,7 @@ Public Class NuevoLote
 
     Public Sub New(padre As NotificacionDeLote, oldlote As Controladores.Lote)
         Me.padre = padre
+        Me.origen = Controladores.Fachada.getInstancia.TrabajaEnAcutual.Lugar
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
         StartPosition = FormStartPosition.CenterScreen
@@ -61,7 +78,7 @@ Public Class NuevoLote
                                                     .Destino = destinosPosibles(destino.SelectedIndex),
                                                     .Estado = Controladores.Lote.TIPO_ESTADO_ABIERTO,
                                                     .Prioridad = Controladores.Lote.TIPO_PRIORIDAD_NORMAL,
-                                                    .Origen = Controladores.Fachada.getInstancia.TrabajaEnAcutual.Lugar,
+                                                    .Origen = Me.origen,
                                                     .Creador = Controladores.Fachada.getInstancia.DevolverUsuarioActual,
                                                     .FechaCreacion = DateTime.Now}
             padre.NotificarLote(lo)

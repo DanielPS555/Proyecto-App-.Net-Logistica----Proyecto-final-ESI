@@ -1,3 +1,4 @@
+Imports Controladores
 Imports Controladores.Fachada
 Public Class ListaVehiculos
     Private tipolista As Boolean = True
@@ -11,10 +12,14 @@ Public Class ListaVehiculos
         tiposListas.SelectedIndex = 0
     End Sub
 
+    Private lugar As Lugar
+
     Dim t As DataTable
 
     Public Sub asignados()
-        DataGridView1.DataSource = Controladores.Fachada.getInstancia.ListaVehiculos()
+        If lugar IsNot Nothing Then
+            DataGridView1.DataSource = getInstancia.ListaVehiculos(lugar.IDLugar)
+        End If
     End Sub
 
     Public Sub Noasignados()

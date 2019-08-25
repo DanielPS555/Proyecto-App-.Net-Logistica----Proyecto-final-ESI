@@ -42,6 +42,7 @@ Public Class ConfiguracionRed
             Me.Close()
         Else
             MsgBox("No se puedo realizar la conexcion", MsgBoxStyle.Critical)
+            MsgBox(Controladores.Persistencia.getInstancia.ExceptionLog.Dequeue().ToString)
             papa.NotificarDeConexcion(False)
         End If
     End Sub

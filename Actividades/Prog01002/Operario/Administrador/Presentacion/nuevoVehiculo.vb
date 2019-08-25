@@ -30,7 +30,6 @@ Public Class nuevoVehiculo
         loadClientes()
         carcarComboBox()
         habilitar(False)
-        loadLotes()
         loadClientes()
 
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
@@ -48,7 +47,7 @@ Public Class nuevoVehiculo
         Next
         anio.SelectedItem = DateTime.Now.Year
 
-        lugares = Fachada.getInstancia.listarTodosLosLugares.ToList.ToDictionary(Function(x) x.Item(1), Function(x) x.Item(0))
+        lugares = Fachada.getInstancia.listarTodosLosPuertos.ToList.ToDictionary(Function(x) x.Item(1), Function(x) x.Item(0))
         lugar.Items.Clear()
         lugar.Items.AddRange(lugares.Keys.ToArray)
         zonas.Items.Clear()
@@ -56,7 +55,7 @@ Public Class nuevoVehiculo
 
     Private Sub loadLotes()
         lote.Items.Clear()
-        lotesDisponibles = Controladores.Fachada.getInstancia.LotesDisponiblesPorLugarActual()
+        lotesDisponibles = Controladores.Fachada.getInstancia.LotesDisponiblesPorLugar(lug)
         For Each l As Controladores.Lote In lotesDisponibles
             lote.Items.Add("Nom: " & l.Nombre & "ID: " & l.IDLote)
         Next
@@ -112,6 +111,7 @@ Public Class nuevoVehiculo
             habilitar(True)
             cargarDatosDeLaPrecarga()
             ingresar.Enabled = True
+            lugar.Enabled = True
         Else
             EstadoBusqueda.Text = "Vin sin precarga o no existe"
             EstadoBusqueda.ForeColor = Drawing.Color.FromArgb(180, 20, 20)
@@ -246,12 +246,12 @@ Public Class nuevoVehiculo
 
         vehi.Color = muestra_color.BackColor
 
-        Fachada.getInstancia.altaVehiculoConUpdate(vehi, Fachada.getInstancia.TrabajaEnAcutual.Usuario)
+        Fachada.getInstancia.altaVehiculoConUpdate(vehi, Fachada.getInstancia.DevolverUsuarioActual)
         If LoteFinal IsNot Nothing Then
             LoteFinal.IDLote = Fachada.getInstancia.nuevoLote(LoteFinal)
-            Fachada.getInstancia.insertIntegra(LoteFinal, vehi, Fachada.getInstancia.TrabajaEnAcutual.Usuario, False)
+            Fachada.getInstancia.insertIntegra(LoteFinal, vehi, Fachada.getInstancia.DevolverUsuarioActual, False)
         Else
-            Fachada.getInstancia.insertIntegra(lotesDisponibles(lote.SelectedIndex), vehi, Fachada.getInstancia.TrabajaEnAcutual.Usuario, False)
+            Fachada.getInstancia.insertIntegra(lotesDisponibles(lote.SelectedIndex), vehi, Fachada.getInstancia.DevolverUsuarioActual, False)
         End If
 
         If informe IsNot Nothing Then
@@ -259,7 +259,7 @@ Public Class nuevoVehiculo
         End If
         Fachada.getInstancia.AsignarNuevaPosicion(New Posicion() With {.Subzona = zonasDisponibles(zonas.SelectedIndex).Subzonas(subzonas.SelectedIndex),
                                                   .Posicion = posDis.SelectedItem,
-                                                  .IngresadoPor = Fachada.getInstancia.TrabajaEnAcutual.Usuario,
+                                                  .IngresadoPor = Fachada.getInstancia.DevolverUsuarioActual,
                                                   .Desde = DateTime.Now,
                                                   .Vehiculo = vehi}, False)
         Marco.getInstancia.cargarPanel(Of ListaVehiculos)(New ListaVehiculos)
@@ -298,7 +298,7 @@ Public Class nuevoVehiculo
 
     Private Sub LinkLabel2_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles crearomodificarLote.LinkClicked
         If LoteFinal Is Nothing Then
-            Dim d As New NuevoLote(Me)
+            Dim d As New NuevoLote(Me, lug)
             d.ShowDialog()
         Else
             Dim d As New NuevoLote(Me, LoteFinal)
@@ -356,5 +356,6 @@ Public Class nuevoVehiculo
 
         zonasDisponibles = lug.Zonas
         zonas.SelectedIndex = 0
+        loadLotes()
     End Sub
 End Class
