@@ -823,4 +823,34 @@ Public Class Fachada
         Return Persistencia.getInstancia.listaDeLugaresPorIdcliente(idcliente)
     End Function
 
+    Public Function todosLosUsuarios()
+        Return Persistencia.getInstancia.ListarTodosLosUsuariosDelSistema()
+    End Function
+
+    Public Function InformacionBasicaUsuario(idusuario As Integer)
+        Dim dt As DataRow = Persistencia.getInstancia.infobasicaUsuario(idusuario)
+        Dim user As New Controladores.Usuario With {.ID_usuario = idusuario,
+                                                    .NombreDeUsuario = dt.Item(0),
+                                                    .Nombre = dt.Item(3), .Apellido = dt.Item(4),
+                                                    .FechaNacimiento = dt.Item(5), .Email = dt.Item(6),
+                                                    .Telefono = dt.Item(7), .sexo = dt.Item(8), .Rol = dt.Item(2),
+                                                    .Creador = New Usuario() With {.ID_usuario = dt.Item(9),
+                                                                                   .Nombre = Persistencia.getInstancia.NombreDeUsuarioPorIdUsuario(dt.Item(9))},
+                                                    .FechaCreacion = dt.Item(10)}
+        Return user
+    End Function
+
+    Public Function DevolverLosTrabajaEnPorUsuario(idusuario As Integer)
+        Return Persistencia.getInstancia.trabajaenPorIdusuario(idusuario)
+    End Function
+
+    Public Function devolverVehiculosIngresadosPorIdusuario(idusuario As Integer)
+        Return Persistencia.getInstancia.vehiculosDatosDeAltaPorIsUsuario(idusuario)
+    End Function
+
+    Public Function vehiculosInspecionadosPorUsuario(idusuario As Integer)
+        Return Persistencia.getInstancia.InformesDeDañosPorIdusuario(idusuario)
+    End Function
+
+
 End Class

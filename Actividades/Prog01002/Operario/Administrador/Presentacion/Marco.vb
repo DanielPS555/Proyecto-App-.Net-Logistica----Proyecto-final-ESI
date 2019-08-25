@@ -106,7 +106,7 @@ Public Class Marco
             Case "b10"
                 ' LOTES DISPONIBES A TRANSPORTAR 
             Case "b11"
-                ' LISTA DE USUARIOS
+                cargarPanel(Of ListarUsuario)(New ListarUsuario)
             Case "b12"
                 ' NUEVO USUARIO 
             Case "b13"

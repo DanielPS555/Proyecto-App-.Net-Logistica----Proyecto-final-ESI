@@ -31,6 +31,8 @@ Partial Class ListaDeMediosAutorizados
         '
         'medios
         '
+        Me.medios.AllowUserToAddRows = False
+        Me.medios.AllowUserToDeleteRows = False
         Me.medios.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.medios.BackgroundColor = System.Drawing.Color.White
         DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
@@ -52,6 +54,7 @@ Partial Class ListaDeMediosAutorizados
         Me.medios.DefaultCellStyle = DataGridViewCellStyle2
         Me.medios.Location = New System.Drawing.Point(13, 58)
         Me.medios.Name = "medios"
+        Me.medios.ReadOnly = True
         Me.medios.Size = New System.Drawing.Size(855, 582)
         Me.medios.TabIndex = 4
         '

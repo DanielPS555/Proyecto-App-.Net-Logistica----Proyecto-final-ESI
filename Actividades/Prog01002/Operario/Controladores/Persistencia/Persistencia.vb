@@ -1194,8 +1194,79 @@ Public Class Persistencia
         Return com.ExecuteScalar
     End Function
 
+    Public Function ListarTodosLosUsuariosDelSistema() As DataTable
+        Dim com As New OdbcCommand("select idusuario, nombredeusuario, PrimerNombre as nombre,PrimerApellido as apelido, Rol from usuario", Conexcion)
+        Dim dt As New DataTable
+        dt.Load(com.ExecuteReader)
+        Return dt
+    End Function
 
+    Public Function infobasicaUsuario(idusuario As Integer) As DataRow
+        Dim com As New OdbcCommand("select nombredeusuario, idusuario, rol, PrimerNombre,PrimerApellido,FechaNac, email, telefono,sexo,
+                                    Creador,FechaCreacion, link from usuario left join link on usuario.idusuario = link.transportista
+                                    where idusuario=?", Conexcion)
+        com.CrearParametro(DbType.Int32, idusuario)
+        Dim dt As New DataTable
+        dt.Load(com.ExecuteReader)
+        Return dt(0)
+    End Function
 
+    Public Function trabajaenPorIdusuario(idusuario As Integer) As DataTable
+        Dim com As New OdbcCommand("select lugar.nombre, FechaInicio,FechaFin, count(HoraIngreso) as numeroDeConexciones from
+                                    trabajaen inner join lugar on lugar.idlugar=trabajaen.idlugar
+                                    left join conexion on conexion.IDTrabajaEn=trabajaen.id
+                                    where trabajaen.idusuario=?
+                                    group by lugar.nombre, FechaInicio,FechaFin", Conexcion)
+        com.CrearParametro(DbType.Int32, idusuario)
+        Dim dt As New DataTable
+        dt.Load(com.ExecuteReader)
+        Return dt
+    End Function
 
+    Public Function vehiculosDatosDeAltaPorIsUsuario(idusuario As Integer) As DataTable
+        Dim com As New OdbcCommand("select vehiculo.IDVehiculo,vin, Fecha from vehiculoingresa inner join vehiculo on vehiculo.idvehiculo=vehiculoingresa.idvehiculo
+                                    where usuario=? and TipoIngreso='Alta'", Conexcion)
+        com.CrearParametro(DbType.Int32, idusuario)
+        Dim dt As New DataTable
+        dt.Load(com.ExecuteReader)
+        Return dt
+    End Function
+
+    Public Function InformesDeDañosPorIdusuario(idusuario As Integer) As DataTable
+        Dim com As New OdbcCommand("select vin, informedanios.id, Fecha, lugar.nombre , count(idregistro) as NumeroDeRegistros from
+                                    usuario inner join informedanios on usuario.idusuario=informedanios.idusuario
+                                    inner join lugar on lugar.idlugar = informedanios.idlugar
+                                    inner join vehiculo on vehiculo.idvehiculo = informedanios.idvehiculo
+                                    left join registrodanios on informedanios.id=registrodanios.informedanios
+                                    where usuario.idusuario=?
+                                    group by informedanios.id, Fecha, lugar.nombre,vin", Conexcion)
+        com.CrearParametro(DbType.Int32, idusuario)
+        Dim dt As New DataTable
+        dt.Load(com.ExecuteReader)
+        Return dt
+    End Function
+
+    Public Function existenciaDeTrabajaEnActualPorIdusuarioyIdLugar(idusuario As Integer, idlugar As Integer)
+        Dim com As New OdbcCommand("select count(trabajaen.id) from usuario inner join trabajaen on usuario.idusuario=trabajaen.idusuario
+                                    where idlugar=? and trabajaen.idusuario=? and FechaFin is null", Conexcion)
+        com.CrearParametro(DbType.Int32, idlugar)
+        com.CrearParametro(DbType.Int32, idusuario)
+
+        Return com.ExecuteScalar
+    End Function
+
+    Public Function insertTrabajaEn(idlugar As Integer, idusuario As Integer, horaIngreso As DateTime)
+        Dim com As New OdbcCommand("insert into trabajaen (id,idlugar,idusuario,FechaInicio) values (0,?,?,?)", Conexcion)
+        com.CrearParametro(DbType.Int32, idlugar)
+        com.CrearParametro(DbType.Int32, idusuario)
+        com.CrearParametro(DbType.DateTime, horaIngreso)
+        Return com.ExecuteNonQuery() > 0
+    End Function
+
+    Public Function NombreDeUsuarioPorIdUsuario(idusuario As Integer) As String
+        Dim com As New OdbcCommand("select nombredeusuario from usuario where idusuario=?", Conexcion)
+        com.CrearParametro(DbType.Int32, idusuario)
+        Return com.ExecuteScalar
+    End Function
 
 End Class

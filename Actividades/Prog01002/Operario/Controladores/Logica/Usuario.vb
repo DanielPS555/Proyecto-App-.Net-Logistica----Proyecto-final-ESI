@@ -25,6 +25,26 @@ Public Class Usuario
 
     End Sub
 
+    Private _fechaCreacion As DateTime
+    Public Property FechaCreacion() As DateTime
+        Get
+            Return _fechaCreacion
+        End Get
+        Set(ByVal value As DateTime)
+            _fechaCreacion = value
+        End Set
+    End Property
+
+    Private _creador As Usuario
+    Public Property Creador() As Usuario
+        Get
+            Return _creador
+        End Get
+        Set(ByVal value As Usuario)
+            _creador = value
+        End Set
+    End Property
+
     Public Shared ReadOnly Property TIPOS_ROLES() As String()
         Get
             Return {TIPO_ROL_ADMINISTRADOR, TIPO_ROL_OPERARIO, TIPO_ROL_TRANSPORTISTA}
