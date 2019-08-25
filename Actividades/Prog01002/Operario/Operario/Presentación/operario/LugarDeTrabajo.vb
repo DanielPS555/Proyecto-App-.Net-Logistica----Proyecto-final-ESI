@@ -35,6 +35,12 @@ Public Class LugarDeTrabajo
     Private Sub LugarDeTrabajo_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         lugares.Items.Clear()
         ListaTrabajaEn = Fachada.getInstancia.devolverTrabajaEnBasicosActuales(Fachada.getInstancia.NombreUsuarioActual)
+        If ListaTrabajaEn.Count = 0 Then
+            Principal.getInstancia.cargarPanel(Of Login)(New Login(True))
+            MsgBox("Usted no tiene ningun lugar de trabajo vijente")
+            Return
+
+        End If
         For Each t As TrabajaEn In ListaTrabajaEn
             lugares.Items.Add(t.Lugar.Nombre)
         Next

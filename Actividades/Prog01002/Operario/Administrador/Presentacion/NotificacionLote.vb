@@ -1,6 +1,6 @@
 ﻿Imports Controladores
 
-Public Interface NotificacionDeLote
+Public Interface NotificacionLote
     Sub NotificarLote(lote As Controladores.Lote)
     Function dameVehiculoalLote()
 End Interface

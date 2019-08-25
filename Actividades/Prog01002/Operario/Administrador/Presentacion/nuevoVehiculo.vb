@@ -3,7 +3,7 @@ Imports Controladores.Extenciones.Extensiones
 Imports Controladores
 
 Public Class nuevoVehiculo
-    Implements NotificacionDeLote
+    Implements NotificacionLote
 
     'crear una entidad lote y hacer una propery publica para acceder a ella desde el panel nuevoLote y enviar el lote creado  
     Private vehi As New Controladores.Vehiculo()
@@ -335,14 +335,14 @@ Public Class nuevoVehiculo
         infoDaños.Enabled = False
     End Sub
 
-    Public Sub NotificarLote(l As Lote) Implements NotificacionDeLote.NotificarLote
+    Public Sub NotificarLote(l As Lote) Implements NotificacionLote.NotificarLote
         lote.Enabled = False
         crearomodificarLote.Text = "Modifica lote"
         eliminarlote.Visible = True
         LoteFinal = l
     End Sub
 
-    Public Function dameVehiculoalLote() As Object Implements NotificacionDeLote.dameVehiculoalLote
+    Public Function dameVehiculoalLote() As Object Implements NotificacionLote.dameVehiculoalLote
         Return Vehiculo
     End Function
 

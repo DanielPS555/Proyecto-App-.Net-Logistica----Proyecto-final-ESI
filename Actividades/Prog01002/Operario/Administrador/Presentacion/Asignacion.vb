@@ -2,7 +2,7 @@
 Imports Operario
 
 Public Class Asignacion
-    Implements NotificacionDeLote
+    Implements NotificacionLote
     Private lotesDisponibles As New List(Of Controladores.Lote)
     Private LoteFinal As Controladores.Lote
     Private vehiculo As Controladores.Vehiculo
@@ -42,14 +42,14 @@ Public Class Asignacion
         End If
     End Sub
 
-    Public Sub NotificarLote(lote As Lote) Implements NotificacionDeLote.NotificarLote
+    Public Sub NotificarLote(lote As Lote) Implements NotificacionLote.NotificarLote
         LoteFinal = lote
         Me.lote.Enabled = False
         crearomodificarLote.Text = "Modifica lote"
         eliminarlote.Visible = True
     End Sub
 
-    Public Function dameVehiculoalLote() As Object Implements NotificacionDeLote.dameVehiculoalLote
+    Public Function dameVehiculoalLote() As Object Implements NotificacionLote.dameVehiculoalLote
         Return vehiculo
     End Function
 

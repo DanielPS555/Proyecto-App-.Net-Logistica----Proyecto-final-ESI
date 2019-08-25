@@ -4,7 +4,7 @@ Imports Operario
 
 
 Public Class panelInfoVehiculo
-    Implements NotificacionDeLote
+    Implements NotificacionLote
 
     Private informesElementos As New List(Of Controladores.InformeDeDaños)
     Private vin As String
@@ -410,14 +410,14 @@ Public Class panelInfoVehiculo
 
     End Sub
 
-    Public Sub NotificarLote(lote As Lote) Implements NotificacionDeLote.NotificarLote
+    Public Sub NotificarLote(lote As Lote) Implements NotificacionLote.NotificarLote
         loteTemp = lote
         Me.LoteCombo.Enabled = False
         nuevoLote.Text = "Modificar"
         EliminarLoteSelecion.Enabled = True
     End Sub
 
-    Public Function dameVehiculoalLote() As Object Implements NotificacionDeLote.dameVehiculoalLote
+    Public Function dameVehiculoalLote() As Object Implements NotificacionLote.dameVehiculoalLote
         Return vehiculo
     End Function
 

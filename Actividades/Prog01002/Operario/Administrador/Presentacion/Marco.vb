@@ -96,7 +96,7 @@ Public Class Marco
             Case "b11"
                 cargarPanel(Of ListarUsuario)(New ListarUsuario)
             Case "b12"
-                ' NUEVO USUARIO 
+                cargarPanel(Of NuevoUsuario)(New NuevoUsuario)
             Case "b13"
                 cargarPanel(Of ListarClientes)(New ListarClientes)
             Case "b14"

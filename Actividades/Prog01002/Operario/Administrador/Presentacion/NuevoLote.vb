@@ -1,10 +1,10 @@
 ﻿Imports Operario.Logica
 
 Public Class NuevoLote
-    Private padre As NotificacionDeLote
+    Private padre As NotificacionLote
     Private destinosPosibles As List(Of Controladores.Lugar)
     Private origen As Controladores.Lugar
-    Public Sub New(padre As NotificacionDeLote, lugar As Controladores.Lugar)
+    Public Sub New(padre As NotificacionLote, lugar As Controladores.Lugar)
         ' Esta llamada es exigida por el diseñador.
         Me.origen = lugar
         Me.padre = padre
@@ -18,7 +18,7 @@ Public Class NuevoLote
         Next
         destino.SelectedIndex = 0
     End Sub
-    Public Sub New(padre As NotificacionDeLote)
+    Public Sub New(padre As NotificacionLote)
         Me.padre = padre
         Me.origen = Controladores.Fachada.getInstancia.TrabajaEnAcutual.Lugar
         ' Esta llamada es exigida por el diseñador.
@@ -33,7 +33,7 @@ Public Class NuevoLote
         destino.SelectedIndex = 0
     End Sub
 
-    Public Sub New(padre As NotificacionDeLote, oldlote As Controladores.Lote)
+    Public Sub New(padre As NotificacionLote, oldlote As Controladores.Lote)
         Me.padre = padre
         Me.origen = Controladores.Fachada.getInstancia.TrabajaEnAcutual.Lugar
         ' Esta llamada es exigida por el diseñador.

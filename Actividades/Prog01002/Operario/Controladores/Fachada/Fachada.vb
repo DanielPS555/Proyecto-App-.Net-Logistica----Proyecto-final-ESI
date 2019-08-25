@@ -952,6 +952,7 @@ Public Class Fachada
         Return Persistencia.getInstancia.updateTrabajaEnConFechaFinalizacion(tr.Id, DateTime.Now)
     End Function
 
+
     Public Function ConexionesLugares() As List(Of Tuple(Of String, String, Integer))
         Dim dt = Persistencia.getInstancia.ConexionesEntreLugares
         Dim dts As New List(Of Tuple(Of String, String, Integer))
@@ -960,4 +961,43 @@ Public Class Fachada
         Next
         Return dts
     End Function
+
+    Public Function ListaDeMediosDelSistema() As List(Of MedioDeTransporte)
+        Dim dt As DataTable = Persistencia.getInstancia.todosLosMediosDelSistemaInfoBasica()
+        Dim lista As New List(Of MedioDeTransporte)
+        For Each r As DataRow In dt.Rows
+            Dim med As New MedioDeTransporte With {.ID = r.Item(0),
+                                                    .Nombre = r.Item(1),
+                                                   .Tipo = New TipoMedioTransporte(r.Item(3)) With {.ID = r.Item(2)}}
+            lista.Add(med)
+        Next
+        Return lista
+    End Function
+
+    Public Sub NuevoPermite(med As MedioDeTransporte, user As Usuario)
+        If Persistencia.getInstancia.existenciaDelPermite(user.ID_usuario, med.ID, True) Then
+            Persistencia.getInstancia.actualizarInvalidoDeUnPermite(user.ID_usuario, med.ID, False)
+        Else
+            Persistencia.getInstancia.InsertPermite(user.ID_usuario, med.Tipo.ID, med.ID, False)
+        End If
+    End Sub
+
+    Public Sub InavilitarPermite(med As MedioDeTransporte, user As Usuario)
+        Persistencia.getInstancia.actualizarInvalidoDeUnPermite(user.ID_usuario, med.ID, True)
+    End Sub
+
+    Public Function comprobarPermiteExistente(med As MedioDeTransporte, user As Usuario)
+        Return Persistencia.getInstancia.existenciaDelPermite(user.ID_usuario, med.ID, False)
+    End Function
+
+    Public Function comprobarNombreDeUsuarioExiste(nombreuser As String)
+        Return Persistencia.getInstancia.ExistenciaDeNombreDeUsuario(nombreuser)
+    End Function
+
+    Public Sub crearUsuario(user As Usuario, contra As String)
+        Persistencia.getInstancia.insertUsuario(user.NombreDeUsuario, Funciones_comunes.ContraseñaHash(contra), user.Email, user.FechaNacimiento, user.Telefono, user.Nombre, user.Apellido, user.sexo, user.Rol, user.Creador.ID_usuario, user.FechaCreacion)
+
+    End Sub
+
+
 End Class

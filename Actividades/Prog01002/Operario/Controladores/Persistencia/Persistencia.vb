@@ -920,7 +920,7 @@ Public Class Persistencia
     End Function
 
     Public Function MediosDisponiblesPorUsuario(idusuario As Integer) As DataTable
-        Dim com As New OdbcCommand("select MedioTransporte.idlegal, MedioTransporte.nombre, TipoTransporte.nombre, fechacreacion
+        Dim com As New OdbcCommand("select MedioTransporte.idlegal as Identificador, MedioTransporte.nombre as Nombre, TipoTransporte.nombre as Tipo, fechacreacion
                                     from TipoTransporte inner join MedioTransporte on TipoTransporte.idtipo=MedioTransporte.idtipo
                                     inner join permite on MedioTransporte.idtipo=permite.idtipo and MedioTransporte.idlegal= permite.idlegal
                                     where usuario=? and invalido='f'", Conexcion)
@@ -1365,6 +1365,68 @@ Public Class Persistencia
         com.CrearParametro(DbType.DateTime, fin)
         com.CrearParametro(DbType.Int32, idtrabajaen)
         Return com.ExecuteNonQuery() > 0
+    End Function
+
+    Public Function todosLosMediosDelSistemaInfoBasica()
+        Dim com As New OdbcCommand("select IDLegal,MedioTransporte.Nombre, TipoTransporte.idtipo, TipoTransporte.nombre 
+                                    from MedioTransporte inner join TipoTransporte on  MedioTransporte.idTipo=TipoTransporte.idtipo", Conexcion)
+        Dim dt As New DataTable
+        dt.Load(com.ExecuteReader)
+        Return dt
+    End Function
+
+    Public Function existenciaDelPermite(idusuario As Integer, idlegal As String, j As Boolean) As Boolean
+        Dim com As New OdbcCommand("select count(*) from permite where usuario=? and idlegal=? and invalido=?", Conexcion)
+        com.CrearParametro(DbType.Int32, idusuario)
+        com.CrearParametro(DbType.String, idlegal)
+        com.CrearParametro(DbType.Boolean, j)
+        Return com.ExecuteScalar > 0
+    End Function
+
+    Public Function actualizarInvalidoDeUnPermite(idusuario As Integer, idlegal As String, j As Boolean)
+        Dim com As New OdbcCommand("update permite set invalido=? where IDLegal=? and usuario=?", Conexcion)
+        com.CrearParametro(DbType.Boolean, j)
+        com.CrearParametro(DbType.String, idlegal)
+        com.CrearParametro(DbType.Int32, idusuario)
+        Return com.ExecuteNonQuery() > 0
+    End Function
+
+    Public Function InsertPermite(idusuario As Integer, idtipo As Integer, idlegal As String, invalido As Boolean)
+        Dim com As New OdbcCommand("insert into permite values (?,?,?,?)", Conexcion)
+        com.CrearParametro(DbType.Int32, idtipo)
+        com.CrearParametro(DbType.String, idlegal)
+        com.CrearParametro(DbType.Int32, idusuario)
+        com.CrearParametro(DbType.Boolean, invalido)
+        Return com.ExecuteNonQuery() > 0
+    End Function
+
+    Public Function ExistenciaDeNombreDeUsuario(nombre As String)
+        Dim com As New OdbcCommand("select count(*) from usuario where UPPER(nombredeusuario)=?", Conexcion)
+        com.CrearParametro(DbType.String, nombre.ToUpper)
+        Return com.ExecuteScalar > 0
+    End Function
+
+    Public Function insertUsuario(nombreDeUsuario As String, contra As String, email As String, fechanac As DateTime, telefono As String, nombre As String, apelido As String, sexo As Char, rol As Char, creador As Integer, fechaCreacion As DateTime)
+        Dim com As New OdbcCommand("insert into usuario(IDUsuario,NombreDeUsuario,Hash_Contra,Email,FechaNac,Telefono,PrimerNombre,PrimerApellido,Sexo,Rol,Creador,FechaCreacion)
+                                    values (0,?,?,?,?,?,?,?,?,?,?,?)", Conexcion)
+        com.CrearParametro(DbType.String, nombreDeUsuario)
+        com.CrearParametro(DbType.String, contra)
+        com.CrearParametro(DbType.String, email)
+        com.CrearParametro(DbType.DateTime, fechanac)
+        com.CrearParametro(DbType.String, telefono)
+        com.CrearParametro(DbType.String, nombre)
+        com.CrearParametro(DbType.String, apelido)
+        com.CrearParametro(DbType.String, sexo)
+        com.CrearParametro(DbType.String, rol)
+        com.CrearParametro(DbType.Int32, creador)
+        com.CrearParametro(DbType.DateTime, fechaCreacion)
+        Return com.ExecuteNonQuery() > 0
+    End Function
+
+    Public Function UltimoIdUsuarioAgregadoPorIdUsuario(idusuario As Integer)
+        Dim com As New OdbcCommand("select first 1  idusuario,fechaCreacion from usuario where creador=? order by fechacreacion desc,idusuario desc", Conexcion)
+        com.CrearParametro(DbType.Int32, idusuario)
+        Return com.ExecuteScalar
     End Function
 
 End Class
