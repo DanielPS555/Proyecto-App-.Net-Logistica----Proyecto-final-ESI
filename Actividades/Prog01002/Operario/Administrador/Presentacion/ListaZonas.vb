@@ -1,25 +1,26 @@
 ﻿Imports Controladores
+Imports Controladores.Extenciones
+
 Public Class ListaZonas
-    Private estadoCom As Boolean
+    Private lugar As Lugar
 
     Public Sub New()
-
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
 
+        ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
 
-        cargarZonas()
-        cargarDatosPorDefectos()
-        estadoCom = False
     End Sub
 
-    Private Sub cargarDatosPorDefectos()
-        zonas.SelectedIndex = 0
+    Public Sub New(lugar As Lugar)
+
+        ' Esta llamada es exigida por el diseñador.
+        InitializeComponent()
+        cargarZonas(lugar)
     End Sub
 
-    Private Sub cargarZonas()
-        Fachada.getInstancia.CargarTrabajaEnConLugarZonasySubzonas() ' por las dudas
-        Dim zonaslist = Persistencia.getInstancia.TrabajaEn.Lugar.Zonas
+    Private Sub cargarZonas(lugar As Lugar)
+        Dim zonaslist = Fachada.getInstancia.LugarZonasySubzonas(-1, lugar).Zonas
         zonas.Items.Clear()
         zonas.Items.AddRange(zonaslist.ToArray)
     End Sub

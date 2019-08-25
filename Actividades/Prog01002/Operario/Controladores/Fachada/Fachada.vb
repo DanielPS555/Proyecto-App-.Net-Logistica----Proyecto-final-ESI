@@ -303,14 +303,20 @@ Public Class Fachada
         Persistencia.getInstancia.TrabajaEn.Lugar = LugarZonasySubzonas(Persistencia.getInstancia.TrabajaEn.Lugar.IDLugar)
     End Sub
 
-    Public Function LugarZonasySubzonas(idlugar As Integer) As Lugar
-        Dim lugar = informacionBaseDelLugarPorIdlugar(idlugar)
-        Dim dt1 As DataTable = Persistencia.getInstancia.DevolverInformacionBasicaDeZonasPorID_lugar(idlugar)
+    Public Function LugarZonasySubzonas(idlugar As Integer, Optional lugar As Lugar = Nothing) As Lugar
+        If lugar Is Nothing Then
+            If idlugar >= 0 Then
+                lugar = informacionBaseDelLugarPorIdlugar(idlugar)
+            Else
+                Throw New InvalidDataException("Debe llamar a LugarZonasySubzonas con un IDLugar válido o con un lugar precargado!")
+            End If
+        End If
+        Dim dt1 As DataTable = Persistencia.getInstancia.DevolverInformacionBasicaDeZonasPorID_lugar(lugar.IDLugar)
         For Each r1 As DataRow In dt1.Rows
             'Persistencia.getInstancia.TrabajaEn.Lugar.Zonas.Add(
             Dim z As New Zona() With {.IDZona = r1.Item(0), .Nombre = r1.Item(1),
                                            .Capacidad = r1.Item(2), .LugarPadre = lugar}
-            Dim dt2 As DataTable = Persistencia.getInstancia.DevolverInformacionDeSubzonaPorIdZona(z.IDZona, idlugar)
+            Dim dt2 As DataTable = Persistencia.getInstancia.DevolverInformacionDeSubzonaPorIdZona(z.IDZona, lugar.IDLugar)
             For Each r2 As DataRow In dt2.Rows
                 Dim id As Integer = r2.Item(0)
                 Dim nom As String = r2.Item(1)

@@ -51,9 +51,9 @@ Partial Class ListaZonas
         Me.zonas.ForeColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
         Me.zonas.FormattingEnabled = True
         Me.zonas.ItemHeight = 20
-        Me.zonas.Location = New System.Drawing.Point(12, 38)
+        Me.zonas.Location = New System.Drawing.Point(12, 78)
         Me.zonas.Name = "zonas"
-        Me.zonas.Size = New System.Drawing.Size(215, 264)
+        Me.zonas.Size = New System.Drawing.Size(215, 224)
         Me.zonas.TabIndex = 0
         '
         'vehi
@@ -93,7 +93,7 @@ Partial Class ListaZonas
         '
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(12, 13)
+        Me.Label3.Location = New System.Drawing.Point(12, 37)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(56, 22)
         Me.Label3.TabIndex = 4

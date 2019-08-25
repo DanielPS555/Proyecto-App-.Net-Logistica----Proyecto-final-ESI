@@ -44,19 +44,7 @@ Public Class Marco
 
     Public stack As New Stack(Of Form)
 
-    Public Function cargarPanel(Of T As {Form})(obj As T) As T
-        cerrarPanel(Of T)()
-        stack.Push(obj)
 
-        obj.TopLevel = False
-        obj.FormBorderStyle = FormBorderStyle.None
-
-        contenedor.Controls.Add(obj)
-        contenedor.Tag = obj
-        obj.Show()
-        obj.BringToFront()
-        Return obj
-    End Function
 
     Private Sub Marco_Load(sender As Object, e As EventArgs) Handles Me.Load
         b1.Font = New Font("Century Gothic", 15.75!, FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
@@ -158,8 +146,15 @@ Public Class Marco
         MsgBox("¡Sin imploementar!")
     End Sub
 
-    Public Function cargarPanelv2(Of T As {Form})(obj As T) As T
+    Public Function cargarPanelv2(Of T As {Form})(obj As T) As T ' No hay referencias a la función ni encuentro razón por la cual algún panel no debería ser pusheado al stack
+        Return cargarPanel(obj, False)
+    End Function
+
+    Public Function cargarPanel(Of T As {Form})(obj As T, Optional pushToStack As Boolean = True) As T
         cerrarPanel(Of T)()
+        If pushToStack Then
+            stack.Push(obj)
+        End If
 
         obj.TopLevel = False
         obj.FormBorderStyle = FormBorderStyle.None
