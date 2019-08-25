@@ -860,5 +860,28 @@ Public Class Fachada
         Return Persistencia.getInstancia.InformesDeDañosPorIdusuario(idusuario)
     End Function
 
+    Public Function todoslosPatiosYPuertos() As List(Of Lugar)
+        Dim dt As DataTable = Persistencia.getInstancia.TodosLosPatiosYPuertos()
+        Dim lista As New List(Of Lugar)
+        For Each r As DataRow In dt.Rows
+            Dim lug As New Lugar With {.IDLugar = r.Item(0),
+                                        .Nombre = r.Item(1),
+                                        .Tipo = r.Item(2)}
+            lista.Add(lug)
+        Next
+        Return lista
+    End Function
+
+    Public Function TrabajaenVijente(idlugar As Integer, idusuario As Integer) As Boolean
+        Return Persistencia.getInstancia.existenciaDeTrabajaEnActualPorIdusuarioyIdLugar(idusuario, idlugar) = 1
+    End Function
+
+    Public Function NuevoTrabajaEn(tr As TrabajaEn)
+        Return Persistencia.getInstancia.insertTrabajaEn(tr.Lugar.IDLugar, tr.Usuario.ID_usuario, DateTime.Now)
+    End Function
+
+    Public Function terminarTrabajaEn(tr As TrabajaEn)
+        Return Persistencia.getInstancia.updateTrabajaEnConFechaFinalizacion(tr.Id, DateTime.Now)
+    End Function
 
 End Class

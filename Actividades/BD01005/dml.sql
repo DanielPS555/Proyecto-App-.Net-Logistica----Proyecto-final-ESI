@@ -111,16 +111,16 @@ insert into trabajaen values (0,(select IDLugar from lugar where Nombre="Deposit
 		       values("1L0V36I113UWU1112", (select IDCliente from cliente where Nombre="Sevel"), "Auto");
 
 		/*vehiculoIngresa*/
-		insert into vehiculoIngresa values ((select idvehiculo from vehiculo where VIN="1L0V36I113UWU1112"), "2019-4-11","Precarga", (select idusuario from usuario where primernombre = "Fernanda"));
-		insert into vehiculoIngresa values ((select idvehiculo from vehiculo where VIN="1GH2J83LED0987547"), "2019-4-11","Precarga",(select idusuario from usuario where primernombre = "Fernanda"));
-		insert into vehiculoIngresa values ((select idvehiculo from vehiculo where VIN="1GH2J83LED0987547"),"2019-6-28","Alta",(select idusuario from usuario where primernombre = "Pepe"));
-		insert into vehiculoIngresa values ((select idvehiculo from vehiculo where VIN="1HGYN4HTEL8372649"),"2019-4-11","Precarga",(select idusuario from usuario where primernombre = "Fernanda"));
-		insert into vehiculoIngresa values ((select idvehiculo from vehiculo where VIN="1HGYN4HTEL8372649"),"2019-6-29","Alta",(select idusuario from usuario where primernombre = "Juan"));
-		insert into vehiculoIngresa values ((select idvehiculo from vehiculo where VIN="2GH2JJEBTE0987547"),"2019-3-20","Precarga",(select idusuario from usuario where primernombre = "Felipe"));
-		insert into vehiculoIngresa values ((select idvehiculo from vehiculo where VIN="2GH2JJEBTE0987547"),"2019-7-3","Alta",(select idusuario from usuario where primernombre = "Juan"));
-		insert into vehiculoIngresa values ((select idvehiculo from vehiculo where VIN="1GH2HGRLED0988472"),"2019-3-20","Precarga",(select idusuario from usuario where primernombre = "Felipe"));
-		insert into vehiculoIngresa values ((select idvehiculo from vehiculo where VIN="1GH2HGRLED0988472"),"2019-6-26","Alta",(select idusuario from usuario where primernombre = "Fernanda"));
-		insert into vehiculoIngresa values ((select idvehiculo from vehiculo where VIN="KHBEHGRLED0988442"),"2019-3-20","Precarga",(select idusuario from usuario where primernombre = "Felipe"));
+		insert into vehiculoIngresa values ((select idvehiculo from vehiculo where VIN="1L0V36I113UWU1112"), "2019-4-11 13:00:55","Precarga", (select idusuario from usuario where primernombre = "Fernanda"));
+		insert into vehiculoIngresa values ((select idvehiculo from vehiculo where VIN="1GH2J83LED0987547"), "2019-4-11 9:00:55","Precarga",(select idusuario from usuario where primernombre = "Fernanda"));
+		insert into vehiculoIngresa values ((select idvehiculo from vehiculo where VIN="1GH2J83LED0987547"),"2019-6-28 19:18:45","Alta",(select idusuario from usuario where primernombre = "Pepe"));
+		insert into vehiculoIngresa values ((select idvehiculo from vehiculo where VIN="1HGYN4HTEL8372649"),"2019-4-11 12:40:55","Precarga",(select idusuario from usuario where primernombre = "Fernanda"));
+		insert into vehiculoIngresa values ((select idvehiculo from vehiculo where VIN="1HGYN4HTEL8372649"),"2019-6-29 13:45:55","Alta",(select idusuario from usuario where primernombre = "Juan"));
+		insert into vehiculoIngresa values ((select idvehiculo from vehiculo where VIN="2GH2JJEBTE0987547"),"2019-3-20 18:20:55","Precarga",(select idusuario from usuario where primernombre = "Felipe"));
+		insert into vehiculoIngresa values ((select idvehiculo from vehiculo where VIN="2GH2JJEBTE0987547"),"2019-7-3 12:00:55","Alta",(select idusuario from usuario where primernombre = "Juan"));
+		insert into vehiculoIngresa values ((select idvehiculo from vehiculo where VIN="1GH2HGRLED0988472"),"2019-3-20 8:01:00","Precarga",(select idusuario from usuario where primernombre = "Felipe"));
+		insert into vehiculoIngresa values ((select idvehiculo from vehiculo where VIN="1GH2HGRLED0988472"),"2019-6-26 11:00:15","Alta",(select idusuario from usuario where primernombre = "Fernanda"));
+		insert into vehiculoIngresa values ((select idvehiculo from vehiculo where VIN="KHBEHGRLED0988442"),"2019-3-20 16:30:22","Precarga",(select idusuario from usuario where primernombre = "Felipe"));
 
 		/*informedanios*/
 		insert into informedanios values (0,"Informe de ingreso","2019-6-28", "Parcial",

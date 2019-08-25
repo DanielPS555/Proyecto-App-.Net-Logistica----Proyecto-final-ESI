@@ -95,7 +95,12 @@ Public Class TrabajaEn
                 se = i
             End If
         Next
-        Return Conexiones(se)
+        If Conexiones.Count = 0 Then
+            Return Nothing
+        Else
+            Return Conexiones(se)
+        End If
+
     End Function
 
 End Class

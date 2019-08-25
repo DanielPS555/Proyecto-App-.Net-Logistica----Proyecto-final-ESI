@@ -196,6 +196,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Presentacion\NotificacionDeLote.vb" />
+    <Compile Include="Presentacion\NotificacionTrabajaEn.vb" />
     <Compile Include="Presentacion\NuevaPrecarga.Designer.vb">
       <DependentUpon>NuevaPrecarga.vb</DependentUpon>
     </Compile>
@@ -218,6 +219,12 @@
       <DependentUpon>NuevoLugar.vb</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\NuevoLugar.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\NuevoTrabajaEn.Designer.vb">
+      <DependentUpon>NuevoTrabajaEn.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\NuevoTrabajaEn.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Presentacion\NuevoUsuario.Designer.vb">
@@ -356,6 +363,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\NuevoLote.resx">
       <DependentUpon>NuevoLote.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\NuevoTrabajaEn.resx">
+      <DependentUpon>NuevoTrabajaEn.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\NuevoUsuario.resx">
+      <DependentUpon>NuevoUsuario.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\nuevoVehiculo.resx">
       <DependentUpon>nuevoVehiculo.vb</DependentUpon>

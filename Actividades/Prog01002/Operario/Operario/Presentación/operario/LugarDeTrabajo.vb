@@ -28,8 +28,8 @@ Public Class LugarDeTrabajo
         ubi.Text = $"{ListaTrabajaEn(i).Lugar.PosicionX:F1}, {ListaTrabajaEn(i).Lugar.PosicionY:F1}"
         tipo.Text = ListaTrabajaEn(i).Lugar.Tipo
         Dim ulti As Tuple(Of DateTime, DateTime?) = Fachada.getInstancia.CargarConexcionEnTrabajaEn(ListaTrabajaEn(i)).ultimaConexcion
-        inicioUconex.Text = Funciones_comunes.DarFormato(ulti.Item1)
-        finalUconex.Text = Funciones_comunes.DarFormato(ulti.Item2)
+        inicioUconex.Text = If(ulti Is Nothing, "Nunca", Funciones_comunes.DarFormato(ulti.Item1))
+        finalUconex.Text = If(ulti Is Nothing, "Nunca", Funciones_comunes.DarFormato(ulti.Item2))
     End Sub
 
     Private Sub LugarDeTrabajo_Load(sender As Object, e As EventArgs) Handles MyBase.Load

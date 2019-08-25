@@ -1,6 +1,10 @@
 ﻿
-Public Class PanelInfoUsuario
+Imports Administrador
 
+Public Class PanelInfoUsuario
+    Implements NotificacionTrabajaEn
+
+    Dim filaSelex As Integer = -1
     Dim user As Controladores.Usuario
     Dim ListaTrabajaen As DataTable
 
@@ -12,6 +16,11 @@ Public Class PanelInfoUsuario
 
 
 
+    End Sub
+
+    Public Sub actualizarPanel() Implements NotificacionTrabajaEn.actualizarPanel
+        ListaTrabajaen = Controladores.Fachada.getInstancia.DevolverLosTrabajaEnPorUsuario(user.ID_usuario)
+        lugarDeTrabajos.DataSource = ListaTrabajaen
     End Sub
 
     Private Sub cargarDatosBasicos()
@@ -65,6 +74,29 @@ Public Class PanelInfoUsuario
         tablatransportes.DataSource = Controladores.Fachada.getInstancia.ListaDeTrasportesPorIdUsuario(user.ID_usuario)
     End Sub
 
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Dim m As New NuevoTrabajaEn(user, Me)
+        m.ShowDialog()
+    End Sub
 
+
+
+    Private Sub LugarDeTrabajos_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles lugarDeTrabajos.CellClick
+        filaSelex = e.RowIndex
+    End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        If filaSelex <> -1 Then
+            If Controladores.Funciones_comunes.AutoNull(Of Object)(ListaTrabajaen.Rows(filaSelex).Item(3)) Is Nothing Then
+                Controladores.Fachada.getInstancia.terminarTrabajaEn(New Controladores.TrabajaEn() With {.Id = ListaTrabajaen.Rows(filaSelex).Item(0)})
+                actualizarPanel()
+                MsgBox("Perido terminado", MsgBoxStyle.Information)
+            Else
+                MsgBox("Este periodo de trabajo ya expiro", MsgBoxStyle.Critical)
+            End If
+        Else
+            MsgBox("Debe selecionar una fila que eliminar", MsgBoxStyle.Critical)
+        End If
+    End Sub
 
 End Class

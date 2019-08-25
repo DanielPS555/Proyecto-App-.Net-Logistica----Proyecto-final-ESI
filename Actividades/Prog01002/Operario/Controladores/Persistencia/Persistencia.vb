@@ -1224,11 +1224,12 @@ Public Class Persistencia
     End Function
 
     Public Function trabajaenPorIdusuario(idusuario As Integer) As DataTable
-        Dim com As New OdbcCommand("select lugar.nombre, FechaInicio,FechaFin, count(HoraIngreso) as numeroDeConexciones from
+        Dim com As New OdbcCommand("select trabajaen.id, lugar.nombre, FechaInicio,FechaFin, count(HoraIngreso) as numeroDeConexciones from
                                     trabajaen inner join lugar on lugar.idlugar=trabajaen.idlugar
                                     left join conexion on conexion.IDTrabajaEn=trabajaen.id
                                     where trabajaen.idusuario=?
-                                    group by lugar.nombre, FechaInicio,FechaFin", Conexcion)
+                                    group by trabajaen.id,lugar.nombre, FechaInicio,FechaFin
+                                    order by trabajaen.id desc", Conexcion)
         com.CrearParametro(DbType.Int32, idusuario)
         Dim dt As New DataTable
         dt.Load(com.ExecuteReader)
@@ -1279,6 +1280,21 @@ Public Class Persistencia
         Dim com As New OdbcCommand("select nombredeusuario from usuario where idusuario=?", Conexcion)
         com.CrearParametro(DbType.Int32, idusuario)
         Return com.ExecuteScalar
+    End Function
+
+    Public Function TodosLosPatiosYPuertos() As DataTable
+        Dim com As New OdbcCommand("select idlugar, nombre, tipo from lugar
+                                    where not tipo in ('Establecimiento', 'Zona', 'Subzona')", Conexcion)
+        Dim dt As New DataTable
+        dt.Load(com.ExecuteReader)
+        Return dt
+    End Function
+
+    Public Function updateTrabajaEnConFechaFinalizacion(idtrabajaen As Integer, fin As DateTime)
+        Dim com As New OdbcCommand("update trabajaen set FechaFin=? where ID=?", Conexcion)
+        com.CrearParametro(DbType.DateTime, fin)
+        com.CrearParametro(DbType.Int32, idtrabajaen)
+        Return com.ExecuteNonQuery() > 0
     End Function
 
 End Class
