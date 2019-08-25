@@ -49,6 +49,10 @@ Public Class Fachada
         Return ultpos
     End Function
 
+    Public Function listarTodosLosPuertos() As DataTable
+        Return Persistencia.getInstancia.ListaPuertos()
+    End Function
+
     Public Function ComrpobarUsuario(NombreUsuario As String, contraseña As String) As Boolean
         If Persistencia.getInstancia.VerificarCredenciales(NombreUsuario, contraseña) Then
             Return True
@@ -329,9 +333,13 @@ Public Class Fachada
         Return retval
     End Function
 
-    Public Function LotesDisponiblesPorLugarActual() As List(Of Lote) ' ¿En qué parte del programa necesitamos ver solamente lotes abiertos?
+    Public Function LotesDisponiblesPorLugarActual() As List(Of Lote)
+        Return LotesDisponiblesPorLugar(Persistencia.getInstancia.TrabajaEn.Lugar)
+    End Function
+
+    Public Function LotesDisponiblesPorLugar(lugar As Lugar) As List(Of Lote) ' ¿En qué parte del programa necesitamos ver solamente lotes abiertos?
         Dim lista As New List(Of Lote)
-        For Each r1 As DataRow In Persistencia.getInstancia.DevolverTodosLosLotesPor_IdLugar_COPIA(Persistencia.getInstancia.TrabajaEn.Lugar.IDLugar).Rows
+        For Each r1 As DataRow In Persistencia.getInstancia.DevolverTodosLosLotesPor_IdLugar_COPIA(lugar.IDLugar).Rows
             Dim lote As New Lote With {.IDLote = r1.Item(0), .Nombre = r1.Item(1), .Estado = r1.Item(2)}
             If lote.Estado = Lote.TIPO_ESTADO_ABIERTO And Not r1.Item(3) Then
                 lista.Add(lote)

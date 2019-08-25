@@ -97,7 +97,7 @@ CREATE table
 create table
 	vehiculoIngresa(
 	IDVehiculo integer,
-	Fecha datetime year to day,
+	Fecha datetime year to second,
 	TipoIngreso varchar(10) not null check (TipoIngreso in ('Precarga', 'Alta', 'Baja')),
 	Usuario integer,
 	primary key(IDVehiculo, Usuario, Fecha),

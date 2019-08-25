@@ -172,6 +172,8 @@ Public Class Persistencia
         Return initi
     End Function
 
+    Public ExceptionLog As New Queue(Of Exception)
+
     Public Function RealizarConexcion(ip As String, port As String, servername As String, uid As String, pwd As String, db As String, prueba As Boolean) As Boolean
         Try
             Dim creacion As String = "Driver=IBM INFORMIX ODBC DRIVER (64-bit);Database=" & db & ";Host=" & ip & ";Server=" & servername & ";Service=" &
@@ -185,8 +187,8 @@ Public Class Persistencia
             End If
             Return True
         Catch ee As Exception
+            ExceptionLog.Enqueue(ee)
             Return False
-
         End Try
     End Function
 
@@ -1055,6 +1057,16 @@ Public Class Persistencia
                                     from lugar left join perteneceA on lugar.idlugar=perteneceA.idlugar
                                     left  join cliente on perteneceA.clienteid=cliente.idcliente
                                     where  not tipo in ('Zona', 'Subzona')", Conexcion)
+        Dim dt As New DataTable
+        dt.Load(com.ExecuteReader)
+        Return dt
+    End Function
+
+    Public Function ListaPuertos()
+        Dim com As New OdbcCommand("select lugar.idlugar,lugar.nombre,tipo,cliente.nombre
+                                    from lugar left join perteneceA on lugar.idlugar=perteneceA.idlugar
+                                               left join cliente on perteneceA.clienteid=cliente.idcliente
+                                    where tipo ='Puerto'", Conexcion)
         Dim dt As New DataTable
         dt.Load(com.ExecuteReader)
         Return dt
