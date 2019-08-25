@@ -64,7 +64,10 @@ Public Class ListaZonas
         vehi.DataSource = r
     End Sub
 
-    Private Sub vehi_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles vehi.CellContentClick
-        'HACEMOS UN LLAMADO AL PANEL DE INFO DEL VEHICULO 
+    Private Sub vehi_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles vehi.CellClick
+        If e.RowIndex >= 0 Then
+            Dim vin = vehi.Rows(e.RowIndex).Cells(1).Value
+            Marco.getInstancia.cargarPanel(New panelInfoVehiculo(vin, False))
+        End If
     End Sub
 End Class

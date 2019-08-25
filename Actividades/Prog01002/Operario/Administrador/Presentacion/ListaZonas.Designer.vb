@@ -66,6 +66,7 @@ Partial Class ListaZonas
         Me.vehi.Location = New System.Drawing.Point(244, 358)
         Me.vehi.Name = "vehi"
         Me.vehi.ReadOnly = True
+        Me.vehi.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.vehi.Size = New System.Drawing.Size(624, 283)
         Me.vehi.TabIndex = 1
         '

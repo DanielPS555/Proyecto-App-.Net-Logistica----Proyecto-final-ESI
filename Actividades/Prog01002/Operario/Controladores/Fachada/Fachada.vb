@@ -49,6 +49,26 @@ Public Class Fachada
         Return ultpos
     End Function
 
+    Public Shared Function ViewOnRow(row As DataRow, ParamArray indices() As Integer) As DataRow
+        Dim tdt = New DataTable ' para poder crear un datarow
+        For Each i In indices
+            tdt.Columns.Add(row.Table.Columns(i).ColumnName, row.Table.Columns(i).DataType)
+        Next
+        Dim dr = tdt.NewRow
+        For i = 0 To indices.Length - 1
+            dr(i) = row(indices(i))
+        Next
+        Return dr
+    End Function
+
+    Public Function UltimaPosicionVehiculo(vin As String) As DataRow
+        Dim posicion = Persistencia.getInstancia.PosicionActualVehiculo(Persistencia.getInstancia.vinPorId(vin))
+        If posicion Is Nothing Then
+            Return Nothing
+        End If
+        Return ViewOnRow(posicion, 3, 6, 0, 1)
+    End Function
+
     Public Function listarTodosLosPuertos() As DataTable
         Return Persistencia.getInstancia.ListaPuertos()
     End Function

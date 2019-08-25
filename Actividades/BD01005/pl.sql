@@ -103,7 +103,7 @@ create function ocupacion_en_lugar(lugarid like lugar.idlugar)
 	IF tipo <> "Subzona" THEN
 	   select count(*)  into ocup
 	   from posicionado where hasta is null
-	   and idlugar in (select unnamed_col_1 from table(subzonas_en_lugar(lugar)));
+	   and idlugar in (select unnamed_col_1 from table(subzonas_en_lugar(lugarid)));
 	ELSE
 	   select count(*) into ocup
 	   from posicionado where hasta is null and idlugar = lugarid;

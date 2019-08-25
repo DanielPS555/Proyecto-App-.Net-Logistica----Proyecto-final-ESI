@@ -430,7 +430,7 @@ Public Class Persistencia
         Return dt
     End Function
 
-    Public Function DatosBasicosParaListarVehiculosPorSubzona(idlugar As Integer) As DataTable
+    Public Function DatosBasicosParaListarVehiculosPorSubzona(idlugar As Integer) As DataTable ' IDVehiculo, VIN, Marca, Modelo, Tipo
 
         Dim com As New OdbcCommand($"select distinct vehiculo.idvehiculo, vehiculo.vin, vehiculo.marca, vehiculo.modelo, vehiculo.tipo 
                                     from vehiculo, posicionado, vehiculoIngresa
@@ -743,6 +743,9 @@ Public Class Persistencia
         com.CrearParametro(DbType.Int32, idvehiculo)
         Dim dt As New DataTable()
         dt.Load(com.ExecuteReader)
+        If dt.Rows.Count < 1 Then
+            Return Nothing
+        End If
         Return dt.Rows(0)
     End Function
 

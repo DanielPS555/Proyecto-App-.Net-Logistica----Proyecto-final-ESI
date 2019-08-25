@@ -8,7 +8,6 @@ Public Class panelInfoVehiculo
 
     Private informesElementos As New List(Of Controladores.InformeDeDaños)
     Private vin As String
-    Private lugar As DataRow
     Private vehiculo As Controladores.Vehiculo
     Private actualInfore As Integer = 0
     Private actualRegistro As Integer = 0
@@ -16,6 +15,7 @@ Public Class panelInfoVehiculo
     Private loteTemp As Controladores.Lote
     Private todosLosLotesDisponibles As List(Of Controladores.Lote)
     Private loteActual As Controladores.Lote
+    Private qrcode As Bitmap
     Public Sub New(VIN As String, aqui As Boolean)
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
@@ -46,13 +46,15 @@ Public Class panelInfoVehiculo
         AñoBox.Text = vehiculo.Año
         TipoCombo.SelectedItem = vehiculo.Tipo
         Panel1.BackColor = vehiculo.Color
-        Dim ultpos = Controladores.Fachada.getInstancia.UltimaPosicionVehiculoEnLugar(vin, Controladores.Persistencia.getInstancia.TrabajaEn.Lugar.Nombre)
-        SubzonaLabel.Text = ultpos.Item(1)
-        Dim zona = Controladores.Persistencia.getInstancia.PadreDeLugar(ultpos.Item(0))
-        ZonaLabel.Text = zona.Item(0)
-        PosicionLabel.Text = ultpos.Item(2) & " desde " & Funciones_comunes.DarFormato(CType(ultpos.Item(3), Date?))
-        lugar = Controladores.Persistencia.getInstancia.PadreDeLugar(zona.Item(1))
-        lugarLabel.Text = lugar.Item(0)
+        Dim ultpos = Controladores.Fachada.getInstancia.UltimaPosicionVehiculo(vin)
+        If ultpos IsNot Nothing Then
+            SubzonaLabel.Text = ultpos.Item(1)
+            Dim zona = Controladores.Persistencia.getInstancia.PadreDeLugar(ultpos.Item(0))
+            ZonaLabel.Text = zona.Item(0)
+            PosicionLabel.Text = ultpos.Item(2) & " desde " & Funciones_comunes.DarFormato(CType(ultpos.Item(3), Date?))
+            Dim lugar = Controladores.Persistencia.getInstancia.PadreDeLugar(zona.Item(1))
+            lugarLabel.Text = lugar.Item(0)
+        End If
 
         informesElementos = Controladores.Fachada.getInstancia.devolverTodosLosInformesYregistrosCompletos(vehiculo)
         If informesElementos.Count = 0 Then
@@ -69,6 +71,11 @@ Public Class panelInfoVehiculo
         Me.vehiculo = vehiculo
         cargarMiLote()
         CargarTrasportes()
+        Dim qrGenerator As New QRCoder.QRCodeGenerator
+        Dim qrData = qrGenerator.CreateQrCode(vin, QRCoder.QRCodeGenerator.ECCLevel.H)
+        Dim qrCode As New QRCoder.QRCode(qrData)
+        Me.qrcode = qrCode.GetGraphic(15)
+        Me.QR.Image = New Bitmap(Me.qrcode, New Size(Me.QR.Width, Me.QR.Height))
     End Sub
 
     Public Sub cargarLotes()
@@ -84,35 +91,35 @@ Public Class panelInfoVehiculo
     End Sub
 
     Public Sub cargarMiLote()
-        loteActual = Fachada.getInstancia.DatosLoteDelVehiculoEnLugar(vehiculo, Fachada.getInstancia.TrabajaEnAcutual.Lugar)
-        LoteCombo.Items.Clear()
-        LoteCombo.Items.Add($"ID: {loteActual.IDLote} / NOM: {loteActual.Nombre}")
-        LoteCombo.SelectedIndex = 0
+        'loteActual = Fachada.getInstancia.LoteVehiculo(vehiculo, Fachada.getInstancia.TrabajaEnAcutual.Lugar)
+        'LoteCombo.Items.Clear()
+        'LoteCombo.Items.Add($"ID: {loteActual.IDLote} / NOM: {loteActual.Nombre}")
+        'LoteCombo.SelectedIndex = 0
     End Sub
 
     Private Sub CargarTrasportes()
-        Dim ultpos = Controladores.Fachada.getInstancia.UltimaPosicionVehiculoEnLugar(vin, Controladores.Persistencia.getInstancia.TrabajaEn.Lugar.Nombre)
-        SubzonaLabel.Text = ultpos.Item(1)
-        Dim zona = Controladores.Persistencia.getInstancia.PadreDeLugar(ultpos.Item(0))
-        ZonaLabel.Text = zona.Item(0)
-        PosicionLabel.Text = ultpos.Item(2) & " desde " & Controladores.Funciones_comunes.DarFormato(CType(ultpos.Item(3), Date?))
-        traslados.Columns.Clear()
-        Dim dt As New DataTable
-        dt.Columns.Add(New DataColumn("Lugar"))
-        dt.Columns.Add(New DataColumn("Posicion"))
-        dt.Columns.Add(New DataColumn("Desde"))
-        dt.Columns.Add(New DataColumn("Hasta"))
-        dt.Columns.Add(New DataColumn("Por"))
-        For Each pos As Posicion In Controladores.Fachada.getInstancia.TodasLasPosicionesPorLugar(vehiculo.IdVehiculo, Controladores.Fachada.getInstancia.TrabajaEnAcutual.Lugar.IDLugar)
-            Dim r As DataRow = dt.NewRow
-            r.Item(0) = pos.Subzona.ZonaPadre.LugarPadre.Nombre
-            r.Item(1) = pos.Posicion
-            r.Item(2) = pos.Desde
-            r.Item(4) = pos.IngresadoPor.NombreDeUsuario
-            r.Item(3) = If(pos.Hasta = DateTime.MinValue, DBNull.Value, pos.Hasta)
-            dt.Rows.Add(r)
-        Next
-        traslados.DataSource = dt
+        'Dim ultpos = Controladores.Fachada.getInstancia.UltimaPosicionVehiculoEnLugar(vin, Controladores.Persistencia.getInstancia.TrabajaEn.Lugar.Nombre)
+        'SubzonaLabel.Text = ultpos.Item(1)
+        'Dim zona = Controladores.Persistencia.getInstancia.PadreDeLugar(ultpos.Item(0))
+        'ZonaLabel.Text = zona.Item(0)
+        'PosicionLabel.Text = ultpos.Item(2) & " desde " & Controladores.Funciones_comunes.DarFormato(CType(ultpos.Item(3), Date?))
+        'traslados.Columns.Clear()
+        'Dim dt As New DataTable
+        'dt.Columns.Add(New DataColumn("Lugar"))
+        'dt.Columns.Add(New DataColumn("Posicion"))
+        'dt.Columns.Add(New DataColumn("Desde"))
+        'dt.Columns.Add(New DataColumn("Hasta"))
+        'dt.Columns.Add(New DataColumn("Por"))
+        'For Each pos As Posicion In Controladores.Fachada.getInstancia.TodasLasPosicionesPorLugar(vehiculo.IdVehiculo, Controladores.Fachada.getInstancia.TrabajaEnAcutual.Lugar.IDLugar)
+        '    Dim r As DataRow = dt.NewRow
+        '    r.Item(0) = pos.Subzona.ZonaPadre.LugarPadre.Nombre
+        '    r.Item(1) = pos.Posicion
+        '    r.Item(2) = pos.Desde
+        '    r.Item(4) = pos.IngresadoPor.NombreDeUsuario
+        '    r.Item(3) = If(pos.Hasta = DateTime.MinValue, DBNull.Value, pos.Hasta)
+        '    dt.Rows.Add(r)
+        'Next
+        'traslados.DataSource = dt
     End Sub
 
     Public Sub actualizarTrasportesDeFormaExterna()
@@ -292,9 +299,9 @@ Public Class panelInfoVehiculo
     End Sub
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
-        Marco.getInstancia.cargarPanel(Of crearInformaDeDaños)(New crearInformaDeDaños(New Controladores.InformeDeDaños(vehiculo) With {.Creador = Fachada.getInstancia.TrabajaEnAcutual.Usuario,
-                                                                                                                                        .Lugar = Fachada.getInstancia.TrabajaEnAcutual.Lugar,
-                                                                                                                                        .Fecha = DateTime.Now}, True, Me) With {.ListaDeTodosLosInformes = informesElementos})
+        'Marco.getInstancia.cargarPanel(Of crearInformaDeDaños)(New crearInformaDeDaños(New Controladores.InformeDeDaños(vehiculo) With {.Creador = Fachada.getInstancia.TrabajaEnAcutual.Usuario,
+        '                                                                                                                                .Lugar = Fachada.getInstancia.TrabajaEnAcutual.Lugar,
+        '                                                                                                                                .Fecha = DateTime.Now}, True, Me) With {.ListaDeTodosLosInformes = informesElementos})
 
     End Sub
 
@@ -421,36 +428,36 @@ Public Class panelInfoVehiculo
     End Sub
 
     Private Sub CambiarGuardarLote_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles cambiarGuardarLote.LinkClicked
-        If cambiarGuardarLote.Text.Equals("Cambiar lote ") Then
-            cargarLotes()
-            cambiarGuardarLote.Text = "Guardar"
-            nuevoLote.Visible = True
-            EliminarLoteSelecion.Visible = True
-            Cancelar.Visible = True
-            EliminarLoteSelecion.Enabled = False
-            LoteCombo.Enabled = True
-            vermasLote.Enabled = False
+        'If cambiarGuardarLote.Text.Equals("Cambiar lote ") Then
+        '    cargarLotes()
+        '    cambiarGuardarLote.Text = "Guardar"
+        '    nuevoLote.Visible = True
+        '    EliminarLoteSelecion.Visible = True
+        '    Cancelar.Visible = True
+        '    EliminarLoteSelecion.Enabled = False
+        '    LoteCombo.Enabled = True
+        '    vermasLote.Enabled = False
 
-        Else
-            cambiarGuardarLote.Text = "Cambiar lote "
-            nuevoLote.Visible = False
-            EliminarLoteSelecion.Visible = False
-            Cancelar.Visible = False
-            vermasLote.Enabled = True
-            LoteCombo.Enabled = False
+        'Else
+        '    cambiarGuardarLote.Text = "Cambiar lote "
+        '    nuevoLote.Visible = False
+        '    EliminarLoteSelecion.Visible = False
+        '    Cancelar.Visible = False
+        '    vermasLote.Enabled = True
+        '    LoteCombo.Enabled = False
 
-            If loteTemp IsNot Nothing Then
-                Dim idlote As Integer = Fachada.getInstancia.nuevoLote(loteTemp)
-                loteTemp.IDLote = idlote
-                Fachada.getInstancia.insertIntegra(loteTemp, vehiculo, Fachada.getInstancia.TrabajaEnAcutual.Usuario, True)
-            Else
-                Fachada.getInstancia.insertIntegra(todosLosLotesDisponibles(LoteCombo.SelectedIndex), vehiculo, Fachada.getInstancia.TrabajaEnAcutual.Usuario, True)
-            End If
-            Fachada.getInstancia.eliminarLoteSiNoTieneVehiculos(loteActual)
+        '    If loteTemp IsNot Nothing Then
+        '        Dim idlote As Integer = Fachada.getInstancia.nuevoLote(loteTemp)
+        '        loteTemp.IDLote = idlote
+        '        Fachada.getInstancia.insertIntegra(loteTemp, vehiculo, Fachada.getInstancia.TrabajaEnAcutual.Usuario, True)
+        '    Else
+        '        Fachada.getInstancia.insertIntegra(todosLosLotesDisponibles(LoteCombo.SelectedIndex), vehiculo, Fachada.getInstancia.TrabajaEnAcutual.Usuario, True)
+        '    End If
+        '    Fachada.getInstancia.eliminarLoteSiNoTieneVehiculos(loteActual)
 
-            cargarMiLote()
-            loteTemp = Nothing
-        End If
+        '    cargarMiLote()
+        '    loteTemp = Nothing
+        'End If
     End Sub
 
     Private Sub Cancelar_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles Cancelar.LinkClicked
@@ -464,4 +471,14 @@ Public Class panelInfoVehiculo
         loteTemp = Nothing
     End Sub
 
+    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
+        Dim sfd As New SaveFileDialog With {
+            .Filter = "Imagen PNG|*.png",
+            .AddExtension = True
+        }
+        If sfd.ShowDialog = DialogResult.OK Then
+            Dim fs = sfd.OpenFile
+            Me.qrcode.Save(fs, Imaging.ImageFormat.Png)
+        End If
+    End Sub
 End Class
