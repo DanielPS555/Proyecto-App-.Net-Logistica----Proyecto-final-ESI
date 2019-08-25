@@ -10,6 +10,10 @@
         End Set
     End Property
 
+    Public Overrides Function ToString() As String
+        Return _nom
+    End Function
+
     Private _nom As String
     Public Property Nombre() As String
         Get

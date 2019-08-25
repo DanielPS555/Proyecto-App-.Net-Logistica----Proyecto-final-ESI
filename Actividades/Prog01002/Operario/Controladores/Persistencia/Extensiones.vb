@@ -81,6 +81,10 @@ Namespace Extenciones
                     dbtype = DbType.Byte
                 Case GetType(Date())
                     dbtype = DbType.DateTime
+                Case GetType(Single)
+                    dbtype = DbType.Single
+                Case GetType(Double)
+                    dbtype = DbType.Double
                 Case Else
                     dbtype = DbType.Binary
             End Select

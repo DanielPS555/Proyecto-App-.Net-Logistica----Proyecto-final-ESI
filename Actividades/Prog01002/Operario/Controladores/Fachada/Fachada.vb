@@ -2,6 +2,7 @@
 Imports System.IO
 Imports Controladores
 Imports Controladores.Extenciones
+Imports GMap.NET
 
 Public Class Fachada
     Private Shared initi As Fachada
@@ -25,6 +26,20 @@ Public Class Fachada
         Else
             Return False
         End If
+    End Function
+
+    Public Function informacionBaseDelLugarPorNombre(item1 As String) As Lugar
+        Dim dt As DataRow = Persistencia.getInstancia.infoLugar(item1)
+        Dim lug As New Lugar With {.IDLugar = dt.Item(0),
+                                    .Nombre = dt.Item(1),
+                                    .Capasidad = Funciones_comunes.AutoNull(Of Object)(dt.Item(2)),
+                                    .PosicionX = dt.Item(3),
+                                    .PosicionY = dt.Item(4),
+                                    .Tipo = dt.Item(5),
+                                    .Creador = New Usuario() With {.Nombre = dt.Item(6)},
+                                    .Dueño = If(Funciones_comunes.AutoNull(Of Object)(dt.Item(7)) Is Nothing, Nothing, New Cliente() With {.Nombre = dt.Item(7)}),
+                                    .FechaCreacion = dt.Item(8)}
+        Return lug
     End Function
 
     Public Function ProbarConexcion(ip As String, port As String, servername As String, uid As String, pwd As String, db As String) As Boolean
@@ -134,6 +149,33 @@ Public Class Fachada
         Else
             Return False
         End If
+    End Function
+
+    Public Shared URUGUAYTOP = -30.0869656F
+    Public Shared URUGUAYEAST = -53.0913658F
+
+    Public Shared URUGUAY_Y = 4.886386F
+    Public Shared URUGUAY_X = 5.345714F
+
+    Public Function CrearLugar(Nombre As String, Posicion As PointLatLng, Tipo As String,
+                          MediosPermitidos() As TipoMedioTransporte, capacidad As Integer,
+                          Zonas As List(Of Zona)) As Lugar
+        Dim LugarID = Persistencia.getInstancia.CrearLugar(Nombre, Posicion, Tipo, MediosPermitidos, capacidad, DevolverUsuarioActual.ID_usuario)
+        If LugarID < 0 Then
+            Return Nothing
+        End If
+        For Each z In Zonas
+            Dim zonaId = Persistencia.getInstancia.CrearZona(LugarID, z.Nombre, z.Capacidad)
+            If zonaId < 0 Then
+                Throw New InvalidStateException(Of Integer)("El sistema permitió crear un lugar pero no permitió crear una zona", LugarID)
+            End If
+            For Each sz In z.Subzonas
+                If Persistencia.getInstancia.CrearSubzona(zonaId, sz.Nombre, sz.Capasidad) < 0 Then
+                    Throw New InvalidStateException(Of Integer)("El sistema permitió crear un lugar pero no permitió crear una subzona", LugarID)
+                End If
+            Next
+        Next
+        Return New Lugar(LugarID, capacidad, Posicion.Lng, Posicion.Lat, Nombre, Tipo, DevolverUsuarioActual)
     End Function
 
     Public Function devolverTrabajaEnBasicosActuales(Nombreuser As String) As List(Of TrabajaEn)
@@ -756,7 +798,7 @@ Public Class Fachada
         Dim dt As DataTable = Persistencia.getInstancia.ListarTodosLosTiposDeMedioDeVehiculo()
         Dim lista As New List(Of TipoMedioTransporte)
         For Each r As DataRow In dt.Rows
-            Dim tipo As New TipoMedioTransporte(r.Item(1))
+            Dim tipo As New TipoMedioTransporte(r.Item(1), CType(r.Item(0), Integer))
             lista.Add(tipo)
         Next
         Return lista
@@ -910,4 +952,12 @@ Public Class Fachada
         Return Persistencia.getInstancia.updateTrabajaEnConFechaFinalizacion(tr.Id, DateTime.Now)
     End Function
 
+    Public Function ConexionesLugares() As List(Of Tuple(Of String, String, Integer))
+        Dim dt = Persistencia.getInstancia.ConexionesEntreLugares
+        Dim dts As New List(Of Tuple(Of String, String, Integer))
+        For i = 0 To dt.Count - 1
+            dts.Add(New Tuple(Of String, String, Integer)(dt(i).Item2.ElementAt(0), dt(i).Item2.ElementAt(1), dt(i).Item1))
+        Next
+        Return dts
+    End Function
 End Class

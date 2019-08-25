@@ -84,7 +84,7 @@ Public Class Marco
             Case "b5"
                 cargarPanel(Of ListarLugares)(New ListarLugares)
             Case "b6"
-                'NUEVO LUGAR
+                cargarPanel(Of NuevoLugar)(New NuevoLugar)
             Case "b7"
                 'LISTA DE MEDIOS
             Case "b8"

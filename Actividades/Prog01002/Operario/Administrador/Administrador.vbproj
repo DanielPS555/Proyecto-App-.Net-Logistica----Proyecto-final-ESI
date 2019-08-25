@@ -77,6 +77,15 @@
     <Reference Include="GMap.NET.WindowsForms">
       <HintPath>..\GMap.NET.WindowsForms.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Msagl">
+      <HintPath>.\Microsoft.Msagl.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Msagl.Drawing">
+      <HintPath>.\Microsoft.Msagl.Drawing.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Msagl.GraphViewerGdi">
+      <HintPath>.\Microsoft.Msagl.GraphViewerGdi.dll</HintPath>
+    </Reference>
     <Reference Include="QRCoder, Version=1.3.6.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\QRCoder.dll</HintPath>
@@ -127,12 +136,19 @@
     <Compile Include="Presentacion\Asignacion.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Presentacion\Conectividad.Designer.vb">
+      <DependentUpon>Conectividad.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\Conectividad.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Presentacion\ConfiguracionRed.Designer.vb">
       <DependentUpon>ConfiguracionRed.vb</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\ConfiguracionRed.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Presentacion\ConnectionGraph.vb" />
     <Compile Include="Presentacion\crearInformaDeDaños.Designer.vb">
       <DependentUpon>crearInformaDeDaños.vb</DependentUpon>
     </Compile>
@@ -326,6 +342,9 @@
     <EmbeddedResource Include="Presentacion\Asignacion.resx">
       <DependentUpon>Asignacion.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\Conectividad.resx">
+      <DependentUpon>Conectividad.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\ConfiguracionRed.resx">
       <DependentUpon>ConfiguracionRed.vb</DependentUpon>
     </EmbeddedResource>
@@ -365,8 +384,14 @@
     <EmbeddedResource Include="Presentacion\NuevaPrecarga.resx">
       <DependentUpon>NuevaPrecarga.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\NuevoCliente.resx">
+      <DependentUpon>NuevoCliente.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\NuevoLote.resx">
       <DependentUpon>NuevoLote.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\NuevoLugar.resx">
+      <DependentUpon>NuevoLugar.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\NuevoTrabajaEn.resx">
       <DependentUpon>NuevoTrabajaEn.vb</DependentUpon>

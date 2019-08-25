@@ -1,5 +1,7 @@
 ﻿Imports System.Data.Odbc
+Imports Controladores
 Imports Controladores.Extenciones.Extensiones
+Imports GMap.NET
 
 Public Class Persistencia
     Private Sub New()
@@ -106,6 +108,48 @@ Public Class Persistencia
         Dim selcmd As New OdbcCommand("execute function ocupacion_en_lugar(?::integer);", _con)
         selcmd.CrearParametro(idlugar)
         Return selcmd.ExecuteScalar
+    End Function
+
+    Public Function CrearZona(lugarID As Integer, nombre As String, capacidad As Integer) As Integer
+        Dim inscmd As New OdbcCommand("execute function crear_zona(?::varchar(100), ?::integer, ?::integer);", _con)
+        inscmd.CrearParametro(nombre)
+        inscmd.CrearParametro(lugarID)
+        inscmd.CrearParametro(capacidad)
+        Return inscmd.ExecuteScalar
+    End Function
+
+    Public Function CrearSubzona(zonaId As Integer, nombre As String, capacidad As Integer) As Integer
+        Dim inscmd As New OdbcCommand("execute function crear_subzona(?::varchar(100), ?::integer, ?::integer);", _con)
+        inscmd.CrearParametro(nombre)
+        inscmd.CrearParametro(zonaId)
+        inscmd.CrearParametro(capacidad)
+        Return inscmd.executescalar
+    End Function
+
+    Public Function CrearLugar(nombre As String, posicion As PointLatLng, tipo As String, mediosPermitidos() As TipoMedioTransporte, capacidad As Integer, usuario As Integer) As Integer
+        Dim inscmd As New OdbcCommand("execute function crear_lugar(?::varchar(100), ?::float, ?::float, ?::varchar(15), ?::integer, ?::integer);", _con)
+        inscmd.CrearParametro(nombre)
+        inscmd.CrearParametro(posicion.Lat)
+        inscmd.CrearParametro(posicion.Lng)
+        inscmd.CrearParametro(tipo)
+        inscmd.CrearParametro(capacidad)
+        inscmd.CrearParametro(usuario)
+        Dim lugarid = inscmd.ExecuteScalar
+        If lugarid < 0 Then
+            Return -1
+        End If
+        inscmd = New OdbcCommand("insert into habilitado(idlugar, idtipo) values (?::integer, ?::integer);", _con)
+        inscmd.CrearParametro(lugarid)
+        Dim idtipo = inscmd.CrearParametro(DbType.Int32, -1)
+        Try
+            For Each m In mediosPermitidos
+                idtipo.Value = m.ID
+                inscmd.ExecuteNonQuery()
+            Next
+        Catch e As Exception
+            Return -1
+        End Try
+        Return lugarid
     End Function
 
     Public Function PadreDeLugar(idlugar As Integer) As DataRow
@@ -864,6 +908,17 @@ Public Class Persistencia
         Return dt
     End Function
 
+    Friend Function ConexionesEntreLugares() As HashSet(Of Tuple(Of Integer, HashSet(Of String)))
+        Dim com As New OdbcCommand("select h1.idtipo, l1.nombre, l2.nombre from lugar as l1 inner join habilitado as h1 on l1.idlugar = h1.idlugar inner join habilitado as h2 on h1.idtipo=h2.idtipo and h1.idlugar <> h2.idlugar inner join lugar as l2 on h2.idlugar=l2.idlugar", _con)
+        Dim dt As New DataTable
+        dt.Load(com.ExecuteReader)
+        Dim hss As New HashSet(Of Tuple(Of Integer, HashSet(Of String)))
+        For Each r In dt.Rows.Cast(Of DataRow)
+            hss.Add(New Tuple(Of Integer, HashSet(Of String))(r(0), New HashSet(Of String)(r.ItemArray.SubArray(1, r.ItemArray.Length - 1).Cast(Of String))))
+        Next
+        Return hss
+    End Function
+
     Public Function MediosDisponiblesPorUsuario(idusuario As Integer) As DataTable
         Dim com As New OdbcCommand("select MedioTransporte.idlegal, MedioTransporte.nombre, TipoTransporte.nombre, fechacreacion
                                     from TipoTransporte inner join MedioTransporte on TipoTransporte.idtipo=MedioTransporte.idtipo
@@ -1073,6 +1128,18 @@ Public Class Persistencia
         Dim dt As New DataTable
         dt.Load(com.ExecuteReader)
         Return dt
+    End Function
+
+    Public Function infoLugar(nombre As String) As DataRow
+        Dim com As New OdbcCommand("select lugar.idlugar, lugar.nombre, capacidad, geox, geoy,lugar.tipo, usuario.nombredeusuario, cliente.nombre,lugar.fechaRegistro
+                                    from lugar inner join usuario on lugar.UsuarioCreador = usuario.idusuario
+                                    left join perteneceA on lugar.idlugar=perteneceA.idlugar
+                                    left  join cliente on perteneceA.clienteid=cliente.idcliente
+                                    where lugar.nombre=?", Conexcion)
+        com.CrearParametro(DbType.String, nombre)
+        Dim dt As New DataTable
+        dt.Load(com.ExecuteReader)
+        Return dt(0)
     End Function
 
     Public Function infoLugar(idlugar As Integer) As DataRow

@@ -1,5 +1,19 @@
+create function crear_lugar(nombrel like lugar.nombre, pos_x like lugar.geox, pos_y like lugar.geoy, tipo like lugar.tipo, capacidad like lugar.capacidad, creador like lugar.usuariocreador)
+   returning integer
+	DEFINE lugarid int;
+	IF capacidad < 1 THEN
+		return -1;
+	END IF
+	insert into lugar
+	(idlugar, nombre, geox, geoy, capacidad, usuariocreador, tipo, fecharegistro)
+	values
+	(0,       nombrel,pos_x,pos_y,capacidad, creador,        tipo, current);
+	select dbinfo('sqlca.sqlerrd1') into lugarid from systables where tabid=1;
+	return lugarid;
+end function;
+
 create function crear_subzona(nombrez like lugar.Nombre, enLugar like lugar.IDLugar, capacidadz int)
-   returning boolean
+   returning integer
 	DEFINE existelugar, capacidadlugar, creador, lugarid int;
 	DEFINE gx, gy float;
 	SELECT count(*), capacidad, geox, geoy, usuariocreador
@@ -7,24 +21,23 @@ create function crear_subzona(nombrez like lugar.Nombre, enLugar like lugar.IDLu
 	from lugar where idlugar=enLugar and tipo='Zona'
 	group by idlugar, capacidad, geox, geoy, usuariocreador;
 	IF existelugar < 1 THEN
-		return 'f';
+		return -1;
 	END IF;
 	IF capacidadlugar < capacidadz THEN
-		return 'f';
+		return -1;
 	END IF;
 	IF gx is null or gy is null THEN
-		return 'f';
 	END IF;
 	insert into lugar(idlugar, nombre, capacidad, geox, geoy,
 			usuariocreador, tipo,fechaRegistro)
 		values(0, nombrez, capacidadz, gx, gy, creador, 'Subzona',current);
 	select dbinfo('sqlca.sqlerrd1') into lugarid from systables where tabid=1;
 	insert into incluye values(lugarid, enLugar);
-	return 't';
+	return lugarid;
 end function;
 
 create function crear_zona(nombrez like lugar.Nombre, enLugar like lugar.IDLugar, capacidadz int)
-   returning boolean
+   returning integer
 	DEFINE existelugar, capacidadlugar, creador, lugarid int;
 	DEFINE gx, gy float;
 	SELECT count(*), capacidad, geox, geoy, usuariocreador
@@ -32,16 +45,16 @@ create function crear_zona(nombrez like lugar.Nombre, enLugar like lugar.IDLugar
 	from lugar where idlugar=enLugar and tipo in ('Puerto', 'Patio')
 	group by idlugar, capacidad, geox, geoy, usuariocreador;
 	IF existelugar < 1 THEN
-		return 'f';
+		return -1;
 	END IF;
 	IF capacidadlugar < capacidadz THEN
-		return 'f';
+		return -1;
 	END IF;
 	insert into lugar(idlugar, nombre, capacidad, geox, geoy,
 			usuariocreador, tipo,fechaRegistro) values(0, nombrez, capacidadz, gx, gy, creador, 'Zona', current);
 	select dbinfo('sqlca.sqlerrd1') into lugarid from systables where tabid=1;
 	insert into incluye values(lugarid, enLugar);
-	return 't';
+	return lugarid;
 end function;
 
 create function zonas_en_lugar(lugarid like lugar.idlugar)
