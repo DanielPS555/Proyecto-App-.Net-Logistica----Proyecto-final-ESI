@@ -2,11 +2,12 @@
 Imports Administrador
 
 Public Class PanelInfoUsuario
-    Implements NotificacionTrabajaEn
-
+    Implements NotificacionSimple
+    Dim filaSelexMedio As Integer = -1
     Dim filaSelex As Integer = -1
     Dim user As Controladores.Usuario
     Dim ListaTrabajaen As DataTable
+    Dim listaMedios As DataTable
 
     Public Sub New(idusuario As Integer)
         ' Esta llamada es exigida por el diseñador.
@@ -18,9 +19,17 @@ Public Class PanelInfoUsuario
 
     End Sub
 
-    Public Sub actualizarPanel() Implements NotificacionTrabajaEn.actualizarPanel
-        ListaTrabajaen = Controladores.Fachada.getInstancia.DevolverLosTrabajaEnPorUsuario(user.ID_usuario)
-        lugarDeTrabajos.DataSource = ListaTrabajaen
+    Public Sub actualizarPanel() Implements NotificacionSimple.actualizarPanel
+        If user.Rol = Controladores.Usuario.TIPO_ROL_OPERARIO Then
+            ListaTrabajaen = Controladores.Fachada.getInstancia.DevolverLosTrabajaEnPorUsuario(user.ID_usuario)
+            lugarDeTrabajos.DataSource = ListaTrabajaen
+        End If
+
+
+        If user.Rol = Controladores.Usuario.TIPO_ROL_TRANSPORTISTA Then
+            listaMedios = Controladores.Fachada.getInstancia.TablaDeMediosPorIDUsuario(user.ID_usuario)
+            mediosAuto.DataSource = listaMedios
+        End If
     End Sub
 
     Private Sub cargarDatosBasicos()
@@ -70,7 +79,8 @@ Public Class PanelInfoUsuario
         tab.TabPages.RemoveAt(3)
         tab.TabPages.RemoveAt(2)
         tab.TabPages.RemoveAt(1)
-        mediosAuto.DataSource = Controladores.Fachada.getInstancia.TablaDeMediosPorIDUsuario(user.ID_usuario)
+        listaMedios = Controladores.Fachada.getInstancia.TablaDeMediosPorIDUsuario(user.ID_usuario)
+        mediosAuto.DataSource = listaMedios
         tablatransportes.DataSource = Controladores.Fachada.getInstancia.ListaDeTrasportesPorIdUsuario(user.ID_usuario)
     End Sub
 
@@ -99,4 +109,26 @@ Public Class PanelInfoUsuario
         End If
     End Sub
 
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+        Dim m As New NuevoPermite(user, Me)
+        m.ShowDialog()
+    End Sub
+
+    Private Sub MediosAuto_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles mediosAuto.CellClick
+        filaSelexMedio = e.RowIndex
+    End Sub
+
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        If filaSelexMedio = -1 Then
+            MsgBox("Selecione un permiso de conducion que eliminar", MsgBoxStyle.Critical)
+            Return
+        End If
+
+        If MsgBox("Esta seguro que desea eliminar el permiso", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
+            Controladores.Fachada.getInstancia.InavilitarPermite(New Controladores.MedioDeTransporte With {.ID = listaMedios.Rows(filaSelexMedio).Item(0)}, user)
+            actualizarPanel()
+            MsgBox("Eliminacion realizada")
+        End If
+
+    End Sub
 End Class

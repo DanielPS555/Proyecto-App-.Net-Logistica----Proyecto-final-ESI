@@ -11,8 +11,8 @@
 	15 dgitos incluyendo el codigo pas */
 	PrimerNombre varchar(50) NOT null,
 	PrimerApellido varchar(50) NOT null,
-	PreguntaSecreta varchar(50) NOT null,
-	RespuestaSecreta varchar(50) NOT null,
+	PreguntaSecreta varchar(50),
+	RespuestaSecreta varchar(50),
 	Creador integer,
 	FechaCreacion date not null,
 	Sexo char(1) NOT null,

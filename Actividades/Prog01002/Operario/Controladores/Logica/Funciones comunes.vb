@@ -150,6 +150,51 @@ Public Class Funciones_comunes
         Return re
     End Function
 
+    Public Shared Function formatoCorrectoDelEmail(email As String) As Boolean
+        Dim aroba As Integer = -1
+        Dim punto As Integer = -1
+
+        For i As Integer = 0 To email.Length - 1
+            If email(i) = "@" Then
+                If aroba = -1 Then
+                    aroba = i
+                Else
+                    Return False ' No puede haber dos @
+                End If
+            End If
+
+            If email(i) = "." Then
+                punto = i
+            End If
+        Next
+
+        If punto > aroba Then 'Siempre hay un . dentras de la @
+            Return True
+
+        Else
+            Return False
+        End If
+
+    End Function
+
+    Public Shared Function SinEspacios(texto As String) As Boolean
+        For Each c As Char In texto
+            If c = " " Then
+                Return False
+            End If
+        Next
+        Return True
+    End Function
+
+    Public Shared Function soloNumeros(texto As String) As Boolean
+        For Each c As Char In texto
+            If Not Char.IsNumber(c) Then
+                Return False
+            End If
+        Next
+        Return True
+    End Function
+
 
 
 End Class

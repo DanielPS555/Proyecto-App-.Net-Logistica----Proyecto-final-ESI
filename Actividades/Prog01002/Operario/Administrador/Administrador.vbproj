@@ -215,8 +215,8 @@
     <Compile Include="Presentacion\Marco.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Presentacion\NotificacionDeLote.vb" />
-    <Compile Include="Presentacion\NotificacionTrabajaEn.vb" />
+    <Compile Include="Presentacion\NotificacionLote.vb" />
+    <Compile Include="Presentacion\NotificacionSimple.vb" />
     <Compile Include="Presentacion\NuevaPrecarga.Designer.vb">
       <DependentUpon>NuevaPrecarga.vb</DependentUpon>
     </Compile>
@@ -239,6 +239,12 @@
       <DependentUpon>NuevoLugar.vb</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\NuevoLugar.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\NuevoPermite.Designer.vb">
+      <DependentUpon>NuevoPermite.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\NuevoPermite.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Presentacion\NuevoTrabajaEn.Designer.vb">
@@ -392,6 +398,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\NuevoLugar.resx">
       <DependentUpon>NuevoLugar.vb</DependentUpon>
+      </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\NuevoPermite.resx">
+      <DependentUpon>NuevoPermite.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\NuevoTrabajaEn.resx">
       <DependentUpon>NuevoTrabajaEn.vb</DependentUpon>
