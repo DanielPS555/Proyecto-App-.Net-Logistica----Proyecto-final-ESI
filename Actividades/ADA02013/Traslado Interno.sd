@@ -1,0 +1,35 @@
+#![Traslado interno]
+usuario:Actor
+PanelPadre:PanelInfoVehiculo
+GUI:Traslado Interno
+Fachada:Fachada
+Persistencia:Persistencia
+Informix:Base de datos externa
+
+PanelPadre:GUI.Construye
+GUI:Fachada.DevolverPosicionActual(vehiculo)
+Fachada:Persistencia.PosicionActualVehiculo
+Persistencia:Informix.Consulta
+Fachada:Persistencia.ZonayLugarDeUnaSubzona
+
+GUI:Fachada.CargarTrabajaEnConLugarZonasySubzonas
+Fachada:LugarZonasYSubzonas
+Fachada:informacionBaseDelLugar
+Fachada:Persistencia.InformacionBasicaDeZonasPorIDLugar
+Persistencia:Informix.Consulta
+Fachada:Persistencia.InformacionBasicaDeSubzonasPorIdZona
+Persistencia:Subzonas=Informix.Consulta
+
+usuario:GUI.Elije zona
+GUI:Fachada.TrabajaEnActual.Lugar.Zonas
+
+usuario:GUI.Elije subzona
+GUI:Fachada.PosicionesActualmenteOcupadasPorSubzona
+
+usuario:GUI.Ingresar
+GUI:Fachada.AsignarNuevaPosicion
+Fachada:Persistencia.AnularAnteriorPosicion
+Persistencia:Informix.Consulta
+Fachada:Persistencia.insertPosicion
+Persistencia:Informix.Consulta
+GUI:PanelPadre.actualizarTransportesDeFormaExterna
