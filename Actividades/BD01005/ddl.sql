@@ -1,4 +1,4 @@
-﻿CREATE table
+CREATE table
 	usuario(
 	IDUsuario serial primary key,
 	NombreDeUsuario varchar(20) not null unique,
