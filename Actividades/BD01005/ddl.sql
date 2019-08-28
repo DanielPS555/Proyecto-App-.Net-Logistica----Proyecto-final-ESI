@@ -218,7 +218,7 @@ CREATE table
 	CreadorID integer NOT null,
 	FechaCreacion datetime year to day not null,
 	Prioridad varchar(10) NOT null check (Prioridad in ('Normal', 'Alta')),
-	Estado varchar(10) not null check (Estado in ('Abierto', 'Cerrado', 'Eliminado')),
+	Estado varchar(10) not null check (Estado in ('Abierto', 'Cerrado')),
 	invalido boolean not null default 'f', 
 	primary key(IDLote),
 	foreign key(Origen) references lugar(IDLugar) ON DELETE CASCADE,
