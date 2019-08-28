@@ -4,6 +4,9 @@ create function crear_lugar(nombrel like lugar.nombre, pos_x like lugar.geox, po
 	IF capacidad < 1 THEN
 		return -1;
 	END IF
+	IF tipo not in ('Puerto', 'Patio', 'Establecimiento') THEN
+		return -2;
+	END IF
 	insert into lugar
 	(idlugar, nombre, geox, geoy, capacidad, usuariocreador, tipo, fecharegistro)
 	values
@@ -149,7 +152,7 @@ create function cerrar_lote(loteid like lote.idlote)
 	select count(*) > 0
 	into unverif
 	from integra
-	inner join vehiculo on integra.idvehiculo=vehiculo.idvehiculo and integra.lote=loteid
+	inner join vehiculo on integra.idvehiculo=vehiculo.idvehiculo and integra.lote=loteid and integra.invalidado='f'
 	inner join lote on integra.lote=lote.idlote
 	left join informedanios on informedanios.idvehiculo=vehiculo.idvehiculo and informedanios.idlugar=lote.origen
 	where informedanios.id is null;
