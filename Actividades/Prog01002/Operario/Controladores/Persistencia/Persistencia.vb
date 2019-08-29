@@ -857,11 +857,14 @@ Public Class Persistencia
     End Function
 
     Public Function LotesDisponiblesATrasportar() As DataTable
-        Dim com As New OdbcCommand("select DISTINCT lote.idlote,lote.nombre,Prioridad, l1.idlugar as idlugarOrigen, l1.nombre as nombreorigen, l2.idlugar, l2.nombre, l1.GeoX, L1.GeoY, l2.Geox, l2.GeoY,transporta.estado from
-                                    lote left  join (select idlote,max(FechaHoraLlegadaReal) as ccc from transporta group by idlote) as maxi on maxi.idlote=lote.idlote
-                                    left  join transporta on maxi.idlote=transporta.idlote and maxi.ccc=transporta.FechaHoraLlegadaReal
-                                    inner  join lugar as l1 on origen=l1.idlugar inner join lugar as l2 on destino=l2.idlugar
-                                    where (transporta.estado is null or  transporta.estado='Fallo' or transporta.estado='Cancelado') and lote.invalido='f' and lote.estado='Cerrado'", Conexcion)
+        Dim com As New OdbcCommand("select lote.idlote, lote.nombre, prioridad, l1.idlugar as idlugarOrigen,
+l1.nombre as nombreorigen, l2.idlugar, l2.nombre, l1.GeoX, l1.geoy,
+l2.geox, l2.geoy from lote
+inner join lugar as l1 on l1.idlugar=origen and not lote.invalido and
+lote.estado = 'Cerrado'
+inner join lugar as l2 on l2.idlugar=destino
+left join transporta on transporta.estado='Exitoso'
+where transporta.estado is null", Conexcion)
         Dim dt As New DataTable
         dt.Load(com.ExecuteReader)
         Return dt
