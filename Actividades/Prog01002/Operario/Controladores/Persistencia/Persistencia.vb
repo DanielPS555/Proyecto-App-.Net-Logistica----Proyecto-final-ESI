@@ -123,7 +123,7 @@ Public Class Persistencia
         inscmd.CrearParametro(nombre)
         inscmd.CrearParametro(zonaId)
         inscmd.CrearParametro(capacidad)
-        Return inscmd.executescalar
+        Return inscmd.ExecuteScalar
     End Function
 
     Public Function CrearLugar(nombre As String, posicion As PointLatLng, tipo As String, mediosPermitidos() As TipoMedioTransporte, capacidad As Integer, usuario As Integer) As Integer
@@ -607,7 +607,7 @@ Public Class Persistencia
         Return com.ExecuteScalar
     End Function
 
-    Public Function DevolverTodosLosDestinosPosibles() As DataTable        'NO SE INCLUYEN PUERTOS POR EL MOMENTO, LUEGO VEMOS QUE HACEMOS CON ESO
+    Public Function DevolverTodosLosDestinosPosibles() As DataTable
         Dim com As New OdbcCommand("select lugar.idlugar, nombre, tipo,clienteid
                                     from lugar left join perteneceA on lugar.idlugar = perteneceA.idlugar
                                     where tipo in ('Patio', 'Puerto', 'Establecimiento')", Conexcion)

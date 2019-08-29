@@ -69,3 +69,5 @@ grant update on posicionado to operario, transportista;
 grant insert on posicionado to operario, transportista;
 grant select on vehiculo to operario;
 grant update on vehiculo to operario;
+
+grant connect to PUBLIC;
