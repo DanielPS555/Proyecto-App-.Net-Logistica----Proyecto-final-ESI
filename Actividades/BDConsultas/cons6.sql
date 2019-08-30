@@ -4,3 +4,4 @@ inner join
  lugar on informedanios.idlugar=lugar.idlugar
 where year(informedanios.fecha) = year(current)
 group by lugar.nombre
+order by daniados
