@@ -1,0 +1,4 @@
+INFORMIXDIR=/opt/informix
+INFORMIXSERVER=bit
+ONCONFIG=onconfig.bit
+INFORMIXSQLHOSTS=/opt/informix/etc/sqlhosts

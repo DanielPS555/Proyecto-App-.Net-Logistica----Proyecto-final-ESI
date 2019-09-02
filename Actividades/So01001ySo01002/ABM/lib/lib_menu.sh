@@ -1,18 +1,17 @@
 #!/bin/bash
 
-# VERCION 1.0 - 25/6 PRIMERA ENTREGA desarrolado por Bit (3°BD 2019)
+# VERCION 2.0 - 4/8 SEGUNDA ENTREGA desarrolado por Bit (3°BD 2019)
 
 menu()     #Solisita dos array, el primero con el nombre de la opcion y el segundo con la dirrecion del sub shell a llamar desde el menu 
 {
-
-ary1=($(echo ${!1})) #Pasamos el array que del parametro de la funcion a un array local 
-ary2=($(echo ${!2}))
-
 if test ${#ary1[@]} -eq ${#ary2[@]} #Debo comrpobar el numero de elementos que tengan ambos array sea los mismos 
 then 
 	verifMenu=0
 	while test $verifMenu -eq 0 #Este bucle se repetira hasta que no se haya salido del menu 
 	do	
+		ary1=($(echo ${!1})) #Pasamos el array que del parametro de la funcion a un array local 
+		ary2=($(echo ${!2}))
+
 		for var1 in $(seq 0 1 $[${#ary1[@]}-1])	
 		do
 			echo "$[$var1+1])  ${ary1[$var1]}" #Escribe en consola los elementos del menu 
@@ -36,9 +35,8 @@ then
 
 			echo "Opcion invalida, por favor ingrese una valida (ingrese cualquier boton para continuar)"
 			read ff
-			clear
 		fi
-		clear
+	clear 
 	done 
 else
 	echo "Excepcion, los dos array tiene que tener el mismo numero de elementos" 

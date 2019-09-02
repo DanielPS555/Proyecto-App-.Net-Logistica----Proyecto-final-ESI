@@ -9,8 +9,6 @@ listarUsuarios()
 	
 	menu 'eu1[@]' 'eu2[@]'	#Imprime todas las opciones de listar usuarios 
 
-		ary1=(${nombres[@]})
-		ary2=(${direcionesSetUp[@]})
 }
 
 listaCompleta()
@@ -91,8 +89,6 @@ buscador()
 	
 	menu 'eu1[@]' 'eu2[@]'	#Llama al menu con las opciones para el buscador multicriterios 
 
-	ary1=('Listar_todos_los_usuarios' 'Panel_De_informacion_de_un_usuario' 'Buscador_multicriterio_de_usuarios')
-	ary2=('listaCompleta' 'infoParticular' 'buscador')
 }
 
 buscarPorNombre()

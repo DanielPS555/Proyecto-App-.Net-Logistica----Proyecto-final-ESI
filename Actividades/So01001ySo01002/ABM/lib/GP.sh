@@ -14,7 +14,7 @@ do
 	;;
 	2)
 		echo "Ingrese el nombre del grupo principal(sino ingresa ningun no se realizaran cambios)" 
-		echo "Ingrese 'help' para visualizar todos los grupos del sistema"
+		echo "Ingrese 'help' para visualizar todos los grupos del sistemar"
 	;;
 	3)
 		echo "Ingrese el nombre del grupo donde se agregara el usuario" 	

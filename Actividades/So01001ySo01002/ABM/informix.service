@@ -1,0 +1,15 @@
+[Unit]
+Description=Informix service
+After=network.target
+
+[Service]
+Type=oneshot
+User=informix
+Group=informix
+EnvironmentFile=/etc/sysconfig/informix
+RemainAfterExit=yes
+ExecStart=/opt/informix/bin/oninit -vy
+ExecStop=/opt/informix/bin/onmode -vky
+
+[Install]
+WantedBy=multi-user.target

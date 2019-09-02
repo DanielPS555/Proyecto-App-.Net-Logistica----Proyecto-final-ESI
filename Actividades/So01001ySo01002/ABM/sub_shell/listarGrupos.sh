@@ -5,8 +5,6 @@ MenuListarGrupos()
 	
 	menu 'eu1[@]' 'eu2[@]'	#Llama a un menu para acceder a todas las caracteristicas del listado de grupo 
 
-	ary1=(${nombres[@]})
-	ary2=(${direcionesSetUp[@]})
 }
 
 listarTodosLosGrupos() #Su funcion es listar a todos los usuarios del sistema en forma de lista 

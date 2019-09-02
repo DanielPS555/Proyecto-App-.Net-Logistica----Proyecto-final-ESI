@@ -8,9 +8,6 @@ Preferencias()
 	eu2=('mostrarPreferencias' 'MHome' 'MShell' 'MExpire' 'MPassWarn' 'MInactivo' 'MPassDuracion')	
 	
 	menu 'eu1[@]' 'eu2[@]'	#Se llama al menu de preferencias 
-
-	ary1=(${nombres[@]})
-	ary2=(${direcionesSetUp[@]})
 }
 
 

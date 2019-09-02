@@ -35,7 +35,6 @@ mod_nom()
 }
 
 
-
 Mod_UID()
 {
 	mostrarUDI $ModUsuario #Muestra el UID del usuario 

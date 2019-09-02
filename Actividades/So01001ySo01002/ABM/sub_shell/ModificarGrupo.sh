@@ -6,11 +6,10 @@ Mgrupo='' #aqui se guarda el nombre del Grupo a modificar
 
 ModificarGrupo() #Aqui se inicial el shell modificar, ingresando el usuario y desplegando el menu 
 {
-	
 	verif5=0
 	while test $verif5 -eq 0
 	do
-		echo "Ingrese el nombre del grupo a modificar, si lodeja vacio se cancelara la operacion"
+		echo "Ingrese el nombre del grupo a modificar, si lo deja vacio se cancelara la operacion"
 		read dato	
 		if test -z $dato #Comprueba que el ingreso no sea vacio 
 		then
@@ -18,11 +17,10 @@ ModificarGrupo() #Aqui se inicial el shell modificar, ingresando el usuario y de
 			echo "Proseso cancelado, toque enter para continuar "
 			read ff
 		else
-			if test $(cut -d: -f1,3 /etc/group | grep -e "^$dato:[1-9][0-9]\{3\}$"|wc -l) -eq 1 #Comprueba que el usuario exista y tenga un GID valido 
+			if test $(cut -d: -f1,3 /etc/group | grep -e "^$dato:[1-9][0-9]\{3\}$" | wc -l) -eq 1 #Comprueba que el grupo exista y tenga un GID valido 
 			then
 				Mgrupo=$dato #carga el nombre del grupo en la variable
 				verif5=1
-	
 			else
 				echo "Entrada invalida"
 			fi	
@@ -53,7 +51,7 @@ MGNombre() #Funcion encargada de la modificacion del nombre de grupo
 		read dato #Ingreso de la informacion 	
 		if ! test -z $dato
 		then 
-			if test $(echo "$dato" | grep -e '[a-zA-Z][a-zA-Z0-9]\+$'| wc -l ) -eq 1 #Comprueba que el nombre comienze con una letra, luego podra tener el numero de letras o numeros que dese
+			if test $(echo "$dato" | grep -e '^[a-zA-Z][a-zA-Z0-9]\+$'| wc -l ) -eq 1 #Comprueba que el nombre comienze con una letra, luego podra tener el numero de letras o numeros que dese
 			then
 				if ! test -z $dato && test $(cat '/etc/group'| cut -d: -f1| grep -x "$dato"| wc -l) -eq 0 #Comprueba que el grupo no exista en el sistema  
 				then			
@@ -61,7 +59,7 @@ MGNombre() #Funcion encargada de la modificacion del nombre de grupo
 					Mgrupo=$dato #Carga el valor en la variable Mgrupo 					
 					verif=1 #Rompe bucle 
 				else	
-					echo  "Usuario ya ingrezado" 
+					echo  "Grupo ya ingresado"
 				fi
 			else 
 				echo  "Formato no valido " 
