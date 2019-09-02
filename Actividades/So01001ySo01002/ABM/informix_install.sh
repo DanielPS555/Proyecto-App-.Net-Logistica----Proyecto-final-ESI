@@ -24,7 +24,7 @@ cd ..
 rm -rf Informix
 echo "Realizando configuraciones"
 touch /etc/profile.d/zz_configInformix.sh
-cat >> /etc/profile.d/zz_configInformix<<EOF
+cat >> /etc/profile.d/zz_configInformix.sh<<EOF
 export INFORMIXDIR='/opt/IBM/Informix_Software_Bundle'
 export ONCONFIG=onconfig.bit
 export INFORMIXSERVER=bit
@@ -68,6 +68,8 @@ chmod 770 /opt/IBM
 chown informix:informix /opt/IBM
 clear
 echo "Como uno de los ultimos pasos, se debe reiniciar el pc, aunque para finalizar la instalacion por favor ejecute source setup.sh" 
+echo "Toque cualquier boton para continuar"
+read fff
 echo "Reiniciando en 3"
 sleep 1
 echo "2"
