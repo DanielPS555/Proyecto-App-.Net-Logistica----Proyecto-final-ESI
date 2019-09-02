@@ -105,6 +105,11 @@ function estadoServicios()
 	    #		echo $data;
 	    echo -n "Estado: ";
 	    echo ${state[1]} # | grep 'Active:' | cut -d' ' -f5
+	    if [ $[$i % 5] -eq 0 ]
+	    then
+		echo "Enter para continuar..."
+		read k
+	    fi
 	done
         echo -n "Desea ver los mensajes de algún servicio? [0;${#serviciosActivados[@]}): "
 	read inp

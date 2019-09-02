@@ -7,7 +7,7 @@ function cambiarLlave()
     then
 	return
     fi
-    uhome=$(getenv passwd $usr | cut -d: -f6)
+    uhome=$(getent passwd $usr | cut -d: -f6)
     if ! test -f "$uhome/.ssh/authorized_keys"
     then
 	echo "El usuario $usr no tiene una clave SSH configurada. Por favor utilice la función de _agregar_ clave ssh"

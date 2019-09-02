@@ -92,6 +92,7 @@ then
 		    source /var/DataConfiguracionABMusuariosSO/sub_shell/deshabilitarSsh.sh
 		    source /var/DataConfiguracionABMusuariosSO/sub_shell/estadoServicios.sh
 		    source /var/DataConfiguracionABMusuariosSO/sub_shell/send_backups.sh
+		    source /var/DataConfiguracionABMusuariosSO/sub_shell/smRedes.sh
 
 		    carpetaBase='/var/DataConfiguracionABMusuariosSO'
 

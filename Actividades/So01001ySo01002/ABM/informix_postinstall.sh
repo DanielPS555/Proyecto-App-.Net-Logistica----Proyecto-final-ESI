@@ -1,6 +1,3 @@
-
-
-
 cat >> /etc/profile <<EOF
 export INFORMIXDIR=/opt/informix
 export ONCONFIG=onconfig.bit

@@ -12,8 +12,15 @@ function procesosUsuario()
 	verifUser
 	if [ "$respuesta" != "" ]
 	then
-	    ps -U "$respuesta" -o pid,comm=Proceso
-	    read ff
+	    pCount=$(ps -U "$respuesta" -o pid,comm=Proceso | wc -l)
+	    if [ $pCount -eq 1 ]
+	    then
+		echo "No hay procesos abiertos por el usuario $respuesta"
+	    else
+		ps -U "$respuesta" -o pid,comm=Proceso
+		echo "Enter para continuar..."
+		read ff
+	    fi
 	fi
     done
 }
@@ -33,7 +40,31 @@ function detalleProceso()
 
 	if test $(echo $input | grep -E "^[0-9]{1,9}$"|wc -l) -eq 1 && test $(ps --pid $input|wc -l) -eq 2
 	then
-            ps --pid $input -o comm=Proceso,%cpu=CPU,%mem=RAM,euid=UID_Efectivo,ruid=UID_Real
+            pCount=$(ps --pid $input -o comm=Proceso,%cpu=CPU,%mem=RAM,euid=UID_Efectivo,ruid=UID_Real | wc -l)
+	    if [ $pCount -eq 0 ]
+	    then
+		echo "No hay procesos con PID=$input..."
+		read k
+	    else
+		_ppid=$(ps --pid $input -o ppid | tail -1)
+		ps --pid $input -o comm=Proceso,%cpu=CPU,%mem=RAM,euid=UID_Efectivo,ruid=UID_Real
+		echo "1 para ver padre, 2 para ver hijos, 3 para salir"
+		read k
+		if [ "$(echo $k | grep -E "^[1-3]{1}$" | wc -l)" -eq 1 ]
+		then
+		    if [ $k -eq 1 ]
+		    then
+			ps --pid $_ppid -o comm=Proceso,%cpu=CPU,%mem=RAM,euid=UID_Efectivo,ruid=UID_Real
+			echo "Enter para continuar..."
+			read k
+		    elif [ $k -eq 2 ]
+		    then
+			ps --ppid $input -o comm=Proceso,%cpu=CPU,%mem=RAM,euid=UID_Efectivo,ruid=UID_Real
+			echo "Enter para continuar..."
+			read k
+		    fi
+		fi
+	    fi
 	else
             echo "Proseso no encontrado" 
 	fi
