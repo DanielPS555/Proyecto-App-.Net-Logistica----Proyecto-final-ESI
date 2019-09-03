@@ -2,10 +2,10 @@
 #version 2 segunda entrega bit
 function listarBackups()
 {
-    bks=($(ls -t /var/backups/*.tgz | cut -d"/" -f4 | cut -d. -f1))
+    bks=($(ls -t /var/respaldos/*.tgz | cut -d"/" -f4 | cut -d. -f1))
     if [ "${#bks[@]}" -eq 0 ]
     then
-	echo "No hay backups"
+	echo "No hay respaldos"
 	read k
 	return
     fi
@@ -21,9 +21,13 @@ function listarBackups()
     fi
     cnode=${bks[$ff]}
     deptree=("$cnode")
-    while [ "$(grep \"$cnode\" /var/backups/backups.csv | cut -d, -f2)" != "null" ]; do
-	cnode=$(grep "$cnode" /var/backups/backups.csv | cut -d, -f2)
-	deptree[@]="$cnode"
+    echo ${deptree[@]}
+    cnode=$(grep "$cnode" /var/respaldos/respaldos.csv | cut -d, -f2)
+    while [ "$cnode" != "null" ]; do
+	deptree=(${deptree[@]} "$cnode")
+	read k
+	cnode=$(grep "$cnode" /var/respaldos/respaldos.csv  | head -1 | cut -d, -f2)
+	echo ${deptree[@]}
     done
     echo -n "Para restaurar ese backup, debe restaurar la cadena: ${deptree[@]} ¿Desea continuar? (y/N): "
     read ff
@@ -31,7 +35,7 @@ function listarBackups()
     then
 	for ((i=$[${#deptree[@]}-1]; i>=0; i--)); do
 	    echo ${deptree[$i]}
-	    tar xvf /var/backups/${deptree[$i]}.tgz -C /
+	    tar xvf /var/respaldos/${deptree[$i]}.tgz -C /
 	done
     fi
     echo "Listo!"

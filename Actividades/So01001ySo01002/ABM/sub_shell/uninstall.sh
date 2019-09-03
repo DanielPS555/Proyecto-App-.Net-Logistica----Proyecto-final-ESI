@@ -45,6 +45,8 @@ desinstalar()
 		read d 
 		case $d in 
 		1)
+			rm -rf /etc/systemd/system/informix.service
+			rm -rf /etc/sysconfig/informix
 			sed -i '/sqlexec\|sqlturbo/d' /etc/services
 			sed -i '/vmInformix/d' /etc/hostname
 			sed -i '/192.168.1.100 vmInformix/d' /etc/hosts

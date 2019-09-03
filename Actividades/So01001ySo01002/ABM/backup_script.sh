@@ -1,10 +1,10 @@
 source /var/DataConfiguracionABMusuariosSO/lib/backup_functions.sh
 
-if [ ! -d /var/backups ]
+if [ ! -d /var/respaldos ]
 then
-    mkdir /var/backups
+    mkdir /var/respaldos
     crearTotal
-elif ls /var/backups 2>/dev/null | grep snar
+elif ls /var/respaldos 2>/dev/null | grep snar
      # Merece una explicación porque va contra toda lógica
      # Cuando grep no encuentra el patrón en su entrada, devuelve 1
      # Lo cual en bash es equivalente a true

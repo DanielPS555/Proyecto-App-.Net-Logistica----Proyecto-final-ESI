@@ -5,7 +5,7 @@ function listarWtmp()
     verifUser
     usr=$respuesta
     for i in $(ls /var/log/wtmp*); do
-	last -f $i $usr | head -n -2
+	last -f $i $usr | head -n -2 | less
     done
     read ff
 }
@@ -16,7 +16,7 @@ function listarBtmp()
     verifUser
     usr=$respuesta
     for i in $(ls /var/log/btmp*); do
-	lastb -f $i $usr | head -n -2
+	lastb -f $i $usr | head -n -2 | less
     done
     read ff
 }

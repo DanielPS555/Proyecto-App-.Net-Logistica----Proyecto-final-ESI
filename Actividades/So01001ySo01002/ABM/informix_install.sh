@@ -10,8 +10,8 @@ echo "vmInformix" >> /etc/hostname
 echo "192.168.1.100 vmInformix" >> /etc/hosts
 
 echo "Descargando archivos de informix...."
-git clone https://github.com/Daniel2242014/Informix
-cd Informix
+git clone https://github.com/Daniel2242014/Informix2
+cd Informix2
 mkdir descom
 echo "Descomprimiendo...."
 cat informix.tar.001 informix.tar.002 informix.tar.003 informix.tar.004 informix.tar.005 informix.tar.006 informix.tar.007 informix.tar.008 | tar -xvif - -C descom
@@ -21,7 +21,7 @@ echo "Esperando que informix termine de instaladr en 2º plano"
 sleep 5
 echo "eliminando archivos de instalacio de informix"
 cd ..
-rm -rf Informix
+rm -rf Informix2
 echo "Realizando configuraciones"
 touch /etc/profile.d/zz_configInformix.sh
 cat >> /etc/profile.d/zz_configInformix.sh<<EOF
