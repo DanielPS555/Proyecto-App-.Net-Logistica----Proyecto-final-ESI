@@ -28,7 +28,6 @@ function listarBackups()
     while [ "$cnode" != "null" ]; do
     # se expande el arbol de dependencias con la dependencia del anterior
 	deptree=(${deptree[@]} "$cnode")
-	read k
     # se busca la dependencia del backup dependencia en el csv
 	cnode=$(grep "$cnode" /var/respaldos/respaldos.csv  | head -1 | cut -d, -f2)
 	echo ${deptree[@]}

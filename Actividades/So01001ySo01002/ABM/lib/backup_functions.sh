@@ -79,7 +79,7 @@ function crearIncremental()
 	echo NOMBRE,DEPENDENCIA > var/respaldos/respaldos.csv
     fi
     echo $bname,$last >> var/respaldos/respaldos.csv
-    echo $bname >> var/respaldos/latest
+    echo $bname > var/respaldos/latest
     cd $curdir
 }
 
