@@ -1,19 +1,13 @@
-#version 2 segunda entrega bit
+#!/bin/bash
+#VERCION 2.0 - 4/8 SEGUNDA ENTREGA desarrolado por Bit (3°BD 2019)
 reinicioExterior()
 {
- if systemctl disable $1.service
+ if systemctl restart $1.service
     then
-	echo "Servicio desactivado"
+	echo "Servicio reiniciado"
     else
 	echo "Error desconocido: $?"
  fi
- if systemctl enable $1.service
-    then
-	echo "Servicio activado"
-    else
-	echo "Error desconocido: $?"
- fi
-    
 }
 
 function desactivarServicio()
@@ -71,12 +65,15 @@ function pararServicio()
     read a
 }
 
+#ver via journalctl los mensajes correspondientes a la unidad del servicio
+#automaticamente sale via less
 function mensajesServicio()
 {
     journalctl -xe --unit=$sname.service
     read a
 }
 
+#buscar y afectar un servicio
 function buscarServicio()
 {
     echo -n "Qué servicio quiere buscar? (ej: sshd, informix, network, et al) "
@@ -117,7 +114,8 @@ function estadoServicios()
     inp=-1
     while [ $inp -lt 0 ]; do
 	serviciosActivados=($(systemctl list-unit-files --state=enabled | tail -n +2 | head -n -2 | cut -d' ' -f1 | grep -vE "target|@"))
-	for ((i=0;i<${#serviciosActivados[@]};++i)); do
+	for i in $(seq 0 $[${#serviciosActivados[@]} - 1]); do
+	#for ((i=0;i<${#serviciosActivados[@]};++i)); do
 	    echo $i")" ${serviciosActivados[$i]}
 	    state=($(systemctl status ${serviciosActivados[$i]} | grep Active:))
 	    #		echo $data;

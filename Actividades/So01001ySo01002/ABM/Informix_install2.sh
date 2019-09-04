@@ -1,4 +1,5 @@
-#Version 2 SEGUNDA ENTREGA Bit
+#!/bin/bash
+#VERCION 2.0 - 4/8 SEGUNDA ENTREGA desarrolado por Bit (3°BD 2019)
 source /etc/profile.d/zz_configInformix.sh
 su informix -c "source /etc/profile"
 su informix -c "oninit -ivy"

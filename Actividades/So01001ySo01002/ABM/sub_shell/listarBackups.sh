@@ -1,5 +1,5 @@
 #!/bin/bash
-#version 2 segunda entrega bit
+#VERCION 2.0 - 4/8 SEGUNDA ENTREGA desarrolado por Bit (3°BD 2019)
 function listarBackups()
 {
     bks=($(ls -t /var/respaldos/*.tgz | cut -d"/" -f4 | cut -d. -f1))
@@ -20,12 +20,16 @@ function listarBackups()
 	return
     fi
     cnode=${bks[$ff]}
+    # se crea un arbol de dependencias comenzando en el backup indicado
     deptree=("$cnode")
     echo ${deptree[@]}
+    # se busca su correspondiente dependencia en el csv
     cnode=$(grep "$cnode" /var/respaldos/respaldos.csv | cut -d, -f2)
     while [ "$cnode" != "null" ]; do
+    # se expande el arbol de dependencias con la dependencia del anterior
 	deptree=(${deptree[@]} "$cnode")
 	read k
+    # se busca la dependencia del backup dependencia en el csv
 	cnode=$(grep "$cnode" /var/respaldos/respaldos.csv  | head -1 | cut -d, -f2)
 	echo ${deptree[@]}
     done
@@ -35,6 +39,7 @@ function listarBackups()
     then
 	for ((i=$[${#deptree[@]}-1]; i>=0; i--)); do
 	    echo ${deptree[$i]}
+        #se extraen en orden inverso, es decir, el backup indicado ultimo
 	    tar xvf /var/respaldos/${deptree[$i]}.tgz -C /
 	done
     fi

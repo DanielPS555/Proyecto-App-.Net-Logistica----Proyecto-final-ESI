@@ -1,4 +1,5 @@
-#V2 2da entrega bit
+#!/bin/bash
+#VERCION 2.0 - 4/8 SEGUNDA ENTREGA desarrolado por Bit (3°BD 2019)
 function sudoUserFunction() # La función llamada via $1 en esta función no puede utilizar funciones del shell ya que se ejecuta en otro shell en el cual sólo se declara la función a ser ejecutada.
 {
     LUser=$1

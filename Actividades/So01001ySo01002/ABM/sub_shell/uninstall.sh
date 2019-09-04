@@ -1,3 +1,5 @@
+#!/bin/bash
+#VERCION 2.0 - 4/8 SEGUNDA ENTREGA desarrolado por Bit (3°BD 2019)
 desinstalar()
 {
 		#Subido en la direcion url que se puede ver en la linea anterior se tiene subido todos los shell script y funciones nesesarias para el correcto funcionamiento de la ABM. De esta forma el usuario no debera tener todos los archivos, solamente el shell setup para la instalacion
@@ -14,7 +16,6 @@ desinstalar()
 		then
 			rm -f /etc/profile.d/Titular.sh #se elimina el titular 
 		fi
-
 
 		PATH=$(echo $PATH | sed -e 's/:\/var\/DataConfiguracionABMusuariosSO\///g') #Elimina la ublicacion de la inlstalacion del path 
 		export PATH
@@ -73,5 +74,4 @@ desinstalar()
 			read f
 			verifMenu=-1
 		fi	
-
 }

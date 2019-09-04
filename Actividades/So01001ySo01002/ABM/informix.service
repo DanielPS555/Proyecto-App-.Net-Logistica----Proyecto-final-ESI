@@ -1,8 +1,6 @@
 [Unit]
-Description=Informix IDS Database Server
-Documentation=file:/opt/IBM/Informix_Software_Bundle/release/en_us/0333 http://www.ibm.com/software/data/informix/library.html
-Wants=network-online.target
-After=network.target network-online.target
+Description=Informix service
+After=network.target
 
 [Service]
 Type=oneshot

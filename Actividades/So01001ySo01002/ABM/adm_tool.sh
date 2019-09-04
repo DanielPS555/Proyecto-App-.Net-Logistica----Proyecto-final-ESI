@@ -1,9 +1,10 @@
+#!/bin/bash
 #VERCION 2.0 - 4/8 SEGUNDA ENTREGA desarrolado por Bit (3°BD 2019)
 
 Menussh()
 {
  namaes=("Cambiar_clave_ssh" "Crear_Llave_Ssh" "Listar_Usuarios_SSH" "Habilitar_Usuario_SSH" "Deshabilitar_Usuario_SSH")
- fnctns=("cambiarLlave" "crearLlaveSsh" "usuariosViaSsh" "habilitarSsh" "deshabilitarSsh")
+ fnctns=("cambiarLlave" "crearLlaveSsh" "usuariosConectados" "habilitarSsh" "deshabilitarSsh")
  menu "namaes[@]" "fnctns[@]"
 }
 

@@ -1,7 +1,4 @@
 #!bin/bash
-
-
-
 # VERCION 1.0 - 25/6 PRIMERA ENTREGA desarrolado por Bit (3°BD 2019)
 
 

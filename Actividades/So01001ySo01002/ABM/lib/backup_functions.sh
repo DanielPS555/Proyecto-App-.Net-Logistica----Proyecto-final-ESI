@@ -1,5 +1,5 @@
 #!/bin/bash
-#Version 2 SEGUNDA ENTREGA Bit
+#VERCION 2.0 - 4/8 SEGUNDA ENTREGA desarrolado por Bit (3°BD 2019)
 function crearTotal()
 {
     curdir=$(pwd)
@@ -60,6 +60,7 @@ function crearIncremental()
 {
     curdir=$(pwd)
     cd /
+
     if ! [ -d "var/respaldos" ]
     then
         mkdir var/respaldos

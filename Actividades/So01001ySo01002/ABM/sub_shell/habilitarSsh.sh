@@ -1,4 +1,5 @@
-#version 2 segunda entrega bit
+#!/bin/bash
+#VERCION 2.0 - 4/8 SEGUNDA ENTREGA desarrolado por Bit (3°BD 2019)
 function habilitarSsh()
 {
     if ! [ -f "/etc/ssh/allowed" ]
@@ -18,11 +19,13 @@ function habilitarSsh()
 	then
 	    if [ $(grep $usr /etc/ssh/allowed | wc -l) -eq 0 ]
 	    then
+		#agregar el usuario a la lista de usuarios permitidos via ssh
 		echo $usr >> /etc/ssh/allowed
 	    else
 		echo "El usuario ya tiene permisos via ssh."
 		return
 	    fi
+		#actualizar la cfg de ssh
 	    allowedToSshd
 	else
 	    return

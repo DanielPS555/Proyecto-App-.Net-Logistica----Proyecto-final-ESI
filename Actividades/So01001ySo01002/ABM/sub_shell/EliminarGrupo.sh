@@ -1,5 +1,4 @@
 #! /bin/bash
-
 # VERCION 1.0 - 25/6 PRIMERA ENTREGA desarrolado por Bit (3°BD 2019)
 
 eliminarGrupo() #Esta funcion es la encargada de la eliminacion de los grupos del sistema 

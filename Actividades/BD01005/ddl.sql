@@ -63,7 +63,7 @@ create table
 CREATE table
 	trabajaen(
 	ID serial primary key,
-	IDLugar integer, /* LA PUTA MADRE QUE TE PARIO BARREIRA */
+	IDLugar integer, 
 	IDUsuario integer not null,
 	FechaInicio date NOT null,
 	FechaFin date,
