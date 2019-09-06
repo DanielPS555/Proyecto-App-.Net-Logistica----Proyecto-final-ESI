@@ -731,7 +731,7 @@ Public Class Fachada
 
 
 
-    Public Function estadoDeUnMedioDeTrasporte(idlegal As String)
+    Public Function estadoDeUnMedioDeTrasporte(idlegal As String) ' conflictos si hay más de un medio de transporte con IDLegal equivalente en distintos tipos de medios
         Dim estate As String = Persistencia.getInstancia.UltimoEstadoDelTrasporteDeUnMedio(idlegal)
         If estate Is Nothing OrElse estate = 0 Then
             Return "Disponible"
@@ -751,7 +751,7 @@ Public Class Fachada
         End If
     End Function
 
-    Public Function devolverInformacionCompletaDelMedioDeTrasporte(idlegal As String) As MedioDeTransporte
+    Public Function devolverInformacionCompletaDelMedioDeTrasporte(idlegal As String) As MedioDeTransporte ' mismo problema que estadoDeUnMedioDeTransporte
         Dim r As DataRow = Persistencia.getInstancia.InfoMedioDeTrasporte(idlegal)
         Dim m As New MedioDeTransporte With {.ID = idlegal,
                                              .Nombre = r.Item(0),
@@ -813,10 +813,9 @@ Public Class Fachada
         Return idTransporte
     End Function
 
-    Public Function cambiarEstadoDelTransporta(lote As Controladores.Lote, transporte As Controladores.Trasporte, estado As String)
+    Public Function cambiarEstadoDelTransporta(lote As Controladores.Lote, transporte As Controladores.Trasporte, estado As String) As Boolean
         Persistencia.getInstancia.updatefechallegadarealAlTransportaDeUnLote(transporte.ID, lote.IDLote, DateTime.Now)
         Return Persistencia.getInstancia.updateEstadoDeUnTransporta(transporte.ID, lote.IDLote, estado)
-
     End Function
 
     Public Function comenzarTransporte(Transporte As Controladores.Trasporte)
@@ -845,7 +844,7 @@ Public Class Fachada
         Return tablaFinal
     End Function
 
-    Public Function nuevaPrecarga(vehi As Vehiculo, user As Usuario)
+    Public Function nuevaPrecarga(vehi As Vehiculo, user As Usuario) As Boolean
         Persistencia.getInstancia.insertVehiculo(vehi.VIN, vehi.Marca, vehi.Modelo, vehi.Color.ToArgb.ToString("X6"), vehi.Tipo, vehi.Año, vehi.Cliente.IDCliente)
         vehi.IdVehiculo = Persistencia.getInstancia.vinPorId(vehi.VIN)
         Return Persistencia.getInstancia.insertVehiculoIngresa(vehi.IdVehiculo, DateTime.Now, "Precarga", user.ID_usuario)
@@ -895,7 +894,7 @@ Public Class Fachada
         Return cliente
     End Function
 
-    Public Function EstablesimientoDeCliente(idcliente As Integer)
+    Public Function EstablesimientoDeCliente(idcliente As Integer) As DataTable
         Return Persistencia.getInstancia.listaDeLugaresPorIdcliente(idcliente)
     End Function
 
@@ -990,7 +989,7 @@ Public Class Fachada
         Return Persistencia.getInstancia.existenciaDelPermite(user.ID_usuario, med.ID, False)
     End Function
 
-    Public Function comprobarNombreDeUsuarioExiste(nombreuser As String)
+    Public Function comprobarNombreDeUsuarioExiste(nombreuser As String) ' función repetida de 
         Return Persistencia.getInstancia.ExistenciaDeNombreDeUsuario(nombreuser)
     End Function
 
