@@ -4,6 +4,6 @@
 # NO ES USO POR EL MOMENTO 
 
 cp informix.service /etc/systemd/system/
-cp sysconfig.informix /etc/sysconfig/informix
+cp sysconfig.informix /etc/sysconfig/sysconfig.informix
 systemctl start informix
 systemctl enable informix

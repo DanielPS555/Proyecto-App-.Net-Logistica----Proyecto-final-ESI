@@ -59,8 +59,16 @@ EOF
 		echo "export PATH=$PATH:/var/DataConfiguracionABMusuariosSO/" > /etc/profile.d/z_ABMConfiguration.sh
 		PATH="$PATH:/var/DataConfiguracionABMusuariosSO/" #cambia PATH, con SH no te permite hacerlo, por eso debe usar source el usuario 
 		export PATH #Exporta PATH
+		if ! test -d /var/respaldos
+		then 
+			mkdir /var/respaldos	
+		fi
+		if ! test -f /var/respaldos/master
+		then 
+			touch /var/respaldos/master	
+		fi
 		cd $ruta
-		mkdir /var/DataConfiguracionABMusuariosSO/Temp #Creamos la carpeta BackUp y Temp 
+		mkdir /var/DataConfiguracionABMusuariosSO/Temp #Creamos la carpeta Temp 
 		if test $(grep -e "^Operario:" /etc/passwd| wc -l) -eq 0 # si el usuario operario existe 
 		then
 			useradd Operario 2> /dev/null #Este usuario se crea para el acceso de los operarios al sistema
@@ -133,7 +141,7 @@ then
 		then
 			if test -f /var/DataConfiguracionABMusuariosSO/I_Inxo
 			then
-              source informix_install2.sh 
+              source Informix_install2.sh 
 			fi 
 		    source /var/DataConfiguracionABMusuariosSO/adm_tool.sh
 		else

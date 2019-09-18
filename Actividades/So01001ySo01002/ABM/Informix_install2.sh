@@ -6,7 +6,7 @@ su informix -c "oninit -ivy"
 su informix -c "onmode -vky"
 su informix -c "oninit -vy"
 cp /var/DataConfiguracionABMusuariosSO/informix.service /etc/systemd/system/
-cp /var/DataConfiguracionABMusuariosSO/sysconfig.informix /etc/sysconfig/informix
+cp /var/DataConfiguracionABMusuariosSO/sysconfig.informix /etc/sysconfig/sysconfig.informix
 systemctl start informix
 systemctl enable informix
 rm -f /var/DataConfiguracionABMusuariosSO/I_Inxo

@@ -25,7 +25,7 @@ MenuLog()
 menuBackUp()
 {
  namaes=('Calendario_Backups' 'Listar_Backups' 'Enviar_Backups' 'Crear_total' 'Crear_incremental')
- fnctns=('calendarioBackups' 'listarBackups' 'send_backups' 'totalManual' 'incrementalManual')
+ fnctns=('calendarioBackups' 'listarBackups' 'send_backups' 'totalManual2' 'incrementalManual2')
  menu "namaes[@]" "fnctns[@]"
 }
 
