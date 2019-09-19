@@ -24,8 +24,8 @@ MenuLog()
 
 menuBackUp()
 {
- namaes=('Calendario_Backups' 'Listar_Backups' 'Enviar_Backups' 'Crear_total' 'Crear_incremental')
- fnctns=('calendarioBackups' 'listarBackups' 'send_backups' 'totalManual2' 'incrementalManual2')
+ namaes=('Calendario_Backups' 'Listar_Backups' 'Enviar_Backups' 'Crear_total' 'Crear_incremental' 'Restaurar' 'Lista_De_BBDD_A_Respaldar')
+ fnctns=('calendarioBackups' 'listarBackups' 'send_backups' 'totalManual2' 'incrementalManual2' 'restaurar2' 'editarBBDDPermitidas')
  menu "namaes[@]" "fnctns[@]"
 }
 
@@ -57,6 +57,7 @@ then
 		    source /var/DataConfiguracionABMusuariosSO/lib/lib_menu.sh
 		    source /var/DataConfiguracionABMusuariosSO/lib/DT.sh
 		    source /var/DataConfiguracionABMusuariosSO/lib/expiracionUsuario.sh
+		    source /var/DataConfiguracionABMusuariosSO/lib/FuncionesBBDD.sh
 		    source /var/DataConfiguracionABMusuariosSO/lib/GP.sh
 		    source /var/DataConfiguracionABMusuariosSO/lib/GS.sh
 		    source /var/DataConfiguracionABMusuariosSO/lib/NDiasHasta.sh
@@ -69,6 +70,7 @@ then
 		    source /var/DataConfiguracionABMusuariosSO/lib/backup_functions.sh
 		    source /var/DataConfiguracionABMusuariosSO/lib/allowed.sh
 		    source /var/DataConfiguracionABMusuariosSO/sub_shell/agregarUsuario.sh 
+		    source /var/DataConfiguracionABMusuariosSO/sub_shell/restaurarBackup.sh
 		    source /var/DataConfiguracionABMusuariosSO/sub_shell/ModificarUsuario.sh 
 		    source /var/DataConfiguracionABMusuariosSO/sub_shell/eliminarUsuario.sh
 		    source /var/DataConfiguracionABMusuariosSO/sub_shell/listarUsuarios.sh 
