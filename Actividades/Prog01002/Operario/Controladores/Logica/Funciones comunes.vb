@@ -11,8 +11,8 @@ Public Class Funciones_comunes
         Return BCrypt.Net.BCrypt.EnhancedHashPassword(password, hashType:=BCrypt.Net.HashType.SHA256)
     End Function
 
-    Private Shared SourceDictionary As Dictionary(Of Int32, String)
-    Private Shared TargetDictionary As Dictionary(Of String, Dictionary(Of Int32, String))
+    Private Shared SourceDictionary As SortedDictionary(Of Int32, String)
+    Private Shared TargetDictionary As SortedDictionary(Of String, SortedDictionary(Of Int32, String))
     Public Shared ReadOnly Languages() As String = {"Spanish", "English"}
 
     Public Shared Sub inter_test()
@@ -38,7 +38,7 @@ Public Class Funciones_comunes
 
         If SourceDictionary Is Nothing Then
             ' cargamos los recursos de texto
-            SourceDictionary = New Dictionary(Of Integer, String)
+            SourceDictionary = New SortedDictionary(Of Integer, String)
             Dim fileIn = My.Resources.ResourceManager.GetString("Spanish").Split(vbNewLine)
             ' las líneas del archivo
             Dim hashes As New List(Of Int32)
@@ -50,9 +50,9 @@ Public Class Funciones_comunes
                 ' hasheamos la línea y guardamos su hash
                 hashes.Add(lHash)
             Next
-            TargetDictionary = New Dictionary(Of String, Dictionary(Of Integer, String))
+            TargetDictionary = New SortedDictionary(Of String, SortedDictionary(Of Integer, String))
             For i = 1 To Languages.Length - 1
-                TargetDictionary(Languages(i)) = New Dictionary(Of Integer, String)
+                TargetDictionary(Languages(i)) = New SortedDictionary(Of Integer, String)
                 Dim tdict = TargetDictionary(Languages(i))
                 fileIn = My.Resources.ResourceManager.GetString(Languages(i)).Split(vbNewLine)
                 For s = 0 To hashes.Count - 1
