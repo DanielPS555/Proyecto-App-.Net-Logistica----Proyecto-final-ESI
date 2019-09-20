@@ -11,7 +11,6 @@ Public Class Principal
 
         InitializeComponent()
 
-
         StartPosition = FormStartPosition.CenterScreen
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
         cargarPanel(Of Login)(New Login)
@@ -60,7 +59,6 @@ Public Class Principal
         If Fachada.getInstancia.SeccionExsistente() Then
             Fachada.getInstancia.CerrarSeccion()
         End If
-
 
     End Sub
 End Class

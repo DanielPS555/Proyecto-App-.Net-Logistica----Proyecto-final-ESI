@@ -1,4 +1,7 @@
-﻿Imports Controladores.Extenciones.Extensiones
+﻿Imports System.Globalization
+Imports System.IO
+Imports System.Resources
+Imports Controladores.Extenciones.Extensiones
 Public Class Funciones_comunes
     Public Shared Function ContraseñaHash(password As String) As String ' NO es determinística ni idempotente;
         ' esto es, la misma contraseña retornará distintos hash ya que el hash
@@ -6,6 +9,87 @@ Public Class Funciones_comunes
         ' para verificar no haga ContraseñaHash("passw123")=hash_contra
         ' llame a VerificarHash
         Return BCrypt.Net.BCrypt.EnhancedHashPassword(password, hashType:=BCrypt.Net.HashType.SHA256)
+    End Function
+
+    Private Shared SourceDictionary As Dictionary(Of Int32, String)
+    Private Shared TargetDictionary As Dictionary(Of String, Dictionary(Of Int32, String))
+    Public Shared ReadOnly Languages() As String = {"Spanish", "English"}
+
+    Public Shared Sub inter_test()
+        Dim TStrings() = {"Estás mal de la cabeza o qué te pasa?", "La biblia junto al Movicom", "No ves que está todo al revés?"}
+        For Each TString In TStrings
+            For Each k In Languages
+                Console.WriteLine(k + ": " + I18N(TString, k))
+            Next
+        Next
+    End Sub
+
+    'COMO USAR
+    'LLAMAMOS A I18N(String que buscamos, lenguaje que queremos)
+    'EJEMPLO: I18N('Estás mal de la cabeza o qué te pasa?', 'English') -> 'Are you insane or what's happening to you?'
+    'PARA CAMBIAR O AGREGAR LINEAS: MODIFICAR Spanish.txt y English.txt
+    'PARA AGREGAR LENGUAJES: CREAR UN NUEVO TXT, AGREGARLO A LOS RECURSOS *DE CONTROLADOR* Y AGREGARLO AL ARRAY LANGUAGES MÁS ARRIBA
+    Public Shared Function I18N(OriginalString As String, toLang As String) As String
+        If OriginalString.Length < 2 Then
+            Return Nothing
+        End If
+        Dim iHash = KDHash(OriginalString)
+        'hasheamos el string que estamos buscando
+
+        If SourceDictionary Is Nothing Then
+            ' cargamos los recursos de texto
+            SourceDictionary = New Dictionary(Of Integer, String)
+            Dim fileIn = My.Resources.ResourceManager.GetString("Spanish").Split(vbNewLine)
+            ' las líneas del archivo
+            Dim hashes As New List(Of Int32)
+            ' la lista de hashes (esperamos que cada String esté en la misma línea en todos los txt)
+            For Each s In fileIn
+                Dim line = s.Trim
+                Dim lHash = KDHash(line)
+                SourceDictionary(lHash) = line
+                ' hasheamos la línea y guardamos su hash
+                hashes.Add(lHash)
+            Next
+            TargetDictionary = New Dictionary(Of String, Dictionary(Of Integer, String))
+            For i = 1 To Languages.Length - 1
+                TargetDictionary(Languages(i)) = New Dictionary(Of Integer, String)
+                Dim tdict = TargetDictionary(Languages(i))
+                fileIn = My.Resources.ResourceManager.GetString(Languages(i)).Split(vbNewLine)
+                For s = 0 To hashes.Count - 1
+                    Dim line = fileIn(s).Trim
+                    ' usamos el hash de esta línea en el txt original como el hash de esta línea del diccionario alternativo
+                    Dim lHash = hashes(s)
+                    TargetDictionary(Languages(i))(lHash) = line
+                Next
+            Next
+        End If
+        Dim dict = Array.IndexOf(Languages, toLang)
+        If dict = 0 Then
+            Return SourceDictionary(iHash)
+        ElseIf dict > 0 Then
+            Return TargetDictionary(Languages(dict))(iHash)
+        Else
+            Return Nothing
+        End If
+    End Function
+
+    Private Shared Function KDHash(Input As String) As Int32 ' Kouta's Dirty Hash:
+        ' Nota: no es una función de hasheo real, pero dentro de nuestro dominio debería ser (a la vista) un hasheo
+        ' cuasi-perfecto
+        ' El hasheo se calcula como el largo del string reducido a 8 bytes, seguido por
+        ' el primer caracter del string (Mod 256 por si es unicode con >1 codepoint),
+        ' el caracter más cercano a la mitad del string (también mod 256 por la misma razón)
+        ' y el último caracter del string (idem), todo interpretado como un int32
+        ' sólo habría de colisionar en caso de tener strings que tengan el mismo largo, comiencen y terminen 
+        ' con los mismos caracteres y tengan el mismo caracter en la mitad
+        Dim strLen = Input.Length Mod 256
+        Dim strHash(3) As Byte
+        strHash(0) = strLen
+        strHash(1) = AscW(Input(0)) Mod 256
+        strHash(2) = AscW(Input(Input.Length \ 2)) Mod 256
+        strHash(3) = AscW(Input(Input.Length - 1)) Mod 256
+        Dim iHash = BitConverter.ToInt32(strHash, 0)
+        Return iHash
     End Function
 
     Public Shared Function BitmapFromByteArray(v As Byte()) As Bitmap

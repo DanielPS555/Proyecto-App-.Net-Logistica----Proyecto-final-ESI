@@ -22,7 +22,7 @@ Namespace My.Resources
     '''<summary>
     '''  Clase de recurso fuertemente tipado, para buscar cadenas traducidas, etc.
     '''</summary>
-    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0"),  _
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0"),  _
      Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.Runtime.CompilerServices.CompilerGeneratedAttribute(),  _
      Global.Microsoft.VisualBasic.HideModuleNameAttribute()>  _
@@ -67,6 +67,17 @@ Namespace My.Resources
             Get
                 Dim obj As Object = ResourceManager.GetObject("anterior", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca una cadena traducida similar a Are you insane or what&apos;s happening to you?
+        '''The bible next to the Movicom
+        '''Can&apos;t you see everything&apos;s upside down?.
+        '''</summary>
+        Friend ReadOnly Property English() As String
+            Get
+                Return ResourceManager.GetString("English", resourceCulture)
             End Get
         End Property
         
@@ -127,6 +138,17 @@ Namespace My.Resources
             Get
                 Dim obj As Object = ResourceManager.GetObject("sinContenidoFotografico", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca una cadena traducida similar a ¿Estás mal de la cabeza o qué te pasa?
+        '''La biblia junto al Movicom
+        '''¿No ves que está todo al revés?.
+        '''</summary>
+        Friend ReadOnly Property Spanish() As String
+            Get
+                Return ResourceManager.GetString("Spanish", resourceCulture)
             End Get
         End Property
         

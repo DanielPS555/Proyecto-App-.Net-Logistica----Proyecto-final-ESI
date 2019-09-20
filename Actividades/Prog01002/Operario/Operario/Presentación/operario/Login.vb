@@ -3,6 +3,7 @@ Imports System.IO
 Imports System.Text
 Imports Microsoft.Win32
 Imports Controladores.Fachada
+Imports Controladores
 
 Public Class Login
     Private contraseñaVisible As Boolean = False
@@ -42,7 +43,6 @@ Public Class Login
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
         Tiempo.Start()
         Me.AcceptButton = Button1 ' al asignar Button1 a la propiedad AcceptButton, el evento Click de Button1 será ejecutado al presionar enter
-
     End Sub
 
     Private Sub user_Enter(sender As Object, e As EventArgs) Handles user.Enter
