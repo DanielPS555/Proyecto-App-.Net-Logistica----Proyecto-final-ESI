@@ -22,57 +22,77 @@ Partial Class Marco
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim Button8 As System.Windows.Forms.Button
-        Dim Button4 As System.Windows.Forms.Button
+        Me.Micuenta = New System.Windows.Forms.Button()
+        Me.acercaDe = New System.Windows.Forms.Button()
         Me.contpr = New System.Windows.Forms.Panel()
         Me.contenedor = New System.Windows.Forms.Panel()
         Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.b13 = New System.Windows.Forms.Button()
-        Me.b11 = New System.Windows.Forms.Button()
-        Me.b10 = New System.Windows.Forms.Button()
-        Me.b9 = New System.Windows.Forms.Button()
-        Me.b7 = New System.Windows.Forms.Button()
-        Me.b5 = New System.Windows.Forms.Button()
-        Me.b4 = New System.Windows.Forms.Button()
-        Me.b2 = New System.Windows.Forms.Button()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.Button3 = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.atras = New System.Windows.Forms.Button()
+        Me.sigiente = New System.Windows.Forms.Button()
         Me.Panel4 = New System.Windows.Forms.Panel()
         Me.Panel5 = New System.Windows.Forms.Panel()
-        Button8 = New System.Windows.Forms.Button()
-        Button4 = New System.Windows.Forms.Button()
+        Me.b9 = New System.Windows.Forms.Button()
+        Me.b8 = New System.Windows.Forms.Button()
+        Me.b7 = New System.Windows.Forms.Button()
+        Me.b6 = New System.Windows.Forms.Button()
+        Me.b5 = New System.Windows.Forms.Button()
+        Me.b4 = New System.Windows.Forms.Button()
+        Me.b3 = New System.Windows.Forms.Button()
+        Me.b2 = New System.Windows.Forms.Button()
+        Me.b1 = New System.Windows.Forms.Button()
+        Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.b10 = New System.Windows.Forms.Button()
         Me.contpr.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.Panel1.SuspendLayout()
-        Me.Panel3.SuspendLayout()
         Me.Panel4.SuspendLayout()
         Me.Panel5.SuspendLayout()
+        Me.Panel3.SuspendLayout()
         Me.SuspendLayout()
         '
-        'Button8
+        'Micuenta
         '
-        Button8.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.Micuenta.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Button8.BackColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(217, Byte), Integer))
-        Button8.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Button8.FlatAppearance.BorderSize = 0
-        Button8.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Button8.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        Button8.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        Button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Button8.Font = New System.Drawing.Font("Segoe UI", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Button8.ForeColor = System.Drawing.Color.White
-        Button8.Location = New System.Drawing.Point(0, 44)
-        Button8.Name = "Button8"
-        Button8.Size = New System.Drawing.Size(214, 35)
-        Button8.TabIndex = 8
-        Button8.Text = "Mi cuenta"
-        Button8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Button8.UseVisualStyleBackColor = False
-        AddHandler Button8.Click, AddressOf Me.Button8_Click
+        Me.Micuenta.BackColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(217, Byte), Integer))
+        Me.Micuenta.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.Micuenta.FlatAppearance.BorderSize = 0
+        Me.Micuenta.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.Micuenta.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        Me.Micuenta.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        Me.Micuenta.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Micuenta.Font = New System.Drawing.Font("Segoe UI", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Micuenta.ForeColor = System.Drawing.Color.White
+        Me.Micuenta.Location = New System.Drawing.Point(0, 44)
+        Me.Micuenta.Name = "Micuenta"
+        Me.Micuenta.Size = New System.Drawing.Size(214, 35)
+        Me.Micuenta.TabIndex = 8
+        Me.Micuenta.Text = "Mi cuenta"
+        Me.Micuenta.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Micuenta.UseVisualStyleBackColor = False
+        '
+        'acercaDe
+        '
+        Me.acercaDe.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.acercaDe.BackColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(217, Byte), Integer))
+        Me.acercaDe.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.acercaDe.FlatAppearance.BorderSize = 0
+        Me.acercaDe.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.acercaDe.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        Me.acercaDe.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        Me.acercaDe.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.acercaDe.Font = New System.Drawing.Font("Segoe UI", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.acercaDe.ForeColor = System.Drawing.Color.White
+        Me.acercaDe.Location = New System.Drawing.Point(0, 3)
+        Me.acercaDe.Name = "acercaDe"
+        Me.acercaDe.Size = New System.Drawing.Size(214, 35)
+        Me.acercaDe.TabIndex = 20
+        Me.acercaDe.Text = "Acerca de"
+        Me.acercaDe.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.acercaDe.UseVisualStyleBackColor = False
         '
         'contpr
         '
@@ -107,65 +127,81 @@ Partial Class Marco
         Me.Panel2.Size = New System.Drawing.Size(220, 650)
         Me.Panel2.TabIndex = 0
         '
-        'b13
+        'Panel1
         '
-        Me.b13.BackColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(217, Byte), Integer))
-        Me.b13.Dock = System.Windows.Forms.DockStyle.Top
-        Me.b13.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Me.b13.FlatAppearance.BorderSize = 0
-        Me.b13.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Me.b13.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        Me.b13.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        Me.b13.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.b13.Font = New System.Drawing.Font("Segoe UI Semilight", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.b13.ForeColor = System.Drawing.Color.White
-        Me.b13.Location = New System.Drawing.Point(0, 287)
-        Me.b13.Name = "b13"
-        Me.b13.Size = New System.Drawing.Size(220, 35)
-        Me.b13.TabIndex = 17
-        Me.b13.Text = "Lista de clientes"
-        Me.b13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.b13.UseVisualStyleBackColor = False
+        Me.Panel1.Controls.Add(Me.atras)
+        Me.Panel1.Controls.Add(Me.sigiente)
+        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel1.Location = New System.Drawing.Point(0, 0)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(220, 50)
+        Me.Panel1.TabIndex = 0
         '
-        'b11
+        'atras
         '
-        Me.b11.BackColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(217, Byte), Integer))
-        Me.b11.Dock = System.Windows.Forms.DockStyle.Top
-        Me.b11.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Me.b11.FlatAppearance.BorderSize = 0
-        Me.b11.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Me.b11.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        Me.b11.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        Me.b11.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.b11.Font = New System.Drawing.Font("Segoe UI Semilight", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.b11.ForeColor = System.Drawing.Color.White
-        Me.b11.Location = New System.Drawing.Point(0, 140)
-        Me.b11.Name = "b11"
-        Me.b11.Size = New System.Drawing.Size(220, 35)
-        Me.b11.TabIndex = 13
-        Me.b11.Text = "Lista de usuarios"
-        Me.b11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.b11.UseVisualStyleBackColor = False
+        Me.atras.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.atras.BackColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(210, Byte), Integer))
+        Me.atras.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.atras.FlatAppearance.BorderSize = 0
+        Me.atras.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.atras.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        Me.atras.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        Me.atras.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.atras.Font = New System.Drawing.Font("Segoe UI Semilight", 20.0!)
+        Me.atras.ForeColor = System.Drawing.Color.White
+        Me.atras.Location = New System.Drawing.Point(3, 3)
+        Me.atras.Name = "atras"
+        Me.atras.Size = New System.Drawing.Size(50, 44)
+        Me.atras.TabIndex = 18
+        Me.atras.Text = "<"
+        Me.atras.UseVisualStyleBackColor = False
         '
-        'b10
+        'sigiente
         '
-        Me.b10.BackColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(217, Byte), Integer))
-        Me.b10.Dock = System.Windows.Forms.DockStyle.Top
-        Me.b10.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Me.b10.FlatAppearance.BorderSize = 0
-        Me.b10.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Me.b10.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        Me.b10.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        Me.b10.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.b10.Font = New System.Drawing.Font("Segoe UI Semilight", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.b10.ForeColor = System.Drawing.Color.White
-        Me.b10.Location = New System.Drawing.Point(0, 210)
-        Me.b10.Name = "b10"
-        Me.b10.Size = New System.Drawing.Size(220, 77)
-        Me.b10.TabIndex = 12
-        Me.b10.Text = "Lotes disponibles a transportar "
-        Me.b10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.b10.UseVisualStyleBackColor = False
+        Me.sigiente.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.sigiente.BackColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(210, Byte), Integer))
+        Me.sigiente.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.sigiente.FlatAppearance.BorderSize = 0
+        Me.sigiente.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.sigiente.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        Me.sigiente.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        Me.sigiente.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.sigiente.Font = New System.Drawing.Font("Segoe UI Semilight", 20.0!)
+        Me.sigiente.ForeColor = System.Drawing.Color.White
+        Me.sigiente.Location = New System.Drawing.Point(59, 3)
+        Me.sigiente.Name = "sigiente"
+        Me.sigiente.Size = New System.Drawing.Size(57, 44)
+        Me.sigiente.TabIndex = 19
+        Me.sigiente.Text = ">"
+        Me.sigiente.UseVisualStyleBackColor = False
+        '
+        'Panel4
+        '
+        Me.Panel4.Controls.Add(Me.Panel5)
+        Me.Panel4.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Panel4.Location = New System.Drawing.Point(0, 0)
+        Me.Panel4.Name = "Panel4"
+        Me.Panel4.Size = New System.Drawing.Size(220, 507)
+        Me.Panel4.TabIndex = 18
+        '
+        'Panel5
+        '
+        Me.Panel5.Controls.Add(Me.b10)
+        Me.Panel5.Controls.Add(Me.b9)
+        Me.Panel5.Controls.Add(Me.b8)
+        Me.Panel5.Controls.Add(Me.b7)
+        Me.Panel5.Controls.Add(Me.b6)
+        Me.Panel5.Controls.Add(Me.b5)
+        Me.Panel5.Controls.Add(Me.b4)
+        Me.Panel5.Controls.Add(Me.b3)
+        Me.Panel5.Controls.Add(Me.b2)
+        Me.Panel5.Controls.Add(Me.b1)
+        Me.Panel5.Location = New System.Drawing.Point(0, 50)
+        Me.Panel5.Name = "Panel5"
+        Me.Panel5.Size = New System.Drawing.Size(220, 457)
+        Me.Panel5.TabIndex = 18
         '
         'b9
         '
@@ -179,13 +215,33 @@ Partial Class Marco
         Me.b9.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.b9.Font = New System.Drawing.Font("Segoe UI Semilight", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.b9.ForeColor = System.Drawing.Color.White
-        Me.b9.Location = New System.Drawing.Point(0, 0)
+        Me.b9.Location = New System.Drawing.Point(0, 322)
         Me.b9.Name = "b9"
         Me.b9.Size = New System.Drawing.Size(220, 35)
-        Me.b9.TabIndex = 11
-        Me.b9.Text = "Lista Transportes"
+        Me.b9.TabIndex = 18
+        Me.b9.Text = "Lista de zonas"
         Me.b9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.b9.UseVisualStyleBackColor = False
+        '
+        'b8
+        '
+        Me.b8.BackColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(217, Byte), Integer))
+        Me.b8.Dock = System.Windows.Forms.DockStyle.Top
+        Me.b8.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.b8.FlatAppearance.BorderSize = 0
+        Me.b8.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.b8.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        Me.b8.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        Me.b8.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.b8.Font = New System.Drawing.Font("Segoe UI Semilight", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.b8.ForeColor = System.Drawing.Color.White
+        Me.b8.Location = New System.Drawing.Point(0, 287)
+        Me.b8.Name = "b8"
+        Me.b8.Size = New System.Drawing.Size(220, 35)
+        Me.b8.TabIndex = 17
+        Me.b8.Text = "Lista de clientes"
+        Me.b8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.b8.UseVisualStyleBackColor = False
         '
         'b7
         '
@@ -199,13 +255,33 @@ Partial Class Marco
         Me.b7.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.b7.Font = New System.Drawing.Font("Segoe UI Semilight", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.b7.ForeColor = System.Drawing.Color.White
-        Me.b7.Location = New System.Drawing.Point(0, 105)
+        Me.b7.Location = New System.Drawing.Point(0, 210)
         Me.b7.Name = "b7"
-        Me.b7.Size = New System.Drawing.Size(220, 35)
-        Me.b7.TabIndex = 10
-        Me.b7.Text = "Lista Medios"
+        Me.b7.Size = New System.Drawing.Size(220, 77)
+        Me.b7.TabIndex = 12
+        Me.b7.Text = "Lotes disponibles a transportar "
         Me.b7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.b7.UseVisualStyleBackColor = False
+        '
+        'b6
+        '
+        Me.b6.BackColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(217, Byte), Integer))
+        Me.b6.Dock = System.Windows.Forms.DockStyle.Top
+        Me.b6.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.b6.FlatAppearance.BorderSize = 0
+        Me.b6.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.b6.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        Me.b6.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        Me.b6.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.b6.Font = New System.Drawing.Font("Segoe UI Semilight", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.b6.ForeColor = System.Drawing.Color.White
+        Me.b6.Location = New System.Drawing.Point(0, 175)
+        Me.b6.Name = "b6"
+        Me.b6.Size = New System.Drawing.Size(220, 35)
+        Me.b6.TabIndex = 9
+        Me.b6.Text = "Lista lugares"
+        Me.b6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.b6.UseVisualStyleBackColor = False
         '
         'b5
         '
@@ -219,11 +295,11 @@ Partial Class Marco
         Me.b5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.b5.Font = New System.Drawing.Font("Segoe UI Semilight", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.b5.ForeColor = System.Drawing.Color.White
-        Me.b5.Location = New System.Drawing.Point(0, 175)
+        Me.b5.Location = New System.Drawing.Point(0, 140)
         Me.b5.Name = "b5"
         Me.b5.Size = New System.Drawing.Size(220, 35)
-        Me.b5.TabIndex = 9
-        Me.b5.Text = "Lista lugares"
+        Me.b5.TabIndex = 13
+        Me.b5.Text = "Lista de usuarios"
         Me.b5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.b5.UseVisualStyleBackColor = False
         '
@@ -239,13 +315,33 @@ Partial Class Marco
         Me.b4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.b4.Font = New System.Drawing.Font("Segoe UI Semilight", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.b4.ForeColor = System.Drawing.Color.White
-        Me.b4.Location = New System.Drawing.Point(0, 70)
+        Me.b4.Location = New System.Drawing.Point(0, 105)
         Me.b4.Name = "b4"
         Me.b4.Size = New System.Drawing.Size(220, 35)
-        Me.b4.TabIndex = 5
-        Me.b4.Text = "Lista lotes"
+        Me.b4.TabIndex = 10
+        Me.b4.Text = "Lista Medios"
         Me.b4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.b4.UseVisualStyleBackColor = False
+        '
+        'b3
+        '
+        Me.b3.BackColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(217, Byte), Integer))
+        Me.b3.Dock = System.Windows.Forms.DockStyle.Top
+        Me.b3.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.b3.FlatAppearance.BorderSize = 0
+        Me.b3.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.b3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        Me.b3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        Me.b3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.b3.Font = New System.Drawing.Font("Segoe UI Semilight", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.b3.ForeColor = System.Drawing.Color.White
+        Me.b3.Location = New System.Drawing.Point(0, 70)
+        Me.b3.Name = "b3"
+        Me.b3.Size = New System.Drawing.Size(220, 35)
+        Me.b3.TabIndex = 5
+        Me.b3.Text = "Lista lotes"
+        Me.b3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.b3.UseVisualStyleBackColor = False
         '
         'b2
         '
@@ -267,6 +363,36 @@ Partial Class Marco
         Me.b2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.b2.UseVisualStyleBackColor = False
         '
+        'b1
+        '
+        Me.b1.BackColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(217, Byte), Integer))
+        Me.b1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.b1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.b1.FlatAppearance.BorderSize = 0
+        Me.b1.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.b1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        Me.b1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        Me.b1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.b1.Font = New System.Drawing.Font("Segoe UI Semilight", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.b1.ForeColor = System.Drawing.Color.White
+        Me.b1.Location = New System.Drawing.Point(0, 0)
+        Me.b1.Name = "b1"
+        Me.b1.Size = New System.Drawing.Size(220, 35)
+        Me.b1.TabIndex = 11
+        Me.b1.Text = "Lista Transportes"
+        Me.b1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.b1.UseVisualStyleBackColor = False
+        '
+        'Panel3
+        '
+        Me.Panel3.Controls.Add(Me.acercaDe)
+        Me.Panel3.Controls.Add(Me.Micuenta)
+        Me.Panel3.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.Panel3.Location = New System.Drawing.Point(0, 507)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(220, 86)
+        Me.Panel3.TabIndex = 21
+        '
         'Button1
         '
         Me.Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(188, Byte), Integer), CType(CType(16, Byte), Integer), CType(CType(16, Byte), Integer))
@@ -285,110 +411,26 @@ Partial Class Marco
         Me.Button1.Text = "Cerrar secion "
         Me.Button1.UseVisualStyleBackColor = False
         '
-        'Button3
+        'b10
         '
-        Me.Button3.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button3.BackColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(210, Byte), Integer))
-        Me.Button3.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Me.Button3.FlatAppearance.BorderSize = 0
-        Me.Button3.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Me.Button3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        Me.Button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button3.Font = New System.Drawing.Font("Segoe UI Semilight", 20.0!)
-        Me.Button3.ForeColor = System.Drawing.Color.White
-        Me.Button3.Location = New System.Drawing.Point(59, 3)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(57, 44)
-        Me.Button3.TabIndex = 19
-        Me.Button3.Text = ">"
-        Me.Button3.UseVisualStyleBackColor = False
-        '
-        'Button2
-        '
-        Me.Button2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button2.BackColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(210, Byte), Integer))
-        Me.Button2.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Me.Button2.FlatAppearance.BorderSize = 0
-        Me.Button2.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Me.Button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        Me.Button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button2.Font = New System.Drawing.Font("Segoe UI Semilight", 20.0!)
-        Me.Button2.ForeColor = System.Drawing.Color.White
-        Me.Button2.Location = New System.Drawing.Point(3, 3)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(50, 44)
-        Me.Button2.TabIndex = 18
-        Me.Button2.Text = "<"
-        Me.Button2.UseVisualStyleBackColor = False
-        '
-        'Button4
-        '
-        Button4.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Button4.BackColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(217, Byte), Integer))
-        Button4.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Button4.FlatAppearance.BorderSize = 0
-        Button4.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Button4.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        Button4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Button4.Font = New System.Drawing.Font("Segoe UI", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Button4.ForeColor = System.Drawing.Color.White
-        Button4.Location = New System.Drawing.Point(6, 3)
-        Button4.Name = "Button4"
-        Button4.Size = New System.Drawing.Size(214, 35)
-        Button4.TabIndex = 20
-        Button4.Text = "Acerca de"
-        Button4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Button4.UseVisualStyleBackColor = False
-        '
-        'Panel1
-        '
-        Me.Panel1.Controls.Add(Me.Button2)
-        Me.Panel1.Controls.Add(Me.Button3)
-        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Panel1.Location = New System.Drawing.Point(0, 0)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(220, 50)
-        Me.Panel1.TabIndex = 0
-        '
-        'Panel3
-        '
-        Me.Panel3.Controls.Add(Button4)
-        Me.Panel3.Controls.Add(Button8)
-        Me.Panel3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel3.Location = New System.Drawing.Point(0, 507)
-        Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(220, 86)
-        Me.Panel3.TabIndex = 21
-        '
-        'Panel4
-        '
-        Me.Panel4.Controls.Add(Me.Panel5)
-        Me.Panel4.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel4.Location = New System.Drawing.Point(0, 0)
-        Me.Panel4.Name = "Panel4"
-        Me.Panel4.Size = New System.Drawing.Size(220, 507)
-        Me.Panel4.TabIndex = 18
-        '
-        'Panel5
-        '
-        Me.Panel5.Controls.Add(Me.b13)
-        Me.Panel5.Controls.Add(Me.b10)
-        Me.Panel5.Controls.Add(Me.b5)
-        Me.Panel5.Controls.Add(Me.b11)
-        Me.Panel5.Controls.Add(Me.b7)
-        Me.Panel5.Controls.Add(Me.b4)
-        Me.Panel5.Controls.Add(Me.b2)
-        Me.Panel5.Controls.Add(Me.b9)
-        Me.Panel5.Location = New System.Drawing.Point(0, 50)
-        Me.Panel5.Name = "Panel5"
-        Me.Panel5.Size = New System.Drawing.Size(220, 457)
-        Me.Panel5.TabIndex = 18
+        Me.b10.AccessibleRole = System.Windows.Forms.AccessibleRole.None
+        Me.b10.BackColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(217, Byte), Integer))
+        Me.b10.Dock = System.Windows.Forms.DockStyle.Top
+        Me.b10.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.b10.FlatAppearance.BorderSize = 0
+        Me.b10.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.b10.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        Me.b10.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        Me.b10.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.b10.Font = New System.Drawing.Font("Segoe UI Semilight", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.b10.ForeColor = System.Drawing.Color.White
+        Me.b10.Location = New System.Drawing.Point(0, 357)
+        Me.b10.Name = "b10"
+        Me.b10.Size = New System.Drawing.Size(220, 35)
+        Me.b10.TabIndex = 19
+        Me.b10.Text = "Inicio"
+        Me.b10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.b10.UseVisualStyleBackColor = False
         '
         'Marco
         '
@@ -402,28 +444,32 @@ Partial Class Marco
         Me.contpr.ResumeLayout(False)
         Me.Panel2.ResumeLayout(False)
         Me.Panel1.ResumeLayout(False)
-        Me.Panel3.ResumeLayout(False)
         Me.Panel4.ResumeLayout(False)
         Me.Panel5.ResumeLayout(False)
+        Me.Panel3.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
     Friend WithEvents contpr As Panel
     Friend WithEvents Panel2 As Panel
     Friend WithEvents contenedor As Panel
-    Friend WithEvents b4 As Button
+    Friend WithEvents b3 As Button
     Friend WithEvents b2 As Button
     Friend WithEvents Button1 As Button
+    Friend WithEvents b6 As Button
+    Friend WithEvents b8 As Button
     Friend WithEvents b5 As Button
-    Friend WithEvents b13 As Button
-    Friend WithEvents b11 As Button
-    Friend WithEvents b10 As Button
-    Friend WithEvents b9 As Button
     Friend WithEvents b7 As Button
+    Friend WithEvents b1 As Button
+    Friend WithEvents b4 As Button
     Friend WithEvents Panel5 As Panel
     Friend WithEvents Panel1 As Panel
-    Friend WithEvents Button2 As Button
-    Friend WithEvents Button3 As Button
+    Friend WithEvents atras As Button
+    Friend WithEvents sigiente As Button
     Friend WithEvents Panel4 As Panel
     Friend WithEvents Panel3 As Panel
+    Friend WithEvents b9 As Button
+    Friend WithEvents acercaDe As Button
+    Friend WithEvents Micuenta As Button
+    Friend WithEvents b10 As Button
 End Class
