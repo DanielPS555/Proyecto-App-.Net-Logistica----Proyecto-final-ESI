@@ -398,7 +398,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\NuevoLugar.resx">
       <DependentUpon>NuevoLugar.vb</DependentUpon>
-      </EmbeddedResource>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\NuevoPermite.resx">
       <DependentUpon>NuevoPermite.vb</DependentUpon>
     </EmbeddedResource>

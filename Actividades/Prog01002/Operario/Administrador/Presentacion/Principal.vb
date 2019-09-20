@@ -10,6 +10,7 @@ Public Class Principal
 
 
         InitializeComponent()
+        Funciones_comunes.inter_test()
 
 
         StartPosition = FormStartPosition.CenterScreen
