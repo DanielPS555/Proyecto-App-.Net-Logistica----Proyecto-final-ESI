@@ -42,6 +42,8 @@ Partial Class Login
         Me.Button4 = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Tiempo = New System.Windows.Forms.Timer(Me.components)
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.aplicacionModo = New System.Windows.Forms.Label()
         Me.panelLogin.SuspendLayout()
         CType(Me.ver, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -51,6 +53,8 @@ Partial Class Login
         'panelLogin
         '
         Me.panelLogin.BackColor = System.Drawing.Color.White
+        Me.panelLogin.Controls.Add(Me.aplicacionModo)
+        Me.panelLogin.Controls.Add(Me.Label2)
         Me.panelLogin.Controls.Add(Me.LanguageBox)
         Me.panelLogin.Controls.Add(Me.estadoConex)
         Me.panelLogin.Controls.Add(Me.Label1)
@@ -79,9 +83,9 @@ Partial Class Login
         '
         Me.LanguageBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.LanguageBox.FormattingEnabled = True
-        Me.LanguageBox.Location = New System.Drawing.Point(791, 611)
+        Me.LanguageBox.Location = New System.Drawing.Point(793, 37)
         Me.LanguageBox.Name = "LanguageBox"
-        Me.LanguageBox.Size = New System.Drawing.Size(297, 36)
+        Me.LanguageBox.Size = New System.Drawing.Size(295, 36)
         Me.LanguageBox.TabIndex = 19
         '
         'estadoConex
@@ -90,7 +94,7 @@ Partial Class Login
         Me.estadoConex.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.estadoConex.ForeColor = System.Drawing.Color.FromArgb(CType(CType(180, Byte), Integer), CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer))
         Me.estadoConex.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.estadoConex.Location = New System.Drawing.Point(637, 586)
+        Me.estadoConex.Location = New System.Drawing.Point(658, 586)
         Me.estadoConex.Name = "estadoConex"
         Me.estadoConex.Size = New System.Drawing.Size(148, 22)
         Me.estadoConex.TabIndex = 18
@@ -100,7 +104,7 @@ Partial Class Login
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(567, 586)
+        Me.Label1.Location = New System.Drawing.Point(575, 586)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(77, 22)
         Me.Label1.TabIndex = 17
@@ -115,9 +119,9 @@ Partial Class Login
         Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button3.Font = New System.Drawing.Font("Century Gothic", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(115, Byte), Integer), CType(CType(201, Byte), Integer))
-        Me.Button3.Location = New System.Drawing.Point(405, 500)
+        Me.Button3.Location = New System.Drawing.Point(405, 510)
         Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(281, 69)
+        Me.Button3.Size = New System.Drawing.Size(281, 62)
         Me.Button3.TabIndex = 15
         Me.Button3.Text = "Restaurar"
         Me.Button3.UseVisualStyleBackColor = False
@@ -203,7 +207,7 @@ Partial Class Login
         '
         Me.hora.AutoSize = True
         Me.hora.Font = New System.Drawing.Font("Century Gothic", 24.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.hora.Location = New System.Drawing.Point(625, 224)
+        Me.hora.Location = New System.Drawing.Point(670, 224)
         Me.hora.Name = "hora"
         Me.hora.Size = New System.Drawing.Size(0, 39)
         Me.hora.TabIndex = 5
@@ -212,7 +216,7 @@ Partial Class Login
         '
         Me.fecha.AutoSize = True
         Me.fecha.Font = New System.Drawing.Font("Century Gothic", 24.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.fecha.Location = New System.Drawing.Point(359, 224)
+        Me.fecha.Location = New System.Drawing.Point(295, 224)
         Me.fecha.Name = "fecha"
         Me.fecha.Size = New System.Drawing.Size(0, 39)
         Me.fecha.TabIndex = 4
@@ -248,7 +252,7 @@ Partial Class Login
         Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button4.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(115, Byte), Integer), CType(CType(201, Byte), Integer))
-        Me.Button4.Location = New System.Drawing.Point(405, 578)
+        Me.Button4.Location = New System.Drawing.Point(376, 578)
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(156, 39)
         Me.Button4.TabIndex = 16
@@ -259,14 +263,14 @@ Partial Class Login
         '
         Me.Button1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button1.BackColor = System.Drawing.Color.White
+        Me.Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(115, Byte), Integer), CType(CType(201, Byte), Integer))
         Me.Button1.Enabled = False
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button1.Font = New System.Drawing.Font("Century Gothic", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(115, Byte), Integer), CType(CType(201, Byte), Integer))
-        Me.Button1.Location = New System.Drawing.Point(405, 419)
+        Me.Button1.ForeColor = System.Drawing.Color.White
+        Me.Button1.Location = New System.Drawing.Point(405, 442)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(281, 75)
+        Me.Button1.Size = New System.Drawing.Size(281, 62)
         Me.Button1.TabIndex = 2
         Me.Button1.Text = "Ingresar"
         Me.Button1.UseVisualStyleBackColor = False
@@ -275,6 +279,26 @@ Partial Class Login
         'Tiempo
         '
         Me.Tiempo.Interval = 500
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Location = New System.Drawing.Point(789, 12)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(161, 22)
+        Me.Label2.TabIndex = 20
+        Me.Label2.Text = "Eliga su lenguaje"
+        '
+        'aplicacionModo
+        '
+        Me.aplicacionModo.AutoSize = True
+        Me.aplicacionModo.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.aplicacionModo.Location = New System.Drawing.Point(3, 9)
+        Me.aplicacionModo.Name = "aplicacionModo"
+        Me.aplicacionModo.Size = New System.Drawing.Size(181, 22)
+        Me.aplicacionModo.TabIndex = 21
+        Me.aplicacionModo.Text = "Aplicacion del: -----"
         '
         'Login
         '
@@ -313,4 +337,6 @@ Partial Class Login
     Friend WithEvents estadoConex As Label
     Friend WithEvents Label1 As Label
     Friend WithEvents LanguageBox As ComboBox
+    Friend WithEvents aplicacionModo As Label
+    Friend WithEvents Label2 As Label
 End Class
