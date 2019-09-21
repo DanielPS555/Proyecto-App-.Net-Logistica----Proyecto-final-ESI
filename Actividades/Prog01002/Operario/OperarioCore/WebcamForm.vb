@@ -46,6 +46,7 @@ Public Class WebcamForm
                                            Close()
                                        End If
                                    End Sub
+            timer.Start()
         End If
     End Sub
 

@@ -17,6 +17,7 @@ Public Class BootstrapAdministrador
                                                            Controladores.Marco.ReiniciarSingleton()
                                                            Controladores.Principal.getInstancia.cargarPanel(Controladores.Marco.getInstancia())
                                                        End Sub, Controladores.Usuario.TIPO_ROL_ADMINISTRADOR)
+
         Application.Run(p)
     End Sub
 End Class
