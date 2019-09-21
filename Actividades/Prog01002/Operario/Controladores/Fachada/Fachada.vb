@@ -28,6 +28,7 @@ Public Class Fachada
         End If
     End Function
 
+
     Public Function informacionBaseDelLugarPorNombre(item1 As String) As Lugar
         Dim dt As DataRow = Persistencia.getInstancia.infoLugar(item1)
         Dim lug As New Lugar With {.IDLugar = dt.Item(0),
@@ -697,6 +698,14 @@ Public Class Fachada
             lista.Add(lo)
         Next
         Return lista
+    End Function
+    Public Function TablaDeMedios() As DataTable
+        Dim dt As DataTable = Persistencia.getInstancia.MediosDisponibles()
+        dt.Columns.Add(New DataColumn("Estado"))
+        For Each r As DataRow In dt.Rows
+            r.Item(4) = Me.estadoDeUnMedioDeTrasporte(r.Item(0))
+        Next
+        Return dt
     End Function
 
     Public Function TablaDeMediosPorIDUsuario(idusuario As Integer) As DataTable

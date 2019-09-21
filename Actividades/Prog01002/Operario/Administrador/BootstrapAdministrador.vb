@@ -11,7 +11,8 @@ Public Class BootstrapAdministrador
                                                  {"Listar Usuario", GetType(ListarUsuario)},
                                                  {"Nueva Precarga", GetType(NuevaPrecarga)},
                                                  {"Nuevo Cliente", GetType(NuevoCliente)},
-                                                 {"Nuevo Lugar", GetType(NuevoLugar)}
+                                                 {"Nuevo Lugar", GetType(NuevoLugar)},
+                                                 {"Lista de medios", GetType(TransportistaCore.ListaDeMediosAutorizados)}
                                              }
                                              Marco.SetButtons(paneles)
                                              Marco.ReiniciarSingleton()

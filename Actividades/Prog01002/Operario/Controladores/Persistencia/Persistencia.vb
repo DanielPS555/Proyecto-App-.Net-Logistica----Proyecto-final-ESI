@@ -919,6 +919,14 @@ Public Class Persistencia
         Return hss
     End Function
 
+    Public Function MediosDisponibles() As DataTable
+        Dim com As New OdbcCommand("select MedioTransporte.idlegal as Identificador, MedioTransporte.nombre as Nombre, TipoTransporte.nombre as Tipo, fechacreacion
+                                    from TipoTransporte inner join MedioTransporte on TipoTransporte.idtipo=MedioTransporte.idtipo", Conexcion)
+        Dim dt As New DataTable
+        dt.Load(com.ExecuteReader)
+        Return dt
+    End Function
+
     Public Function MediosDisponiblesPorUsuario(idusuario As Integer) As DataTable
         Dim com As New OdbcCommand("select MedioTransporte.idlegal as Identificador, MedioTransporte.nombre as Nombre, TipoTransporte.nombre as Tipo, fechacreacion
                                     from TipoTransporte inner join MedioTransporte on TipoTransporte.idtipo=MedioTransporte.idtipo
