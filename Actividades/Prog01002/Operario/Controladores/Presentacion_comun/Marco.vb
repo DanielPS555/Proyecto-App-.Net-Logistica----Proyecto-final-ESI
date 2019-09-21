@@ -3,17 +3,11 @@ Imports Controladores.Extenciones.Extensiones
 Public Class Marco
     Private Shared initi As Marco = Nothing
 
-    Public Enum TiposMarcos
-        Operario = 1
-        Transportista = 2
-        Administrador = 3
-    End Enum
-
-    Public Sub New(tipo As Integer)
+    Public Sub New()
 
         InitializeComponent()
-        Select Case tipo
-            Case TiposMarcos.Operario
+        Select Case Fachada.getInstancia.DevolverUsuarioActual.Rol
+            Case Usuario.TIPO_ROL_OPERARIO
                 b1.Visible = False
                 b4.Visible = False
                 b5.Visible = False
@@ -21,14 +15,14 @@ Public Class Marco
                 b7.Visible = False
                 b8.Visible = False
 
-            Case TiposMarcos.Transportista
+            Case Usuario.TIPO_ROL_TRANSPORTISTA
                 b2.Visible = False
                 b3.Visible = False
                 b5.Visible = False
                 b6.Visible = False
                 b8.Visible = False
                 b9.Visible = False
-            Case TiposMarcos.Administrador
+            Case Usuario.TIPO_ROL_ADMINISTRADOR
                 b9.Visible = False
         End Select
 
@@ -43,9 +37,9 @@ Public Class Marco
         Return initi
     End Function
 
-    Public Shared Function CrearInstancia(Tipo As Integer)
+    Public Shared Function CrearInstancia()
         If initi Is Nothing Then
-            initi = New Marco(Tipo)
+            initi = New Marco()
         End If
     End Function
 
@@ -75,8 +69,8 @@ Public Class Marco
 
 
     Private Sub Marco_Load(sender As Object, e As EventArgs) Handles Me.Load
-        b1.Font = New Font("Century Gothic", 15.75!, FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
-        Me.cargarPanel(Of Home)(New Home) 'despues se pasa por parametro un operario
+        b1.Font = New Font("Segoe UI Semilight", 15.75!, FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
+        Me.cargarPanel(Of Home)(New Home)
     End Sub
 
     Private Sub botones_Click(sender As Object, e As EventArgs) Handles b2.Click, b3.Click, b6.Click, b4.Click, b1.Click, b7.Click, b5.Click, b8.Click
@@ -118,6 +112,9 @@ Public Class Marco
 
         End Select
 
+
+        'A ESTO ME REFIERO, NO TENGO NI IDEA COMO HACEMOS ESTA REFERENCIA
+
     End Sub
 
     Public Sub Bloquear()
@@ -129,26 +126,38 @@ Public Class Marco
     End Sub
 
     Private Sub accion(j As Boolean)
-        Label1.Enabled = j
+
         b1.Enabled = j
         b2.Enabled = j
         b3.Enabled = j
-        b3.Enabled = j
-        b6.Enabled = j
-        b6.Enabled = j
         b4.Enabled = j
-        b8.Enabled = j
-        b1.Enabled = j
-        b7.Enabled = j
         b5.Enabled = j
-        b12.Enabled = j
+        b6.Enabled = j
+        b7.Enabled = j
         b8.Enabled = j
-        b14.Enabled = j
+        b9.Enabled = j
+        b10.Enabled = j
+        acercaDe.Enabled = j
+        Micuenta.Enabled = j
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Fachada.getInstancia.CerrarSeccion()
-        Principal.getInstancia.cargarPanel(Of LoginAdmin)(New LoginAdmin(True))
+        Select Case Fachada.getInstancia.DevolverUsuarioActual.Rol
+            Case Usuario.TIPO_ROL_OPERARIO
+
+
+            Case Usuario.TIPO_ROL_TRANSPORTISTA
+                b2.Visible = False
+                b3.Visible = False
+                b5.Visible = False
+                b6.Visible = False
+                b8.Visible = False
+                b9.Visible = False
+            Case Usuario.TIPO_ROL_ADMINISTRADOR
+                b9.Visible = False
+        End Select
+        getInstancia.cargarPanel(Of Login)(New Login(True))
     End Sub
 
     Private Sub Label1_Click(sender As Object, e As EventArgs) 

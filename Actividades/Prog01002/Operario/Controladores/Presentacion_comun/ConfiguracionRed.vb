@@ -1,8 +1,8 @@
 ﻿Imports Controladores.Fachada
 Public Class ConfiguracionRed
-    Private papa As LoginAdmin
+    Private papa As Login
     Private Config As Controladores.FachadaRegistro.ConfiguracionEnRed
-    Public Sub New(p As LoginAdmin)
+    Public Sub New(p As Login)
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
         StartPosition = FormStartPosition.CenterScreen

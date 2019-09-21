@@ -105,6 +105,15 @@
       <HintPath>..\GMap.NET.WindowsForms.dll</HintPath>
     </Reference>
     <Reference Include="IBM.Data.DB2, Version=9.7.4.4, Culture=neutral, PublicKeyToken=7c307b91aa13d208, processorArchitecture=x86" />
+    <Reference Include="Microsoft.Msagl">
+      <HintPath>..\Administrador\Microsoft.Msagl.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Msagl.Drawing">
+      <HintPath>..\Administrador\Microsoft.Msagl.Drawing.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Msagl.GraphViewerGdi">
+      <HintPath>..\Administrador\Microsoft.Msagl.GraphViewerGdi.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -172,29 +181,13 @@
     </Compile>
     <Compile Include="Persistencia\Extensiones.vb" />
     <Compile Include="Persistencia\Persistencia.vb" />
-    <Compile Include="Presentacion_comun\Cliente\ListarClientes.Designer.vb">
-      <DependentUpon>ListarClientes.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion_comun\Cliente\ListarClientes.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion_comun\Homes\Home.Designer.vb">
+    <Compile Include="Presentacion_comun\Home.Designer.vb">
       <DependentUpon>Home.vb</DependentUpon>
     </Compile>
-    <Compile Include="Presentacion_comun\Homes\Home.vb" />
+    <Compile Include="Presentacion_comun\Home.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Presentacion_comun\Interfaces\Actualiza.vb" />
-    <Compile Include="Presentacion_comun\Cliente\NuevoCliente.Designer.vb">
-      <DependentUpon>NuevoCliente.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion_comun\Cliente\NuevoCliente.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion_comun\Cliente\PanelCliente.Designer.vb">
-      <DependentUpon>PanelCliente.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion_comun\Cliente\PanelCliente.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Presentacion_comun\ConfiguracionRed.Designer.vb">
       <DependentUpon>ConfiguracionRed.vb</DependentUpon>
     </Compile>
@@ -202,66 +195,13 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Presentacion_comun\Interfaces\ConnectionGraph.vb" />
+    <Compile Include="Presentacion_comun\Interfaces\MetodosPrincipal.vb" />
     <Compile Include="Presentacion_comun\Interfaces\NotificacionLote.vb" />
     <Compile Include="Presentacion_comun\Interfaces\NotificacionSimple.vb" />
-    <Compile Include="Presentacion_comun\Logins\LoginTransportista.Designer.vb">
-      <DependentUpon>LoginTransportista.vb</DependentUpon>
+    <Compile Include="Presentacion_comun\Login.Designer.vb">
+      <DependentUpon>Login.vb</DependentUpon>
     </Compile>
-    <Compile Include="Presentacion_comun\Logins\LoginTransportista.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion_comun\Logins\LoginOperario.Designer.vb">
-      <DependentUpon>LoginOperario.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion_comun\Logins\LoginOperario.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion_comun\Logins\LoginAdmin.Designer.vb">
-      <DependentUpon>LoginAdmin.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion_comun\Logins\LoginAdmin.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion_comun\Lote\ListaLotes.Designer.vb">
-      <DependentUpon>ListaLotes.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion_comun\Lote\ListaLotes.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion_comun\Lote\NuevoLote.Designer.vb">
-      <DependentUpon>NuevoLote.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion_comun\Lote\NuevoLote.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion_comun\Lote\PanelInfoLote.Designer.vb">
-      <DependentUpon>PanelInfoLote.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion_comun\Lote\PanelInfoLote.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion_comun\Lugar\Conectividad.Designer.vb">
-      <DependentUpon>Conectividad.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion_comun\Lugar\Conectividad.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion_comun\Lugar\ListaZonas.Designer.vb">
-      <DependentUpon>ListaZonas.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion_comun\Lugar\ListaZonas.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion_comun\Lugar\NuevoLugar.Designer.vb">
-      <DependentUpon>NuevoLugar.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion_comun\Lugar\NuevoLugar.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion_comun\Lugar\PanelLugar.Designer.vb">
-      <DependentUpon>PanelLugar.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion_comun\Lugar\PanelLugar.vb">
+    <Compile Include="Presentacion_comun\Login.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Presentacion_comun\MapaPanelGrande.Designer.vb">
@@ -276,16 +216,10 @@
     <Compile Include="Presentacion_comun\Marco.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Presentacion_comun\MedioDeTransporte\ListaDeMediosAutorizados.Designer.vb">
-      <DependentUpon>ListaDeMediosAutorizados.vb</DependentUpon>
+    <Compile Include="Presentacion_comun\Principal.Designer.vb">
+      <DependentUpon>Principal.vb</DependentUpon>
     </Compile>
-    <Compile Include="Presentacion_comun\MedioDeTransporte\ListaDeMediosAutorizados.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion_comun\MedioDeTransporte\PanelMedioDeTrasporte.Designer.vb">
-      <DependentUpon>PanelMedioDeTrasporte.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion_comun\MedioDeTransporte\PanelMedioDeTrasporte.vb">
+    <Compile Include="Presentacion_comun\Principal.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Presentacion_comun\RestablecerContraseña.Designer.vb">
@@ -294,106 +228,10 @@
     <Compile Include="Presentacion_comun\RestablecerContraseña.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Presentacion_comun\Transporte\ListaDeLotesDisponibles.Designer.vb">
-      <DependentUpon>Listadelotesdisponibles.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion_comun\Transporte\Listadelotesdisponibles.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion_comun\Transporte\ListaDeTrasportes.Designer.vb">
-      <DependentUpon>ListaDeTrasportes.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion_comun\Transporte\ListaDeTrasportes.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion_comun\Transporte\PanelTrasporte.Designer.vb">
-      <DependentUpon>PanelTrasporte.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion_comun\Transporte\PanelTrasporte.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion_comun\Lugar\ListarLugares.Designer.vb">
-      <DependentUpon>ListarLugares.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion_comun\Lugar\ListarLugares.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion_comun\Transporte\SUB_informeLote.Designer.vb">
-      <DependentUpon>SUB_informeLote.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion_comun\Transporte\SUB_informeLote.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion_comun\Usuario\ListarUsuario.Designer.vb">
-      <DependentUpon>ListarUsuario.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion_comun\Usuario\ListarUsuario.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion_comun\Usuario\NuevoPermite.Designer.vb">
-      <DependentUpon>NuevoPermite.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion_comun\Usuario\NuevoPermite.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion_comun\Usuario\NuevoTrabajaEn.Designer.vb">
-      <DependentUpon>NuevoTrabajaEn.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion_comun\Usuario\NuevoTrabajaEn.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion_comun\Usuario\NuevoUsuario.Designer.vb">
-      <DependentUpon>NuevoUsuario.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion_comun\Usuario\NuevoUsuario.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion_comun\Usuario\PanelInfoUsuario.Designer.vb">
+    <Compile Include="Presentacion_comun\PanelInfoUsuario.Designer.vb">
       <DependentUpon>PanelInfoUsuario.vb</DependentUpon>
     </Compile>
-    <Compile Include="Presentacion_comun\Usuario\PanelInfoUsuario.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion_comun\Vehiculos\crearInformaDeDaños.Designer.vb">
-      <DependentUpon>crearInformaDeDaños.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion_comun\Vehiculos\crearInformaDeDaños.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion_comun\Vehiculos\ListaVehiculos.Designer.vb">
-      <DependentUpon>ListaVehiculos.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion_comun\Vehiculos\ListaVehiculos.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion_comun\Vehiculos\NuevaPrecarga.Designer.vb">
-      <DependentUpon>NuevaPrecarga.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion_comun\Vehiculos\NuevaPrecarga.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion_comun\Vehiculos\nuevoVehiculo.Designer.vb">
-      <DependentUpon>nuevoVehiculo.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion_comun\Vehiculos\nuevoVehiculo.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion_comun\Vehiculos\panelInfoVehiculo.Designer.vb">
-      <DependentUpon>panelInfoVehiculo.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion_comun\Vehiculos\panelInfoVehiculo.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion_comun\Vehiculos\RegistroDeDañoPanel.Designer.vb">
-      <DependentUpon>RegistroDeDañoPanel.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion_comun\Vehiculos\RegistroDeDañoPanel.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion_comun\Vehiculos\trasladoInterno.Designer.vb">
-      <DependentUpon>trasladoInterno.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion_comun\Vehiculos\trasladoInterno.vb">
+    <Compile Include="Presentacion_comun\PanelInfoUsuario.vb">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
@@ -404,50 +242,14 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion_comun\Cliente\ListarClientes.resx">
-      <DependentUpon>ListarClientes.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion_comun\Cliente\NuevoCliente.resx">
-      <DependentUpon>NuevoCliente.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion_comun\Cliente\PanelCliente.resx">
-      <DependentUpon>PanelCliente.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Presentacion_comun\ConfiguracionRed.resx">
       <DependentUpon>ConfiguracionRed.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion_comun\Homes\Home.resx">
+    <EmbeddedResource Include="Presentacion_comun\Home.resx">
       <DependentUpon>Home.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion_comun\Logins\LoginTransportista.resx">
-      <DependentUpon>LoginTransportista.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion_comun\Logins\LoginOperario.resx">
-      <DependentUpon>LoginOperario.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion_comun\Logins\LoginAdmin.resx">
-      <DependentUpon>LoginAdmin.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion_comun\Lote\ListaLotes.resx">
-      <DependentUpon>ListaLotes.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion_comun\Lote\NuevoLote.resx">
-      <DependentUpon>NuevoLote.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion_comun\Lote\PanelInfoLote.resx">
-      <DependentUpon>PanelInfoLote.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion_comun\Lugar\Conectividad.resx">
-      <DependentUpon>Conectividad.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion_comun\Lugar\ListaZonas.resx">
-      <DependentUpon>ListaZonas.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion_comun\Lugar\NuevoLugar.resx">
-      <DependentUpon>NuevoLugar.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion_comun\Lugar\PanelLugar.resx">
-      <DependentUpon>PanelLugar.vb</DependentUpon>
+    <EmbeddedResource Include="Presentacion_comun\Login.resx">
+      <DependentUpon>Login.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion_comun\MapaPanelGrande.resx">
       <DependentUpon>MapaPanelGrande.vb</DependentUpon>
@@ -455,65 +257,14 @@
     <EmbeddedResource Include="Presentacion_comun\Marco.resx">
       <DependentUpon>Marco.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion_comun\MedioDeTransporte\ListaDeMediosAutorizados.resx">
-      <DependentUpon>ListaDeMediosAutorizados.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion_comun\MedioDeTransporte\PanelMedioDeTrasporte.resx">
-      <DependentUpon>PanelMedioDeTrasporte.vb</DependentUpon>
+    <EmbeddedResource Include="Presentacion_comun\Principal.resx">
+      <DependentUpon>Principal.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion_comun\RestablecerContraseña.resx">
       <DependentUpon>RestablecerContraseña.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion_comun\Transporte\ListaDeLotesDisponibles.resx">
-      <DependentUpon>Listadelotesdisponibles.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion_comun\Transporte\ListaDeTrasportes.resx">
-      <DependentUpon>ListaDeTrasportes.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion_comun\Transporte\PanelTrasporte.resx">
-      <DependentUpon>PanelTrasporte.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion_comun\Lugar\ListarLugares.resx">
-      <DependentUpon>ListarLugares.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion_comun\Transporte\SUB_informeLote.resx">
-      <DependentUpon>SUB_informeLote.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion_comun\Usuario\ListarUsuario.resx">
-      <DependentUpon>ListarUsuario.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion_comun\Usuario\NuevoPermite.resx">
-      <DependentUpon>NuevoPermite.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion_comun\Usuario\NuevoTrabajaEn.resx">
-      <DependentUpon>NuevoTrabajaEn.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion_comun\Usuario\NuevoUsuario.resx">
-      <DependentUpon>NuevoUsuario.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion_comun\Usuario\PanelInfoUsuario.resx">
+    <EmbeddedResource Include="Presentacion_comun\PanelInfoUsuario.resx">
       <DependentUpon>PanelInfoUsuario.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion_comun\Vehiculos\crearInformaDeDaños.resx">
-      <DependentUpon>crearInformaDeDaños.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion_comun\Vehiculos\ListaVehiculos.resx">
-      <DependentUpon>ListaVehiculos.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion_comun\Vehiculos\NuevaPrecarga.resx">
-      <DependentUpon>NuevaPrecarga.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion_comun\Vehiculos\nuevoVehiculo.resx">
-      <DependentUpon>nuevoVehiculo.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion_comun\Vehiculos\panelInfoVehiculo.resx">
-      <DependentUpon>panelInfoVehiculo.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion_comun\Vehiculos\RegistroDeDañoPanel.resx">
-      <DependentUpon>RegistroDeDañoPanel.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion_comun\Vehiculos\trasladoInterno.resx">
-      <DependentUpon>trasladoInterno.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

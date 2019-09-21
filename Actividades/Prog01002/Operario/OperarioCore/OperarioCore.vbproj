@@ -1,0 +1,256 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{69731113-DAD7-41BC-9E64-2B4CA65452D4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>OperarioCore</RootNamespace>
+    <AssemblyName>OperarioCore</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>Windows</MyType>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>OperarioCore.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>OperarioCore.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="QRCoder">
+      <HintPath>..\QRCoder.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Threading.Tasks" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Asignacion.Designer.vb">
+      <DependentUpon>Asignacion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Asignacion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="crearInformaDeDaños.Designer.vb">
+      <DependentUpon>crearInformaDeDaños.vb</DependentUpon>
+    </Compile>
+    <Compile Include="crearInformaDeDaños.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListaLotes.Designer.vb">
+      <DependentUpon>ListaLotes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ListaLotes.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListaVehiculos.Designer.vb">
+      <DependentUpon>ListaVehiculos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ListaVehiculos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListaZonas.Designer.vb">
+      <DependentUpon>ListaZonas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ListaZonas.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LugarDeTrabajo.Designer.vb">
+      <DependentUpon>LugarDeTrabajo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="LugarDeTrabajo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="NuevoLote.Designer.vb">
+      <DependentUpon>NuevoLote.vb</DependentUpon>
+    </Compile>
+    <Compile Include="NuevoLote.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="nuevoVehiculo.Designer.vb">
+      <DependentUpon>nuevoVehiculo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="nuevoVehiculo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PanelInfoLote.Designer.vb">
+      <DependentUpon>PanelInfoLote.vb</DependentUpon>
+    </Compile>
+    <Compile Include="PanelInfoLote.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="panelInfoVehiculo.Designer.vb">
+      <DependentUpon>panelInfoVehiculo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="panelInfoVehiculo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RegistroDeDañoPanel.Designer.vb">
+      <DependentUpon>RegistroDeDañoPanel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="RegistroDeDañoPanel.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="trasladoInterno.Designer.vb">
+      <DependentUpon>trasladoInterno.vb</DependentUpon>
+    </Compile>
+    <Compile Include="trasladoInterno.vb">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Asignacion.resx">
+      <DependentUpon>Asignacion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="crearInformaDeDaños.resx">
+      <DependentUpon>crearInformaDeDaños.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListaLotes.resx">
+      <DependentUpon>ListaLotes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListaVehiculos.resx">
+      <DependentUpon>ListaVehiculos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListaZonas.resx">
+      <DependentUpon>ListaZonas.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LugarDeTrabajo.resx">
+      <DependentUpon>LugarDeTrabajo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NuevoLote.resx">
+      <DependentUpon>NuevoLote.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="nuevoVehiculo.resx">
+      <DependentUpon>nuevoVehiculo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PanelInfoLote.resx">
+      <DependentUpon>PanelInfoLote.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="panelInfoVehiculo.resx">
+      <DependentUpon>panelInfoVehiculo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RegistroDeDañoPanel.resx">
+      <DependentUpon>RegistroDeDañoPanel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="trasladoInterno.resx">
+      <DependentUpon>trasladoInterno.vb</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Controladores\Controladores.vbproj">
+      <Project>{513a34cc-0479-486d-8b03-f3eda1ab0383}</Project>
+      <Name>Controladores</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logogrande.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logogrande.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\texto.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\anterior.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ojo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ojo_no.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sigiente.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sinContenidoFotografico.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+</Project>

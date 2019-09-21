@@ -1,0 +1,308 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{31C1636C-2292-4974-8865-F95B65DD9230}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>AdministradorCore</RootNamespace>
+    <AssemblyName>AdministradorCore</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>Windows</MyType>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>AdministradorCore.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>AdministradorCore.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BCrypt.Net-Next">
+      <HintPath>..\BCrypt.Net-Next.dll</HintPath>
+    </Reference>
+    <Reference Include="GMap.NET.Core">
+      <HintPath>..\GMap.NET.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="GMap.NET.WindowsForms">
+      <HintPath>..\GMap.NET.WindowsForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Msagl">
+      <HintPath>..\Administrador\Microsoft.Msagl.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Msagl.Drawing">
+      <HintPath>..\Administrador\Microsoft.Msagl.Drawing.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Msagl.GraphViewerGdi">
+      <HintPath>..\Administrador\Microsoft.Msagl.GraphViewerGdi.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="QRCoder">
+      <HintPath>..\QRCoder.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Threading.Tasks" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Presentacion\Conectividad.Designer.vb">
+      <DependentUpon>Conectividad.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\Conectividad.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ConnectionGraph.vb" />
+    <Compile Include="Presentacion\ListaDeMediosAutorizados.Designer.vb">
+      <DependentUpon>ListaDeMediosAutorizados.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ListaDeMediosAutorizados.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ListaDeTrasportes.Designer.vb">
+      <DependentUpon>ListaDeTrasportes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ListaDeTrasportes.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ListarClientes.Designer.vb">
+      <DependentUpon>ListarClientes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ListarClientes.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ListarLugares.Designer.vb">
+      <DependentUpon>ListarLugares.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ListarLugares.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ListarUsuario.Designer.vb">
+      <DependentUpon>ListarUsuario.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ListarUsuario.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\NuevaPrecarga.Designer.vb">
+      <DependentUpon>NuevaPrecarga.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\NuevaPrecarga.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\NuevoCliente.Designer.vb">
+      <DependentUpon>NuevoCliente.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\NuevoCliente.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\NuevoLugar.Designer.vb">
+      <DependentUpon>NuevoLugar.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\NuevoLugar.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\NuevoPermite.Designer.vb">
+      <DependentUpon>NuevoPermite.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\NuevoPermite.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\NuevoTrabajaEn.Designer.vb">
+      <DependentUpon>NuevoTrabajaEn.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\NuevoTrabajaEn.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\NuevoUsuario.Designer.vb">
+      <DependentUpon>NuevoUsuario.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\NuevoUsuario.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\PanelCliente.Designer.vb">
+      <DependentUpon>PanelCliente.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\PanelCliente.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\PanelInfoUsuario.Designer.vb">
+      <DependentUpon>PanelInfoUsuario.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\PanelInfoUsuario.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\PanelLugar.Designer.vb">
+      <DependentUpon>PanelLugar.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\PanelLugar.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\PanelMedioDeTrasporte.Designer.vb">
+      <DependentUpon>PanelMedioDeTrasporte.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\PanelMedioDeTrasporte.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\PanelTrasporte.Designer.vb">
+      <DependentUpon>PanelTrasporte.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\PanelTrasporte.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\Principal.Designer.vb">
+      <DependentUpon>Principal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\Principal.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\RestablecerContraseña.Designer.vb">
+      <DependentUpon>RestablecerContraseña.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\RestablecerContraseña.vb">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\Conectividad.resx">
+      <DependentUpon>Conectividad.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ListaDeMediosAutorizados.resx">
+      <DependentUpon>ListaDeMediosAutorizados.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ListaDeTrasportes.resx">
+      <DependentUpon>ListaDeTrasportes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ListarClientes.resx">
+      <DependentUpon>ListarClientes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ListarLugares.resx">
+      <DependentUpon>ListarLugares.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ListarUsuario.resx">
+      <DependentUpon>ListarUsuario.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\NuevaPrecarga.resx">
+      <DependentUpon>NuevaPrecarga.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\NuevoCliente.resx">
+      <DependentUpon>NuevoCliente.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\NuevoLugar.resx">
+      <DependentUpon>NuevoLugar.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\NuevoPermite.resx">
+      <DependentUpon>NuevoPermite.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\NuevoTrabajaEn.resx">
+      <DependentUpon>NuevoTrabajaEn.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\NuevoUsuario.resx">
+      <DependentUpon>NuevoUsuario.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\PanelCliente.resx">
+      <DependentUpon>PanelCliente.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\PanelInfoUsuario.resx">
+      <DependentUpon>PanelInfoUsuario.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\PanelLugar.resx">
+      <DependentUpon>PanelLugar.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\PanelMedioDeTrasporte.resx">
+      <DependentUpon>PanelMedioDeTrasporte.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\PanelTrasporte.resx">
+      <DependentUpon>PanelTrasporte.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\Principal.resx">
+      <DependentUpon>Principal.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\RestablecerContraseña.resx">
+      <DependentUpon>RestablecerContraseña.vb</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Controladores\Controladores.vbproj">
+      <Project>{513a34cc-0479-486d-8b03-f3eda1ab0383}</Project>
+      <Name>Controladores</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+</Project>

@@ -13,7 +13,7 @@ Public Class RestablecerContraseña
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        Principal.getInstancia.cargarPanel(Of LoginAdmin)(New LoginAdmin(True))
+        Principal.getInstancia.cargarPanel(Of Controladores.Login)(New Controladores.Login(True))
         Me.Close()
     End Sub
 
