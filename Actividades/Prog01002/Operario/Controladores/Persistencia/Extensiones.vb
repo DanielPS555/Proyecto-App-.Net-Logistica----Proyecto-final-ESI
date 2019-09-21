@@ -19,6 +19,10 @@ Namespace Extenciones
             MsgBox(Funciones_comunes.I18N(originalString, Marco.Language), msgStyle)
         End Sub
 
+        Public Function MsgBoxI18NFormat(originalString As String, msgStyle As MsgBoxStyle, ParamArray values() As Object) As MsgBoxResult
+            Return MsgBox(String.Format(Funciones_comunes.I18N(originalString, Marco.Language), values), msgStyle)
+        End Function
+
         Public Sub MsgBoxI18NFormat(originalString As String, ParamArray values() As Object)
             MsgBox(String.Format(Funciones_comunes.I18N(originalString, Marco.Language), values))
         End Sub
