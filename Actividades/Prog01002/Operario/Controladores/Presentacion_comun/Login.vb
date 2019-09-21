@@ -21,6 +21,14 @@ Public Class Login
         defaultRole = rol
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
+        Select Case rol
+            Case Usuario.TIPO_ROL_ADMINISTRADOR
+                aplicacionModo.Text = "Aplicacion del Administrador"
+            Case Usuario.TIPO_ROL_OPERARIO
+                aplicacionModo.Text = "Aplicacion del Operario"
+            Case Usuario.TIPO_ROL_TRANSPORTISTA
+                aplicacionModo.Text = "Aplicacion del Transportista"
+        End Select
         Button1.Visible = True
         Button3.Visible = True
         Button1.Enabled = True
@@ -166,4 +174,5 @@ Public Class Login
         Marco.Language = LanguageBox.SelectedItem
         LanguageSwap()
     End Sub
+
 End Class
