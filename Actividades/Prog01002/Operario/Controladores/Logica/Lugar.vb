@@ -13,6 +13,10 @@ Public Class Lugar
         End Get
     End Property
 
+    Public Overrides Function ToString() As String
+        Return $"{Nombre} ({Tipo})"
+    End Function
+
     Public Function Distancia(x As Lugar) As Double
         Dim d_x = Math.Abs(x.PosicionX - Me.PosicionX)
         Dim d_y = Math.Abs(x.PosicionY - Me.PosicionY)

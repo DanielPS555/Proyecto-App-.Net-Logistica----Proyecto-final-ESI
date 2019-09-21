@@ -33,6 +33,7 @@ Partial Class ListaVehiculos
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.tiposListas = New System.Windows.Forms.ComboBox()
         Me.Label7 = New System.Windows.Forms.Label()
+        Me.LugaresBox = New System.Windows.Forms.ComboBox()
         buscar = New System.Windows.Forms.Button()
         nuevo = New System.Windows.Forms.Button()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -161,12 +162,21 @@ Partial Class ListaVehiculos
         Me.Label7.TabIndex = 94
         Me.Label7.Text = "Tipos:"
         '
+        'LugaresBox
+        '
+        Me.LugaresBox.FormattingEnabled = True
+        Me.LugaresBox.Location = New System.Drawing.Point(308, 63)
+        Me.LugaresBox.Name = "LugaresBox"
+        Me.LugaresBox.Size = New System.Drawing.Size(357, 21)
+        Me.LugaresBox.TabIndex = 95
+        '
         'ListaVehiculos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(880, 650)
+        Me.Controls.Add(Me.LugaresBox)
         Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.tiposListas)
         Me.Controls.Add(Me.DataGridView1)
@@ -191,4 +201,5 @@ Partial Class ListaVehiculos
     Friend WithEvents DataGridView1 As DataGridView
     Friend WithEvents tiposListas As ComboBox
     Friend WithEvents Label7 As Label
+    Friend WithEvents LugaresBox As ComboBox
 End Class

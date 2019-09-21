@@ -8,11 +8,20 @@ Public Class ListaVehiculos
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
+        If getInstancia.DevolverUsuarioActual.Rol <> Usuario.TIPO_ROL_ADMINISTRADOR Then
+            LugaresBox.Items.Add(getInstancia.TrabajaEnAcutual.Lugar)
+            LugaresBox.Enabled = False
+        Else
+            LugaresBox.Items.AddRange(getInstancia.LugaresObjetos)
+        End If
+        LugaresBox.SelectedIndex = 0
         asignados()
         DataGridView1.MultiSelect = False
         criterios.SelectedIndex = 0
         tiposListas.SelectedIndex = 0
     End Sub
+
+
 
     Private lugar As Lugar
 
@@ -20,12 +29,14 @@ Public Class ListaVehiculos
 
     Public Sub asignados()
         If lugar IsNot Nothing Then
-            DataGridView1.DataSource = getInstancia.ListaVehiculos(lugar.IDLugar)
+            DataGridView1.DataSource = getInstancia.ListaVehiculos(lugar)
         End If
     End Sub
 
     Public Sub Noasignados()
-        DataGridView1.DataSource = Controladores.Fachada.getInstancia.listaDeVehiculosSinLoteNiPosicion(Controladores.Fachada.getInstancia.TrabajaEnAcutual.Lugar.IDLugar)
+        If lugar IsNot Nothing Then
+            DataGridView1.DataSource = Controladores.Fachada.getInstancia.listaDeVehiculosSinLoteNiPosicion(lugar.IDLugar)
+        End If
     End Sub
 
     Private Sub ListaVehiculos_Paint(sender As Object, e As PaintEventArgs) Handles MyBase.Paint
@@ -64,6 +75,10 @@ Public Class ListaVehiculos
 
     Private Sub tiposListas_SelectedIndexChanged(sender As Object, e As EventArgs) Handles tiposListas.SelectedIndexChanged
 
+    End Sub
+
+    Private Sub LugaresBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles LugaresBox.SelectedIndexChanged
+        lugar = LugaresBox.Items(LugaresBox.SelectedIndex)
     End Sub
 End Class
 

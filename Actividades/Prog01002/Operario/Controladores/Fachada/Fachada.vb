@@ -101,8 +101,8 @@ Public Class Fachada
         Return Persistencia.getInstancia.CerrarLote(idlote)
     End Function
 
-    Public Function LoteVehiculo(vin As String, lugar As String) As Lote
-        Return InfoLote(ID:=Persistencia.getInstancia.IDLotePor_VINvehiculo_y_NombreLugar(vin, lugar))
+    Public Function LoteVehiculo(vin As String) As Lote
+        Return InfoLote(ID:=Persistencia.getInstancia.IDLotePor_VINvehiculo(vin))
     End Function
 
     Public Function ComprobacionSoloNombreUsuario(NombreUsuario As String) As Boolean
@@ -137,6 +137,10 @@ Public Class Fachada
 
     Public Function PreguntaSecretaUsuario(NombreUser As String) As String
         Return Persistencia.getInstancia.PreguntaSecretaUsuario(NombreUser)
+    End Function
+
+    Public Function lugaresDelVehiculo(vin As String) As List(Of Lugar)
+        Dim dt As DataTable = Persistencia.getInstancia.LugaresVehiculo(vin)
     End Function
 
     Public Function ModificarContrasñeaConRecuperacion(Nombreuser As String, respuesta As String, Contraseña As String) As Boolean
@@ -178,6 +182,7 @@ Public Class Fachada
         Next
         Return New Lugar(LugarID, capacidad, Posicion.Lng, Posicion.Lat, Nombre, Tipo, DevolverUsuarioActual)
     End Function
+
 
     Public Function devolverTrabajaEnBasicosActuales(Nombreuser As String) As List(Of TrabajaEn)
         Dim dt As DataTable = Persistencia.getInstancia.TrabajaEnPorusuarioDatosBasicos(Nombreuser)
@@ -336,13 +341,13 @@ Public Class Fachada
         Return Persistencia.getInstancia.NumeroVehiculosDatosDeAltaPorUsuario_ID(Persistencia.getInstancia.UsuarioActual.ID_usuario)
     End Function
 
-    Public Function ListaVehiculos() As DataTable
+    Public Function ListaVehiculos(lugar As Lugar) As DataTable
         Dim dt As New DataTable
-        dt = Persistencia.getInstancia.DatosBasicosParaListarVehiculosPorLugar(Persistencia.getInstancia.TrabajaEn.Lugar.IDLugar)
+        dt = Persistencia.getInstancia.DatosBasicosParaListarVehiculosPorLugar(lugar.IDLugar)
         dt.Columns.Add("Id lote", GetType(String))
         dt.Columns.Add("Estado", GetType(String))
         For Each r As DataRow In dt.Rows
-            Dim idLote = Persistencia.getInstancia.IDLotePor_IDvehiculo_y_IDLugar(r.Item(0), Persistencia.getInstancia.TrabajaEn.Lugar.IDLugar)
+            Dim idLote = Persistencia.getInstancia.IDLotePor_IDvehiculo_y_IDLugar(r.Item(0), lugar.IDLugar)
             If idLote = -1 Then
                 r.Item(6) = "Sin lote"
                 r.Item(5) = "-"
@@ -403,7 +408,7 @@ Public Class Fachada
     End Function
 
     Public Function LotesDisponiblesPorLugarActual() As List(Of Lote)
-        Return LotesDisponiblesPorLugar(Persistencia.getInstancia.TrabajaEn.Lugar)
+        Return LotesDisponiblesPorLugar(Persistencia.getInstancia.TrabajaEn?.Lugar)
     End Function
 
     Public Function LotesDisponiblesPorLugar(lugar As Lugar) As List(Of Lote) ' ¿En qué parte del programa necesitamos ver solamente lotes abiertos?
@@ -594,9 +599,9 @@ Public Class Fachada
         Return p
     End Function
 
-    Public Function TodasLasPosicionesPorLugar(idvehiculo As Integer, idlugar As Integer) As List(Of Posicion)
+    Public Function TodasLasPosiciones(idVehiculo As Integer) As List(Of Posicion)
         Dim pos As New List(Of Posicion)
-        Dim dt As DataTable = Persistencia.getInstancia.TodasLasPosicionesDeVehiculo(idvehiculo)
+        Dim dt As DataTable = Persistencia.getInstancia.TodasLasPosicionesDeVehiculo(idVehiculo)
         For Each r As DataRow In dt.Rows
             Dim p As New Posicion()
             Dim lug As DataRow = Persistencia.getInstancia.zonaylugarDeUnaSubzona(r.Item(3)).Rows(1)
@@ -605,9 +610,27 @@ Public Class Fachada
             p.Desde = r.Item(1)
             p.Hasta = Funciones_comunes.AutoNull(Of Object)(r.Item(2))
             p.IngresadoPor = New Usuario With {.ID_usuario = r.Item(4), .NombreDeUsuario = r.Item(5)}
-            If lug.Item(0) = idlugar Then
-                pos.Add(p)
+            pos.Add(p)
+        Next
+        Return pos
+    End Function
+    Public Function TodasLasPosicionesPorLugar(idvehiculo As Integer, idlugar As Integer) As List(Of Posicion)
+        Dim pos As New List(Of Posicion)
+        Dim dt As DataTable = Persistencia.getInstancia.TodasLasPosicionesDeVehiculo(idvehiculo)
+        For Each r As DataRow In dt.Rows
+            Dim lug As DataRow = Persistencia.getInstancia.zonaylugarDeUnaSubzona(r.Item(3)).Rows(1)
+            If lug.Item(0) <> idlugar Then
+                Continue For
             End If
+
+            Dim p As New Posicion With {
+                .Subzona = New Subzona(New Zona(New Lugar With {.IDLugar = lug.Item(0), .Nombre = lug.Item(1)})),
+                .Posicion = r.Item(0),
+                .Desde = r.Item(1),
+                .Hasta = Funciones_comunes.AutoNull(Of Object)(r.Item(2)),
+                .IngresadoPor = New Usuario With {.ID_usuario = r.Item(4), .NombreDeUsuario = r.Item(5)}
+            }
+            pos.Add(p)
         Next
         Return pos
     End Function
@@ -865,6 +888,11 @@ Public Class Fachada
 
     Public Function listarTodosLosLugares() As DataTable
         Return Persistencia.getInstancia.ListaLugares
+    End Function
+
+    Public Function LugaresObjetos() As Lugar()
+        Return Me.listarTodosLosLugares.Rows.Cast(Of DataRow).Select(
+                                         Function(x) New Lugar() With {.IDLugar = x.Item(0), .Nombre = x.Item(1)}).ToArray
     End Function
 
     Public Function informacionBaseDelLugarPorIdlugar(idlugar As Integer) As Lugar

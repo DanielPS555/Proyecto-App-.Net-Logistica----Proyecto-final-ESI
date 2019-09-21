@@ -7,11 +7,11 @@ Imports Controladores
 Public Class panelInfoVehiculo
     Implements NotificacionLote
 
-    Private informesElementos As New List(Of Controladores.InformeDeDaños)
+    Private ListaInformes As New List(Of Controladores.InformeDeDaños)
     Private vin As String
     Private vehiculo As Controladores.Vehiculo
-    Private actualInfore As Integer = 0
-    Private actualRegistro As Integer = 0
+    Private informeActual As Integer = 0
+    Private registroActual As Integer = 0
     Private actualImagen As Integer = 0
     Private loteTemp As Controladores.Lote
     Private todosLosLotesDisponibles As List(Of Controladores.Lote)
@@ -74,17 +74,17 @@ Public Class panelInfoVehiculo
             lugarLabel.Text = lugar.Item(0)
         End If
 
-        informesElementos = Controladores.Fachada.getInstancia.devolverTodosLosInformesYregistrosCompletos(vehiculo)
-        If informesElementos.Count = 0 Then
+        ListaInformes = Controladores.Fachada.getInstancia.devolverTodosLosInformesYregistrosCompletos(vehiculo)
+        If ListaInformes.Count = 0 Then
 
             visualizarElementosRegistro(False, False)
 
         Else
-            If informesElementos.Count = 1 Then
+            If ListaInformes.Count = 1 Then
                 SinInformes.Enabled = False
             End If
             SinInformes.Visible = False
-            cargarInformes()
+            CargarInformes()
         End If
         Me.vehiculo = vehiculo
         cargarMiLote()
@@ -97,7 +97,11 @@ Public Class panelInfoVehiculo
     End Sub
 
     Public Sub cargarLotes()
-        todosLosLotesDisponibles = Controladores.Fachada.getInstancia.LotesDisponiblesPorLugarActual
+        If Fachada.getInstancia.DevolverUsuarioActual.Rol <> Usuario.TIPO_ROL_ADMINISTRADOR Then
+            todosLosLotesDisponibles = Controladores.Fachada.getInstancia.LotesDisponiblesPorLugarActual
+        Else
+            todosLosLotesDisponibles = Controladores.Fachada.getInstancia.DevolverLotesDisponblesCompletos
+        End If
         LoteCombo.Items.Clear()
         For Each l As Controladores.Lote In todosLosLotesDisponibles
             LoteCombo.Items.Add($"ID: {l.IDLote} / NOM: {l.Nombre}")
@@ -109,35 +113,45 @@ Public Class panelInfoVehiculo
     End Sub
 
     Public Sub cargarMiLote()
-        'loteActual = Fachada.getInstancia.LoteVehiculo(vehiculo, Fachada.getInstancia.TrabajaEnAcutual.Lugar)
-        'LoteCombo.Items.Clear()
-        'LoteCombo.Items.Add($"ID: {loteActual.IDLote} / NOM: {loteActual.Nombre}")
-        'LoteCombo.SelectedIndex = 0
+        loteActual = Fachada.getInstancia.LoteVehiculo(vehiculo.VIN)
+        LoteCombo.Items.Clear()
+        LoteCombo.Items.Add($"ID: {loteActual.IDLote} / NOM: {loteActual.Nombre}")
+        LoteCombo.SelectedIndex = 0
+    End Sub
+
+    Private Sub CargarLugares()
+        Dim lugares As List(Of Lugar) = Controladores.Fachada.getInstancia.lugaresDelVehiculo(vin)
     End Sub
 
     Private Sub CargarTrasportes()
-        'Dim ultpos = Controladores.Fachada.getInstancia.UltimaPosicionVehiculoEnLugar(vin, Controladores.Persistencia.getInstancia.TrabajaEn.Lugar.Nombre)
-        'SubzonaLabel.Text = ultpos.Item(1)
-        'Dim zona = Controladores.Persistencia.getInstancia.PadreDeLugar(ultpos.Item(0))
-        'ZonaLabel.Text = zona.Item(0)
-        'PosicionLabel.Text = ultpos.Item(2) & " desde " & Controladores.Funciones_comunes.DarFormato(CType(ultpos.Item(3), Date?))
-        'traslados.Columns.Clear()
-        'Dim dt As New DataTable
-        'dt.Columns.Add(New DataColumn("Lugar"))
-        'dt.Columns.Add(New DataColumn("Posicion"))
-        'dt.Columns.Add(New DataColumn("Desde"))
-        'dt.Columns.Add(New DataColumn("Hasta"))
-        'dt.Columns.Add(New DataColumn("Por"))
-        'For Each pos As Posicion In Controladores.Fachada.getInstancia.TodasLasPosicionesPorLugar(vehiculo.IdVehiculo, Controladores.Fachada.getInstancia.TrabajaEnAcutual.Lugar.IDLugar)
-        '    Dim r As DataRow = dt.NewRow
-        '    r.Item(0) = pos.Subzona.ZonaPadre.LugarPadre.Nombre
-        '    r.Item(1) = pos.Posicion
-        '    r.Item(2) = pos.Desde
-        '    r.Item(4) = pos.IngresadoPor.NombreDeUsuario
-        '    r.Item(3) = If(pos.Hasta = DateTime.MinValue, DBNull.Value, pos.Hasta)
-        '    dt.Rows.Add(r)
-        'Next
-        'traslados.DataSource = dt
+        Dim ultpos = Controladores.Fachada.getInstancia.UltimaPosicionVehiculo(vin)
+        SubzonaLabel.Text = ultpos.Item(1)
+        Dim zona = Controladores.Persistencia.getInstancia.PadreDeLugar(ultpos.Item(0))
+        ZonaLabel.Text = zona.Item(0)
+        PosicionLabel.Text = ultpos.Item(2) & " desde " & Controladores.Funciones_comunes.DarFormato(CType(ultpos.Item(3), Date?))
+        traslados.Columns.Clear()
+        Dim dt As New DataTable
+        dt.Columns.Add(New DataColumn("Lugar"))
+        dt.Columns.Add(New DataColumn("Posicion"))
+        dt.Columns.Add(New DataColumn("Desde"))
+        dt.Columns.Add(New DataColumn("Hasta"))
+        dt.Columns.Add(New DataColumn("Por"))
+        Dim list As List(Of Posicion)
+        If Controladores.Fachada.getInstancia.DevolverUsuarioActual.Rol <> Usuario.TIPO_ROL_ADMINISTRADOR Then
+            list = Fachada.getInstancia.TodasLasPosicionesPorLugar(vehiculo.IdVehiculo, Fachada.getInstancia.TrabajaEnAcutual.Lugar.IDLugar)
+        Else
+            list = Fachada.getInstancia.TodasLasPosiciones(vehiculo.IdVehiculo)
+        End If
+        For Each pos As Posicion In list
+            Dim r As DataRow = dt.NewRow
+            r.Item(0) = pos.Subzona.ZonaPadre.LugarPadre.Nombre
+            r.Item(1) = pos.Posicion
+            r.Item(2) = pos.Desde
+            r.Item(4) = pos.IngresadoPor.NombreDeUsuario
+            r.Item(3) = If(pos.Hasta = DateTime.MinValue, DBNull.Value, pos.Hasta)
+            dt.Rows.Add(r)
+        Next
+        traslados.DataSource = dt
     End Sub
 
     Public Sub actualizarTrasportesDeFormaExterna()
@@ -145,16 +159,16 @@ Public Class panelInfoVehiculo
     End Sub
 
     Public Sub ActualizarLotesExternos()
-        informesElementos = Controladores.Fachada.getInstancia.devolverTodosLosInformesYregistrosCompletos(vehiculo)
-        actualInfore = 0
-        actualRegistro = 0
+        ListaInformes = Controladores.Fachada.getInstancia.devolverTodosLosInformesYregistrosCompletos(vehiculo)
+        informeActual = 0
+        registroActual = 0
         actualImagen = 0
         sigienteInforme.Enabled = True
-        cargarInformes()
+        CargarInformes()
     End Sub
 
-    Public Sub cargarInformes()
-        Dim info As Controladores.InformeDeDaños = informesElementos(actualInfore)
+    Public Sub CargarInformes()
+        Dim info As Controladores.InformeDeDaños = ListaInformes(informeActual)
 
         numeroInforme.Text = info.ID
         NomCreador.Text = info.Creador.Nombre
@@ -167,14 +181,14 @@ Public Class panelInfoVehiculo
             Else
                 SigienteRegistro.Enabled = True
             End If
-            Cargaregistros()
+            CargarRegistros()
         Else
             visualizarElementosRegistro(False, True)
         End If
     End Sub
 
-    Public Sub Cargaregistros()
-        Dim reg As Controladores.RegistroDaños = informesElementos(actualInfore).Registros(actualRegistro)
+    Public Sub CargarRegistros()
+        Dim reg As Controladores.RegistroDaños = ListaInformes(informeActual).Registros(registroActual)
         numRegistro.Text = reg.ID
         descrip_registro.Text = reg.Descripcion
         tipoRegistro.Text = reg.TipoActualizacion
@@ -189,7 +203,7 @@ Public Class panelInfoVehiculo
     End Sub
 
     Public Sub cargarImgReg()
-        Dim reg As Controladores.RegistroDaños = informesElementos(actualInfore).Registros(actualRegistro)
+        Dim reg As Controladores.RegistroDaños = ListaInformes(informeActual).Registros(registroActual)
         If reg.Imagenes.Count = 0 Then
             imagen.Image = OperarioCore.My.Resources.sinContenidoFotografico
             SigienteImagen.Visible = False
@@ -241,7 +255,6 @@ Public Class panelInfoVehiculo
 
     End Sub
 
-    Private dtlugares As DataTable
     Public Sub RegularTamañoColumnas()
 
         Me.Height = 3000
@@ -317,10 +330,9 @@ Public Class panelInfoVehiculo
     End Sub
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
-        'Marco.getInstancia.cargarPanel(Of crearInformaDeDaños)(New crearInformaDeDaños(New Controladores.InformeDeDaños(vehiculo) With {.Creador = Fachada.getInstancia.TrabajaEnAcutual.Usuario,
-        '                                                                                                                                .Lugar = Fachada.getInstancia.TrabajaEnAcutual.Lugar,
-        '                                                                                                                                .Fecha = DateTime.Now}, True, Me) With {.ListaDeTodosLosInformes = informesElementos})
-
+        Marco.getInstancia.cargarPanel(Of crearInformaDeDaños)(New crearInformaDeDaños(New Controladores.InformeDeDaños(vehiculo) With {.Creador = Fachada.getInstancia.DevolverUsuarioActual,
+                                                                                                                                        .Lugar = Fachada.getInstancia.DevolverPosicionActual(vehiculo.IdVehiculo).Subzona.ZonaPadre.LugarPadre,
+                                                                                                                                        .Fecha = DateTime.Now}, True, Me) With {.ListaDeTodosLosInformes = ListaInformes})
     End Sub
 
 
@@ -342,59 +354,59 @@ Public Class panelInfoVehiculo
     End Sub
 
     Private Sub SigienteInforme_Click(sender As Object, e As EventArgs) Handles sigienteInforme.Click
-        If actualInfore + 1 < informesElementos.Count Then
-            actualInfore += 1
-            actualRegistro = 0
+        If informeActual + 1 < ListaInformes.Count Then
+            informeActual += 1
+            registroActual = 0
             actualImagen = 0
-            If actualInfore + 1 = informesElementos.Count Then
+            If informeActual + 1 = ListaInformes.Count Then
                 sigienteInforme.Enabled = False
             End If
             anteriorInforme.Enabled = True
         End If
-        cargarInformes()
+        CargarInformes()
     End Sub
 
     Private Sub AnteriorInforme_Click(sender As Object, e As EventArgs) Handles anteriorInforme.Click
-        If actualInfore > 0 Then
-            actualInfore -= 1
-            actualRegistro = 0
+        If informeActual > 0 Then
+            informeActual -= 1
+            registroActual = 0
             actualImagen = 0
-            If actualInfore = 0 Then
+            If informeActual = 0 Then
                 anteriorInforme.Enabled = False
             End If
             sigienteInforme.Enabled = True
         End If
-        cargarInformes()
+        CargarInformes()
     End Sub
 
     Private Sub AnteriorRegistro_Click(sender As Object, e As EventArgs) Handles anteriorRegistro.Click
-        If actualRegistro > 0 Then
-            actualRegistro -= 1
+        If registroActual > 0 Then
+            registroActual -= 1
             actualImagen = 0
-            If actualRegistro = 0 Then
+            If registroActual = 0 Then
                 anteriorRegistro.Enabled = False
             End If
             SigienteRegistro.Enabled = True
         End If
-        Cargaregistros()
+        CargarRegistros()
     End Sub
 
     Private Sub SigienteRegistro_Click(sender As Object, e As EventArgs) Handles SigienteRegistro.Click
-        If actualRegistro + 1 < informesElementos(actualInfore).Registros.Count Then
-            actualRegistro += 1
+        If registroActual + 1 < ListaInformes(informeActual).Registros.Count Then
+            registroActual += 1
             actualImagen = 0
-            If actualRegistro + 1 = informesElementos(actualInfore).Registros.Count Then
+            If registroActual + 1 = ListaInformes(informeActual).Registros.Count Then
                 SigienteRegistro.Enabled = False
             End If
             anteriorRegistro.Enabled = True
         End If
-        Cargaregistros()
+        CargarRegistros()
     End Sub
 
     Private Sub SigienteImagen_Click(sender As Object, e As EventArgs) Handles SigienteImagen.Click
-        If actualImagen + 1 < informesElementos(actualInfore).Registros(actualRegistro).Imagenes.Count Then
+        If actualImagen + 1 < ListaInformes(informeActual).Registros(registroActual).Imagenes.Count Then
             actualImagen += 1
-            If actualImagen + 1 = informesElementos(actualInfore).Registros(actualRegistro).Imagenes.Count Then
+            If actualImagen + 1 = ListaInformes(informeActual).Registros(registroActual).Imagenes.Count Then
                 SigienteImagen.Enabled = False
             End If
             AnteriorImagen.Enabled = True
@@ -414,10 +426,10 @@ Public Class panelInfoVehiculo
     End Sub
 
     Private Sub Modificar_Click(sender As Object, e As EventArgs) Handles modificar.Click
-        If Fachada.getInstancia.DevolverUsuarioActual.ID_usuario = informesElementos(actualInfore).Creador.ID_usuario Then
+        If Fachada.getInstancia.DevolverUsuarioActual.ID_usuario = ListaInformes(informeActual).Creador.ID_usuario Then
             'COMPROBAR QUE NO HAYA PASADO MAS DE 2 DIAS 
-            If informesElementos.Count - 1 = actualInfore Then
-                Marco.getInstancia.cargarPanel(Of crearInformaDeDaños)(New crearInformaDeDaños(informesElementos(actualInfore), False, Me) With {.ListaDeTodosLosInformes = informesElementos})
+            If ListaInformes.Count - 1 = informeActual Then
+                Marco.getInstancia.cargarPanel(Of crearInformaDeDaños)(New crearInformaDeDaños(ListaInformes(informeActual), False, Me) With {.ListaDeTodosLosInformes = ListaInformes})
             Else
                 MsgBox("Solo se puede modificar el ultimo informe", MsgBoxStyle.Critical)
             End If
@@ -446,36 +458,35 @@ Public Class panelInfoVehiculo
     End Sub
 
     Private Sub CambiarGuardarLote_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles cambiarGuardarLote.LinkClicked
-        'If cambiarGuardarLote.Text.Equals("Cambiar lote ") Then
-        '    cargarLotes()
-        '    cambiarGuardarLote.Text = "Guardar"
-        '    nuevoLote.Visible = True
-        '    EliminarLoteSelecion.Visible = True
-        '    Cancelar.Visible = True
-        '    EliminarLoteSelecion.Enabled = False
-        '    LoteCombo.Enabled = True
-        '    vermasLote.Enabled = False
+        If cambiarGuardarLote.Text.Equals("Cambiar lote ") Then
+            cargarLotes()
+            cambiarGuardarLote.Text = "Guardar"
+            nuevoLote.Visible = True
+            EliminarLoteSelecion.Visible = True
+            Cancelar.Visible = True
+            EliminarLoteSelecion.Enabled = False
+            LoteCombo.Enabled = True
+            vermasLote.Enabled = False
+        Else
+            cambiarGuardarLote.Text = "Cambiar lote "
+            nuevoLote.Visible = False
+            EliminarLoteSelecion.Visible = False
+            Cancelar.Visible = False
+            vermasLote.Enabled = True
+            LoteCombo.Enabled = False
 
-        'Else
-        '    cambiarGuardarLote.Text = "Cambiar lote "
-        '    nuevoLote.Visible = False
-        '    EliminarLoteSelecion.Visible = False
-        '    Cancelar.Visible = False
-        '    vermasLote.Enabled = True
-        '    LoteCombo.Enabled = False
+            If loteTemp IsNot Nothing Then
+                Dim idlote As Integer = Fachada.getInstancia.nuevoLote(loteTemp)
+                loteTemp.IDLote = idlote
+                Fachada.getInstancia.insertIntegra(loteTemp, vehiculo, Fachada.getInstancia.DevolverUsuarioActual, True)
+            Else
+                Fachada.getInstancia.insertIntegra(todosLosLotesDisponibles(LoteCombo.SelectedIndex), vehiculo, Fachada.getInstancia.DevolverUsuarioActual, True)
+            End If
+            Fachada.getInstancia.eliminarLoteSiNoTieneVehiculos(loteActual)
 
-        '    If loteTemp IsNot Nothing Then
-        '        Dim idlote As Integer = Fachada.getInstancia.nuevoLote(loteTemp)
-        '        loteTemp.IDLote = idlote
-        '        Fachada.getInstancia.insertIntegra(loteTemp, vehiculo, Fachada.getInstancia.TrabajaEnAcutual.Usuario, True)
-        '    Else
-        '        Fachada.getInstancia.insertIntegra(todosLosLotesDisponibles(LoteCombo.SelectedIndex), vehiculo, Fachada.getInstancia.TrabajaEnAcutual.Usuario, True)
-        '    End If
-        '    Fachada.getInstancia.eliminarLoteSiNoTieneVehiculos(loteActual)
-
-        '    cargarMiLote()
-        '    loteTemp = Nothing
-        'End If
+            cargarMiLote()
+            loteTemp = Nothing
+        End If
     End Sub
 
     Private Sub Cancelar_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles Cancelar.LinkClicked

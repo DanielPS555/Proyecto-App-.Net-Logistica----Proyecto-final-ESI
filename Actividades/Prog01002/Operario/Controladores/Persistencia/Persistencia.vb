@@ -110,6 +110,10 @@ Public Class Persistencia
         Return selcmd.ExecuteScalar
     End Function
 
+    Public Function LugaresVehiculo(vin As String) As DataTable
+
+    End Function
+
     Public Function CrearZona(lugarID As Integer, nombre As String, capacidad As Integer) As Integer
         Dim inscmd As New OdbcCommand("execute function crear_zona(?::varchar(100), ?::integer, ?::integer);", _con)
         inscmd.CrearParametro(nombre)
@@ -439,6 +443,22 @@ Public Class Persistencia
             com.CrearParametro(DbType.Int32, idve)
             com.CrearParametro(DbType.Int32, idve)
             com.CrearParametro(DbType.Int32, id)
+            Return com.ExecuteScalar
+        Catch ex As Exception
+            Return -1
+        End Try
+
+    End Function
+
+    Public Function IDLotePor_VINvehiculo(vin As String) As Integer
+        Try
+            Dim com As New OdbcCommand("select first 1 lote.idlote from integra
+                                    inner join lote on lote.idlote=integra.lote
+                                    inner join vehiculo on vehiculo.idvehiculo=integra.idvehiculo
+                                    where vin=?
+                                    and invalidado ='f'
+                                    order by fecha desc;", Conexcion)
+            com.CrearParametro(DbType.StringFixedLength, vin)
             Return com.ExecuteScalar
         Catch ex As Exception
             Return -1
