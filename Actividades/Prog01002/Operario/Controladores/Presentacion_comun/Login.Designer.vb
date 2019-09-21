@@ -24,6 +24,7 @@ Partial Class Login
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.panelLogin = New System.Windows.Forms.Panel()
+        Me.LanguageBox = New System.Windows.Forms.ComboBox()
         Me.estadoConex = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Button3 = New System.Windows.Forms.Button()
@@ -50,6 +51,7 @@ Partial Class Login
         'panelLogin
         '
         Me.panelLogin.BackColor = System.Drawing.Color.White
+        Me.panelLogin.Controls.Add(Me.LanguageBox)
         Me.panelLogin.Controls.Add(Me.estadoConex)
         Me.panelLogin.Controls.Add(Me.Label1)
         Me.panelLogin.Controls.Add(Me.Button3)
@@ -72,6 +74,15 @@ Partial Class Login
         Me.panelLogin.Name = "panelLogin"
         Me.panelLogin.Size = New System.Drawing.Size(1100, 650)
         Me.panelLogin.TabIndex = 2
+        '
+        'LanguageBox
+        '
+        Me.LanguageBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.LanguageBox.FormattingEnabled = True
+        Me.LanguageBox.Location = New System.Drawing.Point(791, 611)
+        Me.LanguageBox.Name = "LanguageBox"
+        Me.LanguageBox.Size = New System.Drawing.Size(297, 36)
+        Me.LanguageBox.TabIndex = 19
         '
         'estadoConex
         '
@@ -301,4 +312,5 @@ Partial Class Login
     Friend WithEvents estado As Label
     Friend WithEvents estadoConex As Label
     Friend WithEvents Label1 As Label
+    Friend WithEvents LanguageBox As ComboBox
 End Class

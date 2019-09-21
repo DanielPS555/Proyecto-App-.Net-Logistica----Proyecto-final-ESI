@@ -2,6 +2,7 @@
 Imports Controladores.Extenciones.Extensiones
 Public Class Marco
     Private Shared initi As Marco = Nothing
+    Public Shared Language As String = Funciones_comunes.Languages(0)
 
     Public Sub New()
         If paneles Is Nothing Then
@@ -10,7 +11,7 @@ Public Class Marco
         InitializeComponent()
         For Each key As String In paneles.Keys
             Dim btn As New Button With {
-                .Text = key,
+                .Text = Funciones_comunes.I18N(key, Language),
                 .BackColor = b10.BackColor,
                 .Dock = DockStyle.Top,
                 .Font = b10.Font,

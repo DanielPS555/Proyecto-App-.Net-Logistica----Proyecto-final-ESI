@@ -38,6 +38,8 @@ Public Class Login
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
         Tiempo.Start()
+        Me.LanguageBox.Items.Clear()
+        Me.LanguageBox.Items.AddRange(Funciones_comunes.Languages)
         Me.AcceptButton = Button1 ' al asignar Button1 a la propiedad AcceptButton, el evento Click de Button1 será ejecutado al presionar enter
 
     End Sub
@@ -150,4 +152,7 @@ Public Class Login
 
     End Sub
 
+    Private Sub LanguageBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles LanguageBox.SelectedIndexChanged
+        Marco.Language = LanguageBox.SelectedItem
+    End Sub
 End Class
