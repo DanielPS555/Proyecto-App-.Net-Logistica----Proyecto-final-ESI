@@ -6,6 +6,12 @@ Imports Controladores.Extenciones
 Public Class Principal
     Private Shared initi As Principal
 
+    Public Async Function WaitClosed() As Task
+        While Visible
+            Await Task.Delay(6000)
+        End While
+    End Function
+
     Public Sub New(loginLambda As LambdaDelegate, rol As String)
 
 

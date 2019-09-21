@@ -14,6 +14,6 @@ Public Class BootstrapTransportista
                                                            Marco.ReiniciarSingleton()
                                                            Principal.getInstancia.cargarPanel(Marco.getInstancia())
                                                        End Sub, Usuario.TIPO_ROL_TRANSPORTISTA)
-        p.ShowDialog()
+        Windows.Forms.Application.Run(p)
     End Sub
 End Class
