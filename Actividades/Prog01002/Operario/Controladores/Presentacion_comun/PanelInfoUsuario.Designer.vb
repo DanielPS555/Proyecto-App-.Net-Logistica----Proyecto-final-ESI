@@ -749,7 +749,7 @@ Partial Class PanelInfoUsuario
     Friend WithEvents email As TextBox
     Friend WithEvents nombreCompleto As TextBox
     Friend WithEvents Button2 As Button
-    Friend WithEvents Button1 As Button
+    Protected Friend WithEvents Button1 As Button
     Friend WithEvents lugarDeTrabajos As DataGridView
     Friend WithEvents nuevosVehiculos As DataGridView
     Friend WithEvents DataGridView1 As DataGridView
@@ -759,5 +759,5 @@ Partial Class PanelInfoUsuario
     Friend WithEvents Label11 As Label
     Friend WithEvents LinkLabel1 As LinkLabel
     Friend WithEvents Button3 As Button
-    Friend WithEvents Button4 As Button
+    Protected Friend WithEvents Button4 As Button ' protected friend withbenefits
 End Class

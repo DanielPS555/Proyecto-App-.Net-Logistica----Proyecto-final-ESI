@@ -13,10 +13,13 @@ Public Class LugarDeTrabajo
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         Fachada.getInstancia.NuevaConexcion(ListaTrabajaEn(lugares.SelectedIndex))
-        Marco.reiniciarSingleton()
+        Dim paneles As New Dictionary(Of String, Type) From {
+            {"Lista zonas", GetType(ListaZonas)},
+            {"Lista vehiculos", GetType(ListaVehiculos)}
+        }
+        Marco.SetButtons(paneles)
+        Marco.ReiniciarSingleton()
         Principal.getInstancia.cargarPanel(Marco.getInstancia)
-
-
     End Sub
 
     Private Sub lugares_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lugares.SelectedIndexChanged
@@ -38,10 +41,9 @@ Public Class LugarDeTrabajo
         lugares.Items.Clear()
         ListaTrabajaEn = Fachada.getInstancia.devolverTrabajaEnBasicosActuales(Fachada.getInstancia.NombreUsuarioActual)
         If ListaTrabajaEn.Count = 0 Then
-            Principal.getInstancia.cargarPanel(Of Login)(New Login(True))
+            Me.Close()
             MsgBox("Usted no tiene ningun lugar de trabajo vijente")
             Return
-
         End If
         For Each t As TrabajaEn In ListaTrabajaEn
             lugares.Items.Add(t.Lugar.Nombre)
@@ -51,7 +53,6 @@ Public Class LugarDeTrabajo
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Principal.getInstancia.cargarPanel(Of Login)(New Login(True))
         Me.Close()
     End Sub
 End Class

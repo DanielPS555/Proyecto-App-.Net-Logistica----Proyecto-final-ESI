@@ -190,7 +190,7 @@ Public Class crearInformaDeDaños
             PanelDelVehiculo.NotificarDeInforme(Info)
         End If
         Me.Dispose()
-        Controladores.Marco.cerrarPanel(Of crearInformaDeDaños)()
+        Controladores.Marco.getInstancia.cerrarPanel(Of crearInformaDeDaños)()
     End Sub
 
 

@@ -6,27 +6,20 @@ Imports Controladores.Extenciones
 Public Class Principal
     Private Shared initi As Principal
 
-    Public Sub New(tipo As Integer)
+    Public Sub New(loginLambda As LambdaDelegate, rol As String)
 
 
         InitializeComponent()
-
         StartPosition = FormStartPosition.CenterScreen
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
-        Select Case tipo
-            Case 1
-
-            Case 2
-
-            Case 3
-
-        End Select
-        cargarPanel(Of Login)(New Login)
+        Dim login = New Login(loginLambda, rol)
+        cargarPanel(login)
         initi = Me
     End Sub
 
-    Public Shared Function CrearInstancia(tipo As Integer) As Principal
-        initi = New Principal(tipo)
+    Public Shared Function CrearInstancia(loginLambda As LambdaDelegate, rol As String) As Principal
+        initi = New Principal(loginLambda, rol)
+        Return initi
     End Function
 
     Public Shared Function getInstancia() As Principal
@@ -71,6 +64,5 @@ Public Class Principal
         If Fachada.getInstancia.SeccionExsistente() Then
             Fachada.getInstancia.CerrarSeccion()
         End If
-
     End Sub
 End Class

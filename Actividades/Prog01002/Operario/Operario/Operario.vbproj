@@ -6,11 +6,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{D1C7738E-928B-4D44-8A10-9DC980651AE8}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <StartupObject>Operario.My.MyApplication</StartupObject>
+    <StartupObject>Operario.BootstrapOperario</StartupObject>
     <RootNamespace>Operario</RootNamespace>
     <AssemblyName>Operario</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <MyType>WindowsForms</MyType>
+    <MyType>WindowsFormsWithCustomSubMain</MyType>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
@@ -123,49 +123,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Presentación\cargador.Designer.vb">
-      <DependentUpon>cargador.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentación\cargador.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentación\ConfiguracionRed.Designer.vb">
-      <DependentUpon>ConfiguracionRed.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentación\ConfiguracionRed.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentación\NotificacionDeLote.vb" />
-    <Compile Include="Presentación\operario\Asignacion.Designer.vb">
-      <DependentUpon>Asignacion.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentación\operario\Asignacion.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentación\operario\crearInformaDeDaños.Designer.vb">
-      <DependentUpon>crearInformaDeDaños.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentación\operario\crearInformaDeDaños.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentación\operario\ListaZonas.Designer.vb">
-      <DependentUpon>ListaZonas.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentación\operario\ListaZonas.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentación\operario\Login.Designer.vb">
-      <DependentUpon>Login.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentación\operario\Login.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentación\operario\nuevoVehiculo.Designer.vb">
-      <DependentUpon>nuevoVehiculo.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentación\operario\nuevoVehiculo.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="BootstrapOperario.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -181,151 +139,13 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Presentación\operario\LugarDeTrabajo.Designer.vb">
-      <DependentUpon>LugarDeTrabajo.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentación\operario\LugarDeTrabajo.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentación\operario\NuevoLote.Designer.vb">
-      <DependentUpon>NuevoLote.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentación\operario\NuevoLote.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentación\operario\PanelInfoLote.Designer.vb">
-      <DependentUpon>PanelInfoLote.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentación\operario\PanelInfoLote.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentación\operario\PanelInfoUsuario.Designer.vb">
-      <DependentUpon>PanelInfoUsuario.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentación\operario\PanelInfoUsuario.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentación\operario\panelInfoVehiculo.Designer.vb">
-      <DependentUpon>panelInfoVehiculo.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentación\operario\panelInfoVehiculo.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentación\operario\RegistroDeDañoPanel.Designer.vb">
-      <DependentUpon>RegistroDeDañoPanel.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentación\operario\RegistroDeDañoPanel.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentación\operario\trasladoInterno.Designer.vb">
-      <DependentUpon>trasladoInterno.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentación\operario\trasladoInterno.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentación\Principal.Designer.vb">
-      <DependentUpon>Principal.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentación\Principal.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentación\operario\Marco.Designer.vb">
-      <DependentUpon>Marco.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentación\operario\Marco.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentación\operario\OperarioHome.Designer.vb">
-      <DependentUpon>OperarioHome.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentación\operario\OperarioHome.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentación\operario\ListaLotes.Designer.vb">
-      <DependentUpon>ListaLotes.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentación\operario\ListaLotes.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentación\operario\ListaVehiculos.Designer.vb">
-      <DependentUpon>ListaVehiculos.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentación\operario\ListaVehiculos.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentación\RestablecerContraseña.Designer.vb">
-      <DependentUpon>RestablecerContraseña.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentación\RestablecerContraseña.vb">
-      <SubType>Form</SubType>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Presentación\cargador.resx">
-      <DependentUpon>cargador.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentación\ConfiguracionRed.resx">
-      <DependentUpon>ConfiguracionRed.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentación\operario\Asignacion.resx">
-      <DependentUpon>Asignacion.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentación\operario\crearInformaDeDaños.resx">
-      <DependentUpon>crearInformaDeDaños.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentación\operario\ListaZonas.resx">
-      <DependentUpon>ListaZonas.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentación\operario\Login.resx">
-      <DependentUpon>Login.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentación\operario\nuevoVehiculo.resx">
-      <DependentUpon>nuevoVehiculo.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentación\operario\LugarDeTrabajo.resx">
-      <DependentUpon>LugarDeTrabajo.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentación\operario\NuevoLote.resx">
-      <DependentUpon>NuevoLote.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentación\operario\PanelInfoLote.resx">
-      <DependentUpon>PanelInfoLote.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentación\operario\PanelInfoUsuario.resx">
-      <DependentUpon>PanelInfoUsuario.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentación\operario\panelInfoVehiculo.resx">
-      <DependentUpon>panelInfoVehiculo.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentación\operario\RegistroDeDañoPanel.resx">
-      <DependentUpon>RegistroDeDañoPanel.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentación\operario\trasladoInterno.resx">
-      <DependentUpon>trasladoInterno.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentación\Principal.resx">
-      <DependentUpon>Principal.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentación\operario\Marco.resx">
-      <DependentUpon>Marco.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentación\operario\OperarioHome.resx">
-      <DependentUpon>OperarioHome.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentación\operario\ListaLotes.resx">
-      <DependentUpon>ListaLotes.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentación\operario\ListaVehiculos.resx">
-      <DependentUpon>ListaVehiculos.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentación\RestablecerContraseña.resx">
-      <DependentUpon>RestablecerContraseña.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -369,6 +189,10 @@
     <ProjectReference Include="..\Controladores\Controladores.vbproj">
       <Project>{513a34cc-0479-486d-8b03-f3eda1ab0383}</Project>
       <Name>Controladores</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OperarioCore\OperarioCore.vbproj">
+      <Project>{69731113-dad7-41bc-9e64-2b4ca65452d4}</Project>
+      <Name>OperarioCore</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

@@ -4,36 +4,58 @@ Public Class Marco
     Private Shared initi As Marco = Nothing
 
     Public Sub New()
-
+        If paneles Is Nothing Then
+            Throw New Exception("No se configuraron paneles para los botones")
+        End If
         InitializeComponent()
-        Select Case Fachada.getInstancia.DevolverUsuarioActual.Rol
-            Case Usuario.TIPO_ROL_OPERARIO
-                b1.Visible = False
-                b4.Visible = False
-                b5.Visible = False
-                b6.Visible = False
-                b7.Visible = False
-                b8.Visible = False
-
-            Case Usuario.TIPO_ROL_TRANSPORTISTA
-                b2.Visible = False
-                b3.Visible = False
-                b5.Visible = False
-                b6.Visible = False
-                b8.Visible = False
-                b9.Visible = False
-            Case Usuario.TIPO_ROL_ADMINISTRADOR
-                b9.Visible = False
-        End Select
-
+        For Each key As String In paneles.Keys
+            Dim btn As New Button With {
+                .Text = key,
+                .BackColor = b10.BackColor,
+                .Dock = DockStyle.Top,
+                .Font = b10.Font,
+                .TextAlign = b10.TextAlign,
+                .FlatStyle = b10.FlatStyle,
+                .UseVisualStyleBackColor = False,
+                .Size = b10.Size,
+                .ForeColor = b10.ForeColor
+            }
+            CopyFlat(b10, btn)
+            AddHandler btn.Click, Sub()
+                                      Dim constructores = paneles(key).GetConstructors() ' listar los constructores del tipo
+                                      For Each k In constructores
+                                          If k.GetParameters.Length < 1 Then
+                                              Try
+                                                  Dim newForm As Form = k.Invoke(Nothing)
+                                                  Marco.getInstancia.cargarPanel(newForm)
+                                                  Return
+                                              Catch e As Exception
+                                                  Console.WriteLine(e.ToString)
+                                              End Try
+                                          End If
+                                      Next
+                                      MsgBox("ERROR FATAL: No se encontraron constructores sin parámetros para el panel " + key)
+                                  End Sub
+            Panel5.Controls.Add(btn)
+        Next
     End Sub
 
-    Public Shared Sub reiniciarSingleton()
+    Private Shared Sub CopyFlat(src As Button, dst As Button)
+        dst.FlatAppearance.BorderColor = src.FlatAppearance.BorderColor
+        dst.FlatAppearance.BorderSize = src.FlatAppearance.BorderSize
+        dst.FlatAppearance.CheckedBackColor = src.FlatAppearance.CheckedBackColor
+        dst.FlatAppearance.MouseDownBackColor = src.FlatAppearance.MouseDownBackColor
+        dst.FlatAppearance.MouseOverBackColor = src.FlatAppearance.MouseOverBackColor
+    End Sub
+
+    Public Shared Sub ReiniciarSingleton()
         initi = Nothing
     End Sub
 
     Public Shared Function getInstancia() As Marco
-
+        If initi Is Nothing Then
+            CrearInstancia()
+        End If
         Return initi
     End Function
 
@@ -41,6 +63,7 @@ Public Class Marco
         If initi Is Nothing Then
             initi = New Marco()
         End If
+        Return initi
     End Function
 
     Public Sub cerrarPanel(Of T As {Form})()
@@ -66,56 +89,16 @@ Public Class Marco
 
     Public stack As New Stack(Of Form)
 
-
-
     Private Sub Marco_Load(sender As Object, e As EventArgs) Handles Me.Load
-        b1.Font = New Font("Segoe UI Semilight", 15.75!, FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.cargarPanel(Of Home)(New Home)
     End Sub
 
-    Private Sub botones_Click(sender As Object, e As EventArgs) Handles b2.Click, b3.Click, b6.Click, b4.Click, b1.Click, b7.Click, b5.Click, b8.Click
-        Dim botones() As Button = {b1, b2, b3, b4, b5, b6, b7, b8, b9, b10, acercaDe, Micuenta}
-        Dim selec As Button = DirectCast(sender, Button)
-        For i As Integer = 0 To botones.Length - 1
-            If botones(i).Equals(selec) Then
-                botones(i).Font = New Font("Segoe UI Semilight", 15.75!, FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
-            Else
-                botones(i).Font = New Font("Segoe UI Semilight", 15.75!, FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-            End If
-        Next
+    Private Shared paneles As Dictionary(Of String, Type)
 
-        Select Case selec.Name
-            Case "b1"
-                Dim pInicio = cargarPanel(Of ListaDeTrasportes)(New ListaDeTrasportes)
-            Case "b2"
-                Dim pVeiculos = cargarPanel(Of ListaVehiculos)(New ListaVehiculos)
-            Case "b4"
-                cargarPanel(Of ListaLotes)(New ListaLotes)
-            Case "b3"
-                cargarPanel(Of ListaDeMediosAutorizados)(New ListaDeMediosAutorizados)
-            Case "b5"
-                cargarPanel(Of ListarUsuario)(New ListarUsuario)
-            Case "b6"
-                cargarPanel(Of ListarLugares)(New ListarLugares)
-            Case "b7"
-                cargarPanel(Of Lista_de_trasportes)(New Lista_de_trasportes)
-            Case "b8"
-                cargarPanel(Of ListarClientes)(New ListarClientes)
-            Case "b9"
-                cargarPanel(Of ListaZonas)(New ListaZonas)
-            Case "b10"
-                Me.cargarPanel(Of Home)(New Home)
-            Case "acercaDe"
-                'AQUI VA EL PANEL DE USUARIO
-            Case "Micuenta"
-                'AQUI VA EL ACCERCA DEL PROGRAMA
-
-        End Select
-
-
-        'A ESTO ME REFIERO, NO TENGO NI IDEA COMO HACEMOS ESTA REFERENCIA
-
+    Public Shared Sub SetButtons(paneles As Dictionary(Of String, Type))
+        Marco.paneles = paneles
     End Sub
+
 
     Public Sub Bloquear()
         accion(False)
@@ -126,16 +109,6 @@ Public Class Marco
     End Sub
 
     Private Sub accion(j As Boolean)
-
-        b1.Enabled = j
-        b2.Enabled = j
-        b3.Enabled = j
-        b4.Enabled = j
-        b5.Enabled = j
-        b6.Enabled = j
-        b7.Enabled = j
-        b8.Enabled = j
-        b9.Enabled = j
         b10.Enabled = j
         acercaDe.Enabled = j
         Micuenta.Enabled = j
@@ -143,21 +116,8 @@ Public Class Marco
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Fachada.getInstancia.CerrarSeccion()
-        Select Case Fachada.getInstancia.DevolverUsuarioActual.Rol
-            Case Usuario.TIPO_ROL_OPERARIO
-
-
-            Case Usuario.TIPO_ROL_TRANSPORTISTA
-                b2.Visible = False
-                b3.Visible = False
-                b5.Visible = False
-                b6.Visible = False
-                b8.Visible = False
-                b9.Visible = False
-            Case Usuario.TIPO_ROL_ADMINISTRADOR
-                b9.Visible = False
-        End Select
-        getInstancia.cargarPanel(Of Login)(New Login(True))
+        Principal.getInstancia.cargarPanel(New Login)
+        Me.Close()
     End Sub
 
     Private Sub Label1_Click(sender As Object, e As EventArgs) 
@@ -187,4 +147,8 @@ Public Class Marco
         obj.BringToFront()
         Return obj
     End Function
+
+    Private Sub b10_Click(sender As Object, e As EventArgs) Handles b10.Click
+        Me.cargarPanel(New Home)
+    End Sub
 End Class

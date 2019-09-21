@@ -3,12 +3,22 @@ Imports System.IO
 Imports System.Text
 Imports Microsoft.Win32
 Imports Controladores.Fachada
+Imports Controladores.Extenciones
 
 Public Class Login
     Private contraseñaVisible As Boolean = False
+    Private Shared defaultLambda As LambdaDelegate = Nothing
+    Private Shared defaultRole As String = Nothing
 
     Public Sub New()
+        Me.New(defaultLambda, defaultRole)
+    End Sub
 
+    Public Sub New(loginLambda As LambdaDelegate, rol As String)
+        Me.Redirect = loginLambda
+        Me.ForRole = rol
+        defaultLambda = loginLambda
+        defaultRole = rol
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
         Button1.Visible = True
@@ -16,19 +26,6 @@ Public Class Login
         Button1.Enabled = True
         Button3.Enabled = True
         NotificarDeConexcion(False)
-        ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
-
-    End Sub
-
-    Public Sub New(j As Boolean)
-
-        ' Esta llamada es exigida por el diseñador.
-        InitializeComponent()
-        Button1.Visible = True
-        Button3.Visible = True
-        Button1.Enabled = True
-        Button3.Enabled = True
-        NotificarDeConexcion(j)
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
 
     End Sub
@@ -104,14 +101,21 @@ Public Class Login
         login()
     End Sub
 
+    Public Redirect As LambdaDelegate = Nothing
+    Public ForRole As String = Nothing
+
     Private Sub login()
+        If Redirect Is Nothing Or ForRole Is Nothing Then
+            MsgBox("Not se ha configurado correctamente la clase de login")
+            Return
+        End If
         If Not Controladores.Fachada.getInstancia.IngresoDeUsuarioConComprobacion(user.Text, pass.Text) Then 'YA CARGA EN EL METODO AL USUARIO QUE INGRESO 
             MsgBox("Credenciales incorrectas. Intente nuevamente", MsgBoxStyle.Critical)
         Else
-            If Controladores.Fachada.getInstancia.rolDeUnUsuarioPorElNombreDeUsuario(user.Text) = Controladores.Usuario.TIPO_ROL_TRANSPORTISTA Then 'POR LA APLICACION
-                Principal.getInstancia.cargarPanel(Of Marco)(Marco.getInstancia)
+            If Controladores.Fachada.getInstancia.rolDeUnUsuarioPorElNombreDeUsuario(user.Text) = ForRole Then
+                Redirect()
             Else
-                MsgBox("Esta aplicacion es unicamente para los trasportistas", MsgBoxStyle.Critical)
+                MsgBox("Esta aplicacion es unicamente para los " & ForRole, MsgBoxStyle.Critical)
             End If
 
         End If

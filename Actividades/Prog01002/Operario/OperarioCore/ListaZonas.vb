@@ -10,7 +10,7 @@ Public Class ListaZonas
         InitializeComponent()
 
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
-
+        cargarZonas(Fachada.getInstancia.TrabajaEnAcutual.Lugar)
     End Sub
 
     Public Sub New(lugar As Lugar)

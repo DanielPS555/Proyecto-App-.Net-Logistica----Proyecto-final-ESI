@@ -185,9 +185,6 @@
     <Compile Include="Presentacion\PanelCliente.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Presentacion\PanelInfoUsuario.Designer.vb">
-      <DependentUpon>PanelInfoUsuario.vb</DependentUpon>
-    </Compile>
     <Compile Include="Presentacion\PanelInfoUsuario.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -267,9 +264,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\PanelCliente.resx">
       <DependentUpon>PanelCliente.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion\PanelInfoUsuario.resx">
-      <DependentUpon>PanelInfoUsuario.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\PanelLugar.resx">
       <DependentUpon>PanelLugar.vb</DependentUpon>

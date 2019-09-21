@@ -1,11 +1,8 @@
-﻿
-Imports Administrador
-
-Public Class PanelInfoUsuario
+﻿Public Class PanelInfoUsuario
     Implements NotificacionSimple
     Dim filaSelexMedio As Integer = -1
     Dim filaSelex As Integer = -1
-    Dim user As Controladores.Usuario
+    Protected Friend user As Controladores.Usuario
     Dim ListaTrabajaen As DataTable
     Dim listaMedios As DataTable
 
@@ -14,9 +11,6 @@ Public Class PanelInfoUsuario
         InitializeComponent()
         user = New Controladores.Usuario() With {.ID_usuario = idusuario}
         cargarDatosBasicos()
-
-
-
     End Sub
 
     Public Sub actualizarPanel() Implements NotificacionSimple.actualizarPanel
@@ -84,10 +78,6 @@ Public Class PanelInfoUsuario
         tablatransportes.DataSource = Controladores.Fachada.getInstancia.ListaDeTrasportesPorIdUsuario(user.ID_usuario)
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Dim m As New NuevoTrabajaEn(user, Me)
-        m.ShowDialog()
-    End Sub
 
 
 
@@ -107,11 +97,6 @@ Public Class PanelInfoUsuario
         Else
             MsgBox("Debe selecionar una fila que eliminar", MsgBoxStyle.Critical)
         End If
-    End Sub
-
-    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
-        Dim m As New NuevoPermite(user, Me)
-        m.ShowDialog()
     End Sub
 
     Private Sub MediosAuto_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles mediosAuto.CellClick
