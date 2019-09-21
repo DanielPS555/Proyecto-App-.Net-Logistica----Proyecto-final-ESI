@@ -33,7 +33,10 @@ Public Class WebcamForm
             Dim timer As New Timer With {
                 .Interval = 1000 / 15
             }
+            Dim frameCount = 0
             AddHandler timer.Tick, Sub()
+                                       frameCount += 1
+                                       Console.WriteLine(frameCount)
                                        Dim res = manager.AcquireScan(device, WiaDotNet.DocumentSources.SingleSided, WiaDotNet.ScanTypes.None)
                                        Dim img = res.Frames()(0)
                                        Dim bmp = New Bitmap(img.PixelWidth, img.PixelHeight, PixelFormat.Format32bppRgb)
@@ -41,6 +44,8 @@ Public Class WebcamForm
                                        img.CopyPixels(Int32Rect.Empty, bmpdata.Scan0, bmpdata.Height * bmpdata.Stride, bmpdata.Stride)
                                        bmp.UnlockBits(bmpdata)
                                        image.Image = bmp
+                                       image.Refresh()
+                                       Me.Refresh()
                                        result = bcReader.Decode(bmp)
                                        If result IsNot Nothing Then
                                            Close()
