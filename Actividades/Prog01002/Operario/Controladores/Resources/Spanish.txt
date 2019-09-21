@@ -41,3 +41,6 @@ Ver más
 Cambiar lote
 Eliminar selección
 Cancelar
+Abrir imagen
+{0} {1}, utilizar?
+No se encontraron codigos QR en la imagen

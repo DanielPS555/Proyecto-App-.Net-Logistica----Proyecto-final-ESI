@@ -359,4 +359,8 @@ Public Class nuevoVehiculo
         zonas.SelectedIndex = 0
         loadLotes()
     End Sub
+
+    Private Sub QR_Click(sender As Object, e As EventArgs) Handles QR.Click
+        buscador.Text = WebcamForm.GetQR()
+    End Sub
 End Class

@@ -41,3 +41,6 @@ Read more
 Change batch
 Remove selection
 Cancel
+Open image
+{0} {1}, use?
+QR codes were not found in the image
