@@ -1,2 +1,14 @@
 ﻿Lista zonas
 Lista vehiculos
+Credenciales incorrectas. Intente nuevamente
+Esta aplicacion es unicamente para los {0}
+No se ha configurado correctamente la clase de login
+Conectado
+Desconectado
+Nombre de usuario
+Contraseña
+Ingresar
+Restaurar
+Configurar red
+Estado:
+Diseñado por

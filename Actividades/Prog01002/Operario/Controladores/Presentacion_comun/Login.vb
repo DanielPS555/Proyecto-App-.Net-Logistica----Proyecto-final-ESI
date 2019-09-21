@@ -36,6 +36,16 @@ Public Class Login
         hora.Text = Tiempo.ToString("HH:mm:ss") ' HH -> hora en formato 24hs. mm -> minutos del 00 al 59. ss -> segundos del 00 al 59
     End Sub
 
+    Private Sub LanguageSwap()
+        user.Text = Funciones_comunes.I18N("Nombre de usuario", Marco.Language)
+        pass.Text = Funciones_comunes.I18N("Contraseña", Marco.Language)
+        Button1.Text = Funciones_comunes.I18N("Ingresar", Marco.Language)
+        Button3.Text = Funciones_comunes.I18N("Restaurar", Marco.Language)
+        Button4.Text = Funciones_comunes.I18N("Configurar red", Marco.Language)
+        Label1.Text = Funciones_comunes.I18N("Estado:", Marco.Language)
+        Label3.Text = Funciones_comunes.I18N("Diseñado por", Marco.Language)
+    End Sub
+
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
         Tiempo.Start()
         Me.LanguageBox.Items.Clear()
@@ -45,7 +55,7 @@ Public Class Login
     End Sub
 
     Private Sub user_Enter(sender As Object, e As EventArgs) Handles user.Enter
-        If user.Text = "Nombre de usuario" Then
+        If user.Text = Funciones_comunes.I18N("Nombre de usuario", Marco.Language) Then
             user.Text = ""
             user.ForeColor = Color.FromArgb(28, 28, 28)
         End If
@@ -54,7 +64,7 @@ Public Class Login
 
     Private Sub user_Leave(sender As Object, e As EventArgs) Handles user.Leave
         If String.IsNullOrEmpty(user.Text.TrimStart()) Then
-            user.Text = "Nombre de usuario"
+            user.Text = Funciones_comunes.I18N("Nombre de usuario", Marco.Language)
             user.ForeColor = Color.FromArgb(100, 100, 100)
         End If
         e1.BackColor = Color.FromArgb(23, 23, 23)
@@ -63,7 +73,7 @@ Public Class Login
 
     Private Sub pass_Leave(sender As Object, e As EventArgs) Handles pass.Leave
         If 0 = pass.Text.Length Then
-            pass.Text = "Contraseña"
+            pass.Text = Funciones_comunes.I18N("Contraseña", Marco.Language)
             pass.PasswordChar = ""
             ver.Enabled = False
             pass.ForeColor = Color.FromArgb(100, 100, 100)
@@ -72,7 +82,7 @@ Public Class Login
     End Sub
 
     Private Sub pass_Enter(sender As Object, e As EventArgs) Handles pass.Enter
-        If pass.Text = "Contraseña" Then
+        If pass.Text = Funciones_comunes.I18N("Contraseña", Marco.Language) Then
             pass.Text = ""
             If contraseñaVisible Then ' asignar diseño de acuerdo al estado de contraseñaVisible
                 ver.Image = Global.Controladores.My.Resources.ojo_no
@@ -108,16 +118,16 @@ Public Class Login
 
     Private Sub login()
         If Redirect Is Nothing Or ForRole Is Nothing Then
-            MsgBox("Not se ha configurado correctamente la clase de login")
+            MsgBoxI18N("No se ha configurado correctamente la clase de login")
             Return
         End If
         If Not Controladores.Fachada.getInstancia.IngresoDeUsuarioConComprobacion(user.Text, pass.Text) Then 'YA CARGA EN EL METODO AL USUARIO QUE INGRESO 
-            MsgBox("Credenciales incorrectas. Intente nuevamente", MsgBoxStyle.Critical)
+            MsgBoxI18N("Credenciales incorrectas. Intente nuevamente", MsgBoxStyle.Critical)
         Else
             If Controladores.Fachada.getInstancia.rolDeUnUsuarioPorElNombreDeUsuario(user.Text) = ForRole Then
                 Redirect()
             Else
-                MsgBox("Esta aplicacion es unicamente para los " & ForRole, MsgBoxStyle.Critical)
+                MsgBoxI18NFormat("Esta aplicacion es unicamente para los {0}", ForRole)
             End If
 
         End If
@@ -130,14 +140,14 @@ Public Class Login
 
     Public Sub NotificarDeConexcion(j As Boolean)
         If j Then
-            estadoConex.Text = "Conectado"
+            estadoConex.Text = Funciones_comunes.I18N("Conectado", Marco.Language)
             estadoConex.ForeColor = Color.FromArgb(13, 163, 51)
             Button1.Enabled = True
             Button3.Enabled = True
             user.Enabled = True
             pass.Enabled = True
         Else
-            estadoConex.Text = "Desconectado"
+            estadoConex.Text = Funciones_comunes.I18N("Desconectado", Marco.Language)
             estadoConex.ForeColor = Color.FromArgb(180, 20, 20)
             Button1.Enabled = False
             Button3.Enabled = False
@@ -154,5 +164,6 @@ Public Class Login
 
     Private Sub LanguageBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles LanguageBox.SelectedIndexChanged
         Marco.Language = LanguageBox.SelectedItem
+        LanguageSwap()
     End Sub
 End Class

@@ -1,2 +1,14 @@
 ﻿Zone list
 Vehicle list
+Incorrect credentials. Try again.
+This application is only for {0}
+The Login class has not been set up correctly
+Connected
+Disconnected
+Username
+Password
+Login
+Forgot password
+Configure network
+State:
+Designed by

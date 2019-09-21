@@ -15,6 +15,14 @@ Namespace Extenciones
             Return lista
         End Function
 
+        Public Sub MsgBoxI18N(originalString As String, Optional msgStyle As MsgBoxStyle = MsgBoxStyle.Information)
+            MsgBox(Funciones_comunes.I18N(originalString, Marco.Language), msgStyle)
+        End Sub
+
+        Public Sub MsgBoxI18NFormat(originalString As String, ParamArray values() As Object)
+            MsgBox(String.Format(Funciones_comunes.I18N(originalString, Marco.Language), values))
+        End Sub
+
         <Runtime.CompilerServices.Extension>
         Public Function Transpose(table As DataTable) As DataTable
             Dim dt As New DataTable(table.TableName + " transposed")

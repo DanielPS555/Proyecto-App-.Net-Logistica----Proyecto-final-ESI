@@ -102,9 +102,9 @@ Partial Class Login
         Me.Label1.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.Location = New System.Drawing.Point(567, 586)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(82, 22)
+        Me.Label1.Size = New System.Drawing.Size(77, 22)
         Me.Label1.TabIndex = 17
-        Me.Label1.Text = "Estado: "
+        Me.Label1.Text = "Estado:"
         '
         'Button3
         '
@@ -195,9 +195,9 @@ Partial Class Login
         Me.Label3.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.Location = New System.Drawing.Point(467, 620)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(117, 21)
+        Me.Label3.Size = New System.Drawing.Size(113, 21)
         Me.Label3.TabIndex = 6
-        Me.Label3.Text = "Diseñado por "
+        Me.Label3.Text = "Diseñado por"
         '
         'hora
         '
