@@ -11,15 +11,15 @@ Public Class Funciones_comunes
         Return BCrypt.Net.BCrypt.EnhancedHashPassword(password, hashType:=BCrypt.Net.HashType.SHA256)
     End Function
 
-    Private Shared SourceDictionary As SortedDictionary(Of Int32, String)
-    Private Shared TargetDictionary As SortedDictionary(Of String, SortedDictionary(Of Int32, String))
+    Private Shared SourceDictionary As SortedList(Of Int32, String)
+    Private Shared TargetDictionary As Dictionary(Of String, SortedList(Of Int32, String))
     Public Shared ReadOnly Languages() As String = {"Spanish", "English"}
 
-    Public Shared Sub inter_test()
-        Dim TStrings() = {"Estás mal de la cabeza o qué te pasa?", "La biblia junto al Movicom", "No ves que está todo al revés?"}
-        For Each TString In TStrings
-            For Each k In Languages
-                Console.WriteLine(k + ": " + I18N(TString, k))
+    Public Shared Sub Inter_test()
+        LoadI18N()
+        For Each l In Languages
+            For Each h In SourceDictionary.Values
+                Console.WriteLine(I18N(h, l))
             Next
         Next
     End Sub
@@ -37,31 +37,7 @@ Public Class Funciones_comunes
         'hasheamos el string que estamos buscando
 
         If SourceDictionary Is Nothing Then
-            ' cargamos los recursos de texto
-            SourceDictionary = New SortedDictionary(Of Integer, String)
-            Dim fileIn = My.Resources.ResourceManager.GetString("Spanish").Split(vbNewLine)
-            ' las líneas del archivo
-            Dim hashes As New List(Of Int32)
-            ' la lista de hashes (esperamos que cada String esté en la misma línea en todos los txt)
-            For Each s In fileIn
-                Dim line = s.Trim
-                Dim lHash = KDHash(line)
-                SourceDictionary(lHash) = line
-                ' hasheamos la línea y guardamos su hash
-                hashes.Add(lHash)
-            Next
-            TargetDictionary = New SortedDictionary(Of String, SortedDictionary(Of Integer, String))
-            For i = 1 To Languages.Length - 1
-                TargetDictionary(Languages(i)) = New SortedDictionary(Of Integer, String)
-                Dim tdict = TargetDictionary(Languages(i))
-                fileIn = My.Resources.ResourceManager.GetString(Languages(i)).Split(vbNewLine)
-                For s = 0 To hashes.Count - 1
-                    Dim line = fileIn(s).Trim
-                    ' usamos el hash de esta línea en el txt original como el hash de esta línea del diccionario alternativo
-                    Dim lHash = hashes(s)
-                    TargetDictionary(Languages(i))(lHash) = line
-                Next
-            Next
+            LoadI18N()
         End If
         Dim dict = Array.IndexOf(Languages, toLang)
         If dict = 0 Then
@@ -73,6 +49,35 @@ Public Class Funciones_comunes
         End If
     End Function
 
+    Private Shared Sub LoadI18N()
+
+        ' cargamos los recursos de texto
+        SourceDictionary = New SortedList(Of Integer, String)
+        Dim fileIn = My.Resources.ResourceManager.GetString("Spanish").Split(vbNewLine)
+        ' las líneas del archivo
+        Dim hashes As New List(Of Int32)
+        ' la lista de hashes (esperamos que cada String esté en la misma línea en todos los txt)
+        For Each s In fileIn
+            Dim line = s.Trim
+            Dim lHash = KDHash(line)
+            SourceDictionary(lHash) = line
+            ' hasheamos la línea y guardamos su hash
+            hashes.Add(lHash)
+        Next
+        TargetDictionary = New Dictionary(Of String, SortedList(Of Integer, String))
+        For i = 1 To Languages.Length - 1
+            TargetDictionary(Languages(i)) = New SortedList(Of Integer, String)
+            Dim tdict = TargetDictionary(Languages(i))
+            fileIn = My.Resources.ResourceManager.GetString(Languages(i)).Split(vbNewLine)
+            For s = 0 To hashes.Count - 1
+                Dim line = fileIn(s).Trim
+                ' usamos el hash de esta línea en el txt original como el hash de esta línea del diccionario alternativo
+                Dim lHash = hashes(s)
+                TargetDictionary(Languages(i))(lHash) = line
+            Next
+        Next
+    End Sub
+
     Private Shared Function KDHash(Input As String) As Int32 ' Kouta's Dirty Hash:
         ' Nota: no es una función de hasheo real, pero dentro de nuestro dominio debería ser (a la vista) un hasheo
         ' cuasi-perfecto
@@ -80,6 +85,7 @@ Public Class Funciones_comunes
         ' el primer caracter del string (Mod 256 por si es unicode con >1 codepoint),
         ' el caracter más cercano a la mitad del string (también mod 256 por la misma razón)
         ' y el último caracter del string (idem), todo interpretado como un int32
+        ' por último, se hace un xor con cada caracter del string, para intentar hacer un poco más único el hash
         ' sólo habría de colisionar en caso de tener strings que tengan el mismo largo, comiencen y terminen 
         ' con los mismos caracteres y tengan el mismo caracter en la mitad
         Dim strLen = Input.Length Mod 256
@@ -88,6 +94,9 @@ Public Class Funciones_comunes
         strHash(1) = AscW(Input(0)) Mod 256
         strHash(2) = AscW(Input(Input.Length \ 2)) Mod 256
         strHash(3) = AscW(Input(Input.Length - 1)) Mod 256
+        For i = 0 To Input.Length - 1
+            strHash(i Mod 4) = strHash(i Mod 4) Xor (AscW(Input(i)) Mod 256)
+        Next
         Dim iHash = BitConverter.ToInt32(strHash, 0)
         Return iHash
     End Function

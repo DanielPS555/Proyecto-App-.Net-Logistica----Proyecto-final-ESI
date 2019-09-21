@@ -1,4 +1,5 @@
-﻿Imports GMap.NET
+﻿Imports Controladores
+Imports GMap.NET
 Imports System.Windows.Forms
 Public Class SUB_informeLote
     Private _lote As Controladores.Lote

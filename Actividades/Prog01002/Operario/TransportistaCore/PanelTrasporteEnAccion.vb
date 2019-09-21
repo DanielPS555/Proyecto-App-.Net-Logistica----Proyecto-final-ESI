@@ -1,4 +1,6 @@
 ﻿Imports System.Windows.Forms
+Imports Controladores
+
 Public Class PanelTrasporteEnAccion
     Dim listaDeSUBLote As List(Of ContenedorLote)
     Dim elementosSelecionados As List(Of Integer)
@@ -17,7 +19,6 @@ Public Class PanelTrasporteEnAccion
         Marco.getInstancia.cerrarPanel(Of PanelTrasporteEnAccion)()
         CargarPanales()
         crearTransporte()
-
     End Sub
 
     Private Sub crearTransporte()

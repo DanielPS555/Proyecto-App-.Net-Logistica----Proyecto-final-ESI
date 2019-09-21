@@ -112,13 +112,6 @@
     <Compile Include="Presentacion\Conectividad.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Presentacion\ConnectionGraph.vb" />
-    <Compile Include="Presentacion\ListaDeMediosAutorizados.Designer.vb">
-      <DependentUpon>ListaDeMediosAutorizados.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion\ListaDeMediosAutorizados.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Presentacion\ListaDeTrasportes.Designer.vb">
       <DependentUpon>ListaDeTrasportes.vb</DependentUpon>
     </Compile>
@@ -206,18 +199,6 @@
     <Compile Include="Presentacion\PanelTrasporte.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Presentacion\Principal.Designer.vb">
-      <DependentUpon>Principal.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion\Principal.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion\RestablecerContraseña.Designer.vb">
-      <DependentUpon>RestablecerContraseña.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion\RestablecerContraseña.vb">
-      <SubType>Form</SubType>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -228,9 +209,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\Conectividad.resx">
       <DependentUpon>Conectividad.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion\ListaDeMediosAutorizados.resx">
-      <DependentUpon>ListaDeMediosAutorizados.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\ListaDeTrasportes.resx">
       <DependentUpon>ListaDeTrasportes.vb</DependentUpon>
@@ -273,12 +251,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\PanelTrasporte.resx">
       <DependentUpon>PanelTrasporte.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion\Principal.resx">
-      <DependentUpon>Principal.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion\RestablecerContraseña.resx">
-      <DependentUpon>RestablecerContraseña.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

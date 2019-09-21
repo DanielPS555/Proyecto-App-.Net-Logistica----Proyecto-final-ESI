@@ -91,12 +91,6 @@
     <Compile Include="ListaDeTrasportes.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Marco.Designer.vb">
-      <DependentUpon>Marco.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Marco.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -136,18 +130,6 @@
     <Compile Include="PanelTrasporteEnAccion.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Principal.Designer.vb">
-      <DependentUpon>Principal.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Principal.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="RestablecerContraseña.Designer.vb">
-      <DependentUpon>RestablecerContraseña.vb</DependentUpon>
-    </Compile>
-    <Compile Include="RestablecerContraseña.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="SUB_informeLote.Designer.vb">
       <DependentUpon>SUB_informeLote.vb</DependentUpon>
     </Compile>
@@ -164,9 +146,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ListaDeTrasportes.resx">
       <DependentUpon>ListaDeTrasportes.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Marco.resx">
-      <DependentUpon>Marco.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -185,12 +164,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PanelTrasporteEnAccion.resx">
       <DependentUpon>PanelTrasporteEnAccion.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Principal.resx">
-      <DependentUpon>Principal.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="RestablecerContraseña.resx">
-      <DependentUpon>RestablecerContraseña.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SUB_informeLote.resx">
       <DependentUpon>SUB_informeLote.vb</DependentUpon>

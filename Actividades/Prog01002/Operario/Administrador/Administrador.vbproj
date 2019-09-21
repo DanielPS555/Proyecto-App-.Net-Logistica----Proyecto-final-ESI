@@ -6,11 +6,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{EDCC6FF5-E7AC-4FA6-9E37-DD447C822DF8}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <StartupObject>Administrador.My.MyApplication</StartupObject>
+    <StartupObject>Administrador.BootstrapAdministrador</StartupObject>
     <RootNamespace>Administrador</RootNamespace>
     <AssemblyName>Administrador</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <MyType>WindowsForms</MyType>
+    <MyType>WindowsFormsWithCustomSubMain</MyType>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
@@ -115,6 +115,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BootstrapAdministrador.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -130,213 +131,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Presentacion\Asignacion.Designer.vb">
-      <DependentUpon>Asignacion.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion\Asignacion.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion\Conectividad.Designer.vb">
-      <DependentUpon>Conectividad.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion\Conectividad.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion\ConfiguracionRed.Designer.vb">
-      <DependentUpon>ConfiguracionRed.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion\ConfiguracionRed.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion\ConnectionGraph.vb" />
-    <Compile Include="Presentacion\crearInformaDeDaños.Designer.vb">
-      <DependentUpon>crearInformaDeDaños.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion\crearInformaDeDaños.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion\ListaDeMediosAutorizados.Designer.vb">
-      <DependentUpon>ListaDeMediosAutorizados.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion\ListaDeMediosAutorizados.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion\ListaDeTrasportes.Designer.vb">
-      <DependentUpon>ListaDeTrasportes.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion\ListaDeTrasportes.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion\ListaLotes.Designer.vb">
-      <DependentUpon>ListaLotes.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion\ListaLotes.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion\ListarClientes.Designer.vb">
-      <DependentUpon>ListarClientes.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion\ListarClientes.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion\ListarLugares.Designer.vb">
-      <DependentUpon>ListarLugares.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion\ListarLugares.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion\ListaVehiculos.Designer.vb">
-      <DependentUpon>ListaVehiculos.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion\ListaVehiculos.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion\ListaZonas.Designer.vb">
-      <DependentUpon>ListaZonas.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion\ListaZonas.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion\ListarUsuario.Designer.vb">
-      <DependentUpon>ListarUsuario.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion\ListarUsuario.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion\Login.Designer.vb">
-      <DependentUpon>Login.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion\Login.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion\Marco.Designer.vb">
-      <DependentUpon>Marco.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion\Marco.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion\NotificacionLote.vb" />
-    <Compile Include="Presentacion\NotificacionSimple.vb" />
-    <Compile Include="Presentacion\NuevaPrecarga.Designer.vb">
-      <DependentUpon>NuevaPrecarga.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion\NuevaPrecarga.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion\NuevoCliente.Designer.vb">
-      <DependentUpon>NuevoCliente.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion\NuevoCliente.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion\NuevoLote.Designer.vb">
-      <DependentUpon>NuevoLote.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion\NuevoLote.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion\NuevoLugar.Designer.vb">
-      <DependentUpon>NuevoLugar.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion\NuevoLugar.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion\NuevoPermite.Designer.vb">
-      <DependentUpon>NuevoPermite.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion\NuevoPermite.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion\NuevoTrabajaEn.Designer.vb">
-      <DependentUpon>NuevoTrabajaEn.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion\NuevoTrabajaEn.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion\NuevoUsuario.Designer.vb">
-      <DependentUpon>NuevoUsuario.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion\NuevoUsuario.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion\nuevoVehiculo.Designer.vb">
-      <DependentUpon>nuevoVehiculo.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion\nuevoVehiculo.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion\AdministradorHome.Designer.vb">
-      <DependentUpon>AdministradorHome.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion\AdministradorHome.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion\PanelCliente.Designer.vb">
-      <DependentUpon>PanelCliente.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion\PanelCliente.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion\PanelInfoLote.Designer.vb">
-      <DependentUpon>PanelInfoLote.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion\PanelInfoLote.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion\PanelInfoUsuario.Designer.vb">
-      <DependentUpon>PanelInfoUsuario.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion\PanelInfoUsuario.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion\panelInfoVehiculo.Designer.vb">
-      <DependentUpon>panelInfoVehiculo.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion\panelInfoVehiculo.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion\PanelLugar.Designer.vb">
-      <DependentUpon>PanelLugar.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion\PanelLugar.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion\PanelMedioDeTrasporte.Designer.vb">
-      <DependentUpon>PanelMedioDeTrasporte.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion\PanelMedioDeTrasporte.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion\PanelTrasporte.Designer.vb">
-      <DependentUpon>PanelTrasporte.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion\PanelTrasporte.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion\Principal.Designer.vb">
-      <DependentUpon>Principal.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion\Principal.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion\RegistroDeDañoPanel.Designer.vb">
-      <DependentUpon>RegistroDeDañoPanel.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion\RegistroDeDañoPanel.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion\RestablecerContraseña.Designer.vb">
-      <DependentUpon>RestablecerContraseña.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion\RestablecerContraseña.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion\trasladoInterno.Designer.vb">
-      <DependentUpon>trasladoInterno.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion\trasladoInterno.vb">
-      <SubType>Form</SubType>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -344,108 +138,6 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion\Asignacion.resx">
-      <DependentUpon>Asignacion.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion\Conectividad.resx">
-      <DependentUpon>Conectividad.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion\ConfiguracionRed.resx">
-      <DependentUpon>ConfiguracionRed.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion\crearInformaDeDaños.resx">
-      <DependentUpon>crearInformaDeDaños.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion\ListaDeMediosAutorizados.resx">
-      <DependentUpon>ListaDeMediosAutorizados.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion\ListaDeTrasportes.resx">
-      <DependentUpon>ListaDeTrasportes.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion\ListaLotes.resx">
-      <DependentUpon>ListaLotes.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion\ListarClientes.resx">
-      <DependentUpon>ListarClientes.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion\ListarLugares.resx">
-      <DependentUpon>ListarLugares.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion\ListarUsuario.resx">
-      <DependentUpon>ListarUsuario.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion\ListaVehiculos.resx">
-      <DependentUpon>ListaVehiculos.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion\ListaZonas.resx">
-      <DependentUpon>ListaZonas.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion\Login.resx">
-      <DependentUpon>Login.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion\Marco.resx">
-      <DependentUpon>Marco.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion\NuevaPrecarga.resx">
-      <DependentUpon>NuevaPrecarga.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion\NuevoCliente.resx">
-      <DependentUpon>NuevoCliente.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion\NuevoLote.resx">
-      <DependentUpon>NuevoLote.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion\NuevoLugar.resx">
-      <DependentUpon>NuevoLugar.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion\NuevoPermite.resx">
-      <DependentUpon>NuevoPermite.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion\NuevoTrabajaEn.resx">
-      <DependentUpon>NuevoTrabajaEn.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion\NuevoUsuario.resx">
-      <DependentUpon>NuevoUsuario.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion\nuevoVehiculo.resx">
-      <DependentUpon>nuevoVehiculo.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion\AdministradorHome.resx">
-      <DependentUpon>AdministradorHome.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion\PanelCliente.resx">
-      <DependentUpon>PanelCliente.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion\PanelInfoLote.resx">
-      <DependentUpon>PanelInfoLote.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion\PanelInfoUsuario.resx">
-      <DependentUpon>PanelInfoUsuario.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion\panelInfoVehiculo.resx">
-      <DependentUpon>panelInfoVehiculo.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion\PanelLugar.resx">
-      <DependentUpon>PanelLugar.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion\PanelMedioDeTrasporte.resx">
-      <DependentUpon>PanelMedioDeTrasporte.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion\PanelTrasporte.resx">
-      <DependentUpon>PanelTrasporte.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion\Principal.resx">
-      <DependentUpon>Principal.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion\RegistroDeDañoPanel.resx">
-      <DependentUpon>RegistroDeDañoPanel.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion\RestablecerContraseña.resx">
-      <DependentUpon>RestablecerContraseña.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion\trasladoInterno.resx">
-      <DependentUpon>trasladoInterno.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -482,9 +174,21 @@
     <None Include="Resources\logo.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AdministradorCore\AdministradorCore.vbproj">
+      <Project>{31c1636c-2292-4974-8865-f95b65dd9230}</Project>
+      <Name>AdministradorCore</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Controladores\Controladores.vbproj">
       <Project>{513a34cc-0479-486d-8b03-f3eda1ab0383}</Project>
       <Name>Controladores</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OperarioCore\OperarioCore.vbproj">
+      <Project>{69731113-dad7-41bc-9e64-2b4ca65452d4}</Project>
+      <Name>OperarioCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TransportistaCore\TransportistaCore.vbproj">
+      <Project>{17e16538-9d66-48ad-ba8d-7af25db7b7cc}</Project>
+      <Name>TransportistaCore</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

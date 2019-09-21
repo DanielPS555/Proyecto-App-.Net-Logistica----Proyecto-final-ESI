@@ -1,5 +1,14 @@
-﻿Lista zonas
+﻿Listar Clientes
+Listar Lugares
+Listar Usuario
+Nueva Precarga
+Nuevo Cliente
+Nuevo Lugar
+Lista zonas
+Lista lotes
 Lista vehiculos
+Nuevo lote
+Nuevo vehiculo
 Credenciales incorrectas. Intente nuevamente
 Esta aplicacion es unicamente para los {0}
 No se ha configurado correctamente la clase de login
@@ -12,3 +21,7 @@ Restaurar
 Configurar red
 Estado:
 Diseñado por
+Inicio
+Acerca de
+Mi cuenta
+Cerrar sesión

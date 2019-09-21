@@ -15,7 +15,9 @@ Public Class LugarDeTrabajo
         Fachada.getInstancia.NuevaConexcion(ListaTrabajaEn(lugares.SelectedIndex))
         Dim paneles As New Dictionary(Of String, Type) From {
             {"Lista zonas", GetType(ListaZonas)},
-            {"Lista vehiculos", GetType(ListaVehiculos)}
+            {"Lista vehiculos", GetType(ListaVehiculos)},
+            {"Nuevo vehiculo", GetType(nuevoVehiculo)},
+            {"Lista lotes", GetType(ListaLotes)}
         }
         Marco.SetButtons(paneles)
         Marco.ReiniciarSingleton()

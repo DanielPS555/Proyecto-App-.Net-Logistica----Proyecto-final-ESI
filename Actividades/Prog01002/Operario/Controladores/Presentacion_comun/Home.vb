@@ -12,12 +12,14 @@ Public Class Home
         NombreCompleto.Text = data.Nombre + " " + data.Apellido
         nombreUsuario.Text = data.NombreDeUsuario
         rolUsuario.Text = data.Rol
-        Dim numA As Integer = Fachada.getInstancia.TrabajaEnAcutual.Conexiones.Count
-        nAccesos.Text = numA
-        If numA = 0 Then
-            anteriorIngreso.Text = "Nunca"
-        Else
-            anteriorIngreso.Text = Funciones_comunes.DarFormato(Fachada.getInstancia.TrabajaEnAcutual.ultimaConexcion.Item1)
+        If Fachada.getInstancia.TrabajaEnAcutual IsNot Nothing Then
+            Dim numA As Integer = Fachada.getInstancia.TrabajaEnAcutual.Conexiones.Count
+            nAccesos.Text = numA
+            If numA = 0 Then
+                anteriorIngreso.Text = "Nunca"
+            Else
+                anteriorIngreso.Text = Funciones_comunes.DarFormato(Fachada.getInstancia.TrabajaEnAcutual.ultimaConexcion.Item1)
+            End If
         End If
         'autosAlteados.Text = Fachada.getInstancia.NumeroDeVehiculosAgregadosPorElUsuarioActual
         ' lotesCreados.Text = Fachada.getInstancia.NumeroDeLotesCreadorPorElUsuarioActual

@@ -1,5 +1,14 @@
-﻿Zone list
+﻿Client list
+Place list
+User list
+New preload
+New client
+New place
+Zones list
+Batch list
 Vehicle list
+New batch
+New vehicle
 Incorrect credentials. Try again.
 This application is only for {0}
 The Login class has not been set up correctly
@@ -7,8 +16,12 @@ Connected
 Disconnected
 Username
 Password
-Login
+Log in
 Forgot password
-Configure network
+Set up network
 State:
 Designed by
+Home
+About
+My profile
+Log out

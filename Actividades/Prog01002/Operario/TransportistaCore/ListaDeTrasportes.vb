@@ -1,4 +1,6 @@
 ﻿Imports System.Windows.Forms
+Imports Controladores
+
 Public Class ListaDeTrasportes
     Dim lista As DataTable
     Public Sub New()

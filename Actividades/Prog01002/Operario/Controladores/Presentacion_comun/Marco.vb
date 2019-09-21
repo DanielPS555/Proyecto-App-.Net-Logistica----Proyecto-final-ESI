@@ -9,7 +9,14 @@ Public Class Marco
             Throw New Exception("No se configuraron paneles para los botones")
         End If
         InitializeComponent()
+        b10.Text = Funciones_comunes.I18N("Inicio", Language)
+        acercaDe.Text = Funciones_comunes.I18N("Acerca de", Language)
+        Micuenta.Text = Funciones_comunes.I18N("Mi cuenta", Language)
+        Button1.Text = Funciones_comunes.I18N("Cerrar sesión", Language)
         For Each key As String In paneles.Keys
+            If Not paneles(key).IsSubclassOf(GetType(Form)) Then
+                Continue For
+            End If
             Dim btn As New Button With {
                 .Text = Funciones_comunes.I18N(key, Language),
                 .BackColor = b10.BackColor,

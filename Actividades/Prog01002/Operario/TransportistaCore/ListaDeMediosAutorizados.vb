@@ -1,4 +1,6 @@
 ﻿Imports System.Windows.Forms
+Imports Controladores
+
 Public Class ListaDeMediosAutorizados
     Dim dataTabla As New DataTable
     Public Sub New()
