@@ -26,3 +26,18 @@ Inicio
 Acerca de
 Mi cuenta
 Cerrar sesión
+Marca
+Modelo
+Cliente
+Año
+Tipo
+Zona
+Subzona
+Lugar
+Posicion
+Lote
+Guardar código
+Ver más
+Cambiar lote
+Eliminar selección
+Cancelar

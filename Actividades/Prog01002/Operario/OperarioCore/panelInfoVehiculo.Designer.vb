@@ -23,20 +23,21 @@ Partial Class panelInfoVehiculo
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.RutaVehiculo = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.SaveButton = New System.Windows.Forms.Button()
         Me.id = New System.Windows.Forms.TextBox()
         Me.Label22 = New System.Windows.Forms.Label()
         Me.Cancelar = New System.Windows.Forms.LinkLabel()
         Me.EliminarLoteSelecion = New System.Windows.Forms.LinkLabel()
         Me.cambiarGuardarLote = New System.Windows.Forms.LinkLabel()
         Me.lugarLabel = New System.Windows.Forms.Label()
-        Me.LLable = New System.Windows.Forms.Label()
+        Me.LugarLbl = New System.Windows.Forms.Label()
         Me.PosicionLabel = New System.Windows.Forms.Label()
         Me.SubzonaLabel = New System.Windows.Forms.Label()
         Me.ZonaLabel = New System.Windows.Forms.Label()
@@ -48,20 +49,20 @@ Partial Class panelInfoVehiculo
         Me.ModeloBox = New System.Windows.Forms.TextBox()
         Me.MarcaBox = New System.Windows.Forms.TextBox()
         Me.VINBox = New System.Windows.Forms.TextBox()
-        Me.Label1 = New System.Windows.Forms.Label()
+        Me.TipoLbl = New System.Windows.Forms.Label()
         Me.Label13 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
+        Me.YearLbl = New System.Windows.Forms.Label()
+        Me.PosLbl = New System.Windows.Forms.Label()
         Me.vermasLote = New System.Windows.Forms.LinkLabel()
         Me.QR = New System.Windows.Forms.PictureBox()
-        Me.Label12 = New System.Windows.Forms.Label()
-        Me.Label5 = New System.Windows.Forms.Label()
+        Me.LoteLbl = New System.Windows.Forms.Label()
+        Me.ZonaLbl = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.Label10 = New System.Windows.Forms.Label()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.Label9 = New System.Windows.Forms.Label()
+        Me.ModeloLbl = New System.Windows.Forms.Label()
+        Me.MarcaLbl = New System.Windows.Forms.Label()
+        Me.Sublbl = New System.Windows.Forms.Label()
+        Me.ClienteLbl = New System.Windows.Forms.Label()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.Panel4 = New System.Windows.Forms.Panel()
@@ -113,7 +114,6 @@ Partial Class panelInfoVehiculo
         Me.trasportadoPor = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.RutaVehiculo.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.QR, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -155,14 +155,14 @@ Partial Class panelInfoVehiculo
         'TabPage1
         '
         Me.TabPage1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TabPage1.Controls.Add(Me.Button1)
+        Me.TabPage1.Controls.Add(Me.SaveButton)
         Me.TabPage1.Controls.Add(Me.id)
         Me.TabPage1.Controls.Add(Me.Label22)
         Me.TabPage1.Controls.Add(Me.Cancelar)
         Me.TabPage1.Controls.Add(Me.EliminarLoteSelecion)
         Me.TabPage1.Controls.Add(Me.cambiarGuardarLote)
         Me.TabPage1.Controls.Add(Me.lugarLabel)
-        Me.TabPage1.Controls.Add(Me.LLable)
+        Me.TabPage1.Controls.Add(Me.LugarLbl)
         Me.TabPage1.Controls.Add(Me.PosicionLabel)
         Me.TabPage1.Controls.Add(Me.SubzonaLabel)
         Me.TabPage1.Controls.Add(Me.ZonaLabel)
@@ -174,20 +174,20 @@ Partial Class panelInfoVehiculo
         Me.TabPage1.Controls.Add(Me.ModeloBox)
         Me.TabPage1.Controls.Add(Me.MarcaBox)
         Me.TabPage1.Controls.Add(Me.VINBox)
-        Me.TabPage1.Controls.Add(Me.Label1)
+        Me.TabPage1.Controls.Add(Me.TipoLbl)
         Me.TabPage1.Controls.Add(Me.Label13)
-        Me.TabPage1.Controls.Add(Me.Label2)
-        Me.TabPage1.Controls.Add(Me.Label3)
+        Me.TabPage1.Controls.Add(Me.YearLbl)
+        Me.TabPage1.Controls.Add(Me.PosLbl)
         Me.TabPage1.Controls.Add(Me.vermasLote)
         Me.TabPage1.Controls.Add(Me.QR)
-        Me.TabPage1.Controls.Add(Me.Label12)
-        Me.TabPage1.Controls.Add(Me.Label5)
+        Me.TabPage1.Controls.Add(Me.LoteLbl)
+        Me.TabPage1.Controls.Add(Me.ZonaLbl)
         Me.TabPage1.Controls.Add(Me.Panel1)
         Me.TabPage1.Controls.Add(Me.Label6)
-        Me.TabPage1.Controls.Add(Me.Label7)
-        Me.TabPage1.Controls.Add(Me.Label10)
-        Me.TabPage1.Controls.Add(Me.Label8)
-        Me.TabPage1.Controls.Add(Me.Label9)
+        Me.TabPage1.Controls.Add(Me.ModeloLbl)
+        Me.TabPage1.Controls.Add(Me.MarcaLbl)
+        Me.TabPage1.Controls.Add(Me.Sublbl)
+        Me.TabPage1.Controls.Add(Me.ClienteLbl)
         Me.TabPage1.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TabPage1.Location = New System.Drawing.Point(4, 31)
         Me.TabPage1.Name = "TabPage1"
@@ -196,6 +196,15 @@ Partial Class panelInfoVehiculo
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "General"
         Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        'Button1
+        '
+        Me.SaveButton.Location = New System.Drawing.Point(666, 236)
+        Me.SaveButton.Name = "Button1"
+        Me.SaveButton.Size = New System.Drawing.Size(200, 38)
+        Me.SaveButton.TabIndex = 143
+        Me.SaveButton.Text = "Guardar codigo"
+        Me.SaveButton.UseVisualStyleBackColor = True
         '
         'id
         '
@@ -222,7 +231,7 @@ Partial Class panelInfoVehiculo
         Me.Cancelar.AutoSize = True
         Me.Cancelar.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Cancelar.LinkColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Me.Cancelar.Location = New System.Drawing.Point(427, 566)
+        Me.Cancelar.Location = New System.Drawing.Point(472, 566)
         Me.Cancelar.Name = "Cancelar"
         Me.Cancelar.Size = New System.Drawing.Size(153, 21)
         Me.Cancelar.TabIndex = 140
@@ -236,7 +245,7 @@ Partial Class panelInfoVehiculo
         Me.EliminarLoteSelecion.AutoSize = True
         Me.EliminarLoteSelecion.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.EliminarLoteSelecion.LinkColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Me.EliminarLoteSelecion.Location = New System.Drawing.Point(270, 566)
+        Me.EliminarLoteSelecion.Location = New System.Drawing.Point(315, 566)
         Me.EliminarLoteSelecion.Name = "EliminarLoteSelecion"
         Me.EliminarLoteSelecion.Size = New System.Drawing.Size(151, 21)
         Me.EliminarLoteSelecion.TabIndex = 138
@@ -266,15 +275,15 @@ Partial Class panelInfoVehiculo
         Me.lugarLabel.TabIndex = 136
         Me.lugarLabel.Visible = False
         '
-        'LLable
+        'LugarLbl
         '
-        Me.LLable.AutoSize = True
-        Me.LLable.Location = New System.Drawing.Point(12, 444)
-        Me.LLable.Name = "LLable"
-        Me.LLable.Size = New System.Drawing.Size(72, 24)
-        Me.LLable.TabIndex = 135
-        Me.LLable.Text = "Lugar:"
-        Me.LLable.Visible = False
+        Me.LugarLbl.AutoSize = True
+        Me.LugarLbl.Location = New System.Drawing.Point(12, 444)
+        Me.LugarLbl.Name = "LugarLbl"
+        Me.LugarLbl.Size = New System.Drawing.Size(72, 24)
+        Me.LugarLbl.TabIndex = 135
+        Me.LugarLbl.Text = "Lugar:"
+        Me.LugarLbl.Visible = False
         '
         'PosicionLabel
         '
@@ -306,7 +315,7 @@ Partial Class panelInfoVehiculo
         Me.nuevoLote.AutoSize = True
         Me.nuevoLote.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.nuevoLote.LinkColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Me.nuevoLote.Location = New System.Drawing.Point(164, 566)
+        Me.nuevoLote.Location = New System.Drawing.Point(209, 566)
         Me.nuevoLote.Name = "nuevoLote"
         Me.nuevoLote.Size = New System.Drawing.Size(100, 21)
         Me.nuevoLote.TabIndex = 131
@@ -379,15 +388,15 @@ Partial Class panelInfoVehiculo
         Me.VINBox.Size = New System.Drawing.Size(492, 26)
         Me.VINBox.TabIndex = 119
         '
-        'Label1
+        'TipoLbl
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(1, 234)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(54, 24)
-        Me.Label1.TabIndex = 97
-        Me.Label1.Text = "Tipo:"
+        Me.TipoLbl.AutoSize = True
+        Me.TipoLbl.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TipoLbl.Location = New System.Drawing.Point(1, 234)
+        Me.TipoLbl.Name = "TipoLbl"
+        Me.TipoLbl.Size = New System.Drawing.Size(54, 24)
+        Me.TipoLbl.TabIndex = 97
+        Me.TipoLbl.Text = "Tipo:"
         '
         'Label13
         '
@@ -399,25 +408,25 @@ Partial Class panelInfoVehiculo
         Me.Label13.TabIndex = 104
         Me.Label13.Text = "VIN:"
         '
-        'Label2
+        'YearLbl
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(2, 184)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(57, 24)
-        Me.Label2.TabIndex = 94
-        Me.Label2.Text = "Año:"
+        Me.YearLbl.AutoSize = True
+        Me.YearLbl.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.YearLbl.Location = New System.Drawing.Point(2, 184)
+        Me.YearLbl.Name = "YearLbl"
+        Me.YearLbl.Size = New System.Drawing.Size(57, 24)
+        Me.YearLbl.TabIndex = 94
+        Me.YearLbl.Text = "Año:"
         '
-        'Label3
+        'PosLbl
         '
-        Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(12, 420)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(96, 24)
-        Me.Label3.TabIndex = 100
-        Me.Label3.Text = "Posicion:"
+        Me.PosLbl.AutoSize = True
+        Me.PosLbl.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.PosLbl.Location = New System.Drawing.Point(12, 420)
+        Me.PosLbl.Name = "PosLbl"
+        Me.PosLbl.Size = New System.Drawing.Size(96, 24)
+        Me.PosLbl.TabIndex = 100
+        Me.PosLbl.Text = "Posicion:"
         '
         'vermasLote
         '
@@ -443,23 +452,23 @@ Partial Class panelInfoVehiculo
         '
         'Label12
         '
-        Me.Label12.AutoSize = True
-        Me.Label12.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label12.Location = New System.Drawing.Point(6, 534)
-        Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(60, 24)
-        Me.Label12.TabIndex = 102
-        Me.Label12.Text = "Lote:"
+        Me.LoteLbl.AutoSize = True
+        Me.LoteLbl.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LoteLbl.Location = New System.Drawing.Point(6, 534)
+        Me.LoteLbl.Name = "Label12"
+        Me.LoteLbl.Size = New System.Drawing.Size(60, 24)
+        Me.LoteLbl.TabIndex = 102
+        Me.LoteLbl.Text = "Lote:"
         '
-        'Label5
+        'ZonaLbl
         '
-        Me.Label5.AutoSize = True
-        Me.Label5.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(12, 338)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(66, 24)
-        Me.Label5.TabIndex = 99
-        Me.Label5.Text = "Zona:"
+        Me.ZonaLbl.AutoSize = True
+        Me.ZonaLbl.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ZonaLbl.Location = New System.Drawing.Point(12, 338)
+        Me.ZonaLbl.Name = "ZonaLbl"
+        Me.ZonaLbl.Size = New System.Drawing.Size(66, 24)
+        Me.ZonaLbl.TabIndex = 99
+        Me.ZonaLbl.Text = "Zona:"
         '
         'Panel1
         '
@@ -478,45 +487,45 @@ Partial Class panelInfoVehiculo
         Me.Label6.TabIndex = 95
         Me.Label6.Text = "Color"
         '
-        'Label7
+        'ModeloLbl
         '
-        Me.Label7.AutoSize = True
-        Me.Label7.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.Location = New System.Drawing.Point(1, 86)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(95, 24)
-        Me.Label7.TabIndex = 93
-        Me.Label7.Text = "Modelo:"
+        Me.ModeloLbl.AutoSize = True
+        Me.ModeloLbl.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ModeloLbl.Location = New System.Drawing.Point(1, 86)
+        Me.ModeloLbl.Name = "ModeloLbl"
+        Me.ModeloLbl.Size = New System.Drawing.Size(95, 24)
+        Me.ModeloLbl.TabIndex = 93
+        Me.ModeloLbl.Text = "Modelo:"
         '
-        'Label10
+        'MarcaLbl
         '
-        Me.Label10.AutoSize = True
-        Me.Label10.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label10.Location = New System.Drawing.Point(2, 42)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(82, 24)
-        Me.Label10.TabIndex = 92
-        Me.Label10.Text = "Marca:"
+        Me.MarcaLbl.AutoSize = True
+        Me.MarcaLbl.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.MarcaLbl.Location = New System.Drawing.Point(2, 42)
+        Me.MarcaLbl.Name = "MarcaLbl"
+        Me.MarcaLbl.Size = New System.Drawing.Size(82, 24)
+        Me.MarcaLbl.TabIndex = 92
+        Me.MarcaLbl.Text = "Marca:"
         '
-        'Label8
+        'Sublbl
         '
-        Me.Label8.AutoSize = True
-        Me.Label8.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label8.Location = New System.Drawing.Point(12, 378)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(108, 24)
-        Me.Label8.TabIndex = 101
-        Me.Label8.Text = "Sub zona:"
+        Me.Sublbl.AutoSize = True
+        Me.Sublbl.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Sublbl.Location = New System.Drawing.Point(12, 378)
+        Me.Sublbl.Name = "Sublbl"
+        Me.Sublbl.Size = New System.Drawing.Size(108, 24)
+        Me.Sublbl.TabIndex = 101
+        Me.Sublbl.Text = "Sub zona:"
         '
-        'Label9
+        'ClienteLbl
         '
-        Me.Label9.AutoSize = True
-        Me.Label9.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.Location = New System.Drawing.Point(1, 137)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(88, 24)
-        Me.Label9.TabIndex = 96
-        Me.Label9.Text = "Cliente:"
+        Me.ClienteLbl.AutoSize = True
+        Me.ClienteLbl.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ClienteLbl.Location = New System.Drawing.Point(1, 137)
+        Me.ClienteLbl.Name = "ClienteLbl"
+        Me.ClienteLbl.Size = New System.Drawing.Size(88, 24)
+        Me.ClienteLbl.TabIndex = 96
+        Me.ClienteLbl.Text = "Cliente:"
         '
         'TabPage2
         '
@@ -887,24 +896,24 @@ Partial Class panelInfoVehiculo
         Me.traslados.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.traslados.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
         Me.traslados.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        DataGridViewCellStyle5.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle5.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.traslados.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.traslados.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.traslados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.traslados.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Zona_, Me.Sub_zona, Me.pos, Me.desde_, Me.hasta_, Me.trasportadoPor_})
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle6.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(166, Byte), Integer), CType(CType(214, Byte), Integer), CType(CType(237, Byte), Integer))
-        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.traslados.DefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(166, Byte), Integer), CType(CType(214, Byte), Integer), CType(CType(237, Byte), Integer))
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.traslados.DefaultCellStyle = DataGridViewCellStyle2
         Me.traslados.EnableHeadersVisualStyles = False
         Me.traslados.GridColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
         Me.traslados.Location = New System.Drawing.Point(10, 55)
@@ -982,24 +991,24 @@ Partial Class panelInfoVehiculo
         Me.lugares.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.lugares.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
         Me.lugares.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        DataGridViewCellStyle7.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle7.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.lugares.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle7
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.lugares.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle3
         Me.lugares.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.lugares.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.nomLugar, Me.tipoLugar, Me.fLlegada, Me.fPartida, Me.trasportadoPor})
-        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle8.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(166, Byte), Integer), CType(CType(214, Byte), Integer), CType(CType(237, Byte), Integer))
-        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.lugares.DefaultCellStyle = DataGridViewCellStyle8
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(166, Byte), Integer), CType(CType(214, Byte), Integer), CType(CType(237, Byte), Integer))
+        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.lugares.DefaultCellStyle = DataGridViewCellStyle4
         Me.lugares.EnableHeadersVisualStyles = False
         Me.lugares.GridColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
         Me.lugares.Location = New System.Drawing.Point(14, 15)
@@ -1059,15 +1068,6 @@ Partial Class panelInfoVehiculo
         Me.Label4.TabIndex = 0
         Me.Label4.Text = "2º ENTREGA, Coresponde a la Aplicacion del administrador"
         '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(666, 236)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(200, 38)
-        Me.Button1.TabIndex = 143
-        Me.Button1.Text = "Guardar codigo"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
         'panelInfoVehiculo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1103,20 +1103,20 @@ Partial Class panelInfoVehiculo
     Friend WithEvents RutaVehiculo As TabControl
     Friend WithEvents TabPage1 As TabPage
     Friend WithEvents TabPage2 As TabPage
-    Friend WithEvents Label1 As Label
+    Friend WithEvents TipoLbl As Label
     Friend WithEvents Label13 As Label
-    Friend WithEvents Label2 As Label
-    Friend WithEvents Label3 As Label
+    Friend WithEvents YearLbl As Label
+    Friend WithEvents PosLbl As Label
     Friend WithEvents vermasLote As LinkLabel
     Friend WithEvents QR As PictureBox
-    Friend WithEvents Label12 As Label
-    Friend WithEvents Label5 As Label
+    Friend WithEvents LoteLbl As Label
+    Friend WithEvents ZonaLbl As Label
     Friend WithEvents Panel1 As Panel
     Friend WithEvents Label6 As Label
-    Friend WithEvents Label7 As Label
-    Friend WithEvents Label10 As Label
-    Friend WithEvents Label8 As Label
-    Friend WithEvents Label9 As Label
+    Friend WithEvents ModeloLbl As Label
+    Friend WithEvents MarcaLbl As Label
+    Friend WithEvents Sublbl As Label
+    Friend WithEvents ClienteLbl As Label
     Friend WithEvents TabPage3 As TabPage
     Friend WithEvents Button2 As Button
     Friend WithEvents TabPage4 As TabPage
@@ -1141,7 +1141,7 @@ Partial Class panelInfoVehiculo
     Friend WithEvents SubzonaLabel As Label
     Friend WithEvents ZonaLabel As Label
     Friend WithEvents lugarLabel As Label
-    Friend WithEvents LLable As Label
+    Friend WithEvents LugarLbl As Label
     Friend WithEvents traslados As DataGridView
     Friend WithEvents Zona_ As DataGridViewTextBoxColumn
     Friend WithEvents Sub_zona As DataGridViewTextBoxColumn
@@ -1185,5 +1185,5 @@ Partial Class panelInfoVehiculo
     Friend WithEvents EliminarLoteSelecion As LinkLabel
     Friend WithEvents id As TextBox
     Friend WithEvents Label22 As Label
-    Friend WithEvents Button1 As Button
+    Friend WithEvents SaveButton As Button
 End Class

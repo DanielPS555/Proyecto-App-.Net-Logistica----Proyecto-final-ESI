@@ -1,8 +1,9 @@
 ﻿Imports System.Windows.Forms
-Public Class trasladoInterno
+Public Class TrasladoInterno
     Private posicion As Controladores.Posicion
     Private idvehiculo As Integer
     Private papote As panelInfoVehiculo
+    Private lugar As Controladores.Lugar
 
     Public Sub New(idvehiculo As Integer, padre As panelInfoVehiculo)
         Me.idvehiculo = idvehiculo
@@ -25,10 +26,9 @@ Public Class trasladoInterno
         If posicion Is Nothing Then posicion = -1
         dePosicion.Text = posicion
 
-        Dim lugar = posi.Subzona.ZonaPadre.LugarPadre.IDLugar
-        Controladores.Fachada.getInstancia().CargarTrabajaEnConLugarZonasySubzonas()
+        lugar = posi.Subzona.ZonaPadre.LugarPadre
         haciaZona.Items.Clear()
-        For Each z As Controladores.Zona In Controladores.Fachada.getInstancia.TrabajaEnAcutual.Lugar.Zonas
+        For Each z As Controladores.Zona In Controladores.Fachada.getInstancia.LugarZonasySubzonas(lugar.IDLugar, lugar).Zonas
             haciaZona.Items.Add(z.Nombre)
         Next
         haciaZona.SelectedIndex = 0
@@ -37,7 +37,7 @@ Public Class trasladoInterno
     Private Sub haciaZona_SelectedIndexChanged(sender As Object, e As EventArgs) Handles haciaZona.SelectedIndexChanged
         haciaSubzona.Items.Clear()
         If haciaZona.SelectedIndex < 0 Then Return
-        For Each su As Controladores.Subzona In Controladores.Fachada.getInstancia.TrabajaEnAcutual.Lugar.Zonas(haciaZona.SelectedIndex).Subzonas
+        For Each su As Controladores.Subzona In lugar.Zonas(haciaZona.SelectedIndex).Subzonas
             haciaSubzona.Items.Add(su.Nombre)
         Next
         haciaSubzona.SelectedIndex = 0
@@ -46,8 +46,8 @@ Public Class trasladoInterno
     Private Sub haciaSubzona_SelectedIndexChanged(sender As Object, e As EventArgs) Handles haciaSubzona.SelectedIndexChanged
         haciaPosicion.Items.Clear()
         If haciaSubzona.SelectedIndex < 0 Then Return
-        Dim posi As List(Of Integer) = Controladores.Fachada.getInstancia.PosicionesActualmenteOcupadasPorSubzona(Controladores.Fachada.getInstancia.TrabajaEnAcutual.Lugar.Zonas(haciaZona.SelectedIndex).Subzonas(haciaSubzona.SelectedIndex))
-        For i As Integer = 1 To Controladores.Fachada.getInstancia.TrabajaEnAcutual.Lugar.Zonas(haciaZona.SelectedIndex).Subzonas(haciaSubzona.SelectedIndex).Capasidad
+        Dim posi As List(Of Integer) = Controladores.Fachada.getInstancia.PosicionesActualmenteOcupadasPorSubzona(lugar.Zonas(haciaZona.SelectedIndex).Subzonas(haciaSubzona.SelectedIndex))
+        For i As Integer = 1 To lugar.Zonas(haciaZona.SelectedIndex).Subzonas(haciaSubzona.SelectedIndex).Capasidad
             If Not posi.Contains(i) Then
                 haciaPosicion.Items.Add(i)
             End If
@@ -56,11 +56,11 @@ Public Class trasladoInterno
     End Sub
 
     Private Sub ingresar_Click(sender As Object, e As EventArgs)
-        Dim posicionFinal As New Controladores.Posicion With {.Subzona = Controladores.Fachada.getInstancia.TrabajaEnAcutual.Lugar.Zonas(haciaZona.SelectedIndex).Subzonas(haciaSubzona.SelectedIndex),
-                                                                .Posicion = haciaPosicion.SelectedItem,
-                                                                .Desde = DateTime.Now,
-                                                                .Vehiculo = New Controladores.Vehiculo() With {.IdVehiculo = idvehiculo},
-                                                                .IngresadoPor = Controladores.Fachada.getInstancia.TrabajaEnAcutual.Usuario}
+        Dim posicionFinal As New Controladores.Posicion With {.Subzona = lugar.Zonas(haciaZona.SelectedIndex).Subzonas(haciaSubzona.SelectedIndex),
+                                                              .Posicion = haciaPosicion.SelectedItem,
+                                                              .Desde = DateTime.Now,
+                                                              .Vehiculo = New Controladores.Vehiculo() With {.IdVehiculo = idvehiculo},
+                                                              .IngresadoPor = Controladores.Fachada.getInstancia.DevolverUsuarioActual}
         Controladores.Fachada.getInstancia.AsignarNuevaPosicion(posicionFinal, True)
         papote.actualizarTrasportesDeFormaExterna()
         Me.Close()

@@ -1,6 +1,6 @@
 ﻿Imports System.Windows.Forms
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class trasladoInterno
+Partial Class TrasladoInterno
     Inherits System.Windows.Forms.Form
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.

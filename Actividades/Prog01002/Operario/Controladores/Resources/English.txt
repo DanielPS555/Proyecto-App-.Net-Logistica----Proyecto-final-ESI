@@ -26,3 +26,18 @@ Home
 About
 My profile
 Log out
+Make
+Model
+Client
+Year
+Type
+Zone
+Subzone
+Place
+Position
+Batch
+Save code
+Read more
+Change batch
+Remove selection
+Cancel

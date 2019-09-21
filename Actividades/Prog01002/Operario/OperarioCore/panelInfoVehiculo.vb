@@ -1,7 +1,6 @@
 ﻿Imports System.Drawing
 Imports System.Windows.Forms
 Imports Controladores
-Imports Operario
 
 
 
@@ -21,6 +20,23 @@ Public Class panelInfoVehiculo
     Public Sub New(VIN As String, aqui As Boolean)
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
+
+        MarcaLbl.Text = Funciones_comunes.I18N("Marca", Marco.Language) + ":"
+        ModeloLbl.Text = Funciones_comunes.I18N("Modelo", Marco.Language) + ":"
+        ClienteLbl.Text = Funciones_comunes.I18N("Cliente", Marco.Language) + ":"
+        YearLbl.Text = Funciones_comunes.I18N("Año", Marco.Language) + ":"
+        TipoLbl.Text = Funciones_comunes.I18N("Tipo", Marco.Language) + ":"
+        ZonaLbl.Text = Funciones_comunes.I18N("Zona", Marco.Language) + ":"
+        Sublbl.Text = Funciones_comunes.I18N("Subzona", Marco.Language) + ":"
+        LugarLbl.Text = Funciones_comunes.I18N("Lugar", Marco.Language) + ":"
+        PosLbl.Text = Funciones_comunes.I18N("Posicion", Marco.Language) + ":"
+        LoteLbl.Text = Funciones_comunes.I18N("Lote", Marco.Language) + ":"
+        SaveButton.Text = Funciones_comunes.I18N("Guardar código", Marco.Language)
+        vermasLote.Text = Funciones_comunes.I18N("Ver más", Marco.Language)
+        cambiarGuardarLote.Text = Funciones_comunes.I18N("Cambiar lote", Marco.Language)
+        nuevoLote.Text = Funciones_comunes.I18N("Nuevo lote", Marco.Language)
+        EliminarLoteSelecion.Text = Funciones_comunes.I18N("Eliminar selección", Marco.Language)
+        Cancelar.Text = Funciones_comunes.I18N("Cancelar", Marco.Language)
         'HAY QUE CARGAR EL LUGAR ACTUAL DEL VEHICULO 
         If Not aqui Then
             Button2.Visible = False
@@ -256,7 +272,7 @@ Public Class panelInfoVehiculo
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        Dim tInterno = New trasladoInterno(vehiculo.IdVehiculo, Me)
+        Dim tInterno = New TrasladoInterno(vehiculo.IdVehiculo, Me)
         tInterno.ShowDialog()
     End Sub
 
@@ -473,7 +489,7 @@ Public Class panelInfoVehiculo
         loteTemp = Nothing
     End Sub
 
-    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles SaveButton.Click
         Dim sfd As New SaveFileDialog With {
             .Filter = "Imagen PNG|*.png",
             .AddExtension = True
