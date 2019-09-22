@@ -21,19 +21,12 @@ Public Class Login
         defaultRole = rol
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
-        Select Case rol
-            Case Usuario.TIPO_ROL_ADMINISTRADOR
-                aplicacionModo.Text = "Aplicacion del Administrador"
-            Case Usuario.TIPO_ROL_OPERARIO
-                aplicacionModo.Text = "Aplicacion del Operario"
-            Case Usuario.TIPO_ROL_TRANSPORTISTA
-                aplicacionModo.Text = "Aplicacion del Transportista"
-        End Select
         Button1.Visible = True
         Button3.Visible = True
         Button1.Enabled = True
         Button3.Enabled = True
         NotificarDeConexcion(False)
+        LanguageSwap()
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
 
     End Sub
@@ -52,6 +45,15 @@ Public Class Login
         Button4.Text = Funciones_comunes.I18N("Configurar red", Marco.Language)
         Label1.Text = Funciones_comunes.I18N("Estado:", Marco.Language)
         Label3.Text = Funciones_comunes.I18N("Diseñado por", Marco.Language)
+        Select Case ForRole
+            Case Usuario.TIPO_ROL_ADMINISTRADOR
+                aplicacionModo.Text = Funciones_comunes.I18N("Aplicacion del Administrador", Marco.Language)
+            Case Usuario.TIPO_ROL_OPERARIO
+                aplicacionModo.Text = Funciones_comunes.I18N("Aplicacion del Operario", Marco.Language)
+            Case Usuario.TIPO_ROL_TRANSPORTISTA
+                aplicacionModo.Text = Funciones_comunes.I18N("Aplicacion del Transportista", Marco.Language)
+        End Select
+        Label2.Text = Funciones_comunes.I18N("Elija su lenguaje", Marco.Language)
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load

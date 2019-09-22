@@ -1,64 +1,58 @@
-﻿Imports Operario
-Imports Controladores.Extenciones.Extensiones
+﻿Imports Controladores.Extenciones.Extensiones
 Imports Controladores
 Imports System.Windows.Forms
 Imports System.Drawing
-Public Class nuevoVehiculo
+Public Class NuevoVehiculo
     Implements NotificacionLote
 
-    'crear una entidad lote y hacer una propery publica para acceder a ella desde el panel nuevoLote y enviar el lote creado  
-    Private vehi As New Controladores.Vehiculo()
-    Private lotesDisponibles As New List(Of Controladores.Lote)
-    Private zonasDisponibles As New List(Of Controladores.Zona)
-    Private clienteshabi As New List(Of Controladores.Cliente)
-    Private informe As Controladores.InformeDeDaños
-    Private LoteFinal As Controladores.Lote
+    Private clienteshabi As New List(Of Cliente)
+    Private informe As InformeDeDaños
+    Private LoteFinal As Lote
 
-    Public Property Vehiculo() As Controladores.Vehiculo
-        Get
-            Return vehi
-        End Get
-        Set(ByVal value As Controladores.Vehiculo)
-            vehi = value
-        End Set
-    End Property
+    Public Property Vehiculo As New Vehiculo()
 
     Private lote_s As String
     Public Sub New()
 
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
-        loadClientes()
-        carcarComboBox()
-        habilitar(False)
-        loadClientes()
 
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
+        loadClientes()
+        CarcarComboBox()
+        habilitar(True)
+        loadClientes()
 
     End Sub
 
 
-    Private Sub carcarComboBox()
+    Private Sub CarcarComboBox()
         tipo.Items.Clear()
-        tipo.Items.AddRange(Controladores.Vehiculo.TIPOS_VEHICULOS)
+        tipo.Items.AddRange(Vehiculo.TIPOS_VEHICULOS)
         tipo.SelectedIndex = 0
         anio.Items.Clear()
-        For i As Integer = 1900 To DateTime.Now.Year
+        For i As Integer = 1900 To Date.Now.Year
             anio.Items.Add(i)
         Next
-        anio.SelectedItem = DateTime.Now.Year
+        anio.SelectedItem = Date.Now.Year
 
-        lugares = Fachada.getInstancia.listarTodosLosPuertos.ToList.ToDictionary(Function(x) x.Item(1), Function(x) x.Item(0))
+        Dim lugares = Fachada.getInstancia.listarTodosLosPuertos.ToList.Select(Function(x) Fachada.getInstancia.informacionBaseDelLugarPorIdlugar(x(0))).ToArray
         lugar.Items.Clear()
-        lugar.Items.AddRange(lugares.Keys.ToArray)
+        lugar.Items.AddRange(lugares)
+        If Fachada.getInstancia.DevolverUsuarioActual.Rol <> Usuario.TIPO_ROL_ADMINISTRADOR Then
+            lugar.Enabled = False
+            lugar.SelectedIndex = Array.IndexOf(lugares, Fachada.getInstancia.TrabajaEnAcutual.Lugar)
+        Else
+            lugar.SelectedIndex = 0
+        End If
         zonas.Items.Clear()
     End Sub
 
     Private Sub loadLotes()
         lote.Items.Clear()
-        lotesDisponibles = Controladores.Fachada.getInstancia.LotesDisponiblesPorLugar(lug)
-        For Each l As Controladores.Lote In lotesDisponibles
-            lote.Items.Add("Nom: " & l.Nombre & "ID: " & l.IDLote)
+
+        For Each l As Lote In Fachada.getInstancia.LotesDisponiblesPorLugar(lugar.SelectedItem)
+            lote.Items.Add(l)
         Next
         If lote.Items.Count > 0 Then
             lote.SelectedIndex = 0
@@ -71,7 +65,7 @@ Public Class nuevoVehiculo
         clientes.Items.Clear()
         clienteshabi = Controladores.Fachada.getInstancia.ClientesDelSistema()
         For Each ce As Controladores.Cliente In clienteshabi
-            clientes.Items.Add("Nom: " & ce.Nombre & "RUT: " & ce.RUT)
+            clientes.Items.Add(ce)
         Next
     End Sub
 
@@ -86,15 +80,14 @@ Public Class nuevoVehiculo
     End Sub
 
     Private Sub color_Click(sender As Object, e As EventArgs) Handles color.Click
-        If ColorDialog1.ShowDialog <> Windows.Forms.DialogResult.Cancel Then
+        If ColorDialog1.ShowDialog <> DialogResult.Cancel Then
             muestra_color.BackColor = ColorDialog1.Color
         End If
     End Sub
 
 
     Private Sub infoDaños_Click(sender As Object, e As EventArgs) Handles infoDaños.Click
-        Marco.getInstancia.cargarPanel(Of crearInformaDeDaños)(New crearInformaDeDaños(Controladores.Fachada.getInstancia.id_vehiculoPorVin(buscador.Text.Trim), Me) With {.ListaDeTodosLosInformes = Controladores.Fachada.getInstancia.devolverTodosLosInformesYregistrosCompletos(Vehiculo)})
-
+        Marco.getInstancia.cargarPanel(New crearInformaDeDaños(Fachada.getInstancia.id_vehiculoPorVin(buscador.Text.Trim), Me) With {.ListaDeTodosLosInformes = Controladores.Fachada.getInstancia.devolverTodosLosInformesYregistrosCompletos(Vehiculo)})
     End Sub
 
     Private Sub Buscar_Click(sender As Object, e As EventArgs) Handles Buscar.Click
@@ -104,7 +97,7 @@ Public Class nuevoVehiculo
             Dim vehiculo As Controladores.Vehiculo = Controladores.Fachada.getInstancia.DevolverDatosBasicosPorVIN_Vehiculo(buscador.Text)
             ingresar.Enabled = False
             infoDaños.Enabled = False
-            vehi = vehiculo
+            Me.Vehiculo = vehiculo
 
 
             ingresar.Enabled = True
@@ -139,40 +132,40 @@ Public Class nuevoVehiculo
     End Sub
 
     Private Sub cargarDatosDeLaPrecarga()
-        If vehi.Marca IsNot Nothing Then
-            marca.Text = vehi.Marca
+        If Vehiculo.Marca IsNot Nothing Then
+            marca.Text = Vehiculo.Marca
             marca.Enabled = False 'si el dato esta precargado no puede ser modificado
         Else
             marca.Enabled = True
         End If
-        If vehi.Modelo IsNot Nothing Then
-            modelo.Text = vehi.Modelo
+        If Vehiculo.Modelo IsNot Nothing Then
+            modelo.Text = Vehiculo.Modelo
             modelo.Enabled = False
         Else
             modelo.Enabled = True
         End If
-        If vehi.Año <> 0 Then
-            anio.SelectedItem = vehi.Año
+        If Vehiculo.Año <> 0 Then
+            anio.SelectedItem = Vehiculo.Año
             anio.Enabled = False
         Else
             anio.Enabled = True
         End If
-        If vehi.Tipo IsNot Nothing Then
-            tipo.SelectedItem = vehi.Tipo
+        If Vehiculo.Tipo IsNot Nothing Then
+            tipo.SelectedItem = Vehiculo.Tipo
             tipo.Enabled = False
         Else
             tipo.Enabled = True
         End If
-        If vehi.Tipo IsNot Nothing Then
-            tipo.SelectedItem = vehi.Tipo
+        If Vehiculo.Tipo IsNot Nothing Then
+            tipo.SelectedItem = Vehiculo.Tipo
             tipo.Enabled = False
         Else
             tipo.Enabled = True
         End If
 
-        If vehi.Cliente IsNot Nothing Then
+        If Vehiculo.Cliente IsNot Nothing Then
             For i As Integer = 0 To clienteshabi.Count - 1
-                If clienteshabi(i).IDCliente = vehi.Cliente.IDCliente Then
+                If clienteshabi(i).IDCliente = Vehiculo.Cliente.IDCliente Then
                     clientes.SelectedIndex = i
                     Exit For
                 End If
@@ -181,8 +174,8 @@ Public Class nuevoVehiculo
         Else
             clientes.Enabled = True
         End If
-        If vehi.Color <> Drawing.Color.Empty Then
-            muestra_color.BackColor = Drawing.Color.FromArgb(vehi.Color.R, vehi.Color.G, vehi.Color.B)
+        If Vehiculo.Color <> Drawing.Color.Empty Then
+            muestra_color.BackColor = Drawing.Color.FromArgb(Vehiculo.Color.R, Vehiculo.Color.G, Vehiculo.Color.B)
             color.Enabled = False
         Else
             muestra_color.BackColor = Drawing.Color.FromArgb(255, 255, 255)
@@ -193,16 +186,16 @@ Public Class nuevoVehiculo
 
     Private Sub zonas_SelectedIndexChanged(sender As Object, e As EventArgs) Handles zonas.SelectedIndexChanged
         subzonas.Items.Clear()
-        For Each su As Controladores.Subzona In zonasDisponibles(zonas.SelectedIndex).Subzonas
-            subzonas.Items.Add(su.Nombre)
+        For Each su As Controladores.Subzona In DirectCast(zonas.SelectedItem, Zona).Subzonas
+            subzonas.Items.Add(su)
         Next
         subzonas.SelectedIndex = 0
     End Sub
 
     Private Sub subzonas_SelectedIndexChanged(sender As Object, e As EventArgs) Handles subzonas.SelectedIndexChanged
         posDis.Items.Clear()
-        Dim posi As List(Of Integer) = Controladores.Fachada.getInstancia.PosicionesActualmenteOcupadasPorSubzona(zonasDisponibles(zonas.SelectedIndex).Subzonas(subzonas.SelectedIndex))
-        For i As Integer = 1 To zonasDisponibles(zonas.SelectedIndex).Subzonas(subzonas.SelectedIndex).Capasidad
+        Dim posi As List(Of Integer) = Controladores.Fachada.getInstancia.PosicionesActualmenteOcupadasPorSubzona(subzonas.SelectedItem)
+        For i As Integer = 1 To DirectCast(subzonas.SelectedItem, Subzona).Capasidad
             If Not posi.Contains(i) Then
                 posDis.Items.Add(i)
             End If
@@ -215,61 +208,59 @@ Public Class nuevoVehiculo
             MsgBox("Debe ingresar la marca")
             Return
         End If
-        vehi.Marca = marca.Text
+        Vehiculo.Marca = marca.Text
 
         If modelo.Text.Trim.Length = 0 Then
             MsgBox("Debe ingresar el modelo del vehiculo")
             Return
         Else
-            vehi.Modelo = modelo.Text
+            Vehiculo.Modelo = modelo.Text
         End If
 
         If anio.SelectedIndex = -1 Then
             MsgBox("Debe ingresar el año ")
             Return
         Else
-            vehi.Año = anio.SelectedItem
+            Vehiculo.Año = anio.SelectedItem
         End If
 
         If tipo.SelectedIndex = -1 Then
             MsgBox("Debe ingresar el tipo de vehiculo")
             Return
         Else
-            vehi.Tipo = tipo.SelectedItem
+            Vehiculo.Tipo = tipo.SelectedItem
         End If
 
         If clientes.SelectedIndex = -1 Then
             MsgBox("Debe ingresar el cliente del vehiculo")
             Return
         Else
-            vehi.Cliente = clienteshabi(clientes.SelectedIndex)
+            Vehiculo.Cliente = clienteshabi(clientes.SelectedIndex)
         End If
 
-        vehi.Color = muestra_color.BackColor
+        Vehiculo.Color = muestra_color.BackColor
 
-        Fachada.getInstancia.altaVehiculoConUpdate(vehi, Fachada.getInstancia.DevolverUsuarioActual)
+        Fachada.getInstancia.altaVehiculoConUpdate(Vehiculo, Fachada.getInstancia.DevolverUsuarioActual)
         If LoteFinal IsNot Nothing Then
             LoteFinal.IDLote = Fachada.getInstancia.nuevoLote(LoteFinal)
-            Fachada.getInstancia.insertIntegra(LoteFinal, vehi, Fachada.getInstancia.DevolverUsuarioActual, False)
+            Fachada.getInstancia.insertIntegra(LoteFinal, Vehiculo, Fachada.getInstancia.DevolverUsuarioActual, False)
         Else
-            Fachada.getInstancia.insertIntegra(lotesDisponibles(lote.SelectedIndex), vehi, Fachada.getInstancia.DevolverUsuarioActual, False)
+            Fachada.getInstancia.insertIntegra(lote.SelectedItem, Vehiculo, Fachada.getInstancia.DevolverUsuarioActual, False)
         End If
 
         If informe IsNot Nothing Then
             Fachada.getInstancia.nuevoInformeDeDaños(informe)
         End If
-        Fachada.getInstancia.AsignarNuevaPosicion(New Posicion() With {.Subzona = zonasDisponibles(zonas.SelectedIndex).Subzonas(subzonas.SelectedIndex),
+        Fachada.getInstancia.AsignarNuevaPosicion(New Posicion() With {.Subzona = subzonas.SelectedItem,
                                                   .Posicion = posDis.SelectedItem,
                                                   .IngresadoPor = Fachada.getInstancia.DevolverUsuarioActual,
                                                   .Desde = DateTime.Now,
-                                                  .Vehiculo = vehi}, False)
-        Marco.getInstancia.cargarPanel(Of ListaVehiculos)(New ListaVehiculos)
+                                                  .Vehiculo = Vehiculo}, False)
+        Marco.getInstancia.cargarPanel(New ListaVehiculos)
         Me.Dispose()
     End Sub
 
     Private completionIndex As Integer = 0
-    Private lugares As Dictionary(Of Object, Object)
-    Private lug As Lugar
 
     Private Sub buscador_TextChanged(sender As Object, e As EventArgs) Handles buscador.TextChanged
         If buscador.Text.Count > 0 Then
@@ -299,7 +290,7 @@ Public Class nuevoVehiculo
 
     Private Sub LinkLabel2_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles crearomodificarLote.LinkClicked
         If LoteFinal Is Nothing Then
-            Dim d As New NuevoLote(Me, lug)
+            Dim d As New NuevoLote(Me, DirectCast(lugar.SelectedItem, Lugar))
             d.ShowDialog()
         Else
             Dim d As New NuevoLote(Me, LoteFinal)
@@ -350,12 +341,11 @@ Public Class nuevoVehiculo
 
     Private Sub lugar_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lugar.SelectedIndexChanged
         zonas.Items.Clear()
-        lug = Fachada.getInstancia.LugarZonasySubzonas(lugares(lugar.SelectedItem))
-        For Each z As Controladores.Zona In lug.Zonas
-            zonas.Items.Add(z.Nombre)
+        Dim lug = DirectCast(lugar.SelectedItem, Lugar)
+        Fachada.getInstancia.LugarZonasySubzonas(lug.IDLugar, lug)
+        For Each z As Zona In lug.Zonas
+            zonas.Items.Add(z)
         Next
-
-        zonasDisponibles = lug.Zonas
         zonas.SelectedIndex = 0
         loadLotes()
     End Sub

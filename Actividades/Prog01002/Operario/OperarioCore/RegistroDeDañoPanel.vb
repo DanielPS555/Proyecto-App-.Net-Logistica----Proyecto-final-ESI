@@ -210,7 +210,7 @@ Public Class RegistroDeDañoPanel
                 reg.TipoActualizacion = Controladores.RegistroDaños.TIPO_ACTUALIZACION_REGULAR
         End Select
 
-        padre.devolverRegistro(reg)
+        padre.DevolverRegistro(reg)
         imagenes = Nothing
         Me.Dispose()
         Controladores.Marco.getInstancia.cerrarPanel(Of RegistroDeDañoPanel)()

@@ -107,13 +107,12 @@ Partial Class panelInfoVehiculo
         Me.Button2 = New System.Windows.Forms.Button()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
         Me.lugares = New System.Windows.Forms.DataGridView()
+        Me.TabPage5 = New System.Windows.Forms.TabPage()
+        Me.Label4 = New System.Windows.Forms.Label()
         Me.nomLugar = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.tipoLugar = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.fLlegada = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.fPartida = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.trasportadoPor = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TabPage5 = New System.Windows.Forms.TabPage()
-        Me.Label4 = New System.Windows.Forms.Label()
         Me.RutaVehiculo.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.QR, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -197,10 +196,10 @@ Partial Class panelInfoVehiculo
         Me.TabPage1.Text = "General"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
-        'Button1
+        'SaveButton
         '
         Me.SaveButton.Location = New System.Drawing.Point(666, 236)
-        Me.SaveButton.Name = "Button1"
+        Me.SaveButton.Name = "SaveButton"
         Me.SaveButton.Size = New System.Drawing.Size(200, 38)
         Me.SaveButton.TabIndex = 143
         Me.SaveButton.Text = "Guardar codigo"
@@ -450,12 +449,12 @@ Partial Class panelInfoVehiculo
         Me.QR.TabIndex = 105
         Me.QR.TabStop = False
         '
-        'Label12
+        'LoteLbl
         '
         Me.LoteLbl.AutoSize = True
         Me.LoteLbl.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LoteLbl.Location = New System.Drawing.Point(6, 534)
-        Me.LoteLbl.Name = "Label12"
+        Me.LoteLbl.Name = "LoteLbl"
         Me.LoteLbl.Size = New System.Drawing.Size(60, 24)
         Me.LoteLbl.TabIndex = 102
         Me.LoteLbl.Text = "Lote:"
@@ -1000,7 +999,7 @@ Partial Class panelInfoVehiculo
         DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.lugares.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle3
         Me.lugares.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.lugares.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.nomLugar, Me.tipoLugar, Me.fLlegada, Me.fPartida, Me.trasportadoPor})
+        Me.lugares.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.nomLugar, Me.tipoLugar, Me.fLlegada, Me.trasportadoPor})
         DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle4.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -1018,36 +1017,6 @@ Partial Class panelInfoVehiculo
         Me.lugares.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.lugares.Size = New System.Drawing.Size(850, 592)
         Me.lugares.TabIndex = 88
-        '
-        'nomLugar
-        '
-        Me.nomLugar.HeaderText = "Nombre del lugar "
-        Me.nomLugar.Name = "nomLugar"
-        Me.nomLugar.ReadOnly = True
-        '
-        'tipoLugar
-        '
-        Me.tipoLugar.HeaderText = "Tipo de lugar "
-        Me.tipoLugar.Name = "tipoLugar"
-        Me.tipoLugar.ReadOnly = True
-        '
-        'fLlegada
-        '
-        Me.fLlegada.HeaderText = "Fecha de llegada"
-        Me.fLlegada.Name = "fLlegada"
-        Me.fLlegada.ReadOnly = True
-        '
-        'fPartida
-        '
-        Me.fPartida.HeaderText = "fechaPartida"
-        Me.fPartida.Name = "fPartida"
-        Me.fPartida.ReadOnly = True
-        '
-        'trasportadoPor
-        '
-        Me.trasportadoPor.HeaderText = "Trasportado por"
-        Me.trasportadoPor.Name = "trasportadoPor"
-        Me.trasportadoPor.ReadOnly = True
         '
         'TabPage5
         '
@@ -1067,6 +1036,30 @@ Partial Class panelInfoVehiculo
         Me.Label4.Size = New System.Drawing.Size(548, 22)
         Me.Label4.TabIndex = 0
         Me.Label4.Text = "2º ENTREGA, Coresponde a la Aplicacion del administrador"
+        '
+        'nomLugar
+        '
+        Me.nomLugar.HeaderText = "Nombre del lugar "
+        Me.nomLugar.Name = "nomLugar"
+        Me.nomLugar.ReadOnly = True
+        '
+        'tipoLugar
+        '
+        Me.tipoLugar.HeaderText = "Tipo de lugar "
+        Me.tipoLugar.Name = "tipoLugar"
+        Me.tipoLugar.ReadOnly = True
+        '
+        'fLlegada
+        '
+        Me.fLlegada.HeaderText = "Fecha de llegada"
+        Me.fLlegada.Name = "fLlegada"
+        Me.fLlegada.ReadOnly = True
+        '
+        'trasportadoPor
+        '
+        Me.trasportadoPor.HeaderText = "Trasportado por"
+        Me.trasportadoPor.Name = "trasportadoPor"
+        Me.trasportadoPor.ReadOnly = True
         '
         'panelInfoVehiculo
         '
@@ -1127,11 +1120,6 @@ Partial Class panelInfoVehiculo
     Friend WithEvents ModeloBox As TextBox
     Friend WithEvents MarcaBox As TextBox
     Friend WithEvents VINBox As TextBox
-    Friend WithEvents nomLugar As DataGridViewTextBoxColumn
-    Friend WithEvents tipoLugar As DataGridViewTextBoxColumn
-    Friend WithEvents fLlegada As DataGridViewTextBoxColumn
-    Friend WithEvents fPartida As DataGridViewTextBoxColumn
-    Friend WithEvents trasportadoPor As DataGridViewTextBoxColumn
     Friend WithEvents nuevoLote As LinkLabel
     Friend WithEvents LoteCombo As ComboBox
     Friend WithEvents Button4 As Button
@@ -1186,4 +1174,8 @@ Partial Class panelInfoVehiculo
     Friend WithEvents id As TextBox
     Friend WithEvents Label22 As Label
     Friend WithEvents SaveButton As Button
+    Friend WithEvents nomLugar As DataGridViewTextBoxColumn
+    Friend WithEvents tipoLugar As DataGridViewTextBoxColumn
+    Friend WithEvents fLlegada As DataGridViewTextBoxColumn
+    Friend WithEvents trasportadoPor As DataGridViewTextBoxColumn
 End Class

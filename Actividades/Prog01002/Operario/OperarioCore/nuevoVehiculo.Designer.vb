@@ -1,6 +1,6 @@
 ﻿Imports System.Windows.Forms
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class nuevoVehiculo
+Partial Class NuevoVehiculo
     Inherits System.Windows.Forms.Form
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.

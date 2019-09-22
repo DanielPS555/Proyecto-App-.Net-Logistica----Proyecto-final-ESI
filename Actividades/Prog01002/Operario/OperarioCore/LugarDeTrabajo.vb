@@ -16,7 +16,7 @@ Public Class LugarDeTrabajo
         Dim paneles As New Dictionary(Of String, Type) From {
             {"Lista zonas", GetType(ListaZonas)},
             {"Lista vehiculos", GetType(ListaVehiculos)},
-            {"Nuevo vehiculo", GetType(nuevoVehiculo)},
+            {"Nuevo vehiculo", GetType(NuevoVehiculo)},
             {"Lista lotes", GetType(ListaLotes)}
         }
         Marco.SetButtons(paneles)

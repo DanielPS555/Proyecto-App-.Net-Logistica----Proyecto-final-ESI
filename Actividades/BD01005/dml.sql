@@ -176,6 +176,7 @@ insert into trabajaen values (0,(select IDLugar from lugar where Nombre="Deposit
 
 		/*Posicionado*/
 
+			insert into posicionado values ((select idlugar from lugar where nombre="Zona A_1_papr"),(select idvehiculo from vehiculo where vin="1GH2J83LED0987547"),"2019-6-28 19:18:45", "2019-6-29 06:05:00",14,(select idusuario from usuario where primernombre = "Pepe"));
 			insert into posicionado values ((select idlugar from lugar where nombre="Zona A_1_mvd"),(select idvehiculo from vehiculo where vin="1GH2J83LED0987547"),"2019-6-29 12:35:04", "2019-6-29 13:03:21",14,(select idusuario from usuario where primernombre = "Pepe"));
 			insert into posicionado values ((select idlugar from lugar where nombre="Zona A_1_mvd"),(select idvehiculo from vehiculo where vin="1GH2J83LED0987547"),"2019-6-29 13:03:32",'2019-6-30 12:02:02',18,(select idusuario from usuario where primernombre = "Pepe"));
 			insert into posicionado values ((select idlugar from lugar where nombre="Zona A_1_md"),(select idvehiculo from vehiculo where vin="1GH2J83LED0987547"),"2019-7-8 17:15:32",'2019-7-8 15:00:02',18,(select idusuario from usuario where primernombre = "Pepe"));

@@ -44,3 +44,7 @@ Cancelar
 Abrir imagen
 {0} {1}, utilizar?
 No se encontraron codigos QR en la imagen
+Aplicacion del Administrador
+Aplicacion del Operario
+Aplicacion del Transportista
+Elija su lenguaje

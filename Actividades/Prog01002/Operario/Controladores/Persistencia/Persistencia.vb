@@ -111,7 +111,27 @@ Public Class Persistencia
     End Function
 
     Public Function LugaresVehiculo(vin As String) As DataTable
-
+        Dim selcmd As New OdbcCommand("select * from (select * from (select first 1 vehiculo.vin, lugar.nombre, lugar.tipo, posicionado.desde::datetime year to minute as desde, 'Llegada al país' from vehiculo
+                                        inner join posicionado on posicionado.idvehiculo=vehiculo.idvehiculo
+                                        inner join lugar on lugar.idlugar=maximo_ancestro(posicionado.idlugar)
+                                        where vin = ?
+                                        order by desde)
+                                        union all
+                                        select vehiculo.vin, lugar.nombre, lugar.tipo, transporta.fechahorallegadareal::datetime year to minute as desde, usuario.nombredeusuario from vehiculo
+                                        inner join integra on vehiculo.idvehiculo=integra.idvehiculo and not integra.invalidado
+                                        inner join lote on lote.idlote=integra.lote
+                                        inner join transporta on transporta.idlote = lote.idlote and transporta.fechahorallegadareal is not null
+                                        inner join transporte on transporte.transporteid=transporta.transporteid
+                                        inner join usuario on usuario.idusuario = transporte.usuario
+                                        inner join lugar on lote.destino=lugar.idlugar
+                                        where vin = ?
+                                        ) as cslt
+                                        order by vin, desde;", _con)
+        selcmd.CrearParametro(vin)
+        selcmd.CrearParametro(vin)
+        Dim dt As New DataTable
+        dt.Load(selcmd.ExecuteReader)
+        Return dt
     End Function
 
     Public Function CrearZona(lugarID As Integer, nombre As String, capacidad As Integer) As Integer

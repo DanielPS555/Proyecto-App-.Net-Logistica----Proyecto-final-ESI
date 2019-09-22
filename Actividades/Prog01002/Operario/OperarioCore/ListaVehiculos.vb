@@ -45,7 +45,7 @@ Public Class ListaVehiculos
     End Sub
 
     Private Sub nuevo_Click(sender As Object, e As EventArgs)
-        Marco.getInstancia.cargarPanel(Of nuevoVehiculo)(New nuevoVehiculo)
+        Marco.getInstancia.cargarPanel(Of NuevoVehiculo)(New NuevoVehiculo)
     End Sub
 
     Private Sub DataGridView1_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellDoubleClick

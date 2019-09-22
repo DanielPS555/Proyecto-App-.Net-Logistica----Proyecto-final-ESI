@@ -37,6 +37,7 @@ Public Class panelInfoVehiculo
         nuevoLote.Text = Funciones_comunes.I18N("Nuevo lote", Marco.Language)
         EliminarLoteSelecion.Text = Funciones_comunes.I18N("Eliminar selección", Marco.Language)
         Cancelar.Text = Funciones_comunes.I18N("Cancelar", Marco.Language)
+        TabPage5.Visible = Fachada.getInstancia.DevolverUsuarioActual.Rol = Usuario.TIPO_ROL_ADMINISTRADOR
         'HAY QUE CARGAR EL LUGAR ACTUAL DEL VEHICULO 
         If Not aqui Then
             Button2.Visible = False
@@ -87,8 +88,9 @@ Public Class panelInfoVehiculo
             CargarInformes()
         End If
         Me.vehiculo = vehiculo
-        cargarMiLote()
-        CargarTrasportes()
+        CargarMiLote()
+        CargarTraslados()
+        CargarLugares()
         Dim qrGenerator As New QRCoder.QRCodeGenerator
         Dim qrData = qrGenerator.CreateQrCode(vin, QRCoder.QRCodeGenerator.ECCLevel.H)
         Dim qrCode As New QRCoder.QRCode(qrData)
@@ -96,7 +98,7 @@ Public Class panelInfoVehiculo
         Me.QR.Image = New Bitmap(Me.qrcode, New Size(Me.QR.Width, Me.QR.Height))
     End Sub
 
-    Public Sub cargarLotes()
+    Public Sub CargarLotes()
         If Fachada.getInstancia.DevolverUsuarioActual.Rol <> Usuario.TIPO_ROL_ADMINISTRADOR Then
             todosLosLotesDisponibles = Controladores.Fachada.getInstancia.LotesDisponiblesPorLugarActual
         Else
@@ -112,7 +114,7 @@ Public Class panelInfoVehiculo
 
     End Sub
 
-    Public Sub cargarMiLote()
+    Public Sub CargarMiLote()
         loteActual = Fachada.getInstancia.LoteVehiculo(vehiculo.VIN)
         LoteCombo.Items.Clear()
         LoteCombo.Items.Add($"ID: {loteActual.IDLote} / NOM: {loteActual.Nombre}")
@@ -120,10 +122,10 @@ Public Class panelInfoVehiculo
     End Sub
 
     Private Sub CargarLugares()
-        Dim lugares As List(Of Lugar) = Controladores.Fachada.getInstancia.lugaresDelVehiculo(vin)
+        lugares.DataSource = Controladores.Fachada.getInstancia.lugaresDelVehiculo(vin)
     End Sub
 
-    Private Sub CargarTrasportes()
+    Private Sub CargarTraslados()
         Dim ultpos = Controladores.Fachada.getInstancia.UltimaPosicionVehiculo(vin)
         SubzonaLabel.Text = ultpos.Item(1)
         Dim zona = Controladores.Persistencia.getInstancia.PadreDeLugar(ultpos.Item(0))
@@ -155,7 +157,7 @@ Public Class panelInfoVehiculo
     End Sub
 
     Public Sub actualizarTrasportesDeFormaExterna()
-        CargarTrasportes()
+        CargarTraslados()
     End Sub
 
     Public Sub ActualizarLotesExternos()
@@ -459,7 +461,7 @@ Public Class panelInfoVehiculo
 
     Private Sub CambiarGuardarLote_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles cambiarGuardarLote.LinkClicked
         If cambiarGuardarLote.Text.Equals("Cambiar lote ") Then
-            cargarLotes()
+            CargarLotes()
             cambiarGuardarLote.Text = "Guardar"
             nuevoLote.Visible = True
             EliminarLoteSelecion.Visible = True
@@ -484,7 +486,7 @@ Public Class panelInfoVehiculo
             End If
             Fachada.getInstancia.eliminarLoteSiNoTieneVehiculos(loteActual)
 
-            cargarMiLote()
+            CargarMiLote()
             loteTemp = Nothing
         End If
     End Sub
@@ -496,7 +498,7 @@ Public Class panelInfoVehiculo
         Cancelar.Visible = False
         LoteCombo.Enabled = False
         vermasLote.Enabled = True
-        cargarMiLote()
+        CargarMiLote()
         loteTemp = Nothing
     End Sub
 

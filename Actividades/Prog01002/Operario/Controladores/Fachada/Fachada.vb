@@ -139,8 +139,8 @@ Public Class Fachada
         Return Persistencia.getInstancia.PreguntaSecretaUsuario(NombreUser)
     End Function
 
-    Public Function lugaresDelVehiculo(vin As String) As List(Of Lugar)
-        Dim dt As DataTable = Persistencia.getInstancia.LugaresVehiculo(vin)
+    Public Function lugaresDelVehiculo(vin As String) As DataTable
+        Return Persistencia.getInstancia.LugaresVehiculo(vin)
     End Function
 
     Public Function ModificarContrasñeaConRecuperacion(Nombreuser As String, respuesta As String, Contraseña As String) As Boolean
@@ -398,10 +398,10 @@ Public Class Fachada
         Return lugar
     End Function
 
-    Public Function LotesEnLugar() As List(Of Tuple(Of Lote, Integer, Boolean)) ' LOTE: IDLote, Nombre, Estado, TUPLE.2: Autos en Lote, TUPLE.3: Transportado?
+    Public Function LotesEnLugar(lugar As Lugar) As List(Of Tuple(Of Lote, Integer, Boolean)) ' LOTE: IDLote, Nombre, Estado, TUPLE.2: Autos en Lote, TUPLE.3: Transportado?
         Dim retval As New List(Of Tuple(Of Lote, Integer, Boolean))
-        For Each row As DataRow In Persistencia.getInstancia.DevolverTodosLosLotesPor_IdLugar(Persistencia.getInstancia.TrabajaEn?.Lugar.IDLugar).Rows
-            Dim lote As New Lote With {.IDLote = row.Item(0), .Nombre = row.Item(1), .Estado = row.Item(2)}
+        For Each row As DataRow In Persistencia.getInstancia.DevolverTodosLosLotesPor_IdLugar(lugar.IDLugar).Rows
+            Dim lote As New Lote With {.IDLote = row.Item(0), .Nombre = row.Item(1), .Estado = row.Item(2), .Origen = lugar}
             retval.Add(New Tuple(Of Lote, Integer, Boolean)(lote, row.Item(3), row.Item(4) > 0))
         Next
         Return retval

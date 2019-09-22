@@ -92,4 +92,8 @@
     Public Sub New()
         Me.Lugares = New List(Of Lugar)
     End Sub
+
+    Public Overrides Function ToString() As String
+        Return "Nom: " & Me.Nombre & " RUT: " & Me.RUT
+    End Function
 End Class

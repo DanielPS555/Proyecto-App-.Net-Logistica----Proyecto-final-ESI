@@ -117,6 +117,10 @@ Public Class Lote
         End Set
     End Property
 
+    Public Overrides Function ToString() As String
+        Return "ID: " & IDLote.ToString & " NOM: " & Nombre
+    End Function
+
     Private _origen As Lugar
     Public Property Origen() As Lugar
         Get

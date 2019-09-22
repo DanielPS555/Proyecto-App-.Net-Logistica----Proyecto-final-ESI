@@ -44,3 +44,7 @@ Cancel
 Open image
 {0} {1}, use?
 QR codes were not found in the image
+Administrator Application
+Operator Application
+Transportist Application
+Choose your language

@@ -4,7 +4,7 @@ Public Class crearInformaDeDaños
     Private idvehiculo As Integer
     Private _listaDeTodosLosinformes As List(Of Controladores.InformeDeDaños)
     Private numRegistroAEditar = -1
-    Private PanelDelVehiculo As nuevoVehiculo
+    Private PanelDelVehiculo As NuevoVehiculo
     Private subida As Boolean
     Private Info As Controladores.InformeDeDaños
     Private panelVehiculo As panelInfoVehiculo
@@ -34,7 +34,7 @@ Public Class crearInformaDeDaños
 
 
 
-    Public Sub New(id As Integer, padre As nuevoVehiculo)
+    Public Sub New(id As Integer, padre As NuevoVehiculo)
         idvehiculo = id
         InitializeComponent()
         tipo.SelectedIndex = 0
@@ -44,9 +44,11 @@ Public Class crearInformaDeDaños
             tipo.Enabled = False
         End If
         _listaDeTodosLosinformes = New List(Of Controladores.InformeDeDaños)
-        Info = New Controladores.InformeDeDaños(New Controladores.Vehiculo With {.IdVehiculo = id}) With {.Fecha = DateTime.Now,
-                                                                                                        .Lugar = Controladores.Fachada.getInstancia.TrabajaEnAcutual.Lugar,
-                                                                                                        .Creador = Controladores.Fachada.getInstancia.TrabajaEnAcutual.Usuario}
+        Dim vehiculo As Controladores.Vehiculo = New Controladores.Vehiculo With {.IdVehiculo = id}
+        Dim lugarActual = Controladores.Fachada.getInstancia.DevolverPosicionActual(vehiculo.IdVehiculo)
+        Info = New Controladores.InformeDeDaños(vehiculo) With {.Fecha = Date.Now,
+                                                                .Lugar = lugarActual.Subzona.ZonaPadre.LugarPadre,
+                                                                .Creador = Controladores.Fachada.getInstancia.DevolverUsuarioActual}
         _nuevo = True
         PanelDelVehiculo = padre
         tipo.SelectedIndex = 0
@@ -85,7 +87,7 @@ Public Class crearInformaDeDaños
 
     End Sub
 
-    Public Sub New(InformePrevio As Controladores.InformeDeDaños, padre As nuevoVehiculo)
+    Public Sub New(InformePrevio As Controladores.InformeDeDaños, padre As NuevoVehiculo)
         InitializeComponent()
         Info = InformePrevio
         _nuevo = True
@@ -139,7 +141,7 @@ Public Class crearInformaDeDaños
     End Sub
 
     Private Sub nuevo_Click(sender As Object, e As EventArgs)
-        Controladores.Marco.getInstancia.cargarPanel(Of RegistroDeDañoPanel)(New RegistroDeDañoPanel(Me))
+        Controladores.Marco.getInstancia.cargarPanel(New RegistroDeDañoPanel(Me))
     End Sub
 
 
@@ -185,7 +187,7 @@ Public Class crearInformaDeDaños
                     Info.Tipo = Controladores.InformeDeDaños.TIPO_INFORME_TOTAL
             End Select
             Info.Fecha = DateTime.Now
-            Info.Lugar = Controladores.Fachada.getInstancia.TrabajaEnAcutual.Lugar
+            Info.Lugar = Controladores.Fachada.getInstancia.DevolverPosicionActual(idvehiculo).Subzona.ZonaPadre.LugarPadre
             Info.Creador = Controladores.Fachada.getInstancia.DevolverUsuarioActual
             PanelDelVehiculo.NotificarDeInforme(Info)
         End If
@@ -194,7 +196,7 @@ Public Class crearInformaDeDaños
     End Sub
 
 
-    Public Sub devolverRegistro(r As Controladores.RegistroDaños)
+    Public Sub DevolverRegistro(r As Controladores.RegistroDaños)
         If numRegistroAEditar = -1 Then
             Info.Registros.Add(r)
             If r.Descripcion.Length > 30 Then
@@ -213,8 +215,6 @@ Public Class crearInformaDeDaños
             End If
             numRegistroAEditar = -1
         End If
-
-
     End Sub
 
     Private Sub Button3_Click(sender As Object, e As EventArgs)

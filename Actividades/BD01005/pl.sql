@@ -15,6 +15,16 @@ create function crear_lugar(nombrel like lugar.nombre, pos_x like lugar.geox, po
 	return lugarid;
 end function;
 
+CREATE FUNCTION maximo_ancestro(lugarid LIKE lugar.idlugar)
+	returning integer
+	define ttx int;
+	IF lugarid NOT IN (SELECT menor FROM incluye) THEN
+		RETURN lugarid;
+	END if;
+	select min(mayor) into ttx from incluye start with menor=lugarid connect by menor = prior mayor;
+	return ttx;
+END FUNCTION;
+
 create function crear_subzona(nombrez like lugar.Nombre, enLugar like lugar.IDLugar, capacidadz int)
    returning integer
 	DEFINE existelugar, capacidadlugar, creador, lugarid int;
