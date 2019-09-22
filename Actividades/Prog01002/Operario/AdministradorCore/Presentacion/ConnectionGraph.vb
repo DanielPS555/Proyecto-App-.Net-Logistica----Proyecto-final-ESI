@@ -1,4 +1,6 @@
-﻿Public Module ConnectionGraph
+﻿Imports System.Drawing
+
+Public Module ConnectionGraph
     Public Function CreateGraph() As Microsoft.Msagl.GraphViewerGdi.GViewer
         Dim connections = Controladores.Fachada.getInstancia.ConexionesLugares
         Dim graph = New Microsoft.Msagl.Drawing.Graph("Lugares")

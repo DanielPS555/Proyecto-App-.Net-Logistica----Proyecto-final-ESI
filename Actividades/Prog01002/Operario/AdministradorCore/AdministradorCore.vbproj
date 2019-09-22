@@ -91,6 +91,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
@@ -127,12 +128,19 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Presentacion\AdministrarZonasYSubzonas.Designer.vb">
+      <DependentUpon>AdministrarZonasYSubzonas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\AdministrarZonasYSubzonas.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Presentacion\Conectividad.Designer.vb">
       <DependentUpon>Conectividad.vb</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\Conectividad.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Presentacion\ConnectionGraph.vb" />
     <Compile Include="Presentacion\ListaDeTrasportes.Designer.vb">
       <DependentUpon>ListaDeTrasportes.vb</DependentUpon>
     </Compile>
@@ -227,6 +235,9 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\AdministrarZonasYSubzonas.resx">
+      <DependentUpon>AdministrarZonasYSubzonas.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\Conectividad.resx">
       <DependentUpon>Conectividad.vb</DependentUpon>

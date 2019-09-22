@@ -82,7 +82,7 @@ Partial Class NuevoLugar
         '
         Me.mediosPermitidos.CheckOnClick = True
         Me.mediosPermitidos.FormattingEnabled = True
-        Me.mediosPermitidos.Location = New System.Drawing.Point(15, 393)
+        Me.mediosPermitidos.Location = New System.Drawing.Point(522, 438)
         Me.mediosPermitidos.Name = "mediosPermitidos"
         Me.mediosPermitidos.Size = New System.Drawing.Size(349, 154)
         Me.mediosPermitidos.TabIndex = 4
@@ -95,7 +95,7 @@ Partial Class NuevoLugar
         Me.GMapControl1.GrayScaleMode = False
         Me.GMapControl1.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow
         Me.GMapControl1.LevelsKeepInMemmory = 5
-        Me.GMapControl1.Location = New System.Drawing.Point(551, 6)
+        Me.GMapControl1.Location = New System.Drawing.Point(551, 86)
         Me.GMapControl1.MarkersEnabled = True
         Me.GMapControl1.MaxZoom = 2
         Me.GMapControl1.MinZoom = 2
@@ -142,28 +142,28 @@ Partial Class NuevoLugar
         '
         'VScrollBar1
         '
-        Me.VScrollBar1.Location = New System.Drawing.Point(854, 6)
+        Me.VScrollBar1.Location = New System.Drawing.Point(854, 123)
         Me.VScrollBar1.Name = "VScrollBar1"
         Me.VScrollBar1.Size = New System.Drawing.Size(17, 300)
         Me.VScrollBar1.TabIndex = 11
         '
         'HScrollBar1
         '
-        Me.HScrollBar1.Location = New System.Drawing.Point(551, 309)
+        Me.HScrollBar1.Location = New System.Drawing.Point(522, 389)
         Me.HScrollBar1.Name = "HScrollBar1"
         Me.HScrollBar1.Size = New System.Drawing.Size(300, 17)
         Me.HScrollBar1.TabIndex = 12
         '
         'buscarText
         '
-        Me.buscarText.Location = New System.Drawing.Point(551, 331)
+        Me.buscarText.Location = New System.Drawing.Point(522, 412)
         Me.buscarText.Name = "buscarText"
         Me.buscarText.Size = New System.Drawing.Size(238, 20)
         Me.buscarText.TabIndex = 13
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(793, 329)
+        Me.Button1.Location = New System.Drawing.Point(776, 409)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(75, 23)
         Me.Button1.TabIndex = 14
@@ -172,14 +172,14 @@ Partial Class NuevoLugar
         '
         'ZonasSubzonas
         '
-        Me.ZonasSubzonas.Location = New System.Drawing.Point(15, 81)
+        Me.ZonasSubzonas.Location = New System.Drawing.Point(15, 429)
         Me.ZonasSubzonas.Name = "ZonasSubzonas"
-        Me.ZonasSubzonas.Size = New System.Drawing.Size(349, 225)
+        Me.ZonasSubzonas.Size = New System.Drawing.Size(361, 205)
         Me.ZonasSubzonas.TabIndex = 15
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(225, 309)
+        Me.Button2.Location = New System.Drawing.Point(337, 149)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(139, 23)
         Me.Button2.TabIndex = 16
@@ -188,7 +188,7 @@ Partial Class NuevoLugar
         '
         'nombreZona
         '
-        Me.nombreZona.Location = New System.Drawing.Point(15, 311)
+        Me.nombreZona.Location = New System.Drawing.Point(127, 123)
         Me.nombreZona.Name = "nombreZona"
         Me.nombreZona.Size = New System.Drawing.Size(204, 20)
         Me.nombreZona.TabIndex = 17

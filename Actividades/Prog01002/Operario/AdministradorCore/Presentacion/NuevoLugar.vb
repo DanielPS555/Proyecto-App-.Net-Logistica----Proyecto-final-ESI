@@ -1,5 +1,6 @@
-﻿Imports Controladores
+﻿Imports System.Data.Linq
 Imports System.Windows.Forms
+Imports Controladores.Extenciones
 Public Class NuevoLugar
     Private position As GMap.NET.WindowsForms.GMapMarker = Nothing
 
@@ -87,8 +88,8 @@ Public Class NuevoLugar
                                                       mediosPermitidos.CheckedItems.Cast(Of Controladores.TipoMedioTransporte).ToArray,
                                                       capacidad.Value, Zonas)
             If lugar IsNot Nothing Then
-                Marco.getInstancia.cargarPanel(New PanelLugar(lugar.IDLugar))
-                Marco.getInstancia.cerrarPanel(Of NuevoLugar)()
+                Controladores.Marco.getInstancia.cargarPanel(New PanelLugar(lugar.IDLugar))
+                Controladores.Marco.getInstancia.cerrarPanel(Of NuevoLugar)()
             Else
                 MsgBox("No se pudo crear el lugar, por favor verifique la información")
             End If
@@ -135,7 +136,7 @@ Public Class NuevoLugar
         End If
     End Sub
 
-    Private Zonas As New List(Of Zona)
+    Private Zonas As New List(Of Controladores.Zona)
 
     Private Sub RenderTree()
         ZonasSubzonas.Nodes.Clear()
@@ -157,7 +158,7 @@ Public Class NuevoLugar
             MsgBox("La capacidad de la zona debe ser > 0")
             Return
         End If
-        Dim z As New Zona(-1, nombreZona.Text, capacidadZona.Value, Nothing)
+        Dim z As New Controladores.Zona(-1, nombreZona.Text, capacidadZona.Value, Nothing)
         Zonas.Add(z)
         RenderTree()
     End Sub
@@ -175,8 +176,8 @@ Public Class NuevoLugar
             Return
         End If
         Dim n = ZonasSubzonas.SelectedNode
-        Dim z = CType(n.Tag, Zona)
-        Dim sz = New Subzona(-1, capacidadZona.Value, nombreZona.Text, z)
+        Dim z = CType(n.Tag, Controladores.Zona)
+        Dim sz = New Controladores.Subzona(-1, capacidadZona.Value, nombreZona.Text, z)
         z.Subzonas.Add(sz)
         RenderTree()
     End Sub
