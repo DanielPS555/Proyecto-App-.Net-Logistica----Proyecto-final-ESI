@@ -72,6 +72,12 @@ Public Class Persistencia
         Return dt
     End Function
 
+    Friend Function MaximoAncestro(idlugar As Integer) As Integer
+        Dim selcmd As New OdbcCommand("execute function maximo_ancestro(?)", _con)
+        selcmd.CrearParametro(idlugar)
+        Return selcmd.ExecuteScalar
+    End Function
+
     Public Function Imagenes(idinforme As Integer, registro As Integer) As DataTable
         Dim selcmd As New OdbcCommand("select nroimagen,imagen from imagenregistro where informe=? and nrolista=?", _con)
         selcmd.CrearParametro(DbType.Int32, idinforme)
@@ -111,13 +117,13 @@ Public Class Persistencia
     End Function
 
     Public Function LugaresVehiculo(vin As String) As DataTable
-        Dim selcmd As New OdbcCommand("select * from (select * from (select first 1 vehiculo.vin, lugar.nombre, lugar.tipo, posicionado.desde::datetime year to minute as desde, 'Llegada al país' from vehiculo
+        Dim selcmd As New OdbcCommand("select nombre, tipo, desde, transportista from (select * from (select first 1 vehiculo.vin, lugar.nombre, lugar.tipo, posicionado.desde::datetime year to minute as desde, 'Llegada al país' as transportista from vehiculo
                                         inner join posicionado on posicionado.idvehiculo=vehiculo.idvehiculo
                                         inner join lugar on lugar.idlugar=maximo_ancestro(posicionado.idlugar)
                                         where vin = ?
                                         order by desde)
                                         union all
-                                        select vehiculo.vin, lugar.nombre, lugar.tipo, transporta.fechahorallegadareal::datetime year to minute as desde, usuario.nombredeusuario from vehiculo
+                                        select vehiculo.vin, lugar.nombre, lugar.tipo, transporta.fechahorallegadareal::datetime year to minute as desde, usuario.nombredeusuario as transportista from vehiculo
                                         inner join integra on vehiculo.idvehiculo=integra.idvehiculo and not integra.invalidado
                                         inner join lote on lote.idlote=integra.lote
                                         inner join transporta on transporta.idlote = lote.idlote and transporta.fechahorallegadareal is not null
@@ -126,7 +132,7 @@ Public Class Persistencia
                                         inner join lugar on lote.destino=lugar.idlugar
                                         where vin = ?
                                         ) as cslt
-                                        order by vin, desde;", _con)
+                                        order by desde;", _con)
         selcmd.CrearParametro(vin)
         selcmd.CrearParametro(vin)
         Dim dt As New DataTable

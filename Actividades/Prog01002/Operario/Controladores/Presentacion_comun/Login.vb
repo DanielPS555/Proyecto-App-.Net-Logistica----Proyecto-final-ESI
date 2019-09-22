@@ -1,9 +1,4 @@
-﻿Imports System.Data.Odbc
-Imports System.IO
-Imports System.Text
-Imports Microsoft.Win32
-Imports Controladores.Fachada
-Imports Controladores.Extenciones
+﻿Imports Controladores.Extenciones
 
 Public Class Login
     Private contraseñaVisible As Boolean = False
@@ -32,7 +27,7 @@ Public Class Login
     End Sub
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Tiempo.Tick 'se ejecuta un reloj cada 0.5 segundos
-        Dim Tiempo As DateTime = DateTime.Now
+        Dim Tiempo As Date = Date.Now
         fecha.Text = Tiempo.ToString("dd MMMM yyyy") ' dd -> día en formato 01, 02, ..., 31. MMMM -> nombre completo del mes (enero, febrero, ..., diciembre). yyyy -> año en formato 1900, 1901, ..., 2019.
         hora.Text = Tiempo.ToString("HH:mm:ss") ' HH -> hora en formato 24hs. mm -> minutos del 00 al 59. ss -> segundos del 00 al 59
     End Sub

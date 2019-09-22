@@ -41,8 +41,8 @@ Public Class PanelInfoLote
         If e.RowIndex < 0 Then
             Return
         End If
-
-        Dim vehiculo = New panelInfoVehiculo(DataGridView1.Rows(e.RowIndex).Cells(0).Value, False)
+        Dim row = DataGridView1.Rows(e.RowIndex)
+        Dim vehiculo = New panelInfoVehiculo(row.Cells.Cast(Of DataGridViewCell).First.Value)
         Marco.getInstancia.cargarPanel(Of panelInfoVehiculo)(vehiculo)
     End Sub
 

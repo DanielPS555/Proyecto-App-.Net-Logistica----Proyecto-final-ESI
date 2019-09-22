@@ -39,13 +39,13 @@ Public Class NuevoVehiculo
         Dim lugares = Fachada.getInstancia.listarTodosLosPuertos.ToList.Select(Function(x) Fachada.getInstancia.informacionBaseDelLugarPorIdlugar(x(0))).ToArray
         lugar.Items.Clear()
         lugar.Items.AddRange(lugares)
+        lugar.SelectedIndex = -1
         If Fachada.getInstancia.DevolverUsuarioActual.Rol <> Usuario.TIPO_ROL_ADMINISTRADOR Then
             lugar.Enabled = False
             lugar.SelectedIndex = Array.IndexOf(lugares, Fachada.getInstancia.TrabajaEnAcutual.Lugar)
         Else
             lugar.SelectedIndex = 0
         End If
-        zonas.Items.Clear()
     End Sub
 
     Private Sub loadLotes()
@@ -105,7 +105,6 @@ Public Class NuevoVehiculo
             habilitar(True)
             cargarDatosDeLaPrecarga()
             ingresar.Enabled = True
-            lugar.Enabled = True
         Else
             EstadoBusqueda.Text = "Vin sin precarga o no existe"
             EstadoBusqueda.ForeColor = Drawing.Color.FromArgb(180, 20, 20)

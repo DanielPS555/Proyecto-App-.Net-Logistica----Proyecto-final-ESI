@@ -17,7 +17,7 @@ Public Class panelInfoVehiculo
     Private todosLosLotesDisponibles As List(Of Controladores.Lote)
     Private loteActual As Controladores.Lote
     Private qrcode As Bitmap
-    Public Sub New(VIN As String, aqui As Boolean)
+    Public Sub New(VIN As String)
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
 
@@ -39,21 +39,23 @@ Public Class panelInfoVehiculo
         Cancelar.Text = Funciones_comunes.I18N("Cancelar", Marco.Language)
         TabPage5.Visible = Fachada.getInstancia.DevolverUsuarioActual.Rol = Usuario.TIPO_ROL_ADMINISTRADOR
         'HAY QUE CARGAR EL LUGAR ACTUAL DEL VEHICULO 
-        If Not aqui Then
-            Button2.Visible = False
-            Button4.Visible = False
-        End If
+
         LoteCombo.Enabled = False
         Me.vin = VIN
         TipoCombo.Items.Clear()
         TipoCombo.Items.AddRange(Controladores.Vehiculo.TIPOS_VEHICULOS)
         RegularTamañoColumnas()
         TomarValores()
+        Dim aqui = Fachada.getInstancia.DevolverUsuarioActual.Rol = Usuario.TIPO_ROL_ADMINISTRADOR Or (Fachada.getInstancia.TrabajaEnAcutual.Lugar.IDLugar = Fachada.getInstancia.MaximoAncestro(Fachada.getInstancia.UltimaPosicionVehiculo(vehiculo.VIN)(0)).IDLugar)
+        If Not aqui Then
+            Button2.Visible = False
+            Button4.Visible = False
+        End If
     End Sub
 
     Private Sub TomarValores()
         VINBox.Text = vin
-        Dim vehiculo = Controladores.Fachada.getInstancia.InfoVehiculos(vin).SingleOrDefault
+        vehiculo = Controladores.Fachada.getInstancia.InfoVehiculos(vin).SingleOrDefault
         If vehiculo Is Nothing Then
             MsgBox("No se encontró el vehículo con VIN " + vin + ", reporte este error")
             Close()
@@ -122,7 +124,9 @@ Public Class panelInfoVehiculo
     End Sub
 
     Private Sub CargarLugares()
+        lugares.Columns.Clear()
         lugares.DataSource = Controladores.Fachada.getInstancia.lugaresDelVehiculo(vin)
+        lugares.Columns.Cast(Of DataGridViewColumn).Last.HeaderText = "Transportado por"
     End Sub
 
     Private Sub CargarTraslados()
@@ -268,11 +272,6 @@ Public Class panelInfoVehiculo
         traslados.Columns(4).Width = 175
         traslados.Columns(5).Width = 225
 
-        lugares.Columns(0).Width = 170
-        lugares.Columns(1).Width = 170
-        lugares.Columns(2).Width = 170
-        lugares.Columns(3).Width = 170
-        lugares.Columns(4).Width = 170
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs)

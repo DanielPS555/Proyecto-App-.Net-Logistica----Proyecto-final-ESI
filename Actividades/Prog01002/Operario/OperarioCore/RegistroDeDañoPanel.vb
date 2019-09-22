@@ -1,56 +1,32 @@
 ﻿Imports System.Drawing
 Imports System.Drawing.Imaging
 Imports System.Windows.Forms
+Imports Controladores.Extenciones
 Public Class RegistroDeDañoPanel
 
     Private padre As crearInformaDeDaños
-    Private regitro As Controladores.RegistroDaños
+    Private registro As Controladores.RegistroDaños
     Private imagenes As List(Of Bitmap)
     Private piso As Integer = 0
     Private actual As Integer = 0
     Private regpadre As Controladores.RegistroDaños
 
-    Public Sub New(informe As crearInformaDeDaños)
-        InitializeComponent()
-        padre = informe
-        regpadre = New Controladores.RegistroDaños(informe.InformeDeDaños)
-        regitro = New Controladores.RegistroDaños(informe.InformeDeDaños)
-        tipo.SelectedIndex = 0
-
-        imagenes = New List(Of Bitmap)
-        p1.Image = OperarioCore.My.Resources.sinContenidoFotografico
-        p2.Image = OperarioCore.My.Resources.sinContenidoFotografico
-        p3.Image = OperarioCore.My.Resources.sinContenidoFotografico
-        If informe.NuevoVehiculo Then
-            tipo.Enabled = False
-            infoOrigen.Visible = False
-            registroOrigen.Visible = False
-            Label5.Visible = False
-            Label6.Visible = False
-        Else
-            CargarregistrosInformes()
-            If infoOrigen.Items.Count > 0 Then
-                infoOrigen.SelectedIndex = 0
-            End If
-        End If
-    End Sub
-
-    Public Sub New(informe As crearInformaDeDaños, registroPadre As Controladores.RegistroDaños)
+    Public Sub New(informe As crearInformaDeDaños, Optional registroPadre As Controladores.RegistroDaños = Nothing)
         InitializeComponent()
         padre = informe
         regpadre = registroPadre
-        regitro = New Controladores.RegistroDaños(informe.InformeDeDaños)
+        registro = New Controladores.RegistroDaños(informe.InformeDeDaños)
         If informe.NuevoVehiculo Then
             tipo.Enabled = False
             infoOrigen.Visible = False
             registroOrigen.Visible = False
         Else
-            CargarregistrosInformes()
+            CargarRegistrosInformes()
             If infoOrigen.Items.Count > 0 Then
-                If registroPadre.Actualiza IsNot Nothing Then
-                    For i As Integer = 0 To infoOrigen.Items.Count - 1
-                        If infoOrigen.Items(i) = registroPadre.Actualiza.ID Then
-                            infoOrigen.SelectedIndex = i
+                If registroPadre?.Actualiza IsNot Nothing Then
+                    For Each info In infoOrigen.Items.Cast(Of Controladores.InformeDeDaños)
+                        If info.ID = registroPadre.Actualiza.InformePadre.ID Then
+                            infoOrigen.SelectedItem = info
                             Exit For
                         End If
                     Next
@@ -61,7 +37,7 @@ Public Class RegistroDeDañoPanel
             End If
 
         End If
-        Select Case registroPadre.TipoActualizacion
+        Select Case registroPadre?.TipoActualizacion
             Case Controladores.RegistroDaños.TIPO_ACTUALIZACION_ANULACION
                 tipo.SelectedIndex = 1
                 selecionarRegistroPrevio()
@@ -72,42 +48,38 @@ Public Class RegistroDeDañoPanel
                 tipo.SelectedIndex = 2
         End Select
         imagenes = New List(Of Bitmap)
-        For Each img As Image In registroPadre.Imagenes
-            imagenes.Add(DirectCast(img, Bitmap))
-        Next
-        piso = 0
-        If imagenes.Count > 0 Then
-            panelFotografias.Image = imagenes(0)
-            p1.Image = OperarioCore.My.Resources.sinContenidoFotografico
-            p2.Image = OperarioCore.My.Resources.sinContenidoFotografico
-            p3.Image = OperarioCore.My.Resources.sinContenidoFotografico
-            actualizarImagenes()
+        If registroPadre?.Imagenes IsNot Nothing Then
+            For Each img As Image In registroPadre?.Imagenes
+                imagenes.Add(DirectCast(img, Bitmap))
+            Next
+            piso = 0
+            If imagenes.Count > 0 Then
+                panelFotografias.Image = imagenes(0)
+                p1.Image = OperarioCore.My.Resources.sinContenidoFotografico
+                p2.Image = OperarioCore.My.Resources.sinContenidoFotografico
+                p3.Image = OperarioCore.My.Resources.sinContenidoFotografico
+                actualizarImagenes()
+            End If
         End If
-        descipt.Text = registroPadre.Descripcion.Trim
-
-
+        descipt.Text = registroPadre?.Descripcion.Trim
     End Sub
 
     Private Sub selecionarRegistroPrevio()
-        Dim c As Integer = 0
-        For Each info As Controladores.InformeDeDaños In padre.ListaDeTodosLosInformes
-            If regpadre.InformePadre.Equals(info) Then
-                infoOrigen.SelectedIndex = c
-                Dim c2 As Integer = 0
-                For Each regi As Controladores.RegistroDaños In padre.ListaDeTodosLosInformes(c).Registros
+        For Each info As Controladores.InformeDeDaños In infoOrigen.Items
+            If regpadre.InformePadre.ID = info.ID Then
+                infoOrigen.SelectedItem = info
+                For Each regi As Controladores.RegistroDaños In info.Registros
                     If regi.Equals(regpadre) Then
-                        registroOrigen.SelectedIndex = c2
+                        registroOrigen.SelectedItem = regi
                         Exit For
                     End If
                 Next
-                c2 += 1
                 Exit For
             End If
-            c += 1
         Next
     End Sub
 
-    Public Sub CargarregistrosInformes()
+    Public Sub CargarRegistrosInformes()
         infoOrigen.Items.Clear()
         infoOrigen.Visible = True
         registroOrigen.Visible = True
@@ -116,7 +88,7 @@ Public Class RegistroDeDañoPanel
             registroOrigen.Enabled = False
         Else
             For Each info As Controladores.InformeDeDaños In padre.ListaDeTodosLosInformes
-                infoOrigen.Items.Add(info.ID)
+                infoOrigen.Items.Add(info)
             Next
         End If
 
@@ -124,16 +96,14 @@ Public Class RegistroDeDañoPanel
 
     Public Sub ActualizarReg() Handles infoOrigen.SelectedIndexChanged
         registroOrigen.Items.Clear()
-        For Each reg As Controladores.RegistroDaños In padre.ListaDeTodosLosInformes(infoOrigen.SelectedIndex).Registros
+        For Each reg As Controladores.RegistroDaños In CType(infoOrigen.SelectedItem, Controladores.InformeDeDaños).Registros
             If reg.TipoActualizacion <> Controladores.RegistroDaños.TIPO_ACTUALIZACION_ANULACION Then
-                registroOrigen.Items.Add(reg.ID)
+                registroOrigen.Items.Add(reg)
             End If
         Next
         If registroOrigen.Items.Count <> 0 Then
             registroOrigen.SelectedIndex = 0
         End If
-
-        'registroOrigen.Items.AddRange(todosLosInformes(infoOrigen.SelectedIndex).Registros.Where(Function(x) x.TipoActualizacion <> Controladores.RegistroDaños.TIPO_ACTUALIZACION_ANULACION))
     End Sub
 
 
@@ -166,18 +136,18 @@ Public Class RegistroDeDañoPanel
 
     Private Sub Button5_Click(sender As Object, e As EventArgs)
         If imagenes.Count = 0 Then
-            MsgBox("Debe ingrezar al menos una imagen", MsgBoxStyle.Critical)
+            MsgBoxI18N("Debe ingresar al menos una imagen", MsgBoxStyle.Critical)
             Return
         End If
 
         If descipt.Text.Trim.Length = 0 Then
-            MsgBox("Ingrese una descripcion del informe", MsgBoxStyle.Critical)
+            MsgBoxI18N("Ingrese una descripcion del informe", MsgBoxStyle.Critical)
             Return
         End If
 
         If tipo.SelectedIndex <> 0 Then
             If infoOrigen.SelectedIndex = -1 OrElse registroOrigen.SelectedIndex = -1 Then
-                MsgBox("Si es un regitro de anulacion o actualizacion usted debe elegir un regitro al que hacer referencia", MsgBoxStyle.Critical)
+                MsgBoxI18N("Si es un registro de anulacion o actualizacion usted debe elegir un registro al que hacer referencia", MsgBoxStyle.Critical)
                 Return
             End If
         End If
@@ -202,14 +172,13 @@ Public Class RegistroDeDañoPanel
         Select Case tipo.SelectedIndex
             Case 1
                 reg.TipoActualizacion = Controladores.RegistroDaños.TIPO_ACTUALIZACION_ANULACION
-                reg.Actualiza = padre.ListaDeTodosLosInformes.Where(Function(x) x.ID = infoOrigen.SelectedItem).ToList.Single.Registros.Where(Function(x) x.ID = registroOrigen.SelectedItem).Single
+                reg.Actualiza = infoOrigen.Items.Cast(Of Controladores.InformeDeDaños).Single(Function(x) x.ID = infoOrigen.SelectedItem.ID).Registros.Single(Function(x) x.ID = registroOrigen.SelectedItem.ID)
             Case 2
                 reg.TipoActualizacion = Controladores.RegistroDaños.TIPO_ACTUALIZACION_CORRECION
-                reg.Actualiza = padre.ListaDeTodosLosInformes.Where(Function(x) x.ID = infoOrigen.SelectedItem).ToList.Single.Registros.Where(Function(x) x.ID = registroOrigen.SelectedItem).Single
+                reg.Actualiza = infoOrigen.Items.Cast(Of Controladores.InformeDeDaños).Single(Function(x) x.ID = infoOrigen.SelectedItem.ID).Registros.Single(Function(x) x.ID = registroOrigen.SelectedItem.ID)
             Case 0
                 reg.TipoActualizacion = Controladores.RegistroDaños.TIPO_ACTUALIZACION_REGULAR
         End Select
-
         padre.DevolverRegistro(reg)
         imagenes = Nothing
         Me.Dispose()

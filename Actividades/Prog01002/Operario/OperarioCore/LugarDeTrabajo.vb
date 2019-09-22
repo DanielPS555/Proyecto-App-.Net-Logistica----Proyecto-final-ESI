@@ -4,21 +4,22 @@ Imports Controladores
 
 
 Public Class LugarDeTrabajo
-    Dim ListaTrabajaEn As List(Of TrabajaEn)
-
     Private Sub LugarDeTrabajo_Paint(sender As Object, e As PaintEventArgs) Handles Me.Paint
         Dim g As Graphics = e.Graphics
         g.DrawRectangle(New Pen(Color.FromArgb(15, 139, 196), 2), New Rectangle(lugares.Location, lugares.Size))
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        Fachada.getInstancia.NuevaConexcion(ListaTrabajaEn(lugares.SelectedIndex))
+        Fachada.getInstancia.NuevaConexcion(lugares.SelectedItem)
         Dim paneles As New Dictionary(Of String, Type) From {
             {"Lista zonas", GetType(ListaZonas)},
             {"Lista vehiculos", GetType(ListaVehiculos)},
             {"Nuevo vehiculo", GetType(NuevoVehiculo)},
             {"Lista lotes", GetType(ListaLotes)}
         }
+        If Fachada.getInstancia.LugarZonasySubzonas(-1, CType(lugares.SelectedItem, TrabajaEn).Lugar).Tipo <> Lugar.TIPO_LUGAR_PUERTO Then
+            paneles.Remove("Nuevo vehiculo")
+        End If
         Marco.SetButtons(paneles)
         Marco.ReiniciarSingleton()
         Principal.getInstancia.cargarPanel(Marco.getInstancia)
@@ -31,24 +32,24 @@ Public Class LugarDeTrabajo
             Return
         End If
         Button2.Enabled = True
-        nom.Text = ListaTrabajaEn(i).Lugar.Nombre
-        ubi.Text = $"{ListaTrabajaEn(i).Lugar.PosicionX:F1}, {ListaTrabajaEn(i).Lugar.PosicionY:F1}"
-        tipo.Text = ListaTrabajaEn(i).Lugar.Tipo
-        Dim ulti As Tuple(Of DateTime, DateTime?) = Fachada.getInstancia.CargarConexcionEnTrabajaEn(ListaTrabajaEn(i)).ultimaConexcion
-        inicioUconex.Text = If(ulti Is Nothing, "Nunca", Funciones_comunes.DarFormato(ulti.Item1))
-        finalUconex.Text = If(ulti Is Nothing, "Nunca", Funciones_comunes.DarFormato(ulti.Item2))
+        nom.Text = lugares.SelectedItem.Lugar.Nombre
+        ubi.Text = $"{lugares.SelectedItem.Lugar.PosicionX:F1}, {lugares.SelectedItem.Lugar.PosicionY:F1}"
+        tipo.Text = lugares.SelectedItem.Lugar.Tipo
+        Dim ulti As Tuple(Of Date, Date?) = Fachada.getInstancia.CargarConexcionEnTrabajaEn(lugares.SelectedItem).ultimaConexcion
+        inicioUconex.Text = If(ulti Is Nothing, Funciones_comunes.I18N("Nunca", Marco.Language), Funciones_comunes.DarFormato(ulti.Item1))
+        finalUconex.Text = If(ulti Is Nothing, Funciones_comunes.I18N("Nunca", Marco.Language), Funciones_comunes.DarFormato(ulti.Item2))
     End Sub
 
     Private Sub LugarDeTrabajo_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         lugares.Items.Clear()
-        ListaTrabajaEn = Fachada.getInstancia.devolverTrabajaEnBasicosActuales(Fachada.getInstancia.NombreUsuarioActual)
+        Dim ListaTrabajaEn = Fachada.getInstancia.devolverTrabajaEnBasicosActuales(Fachada.getInstancia.NombreUsuarioActual)
         If ListaTrabajaEn.Count = 0 Then
             Me.Close()
             MsgBox("Usted no tiene ningun lugar de trabajo vijente")
             Return
         End If
         For Each t As TrabajaEn In ListaTrabajaEn
-            lugares.Items.Add(t.Lugar.Nombre)
+            lugares.Items.Add(t)
         Next
         lugares.SelectedIndex = 0
 

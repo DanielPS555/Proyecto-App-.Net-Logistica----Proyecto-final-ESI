@@ -1,6 +1,7 @@
 ﻿Imports Controladores
 
 Public Class Lugar
+    Implements IEquatable(Of Lugar)
 
     Public Shared ReadOnly TIPO_LUGAR_PATIO As String = "Patio"
     Public Shared ReadOnly TIPO_LUGAR_PUERTO As String = "Puerto"
@@ -155,4 +156,19 @@ Public Class Lugar
         Me.Zonas = New List(Of Zona)
         Me.TiposDeMediosDeTrasporteHabilitados = New List(Of TipoMedioTransporte)
     End Sub
+
+    Public Overrides Function Equals(obj As Object) As Boolean
+        Return Equals(TryCast(obj, Lugar))
+    End Function
+
+    Public Overloads Function Equals(other As Lugar) As Boolean Implements IEquatable(Of Lugar).Equals
+        Return other IsNot Nothing AndAlso
+               IDLugar = other.IDLugar
+    End Function
+
+    Public Overrides Function GetHashCode() As Integer
+        Dim hashCode As Long = 465412479
+        hashCode = (hashCode * -1521134295 + IDLugar.GetHashCode()).GetHashCode()
+        Return hashCode
+    End Function
 End Class

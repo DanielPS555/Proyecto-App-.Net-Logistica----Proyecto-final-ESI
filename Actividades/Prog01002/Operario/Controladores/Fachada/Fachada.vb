@@ -65,6 +65,10 @@ Public Class Fachada
         Return ultpos
     End Function
 
+    Public Function MaximoAncestro(idlugar As Integer) As Lugar
+        Return informacionBaseDelLugarPorIdlugar(Persistencia.getInstancia.MaximoAncestro(idlugar))
+    End Function
+
     Public Shared Function ViewOnRow(row As DataRow, ParamArray indices() As Integer) As DataRow
         Dim tdt = New DataTable ' para poder crear un datarow
         For Each i In indices
@@ -82,7 +86,7 @@ Public Class Fachada
         If posicion Is Nothing Then
             Return Nothing
         End If
-        Return ViewOnRow(posicion, 3, 6, 0, 1)
+        Return ViewOnRow(posicion, 3, 6, 0, 1) ' idlugar, nombrelugar, posicion, desde
     End Function
 
     Public Function listarTodosLosPuertos() As DataTable
@@ -382,18 +386,26 @@ Public Class Fachada
         Dim dt1 As DataTable = Persistencia.getInstancia.DevolverInformacionBasicaDeZonasPorID_lugar(lugar.IDLugar)
         For Each r1 As DataRow In dt1.Rows
             'Persistencia.getInstancia.TrabajaEn.Lugar.Zonas.Add(
-            Dim z As New Zona() With {.IDZona = r1.Item(0), .Nombre = r1.Item(1),
+            Dim z As Zona
+            If lugar.Zonas.Where(Function(x) x.IDZona = r1(0)).Count < 1 Then
+                z = New Zona() With {.IDZona = r1.Item(0), .Nombre = r1.Item(1),
                                            .Capacidad = r1.Item(2), .LugarPadre = lugar}
+                lugar.Zonas.Add(z)
+            Else
+                z = lugar.Zonas.Single(Function(x) x.IDZona = r1(0))
+            End If
             Dim dt2 As DataTable = Persistencia.getInstancia.DevolverInformacionDeSubzonaPorIdZona(z.IDZona, lugar.IDLugar)
             For Each r2 As DataRow In dt2.Rows
-                Dim id As Integer = r2.Item(0)
-                Dim nom As String = r2.Item(1)
-                Dim cap As Integer = r2.Item(2)
+                If z.Subzonas.Where(Function(x) x.IDSubzona = r2(0)).Count < 1 Then
+                    Dim id As Integer = r2.Item(0)
+                    Dim nom As String = r2.Item(1)
+                    Dim cap As Integer = r2.Item(2)
 
-                z.Subzonas.Add(New Subzona(id, cap, nom, z))
+                    z.Subzonas.Add(New Subzona(id, cap, nom, z))
+                End If
                 '.ZonaPadre = z
             Next
-            lugar.Zonas.Add(z)
+
         Next
         Return lugar
     End Function

@@ -68,7 +68,7 @@ Public Class ListaZonas
     Private Sub vehi_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles vehi.CellClick
         If e.RowIndex >= 0 Then
             Dim vin = vehi.Rows(e.RowIndex).Cells(1).Value
-            Marco.getInstancia.cargarPanel(New panelInfoVehiculo(vin, False))
+            Marco.getInstancia.cargarPanel(New panelInfoVehiculo(vin))
         End If
     End Sub
 End Class

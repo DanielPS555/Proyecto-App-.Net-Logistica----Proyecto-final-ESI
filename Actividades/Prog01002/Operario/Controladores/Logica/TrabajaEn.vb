@@ -17,6 +17,9 @@ Public Class TrabajaEn
         End Set
     End Property
 
+    Public Overrides Function ToString() As String
+        Return Me.Lugar.Nombre
+    End Function
 
     Private _id As Integer
     Public Property Id() As Integer

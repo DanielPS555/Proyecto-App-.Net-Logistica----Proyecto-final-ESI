@@ -48,3 +48,7 @@ Aplicacion del Administrador
 Aplicacion del Operario
 Aplicacion del Transportista
 Elija su lenguaje
+Nunca
+Debe ingresar al menos una imagen
+Ingrese una descripcion del informe
+Si es un registro de anulacion o actualizacion usted debe elegir un registro al que hacer referencia
