@@ -135,6 +135,6 @@ Partial Class ListaDeTrasportes
     End Sub
     Friend WithEvents trasportes As DataGridView
     Friend WithEvents criterios As ComboBox
-    Friend WithEvents Panel2 As Panel
+    Friend WithEvents Panel2 As Windows.Forms.Panel
     Friend WithEvents buscador As TextBox
 End Class

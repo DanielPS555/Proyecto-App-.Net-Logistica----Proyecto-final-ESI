@@ -156,7 +156,7 @@ Partial Class ListarUsuario
     End Sub
 
     Friend WithEvents criterios As ComboBox
-    Friend WithEvents Panel2 As Panel
+    Friend WithEvents Panel2 As Windows.Forms.Panel
     Friend WithEvents buscador As TextBox
     Friend WithEvents usuarios As DataGridView
     Friend WithEvents Button1 As Button

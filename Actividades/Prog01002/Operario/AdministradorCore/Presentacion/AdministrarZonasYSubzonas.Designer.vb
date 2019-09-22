@@ -38,7 +38,7 @@ Partial Class AdministrarZonasYSubzonas
         Me.nuevazona = New System.Windows.Forms.Button()
         Me.nuevasubzona = New System.Windows.Forms.Button()
         Me.eliminar = New System.Windows.Forms.Button()
-        Me.Button4 = New System.Windows.Forms.Button()
+        Me.aceptar = New System.Windows.Forms.Button()
         Me.Button5 = New System.Windows.Forms.Button()
         Me.Estado = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
@@ -206,18 +206,19 @@ Partial Class AdministrarZonasYSubzonas
         Me.eliminar.Text = "Eliminar subzona"
         Me.eliminar.UseVisualStyleBackColor = True
         '
-        'Button4
+        'aceptar
         '
-        Me.Button4.BackColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(140, Byte), Integer), CType(CType(217, Byte), Integer))
-        Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button4.Font = New System.Drawing.Font("Segoe UI Semilight", 15.0!)
-        Me.Button4.ForeColor = System.Drawing.Color.White
-        Me.Button4.Location = New System.Drawing.Point(663, 599)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(205, 40)
-        Me.Button4.TabIndex = 17
-        Me.Button4.Text = "Aceptar"
-        Me.Button4.UseVisualStyleBackColor = False
+        Me.aceptar.BackColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(140, Byte), Integer), CType(CType(217, Byte), Integer))
+        Me.aceptar.Enabled = False
+        Me.aceptar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.aceptar.Font = New System.Drawing.Font("Segoe UI Semilight", 15.0!)
+        Me.aceptar.ForeColor = System.Drawing.Color.White
+        Me.aceptar.Location = New System.Drawing.Point(663, 599)
+        Me.aceptar.Name = "aceptar"
+        Me.aceptar.Size = New System.Drawing.Size(205, 40)
+        Me.aceptar.TabIndex = 17
+        Me.aceptar.Text = "Aceptar"
+        Me.aceptar.UseVisualStyleBackColor = False
         '
         'Button5
         '
@@ -234,10 +235,11 @@ Partial Class AdministrarZonasYSubzonas
         'Estado
         '
         Me.Estado.AutoSize = True
-        Me.Estado.Font = New System.Drawing.Font("Segoe UI Semilight", 11.0!)
+        Me.Estado.Font = New System.Drawing.Font("Segoe UI Semilight", 9.0!)
+        Me.Estado.ForeColor = System.Drawing.Color.FromArgb(CType(CType(180, Byte), Integer), CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer))
         Me.Estado.Location = New System.Drawing.Point(14, 599)
         Me.Estado.Name = "Estado"
-        Me.Estado.Size = New System.Drawing.Size(100, 20)
+        Me.Estado.Size = New System.Drawing.Size(80, 15)
         Me.Estado.TabIndex = 19
         Me.Estado.Text = "Sin elementos"
         '
@@ -263,7 +265,7 @@ Partial Class AdministrarZonasYSubzonas
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Estado)
         Me.Controls.Add(Me.Button5)
-        Me.Controls.Add(Me.Button4)
+        Me.Controls.Add(Me.aceptar)
         Me.Controls.Add(Me.eliminar)
         Me.Controls.Add(Me.nuevasubzona)
         Me.Controls.Add(Me.nuevazona)
@@ -307,7 +309,7 @@ Partial Class AdministrarZonasYSubzonas
     Friend WithEvents nuevazona As Windows.Forms.Button
     Friend WithEvents nuevasubzona As Windows.Forms.Button
     Friend WithEvents eliminar As Windows.Forms.Button
-    Friend WithEvents Button4 As Windows.Forms.Button
+    Friend WithEvents aceptar As Windows.Forms.Button
     Friend WithEvents Button5 As Windows.Forms.Button
     Friend WithEvents Estado As Windows.Forms.Label
     Friend WithEvents Button1 As Windows.Forms.Button

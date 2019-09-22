@@ -323,7 +323,7 @@ Partial Class NuevaPrecarga
     End Sub
 
     Friend WithEvents clientes As ComboBox
-    Friend WithEvents muestra_color As Panel
+    Friend WithEvents muestra_color As Windows.Forms.Panel
     Friend WithEvents ingresar As Button
     Friend WithEvents color As Button
     Friend WithEvents tipo As ComboBox

@@ -1,12 +1,19 @@
 ﻿Public Class AdministrarZonasYSubzonas
     Private lugar As Controladores.Lugar
-    Public Sub New(lug As Controladores.Lugar)
+    Private padre As Controladores.nuevoLugar
+    Public Sub New(lug As Controladores.Lugar, padre As Controladores.nuevoLugar)
+        If lug.Zonas Is Nothing Then
+            lug.Zonas = New List(Of Controladores.Zona)
+        End If
+        Me.padre = padre
         lugar = lug
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
+
         nombre.Text = lug.Nombre
         capasidadLugar.Text = lug.Capasidad
         cargarDatosZona(0)
+        comprobar()
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
 
     End Sub
@@ -73,6 +80,7 @@
 
         lugar.Zonas.Add(New Controladores.Zona() With {.Nombre = nombre.Text, .Capacidad = capacidad.Value, .LugarPadre = lugar})
         cargarDatosZona(zonas.SelectedIndex)
+        comprobar()
     End Sub
 
     Private Sub Nuevasubzona_Click(sender As Object, e As EventArgs) Handles nuevasubzona.Click
@@ -111,16 +119,15 @@
             suma += z.Capasidad
         Next
 
-        If suma <> lugar.Zonas(zonas.SelectedIndex).Capacidad Then
-            Estado.Text = "La suma de las subzonas deber ser igual a la de la zona"
-        End If
 
         lugar.Zonas(zonas.SelectedIndex).Subzonas.Add(New Controladores.Subzona() With {.Nombre = nombre.Text, .Capasidad = capacidad.Value, .ZonaPadre = lugar.Zonas(zonas.SelectedIndex)})
         CargarDatosSubzona(zonas.SelectedIndex)
+        comprobar()
     End Sub
 
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
         If zonas.SelectedIndex <> -1 Then
+            lugar.Zonas.RemoveAt(zonas.SelectedIndex)
             zonas.Items.RemoveAt(zonas.SelectedIndex)
         Else
             MsgBox("Primero selecione la zona que desea eliminar", MsgBoxStyle.Critical)
@@ -128,14 +135,54 @@
     End Sub
 
     Private Sub Eliminar_Click(sender As Object, e As EventArgs) Handles eliminar.Click
-
+        If zonas.SelectedIndex <> -1 And subzonas.SelectedIndex <> -1 Then
+            lugar.Zonas(zonas.SelectedIndex).Subzonas.RemoveAt(subzonas.SelectedIndex)
+            subzonas.Items.RemoveAt(zonas.SelectedIndex)
+        Else
+            MsgBox("Primero selecione la zona que desea eliminar", MsgBoxStyle.Critical)
+        End If
     End Sub
 
 
     Private Sub comprobar()
-        Dim sumaTotal
-        For Each zona As Controladores.Zona In lugar.Zonas
+        If lugar.Zonas Is Nothing OrElse lugar.Zonas.Count = 0 Then
+            Estado.Text = "Sin elementos"
+            Estado.ForeColor = System.Drawing.Color.FromArgb(180, 20, 20)
+            aceptar.Enabled = False
+            Return
+        End If
 
+        Dim sumaTotal As Integer = 0
+        For Each zona As Controladores.Zona In lugar.Zonas
+            Dim sumaMenor As Integer = 0
+            For Each subzona As Controladores.Subzona In zona.Subzonas
+                sumaTotal += subzona.Capasidad
+                sumaMenor += subzona.Capasidad
+            Next
+            If sumaMenor <> zona.Capacidad Then
+                Estado.Text = $"Las subzonas de la zona:{zona.Nombre} es diferente a la capasidad de la misma"
+                Estado.ForeColor = System.Drawing.Color.FromArgb(180, 20, 20)
+                aceptar.Enabled = False
+                Return
+            End If
         Next
+
+        If sumaTotal <> lugar.Capasidad Then
+            Estado.Text = "La suma de las capasidad de todas las subzonas debe ser igual a la del lugar"
+            Estado.ForeColor = System.Drawing.Color.FromArgb(180, 20, 20)
+            aceptar.Enabled = False
+            Return
+        End If
+
+        Estado.Text = "Aceptado"
+        Estado.ForeColor = System.Drawing.Color.FromArgb(35, 35, 35)
+        aceptar.Enabled = True
+
+    End Sub
+
+    Private Sub Aceptar_Click(sender As Object, e As EventArgs) Handles aceptar.Click
+        padre.devolverlugar(lugar)
+        Controladores.Marco.getInstancia.cerrarPanel(Of AdministrarZonasYSubzonas)()
+        Me.Close()
     End Sub
 End Class

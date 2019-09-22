@@ -1,8 +1,12 @@
 ﻿Imports System.Data.Linq
 Imports System.Windows.Forms
+Imports Controladores
 Imports Controladores.Extenciones
 Public Class NuevoLugar
+    Implements Controladores.nuevoLugar
     Private position As GMap.NET.WindowsForms.GMapMarker = Nothing
+    Private posicionesLugar As Controladores.Lugar
+    Private padreCliente As Controladores.nuevoLugar
 
     Private Sub GMapControl1_MouseUp(sender As Object, e As MouseEventArgs) Handles GMapControl1.MouseUp
         If e.Button <> MouseButtons.Right Then
@@ -138,47 +142,92 @@ Public Class NuevoLugar
 
     Private Zonas As New List(Of Controladores.Zona)
 
-    Private Sub RenderTree()
-        ZonasSubzonas.Nodes.Clear()
-        For Each z In Zonas
-            Dim n = ZonasSubzonas.Nodes.Add($"{z.Nombre} ({z.Capacidad})")
-            n.Tag = z
-            For Each sz In z.Subzonas
-                Dim sn = n.Nodes.Add($"{sz.Nombre} ({sz.Capasidad})")
-                sn.Tag = sz
-            Next
-        Next
+    Public Sub New()
+        InitializeComponent()
+
+
     End Sub
 
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        If nombreZona.Text.Length < 1 Then
-            MsgBox("El nombre de la zona no puede estar vacío")
-            Return
-        ElseIf capacidadZona.Value = 0 Then
-            MsgBox("La capacidad de la zona debe ser > 0")
-            Return
+    Public Sub New(papa As Controladores.nuevoLugar)
+        InitializeComponent()
+        TipoLugar.Enabled = False
+        TipoLugar.SelectedItem = Controladores.Lugar.TIPO_LUGAR_ESTACION
+
+    End Sub
+
+    'Private Sub RenderTree()
+    '    ZonasSubzonas.Nodes.Clear()
+    '    For Each z In Zonas
+    '        Dim n = ZonasSubzonas.Nodes.Add($"{z.Nombre} ({z.Capacidad})")
+    '        n.Tag = z
+    '        For Each sz In z.Subzonas
+    '            Dim sn = n.Nodes.Add($"{sz.Nombre} ({sz.Capasidad})")
+    '            sn.Tag = sz
+    '        Next
+    '    Next
+    'End Sub
+
+    'Private Sub Button2_Click(sender As Object, e As EventArgs)
+    '    If nombreZona.Text.Length < 1 Then
+    '        MsgBox("El nombre de la zona no puede estar vacío")
+    '        Return
+    '    ElseIf capacidadZona.Value = 0 Then
+    '        MsgBox("La capacidad de la zona debe ser > 0")
+    '        Return
+    '    End If
+    '    Dim z As New Controladores.Zona(-1, nombreZona.Text, capacidadZona.Value, Nothing)
+    '    Zonas.Add(z)
+    '    RenderTree()
+    'End Sub
+
+    'Private Sub ZonasSubzonas_AfterSelect(sender As Object, e As TreeViewEventArgs)
+    '    Button3.Enabled = (e.Node.Level = 0)
+    'End Sub
+
+    Private Sub Button3_Click(sender As Object, e As EventArgs)
+        'If nombreZona.Text.Length < 1 Then
+        '    MsgBox("El nombre de la subzona no puede estar vacío")
+        '    Return
+        'ElseIf capacidadZona.Value = 0 Then
+        '    MsgBox("La capacidad de la subzona debe ser > 0")
+        '    Return
+        'End If
+        'Dim n = ZonasSubzonas.SelectedNode
+        'Dim z = CType(n.Tag, Controladores.Zona)
+        'Dim sz = New Controladores.Subzona(-1, capacidadZona.Value, nombreZona.Text, z)
+        'z.Subzonas.Add(sz)
+        'RenderTree()
+    End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles zonasysubzonas.Click
+        If nombreBox.Text.Trim.Length = 0 OrElse capacidad.Value = 0 Then
+
         End If
-        Dim z As New Controladores.Zona(-1, nombreZona.Text, capacidadZona.Value, Nothing)
-        Zonas.Add(z)
-        RenderTree()
+        Controladores.Marco.getInstancia.cargarPanel(Of AdministrarZonasYSubzonas)(New AdministrarZonasYSubzonas(New Lugar() With {
+                                                                                                                .Nombre = nombreBox.Text,
+                                                                                                                .Capasidad = capacidad.Value,
+                                                                                                                .Zonas = New List(Of Zona)}, Me))
     End Sub
 
-    Private Sub ZonasSubzonas_AfterSelect(sender As Object, e As TreeViewEventArgs) Handles ZonasSubzonas.AfterSelect
-        Button3.Enabled = (e.Node.Level = 0)
+    Public Sub devolverlugar(lug As Lugar) Implements Controladores.nuevoLugar.devolverlugar
+        posicionesLugar = lug
+        estadozonas.Text = "Listo"
+        estadozonas.ForeColor = Drawing.Color.FromArgb(35, 35, 35)
     End Sub
 
-    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
-        If nombreZona.Text.Length < 1 Then
-            MsgBox("El nombre de la subzona no puede estar vacío")
-            Return
-        ElseIf capacidadZona.Value = 0 Then
-            MsgBox("La capacidad de la subzona debe ser > 0")
-            Return
+    Private Sub TipoLugar_SelectedIndexChanged(sender As Object, e As EventArgs) Handles TipoLugar.SelectedIndexChanged
+        If TipoLugar.SelectedItem = Controladores.Lugar.TIPO_LUGAR_ESTACION Then
+            zonasysubzonas.Enabled = False
+            estadozonas.Text = "No requerido"
+        Else
+            zonasysubzonas.Enabled = True
+            If posicionesLugar Is Nothing Then
+                estadozonas.Text = "Sin realizar"
+                estadozonas.ForeColor = Drawing.Color.FromArgb(180, 20, 20)
+            Else
+                estadozonas.Text = "Listo"
+                estadozonas.ForeColor = Drawing.Color.FromArgb(35, 35, 35)
+            End If
         End If
-        Dim n = ZonasSubzonas.SelectedNode
-        Dim z = CType(n.Tag, Controladores.Zona)
-        Dim sz = New Controladores.Subzona(-1, capacidadZona.Value, nombreZona.Text, z)
-        z.Subzonas.Add(sz)
-        RenderTree()
     End Sub
 End Class

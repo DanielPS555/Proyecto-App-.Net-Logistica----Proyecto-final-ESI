@@ -9,7 +9,7 @@ Public Class BootstrapAdministrador
                                                  {"Listar Lugares", GetType(AdministradorCore.ListarLugares)},
                                                  {"Listar Usuario", GetType(AdministradorCore.ListarUsuario)},
                                                  {"Nueva Precarga", GetType(AdministradorCore.NuevaPrecarga)},
-                                                 {"Nuevo Cliente", GetType(AdministradorCore.NuevoCliente)},
+                                                 {"Nuevo Cliente", GetType(AdministradorCore.panel)},
                                                  {"Nuevo Lugar", GetType(AdministradorCore.NuevoLugar)},
                                                  {"Lista de medios", GetType(TransportistaCore.ListaDeMediosAutorizados)}
                                              }

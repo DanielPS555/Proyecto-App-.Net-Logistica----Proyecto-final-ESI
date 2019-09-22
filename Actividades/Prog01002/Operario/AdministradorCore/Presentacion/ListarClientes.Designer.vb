@@ -154,7 +154,7 @@ Partial Class ListarClientes
     End Sub
 
     Friend WithEvents clientes As DataGridView
-    Friend WithEvents Panel2 As Panel
+    Friend WithEvents Panel2 As Windows.Forms.Panel
     Friend WithEvents buscador As TextBox
     Friend WithEvents criterios As ComboBox
     Friend WithEvents buscar As Button
