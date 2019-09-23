@@ -168,7 +168,7 @@ Public Class Fachada
 
     Public Function CrearLugar(Nombre As String, Posicion As PointLatLng, Tipo As String,
                           MediosPermitidos() As TipoMedioTransporte, capacidad As Integer,
-                          Zonas As List(Of Zona)) As Lugar
+                          Zonas As List(Of Zona), cliente As Cliente) As Lugar
         Dim LugarID = Persistencia.getInstancia.CrearLugar(Nombre, Posicion, Tipo, MediosPermitidos, capacidad, DevolverUsuarioActual.ID_usuario)
         If LugarID < 0 Then
             Return Nothing
@@ -184,6 +184,9 @@ Public Class Fachada
                 End If
             Next
         Next
+        If cliente IsNot Nothing Then
+            Persistencia.getInstancia.insertPerteneceA(LugarID, cliente.IDCliente)
+        End If
         Return New Lugar(LugarID, capacidad, Posicion.Lng, Posicion.Lat, Nombre, Tipo, DevolverUsuarioActual)
     End Function
 
@@ -1057,6 +1060,10 @@ Public Class Fachada
             lista.Add(New Cliente With {.Nombre = r.Item(2), .IDCliente = r.Item(0)})
         Next
         Return lista
+    End Function
+
+    Public Function nuevoCliente(cliente As Cliente, lugares As List(Of Lugar)
+
     End Function
 
 End Class
