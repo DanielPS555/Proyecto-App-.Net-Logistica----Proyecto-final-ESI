@@ -185,6 +185,7 @@
     </Compile>
     <Compile Include="Persistencia\Extensiones.vb" />
     <Compile Include="Persistencia\Persistencia.vb" />
+    <Compile Include="PICSVReader.vb" />
     <Compile Include="Presentacion_comun\Home.Designer.vb">
       <DependentUpon>Home.vb</DependentUpon>
     </Compile>
@@ -218,6 +219,12 @@
       <DependentUpon>Marco.vb</DependentUpon>
     </Compile>
     <Compile Include="Presentacion_comun\Marco.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion_comun\PanelCSV.Designer.vb">
+      <DependentUpon>PanelCSV.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion_comun\PanelCSV.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Presentacion_comun\Principal.Designer.vb">
@@ -260,6 +267,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion_comun\Marco.resx">
       <DependentUpon>Marco.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion_comun\PanelCSV.resx">
+      <DependentUpon>PanelCSV.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion_comun\Principal.resx">
       <DependentUpon>Principal.vb</DependentUpon>
