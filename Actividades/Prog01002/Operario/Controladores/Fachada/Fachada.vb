@@ -1044,8 +1044,19 @@ Public Class Fachada
 
     Public Sub crearUsuario(user As Usuario, contra As String)
         Persistencia.getInstancia.insertUsuario(user.NombreDeUsuario, Funciones_comunes.ContraseñaHash(contra), user.Email, user.FechaNacimiento, user.Telefono, user.Nombre, user.Apellido, user.sexo, user.Rol, user.Creador.ID_usuario, user.FechaCreacion)
-
     End Sub
 
+    Public Function numeroDeLugarGrandeConEseNombre(nombre As String)
+        Return Persistencia.getInstancia.NumeroDeLugaresNoZonaOSubzonaConEseNombre(nombre)
+    End Function
+
+    Public Function listaClientes() As List(Of Cliente)
+        Dim lista As New List(Of Cliente)
+        Dim dt As DataTable = Persistencia.getInstancia.listaClienteActuales()
+        For Each r As DataRow In dt.Rows
+            lista.Add(New Cliente With {.Nombre = r.Item(2), .IDCliente = r.Item(0)})
+        Next
+        Return lista
+    End Function
 
 End Class

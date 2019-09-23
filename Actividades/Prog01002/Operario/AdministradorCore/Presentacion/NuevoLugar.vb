@@ -7,6 +7,8 @@ Public Class NuevoLugar
     Private position As GMap.NET.WindowsForms.GMapMarker = Nothing
     Private posicionesLugar As Controladores.Lugar
     Private padreCliente As Controladores.nuevoLugar
+    Private tiposDeMEdio As List(Of Controladores.TipoMedioTransporte)
+    Private clientes As New List(Of Controladores.Cliente)
 
     Private Sub GMapControl1_MouseUp(sender As Object, e As MouseEventArgs) Handles GMapControl1.MouseUp
         If e.Button <> MouseButtons.Right Then
@@ -31,47 +33,26 @@ Public Class NuevoLugar
         GMapControl1.MaxZoom = 15
         GMapControl1.MinZoom = 3
         GMapControl1.Refresh()
-        Dim tiposMedios = Controladores.Fachada.getInstancia.TodosLosTiposDeMediosDisponibles
+        tiposDeMEdio = Controladores.Fachada.getInstancia.TodosLosTiposDeMediosDisponibles
         mediosPermitidos.Items.Clear()
-        mediosPermitidos.Items.AddRange(tiposMedios.ToArray)
-        TipoLugar.Items.Clear()
-        TipoLugar.Items.Add(Controladores.Lugar.TIPO_LUGAR_ESTACION)
-        TipoLugar.Items.Add(Controladores.Lugar.TIPO_LUGAR_PATIO)
-        TipoLugar.Items.Add(Controladores.Lugar.TIPO_LUGAR_PUERTO)
+        mediosPermitidos.Items.AddRange(tiposDeMEdio.Select(Function(x) x.Nombre).ToArray)
+        clientes = Controladores.Fachada.getInstancia.listaClientes()
+        dueños.Items.AddRange(clientes.ToArray)
+        dueños.SelectedIndex = 0
     End Sub
 
     Private Sub CrearButton_Click(sender As Object, e As EventArgs) Handles CrearButton.Click
-        If Zonas.Count < 1 Then
-            MsgBox("Debe tener al menos una zona")
+
+        If nombreBox.Text.Trim.Length = 0 Then
+            MsgBox("Debe haber un nombre para el lugar", MsgBoxStyle.Critical)
             Return
         End If
-        Dim sum_zonas As Integer
-        Try
-            sum_zonas = Zonas.Select(Function(x) x.Capacidad).Sum
-        Catch ex As Exception
-            MsgBox("Alguna capacidad de zona no es un número!")
-            Return
-        End Try
-        If sum_zonas <> capacidad.Value Then
-            MsgBox("La suma de las capacidades de las zonas debe ser igual a la capacidad del lugar")
+
+        If Fachada.getInstancia.numeroDeLugarGrandeConEseNombre(nombreBox.Text.Trim) = 1 Then
+            MsgBox("El nombre ya existe para ese lugar", MsgBoxStyle.Critical)
             Return
         End If
-        For Each z In Zonas
-            Dim zonaName = z.Nombre
-            If z.Subzonas.Count < 1 Then
-                MsgBox("Debe tener al menos una subzona por zona")
-                Return
-            End If
-            Try
-                If z.Subzonas.Select(Function(x) x.Capasidad).Sum <> z.Capacidad Then
-                    MsgBox($"La suma de las capacidades de las subzonas debe ser igual a la capacidad de la zona ({zonaName})")
-                    Return
-                End If
-            Catch ex As Exception
-                MsgBox($"Alguna capacidad de subzona en {zonaName} no es un número!")
-                Return
-            End Try
-        Next
+
         If position Is Nothing Then
             MsgBox("Debe establecer la posición del lugar")
             Return
@@ -84,8 +65,53 @@ Public Class NuevoLugar
             MsgBox("Debe permitir al menos un medio de transporte")
             Return
         End If
-        If nombreBox.Text.Length < 1 Then
-            MsgBox("Debe ingresar un nombre para el lugar")
+
+        If Not TipoLugar.SelectedItem = Controladores.Lugar.TIPO_LUGAR_ESTABLECIMIENTO Then
+            If posicionesLugar Is Nothing Then
+                MsgBox("Debe selecionar las zonas y subzonas a ingresar dentro del lugar", MsgBoxStyle.Critical)
+                Return
+            End If
+        End If
+        Dim listTemp As New List(Of Controladores.TipoMedioTransporte)
+        For Each i As Integer In mediosPermitidos.CheckedIndices
+            listTemp.Add(tiposDeMEdio(i))
+        Next
+        If padreCliente Is Nothing Then
+            Try
+
+
+                Dim lugar = Controladores.Fachada.getInstancia.CrearLugar(nombreBox.Text, position.Position, CType(TipoLugar.SelectedItem, String),
+                                                          listTemp.ToArray,
+                                                          capacidad.Value, Zonas)
+                'CREARLO PARA EL CLIENTE
+                If lugar IsNot Nothing Then
+                    Controladores.Marco.getInstancia.cargarPanel(New PanelLugar(lugar.IDLugar))
+                    Controladores.Marco.getInstancia.cerrarPanel(Of NuevoLugar)()
+                Else
+                    MsgBox("No se pudo crear el lugar, por favor verifique la información")
+                End If
+            Catch ex As Controladores.InvalidStateException(Of Integer)
+                MsgBox("Excepción!")
+                MsgBox(ex.Message)
+            End Try
+        Else
+            Try
+                padreCliente.devolverlugar(New Lugar With {.Nombre = nombreBox.Text,
+                                                       .Capasidad = capacidad.Value,
+                                                       .PosicionX = position.Position.Lat,
+                                                       .PosicionY = position.Position.Lng,
+                                                       .Tipo = CType(TipoLugar.SelectedItem, String),
+                                                       .TiposDeMediosDeTrasporteHabilitados = listTemp,
+                                                       .Zonas = If(posicionesLugar Is Nothing, New List(Of Zona), posicionesLugar.Zonas)})
+
+                Controladores.Marco.getInstancia.cerrarPanel(Of NuevoLugar)()
+                Return
+            Catch ex As Exception
+                MsgBox("Ya hay un lugar con este nombre cargado para ese cliente", MsgBoxStyle.Critical)
+                Return
+            End Try
+
+
         End If
         Try
             Dim lugar = Controladores.Fachada.getInstancia.CrearLugar(nombreBox.Text, position.Position, CType(TipoLugar.SelectedItem, String),
@@ -144,69 +170,41 @@ Public Class NuevoLugar
 
     Public Sub New()
         InitializeComponent()
-
+        TipoLugar.Items.Add(Lugar.TIPO_LUGAR_ESTABLECIMIENTO)
+        TipoLugar.Items.Add(Lugar.TIPO_LUGAR_PATIO)
+        TipoLugar.Items.Add(Lugar.TIPO_LUGAR_PUERTO)
+        TipoLugar.SelectedIndex = 0
 
     End Sub
 
     Public Sub New(papa As Controladores.nuevoLugar)
         InitializeComponent()
+        TipoLugar.Items.Add(Lugar.TIPO_LUGAR_ESTABLECIMIENTO)
+        TipoLugar.Items.Add(Lugar.TIPO_LUGAR_PATIO)
+        TipoLugar.Items.Add(Lugar.TIPO_LUGAR_PUERTO)
         TipoLugar.Enabled = False
-        TipoLugar.SelectedItem = Controladores.Lugar.TIPO_LUGAR_ESTACION
-
-    End Sub
-
-    'Private Sub RenderTree()
-    '    ZonasSubzonas.Nodes.Clear()
-    '    For Each z In Zonas
-    '        Dim n = ZonasSubzonas.Nodes.Add($"{z.Nombre} ({z.Capacidad})")
-    '        n.Tag = z
-    '        For Each sz In z.Subzonas
-    '            Dim sn = n.Nodes.Add($"{sz.Nombre} ({sz.Capasidad})")
-    '            sn.Tag = sz
-    '        Next
-    '    Next
-    'End Sub
-
-    'Private Sub Button2_Click(sender As Object, e As EventArgs)
-    '    If nombreZona.Text.Length < 1 Then
-    '        MsgBox("El nombre de la zona no puede estar vacío")
-    '        Return
-    '    ElseIf capacidadZona.Value = 0 Then
-    '        MsgBox("La capacidad de la zona debe ser > 0")
-    '        Return
-    '    End If
-    '    Dim z As New Controladores.Zona(-1, nombreZona.Text, capacidadZona.Value, Nothing)
-    '    Zonas.Add(z)
-    '    RenderTree()
-    'End Sub
-
-    'Private Sub ZonasSubzonas_AfterSelect(sender As Object, e As TreeViewEventArgs)
-    '    Button3.Enabled = (e.Node.Level = 0)
-    'End Sub
-
-    Private Sub Button3_Click(sender As Object, e As EventArgs)
-        'If nombreZona.Text.Length < 1 Then
-        '    MsgBox("El nombre de la subzona no puede estar vacío")
-        '    Return
-        'ElseIf capacidadZona.Value = 0 Then
-        '    MsgBox("La capacidad de la subzona debe ser > 0")
-        '    Return
-        'End If
-        'Dim n = ZonasSubzonas.SelectedNode
-        'Dim z = CType(n.Tag, Controladores.Zona)
-        'Dim sz = New Controladores.Subzona(-1, capacidadZona.Value, nombreZona.Text, z)
-        'z.Subzonas.Add(sz)
-        'RenderTree()
+        TipoLugar.SelectedIndex = 0
+        padreCliente = papa
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles zonasysubzonas.Click
-        If nombreBox.Text.Trim.Length = 0 OrElse capacidad.Value = 0 Then
-
+        If TipoLugar.SelectedIndex = 0 Then
+            MsgBox("Los establesimientos no tiene zonas y subzonas")
         End If
-        Controladores.Marco.getInstancia.cargarPanel(Of AdministrarZonasYSubzonas)(New AdministrarZonasYSubzonas(New Lugar() With {
+
+        If nombreBox.Text.Trim.Length = 0 OrElse capacidad.Value = 0 Then
+            MsgBox("Primero debe elegir el nombre y la capacidad")
+            Return
+        End If
+        If posicionesLugar Is Nothing Then
+            Controladores.Marco.getInstancia.cargarPanel(Of AdministrarZonasYSubzonas)(New AdministrarZonasYSubzonas(New Lugar() With {
                                                                                                                 .Nombre = nombreBox.Text,
                                                                                                                 .Capasidad = capacidad.Value,
                                                                                                                 .Zonas = New List(Of Zona)}, Me))
+        Else
+            Controladores.Marco.getInstancia.cargarPanel(Of AdministrarZonasYSubzonas)(New AdministrarZonasYSubzonas(posicionesLugar, Me))
+        End If
+
     End Sub
 
     Public Sub devolverlugar(lug As Lugar) Implements Controladores.nuevoLugar.devolverlugar
@@ -216,9 +214,10 @@ Public Class NuevoLugar
     End Sub
 
     Private Sub TipoLugar_SelectedIndexChanged(sender As Object, e As EventArgs) Handles TipoLugar.SelectedIndexChanged
-        If TipoLugar.SelectedItem = Controladores.Lugar.TIPO_LUGAR_ESTACION Then
+        If TipoLugar.SelectedIndex = 0 Then
             zonasysubzonas.Enabled = False
             estadozonas.Text = "No requerido"
+            dueños.Enabled = True
         Else
             zonasysubzonas.Enabled = True
             If posicionesLugar Is Nothing Then
@@ -228,6 +227,7 @@ Public Class NuevoLugar
                 estadozonas.Text = "Listo"
                 estadozonas.ForeColor = Drawing.Color.FromArgb(35, 35, 35)
             End If
+            dueños.Enabled = False
         End If
     End Sub
 End Class

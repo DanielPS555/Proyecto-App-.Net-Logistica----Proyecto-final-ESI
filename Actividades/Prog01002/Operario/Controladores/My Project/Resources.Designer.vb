@@ -22,7 +22,7 @@ Namespace My.Resources
     '''<summary>
     '''  Clase de recurso fuertemente tipado, para buscar cadenas traducidas, etc.
     '''</summary>
-    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0"),  _
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0"),  _
      Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.Runtime.CompilerServices.CompilerGeneratedAttribute(),  _
      Global.Microsoft.VisualBasic.HideModuleNameAttribute()>  _
@@ -71,9 +71,48 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Busca una cadena traducida similar a Are you insane or what&apos;s happening to you?
-        '''The bible next to the Movicom
-        '''Can&apos;t you see everything&apos;s upside down?.
+        '''  Busca una cadena traducida similar a Medium list
+        '''Client list
+        '''Place list
+        '''User list
+        '''New preload
+        '''New client
+        '''New place
+        '''Zones list
+        '''Batch list
+        '''Vehicle list
+        '''New batch
+        '''New vehicle
+        '''Incorrect credentials. Try again.
+        '''This application is only for {0}
+        '''The Login class has not been set up correctly
+        '''Connected
+        '''Disconnected
+        '''Username
+        '''Password
+        '''Log in
+        '''Forgot password
+        '''Set up network
+        '''State:
+        '''Designed by
+        '''Home
+        '''About
+        '''My profile
+        '''Log out
+        '''Make
+        '''Model
+        '''Client
+        '''Year
+        '''Type
+        '''Zone
+        '''Subzone
+        '''Place
+        '''Position
+        '''Batch
+        '''Save code
+        '''Read more
+        '''Change batch
+        ''' [resto de la cadena truncado]&quot;;.
         '''</summary>
         Friend ReadOnly Property English() As String
             Get
@@ -142,9 +181,38 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Busca una cadena traducida similar a ¿Estás mal de la cabeza o qué te pasa?
-        '''La biblia junto al Movicom
-        '''¿No ves que está todo al revés?.
+        '''  Busca una cadena traducida similar a Lista de medios
+        '''Listar Clientes
+        '''Listar Lugares
+        '''Listar Usuario
+        '''Nueva Precarga
+        '''Nuevo Cliente
+        '''Nuevo Lugar
+        '''Lista zonas
+        '''Lista lotes
+        '''Lista vehiculos
+        '''Nuevo lote
+        '''Nuevo vehiculo
+        '''Credenciales incorrectas. Intente nuevamente
+        '''Esta aplicacion es unicamente para los {0}
+        '''No se ha configurado correctamente la clase de login
+        '''Conectado
+        '''Desconectado
+        '''Nombre de usuario
+        '''Contraseña
+        '''Ingresar
+        '''Restaurar
+        '''Configurar red
+        '''Estado:
+        '''Diseñado por
+        '''Inicio
+        '''Acerca de
+        '''Mi cuenta
+        '''Cerrar sesión
+        '''Marca
+        '''Modelo
+        '''Cliente
+        '''Añ [resto de la cadena truncado]&quot;;.
         '''</summary>
         Friend ReadOnly Property Spanish() As String
             Get

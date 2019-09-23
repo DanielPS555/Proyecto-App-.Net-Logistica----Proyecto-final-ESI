@@ -2,9 +2,15 @@
 
 Public Class panel
     Implements Controladores.nuevoLugar
-    Private lugares As List(Of Controladores.Lugar)
+    Private lugares As List(Of Controladores.Lugar) = New List(Of Lugar)
     Public Sub devolverlugar(lug As Lugar) Implements Controladores.nuevoLugar.devolverlugar
-        lugares.Add(lug)
+        If lugares.Select(Function(x) x.Nombre).Contains(lug.Nombre) Then
+            Throw New Exception("Ese lugar ya esta cargado")
+            Return
+        Else
+            lugares.Add(lug)
+            listaDeLugares.Items.Add(lug.Nombre)
+        End If
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click

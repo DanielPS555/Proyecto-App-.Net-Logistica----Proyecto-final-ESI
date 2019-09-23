@@ -7,10 +7,11 @@
         End If
         Me.padre = padre
         lugar = lug
+
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
-
-        nombre.Text = lug.Nombre
+        capacidad.Maximum = lug.Capasidad
+        lugarnom.Text = lug.Nombre
         capasidadLugar.Text = lug.Capasidad
         cargarDatosZona(0)
         comprobar()
@@ -31,16 +32,16 @@
     End Sub
 
     Private Sub Zonas_SelectedIndexChanged(sender As Object, e As EventArgs) Handles zonas.SelectedIndexChanged
-        CargarDatosSubzona(0)
+        CargarDatosSubzona()
     End Sub
 
-    Private Sub CargarDatosSubzona(altura As Integer)
+    Private Sub CargarDatosSubzona()
         subzonas.Items.Clear()
         If lugar.Zonas(zonas.SelectedIndex).Subzonas.Count > 0 Then
             For Each subzona As Controladores.Subzona In lugar.Zonas(zonas.SelectedIndex).Subzonas
                 subzonas.Items.Add($"{subzona.Nombre}({subzona.Capasidad})")
             Next
-            subzonas.SelectedIndex = altura
+            subzonas.SelectedIndex = 0
         Else
             subzonas.SelectedIndex = -1
         End If
@@ -48,7 +49,7 @@
 
     Private Sub Nuevazona_Click(sender As Object, e As EventArgs) Handles nuevazona.Click
 
-        If nombre.Text.Trim = 0 Then
+        If nombre.Text.Trim.Length = 0 Then
             MsgBox("El nombre no puede ser vacio", MsgBoxStyle.Critical)
             Return
         End If
@@ -73,7 +74,7 @@
             suma += z.Capacidad
         Next
 
-        If suma > lugar.Capasidad Then
+        If (suma + capacidad.Value) > lugar.Capasidad Then
             MsgBox("La capasidad sumada de las zonas supera a la del lugar", MsgBoxStyle.Critical)
             Return
         End If
@@ -86,10 +87,11 @@
     Private Sub Nuevasubzona_Click(sender As Object, e As EventArgs) Handles nuevasubzona.Click
 
         If zonas.SelectedIndex = -1 Then
-
+            MsgBox("Debe selecionar la zona a la que pertenece", MsgBoxStyle.Critical)
+            Return
         End If
 
-        If nombre.Text.Trim = 0 Then
+        If nombre.Text.Trim.Length = 0 Then
             MsgBox("El nombre no puede ser vacio", MsgBoxStyle.Critical)
             Return
         End If
@@ -119,9 +121,13 @@
             suma += z.Capasidad
         Next
 
+        If lugar.Zonas(zonas.SelectedIndex).Capacidad < (suma + capacidad.Value) Then
+            MsgBox($"La suma de las capasidad de las subzonas en la zona {lugar.Zonas(zonas.SelectedIndex).Nombre} debe no ser mayor a la misma", MsgBoxStyle.Critical)
+            Return
+        End If
 
         lugar.Zonas(zonas.SelectedIndex).Subzonas.Add(New Controladores.Subzona() With {.Nombre = nombre.Text, .Capasidad = capacidad.Value, .ZonaPadre = lugar.Zonas(zonas.SelectedIndex)})
-        CargarDatosSubzona(zonas.SelectedIndex)
+        CargarDatosSubzona()
         comprobar()
     End Sub
 
@@ -132,15 +138,17 @@
         Else
             MsgBox("Primero selecione la zona que desea eliminar", MsgBoxStyle.Critical)
         End If
+        comprobar()
     End Sub
 
     Private Sub Eliminar_Click(sender As Object, e As EventArgs) Handles eliminar.Click
         If zonas.SelectedIndex <> -1 And subzonas.SelectedIndex <> -1 Then
             lugar.Zonas(zonas.SelectedIndex).Subzonas.RemoveAt(subzonas.SelectedIndex)
-            subzonas.Items.RemoveAt(zonas.SelectedIndex)
+            subzonas.Items.RemoveAt(subzonas.SelectedIndex)
         Else
             MsgBox("Primero selecione la zona que desea eliminar", MsgBoxStyle.Critical)
         End If
+        comprobar()
     End Sub
 
 
@@ -182,6 +190,11 @@
 
     Private Sub Aceptar_Click(sender As Object, e As EventArgs) Handles aceptar.Click
         padre.devolverlugar(lugar)
+        Controladores.Marco.getInstancia.cerrarPanel(Of AdministrarZonasYSubzonas)()
+        Me.Close()
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Controladores.Marco.getInstancia.cerrarPanel(Of AdministrarZonasYSubzonas)()
         Me.Close()
     End Sub

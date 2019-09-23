@@ -67,13 +67,14 @@ Partial Class panel
         '
         'listaDeLugares
         '
+        Me.listaDeLugares.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.listaDeLugares.Font = New System.Drawing.Font("Segoe UI Semilight", 15.0!)
         Me.listaDeLugares.ForeColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(119, Byte), Integer), CType(CType(184, Byte), Integer))
         Me.listaDeLugares.FormattingEnabled = True
         Me.listaDeLugares.ItemHeight = 28
         Me.listaDeLugares.Location = New System.Drawing.Point(47, 228)
         Me.listaDeLugares.Name = "listaDeLugares"
-        Me.listaDeLugares.Size = New System.Drawing.Size(569, 340)
+        Me.listaDeLugares.Size = New System.Drawing.Size(569, 338)
         Me.listaDeLugares.TabIndex = 3
         '
         'Label4
@@ -140,6 +141,7 @@ Partial Class panel
         '
         'rutTextBox
         '
+        Me.rutTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.rutTextBox.Font = New System.Drawing.Font("Segoe UI Semilight", 14.0!)
         Me.rutTextBox.Location = New System.Drawing.Point(136, 72)
         Me.rutTextBox.Name = "rutTextBox"
@@ -148,6 +150,7 @@ Partial Class panel
         '
         'nombre
         '
+        Me.nombre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.nombre.Font = New System.Drawing.Font("Segoe UI Semilight", 14.0!)
         Me.nombre.Location = New System.Drawing.Point(136, 124)
         Me.nombre.Name = "nombre"
