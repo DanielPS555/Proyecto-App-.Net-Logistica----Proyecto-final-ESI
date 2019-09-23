@@ -39,6 +39,9 @@ Partial Class NuevoLugar
         Me.zonasysubzonas = New System.Windows.Forms.Button()
         Me.CrearButton = New System.Windows.Forms.Button()
         Me.estadozonas = New System.Windows.Forms.Label()
+        Me.cancelar = New System.Windows.Forms.Button()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.dueños = New System.Windows.Forms.ComboBox()
         CType(Me.capacidad, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -64,7 +67,7 @@ Partial Class NuevoLugar
         '
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Segoe UI Semilight", 14.25!)
-        Me.Label2.Location = New System.Drawing.Point(12, 154)
+        Me.Label2.Location = New System.Drawing.Point(12, 143)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(146, 25)
         Me.Label2.TabIndex = 2
@@ -73,8 +76,8 @@ Partial Class NuevoLugar
         'capacidad
         '
         Me.capacidad.Font = New System.Drawing.Font("Segoe UI Semilight", 14.25!)
-        Me.capacidad.Location = New System.Drawing.Point(195, 152)
-        Me.capacidad.Maximum = New Decimal(New Integer() {10000, 0, 0, 0})
+        Me.capacidad.Location = New System.Drawing.Point(195, 141)
+        Me.capacidad.Maximum = New Decimal(New Integer() {100000, 0, 0, 0})
         Me.capacidad.Name = "capacidad"
         Me.capacidad.Size = New System.Drawing.Size(221, 33)
         Me.capacidad.TabIndex = 3
@@ -117,7 +120,6 @@ Partial Class NuevoLugar
         '
         'TipoLugar
         '
-        Me.TipoLugar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.TipoLugar.Font = New System.Drawing.Font("Segoe UI Semilight", 14.25!)
         Me.TipoLugar.FormattingEnabled = True
         Me.TipoLugar.Location = New System.Drawing.Point(117, 98)
@@ -192,7 +194,6 @@ Partial Class NuevoLugar
         'CrearButton
         '
         Me.CrearButton.BackColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(140, Byte), Integer), CType(CType(217, Byte), Integer))
-        Me.CrearButton.Enabled = False
         Me.CrearButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.CrearButton.Font = New System.Drawing.Font("Segoe UI Semilight", 15.0!)
         Me.CrearButton.ForeColor = System.Drawing.Color.White
@@ -214,12 +215,49 @@ Partial Class NuevoLugar
         Me.estadozonas.TabIndex = 19
         Me.estadozonas.Text = "Sin realizar"
         '
+        'cancelar
+        '
+        Me.cancelar.BackColor = System.Drawing.Color.FromArgb(CType(CType(180, Byte), Integer), CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer))
+        Me.cancelar.Enabled = False
+        Me.cancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.cancelar.Font = New System.Drawing.Font("Segoe UI Semilight", 15.0!)
+        Me.cancelar.ForeColor = System.Drawing.Color.White
+        Me.cancelar.Location = New System.Drawing.Point(455, 598)
+        Me.cancelar.Name = "cancelar"
+        Me.cancelar.Size = New System.Drawing.Size(205, 40)
+        Me.cancelar.TabIndex = 20
+        Me.cancelar.Text = "Cancelar"
+        Me.cancelar.UseVisualStyleBackColor = False
+        Me.cancelar.Visible = False
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Font = New System.Drawing.Font("Segoe UI Semilight", 14.25!)
+        Me.Label5.Location = New System.Drawing.Point(12, 191)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(66, 25)
+        Me.Label5.TabIndex = 21
+        Me.Label5.Text = "Dueño"
+        '
+        'dueños
+        '
+        Me.dueños.Font = New System.Drawing.Font("Segoe UI Semilight", 14.25!)
+        Me.dueños.FormattingEnabled = True
+        Me.dueños.Location = New System.Drawing.Point(117, 188)
+        Me.dueños.Name = "dueños"
+        Me.dueños.Size = New System.Drawing.Size(299, 33)
+        Me.dueños.TabIndex = 22
+        '
         'NuevoLugar
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(880, 650)
+        Me.Controls.Add(Me.dueños)
+        Me.Controls.Add(Me.Label5)
+        Me.Controls.Add(Me.cancelar)
         Me.Controls.Add(Me.estadozonas)
         Me.Controls.Add(Me.CrearButton)
         Me.Controls.Add(Me.zonasysubzonas)
@@ -261,4 +299,7 @@ Partial Class NuevoLugar
     Friend WithEvents zonasysubzonas As Button
     Friend WithEvents CrearButton As Button
     Friend WithEvents estadozonas As Label
+    Friend WithEvents cancelar As Button
+    Friend WithEvents Label5 As Label
+    Friend WithEvents dueños As ComboBox
 End Class

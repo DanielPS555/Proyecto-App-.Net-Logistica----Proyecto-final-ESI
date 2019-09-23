@@ -1483,4 +1483,10 @@ Public Class Persistencia
         Return com.ExecuteScalar
     End Function
 
+    Public Function NumeroDeLugaresNoZonaOSubzonaConEseNombre(nombre As String)
+        Dim com As New OdbcCommand("select count(nombre) from lugar where nombre=? and tipo in ('Patio','Puerto','Establecimiento')", Conexcion)
+        com.CrearParametro(DbType.String, nombre)
+        Return com.ExecuteScalar
+    End Function
+
 End Class
