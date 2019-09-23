@@ -218,7 +218,6 @@ Partial Class NuevoLugar
         'cancelar
         '
         Me.cancelar.BackColor = System.Drawing.Color.FromArgb(CType(CType(180, Byte), Integer), CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer))
-        Me.cancelar.Enabled = False
         Me.cancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cancelar.Font = New System.Drawing.Font("Segoe UI Semilight", 15.0!)
         Me.cancelar.ForeColor = System.Drawing.Color.White

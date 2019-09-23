@@ -3,6 +3,7 @@
 Public Class panel
     Implements Controladores.nuevoLugar
     Private lugares As List(Of Controladores.Lugar) = New List(Of Lugar)
+    Private cliente As New Controladores.Cliente
     Public Sub devolverlugar(lug As Lugar) Implements Controladores.nuevoLugar.devolverlugar
         If lugares.Select(Function(x) x.Nombre).Contains(lug.Nombre) Then
             Throw New Exception("Ese lugar ya esta cargado")
@@ -14,6 +15,16 @@ Public Class panel
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        If nombre.Text.Trim.Length = 0 Then
+            MsgBox("Primero debe ingresar el nombre del cliente", MsgBoxStyle.Critical)
+            Return
+        End If
+
+        If nombre.Text.Trim.Length = 0 Then
+            MsgBox("Primero debe ingresar el nombre del cliente", MsgBoxStyle.Critical)
+            Return
+        End If
+        cliente.Nombre = nombre.Text
         Controladores.Marco.getInstancia.cargarPanel(Of NuevoLugar)(New NuevoLugar(Me))
     End Sub
 
@@ -39,4 +50,8 @@ Public Class panel
 
         'ENVIO EN INFORMACION A LA BBDD
     End Sub
+
+    Public Function DarCliente() As Cliente Implements Controladores.nuevoLugar.DarCliente
+        Return cliente
+    End Function
 End Class

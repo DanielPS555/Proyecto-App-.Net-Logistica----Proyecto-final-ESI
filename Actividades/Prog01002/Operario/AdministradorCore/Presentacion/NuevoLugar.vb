@@ -36,9 +36,8 @@ Public Class NuevoLugar
         tiposDeMEdio = Controladores.Fachada.getInstancia.TodosLosTiposDeMediosDisponibles
         mediosPermitidos.Items.Clear()
         mediosPermitidos.Items.AddRange(tiposDeMEdio.Select(Function(x) x.Nombre).ToArray)
-        clientes = Controladores.Fachada.getInstancia.listaClientes()
-        dueños.Items.AddRange(clientes.ToArray)
-        dueños.SelectedIndex = 0
+
+
     End Sub
 
     Private Sub CrearButton_Click(sender As Object, e As EventArgs) Handles CrearButton.Click
@@ -174,7 +173,9 @@ Public Class NuevoLugar
         TipoLugar.Items.Add(Lugar.TIPO_LUGAR_PATIO)
         TipoLugar.Items.Add(Lugar.TIPO_LUGAR_PUERTO)
         TipoLugar.SelectedIndex = 0
-
+        clientes = Controladores.Fachada.getInstancia.listaClientes()
+        dueños.Items.AddRange(clientes.Select(Function(x) x.Nombre).ToArray)
+        dueños.SelectedIndex = 0
     End Sub
 
     Public Sub New(papa As Controladores.nuevoLugar)
@@ -185,6 +186,10 @@ Public Class NuevoLugar
         TipoLugar.Enabled = False
         TipoLugar.SelectedIndex = 0
         padreCliente = papa
+        dueños.Items.Add(papa.DarCliente.Nombre)
+        dueños.SelectedIndex = 0
+        dueños.Enabled = False
+        cancelar.Visible = True
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles zonasysubzonas.Click
@@ -229,5 +234,14 @@ Public Class NuevoLugar
             End If
             dueños.Enabled = False
         End If
+    End Sub
+
+    Public Function DarCliente() As Cliente Implements Controladores.nuevoLugar.DarCliente
+        Throw New NotImplementedException()
+    End Function
+
+    Private Sub cancelar_Click(sender As Object, e As EventArgs) Handles cancelar.Click
+        Controladores.Marco.getInstancia.cerrarPanel(Of NuevoLugar)()
+        Me.Close()
     End Sub
 End Class
