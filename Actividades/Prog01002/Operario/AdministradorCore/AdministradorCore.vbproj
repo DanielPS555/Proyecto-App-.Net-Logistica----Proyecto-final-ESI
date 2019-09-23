@@ -228,6 +228,12 @@
     <Compile Include="Presentacion\PanelTrasporte.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Presentacion\PrecargaMasiva.Designer.vb">
+      <DependentUpon>PrecargaMasiva.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\PrecargaMasiva.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -283,6 +289,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\PanelTrasporte.resx">
       <DependentUpon>PanelTrasporte.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\PrecargaMasiva.resx">
+      <DependentUpon>PrecargaMasiva.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

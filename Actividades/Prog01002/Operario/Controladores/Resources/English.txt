@@ -52,3 +52,4 @@ Never
 You must upload at least one image
 Insert a description for the report
 If it's an register update/nulling you must select a register to reference.
+Precargas masivas

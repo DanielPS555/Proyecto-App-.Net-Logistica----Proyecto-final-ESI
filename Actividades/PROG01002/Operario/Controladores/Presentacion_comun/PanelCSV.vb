@@ -11,12 +11,14 @@
 
     End Sub
 
-    Public Function ReadCSV(ParamArray columns() As String) As DataTable
+    Public Shared Function ReadCSV(ParamArray columns() As String) As DataTable
         Dim pcsv As New PanelCSV(columns)
+        Dim dt As DataTable = Nothing
         If pcsv.ShowDialog = DialogResult.OK Then
-            Return pcsv.csvreader.ToDataTable
+            dt = pcsv.csvreader.ToDataTable
         End If
-        Return Nothing
+        pcsv.csvreader.Close()
+        Return dt
     End Function
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles OpenBtn.Click

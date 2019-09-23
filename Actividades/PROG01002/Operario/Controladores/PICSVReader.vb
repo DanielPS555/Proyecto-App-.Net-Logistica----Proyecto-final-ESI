@@ -8,6 +8,13 @@ Public Class PICSVReader
     Private ReadOnly Columns As Dictionary(Of Integer, String)
     Private ReadOnly Separator As Char
 
+    Public Sub Close()
+        If StreamReader IsNot Nothing Then
+            StreamReader.Close()
+        Else
+            File?.Close()
+        End If
+    End Sub
 
     Public Function ToDataTable() As DataTable
         If Positions.Where(Function(x) x.Value Is Nothing).Count > 0 Then
@@ -20,15 +27,15 @@ Public Class PICSVReader
         File.Seek(0, SeekOrigin.Begin)
         StreamReader = New StreamReader(File)
         StreamReader.ReadLine()
-        Dim k = TakeRow()
+        Dim k = PeekRow()
         While k IsNot Nothing
             dt.Rows.Add(k)
-            k = TakeRow()
+            k = PeekRow()
         End While
         Return dt
     End Function
 
-    Public Function TakeRow() As String()
+    Public Function PeekRow() As String()
         If Positions.Where(Function(x) x.Value Is Nothing).Count > 0 Then
             Return Nothing
         End If
