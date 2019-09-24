@@ -3,6 +3,7 @@ Imports Controladores.Extenciones.Extensiones
 Public Class Marco
     Private Shared initi As Marco = Nothing
     Public Shared Language As String = Funciones_comunes.Languages(0)
+    Public CurrentPanel As ScreenNode = Nothing
 
     Public Sub New()
         If paneles Is Nothing Then
@@ -86,19 +87,13 @@ Public Class Marco
     End Function
 
 
-    Private Sub cerrarUltimo()
-        If stack.Count = 0 Then
-            Return
+    Private Sub CerrarUltimo()
+        If CurrentPanel IsNot Nothing Then
+            CurrentPanel.Close()
         End If
-        Dim x = stack.Pop
-        contenedor.Controls.Remove(x)
-        x.Close()
     End Sub
 
-    Public stack As New Stack(Of Form)
-
     Private Sub Marco_Load(sender As Object, e As EventArgs) Handles Me.Load
-        Me.cargarPanel(Of Home)(New Home)
     End Sub
 
     Private Shared paneles As Dictionary(Of String, Type)
@@ -128,31 +123,27 @@ Public Class Marco
         Me.Close()
     End Sub
 
-    Private Sub Label1_Click(sender As Object, e As EventArgs) 
-        cerrarUltimo()
+    Private Sub Label1_Click(sender As Object, e As EventArgs)
+        CerrarUltimo()
     End Sub
 
     Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Micuenta.Click
         MsgBox("¡Sin imploementar!")
     End Sub
 
-    Public Function cargarPanelv2(Of T As {Form})(obj As T) As T ' No hay referencias a la función ni encuentro razón por la cual algún panel no debería ser pusheado al stack
-        Return cargarPanel(obj, False)
-    End Function
-
-    Public Function cargarPanel(Of T As {Form})(obj As T, Optional pushToStack As Boolean = True) As T
+    Public Function cargarPanel(Of T As {Form})(obj As T) As T
         cerrarPanel(Of T)()
-        If pushToStack Then
-            stack.Push(obj)
-        End If
 
         obj.TopLevel = False
         obj.FormBorderStyle = FormBorderStyle.None
 
         contenedor.Controls.Add(obj)
-        contenedor.Tag = obj
         obj.Show()
         obj.BringToFront()
+
+        Dim parent = If(Me.CurrentPanel Is Nothing, New Result(Of ScreenNode, Marco)(False, Me), New Result(Of ScreenNode, Marco)(True, CurrentPanel))
+        Dim panelNode = New ScreenNode(parent, obj)
+        CurrentPanel = panelNode
         Return obj
     End Function
 
@@ -161,11 +152,32 @@ Public Class Marco
     End Sub
 
     Private Sub atras_Click(sender As Object, e As EventArgs) Handles atras.Click
-        If stack.Count < 1 Then
-            Return
+        If CurrentPanel IsNot Nothing AndAlso CurrentPanel.Parent.Type Then
+            CurrentPanel.Panel.Visible = False
+            CurrentPanel = CurrentPanel.Parent.A
+            CurrentPanel.Panel.Visible = True
+            CurrentPanel.Panel.BringToFront()
         End If
-        Dim panel = stack.Pop
-        Me.Controls.Remove(panel)
-        panel.Close()
+    End Sub
+
+    Private Sub sigiente_Click(sender As Object, e As EventArgs) Handles sigiente.Click
+        If CurrentPanel IsNot Nothing Then
+            If CurrentPanel.Children.Count = 1 Then
+                CurrentPanel.Panel.Visible = False
+                CurrentPanel = CurrentPanel.Children.Single
+                CurrentPanel.Panel.Visible = True
+            ElseIf CurrentPanel.Children.Count > 1 Then
+                Dim sn = ChildrenPane.GetChild(CurrentPanel)
+                CurrentPanel.Panel.Visible = False
+                Me.CurrentPanel = sn
+                CurrentPanel.Panel.Visible = True
+            End If
+        End If
+    End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        If CurrentPanel IsNot Nothing Then
+            CurrentPanel.Close()
+        End If
     End Sub
 End Class
