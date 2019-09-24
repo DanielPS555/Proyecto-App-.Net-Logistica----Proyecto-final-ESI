@@ -162,7 +162,7 @@ Public Class Persistencia
         inscmd.CrearParametro(posicion.Lat)
         inscmd.CrearParametro(posicion.Lng)
         inscmd.CrearParametro(tipo)
-        inscmd.CrearParametro(capacidad)
+        inscmd.CrearParametro(If(capacidad = 0, DBNull.Value, capacidad))
         inscmd.CrearParametro(usuario)
         Dim lugarid = inscmd.ExecuteScalar
         If lugarid < 0 Then
@@ -1485,6 +1485,18 @@ Public Class Persistencia
 
     Public Function NumeroDeLugaresNoZonaOSubzonaConEseNombre(nombre As String)
         Dim com As New OdbcCommand("select count(nombre) from lugar where nombre=? and tipo in ('Patio','Puerto','Establecimiento')", Conexcion)
+        com.CrearParametro(DbType.String, nombre)
+        Return com.ExecuteScalar
+    End Function
+
+    Public Function UltimoClienteAgregadoPorIDUsuario(usuario As Integer)
+        Dim com As New OdbcCommand("select first 1 idcliente from cliente where UsuarioRegistro=? order by fechaRegistro desc, idcliente desc", Conexcion)
+        com.CrearParametro(DbType.Int32, usuario)
+        Return com.ExecuteScalar
+    End Function
+
+    Public Function NumeroDeClienesConUnNombre(nombre As String) 'Ignoramos mayusculas
+        Dim com As New OdbcCommand("select count(*) from cliente where UPPER(nombre)=UPPER(?)", Conexcion)
         com.CrearParametro(DbType.String, nombre)
         Return com.ExecuteScalar
     End Function

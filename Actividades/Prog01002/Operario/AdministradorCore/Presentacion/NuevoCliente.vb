@@ -9,7 +9,7 @@ Public Class panel
             Throw New Exception("Ese lugar ya esta cargado")
             Return
         Else
-            lugares.Add(lug)
+            cliente.Lugares.Add(lug)
             listaDeLugares.Items.Add(lug.Nombre)
         End If
     End Sub
@@ -32,23 +32,42 @@ Public Class panel
         If listaDeLugares.SelectedIndex = -1 Then
             MsgBox("Debe selecionar un lugar que eliminar")
         Else
-            lugares.RemoveAt(listaDeLugares.SelectedIndex)
+            cliente.Lugares.RemoveAt(listaDeLugares.SelectedIndex)
             listaDeLugares.Items.RemoveAt(listaDeLugares.SelectedIndex)
         End If
     End Sub
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
         If rutTextBox.Text.Trim.Length = 0 OrElse nombre.Text.Trim.Length = 0 Then
-            MsgBox("Error, Rut o nombre del cliente vacios")
+            MsgBox("Error, Rut o nombre del cliente vacios", MsgBoxStyle.Critical)
             Return
         End If
 
-        If listaDeLugares.Items.Count = 0 Then
-            MsgBox("Al menos debe cargar un establecimiento del cliente")
+        If rutTextBox.Text.Trim.Length <> 12 Then
+            MsgBox("El Rut debe ser de 12 dijitos unicamente", MsgBoxStyle.Critical)
             Return
         End If
 
-        'ENVIO EN INFORMACION A LA BBDD
+        If Not Funciones_comunes.soloNumeros(rutTextBox.Text.Trim) Then
+            MsgBox("Debe ser unicamente numerico", MsgBoxStyle.Critical)
+            Return
+        End If
+
+        If Controladores.Fachada.getInstancia.nombredeClienteEnUso(nombre.Text) Then
+            MsgBox("Error, el nombre de este cliente ya esta en uso", MsgBoxStyle.Critical)
+            Return
+        End If
+
+        If cliente.Lugares.Count = 0 Then
+            MsgBox("Al menos debe cargar un establecimiento del cliente", MsgBoxStyle.Critical)
+            Return
+        End If
+        cliente.Nombre = nombre.Text.Trim
+        cliente.RUT = rutTextBox.Text.Trim
+        Fachada.getInstancia.nuevoCliente(cliente)
+        MsgBox("Agregado con exito")
+        Marco.getInstancia.cargarPanel(Of ListarClientes)(New ListarClientes)
+        Me.Close()
     End Sub
 
     Public Function DarCliente() As Cliente Implements Controladores.nuevoLugar.DarCliente

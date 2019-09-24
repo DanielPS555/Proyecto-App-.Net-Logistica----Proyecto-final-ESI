@@ -1062,8 +1062,17 @@ Public Class Fachada
         Return lista
     End Function
 
-    Public Function nuevoCliente(cliente As Cliente, lugares As List(Of Lugar)
+    Public Sub nuevoCliente(cliente As Cliente)
+        Persistencia.getInstancia.insertCliente(cliente.RUT, cliente.Nombre, DateTime.Now, False, Me.DevolverUsuarioActual.ID_usuario)
+        Dim idcliente As Integer = Persistencia.getInstancia.UltimoClienteAgregadoPorIDUsuario(Me.DevolverUsuarioActual.ID_usuario)
+        cliente.IDCliente = idcliente
+        For Each lug As Lugar In cliente.Lugares
+            Me.CrearLugar(lug.Nombre, New PointLatLng(lug.PosicionX, lug.PosicionY), lug.Tipo, lug.TiposDeMediosDeTrasporteHabilitados.ToArray, lug.Capasidad, lug.Zonas, cliente)
+        Next
+    End Sub
 
+    Public Function nombredeClienteEnUso(nombre As String) As Boolean 'True en uso, false= no es uso
+        Return Persistencia.getInstancia.NumeroDeClienesConUnNombre(nombre) = 1
     End Function
 
 End Class

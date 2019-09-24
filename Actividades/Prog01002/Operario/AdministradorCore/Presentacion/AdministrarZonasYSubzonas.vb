@@ -37,6 +37,9 @@
 
     Private Sub CargarDatosSubzona()
         subzonas.Items.Clear()
+        If zonas.SelectedIndex = -1 Then
+            Return
+        End If
         If lugar.Zonas(zonas.SelectedIndex).Subzonas.Count > 0 Then
             For Each subzona As Controladores.Subzona In lugar.Zonas(zonas.SelectedIndex).Subzonas
                 subzonas.Items.Add($"{subzona.Nombre}({subzona.Capasidad})")

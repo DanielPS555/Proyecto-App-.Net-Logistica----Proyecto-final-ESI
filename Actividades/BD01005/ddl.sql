@@ -38,7 +38,7 @@ CREATE table
 	lugar(
 	IDLugar serial primary key,
 	Nombre varchar(100) not null,
-	Capacidad INTEGER NOT null CHECK (Capacidad > 0),
+	Capacidad INTEGER CHECK (Capacidad > 0), /*PUEDE SER NOT NULL POR LOS Establecimiento*/
 	GeoX FLOAT NOT null,
 	GeoY FLOAT NOT null,
 	UsuarioCreador integer NOT null references usuario(IDUsuario),

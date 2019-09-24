@@ -65,9 +65,14 @@ Public Class NuevoLugar
             Return
         End If
 
-        If Not TipoLugar.SelectedItem = Controladores.Lugar.TIPO_LUGAR_ESTABLECIMIENTO Then
+        If Not TipoLugar.SelectedIndex = 0 Then
             If posicionesLugar Is Nothing Then
                 MsgBox("Debe selecionar las zonas y subzonas a ingresar dentro del lugar", MsgBoxStyle.Critical)
+                Return
+            End If
+
+            If capacidad.Value <= 0 Then
+                MsgBox("La capasidad del lugar debe ser mayor a 0", MsgBoxStyle.Critical)
                 Return
             End If
         End If
@@ -81,8 +86,7 @@ Public Class NuevoLugar
 
                 Dim lugar = Controladores.Fachada.getInstancia.CrearLugar(nombreBox.Text, position.Position, CType(TipoLugar.SelectedItem, String),
                                                           listTemp.ToArray,
-                                                          capacidad.Value, Zonas)
-                'CREARLO PARA EL CLIENTE
+                                                          capacidad.Value, posicionesLugar.Zonas, If(TipoLugar.SelectedIndex = 0, clientes(dueños.SelectedIndex), Nothing))
                 If lugar IsNot Nothing Then
                     Controladores.Marco.getInstancia.cargarPanel(New PanelLugar(lugar.IDLugar))
                     Controladores.Marco.getInstancia.cerrarPanel(Of NuevoLugar)()
@@ -112,20 +116,20 @@ Public Class NuevoLugar
 
 
         End If
-        Try
-            Dim lugar = Controladores.Fachada.getInstancia.CrearLugar(nombreBox.Text, position.Position, CType(TipoLugar.SelectedItem, String),
-                                                      mediosPermitidos.CheckedItems.Cast(Of Controladores.TipoMedioTransporte).ToArray,
-                                                      capacidad.Value, Zonas)
-            If lugar IsNot Nothing Then
-                Controladores.Marco.getInstancia.cargarPanel(New PanelLugar(lugar.IDLugar))
-                Controladores.Marco.getInstancia.cerrarPanel(Of NuevoLugar)()
-            Else
-                MsgBox("No se pudo crear el lugar, por favor verifique la información")
-            End If
-        Catch ex As Controladores.InvalidStateException(Of Integer)
-            MsgBox("Excepción!")
-            MsgBox(ex.Message)
-        End Try
+        'Try
+        '    Dim lugar = Controladores.Fachada.getInstancia.CrearLugar(nombreBox.Text, position.Position, CType(TipoLugar.SelectedItem, String),
+        '                                              mediosPermitidos.CheckedItems.Cast(Of Controladores.TipoMedioTransporte).ToArray,
+        '                                              capacidad.Value, Zonas)
+        '    If lugar IsNot Nothing Then
+        '        Controladores.Marco.getInstancia.cargarPanel(New PanelLugar(lugar.IDLugar))
+        '        Controladores.Marco.getInstancia.cerrarPanel(Of NuevoLugar)()
+        '    Else
+        '        MsgBox("No se pudo crear el lugar, por favor verifique la información")
+        '    End If
+        'Catch ex As Controladores.InvalidStateException(Of Integer)
+        '    MsgBox("Excepción!")
+        '    MsgBox(ex.Message)
+        'End Try
     End Sub
 
     Private Sub VScrollBar1_Scroll(sender As Object, e As ScrollEventArgs) Handles VScrollBar1.Scroll
@@ -164,8 +168,6 @@ Public Class NuevoLugar
             MsgBox($"No se pudo encontrar el lugar: {[Enum].GetName(GetType(GMap.NET.GeoCoderStatusCode), gcsc)}")
         End If
     End Sub
-
-    Private Zonas As New List(Of Controladores.Zona)
 
     Public Sub New()
         InitializeComponent()
@@ -223,8 +225,10 @@ Public Class NuevoLugar
             zonasysubzonas.Enabled = False
             estadozonas.Text = "No requerido"
             dueños.Enabled = True
+            capacidad.Enabled = False
         Else
             zonasysubzonas.Enabled = True
+            capacidad.Enabled = True
             If posicionesLugar Is Nothing Then
                 estadozonas.Text = "Sin realizar"
                 estadozonas.ForeColor = Drawing.Color.FromArgb(180, 20, 20)
