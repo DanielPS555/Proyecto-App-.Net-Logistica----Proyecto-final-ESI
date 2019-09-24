@@ -1,13 +1,44 @@
 ﻿Imports System.Drawing
 Imports System.Windows.Forms
 Public Class NuevaPrecarga
-    Private clienteshabi As List(Of Controladores.Cliente)
     Private colorin As Color
-    Public Sub New()
+    Private isCSVPreload As Boolean = False
+
+    Public Sub New(vehiculo As Controladores.Vehiculo)
+        LoadPanel()
+        CopyFromVehiculo(vehiculo)
+        Me.ingresar.Text = "Guardar"
+        isCSVPreload = True
+    End Sub
+
+    Private Sub CopyFromVehiculo(vehiculo As Controladores.Vehiculo)
+        Me.vehiculo = vehiculo
+        Me.vin.Text = vehiculo.VIN
+        Me.modelo.Text = vehiculo.Modelo
+        Me.marca.Text = vehiculo.Marca
+        Me.color.BackColor = vehiculo.Color
+        Me.anio.Text = vehiculo.Año
+        Dim zippedClients = Me.clientes.Items.
+            Cast(Of Controladores.Cliente).
+            Zip(Enumerable.Range(0, clientes.Items.Count),
+                Function(x, y) New Tuple(Of Controladores.Cliente, Integer)(x, y))
+        Dim client = zippedClients.Where(Function(x) x.Item1.Nombre = vehiculo.Cliente?.Nombre).SingleOrDefault
+        If client IsNot Nothing Then
+            Me.clientes.SelectedIndex = client.Item2
+        End If
+        Me.tipo.SelectedItem = vehiculo.Tipo
+    End Sub
+
+    Private Sub LoadPanel()
         InitializeComponent()
         cargarItem()
         cargarAños()
         cargarclientes()
+    End Sub
+
+    Public Sub New()
+        LoadPanel()
+        Me.vehiculo = New Controladores.Vehiculo
     End Sub
 
     Private Sub cargarItem()
@@ -25,11 +56,10 @@ Public Class NuevaPrecarga
 
     Private Sub cargarclientes()
         clientes.Items.Clear()
-        clienteshabi = Controladores.Fachada.getInstancia.ClientesDelSistema()
+        Dim clienteshabi = Controladores.Fachada.getInstancia.ClientesDelSistema()
         For Each ce As Controladores.Cliente In clienteshabi
-            clientes.Items.Add("Nom: " & ce.Nombre & "RUT: " & ce.RUT)
+            clientes.Items.Add(ce)
         Next
-        clientes.SelectedIndex = 0
     End Sub
 
     Private Sub NuevaPrecarga_Paint(sender As Object, e As PaintEventArgs) Handles Me.Paint
@@ -42,38 +72,55 @@ Public Class NuevaPrecarga
         Next
     End Sub
 
-    Private Sub ingresar_Click(sender As Object, e As EventArgs) Handles ingresar.Click
-        Dim vehi As New Controladores.Vehiculo
+    Private vehiculo As Controladores.Vehiculo
 
-        vehi.VIN = vin.Text
-
-        If marca.Text.Trim.Length > 0 Then
-            vehi.Marca = marca.Text.Trim
+    Private Sub Ingresar_Click(sender As Object, e As EventArgs) Handles ingresar.Click
+        If clientes.SelectedItem Is Nothing Then
+            MsgBox("El cliente no puede ser nulo!")
+            Return
         End If
 
-        If modelo.Text.Trim.Length > 0 Then
-            vehi.Modelo = modelo.Text.Trim
+        If Not marcaNoIngrezar.Checked Then
+            If marca.Text.Trim.Length > 0 Then
+                vehiculo.Marca = marca.Text.Trim
+            Else
+                MsgBox("Si no desea ingresar un valor para la marca debe explicitarlo con el checkbox")
+                Return
+            End If
+        End If
+        If Not modeloNoIngrezar.Checked Then
+            If modelo.Text.Trim.Length > 0 Then
+                vehiculo.Modelo = modelo.Text.Trim
+            Else
+                MsgBox("Si no desea ingresar un valor para el modelo debe explicitarlo con el checkbox")
+                Return
+            End If
         End If
 
         If Not añoNoIngrezar.Checked Then
-            vehi.Año = anio.SelectedItem
+            vehiculo.Año = anio.SelectedItem
         Else
-            vehi.Año = 0
+            vehiculo.Año = 0
         End If
 
         If Not tipoNoIngrezar.Checked Then
-            vehi.Tipo = tipo.SelectedItem
+            vehiculo.Tipo = tipo.SelectedItem
         End If
 
         If Not colorNoIngrezar.Checked Then
-            vehi.Color = muestra_color.BackColor
+            vehiculo.Color = muestra_color.BackColor
         End If
 
-        vehi.Cliente = clienteshabi(clientes.SelectedIndex)
+        vehiculo.VIN = vin.Text
 
-        Controladores.Fachada.getInstancia.nuevaPrecarga(vehi, Controladores.Fachada.getInstancia.DevolverUsuarioActual)
+        vehiculo.Cliente = clientes.SelectedItem
 
-        MsgBox("Precarga realizada", MsgBoxStyle.Information)
+
+        If Not isCSVPreload Then
+            Controladores.Fachada.getInstancia.nuevaPrecarga(vehiculo, Controladores.Fachada.getInstancia.DevolverUsuarioActual)
+
+            MsgBox("Precarga realizada", MsgBoxStyle.Information)
+        End If
         Controladores.Marco.getInstancia.cerrarPanel(Of NuevaPrecarga)()
 
     End Sub
@@ -92,21 +139,15 @@ Public Class NuevaPrecarga
             If Controladores.Fachada.getInstancia.verificarVinExistente(vin.Text) Then
                 estado.Text = "Esta Vin ya fue ingrezada"
             Else
-                Dim j As Boolean = False
                 For Each c As Char In vin.Text
                     If Char.IsLetter(c) Then
-                        j = True
-                        Exit For
+                        estado.Text = "Aceptado"
+                        estado.ForeColor = Drawing.Color.FromArgb(19, 176, 25)
+                        Return
                     End If
                 Next
-                If j Then
-                    estado.Text = "Aceptado"
-                    estado.ForeColor = Drawing.Color.FromArgb(19, 176, 25)
-                    Return
-                Else
-                    estado.Text = "Debe incluir al menos una letra"
-                End If
-
+                estado.Text = "Debe incluir al menos una letra"
+                estado.ForeColor = Drawing.Color.FromArgb(255, 0, 0)
             End If
         Else
             estado.Text = $"Faltan {17 - vin.Text.Length} caracteres "

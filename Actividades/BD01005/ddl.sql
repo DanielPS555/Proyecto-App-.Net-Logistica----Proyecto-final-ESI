@@ -88,7 +88,7 @@ CREATE table
 	Modelo varchar(50),
 	Color char(6), /* representación ineficiente; 6char = 6hex = 16^6 = 2^24 < 2^32 = int (4char) < 6char */
 	/* representacion del color por hexadecimal*/
-	Tipo varchar(7) NOT null check(Tipo in ('Auto', 'MiniVan', 'SUV', 'Camion', 'Van')),
+	Tipo varchar(7) check(Tipo in ('Auto', 'MiniVan', 'SUV', 'Camion', 'Van')),
 	Anio integer check(Anio >= 1900 and Anio <= 10000),
 	Cliente Integer NOT null,
 	foreign key(Cliente) references Cliente(IDCliente) ON DELETE CASCADE

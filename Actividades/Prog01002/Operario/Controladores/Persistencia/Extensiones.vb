@@ -6,6 +6,7 @@ Namespace Extenciones
         Public Function DarFormato(fecha As Date?) As String
             Return If(fecha IsNot Nothing, fecha?.ToString("yyyy/MM/dd a la\s HH:mm:ss"), "Nunca")
         End Function
+
         <Runtime.CompilerServices.Extension>
         Public Function UnionListas(Of T1)(Listas As IEnumerable(Of IEnumerable(Of T1))) As IEnumerable(Of T1)
             Dim lista As New List(Of T1)

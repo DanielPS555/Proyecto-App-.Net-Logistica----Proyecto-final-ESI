@@ -1,6 +1,7 @@
 ﻿Public Class PanelCSV
     Private csvreader As PICSVReader
     Private cols() As String
+    Public ColumnCount As Integer? = Nothing
     Private Sub New(ParamArray columns() As String)
 
         ' Esta llamada es exigida por el diseñador.
@@ -17,7 +18,9 @@
         If pcsv.ShowDialog = DialogResult.OK Then
             dt = pcsv.csvreader.ToDataTable
         End If
-        pcsv.csvreader.Close()
+        If pcsv.csvreader IsNot Nothing Then
+            pcsv.csvreader.Close()
+        End If
         Return dt
     End Function
 
@@ -27,6 +30,7 @@
         }
         If ofd.ShowDialog = DialogResult.OK Then
             csvreader = New PICSVReader(ofd.OpenFile, cols)
+            ColumnCount = csvreader.ColumnCount
         End If
         Dim dt As New DataTable("Columnas")
         dt.Columns.Add("Columna")
@@ -50,6 +54,12 @@
     End Sub
 
     Private Sub ColTable_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles ColTable.CellEndEdit
+        Dim dgvc As DataGridViewCell = ColTable.Rows.Item(e.RowIndex).Cells.Item(e.ColumnIndex)
+
+        If dgvc.Value IsNot Nothing And Integer.Parse(dgvc.Value.ToString) > csvreader.ColumnCount - 1 Then
+            dgvc.Value = 0
+            Return
+        End If
         For Each r In ColTable.Rows.Cast(Of DataGridViewRow)
             csvreader.Positions(r.Cells(0).Value) = If(r.Cells(1).Value.ToString.Length < 1, Nothing, r.Cells(1).Value)
         Next

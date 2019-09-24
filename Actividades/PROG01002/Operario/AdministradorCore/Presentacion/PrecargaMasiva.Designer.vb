@@ -25,17 +25,15 @@ Partial Class PrecargaMasiva
         Me.OptionalColumns = New System.Windows.Forms.CheckedListBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.openCSV = New System.Windows.Forms.Button()
-        Me.preloadGrid = New System.Windows.Forms.DataGridView()
-        Me.VIN = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Marca = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Modelo = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        CType(Me.preloadGrid, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.uploadPreloads = New System.Windows.Forms.Button()
+        Me.vehicleBox = New System.Windows.Forms.ListBox()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'OptionalColumns
         '
         Me.OptionalColumns.FormattingEnabled = True
-        Me.OptionalColumns.Items.AddRange(New Object() {"Marca", "Modelo"})
+        Me.OptionalColumns.Items.AddRange(New Object() {"Marca", "Modelo", "Cliente"})
         Me.OptionalColumns.Location = New System.Drawing.Point(12, 25)
         Me.OptionalColumns.Name = "OptionalColumns"
         Me.OptionalColumns.Size = New System.Drawing.Size(149, 64)
@@ -52,6 +50,7 @@ Partial Class PrecargaMasiva
         '
         'openCSV
         '
+        Me.openCSV.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.openCSV.Location = New System.Drawing.Point(12, 95)
         Me.openCSV.Name = "openCSV"
         Me.openCSV.Size = New System.Drawing.Size(149, 23)
@@ -59,48 +58,48 @@ Partial Class PrecargaMasiva
         Me.openCSV.Text = "Abrir CSV"
         Me.openCSV.UseVisualStyleBackColor = True
         '
-        'preloadGrid
+        'uploadPreloads
         '
-        Me.preloadGrid.AllowUserToAddRows = False
-        Me.preloadGrid.AllowUserToDeleteRows = False
-        Me.preloadGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.preloadGrid.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.VIN, Me.Marca, Me.Modelo})
-        Me.preloadGrid.Location = New System.Drawing.Point(12, 150)
-        Me.preloadGrid.Name = "preloadGrid"
-        Me.preloadGrid.Size = New System.Drawing.Size(856, 488)
-        Me.preloadGrid.TabIndex = 3
+        Me.uploadPreloads.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.uploadPreloads.Location = New System.Drawing.Point(738, 25)
+        Me.uploadPreloads.Name = "uploadPreloads"
+        Me.uploadPreloads.Size = New System.Drawing.Size(130, 23)
+        Me.uploadPreloads.TabIndex = 4
+        Me.uploadPreloads.Text = "Subir precargas"
+        Me.uploadPreloads.UseVisualStyleBackColor = True
         '
-        'VIN
+        'vehicleBox
         '
-        Me.VIN.HeaderText = "VIN"
-        Me.VIN.Name = "VIN"
-        Me.VIN.ReadOnly = True
+        Me.vehicleBox.FormattingEnabled = True
+        Me.vehicleBox.Location = New System.Drawing.Point(12, 124)
+        Me.vehicleBox.Name = "vehicleBox"
+        Me.vehicleBox.Size = New System.Drawing.Size(856, 511)
+        Me.vehicleBox.TabIndex = 5
         '
-        'Marca
+        'Label2
         '
-        Me.Marca.HeaderText = "Marca"
-        Me.Marca.Name = "Marca"
-        Me.Marca.ReadOnly = True
-        '
-        'Modelo
-        '
-        Me.Modelo.HeaderText = "Modelo"
-        Me.Modelo.Name = "Modelo"
-        Me.Modelo.ReadOnly = True
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(167, 100)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(354, 13)
+        Me.Label2.TabIndex = 6
+        Me.Label2.Text = "Haga click en los elementos de la lista para acceder al panel de Precarga"
         '
         'PrecargaMasiva
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(880, 650)
-        Me.Controls.Add(Me.preloadGrid)
+        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.vehicleBox)
+        Me.Controls.Add(Me.uploadPreloads)
         Me.Controls.Add(Me.openCSV)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.OptionalColumns)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "PrecargaMasiva"
         Me.Text = "PrecargaMasiva"
-        CType(Me.preloadGrid, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -109,8 +108,7 @@ Partial Class PrecargaMasiva
     Friend WithEvents OptionalColumns As Windows.Forms.CheckedListBox
     Friend WithEvents Label1 As Windows.Forms.Label
     Friend WithEvents openCSV As Windows.Forms.Button
-    Friend WithEvents preloadGrid As Windows.Forms.DataGridView
-    Friend WithEvents VIN As Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Marca As Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Modelo As Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents uploadPreloads As Windows.Forms.Button
+    Friend WithEvents vehicleBox As Windows.Forms.ListBox
+    Friend WithEvents Label2 As Windows.Forms.Label
 End Class

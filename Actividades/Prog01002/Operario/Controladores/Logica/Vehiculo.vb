@@ -27,19 +27,11 @@
         Me.Informes = New List(Of InformeDeDaños)
     End Sub
 
-    Public Sub New(VIN As String, marca As String, modelo As String, año As Integer, tipo As String, color As Drawing.Color, Cliente As Cliente, arribaEn As Lugar)
-        Me.VIN = VIN
-        Me.Marca = marca
-        Me.Modelo = modelo
-        Me.Año = año
-        Me.Tipo = tipo
-        Me.Color = color
-        Me.Cliente = Cliente
-        Me.ArribaEn = arribaEn
-        Me.Informes = New List(Of InformeDeDaños)
-    End Sub
+    Public Overrides Function ToString() As String
+        Return VIN.ToString
+    End Function
 
-    Public Sub New(VIN As String, marca As String, modelo As String, año As Integer, tipo As String, color As Drawing.Color, Cliente As Cliente, arribaEn As Lugar, info As List(Of InformeDeDaños))
+    Public Sub New(VIN As String, marca As String, modelo As String, año As Integer, tipo As String, color As Drawing.Color, Cliente As Cliente, info As List(Of InformeDeDaños))
         Me.VIN = VIN
         Me.Marca = marca
         Me.Modelo = modelo
@@ -47,7 +39,6 @@
         Me.Tipo = tipo
         Me.Color = color
         Me.Cliente = Cliente
-        Me.ArribaEn = arribaEn
         Me.Informes = info
     End Sub
 
@@ -135,7 +126,7 @@
         End Set
     End Property
 
-    Private _Cliente As Cliente
+    Private _Cliente As Cliente = Nothing
     Public Property Cliente() As Cliente
         Get
             Return _Cliente
@@ -155,13 +146,4 @@
         End Set
     End Property
 
-    Private _arribaEn As Lugar
-    Public Property ArribaEn() As Lugar
-        Get
-            Return _arribaEn
-        End Get
-        Set(ByVal value As Lugar)
-            _arribaEn = value
-        End Set
-    End Property
 End Class

@@ -159,4 +159,13 @@ Public Class Marco
     Private Sub b10_Click(sender As Object, e As EventArgs) Handles b10.Click
         Me.cargarPanel(New Home)
     End Sub
+
+    Private Sub atras_Click(sender As Object, e As EventArgs) Handles atras.Click
+        If stack.Count < 1 Then
+            Return
+        End If
+        Dim panel = stack.Pop
+        Me.Controls.Remove(panel)
+        panel.Close()
+    End Sub
 End Class
