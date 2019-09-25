@@ -141,7 +141,7 @@ Public Class crearInformaDeDaños
     End Sub
 
     Private Sub nuevo_Click(sender As Object, e As EventArgs)
-        Controladores.Marco.getInstancia.cargarPanel(New RegistroDeDañoPanel(Me))
+        Controladores.Marco.getInstancia.CargarPanel(New RegistroDeDañoPanel(Me))
     End Sub
 
 
@@ -222,7 +222,7 @@ Public Class crearInformaDeDaños
             MsgBox("Debe selecionar cual registro desea modificar", MsgBoxStyle.Critical)
         Else
             numRegistroAEditar = Registros.SelectedIndex
-            Controladores.Marco.getInstancia.cargarPanel(Of RegistroDeDañoPanel)(New RegistroDeDañoPanel(Me, Info.Registros(Registros.SelectedIndex)))
+            Controladores.Marco.getInstancia.CargarPanel(Of RegistroDeDañoPanel)(New RegistroDeDañoPanel(Me, Info.Registros(Registros.SelectedIndex)))
         End If
     End Sub
 

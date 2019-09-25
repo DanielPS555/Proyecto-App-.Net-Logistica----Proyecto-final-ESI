@@ -88,7 +88,7 @@ Public Class NuevoLugar
                                                           listTemp.ToArray,
                                                           capacidad.Value, posicionesLugar.Zonas, If(TipoLugar.SelectedIndex = 0, clientes(dueños.SelectedIndex), Nothing))
                 If lugar IsNot Nothing Then
-                    Controladores.Marco.getInstancia.cargarPanel(New PanelLugar(lugar.IDLugar))
+                    Controladores.Marco.getInstancia.CargarPanel(New PanelLugar(lugar.IDLugar))
                     Controladores.Marco.getInstancia.cerrarPanel(Of NuevoLugar)()
                 Else
                     MsgBox("No se pudo crear el lugar, por favor verifique la información")
@@ -204,12 +204,12 @@ Public Class NuevoLugar
             Return
         End If
         If posicionesLugar Is Nothing Then
-            Controladores.Marco.getInstancia.cargarPanel(Of AdministrarZonasYSubzonas)(New AdministrarZonasYSubzonas(New Lugar() With {
+            Controladores.Marco.getInstancia.CargarPanel(Of AdministrarZonasYSubzonas)(New AdministrarZonasYSubzonas(New Lugar() With {
                                                                                                                 .Nombre = nombreBox.Text,
                                                                                                                 .Capasidad = capacidad.Value,
                                                                                                                 .Zonas = New List(Of Zona)}, Me))
         Else
-            Controladores.Marco.getInstancia.cargarPanel(Of AdministrarZonasYSubzonas)(New AdministrarZonasYSubzonas(posicionesLugar, Me))
+            Controladores.Marco.getInstancia.CargarPanel(Of AdministrarZonasYSubzonas)(New AdministrarZonasYSubzonas(posicionesLugar, Me))
         End If
 
     End Sub

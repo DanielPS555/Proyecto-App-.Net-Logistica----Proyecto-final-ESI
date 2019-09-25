@@ -43,7 +43,7 @@ Public Class PanelInfoLote
         End If
         Dim row = DataGridView1.Rows(e.RowIndex)
         Dim vehiculo = New panelInfoVehiculo(row.Cells.Cast(Of DataGridViewCell).First.Value)
-        Marco.getInstancia.cargarPanel(Of panelInfoVehiculo)(vehiculo)
+        Marco.getInstancia.CargarPanel(Of panelInfoVehiculo)(vehiculo)
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click

@@ -94,7 +94,7 @@ Public Class Asignacion
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs)
-        Marco.getInstancia.cargarPanel(Of ListaVehiculos)(New ListaVehiculos)
+        Marco.getInstancia.CargarPanel(Of ListaVehiculos)(New ListaVehiculos)
         Me.Close()
     End Sub
 
@@ -116,7 +116,7 @@ Public Class Asignacion
                                                   .IngresadoPor = Fachada.getInstancia.DevolverUsuarioActual,
                                                   .Desde = Date.Now,
                                                   .Vehiculo = vehiculo}, False)
-        Marco.getInstancia.cargarPanel(New ListaVehiculos)
+        Marco.getInstancia.CargarPanel(New ListaVehiculos)
         Me.Close()
     End Sub
 End Class

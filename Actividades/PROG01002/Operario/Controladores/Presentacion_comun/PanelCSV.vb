@@ -31,20 +31,20 @@
         If ofd.ShowDialog = DialogResult.OK Then
             csvreader = New PICSVReader(ofd.OpenFile, cols)
             ColumnCount = csvreader.ColumnCount
-        End If
-        Dim dt As New DataTable("Columnas")
-        dt.Columns.Add("Columna")
-        dt.Columns.Add("Posición", GetType(Integer))
-        For Each p In csvreader.Positions
-            dt.Rows.Add(p.Key, p.Value)
-        Next
-        ColTable.DataSource = dt
-        ColTable.Columns.Item(0).ReadOnly = True
-        If csvreader.Positions.Where(Function(x) x.Value Is Nothing).Count = 0 Then
-            GenDataTable()
-            okbtn.Enabled = True
-        Else
-            okbtn.Enabled = False
+            Dim dt As New DataTable("Columnas")
+            dt.Columns.Add("Columna")
+            dt.Columns.Add("Posición", GetType(Integer))
+            For Each p In csvreader.Positions
+                dt.Rows.Add(p.Key, p.Value)
+            Next
+            ColTable.DataSource = dt
+            ColTable.Columns.Item(0).ReadOnly = True
+            If csvreader.Positions.Where(Function(x) x.Value Is Nothing).Count = 0 Then
+                GenDataTable()
+                okbtn.Enabled = True
+            Else
+                okbtn.Enabled = False
+            End If
         End If
     End Sub
 

@@ -25,7 +25,7 @@ Public Class panel
             Return
         End If
         cliente.Nombre = nombre.Text
-        Controladores.Marco.getInstancia.cargarPanel(Of NuevoLugar)(New NuevoLugar(Me))
+        Controladores.Marco.getInstancia.CargarPanel(Of NuevoLugar)(New NuevoLugar(Me))
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
@@ -66,7 +66,7 @@ Public Class panel
         cliente.RUT = rutTextBox.Text.Trim
         Fachada.getInstancia.nuevoCliente(cliente)
         MsgBox("Agregado con exito")
-        Marco.getInstancia.cargarPanel(Of ListarClientes)(New ListarClientes)
+        Marco.getInstancia.CargarPanel(Of ListarClientes)(New ListarClientes)
         Me.Close()
     End Sub
 

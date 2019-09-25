@@ -32,7 +32,7 @@ Public Class ListaLotes
         If e.RowIndex < 0 Then
             Return
         End If
-        Marco.getInstancia.cargarPanel(New PanelInfoLote(CType(lote.Rows(e.RowIndex).Cells(1).Value, String)))
+        Marco.getInstancia.CargarPanel(New PanelInfoLote(CType(lote.Rows(e.RowIndex).Cells(1).Value, String)))
     End Sub
 
     Private Sub LugarCBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles LugarCBox.SelectedIndexChanged

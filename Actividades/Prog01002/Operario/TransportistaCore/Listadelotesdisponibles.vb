@@ -169,7 +169,7 @@ Public Class Lista_de_trasportes
         MsgBox("El calculo que se realiza para aprobar el transporte no es exsacto, si el medio selecionado realmente no lo soporta cancele el translado el mismo")
         Dim pepe As New PanelTrasporteEnAccion(lotesElegidos, medioSelecionado)
         pepe.Location = New Point(0, 0)
-        Marco.getInstancia.cargarPanel(pepe)
+        Marco.getInstancia.CargarPanel(pepe)
 
     End Sub
 

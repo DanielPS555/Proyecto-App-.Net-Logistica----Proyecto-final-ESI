@@ -45,13 +45,13 @@ Public Class ListaVehiculos
     End Sub
 
     Private Sub nuevo_Click(sender As Object, e As EventArgs)
-        Marco.getInstancia.cargarPanel(Of NuevoVehiculo)(New NuevoVehiculo)
+        Marco.getInstancia.CargarPanel(Of NuevoVehiculo)(New NuevoVehiculo)
     End Sub
 
     Private Sub DataGridView1_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellDoubleClick
         If tipolista Then
             Dim row = DataGridView1.Rows()(e.RowIndex)
-            Marco.getInstancia.cargarPanel(New panelInfoVehiculo(row.Cells(1).Value)).Show()
+            Marco.getInstancia.CargarPanel(New panelInfoVehiculo(row.Cells(1).Value)).Show()
         Else
             Dim eleme As New Asignacion(DataGridView1.Rows(e.RowIndex).Cells(1).Value)
             eleme.ShowDialog()

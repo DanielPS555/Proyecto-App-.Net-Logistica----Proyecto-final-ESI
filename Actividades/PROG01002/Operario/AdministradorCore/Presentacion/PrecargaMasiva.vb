@@ -45,7 +45,7 @@ Public Class PrecargaMasiva
     Private Sub vehicleBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles vehicleBox.SelectedIndexChanged
         Dim v As Vehiculo = vehicleBox.SelectedItem
         If v IsNot Nothing Then
-            Marco.getInstancia.cargarPanel(New NuevaPrecarga(v))
+            Marco.getInstancia.CargarPanel(New NuevaPrecarga(v))
             Verify(vehicleBox.SelectedIndex) = True
         End If
     End Sub

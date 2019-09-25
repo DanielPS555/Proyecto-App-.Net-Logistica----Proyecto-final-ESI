@@ -16,6 +16,6 @@ Public Class ListarClientes
     End Sub
 
     Private Sub Clientes_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles clientes.CellDoubleClick
-        Controladores.Marco.getInstancia.cargarPanel(Of PanelCliente)(New PanelCliente(clientesTabla.Rows(e.RowIndex).Item(0)))
+        Controladores.Marco.getInstancia.CargarPanel(Of PanelCliente)(New PanelCliente(clientesTabla.Rows(e.RowIndex).Item(0)))
     End Sub
 End Class

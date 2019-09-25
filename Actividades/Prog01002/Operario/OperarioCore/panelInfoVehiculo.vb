@@ -331,7 +331,7 @@ Public Class panelInfoVehiculo
     End Sub
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
-        Marco.getInstancia.cargarPanel(Of crearInformaDeDaños)(New crearInformaDeDaños(New Controladores.InformeDeDaños(vehiculo) With {.Creador = Fachada.getInstancia.DevolverUsuarioActual,
+        Marco.getInstancia.CargarPanel(Of crearInformaDeDaños)(New crearInformaDeDaños(New Controladores.InformeDeDaños(vehiculo) With {.Creador = Fachada.getInstancia.DevolverUsuarioActual,
                                                                                                                                         .Lugar = Fachada.getInstancia.DevolverPosicionActual(vehiculo.IdVehiculo).Subzona.ZonaPadre.LugarPadre,
                                                                                                                                         .Fecha = DateTime.Now}, True, Me) With {.ListaDeTodosLosInformes = ListaInformes})
     End Sub
@@ -351,7 +351,7 @@ Public Class panelInfoVehiculo
     End Sub
 
     Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles vermasLote.LinkClicked
-        Marco.getInstancia.cargarPanel(New PanelInfoLote(loteActual.Nombre))
+        Marco.getInstancia.CargarPanel(New PanelInfoLote(loteActual.Nombre))
     End Sub
 
     Private Sub SigienteInforme_Click(sender As Object, e As EventArgs) Handles sigienteInforme.Click
@@ -430,7 +430,7 @@ Public Class panelInfoVehiculo
         If Fachada.getInstancia.DevolverUsuarioActual.ID_usuario = ListaInformes(informeActual).Creador.ID_usuario Then
             'COMPROBAR QUE NO HAYA PASADO MAS DE 2 DIAS 
             If ListaInformes.Count - 1 = informeActual Then
-                Marco.getInstancia.cargarPanel(Of crearInformaDeDaños)(New crearInformaDeDaños(ListaInformes(informeActual), False, Me) With {.ListaDeTodosLosInformes = ListaInformes})
+                Marco.getInstancia.CargarPanel(Of crearInformaDeDaños)(New crearInformaDeDaños(ListaInformes(informeActual), False, Me) With {.ListaDeTodosLosInformes = ListaInformes})
             Else
                 MsgBox("Solo se puede modificar el ultimo informe", MsgBoxStyle.Critical)
             End If

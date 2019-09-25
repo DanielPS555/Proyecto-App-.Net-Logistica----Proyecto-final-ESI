@@ -63,7 +63,7 @@ Public Class PanelTrasporteEnAccion
                     tiempo1.Stop()
                     Marco.getInstancia.Desbloquear()
                     MsgBox("Todos los lotes han sido entregados, entonces el transporte se da por finalizado")
-                    Marco.getInstancia.cargarPanel(Of Lista_de_trasportes)(New Lista_de_trasportes)
+                    Marco.getInstancia.CargarPanel(Of Lista_de_trasportes)(New Lista_de_trasportes)
                     Me.Close()
                     Me.Dispose()
                 End If
@@ -112,7 +112,7 @@ Public Class PanelTrasporteEnAccion
                 End If
             Next
         End If
-        Marco.getInstancia.cargarPanel(Of Lista_de_trasportes)(New Lista_de_trasportes)
+        Marco.getInstancia.CargarPanel(Of Lista_de_trasportes)(New Lista_de_trasportes)
         Marco.getInstancia.Desbloquear()
         Me.Close()
         Me.Dispose()

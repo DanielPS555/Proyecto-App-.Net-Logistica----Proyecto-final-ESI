@@ -14,6 +14,6 @@ Public Class ListaDeTrasportes
     End Sub
 
     Private Sub Trasportes_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles trasportes.CellClick
-        Marco.getInstancia.cargarPanel(Of PanelTrasporte)(New PanelTrasporte(lista.Rows(e.RowIndex).Item(0)))
+        Marco.getInstancia.CargarPanel(Of PanelTrasporte)(New PanelTrasporte(lista.Rows(e.RowIndex).Item(0)))
     End Sub
 End Class

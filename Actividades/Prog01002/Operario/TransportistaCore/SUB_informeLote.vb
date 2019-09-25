@@ -29,7 +29,7 @@ Public Class SUB_informeLote
     End Property
 
     Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
-        Marco.getInstancia.cargarPanel(Of PanelInfoLote)(New PanelInfoLote(Lote.Nombre))
+        Marco.getInstancia.CargarPanel(Of PanelInfoLote)(New PanelInfoLote(Lote.Nombre))
     End Sub
 
     Private Sub destino_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles destino.LinkClicked

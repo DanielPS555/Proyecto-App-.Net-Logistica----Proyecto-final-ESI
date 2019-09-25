@@ -87,7 +87,7 @@ Public Class NuevoVehiculo
 
 
     Private Sub infoDaños_Click(sender As Object, e As EventArgs) Handles infoDaños.Click
-        Marco.getInstancia.cargarPanel(New crearInformaDeDaños(Fachada.getInstancia.id_vehiculoPorVin(buscador.Text.Trim), Me) With {.ListaDeTodosLosInformes = Controladores.Fachada.getInstancia.devolverTodosLosInformesYregistrosCompletos(Vehiculo)})
+        Marco.getInstancia.CargarPanel(New crearInformaDeDaños(Fachada.getInstancia.id_vehiculoPorVin(buscador.Text.Trim), Me) With {.ListaDeTodosLosInformes = Controladores.Fachada.getInstancia.devolverTodosLosInformesYregistrosCompletos(Vehiculo)})
     End Sub
 
     Private Sub Buscar_Click(sender As Object, e As EventArgs) Handles Buscar.Click
@@ -255,7 +255,7 @@ Public Class NuevoVehiculo
                                                   .IngresadoPor = Fachada.getInstancia.DevolverUsuarioActual,
                                                   .Desde = DateTime.Now,
                                                   .Vehiculo = Vehiculo}, False)
-        Marco.getInstancia.cargarPanel(New ListaVehiculos)
+        Marco.getInstancia.CargarPanel(New ListaVehiculos)
         Me.Dispose()
     End Sub
 
@@ -300,7 +300,7 @@ Public Class NuevoVehiculo
 
 
     Private Sub ModificarInforme_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles ModificarInforme.LinkClicked
-        Marco.getInstancia.cargarPanel(Of crearInformaDeDaños)(New crearInformaDeDaños(informe, Me))
+        Marco.getInstancia.CargarPanel(Of crearInformaDeDaños)(New crearInformaDeDaños(informe, Me))
     End Sub
 
     Private Sub EliminarInforme_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles eliminarInforme.LinkClicked

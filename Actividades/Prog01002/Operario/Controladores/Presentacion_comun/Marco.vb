@@ -36,7 +36,7 @@ Public Class Marco
                                           If k.GetParameters.Length < 1 Then
                                               Try
                                                   Dim newForm As Form = k.Invoke(Nothing)
-                                                  Marco.getInstancia.cargarPanel(newForm)
+                                                  Marco.getInstancia.CargarPanel(newForm)
                                                   Return
                                               Catch e As Exception
                                                   Console.WriteLine(e.ToString)
@@ -131,7 +131,7 @@ Public Class Marco
         MsgBox("¡Sin imploementar!")
     End Sub
 
-    Public Function cargarPanel(Of T As {Form})(obj As T) As T
+    Public Function CargarPanel(Of T As {Form})(obj As T) As T
         cerrarPanel(Of T)()
 
         obj.TopLevel = False
@@ -148,7 +148,7 @@ Public Class Marco
     End Function
 
     Private Sub b10_Click(sender As Object, e As EventArgs) Handles b10.Click
-        Me.cargarPanel(New Home)
+        Me.CargarPanel(New Home)
     End Sub
 
     Private Sub atras_Click(sender As Object, e As EventArgs) Handles atras.Click

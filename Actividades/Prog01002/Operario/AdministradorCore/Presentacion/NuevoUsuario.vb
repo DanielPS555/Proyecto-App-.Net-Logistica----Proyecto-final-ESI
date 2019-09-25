@@ -101,7 +101,7 @@
 
         Controladores.Fachada.getInstancia.crearUsuario(user, Contraseña.Text)
         MsgBox("Usuario ingresado con exito", MsgBoxStyle.Information)
-        Controladores.Marco.getInstancia.cargarPanel(Of ListarUsuario)(New ListarUsuario)
+        Controladores.Marco.getInstancia.CargarPanel(Of ListarUsuario)(New ListarUsuario)
 
     End Sub
 

@@ -16,6 +16,6 @@ Public Class ListaDeMediosAutorizados
     End Sub
 
     Private Sub Medios_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles medios.CellContentDoubleClick
-        Marco.getInstancia.cargarPanel(Of PanelMedioDeTrasporte)(New PanelMedioDeTrasporte(dataTabla.Rows(e.RowIndex).Item(0)))
+        Marco.getInstancia.CargarPanel(Of PanelMedioDeTrasporte)(New PanelMedioDeTrasporte(dataTabla.Rows(e.RowIndex).Item(0)))
     End Sub
 End Class
