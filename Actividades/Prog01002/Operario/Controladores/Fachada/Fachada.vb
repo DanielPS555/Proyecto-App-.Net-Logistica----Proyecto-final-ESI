@@ -255,7 +255,7 @@ Public Class Fachada
             If Not tClientList.ContainsKey(i.Item(6)) Then
                 tClientList(i.Item(6)) = New Cliente(i.Item(6), i.Item(7), i.Item(8), i.Item(9))
             End If
-            lst.Add(New Vehiculo(i.Item(0), i.Item(1), i.Item(2), i.Item(3), i.Item(4), Color.FromArgb(Convert.ToInt32("0x" + i.Item(5), 16)), tClientList(i.Item(6))) With {.IdVehiculo = i.Item(10)})
+            lst.Add(New Vehiculo(i.Item(0), i.Item(1), i.Item(2), i.Item(3), i.Item(4), Funciones_comunes.HexToColor(i.Item(5)), tClientList(i.Item(6))) With {.IdVehiculo = i.Item(10)})
         Next
         Return lst
     End Function
@@ -449,7 +449,7 @@ Public Class Fachada
                 color = Color.Empty
             Else
 
-                color = Color.FromArgb(Convert.ToInt32("0x" + r.Item(3), 16))
+                color = Funciones_comunes.HexToColor(r.Item(3))
             End If
 
             Dim vehi As New Vehiculo With {
@@ -892,7 +892,7 @@ Public Class Fachada
     End Function
 
     Public Function nuevaPrecarga(vehi As Vehiculo, user As Usuario) As Boolean
-        Persistencia.getInstancia.insertVehiculo(vehi.VIN, vehi.Marca, vehi.Modelo, vehi.Color.ToArgb.ToString("X6"), vehi.Tipo, vehi.Año, vehi.Cliente.IDCliente)
+        Persistencia.getInstancia.insertVehiculo(vehi.VIN, vehi.Marca, vehi.Modelo, vehi.Color.ToArgb.ToString("X6"), vehi.Tipo, vehi.AñoNullable, vehi.Cliente.IDCliente)
         vehi.IdVehiculo = Persistencia.getInstancia.vinPorId(vehi.VIN)
         Return Persistencia.getInstancia.insertVehiculoIngresa(vehi.IdVehiculo, DateTime.Now, "Precarga", user.ID_usuario)
     End Function

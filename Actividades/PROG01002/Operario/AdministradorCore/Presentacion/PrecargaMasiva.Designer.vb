@@ -33,10 +33,11 @@ Partial Class PrecargaMasiva
         'OptionalColumns
         '
         Me.OptionalColumns.FormattingEnabled = True
-        Me.OptionalColumns.Items.AddRange(New Object() {"Marca", "Modelo", "Cliente"})
+        Me.OptionalColumns.Items.AddRange(New Object() {"Marca", "Modelo", "Cliente", "Color", "Año", "Tipo"})
         Me.OptionalColumns.Location = New System.Drawing.Point(12, 25)
+        Me.OptionalColumns.MultiColumn = True
         Me.OptionalColumns.Name = "OptionalColumns"
-        Me.OptionalColumns.Size = New System.Drawing.Size(149, 64)
+        Me.OptionalColumns.Size = New System.Drawing.Size(509, 64)
         Me.OptionalColumns.TabIndex = 0
         '
         'Label1

@@ -709,14 +709,14 @@ Public Class Persistencia
         Return com.ExecuteNonQuery() > 0
     End Function
 
-    Public Function insertVehiculo(vin As String, marca As String, modelo As String, color As String, tipo As String, anio As Integer, idcliente As Integer)
+    Public Function insertVehiculo(vin As String, marca As String, modelo As String, color As String, tipo As String, anio As Integer?, idcliente As Integer)
         Dim con As New OdbcCommand("insert into vehiculo values (0,?,?,?,?,?,?,?)", Conexcion)
         con.CrearParametro(DbType.String, vin)
-        con.CrearParametro(DbType.String, If(marca Is Nothing, DBNull.Value, marca))
-        con.CrearParametro(DbType.String, If(modelo Is Nothing, DBNull.Value, modelo))
-        con.CrearParametro(DbType.String, If(color Is Nothing, DBNull.Value, color))
-        con.CrearParametro(DbType.String, If(tipo Is Nothing, DBNull.Value, tipo))
-        con.CrearParametro(DbType.Int32, If(anio = 0, DBNull.Value, anio))
+        con.CrearParametro(DbType.String, If(marca, DBNull.Value))
+        con.CrearParametro(DbType.String, If(modelo, DBNull.Value))
+        con.CrearParametro(DbType.String, If(color, DBNull.Value))
+        con.CrearParametro(DbType.String, If(tipo, DBNull.Value))
+        con.CrearParametro(DbType.Int32, If(anio, DBNull.Value))
         con.CrearParametro(DbType.Int32, idcliente)
         Return con.ExecuteNonQuery() > 0
     End Function

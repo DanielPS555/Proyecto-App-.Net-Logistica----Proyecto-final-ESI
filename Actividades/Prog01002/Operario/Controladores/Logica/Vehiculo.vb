@@ -42,19 +42,19 @@
         Me.Informes = info
     End Sub
 
-    Private _año As Integer
+    Private _año As Integer? = Nothing
     Public Property Año() As Integer
         Get
-            Return _año
+            Return If(_año, 0)
         End Get
         Set(ByVal value As Integer)
-            If value >= 0 Then
+            If value >= 1900 AndAlso value <= 10000 Then
                 _año = value
+            ElseIf value = 0 Then
+                _año = Nothing
             Else
-
                 Throw New Exception("Valor del año invalido")
             End If
-
         End Set
     End Property
 
@@ -146,4 +146,9 @@
         End Set
     End Property
 
+    Public ReadOnly Property AñoNullable As Integer?
+        Get
+            Return _año
+        End Get
+    End Property
 End Class

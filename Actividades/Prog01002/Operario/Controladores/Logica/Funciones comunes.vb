@@ -11,6 +11,10 @@ Public Class Funciones_comunes
         Return BCrypt.Net.BCrypt.EnhancedHashPassword(password, hashType:=BCrypt.Net.HashType.SHA256)
     End Function
 
+    Public Shared Function HexToColor(hex As String) As Color
+        Return Color.FromArgb(Convert.ToInt32("0x" + hex, 16))
+    End Function
+
     Private Shared SourceDictionary As SortedList(Of Int32, String)
     Private Shared TargetDictionary As Dictionary(Of String, SortedList(Of Int32, String))
     Public Shared ReadOnly Languages() As String = {"Spanish", "English"}
