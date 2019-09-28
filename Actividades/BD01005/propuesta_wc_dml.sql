@@ -1,3 +1,3 @@
-update cliente set PIN='3321' where nombre='Sevel';
-
-insert into comentarioUsuario values ((select idvehiculo from vehiculo where VIN like '1GH2J83%'), 1, current year to second, "Está sanito don!");
+insert into evento(id, datos, fechaAgregado) values(0,
+'{"tipo": "comentario", "por": "admin", "autor": 1, "idvehiculo": 1, "mensaje": "Está en la zona"}'::json
+, current year to second);

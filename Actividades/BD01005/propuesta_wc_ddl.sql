@@ -1,21 +1,5 @@
-CREATE table comentarioCliente(
-	idvehiculo integer,
-	idcliente integer,
-	fecha datetime year to second default current year to second,
-	comentario varchar(255) not null,
-	foreign key (idvehiculo) references vehiculo(idvehiculo),
-	foreign key (idcliente) references cliente(idcliente),
-	primary key(idvehiculo, idcliente, fecha)
-);
+ALTER table cliente add passphrase char(60);
 
-CREATE table comentarioUsuario (
-	idvehiculo integer,
-	idusuario integer,
-	fecha datetime year to second default current year to second,
-	comentario varchar(255) not null,
-	foreign key (idvehiculo) references vehiculo(idvehiculo),
-	foreign key (idusuario) references usuario(idusuario),
-	primary key(idvehiculo, idusuario, fecha)
-);
-
-ALTER table cliente add PIN char(4);
+insert into evento(id, datos, fechaAgregado) values(0,
+'{"tipo": "modulo", "por": "admin", "autor": 1, "mensaje": "instalacion del sltawc"}'::json
+, current year to second);

@@ -263,3 +263,53 @@ create table
     transportista integer not null,
 	foreign key(transportista) references usuario(idusuario) ON DELETE CASCADE
 );
+
+create table
+	evento(
+	id serial primary key,
+/*
+	json schema, no hay soporte nativo de informix para estos esquemas
+	pero consideramos relvante incluirlo como documentación
+	1 {
+	2   "definitions": {},
+	3   "$schema": "http://json-schema.org/draft-07/schema#",
+	5   "type": "object",
+	6   "title": "Schema de los eventos",
+	7   "required": [
+	8     "tipo",
+	9     "por",
+	10     "autor",
+	11     "mensaje"
+	12   ],
+	13   "properties": {
+	14     "tipo": {
+	15       "$id": "#/properties/tipo",
+	16       "type": "string",
+	17       "pattern": "^(comentario|notificacion|modulo)$"
+	18     },
+	19     "por": {
+	20       "$id": "#/properties/por",
+	21       "type": "string",
+	22       "pattern": "^(admin|transporte|cliente)$"
+	23     },
+	24     "idvehiculo": {
+	25       "$id": "#/properties/idvehiculo",
+	26       "type": "integer"
+	27     },
+	28     "autor": {
+	29       "$id": "#/properties/autor",
+	30       "type": "integer",
+	31       "description": "id de la entidad que causo el evento"
+	32     },
+	33     "mensaje": {
+	34       "$id": "#/properties/mensaje",
+	35       "type": "string",
+	36       "description": "mensaje que reporta el evento (en el caso de los comentarios, este es el contenido de los mismos)",
+	37       "pattern": "^(.*)$"
+	38     }
+	39   }
+	40 }
+*/
+	datos bson not null,
+	fechaAgregado datetime year to second
+);
