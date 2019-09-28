@@ -11,6 +11,21 @@ Public Class Fachada
 
     End Sub
 
+    Public Function VehiculosConMensajes() As List(Of Vehiculo)
+        Dim vehiclelist As DataTable = Persistencia.getInstancia.VehiculosConMensaje()
+        Dim vehicles As New List(Of Vehiculo)
+        For Each r In vehiclelist.Rows.Cast(Of DataRow)
+            vehicles.Add(New Vehiculo(r(0), Nothing, Nothing, 0, Nothing, Nothing, Nothing))
+        Next
+        Return vehicles
+    End Function
+
+    Public Function MensajesVehiculo(v As Vehiculo) As List(Of String)
+        Dim msgs As DataTable = Persistencia.getInstancia.MensajesVehiculo(v.VIN)
+        Dim messages = msgs.Rows.Cast(Of DataRow).Select(Function(x) CType(x(0), String) & ": " & CType(x(2), String))
+        Return messages.ToList
+    End Function
+
     Public Shared Function getInstancia() As Fachada
         If initi Is Nothing Then
             initi = New Fachada()

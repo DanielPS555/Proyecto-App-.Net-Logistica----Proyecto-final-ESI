@@ -141,6 +141,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Presentacion\ConnectionGraph.vb" />
+    <Compile Include="Presentacion\EventMessenger.Designer.vb">
+      <DependentUpon>EventMessenger.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\EventMessenger.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Presentacion\ListaDeTrasportes.Designer.vb">
       <DependentUpon>ListaDeTrasportes.vb</DependentUpon>
     </Compile>
@@ -247,6 +253,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\Conectividad.resx">
       <DependentUpon>Conectividad.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\EventMessenger.resx">
+      <DependentUpon>EventMessenger.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\ListaDeTrasportes.resx">
       <DependentUpon>ListaDeTrasportes.vb</DependentUpon>

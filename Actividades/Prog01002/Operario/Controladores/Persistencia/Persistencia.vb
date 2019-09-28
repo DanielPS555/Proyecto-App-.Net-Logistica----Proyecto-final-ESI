@@ -12,6 +12,39 @@ Public Class Persistencia
 
     Private Shared initi As Persistencia
 
+    Friend Function VehiculosConMensaje() As DataTable
+        Dim selcmd As New OdbcCommand("select unique VIN from vehiculo inner join evento on bson_value_varchar(evento.datos, 'tipo')='comentario' and bson_value_int(evento.datos, 'idvehiculo')=vehiculo.idvehiculo", _con)
+        Dim dt As New DataTable("Vehiculos")
+        dt.Load(selcmd.ExecuteReader)
+        Return dt
+    End Function
+
+    Friend Function MensajesVehiculo(vIN As String) As DataTable
+        Dim selcmd As New OdbcCommand("select * from
+(select usuario.nombredeusuario, vehiculo.vin,
+bson_value_varchar(datos, 'mensaje') as mensaje from evento
+inner join vehiculo on vehiculo.idvehiculo=bson_value_int(datos, 'idvehiculo')
+inner join usuario on usuario.idusuario=bson_value_int(datos, 'autor')
+where bson_value_varchar(datos, 'tipo')='comentario'
+and bson_value_varchar(datos, 'por')='admin'
+and vehiculo.vin=?
+) as admincomments
+union all
+(select cliente.nombre, vehiculo.vin,
+bson_value_varchar(datos, 'mensaje') as mensaje from evento
+inner join vehiculo on vehiculo.idvehiculo=bson_value_int(datos, 'idvehiculo')
+inner join cliente on cliente.idcliente=bson_value_int(datos, 'autor')
+where bson_value_varchar(datos, 'tipo')='comentario'
+and bson_value_varchar(datos, 'por')='cliente'
+and vehiculo.vin=?
+)", _con)
+        selcmd.CrearParametro(DbType.String, vIN)
+        selcmd.CrearParametro(DbType.String, vIN)
+        Dim dt As New DataTable
+        dt.Load(selcmd.ExecuteReader)
+        Return dt
+    End Function
+
     Private _con As OdbcConnection
     Public ReadOnly Property Conexcion() As OdbcConnection
         Get

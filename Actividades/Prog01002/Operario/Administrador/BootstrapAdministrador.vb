@@ -13,7 +13,8 @@ Public Class BootstrapAdministrador
                   {"Nuevo Cliente", GetType(AdministradorCore.panel)},
                   {"Nuevo Lugar", GetType(AdministradorCore.NuevoLugar)},
                   {"Lista de medios", GetType(TransportistaCore.ListaDeMediosAutorizados)},
-                  {"Precargas masivas", GetType(AdministradorCore.PrecargaMasiva)}
+                  {"Precargas masivas", GetType(AdministradorCore.PrecargaMasiva)},
+                  {"Mensajes", GetType(AdministradorCore.EventMessenger)}
                 }
                 Controladores.Marco.SetButtons(paneles)
                 Controladores.Marco.ReiniciarSingleton()
