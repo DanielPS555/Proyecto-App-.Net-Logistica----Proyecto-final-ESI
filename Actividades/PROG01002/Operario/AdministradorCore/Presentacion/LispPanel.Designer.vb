@@ -39,8 +39,9 @@ Partial Class LispPanel
         'inputLine
         '
         Me.inputLine.Location = New System.Drawing.Point(12, 550)
+        Me.inputLine.Multiline = True
         Me.inputLine.Name = "inputLine"
-        Me.inputLine.Size = New System.Drawing.Size(680, 20)
+        Me.inputLine.Size = New System.Drawing.Size(775, 88)
         Me.inputLine.TabIndex = 1
         '
         'insertButton

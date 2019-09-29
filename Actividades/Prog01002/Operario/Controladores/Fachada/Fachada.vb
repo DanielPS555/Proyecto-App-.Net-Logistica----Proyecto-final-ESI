@@ -28,7 +28,7 @@ Public Class Fachada
         Return messages.Select(Function(x) x.Item1).ToList
     End Function
 
-    Public Sub EnviarMensaje(usuarioEnvia As Usuario, vehiculo As Vehiculo, mensaje As String)
+    Public Function EnviarMensaje(usuarioEnvia As Usuario, vehiculo As Vehiculo, mensaje As String)
         Dim jsonObject As New Dictionary(Of String, Object)
         jsonObject("tipo") = "comentario"
         jsonObject("por") = "admin"
@@ -36,8 +36,8 @@ Public Class Fachada
         jsonObject("idvehiculo") = vehiculo.IdVehiculo
         jsonObject("mensaje") = mensaje
         Dim jsonString = Newtonsoft.Json.JsonConvert.SerializeObject(jsonObject)
-        Persistencia.getInstancia.Evento(jsonString)
-    End Sub
+        Return Persistencia.getInstancia.Evento(jsonString)
+    End Function
 
     Public Shared Function getInstancia() As Fachada
         If initi Is Nothing Then
