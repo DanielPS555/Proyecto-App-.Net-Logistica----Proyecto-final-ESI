@@ -11,19 +11,21 @@ Public Class Fachada
 
     End Sub
 
-    Public Function VehiculosConMensajes() As List(Of Vehiculo)
+    Public Function VehiculosConMensajes() As List(Of Tuple(Of Vehiculo, Boolean))
         Dim vehiclelist As DataTable = Persistencia.getInstancia.VehiculosConMensaje()
-        Dim vehicles As New List(Of Vehiculo)
+        Dim vehicles As New List(Of Tuple(Of Vehiculo, Boolean))
         For Each r In vehiclelist.Rows.Cast(Of DataRow)
-            vehicles.Add(New Vehiculo(r(0), Nothing, Nothing, 0, Nothing, Nothing, Nothing))
+            vehicles.Add(New Tuple(Of Vehiculo, Boolean)(New Vehiculo(r(0), Nothing, Nothing, 0, Nothing, Nothing, Nothing), r(1) > 0))
         Next
         Return vehicles
     End Function
 
     Public Function MensajesVehiculo(v As Vehiculo) As List(Of String)
         Dim msgs As DataTable = Persistencia.getInstancia.MensajesVehiculo(v.VIN)
-        Dim messages = msgs.Rows.Cast(Of DataRow).Select(Function(x) CType(x(0), String) & ": " & CType(x(2), String))
-        Return messages.ToList
+        Dim messages = msgs.Rows.Cast(Of DataRow).Select(Function(x) CType(x(0), String) & ": " & CType(x(2), String)).Zip(Enumerable.Range(0, msgs.Rows.Count), Function(x, y) New Tuple(Of String, Single)(x, y)).ToList
+        messages.AddRange(Enumerable.Range(0, msgs.Rows.Count).Where(Function(x) x > 0 AndAlso msgs.Rows(x).Item(3) AndAlso Not msgs.Rows(x - 1).Item(3)).Select(Function(x) New Tuple(Of String, Single)("----------", x - 0.5!)))
+        messages.Sort(Function(x, y) x.Item2.CompareTo(y.Item2))
+        Return messages.Select(Function(x) x.Item1)
     End Function
 
     Public Shared Function getInstancia() As Fachada

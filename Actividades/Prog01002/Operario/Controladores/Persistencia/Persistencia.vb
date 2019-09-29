@@ -13,7 +13,13 @@ Public Class Persistencia
     Private Shared initi As Persistencia
 
     Friend Function VehiculosConMensaje() As DataTable
-        Dim selcmd As New OdbcCommand("select unique VIN from vehiculo inner join evento on bson_value_varchar(evento.datos, 'tipo')='comentario' and bson_value_int(evento.datos, 'idvehiculo')=vehiculo.idvehiculo", _con)
+        Dim selcmd As New OdbcCommand("select vin, count(datos) from vehiculo left join evento
+on vehiculo.idvehiculo=bson_value_int(datos,'idvehiculo')
+and nvl(bson_value_boolean(datos, 'leido'), 'f')='f'
+and bson_value_varchar(datos, 'tipo')='comentario'
+and bson_value_varchar(datos, 'por')='cliente'
+group by vin
+", _con)
         Dim dt As New DataTable("Vehiculos")
         dt.Load(selcmd.ExecuteReader)
         Return dt
@@ -22,7 +28,7 @@ Public Class Persistencia
     Friend Function MensajesVehiculo(vIN As String) As DataTable
         Dim selcmd As New OdbcCommand("select * from
 (select usuario.nombredeusuario, vehiculo.vin,
-bson_value_varchar(datos, 'mensaje') as mensaje from evento
+bson_value_varchar(datos, 'mensaje') as mensaje, nvl(bson_value_boolean(datos, 'leido'), 'f')::boolean as leido from evento
 inner join vehiculo on vehiculo.idvehiculo=bson_value_int(datos, 'idvehiculo')
 inner join usuario on usuario.idusuario=bson_value_int(datos, 'autor')
 where bson_value_varchar(datos, 'tipo')='comentario'
@@ -31,7 +37,7 @@ and vehiculo.vin=?
 ) as admincomments
 union all
 (select cliente.nombre, vehiculo.vin,
-bson_value_varchar(datos, 'mensaje') as mensaje from evento
+bson_value_varchar(datos, 'mensaje') as mensaje, nvl(bson_value_boolean(datos, 'leido'), 'f')::boolean as leido from evento
 inner join vehiculo on vehiculo.idvehiculo=bson_value_int(datos, 'idvehiculo')
 inner join cliente on cliente.idcliente=bson_value_int(datos, 'autor')
 where bson_value_varchar(datos, 'tipo')='comentario'
@@ -42,6 +48,8 @@ and vehiculo.vin=?
         selcmd.CrearParametro(DbType.String, vIN)
         Dim dt As New DataTable
         dt.Load(selcmd.ExecuteReader)
+        Dim updatecmd As New OdbcCommand("update evento set datos=bson_update(datos, '{""$set"":{""leido"":true}}') where bson_value_varchar(datos, 'tipo')='comentario' and bson_value_varchar(datos, 'por')='cliente';", _con)
+        updatecmd.ExecuteNonQuery()
         Return dt
     End Function
 

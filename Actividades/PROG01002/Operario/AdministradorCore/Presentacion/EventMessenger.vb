@@ -7,6 +7,6 @@
     Private Sub vehicleList_SelectedIndexChanged(sender As Object, e As EventArgs) Handles vehicleList.SelectedIndexChanged
         Dim v = CType(vehicleList.SelectedItem, Controladores.Vehiculo)
         Dim msgs As List(Of String) = Controladores.Fachada.getInstancia.MensajesVehiculo(v)
-        RichTextBox1.Text = String.Join(",", msgs.ToArray().Cast(Of Object).ToArray)
+        RichTextBox1.Text = String.Join(vbNewLine, msgs.ToArray().Cast(Of Object).ToArray)
     End Sub
 End Class
