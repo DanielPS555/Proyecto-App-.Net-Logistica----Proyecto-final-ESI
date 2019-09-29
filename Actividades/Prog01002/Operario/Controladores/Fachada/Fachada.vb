@@ -23,10 +23,21 @@ Public Class Fachada
     Public Function MensajesVehiculo(v As Vehiculo) As List(Of String)
         Dim msgs As DataTable = Persistencia.getInstancia.MensajesVehiculo(v.VIN)
         Dim messages = msgs.Rows.Cast(Of DataRow).Select(Function(x) CType(x(0), String) & ": " & CType(x(2), String)).Zip(Enumerable.Range(0, msgs.Rows.Count), Function(x, y) New Tuple(Of String, Single)(x, y)).ToList
-        messages.AddRange(Enumerable.Range(0, msgs.Rows.Count).Where(Function(x) x > 0 AndAlso msgs.Rows(x).Item(3) AndAlso Not msgs.Rows(x - 1).Item(3)).Select(Function(x) New Tuple(Of String, Single)("----------", x - 0.5!)))
+        messages.AddRange(Enumerable.Range(0, msgs.Rows.Count).Where(Function(x) x > 0 AndAlso Not msgs.Rows(x).Item(3) AndAlso msgs.Rows(x - 1).Item(3)).Select(Function(x) New Tuple(Of String, Single)("----NUEVO(S) MENSAJE(S)----", x - 0.5!)))
         messages.Sort(Function(x, y) x.Item2.CompareTo(y.Item2))
-        Return messages.Select(Function(x) x.Item1)
+        Return messages.Select(Function(x) x.Item1).ToList
     End Function
+
+    Public Sub EnviarMensaje(usuarioEnvia As Usuario, vehiculo As Vehiculo, mensaje As String)
+        Dim jsonObject As New Dictionary(Of String, Object)
+        jsonObject("tipo") = "comentario"
+        jsonObject("por") = "admin"
+        jsonObject("autor") = usuarioEnvia.ID_usuario
+        jsonObject("idvehiculo") = vehiculo.IdVehiculo
+        jsonObject("mensaje") = mensaje
+        Dim jsonString = Newtonsoft.Json.JsonConvert.SerializeObject(jsonObject)
+        Persistencia.getInstancia.Evento(jsonString)
+    End Sub
 
     Public Shared Function getInstancia() As Fachada
         If initi Is Nothing Then
@@ -272,7 +283,7 @@ Public Class Fachada
             If Not tClientList.ContainsKey(i.Item(6)) Then
                 tClientList(i.Item(6)) = New Cliente(i.Item(6), i.Item(7), i.Item(8), i.Item(9))
             End If
-            lst.Add(New Vehiculo(i.Item(0), i.Item(1), i.Item(2), i.Item(3), i.Item(4), Funciones_comunes.HexToColor(i.Item(5)), tClientList(i.Item(6))) With {.IdVehiculo = i.Item(10)})
+            lst.Add(New Vehiculo(i.Item(0), Funciones_comunes.AutoNull(Of String)(i.Item(1)), Funciones_comunes.AutoNull(Of String)(i.Item(2)), If(Funciones_comunes.AutoNull(Of Integer?)(i.Item(3)), 0), Funciones_comunes.AutoNull(Of String)(i.Item(4)), Funciones_comunes.HexToColor(Funciones_comunes.AutoNull(Of String)(i.Item(5))), tClientList(i.Item(6))) With {.IdVehiculo = i.Item(10)})
         Next
         Return lst
     End Function

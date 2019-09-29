@@ -89,6 +89,9 @@
     <Reference Include="QRCoder">
       <HintPath>..\QRCoder.dll</HintPath>
     </Reference>
+    <Reference Include="schemy">
+      <HintPath>..\schemy.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Linq" />
@@ -113,6 +116,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LispBox.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -145,6 +149,12 @@
       <DependentUpon>EventMessenger.vb</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\EventMessenger.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\LispPanel.Designer.vb">
+      <DependentUpon>LispPanel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\LispPanel.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Presentacion\ListaDeTrasportes.Designer.vb">
@@ -256,6 +266,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\EventMessenger.resx">
       <DependentUpon>EventMessenger.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\LispPanel.resx">
+      <DependentUpon>LispPanel.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\ListaDeTrasportes.resx">
       <DependentUpon>ListaDeTrasportes.vb</DependentUpon>

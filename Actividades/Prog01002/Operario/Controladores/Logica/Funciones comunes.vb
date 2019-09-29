@@ -12,6 +12,9 @@ Public Class Funciones_comunes
     End Function
 
     Public Shared Function HexToColor(hex As String) As Color
+        If hex Is Nothing Then
+            Return Nothing
+        End If
         Return Color.FromArgb(Convert.ToInt32("0x" + hex, 16))
     End Function
 
