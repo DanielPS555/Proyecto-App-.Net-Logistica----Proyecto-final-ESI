@@ -1,8 +1,11 @@
-﻿Public Class SUB_Usuario
+﻿Imports Controladores
+
+Public Class SUB_Usuario
+    Implements AlfaInterface
     Private user As Usuario
     Private padre As Alfa
 
-    Public Sub New(usuario As Usuario, padre As Alfa)
+    Public Sub New(usuario As Usuario)
 
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
@@ -16,27 +19,26 @@
                 rol.Text = "Transportista"
         End Select
         user = usuario
-        ancho = padre.tamaño.Width
-        Me.padre = padre
+
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
 
     End Sub
 
-    Public Property ancho() As Integer
-        Get
-            Return Me.Width
-        End Get
-        Set(ByVal value As Integer)
-            Me.Width = value
-        End Set
-    End Property
+    Public Sub darAncho(x As Integer) Implements AlfaInterface.darAncho
+        Me.Width = x
+    End Sub
+
+    Public Sub darAlfa(alfa As Alfa) Implements AlfaInterface.darAlfa
+        darAncho(alfa.tamaño.Width)
+        Me.padre = alfa
+    End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         padre.devolver(user)
     End Sub
 
-    Public Function tostring() As String
-        Return user.NombreDeUsuario
-    End Function
 
+    Public Function dameForm() As Form Implements AlfaInterface.dameForm
+        Return Me
+    End Function
 End Class

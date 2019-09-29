@@ -227,6 +227,7 @@
     <Compile Include="Presentacion_comun\Marco.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Presentacion_comun\PanelAlfa\AlfaInterface.vb" />
     <Compile Include="Presentacion_comun\PanelAlfa\SUB_Cliente.Designer.vb">
       <DependentUpon>SUB_Cliente.vb</DependentUpon>
     </Compile>

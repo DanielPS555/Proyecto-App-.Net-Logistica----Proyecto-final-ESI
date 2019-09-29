@@ -19,7 +19,8 @@ Public Class ListarUsuario
     Private Sub carardatos()
         Usuariostabla = Controladores.Fachada.getInstancia.todosLosUsuarios
         For Each user As DataRow In Usuariostabla.Rows
-            alfa.NuevoUsuario(New Controladores.Usuario With {.ID_usuario = user.Item(0), .NombreDeUsuario = user.Item(1), .Rol = user.Item(4)}, False)
+            Dim elemento As New Controladores.SUB_Usuario(New Controladores.Usuario With {.ID_usuario = user.Item(0), .NombreDeUsuario = user.Item(1), .Rol = user.Item(4)})
+            alfa.Nuevo(elemento, False)
         Next
         alfa.render()
         'usuarios.DataSource = Usuariostabla
