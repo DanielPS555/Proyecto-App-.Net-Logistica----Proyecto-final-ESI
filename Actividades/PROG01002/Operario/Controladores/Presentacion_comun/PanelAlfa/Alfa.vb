@@ -35,35 +35,15 @@
         End Select
     End Sub
 
-    Public Sub NuevoUsuario(user As Usuario, renderAutomatico As Boolean)
-
-        Dim subUser As New SUB_Usuario(user, Me)
-        lista.Add(subUser)
+    Public Sub Nuevo(elemento As AlfaInterface, renderAutomatico As Boolean)
+        elemento.darAlfa(Me)
+        lista.Add(elemento.dameForm)
         If renderAutomatico Then
             render()
         End If
 
     End Sub
 
-    Public Sub NuevoCliente(client As Cliente)
-
-    End Sub
-
-    Public Sub NuevoLote(lote As Lote)
-
-    End Sub
-
-    Public Sub NuevoLugar(lug As Lugar)
-
-    End Sub
-
-    Public Sub NuevoMedio(medio As MedioDeTransporte)
-
-    End Sub
-
-    Public Sub Nuevovehiculo(vehi As Vehiculo)
-
-    End Sub
 
     Public Function tamaño() As Size
         Return contenedor.Size
