@@ -965,7 +965,7 @@ Public Class Fachada
         Return Persistencia.getInstancia.listaDeLugaresPorIdcliente(idcliente)
     End Function
 
-    Public Function todosLosUsuarios()
+    Public Function todosLosUsuarios() As DataTable
         Return Persistencia.getInstancia.ListarTodosLosUsuariosDelSistema()
     End Function
 
@@ -976,8 +976,8 @@ Public Class Fachada
                                                     .Nombre = dt.Item(3), .Apellido = dt.Item(4),
                                                     .FechaNacimiento = dt.Item(5), .Email = dt.Item(6),
                                                     .Telefono = dt.Item(7), .sexo = dt.Item(8), .Rol = dt.Item(2),
-                                                    .Creador = New Usuario() With {.ID_usuario = dt.Item(9),
-                                                                                   .Nombre = Persistencia.getInstancia.NombreDeUsuarioPorIdUsuario(dt.Item(9))},
+                                                    .Creador = New Usuario() With {.ID_usuario = If(Funciones_comunes.AutoNull(Of Object)(dt.Item(9)) Is Nothing, 0, dt.Item(9)),
+                                                                                   .Nombre = If(If(Funciones_comunes.AutoNull(Of Object)(dt.Item(9)) Is Nothing, 0, dt.Item(9)) = 0, "DBA", Persistencia.getInstancia.NombreDeUsuarioPorIdUsuario(dt.Item(9)))},
                                                     .FechaCreacion = dt.Item(10)}
         Return user
     End Function

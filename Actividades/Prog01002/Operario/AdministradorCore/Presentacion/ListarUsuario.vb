@@ -1,11 +1,16 @@
 ﻿Imports System.Windows.Forms
 Public Class ListarUsuario
-
+    Dim alfa As Controladores.Alfa
     Private Usuariostabla As DataTable
     Public Sub New()
 
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
+        alfa = New Controladores.Alfa(1)
+        alfa.Location = New Drawing.Point(13, 86)
+        alfa.Size = New Drawing.Size(853, 548)
+        Me.Controls.Add(alfa)
+        Me.Update()
         carardatos()
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
 
@@ -13,10 +18,14 @@ Public Class ListarUsuario
 
     Private Sub carardatos()
         Usuariostabla = Controladores.Fachada.getInstancia.todosLosUsuarios
-        usuarios.DataSource = Usuariostabla
+        For Each user As DataRow In Usuariostabla.Rows
+            alfa.NuevoUsuario(New Controladores.Usuario With {.ID_usuario = user.Item(0), .NombreDeUsuario = user.Item(1), .Rol = user.Item(4)}, False)
+        Next
+        alfa.render()
+        'usuarios.DataSource = Usuariostabla
     End Sub
 
-    Private Sub Usuarios_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles usuarios.CellDoubleClick
+    Private Sub Usuarios_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) 
         Controladores.Marco.getInstancia.CargarPanel(Of PanelInfoUsuario)(New PanelInfoUsuario(Usuariostabla.Rows(e.RowIndex).Item(0)))
     End Sub
 

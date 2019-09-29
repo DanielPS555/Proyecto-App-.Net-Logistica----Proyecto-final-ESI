@@ -25,15 +25,11 @@ Partial Class ListarUsuario
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.buscar = New System.Windows.Forms.Button()
         Me.criterios = New System.Windows.Forms.ComboBox()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.buscador = New System.Windows.Forms.TextBox()
-        Me.usuarios = New System.Windows.Forms.DataGridView()
-        CType(Me.usuarios, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Button1
@@ -104,36 +100,6 @@ Partial Class ListarUsuario
         Me.buscador.Size = New System.Drawing.Size(500, 25)
         Me.buscador.TabIndex = 31
         '
-        'usuarios
-        '
-        Me.usuarios.AllowUserToAddRows = False
-        Me.usuarios.AllowUserToDeleteRows = False
-        Me.usuarios.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
-        Me.usuarios.BackgroundColor = System.Drawing.Color.White
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(130, Byte), Integer), CType(CType(199, Byte), Integer))
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.usuarios.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
-        Me.usuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.usuarios.DefaultCellStyle = DataGridViewCellStyle2
-        Me.usuarios.Location = New System.Drawing.Point(13, 100)
-        Me.usuarios.Name = "usuarios"
-        Me.usuarios.ReadOnly = True
-        Me.usuarios.RowHeadersVisible = False
-        Me.usuarios.Size = New System.Drawing.Size(855, 539)
-        Me.usuarios.TabIndex = 30
-        '
         'ListarUsuario
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -145,11 +111,9 @@ Partial Class ListarUsuario
         Me.Controls.Add(Me.buscar)
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.buscador)
-        Me.Controls.Add(Me.usuarios)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "ListarUsuario"
         Me.Text = "ListaUsuarios"
-        CType(Me.usuarios, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -158,7 +122,6 @@ Partial Class ListarUsuario
     Friend WithEvents criterios As ComboBox
     Friend WithEvents Panel2 As Windows.Forms.Panel
     Friend WithEvents buscador As TextBox
-    Friend WithEvents usuarios As DataGridView
     Friend WithEvents Button1 As Button
     Friend WithEvents buscar As Button
 
