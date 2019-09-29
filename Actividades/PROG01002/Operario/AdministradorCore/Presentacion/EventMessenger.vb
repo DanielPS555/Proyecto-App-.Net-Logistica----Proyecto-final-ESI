@@ -10,12 +10,23 @@
 
     Private Sub EventMessenger_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim k = Controladores.Fachada.getInstancia.VehiculosConMensajes()
-        vehicleList.Items.AddRange(k.ToArray)
+        Dim t = Controladores.Fachada.getInstancia.InfoVehiculos(k.Select(Function(x) x.Item1.VIN).ToArray).Zip(k, Function(x, y) New Tuple(Of Controladores.Vehiculo, Boolean)(x, y.Item2)).ToList
+        vehicleList.Items.AddRange(t.ToArray)
     End Sub
 
     Private Sub vehicleList_SelectedIndexChanged(sender As Object, e As EventArgs) Handles vehicleList.SelectedIndexChanged
-        Dim v = CType(vehicleList.SelectedItem, Controladores.Vehiculo)
-        Dim msgs As List(Of String) = Controladores.Fachada.getInstancia.MensajesVehiculo(v)
-        RichTextBox1.Text = String.Join(",", msgs.ToArray().Cast(Of Object).ToArray)
+        ActualizarMensajes()
+    End Sub
+
+    Private Sub ActualizarMensajes()
+        Dim v = CType(vehicleList.SelectedItem, Tuple(Of Controladores.Vehiculo, Boolean))
+        Dim msgs As List(Of String) = Controladores.Fachada.getInstancia.MensajesVehiculo(v.Item1)
+        RichTextBox1.Text = String.Join(vbNewLine, msgs.ToArray().Cast(Of Object).ToArray)
+    End Sub
+
+    Private Sub enviarBtn_Click(sender As Object, e As EventArgs) Handles enviarBtn.Click
+        Controladores.Fachada.getInstancia.CargarDataBaseDelUsuario()
+        Controladores.Fachada.getInstancia.EnviarMensaje(Controladores.Fachada.getInstancia.DevolverUsuarioActual, CType(vehicleList.SelectedItem, Tuple(Of Controladores.Vehiculo, Boolean)).Item1, messageLine.Text)
+        ActualizarMensajes()
     End Sub
 End Class

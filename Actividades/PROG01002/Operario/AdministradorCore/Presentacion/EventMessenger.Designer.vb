@@ -24,6 +24,8 @@ Partial Class EventMessenger
     Private Sub InitializeComponent()
         Me.vehicleList = New System.Windows.Forms.ListBox()
         Me.RichTextBox1 = New System.Windows.Forms.RichTextBox()
+        Me.messageLine = New System.Windows.Forms.TextBox()
+        Me.enviarBtn = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'vehicleList
@@ -39,24 +41,45 @@ Partial Class EventMessenger
         Me.RichTextBox1.Location = New System.Drawing.Point(202, 12)
         Me.RichTextBox1.Name = "RichTextBox1"
         Me.RichTextBox1.ReadOnly = True
-        Me.RichTextBox1.Size = New System.Drawing.Size(666, 492)
+        Me.RichTextBox1.Size = New System.Drawing.Size(666, 602)
         Me.RichTextBox1.TabIndex = 1
         Me.RichTextBox1.Text = ""
+        '
+        'messageLine
+        '
+        Me.messageLine.Location = New System.Drawing.Point(202, 620)
+        Me.messageLine.Name = "messageLine"
+        Me.messageLine.Size = New System.Drawing.Size(542, 20)
+        Me.messageLine.TabIndex = 2
+        '
+        'enviarBtn
+        '
+        Me.enviarBtn.Location = New System.Drawing.Point(793, 618)
+        Me.enviarBtn.Name = "enviarBtn"
+        Me.enviarBtn.Size = New System.Drawing.Size(75, 23)
+        Me.enviarBtn.TabIndex = 3
+        Me.enviarBtn.Text = "Enviar"
+        Me.enviarBtn.UseVisualStyleBackColor = True
         '
         'EventMessenger
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(880, 650)
+        Me.Controls.Add(Me.enviarBtn)
+        Me.Controls.Add(Me.messageLine)
         Me.Controls.Add(Me.RichTextBox1)
         Me.Controls.Add(Me.vehicleList)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "EventMessenger"
         Me.Text = "EventMessenger"
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
     Friend WithEvents vehicleList As Windows.Forms.ListBox
     Friend WithEvents RichTextBox1 As Windows.Forms.RichTextBox
+    Friend WithEvents messageLine As Windows.Forms.TextBox
+    Friend WithEvents enviarBtn As Windows.Forms.Button
 End Class

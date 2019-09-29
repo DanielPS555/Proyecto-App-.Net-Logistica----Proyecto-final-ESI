@@ -1,4 +1,5 @@
 ﻿Imports System.Data.Odbc
+Imports System.IO
 Imports Controladores
 Imports Controladores.Extenciones.Extensiones
 Imports GMap.NET
@@ -13,7 +14,13 @@ Public Class Persistencia
     Private Shared initi As Persistencia
 
     Friend Function VehiculosConMensaje() As DataTable
-        Dim selcmd As New OdbcCommand("select unique VIN from vehiculo inner join evento on bson_value_varchar(evento.datos, 'tipo')='comentario' and bson_value_int(evento.datos, 'idvehiculo')=vehiculo.idvehiculo", _con)
+        Dim selcmd As New OdbcCommand("select vin, count(datos) from vehiculo left join evento
+on vehiculo.idvehiculo=bson_value_int(datos,'idvehiculo')
+and nvl(bson_value_boolean(datos, 'leido'), 'f')='f'
+and bson_value_varchar(datos, 'tipo')='comentario'
+and bson_value_varchar(datos, 'por')='cliente'
+group by vin
+", _con)
         Dim dt As New DataTable("Vehiculos")
         dt.Load(selcmd.ExecuteReader)
         Return dt
@@ -21,28 +28,48 @@ Public Class Persistencia
 
     Friend Function MensajesVehiculo(vIN As String) As DataTable
         Dim selcmd As New OdbcCommand("select * from
-                                    (select usuario.nombredeusuario, vehiculo.vin,
-                                    bson_value_varchar(datos, 'mensaje') as mensaje from evento
-                                    inner join vehiculo on vehiculo.idvehiculo=bson_value_int(datos, 'idvehiculo')
-                                    inner join usuario on usuario.idusuario=bson_value_int(datos, 'autor')
-                                    where bson_value_varchar(datos, 'tipo')='comentario'
-                                    and bson_value_varchar(datos, 'por')='admin'
-                                    and vehiculo.vin=?
-                                    ) as admincomments
-                                    union all
-                                    (select cliente.nombre, vehiculo.vin,
-                                    bson_value_varchar(datos, 'mensaje') as mensaje from evento
-                                    inner join vehiculo on vehiculo.idvehiculo=bson_value_int(datos, 'idvehiculo')
-                                    inner join cliente on cliente.idcliente=bson_value_int(datos, 'autor')
-                                    where bson_value_varchar(datos, 'tipo')='comentario'
-                                    and bson_value_varchar(datos, 'por')='cliente'
-                                    and vehiculo.vin=?
-                                    )", _con)
+
+(select usuario.nombredeusuario, vehiculo.vin,
+bson_value_varchar(datos, 'mensaje') as mensaje, nvl(bson_value_boolean(datos, 'leido'), 'f')::boolean as leido, datos::json::lvarchar as json_string, id as id,
+ fechaAgregado, 'f'::boolean as k from evento
+inner join vehiculo on vehiculo.idvehiculo=bson_value_int(datos, 'idvehiculo')
+inner join usuario on usuario.idusuario=bson_value_int(datos, 'autor')
+where bson_value_varchar(datos, 'tipo')='comentario'
+and bson_value_varchar(datos, 'por')='admin'
+and vehiculo.vin=?
+) as admincomments
+union all
+(select cliente.nombre, vehiculo.vin,
+bson_value_varchar(datos, 'mensaje') as mensaje, nvl(bson_value_boolean(datos, 'leido'), 'f')::boolean as leido, datos::json::lvarchar as json_string, id as id,
+ fechaAgregado, 't'::boolean as k from evento
+inner join vehiculo on vehiculo.idvehiculo=bson_value_int(datos, 'idvehiculo')
+inner join cliente on cliente.idcliente=bson_value_int(datos, 'autor')
+where bson_value_varchar(datos, 'tipo')='comentario'
+and bson_value_varchar(datos, 'por')='cliente'
+and vehiculo.vin=?
+)
+order by 7", _con)
+
         selcmd.CrearParametro(DbType.String, vIN)
         selcmd.CrearParametro(DbType.String, vIN)
         Dim dt As New DataTable
         dt.Load(selcmd.ExecuteReader)
+        Dim ndt = From r In dt Select r Where r.Item(7) And Not r.Item(3)
+        For Each r In ndt
+            Dim jsonObject = Newtonsoft.Json.JsonConvert.DeserializeObject(Of Dictionary(Of String, Object))(CType(r(4), String))
+            jsonObject("leido") = True
+            Dim updatecmd As New OdbcCommand("update evento set datos=?::json where id=?;", _con)
+            updatecmd.CrearParametro(Newtonsoft.Json.JsonConvert.SerializeObject(jsonObject))
+            updatecmd.CrearParametro(r(5))
+            updatecmd.ExecuteNonQuery()
+        Next
         Return dt
+    End Function
+
+    Public Function Evento(jsonObject As String) As Boolean
+        Dim insertCmd As New OdbcCommand("insert into evento(datos, fechaAgregado) values(?::json, current year to second);", _con)
+        insertCmd.CrearParametro(jsonObject)
+        Return insertCmd.ExecuteNonQuery > 0
     End Function
 
     Private _con As OdbcConnection

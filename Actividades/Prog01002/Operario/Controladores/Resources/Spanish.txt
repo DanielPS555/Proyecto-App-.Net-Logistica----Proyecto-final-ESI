@@ -54,3 +54,4 @@ Ingrese una descripcion del informe
 Si es un registro de anulacion o actualizacion usted debe elegir un registro al que hacer referencia
 Precargas masivas
 Mensajes
+Consola de Scheme

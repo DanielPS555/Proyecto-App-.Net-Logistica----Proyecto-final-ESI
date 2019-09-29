@@ -14,7 +14,8 @@ Public Class BootstrapAdministrador
                   {"Nuevo Lugar", GetType(AdministradorCore.NuevoLugar)},
                   {"Lista de medios", GetType(TransportistaCore.ListaDeMediosAutorizados)},
                   {"Precargas masivas", GetType(AdministradorCore.PrecargaMasiva)},
-                  {"Mensajes", GetType(AdministradorCore.EventMessenger)}
+                  {"Mensajes", GetType(AdministradorCore.EventMessenger)},
+                  {"Consola de Scheme", GetType(AdministradorCore.LispPanel)}
                 }
                 Controladores.Marco.SetButtons(paneles)
                 Controladores.Marco.ReiniciarSingleton()
