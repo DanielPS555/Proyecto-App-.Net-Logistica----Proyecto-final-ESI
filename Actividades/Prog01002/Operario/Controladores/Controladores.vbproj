@@ -227,6 +227,48 @@
     <Compile Include="Presentacion_comun\Marco.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Presentacion_comun\PanelAlfa\SUB_Cliente.Designer.vb">
+      <DependentUpon>SUB_Cliente.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion_comun\PanelAlfa\SUB_Cliente.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion_comun\PanelAlfa\SUB_lote.Designer.vb">
+      <DependentUpon>SUB_lote.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion_comun\PanelAlfa\SUB_lote.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion_comun\PanelAlfa\SUB_lugar.Designer.vb">
+      <DependentUpon>SUB_lugar.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion_comun\PanelAlfa\SUB_lugar.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion_comun\PanelAlfa\SUB_Medio.Designer.vb">
+      <DependentUpon>SUB_Medio.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion_comun\PanelAlfa\SUB_Medio.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion_comun\PanelAlfa\SUB_Usuario.Designer.vb">
+      <DependentUpon>SUB_Usuario.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion_comun\PanelAlfa\SUB_Usuario.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion_comun\PanelAlfa\SUB_vehiculo.Designer.vb">
+      <DependentUpon>SUB_vehiculo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion_comun\PanelAlfa\SUB_vehiculo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion_comun\PanelAlfa\Alfa.Designer.vb">
+      <DependentUpon>Alfa.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion_comun\PanelAlfa\Alfa.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Presentacion_comun\PanelCSV.Designer.vb">
       <DependentUpon>PanelCSV.vb</DependentUpon>
     </Compile>
@@ -277,6 +319,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion_comun\Marco.resx">
       <DependentUpon>Marco.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion_comun\PanelAlfa\Alfa.resx">
+      <DependentUpon>Alfa.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion_comun\PanelAlfa\SUB_Usuario.resx">
+      <DependentUpon>SUB_Usuario.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion_comun\PanelCSV.resx">
       <DependentUpon>PanelCSV.vb</DependentUpon>
