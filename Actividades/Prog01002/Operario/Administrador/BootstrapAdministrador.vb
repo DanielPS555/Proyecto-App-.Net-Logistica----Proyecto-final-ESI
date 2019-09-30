@@ -1,6 +1,4 @@
-﻿
-
-Public Class BootstrapAdministrador
+﻿Public Class BootstrapAdministrador
     Public Shared Sub Main()
         Controladores.Funciones_comunes.Inter_test()
         Dim p = Controladores.Principal.CrearInstancia(
@@ -15,7 +13,8 @@ Public Class BootstrapAdministrador
                   {"Lista de medios", GetType(TransportistaCore.ListaDeMediosAutorizados)},
                   {"Precargas masivas", GetType(AdministradorCore.PrecargaMasiva)},
                   {"Mensajes", GetType(AdministradorCore.EventMessenger)},
-                  {"Consola de Scheme", GetType(AdministradorCore.LispPanel)}
+                  {"Consola de Scheme", GetType(AdministradorCore.LispPanel)},
+                  {"Lista vehiculos", GetType(OperarioCore.ListaVehiculos)}
                 }
                 Controladores.Marco.SetButtons(paneles)
                 Controladores.Marco.ReiniciarSingleton()

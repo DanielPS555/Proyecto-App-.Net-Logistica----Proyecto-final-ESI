@@ -66,6 +66,10 @@ order by 7", _con)
         Return dt
     End Function
 
+    Friend Sub BajaVehiculo(idVehiculo As Integer, jsonObj As Dictionary(Of String, String), iD_usuario As Integer)
+        Dim insertCmd As New OdbcCommand("insert into vehiculoIngresa(", _con)
+    End Sub
+
     Public Function Evento(jsonObject As String) As Boolean
         Dim insertCmd As New OdbcCommand("insert into evento(datos, fechaAgregado) values(?::json, current year to second);", _con)
         insertCmd.CrearParametro(jsonObject)
@@ -761,7 +765,7 @@ order by 7", _con)
     End Function
 
     Public Function insertVehiculoIngresa(idvehiculo As Integer, fecha As DateTime, tipoIngreso As String, usuario As Integer) As Boolean
-        Dim com As New OdbcCommand("insert into vehiculoIngresa values (?,?,?,?)", Conexcion)
+        Dim com As New OdbcCommand("insert into vehiculoIngresa(idvehiculo, fecha, tipoingreso, usuario) values (?,?,?,?)", Conexcion)
         com.CrearParametro(DbType.Int32, idvehiculo)
         com.CrearParametro(DbType.DateTime, fecha)
         com.CrearParametro(DbType.String, tipoIngreso)
