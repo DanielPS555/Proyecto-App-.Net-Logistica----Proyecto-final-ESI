@@ -325,6 +325,7 @@ order by 7", _con)
             End If
             Return True
         Catch ee As Exception
+            MsgBox("Error en la conexcion: " & ee.Message, MsgBoxStyle.Critical)
             ExceptionLog.Enqueue(ee)
             Return False
         End Try
