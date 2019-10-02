@@ -16,7 +16,7 @@ Public Class ListaVehiculos
             LugaresBox.Items.AddRange(Fachada.getInstancia.LugaresObjetos)
         End If
         LugaresBox.SelectedIndex = 0
-        asignados()
+        Asignados()
         DataGridView1.MultiSelect = False
         criterios.SelectedIndex = 0
         tiposListas.SelectedIndex = 0
@@ -28,13 +28,13 @@ Public Class ListaVehiculos
 
     Dim t As DataTable
 
-    Public Sub asignados()
+    Public Sub Asignados()
         If lugar IsNot Nothing Then
             DataGridView1.DataSource = Fachada.getInstancia.ListaVehiculos(lugar)
         End If
     End Sub
 
-    Public Sub Noasignados()
+    Public Sub NoAsignados()
         If lugar IsNot Nothing Then
             DataGridView1.DataSource = Controladores.Fachada.getInstancia.listaDeVehiculosSinLoteNiPosicion(lugar.IDLugar)
         End If
@@ -65,21 +65,22 @@ Public Class ListaVehiculos
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs)
-        Noasignados()
+        NoAsignados()
         tipolista = False
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs)
-        asignados()
+        Asignados()
         tipolista = True
     End Sub
 
-    Private Sub tiposListas_SelectedIndexChanged(sender As Object, e As EventArgs) Handles tiposListas.SelectedIndexChanged
-
-    End Sub
-
     Private Sub LugaresBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles LugaresBox.SelectedIndexChanged
-        lugar = LugaresBox.Items(LugaresBox.SelectedIndex)
+        lugar = LugaresBox.SelectedItem
+        If tipolista Then
+            Asignados()
+        Else
+            NoAsignados()
+        End If
     End Sub
 End Class
 
