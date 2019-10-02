@@ -66,9 +66,14 @@ order by 7", _con)
         Return dt
     End Function
 
-    Friend Sub BajaVehiculo(idVehiculo As Integer, jsonObj As Dictionary(Of String, String), iD_usuario As Integer)
-        Dim insertCmd As New OdbcCommand("insert into vehiculoIngresa(", _con)
-    End Sub
+    Public Function BajaVehiculo(idVehiculo As Integer, jsonObj As Dictionary(Of String, String), iD_usuario As Integer) As Boolean
+        Dim insertCmd As New OdbcCommand("insert into vehiculoIngresa(idvehiculo, fecha, tipoingreso, usuario, detalle) values(?,current year to second, 'Baja', ?, ?::json);", _con)
+        insertCmd.CrearParametro(idVehiculo)
+        insertCmd.CrearParametro(iD_usuario)
+        Dim x = Newtonsoft.Json.JsonConvert.SerializeObject(jsonObj)
+        insertCmd.CrearParametro(x)
+        Return insertCmd.ExecuteNonQuery > 0
+    End Function
 
     Public Function Evento(jsonObject As String) As Boolean
         Dim insertCmd As New OdbcCommand("insert into evento(datos, fechaAgregado) values(?::json, current year to second);", _con)
@@ -394,6 +399,21 @@ order by 7", _con)
 
     End Function
 
+    Public Function ExisteBaja(IDVehiculo As Integer) As Boolean
+        Dim cmd As New OdbcCommand("select count(*) from vehiculoIngresa
+                where idvehiculo=? and tipoingreso='Baja'", _con)
+        cmd.CrearParametro(IDVehiculo)
+        Return cmd.ExecuteScalar > 0
+    End Function
+
+    Public Function BajaEn(IDLugar As Integer, IDVehiculo As Integer) As Boolean
+        Dim cmd As New OdbcCommand("select count(*) from vehiculoIngresa
+                where idvehiculo=? and tipoingreso='Baja' and bson_value_int(detalle, 'idlugar')=?", _con)
+        cmd.CrearParametro(IDVehiculo)
+        cmd.CrearParametro(IDLugar)
+        Return cmd.ExecuteScalar > 0
+    End Function
+
     Public Function NombreLugarDeTrabajoPorID(id As Integer) As String
         Try
             Dim cmd As New OdbcCommand("select lugar.nombre from lugar where idlugar=?", Conexcion)
@@ -574,12 +594,12 @@ order by 7", _con)
 
     Public Function DatosBasicosParaListarVehiculosPorLugar(idlugar As Integer) As DataTable
 
-        Dim com As New OdbcCommand($"select distinct vehiculo.idvehiculo, vehiculo.vin, vehiculo.marca, vehiculo.modelo, vehiculo.tipo 
-                                    from vehiculo, posicionado, vehiculoIngresa
-                                    where posicionado.idvehiculo=vehiculo.idvehiculo and vehiculoIngresa.idvehiculo = vehiculo.idvehiculo
-                                    and posicionado.idlugar in (select unnamed_col_1 from table(subzonas_en_lugar({idlugar})))",
+        Dim com As New OdbcCommand("select distinct vehiculo.idvehiculo, vehiculo.vin, vehiculo.marca, vehiculo.modelo, vehiculo.tipo 
+                                    from vehiculo inner join posicionado
+                                    on posicionado.idvehiculo=vehiculo.idvehiculo
+                                    where posicionado.idlugar in (select unnamed_col_1 from table(subzonas_en_lugar(?::integer)))",
                                   Conexcion)
-        'com.CrearParametro(DbType.Int32, idlugar)
+        com.CrearParametro(DbType.Int32, idlugar)
         Dim dt As New DataTable
         dt.Load(com.ExecuteReader)
         Return dt

@@ -1,5 +1,4 @@
 Imports Controladores
-Imports Controladores.Fachada
 Imports System.Drawing
 Imports System.Windows.Forms
 Public Class ListaVehiculos
@@ -10,11 +9,11 @@ Public Class ListaVehiculos
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
 
 
-        If getInstancia.DevolverUsuarioActual.Rol <> Usuario.TIPO_ROL_ADMINISTRADOR Then
-            LugaresBox.Items.Add(getInstancia.TrabajaEnAcutual.Lugar)
+        If Fachada.getInstancia.DevolverUsuarioActual.Rol <> Usuario.TIPO_ROL_ADMINISTRADOR Then
+            LugaresBox.Items.Add(Fachada.getInstancia.TrabajaEnAcutual.Lugar)
             LugaresBox.Enabled = False
         Else
-            LugaresBox.Items.AddRange(getInstancia.LugaresObjetos)
+            LugaresBox.Items.AddRange(Fachada.getInstancia.LugaresObjetos)
         End If
         LugaresBox.SelectedIndex = 0
         asignados()
@@ -31,7 +30,7 @@ Public Class ListaVehiculos
 
     Public Sub asignados()
         If lugar IsNot Nothing Then
-            DataGridView1.DataSource = getInstancia.ListaVehiculos(lugar)
+            DataGridView1.DataSource = Fachada.getInstancia.ListaVehiculos(lugar)
         End If
     End Sub
 

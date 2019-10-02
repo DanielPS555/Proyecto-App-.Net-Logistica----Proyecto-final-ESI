@@ -68,15 +68,11 @@ Public Class panelInfoVehiculo
         AñoBox.Text = vehiculo.Año
         TipoCombo.SelectedItem = vehiculo.Tipo
         Panel1.BackColor = vehiculo.Color
-        Dim ultpos = Controladores.Fachada.getInstancia.UltimaPosicionVehiculo(vin)
-        If ultpos IsNot Nothing Then
-            SubzonaLabel.Text = ultpos.Item(1)
-            Dim zona = Controladores.Persistencia.getInstancia.PadreDeLugar(ultpos.Item(0))
-            ZonaLabel.Text = zona.Item(0)
-            PosicionLabel.Text = ultpos.Item(2) & " desde " & Funciones_comunes.DarFormato(CType(ultpos.Item(3), Date?))
-            Dim lugar = Controladores.Persistencia.getInstancia.PadreDeLugar(zona.Item(1))
-            lugarLabel.Text = lugar.Item(0)
-        End If
+        Me.vehiculo = vehiculo
+        CargarMiLote()
+        CargarTraslados()
+        CargarLugares()
+        PosicionOEstado()
 
         ListaInformes = Controladores.Fachada.getInstancia.devolverTodosLosInformesYregistrosCompletos(vehiculo)
         If ListaInformes.Count = 0 Then
@@ -90,15 +86,32 @@ Public Class panelInfoVehiculo
             SinInformes.Visible = False
             CargarInformes()
         End If
-        Me.vehiculo = vehiculo
-        CargarMiLote()
-        CargarTraslados()
-        CargarLugares()
         Dim qrGenerator As New QRCoder.QRCodeGenerator
         Dim qrData = qrGenerator.CreateQrCode(vin, QRCoder.QRCodeGenerator.ECCLevel.H)
         Dim qrCode As New QRCoder.QRCode(qrData)
         Me.qrcode = qrCode.GetGraphic(15)
         Me.QR.Image = New Bitmap(Me.qrcode, New Size(Me.QR.Width, Me.QR.Height))
+    End Sub
+
+    Private Sub PosicionOEstado()
+        Dim ultpos = Controladores.Fachada.getInstancia.UltimaPosicionVehiculo(vin)
+        If Persistencia.getInstancia.ExisteBaja(vehiculo.IdVehiculo) Then
+            ZonaLabel.Text = "Fuera del sistema"
+            SubzonaLabel.Visible = False
+            PosicionLabel.Visible = False
+            lugarLabel.Visible = False
+            Sublbl.Visible = False
+            PosLbl.Visible = False
+            LugarLbl.Visible = False
+            ZonaLbl.Visible = False
+        ElseIf ultpos IsNot Nothing Then
+            SubzonaLabel.Text = ultpos.Item(1)
+            Dim zona = Controladores.Persistencia.getInstancia.PadreDeLugar(ultpos.Item(0))
+            ZonaLabel.Text = zona.Item(0)
+            PosicionLabel.Text = ultpos.Item(2) & " desde " & Funciones_comunes.DarFormato(CType(ultpos.Item(3), Date?))
+            Dim lugar = Controladores.Persistencia.getInstancia.PadreDeLugar(zona.Item(1))
+            lugarLabel.Text = lugar.Item(0)
+        End If
     End Sub
 
     Public Sub CargarLotes()
@@ -132,10 +145,7 @@ Public Class panelInfoVehiculo
 
     Private Sub CargarTraslados()
         Dim ultpos = Controladores.Fachada.getInstancia.UltimaPosicionVehiculo(vin)
-        SubzonaLabel.Text = ultpos.Item(1)
         Dim zona = Controladores.Persistencia.getInstancia.PadreDeLugar(ultpos.Item(0))
-        ZonaLabel.Text = zona.Item(0)
-        PosicionLabel.Text = ultpos.Item(2) & " desde " & Controladores.Funciones_comunes.DarFormato(CType(ultpos.Item(3), Date?))
         traslados.Columns.Clear()
         Dim dt As New DataTable
         dt.Columns.Add(New DataColumn("Lugar"))

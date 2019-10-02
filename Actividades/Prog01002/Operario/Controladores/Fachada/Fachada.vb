@@ -402,7 +402,10 @@ Public Class Fachada
         dt.Columns.Add("Estado", GetType(String))
         For Each r As DataRow In dt.Rows
             Dim idLote = Persistencia.getInstancia.IDLotePor_IDvehiculo_y_IDLugar(r.Item(0), lugar.IDLugar)
-            If idLote = -1 Then
+            If Persistencia.getInstancia.BajaEn(lugar.IDLugar, r.Item(0)) Then
+                r.Item(6) = "Salió del sistema en este lugar"
+                r.Item(5) = "-"
+            ElseIf idLote = -1 Then
                 r.Item(6) = "Sin lote"
                 r.Item(5) = "-"
             Else
