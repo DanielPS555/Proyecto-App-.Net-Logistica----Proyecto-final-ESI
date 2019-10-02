@@ -82,13 +82,16 @@ Public Class PrecargaMasiva
     Private Sub vehicleBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles vehicleBox.SelectedIndexChanged
         Dim v As Vehiculo = vehicleBox.SelectedItem
         If v IsNot Nothing Then
-            Marco.getInstancia.CargarPanel(New NuevaPrecarga(v))
+            Dim vPrecarga = New NuevaPrecarga(v, Me)
+            Marco.getInstancia.CargarPanel(vPrecarga)
             Verify(vehicleBox.SelectedIndex) = True
         End If
     End Sub
 
     Private Sub uploadPreloads_Click(sender As Object, e As EventArgs) Handles uploadPreloads.Click
         If Verify.Length > 0 And Verify.Aggregate(True, Function(x, y) x And y) Then
+            Fachada.getInstancia.CargarDataBaseDelUsuario()
+
             For Each v As Vehiculo In vehicleBox.Items
                 Fachada.getInstancia.nuevaPrecarga(v, Fachada.getInstancia.DevolverUsuarioActual)
             Next

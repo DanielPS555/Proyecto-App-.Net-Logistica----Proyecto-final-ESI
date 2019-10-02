@@ -1,4 +1,4 @@
-CREATE table
+﻿CREATE table
 	usuario(
 	IDUsuario serial primary key,
 	NombreDeUsuario varchar(20) not null unique,
@@ -100,6 +100,7 @@ create table
 	Fecha datetime year to second,
 	TipoIngreso varchar(10) not null check (TipoIngreso in ('Precarga', 'Alta', 'Baja')),
 	Usuario integer,
+	Detalle bson,
 	primary key(IDVehiculo, Usuario, Fecha),
 	foreign key(IDVehiculo) references Vehiculo(IDVehiculo) ON DELETE CASCADE,
 	foreign key(Usuario) references Usuario(IDUsuario) ON DELETE CASCADE

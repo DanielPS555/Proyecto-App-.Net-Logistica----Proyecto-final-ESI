@@ -32,7 +32,7 @@ Public Class ScreenNode
     End Function
 
     Public Sub Close()
-        For Each sn In Children
+        For Each sn In Children.ToList
             sn.Close()
         Next
         If Parent.Type Then

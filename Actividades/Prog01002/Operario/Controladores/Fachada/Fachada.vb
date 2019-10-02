@@ -20,6 +20,24 @@ Public Class Fachada
         Return vehicles
     End Function
 
+    Public Sub BajaVehiculo(vehiculo As Vehiculo, tipoBaja As Vehiculo.TipoBajaVehiculo, msj As String)
+        Dim jsonObj As New Dictionary(Of String, String)
+        Select Case tipoBaja
+            Case Vehiculo.TipoBajaVehiculo.Destrucción
+                jsonObj("tipo") = "destruccion"
+            Case Vehiculo.TipoBajaVehiculo.Entregado
+                jsonObj("tipo") = "entregado"
+            Case Vehiculo.TipoBajaVehiculo.Recogido
+                jsonObj("tipo") = "recogido"
+        End Select
+        Dim posicion = Me.DevolverPosicionActual(vehiculo.IdVehiculo)
+        If posicion IsNot Nothing Then jsonObj("idlugar") = posicion?.Subzona.ZonaPadre.LugarPadre.IDLugar
+        If msj IsNot Nothing And msj.Length > 0 Then jsonObj("mensaje") = msj
+        CargarDataBaseDelUsuario()
+        Me.AnularAnteriorPosicion(vehiculo.IdVehiculo)
+        Persistencia.getInstancia.BajaVehiculo(vehiculo.IdVehiculo, jsonObj, DevolverUsuarioActual.ID_usuario)
+    End Sub
+
     Public Function MensajesVehiculo(v As Vehiculo) As List(Of String)
         Dim msgs As DataTable = Persistencia.getInstancia.MensajesVehiculo(v.VIN)
         Dim messages = msgs.Rows.Cast(Of DataRow).Select(Function(x) CType(x(0), String) & ": " & CType(x(2), String)).Zip(Enumerable.Range(0, msgs.Rows.Count), Function(x, y) New Tuple(Of String, Single)(x, y)).ToList
@@ -361,6 +379,7 @@ Public Class Fachada
     End Sub
 
     Public Function DevolverUsuarioActual() As Usuario
+        CargarDataBaseDelUsuario()
         Return Persistencia.getInstancia.UsuarioActual 'Para tener los datos completos hay que ejecutar el metodo anterior
     End Function
 

@@ -1,5 +1,17 @@
 ﻿Public Class Vehiculo
 
+    Public Enum TipoVehiculoIngresa
+        Precarga
+        Alta
+        Baja
+    End Enum
+
+    Public Enum TipoBajaVehiculo
+        Entregado
+        Destrucción
+        Recogido
+    End Enum
+
     Public Shared ReadOnly TIPO_VEHICULO_AUTO As String = "Auto"
     Public Shared ReadOnly TIPO_VEHICULO_MINIVAN As String = "MiniVan"
     Public Shared ReadOnly TIPO_VEHICULO_SUV As String = "SUV"

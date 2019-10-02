@@ -131,9 +131,23 @@ Public Class Marco
         MsgBox("¡Sin imploementar!")
     End Sub
 
-    Public Function CargarPanel(Of T As {Form})(obj As T) As T
-        cerrarPanel(Of T)()
+    Public Sub CargarPanel(sn As ScreenNode)
+        Dim obj = sn.Panel
+        obj.TopLevel = False
+        obj.FormBorderStyle = FormBorderStyle.None
 
+        If contenedor.Controls.Contains(obj) Then
+            contenedor.Controls.Remove(obj)
+        End If
+
+        contenedor.Controls.Add(obj)
+        obj.Show()
+        obj.BringToFront()
+
+        CurrentPanel = sn
+    End Sub
+
+    Public Function CargarPanel(Of T As {Form})(obj As T) As T
         obj.TopLevel = False
         obj.FormBorderStyle = FormBorderStyle.None
 
@@ -153,24 +167,17 @@ Public Class Marco
 
     Private Sub atras_Click(sender As Object, e As EventArgs) Handles atras.Click
         If CurrentPanel IsNot Nothing AndAlso CurrentPanel.Parent.Type Then
-            CurrentPanel.Panel.Visible = False
-            CurrentPanel = CurrentPanel.Parent.A
-            CurrentPanel.Panel.Visible = True
-            CurrentPanel.Panel.BringToFront()
+            Me.CargarPanel(CurrentPanel.Parent.A)
         End If
     End Sub
 
     Private Sub sigiente_Click(sender As Object, e As EventArgs) Handles sigiente.Click
         If CurrentPanel IsNot Nothing Then
             If CurrentPanel.Children.Count = 1 Then
-                CurrentPanel.Panel.Visible = False
-                CurrentPanel = CurrentPanel.Children.Single
-                CurrentPanel.Panel.Visible = True
+                CargarPanel(CurrentPanel.Children.Single)
             ElseIf CurrentPanel.Children.Count > 1 Then
                 Dim sn = ChildrenPane.GetChild(CurrentPanel)
-                CurrentPanel.Panel.Visible = False
-                Me.CurrentPanel = sn
-                CurrentPanel.Panel.Visible = True
+                CargarPanel(sn)
             End If
         End If
     End Sub

@@ -44,12 +44,20 @@
                                                                                         Controladores.Fachada.getInstancia.CargarDataBaseDelUsuario()
                                                                                         Return Controladores.Fachada.getInstancia.EnviarMensaje(Controladores.Fachada.getInstancia.DevolverUsuarioActual, Controladores.Fachada.getInstancia.InfoVehiculos({x}).Single, y)
                                                                                     End Function, "send-message")
+        Dim help As New Schemy.NativeProcedure(Function(__)
+                                                   Return "Schemy es un lenguaje de scripteo inspirado por Scheme, un Lisp-1" & vbNewLine &
+                                                   "El mismo representa su código mediante listas las cuales son del tipo (elemento1 elemento... elementon)" & vbNewLine &
+                                                   "Para ejecutar una función haga (func sus argumentos)" & vbNewLine &
+                                                   "Funciones: vehicle-info -> devuelve lista con información del vehiculo con vin igual a su primer parametro" & vbNewLine & "place-vehicles -> lista de VINs de vehiculos en lugar con nombre del primer parametro" &
+                                                   vbNewLine & "ejemplo: (vehicle-info ""1GH2J83LED0987547"")"
+                                               End Function, "help")
         Dim extension As Schemy.Interpreter.CreateSymbolTableDelegate = Function(x) New Dictionary(Of Schemy.Symbol, Object) From {
             {Schemy.Symbol.FromString("place-vehicles"), vehicleInPlaceList},
             {Schemy.Symbol.FromString("vehicle-many-info"), vehicleMultiData},
             {Schemy.Symbol.FromString("vehicle-info"), vehicleData},
             {Schemy.Symbol.FromString("send-message"), sendMessage},
-            {Schemy.Symbol.FromString("concat"), concat}
+            {Schemy.Symbol.FromString("concat"), concat},
+            {Schemy.Symbol.FromString("help"), help}
         }
         schemeInterpreter = New Schemy.Interpreter({extension})
         schemeInterpreter.Evaluate(New IO.StringReader(My.Resources.SchemeInitialization))

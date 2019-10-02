@@ -3,12 +3,14 @@ Imports System.Windows.Forms
 Public Class NuevaPrecarga
     Private colorin As Color
     Private isCSVPreload As Boolean = False
+    Private padre As PrecargaMasiva
 
-    Public Sub New(vehiculo As Controladores.Vehiculo)
+    Public Sub New(vehiculo As Controladores.Vehiculo, padre As PrecargaMasiva)
         LoadPanel()
         CopyFromVehiculo(vehiculo)
-        Me.ingresar.Text = "Guardar"
+        ingresar.Text = "Guardar"
         isCSVPreload = True
+        Me.padre = padre
     End Sub
 
     Private Sub CopyFromVehiculo(vehiculo As Controladores.Vehiculo)
@@ -120,6 +122,10 @@ Public Class NuevaPrecarga
             Controladores.Fachada.getInstancia.nuevaPrecarga(vehiculo, Controladores.Fachada.getInstancia.DevolverUsuarioActual)
 
             MsgBox("Precarga realizada", MsgBoxStyle.Information)
+        Else
+            Dim itms = padre.vehicleBox.Items.Cast(Of Controladores.Vehiculo).ToList
+            padre.vehicleBox.Items.Clear()
+            padre.vehicleBox.Items.AddRange(itms.ToArray)
         End If
         Controladores.Marco.getInstancia.cerrarPanel(Of NuevaPrecarga)()
 

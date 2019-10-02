@@ -28,6 +28,7 @@ group by vin
 
     Friend Function MensajesVehiculo(vIN As String) As DataTable
         Dim selcmd As New OdbcCommand("select * from
+
 (select usuario.nombredeusuario, vehiculo.vin,
 bson_value_varchar(datos, 'mensaje') as mensaje, nvl(bson_value_boolean(datos, 'leido'), 'f')::boolean as leido, datos::json::lvarchar as json_string, id as id,
  fechaAgregado, 'f'::boolean as k from evento
@@ -48,6 +49,7 @@ and bson_value_varchar(datos, 'por')='cliente'
 and vehiculo.vin=?
 )
 order by 7", _con)
+
         selcmd.CrearParametro(DbType.String, vIN)
         selcmd.CrearParametro(DbType.String, vIN)
         Dim dt As New DataTable
@@ -63,6 +65,10 @@ order by 7", _con)
         Next
         Return dt
     End Function
+
+    Friend Sub BajaVehiculo(idVehiculo As Integer, jsonObj As Dictionary(Of String, String), iD_usuario As Integer)
+        Dim insertCmd As New OdbcCommand("insert into vehiculoIngresa(", _con)
+    End Sub
 
     Public Function Evento(jsonObject As String) As Boolean
         Dim insertCmd As New OdbcCommand("insert into evento(datos, fechaAgregado) values(?::json, current year to second);", _con)
@@ -319,6 +325,7 @@ order by 7", _con)
             End If
             Return True
         Catch ee As Exception
+            MsgBox("Error en la conexcion: " & ee.Message, MsgBoxStyle.Critical)
             ExceptionLog.Enqueue(ee)
             Return False
         End Try
@@ -759,7 +766,7 @@ order by 7", _con)
     End Function
 
     Public Function insertVehiculoIngresa(idvehiculo As Integer, fecha As DateTime, tipoIngreso As String, usuario As Integer) As Boolean
-        Dim com As New OdbcCommand("insert into vehiculoIngresa values (?,?,?,?)", Conexcion)
+        Dim com As New OdbcCommand("insert into vehiculoIngresa(idvehiculo, fecha, tipoingreso, usuario) values (?,?,?,?)", Conexcion)
         com.CrearParametro(DbType.Int32, idvehiculo)
         com.CrearParametro(DbType.DateTime, fecha)
         com.CrearParametro(DbType.String, tipoIngreso)

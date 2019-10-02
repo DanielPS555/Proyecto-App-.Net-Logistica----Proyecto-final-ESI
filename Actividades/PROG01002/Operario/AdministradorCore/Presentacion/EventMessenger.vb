@@ -1,4 +1,13 @@
 ﻿Public Class EventMessenger
+    Public Sub New()
+
+        ' Esta llamada es exigida por el diseñador.
+        InitializeComponent()
+
+        ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
+
+    End Sub
+
     Private Sub EventMessenger_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim k = Controladores.Fachada.getInstancia.VehiculosConMensajes()
         Dim t = Controladores.Fachada.getInstancia.InfoVehiculos(k.Select(Function(x) x.Item1.VIN).ToArray).Zip(k, Function(x, y) New Tuple(Of Controladores.Vehiculo, Boolean)(x, y.Item2)).ToList

@@ -46,8 +46,9 @@ Public Class panelInfoVehiculo
         TipoCombo.Items.AddRange(Controladores.Vehiculo.TIPOS_VEHICULOS)
         RegularTamañoColumnas()
         TomarValores()
-        Dim aqui = Fachada.getInstancia.DevolverUsuarioActual.Rol = Usuario.TIPO_ROL_ADMINISTRADOR Or (Fachada.getInstancia.TrabajaEnAcutual.Lugar.IDLugar = Fachada.getInstancia.MaximoAncestro(Fachada.getInstancia.UltimaPosicionVehiculo(vehiculo.VIN)(0)).IDLugar)
+        Dim aqui = Fachada.getInstancia.DevolverUsuarioActual.Rol = Usuario.TIPO_ROL_ADMINISTRADOR OrElse (Fachada.getInstancia.TrabajaEnAcutual.Lugar.IDLugar = Fachada.getInstancia.MaximoAncestro(Fachada.getInstancia.UltimaPosicionVehiculo(vehiculo.VIN)(0)).IDLugar)
         If Not aqui Then
+            Button1.Visible = False
             Button2.Visible = False
             Button4.Visible = False
         End If
@@ -510,5 +511,10 @@ Public Class panelInfoVehiculo
             Dim fs = sfd.OpenFile
             Me.qrcode.Save(fs, Imaging.ImageFormat.Png)
         End If
+    End Sub
+
+    Private Sub Button1_Click_2(sender As Object, e As EventArgs) Handles Button1.Click
+        Dim BV = New BajaVehiculo(Me.vehiculo)
+        BV.ShowDialog()
     End Sub
 End Class

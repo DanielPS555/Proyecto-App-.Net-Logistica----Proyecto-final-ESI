@@ -8,6 +8,8 @@ Public Class ListaVehiculos
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
+
+
         If getInstancia.DevolverUsuarioActual.Rol <> Usuario.TIPO_ROL_ADMINISTRADOR Then
             LugaresBox.Items.Add(getInstancia.TrabajaEnAcutual.Lugar)
             LugaresBox.Enabled = False

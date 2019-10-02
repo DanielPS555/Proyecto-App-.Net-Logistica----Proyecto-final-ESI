@@ -108,6 +108,12 @@
     <Compile Include="Asignacion.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="BajaVehiculo.Designer.vb">
+      <DependentUpon>BajaVehiculo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="BajaVehiculo.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="crearInformaDeDaños.Designer.vb">
       <DependentUpon>crearInformaDeDaños.vb</DependentUpon>
     </Compile>
@@ -199,6 +205,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Asignacion.resx">
       <DependentUpon>Asignacion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BajaVehiculo.resx">
+      <DependentUpon>BajaVehiculo.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="crearInformaDeDaños.resx">
       <DependentUpon>crearInformaDeDaños.vb</DependentUpon>
