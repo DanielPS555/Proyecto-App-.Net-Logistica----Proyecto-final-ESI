@@ -23,7 +23,6 @@ Partial Class BajaVehiculo
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.Button1 = New System.Windows.Forms.Button()
-        Me.TipoBaja = New System.Windows.Forms.ComboBox()
         Me.MensajeBaja = New System.Windows.Forms.TextBox()
         Me.SuspendLayout()
         '
@@ -31,28 +30,19 @@ Partial Class BajaVehiculo
         '
         Me.Button1.BackColor = System.Drawing.Color.DeepSkyBlue
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.Location = New System.Drawing.Point(199, 130)
+        Me.Button1.Location = New System.Drawing.Point(12, 130)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(146, 23)
+        Me.Button1.Size = New System.Drawing.Size(333, 23)
         Me.Button1.TabIndex = 0
-        Me.Button1.Text = "Marcar baja del vehículo"
+        Me.Button1.Text = "Marcar recogida del vehículo"
         Me.Button1.UseVisualStyleBackColor = False
         '
-        'ComboBox1
+        'MensajeBaja
         '
-        Me.TipoBaja.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.TipoBaja.FormattingEnabled = True
-        Me.TipoBaja.Location = New System.Drawing.Point(12, 12)
-        Me.TipoBaja.Name = "ComboBox1"
-        Me.TipoBaja.Size = New System.Drawing.Size(333, 21)
-        Me.TipoBaja.TabIndex = 1
-        '
-        'TextBox1
-        '
-        Me.MensajeBaja.Location = New System.Drawing.Point(12, 39)
+        Me.MensajeBaja.Location = New System.Drawing.Point(12, 12)
         Me.MensajeBaja.Multiline = True
-        Me.MensajeBaja.Name = "TextBox1"
-        Me.MensajeBaja.Size = New System.Drawing.Size(333, 85)
+        Me.MensajeBaja.Name = "MensajeBaja"
+        Me.MensajeBaja.Size = New System.Drawing.Size(333, 112)
         Me.MensajeBaja.TabIndex = 2
         '
         'BajaVehiculo
@@ -62,7 +52,6 @@ Partial Class BajaVehiculo
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(357, 165)
         Me.Controls.Add(Me.MensajeBaja)
-        Me.Controls.Add(Me.TipoBaja)
         Me.Controls.Add(Me.Button1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.Name = "BajaVehiculo"
@@ -73,6 +62,5 @@ Partial Class BajaVehiculo
     End Sub
 
     Friend WithEvents Button1 As Windows.Forms.Button
-    Friend WithEvents TipoBaja As Windows.Forms.ComboBox
     Friend WithEvents MensajeBaja As Windows.Forms.TextBox
 End Class

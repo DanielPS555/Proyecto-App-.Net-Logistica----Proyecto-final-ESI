@@ -113,7 +113,7 @@ Partial Class panelInfoVehiculo
         Me.trasportadoPor = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.bajaButton = New System.Windows.Forms.Button()
         Me.RutaVehiculo.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.QR, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -155,7 +155,7 @@ Partial Class panelInfoVehiculo
         'TabPage1
         '
         Me.TabPage1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TabPage1.Controls.Add(Me.Button1)
+        Me.TabPage1.Controls.Add(Me.bajaButton)
         Me.TabPage1.Controls.Add(Me.SaveButton)
         Me.TabPage1.Controls.Add(Me.id)
         Me.TabPage1.Controls.Add(Me.Label22)
@@ -1065,12 +1065,12 @@ Partial Class panelInfoVehiculo
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(666, 280)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(200, 34)
-        Me.Button1.TabIndex = 144
-        Me.Button1.Text = "Dar baja"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.bajaButton.Location = New System.Drawing.Point(666, 280)
+        Me.bajaButton.Name = "Button1"
+        Me.bajaButton.Size = New System.Drawing.Size(200, 34)
+        Me.bajaButton.TabIndex = 144
+        Me.bajaButton.Text = "Dar baja"
+        Me.bajaButton.UseVisualStyleBackColor = True
         '
         'panelInfoVehiculo
         '
@@ -1189,5 +1189,5 @@ Partial Class panelInfoVehiculo
     Friend WithEvents tipoLugar As DataGridViewTextBoxColumn
     Friend WithEvents fLlegada As DataGridViewTextBoxColumn
     Friend WithEvents trasportadoPor As DataGridViewTextBoxColumn
-    Friend WithEvents Button1 As Button
+    Friend WithEvents bajaButton As Button
 End Class

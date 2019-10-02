@@ -55,3 +55,5 @@ Si es un registro de anulacion o actualizacion usted debe elegir un registro al 
 Precargas masivas
 Mensajes
 Consola de Scheme
+Lista de transportes
+Medios autorizados

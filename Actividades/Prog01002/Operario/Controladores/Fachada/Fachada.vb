@@ -57,6 +57,11 @@ Public Class Fachada
         Return Persistencia.getInstancia.Evento(jsonString)
     End Function
 
+    Public Function TieneInformeEnLugar(vehiculo As Vehiculo, lgr As Lugar) As Boolean
+        Return Persistencia.getInstancia.InformesDaño(vehiculo.IdVehiculo).
+            Rows.Cast(Of DataRow).Where(Function(x) x.Item(5) = lgr.IDLugar).Count > 0
+    End Function
+
     Public Shared Function getInstancia() As Fachada
         If initi Is Nothing Then
             initi = New Fachada()

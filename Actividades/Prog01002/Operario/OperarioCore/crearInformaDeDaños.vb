@@ -174,6 +174,9 @@ Public Class crearInformaDeDaños
         If PanelDelVehiculo Is Nothing Then
             If subida Then
                 Controladores.Fachada.getInstancia.nuevoInformeDeDaños(Info)
+                If Info.Tipo = Controladores.InformeDeDaños.TIPO_INFORME_TOTAL Then
+                    Controladores.Fachada.getInstancia.BajaVehiculo(Info.VehiculoPadre, Controladores.Vehiculo.TipoBajaVehiculo.Destrucción, Nothing)
+                End If
             Else
                 Controladores.Fachada.getInstancia.actualizarInforme(Info)
             End If

@@ -44,7 +44,20 @@
                                                                                         Controladores.Fachada.getInstancia.CargarDataBaseDelUsuario()
                                                                                         Return Controladores.Fachada.getInstancia.EnviarMensaje(Controladores.Fachada.getInstancia.DevolverUsuarioActual, Controladores.Fachada.getInstancia.InfoVehiculos({x}).Single, y)
                                                                                     End Function, "send-message")
+        Dim aboutDictionary As New Dictionary(Of Schemy.Symbol, String) From {
+            {Schemy.Symbol.FromString("place-vehicles"), "(x) => Devuelve una lista con los VIN de los vehículos en el lugar con nombre x"},
+            {Schemy.Symbol.FromString("vehicle-many-info"), "(x: lista) => Devuelve una lista de listas con información de los vehículos con VIN en la lista x"},
+            {Schemy.Symbol.FromString("vehicle-info"), "(x) => Devuelve una lista con información del vehículo con VIN = x"},
+            {Schemy.Symbol.FromString("send-message"), "(vin mensaje) => Envía el mensaje al cliente dueño del VIN"},
+            {Schemy.Symbol.FromString("concat"), "(x: lista) => Une la representación en string de todos los elementos de x"}
+            }
         Dim help As New Schemy.NativeProcedure(Function(__)
+                                                   If __.Count = 1 Then
+                                                       Dim sym = TryCast(__.Single, Schemy.Symbol)
+                                                       If sym IsNot Nothing AndAlso aboutDictionary.ContainsKey(sym) Then
+                                                           Return aboutDictionary(sym)
+                                                       End If
+                                                   End If
                                                    Return "Schemy es un lenguaje de scripteo inspirado por Scheme, un Lisp-1" & vbNewLine &
                                                    "El mismo representa su código mediante listas las cuales son del tipo (elemento1 elemento... elementon)" & vbNewLine &
                                                    "Para ejecutar una función haga (func sus argumentos)" & vbNewLine &
