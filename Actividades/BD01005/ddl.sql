@@ -17,6 +17,7 @@
 	FechaCreacion date not null,
 	Sexo char(1) NOT null,
 	Rol char(1) not null,
+	Imagen byte default null,
 	CHECK (Rol in ('A', 'O', 'T')),
 	CHECK (Sexo IN ('M',
 	'F',
@@ -271,45 +272,50 @@ create table
 /*
 	json schema, no hay soporte nativo de informix para estos esquemas
 	pero consideramos relvante incluirlo como documentación
-	1 {
-	2   "definitions": {},
-	3   "$schema": "http://json-schema.org/draft-07/schema#",
-	5   "type": "object",
-	6   "title": "Schema de los eventos",
-	7   "required": [
-	8     "tipo",
-	9     "por",
-	10     "autor",
-	11     "mensaje"
-	12   ],
-	13   "properties": {
-	14     "tipo": {
-	15       "$id": "#/properties/tipo",
-	16       "type": "string",
-	17       "pattern": "^(comentario|notificacion|modulo)$"
-	18     },
-	19     "por": {
-	20       "$id": "#/properties/por",
-	21       "type": "string",
-	22       "pattern": "^(admin|transporte|cliente)$"
-	23     },
-	24     "idvehiculo": {
-	25       "$id": "#/properties/idvehiculo",
-	26       "type": "integer"
-	27     },
-	28     "autor": {
-	29       "$id": "#/properties/autor",
-	30       "type": "integer",
-	31       "description": "id de la entidad que causo el evento"
-	32     },
-	33     "mensaje": {
-	34       "$id": "#/properties/mensaje",
-	35       "type": "string",
-	36       "description": "mensaje que reporta el evento (en el caso de los comentarios, este es el contenido de los mismos)",
-	37       "pattern": "^(.*)$"
-	38     }
-	39   }
-	40 }
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "title": "Schema de los eventos",
+  "required": [
+    "tipo",
+    "por",
+    "autor",
+    "mensaje"
+  ],
+  "properties": {
+    "tipo": {
+      "$id": "#/properties/tipo",
+      "type": "string",
+      "pattern": "^(comentario|notificacion|modulo|mensajedirecto)$"
+    },
+    "por": {
+      "$id": "#/properties/por",
+      "type": "string",
+      "pattern": "^(admin|transporte|cliente|usuario)$"
+    },
+    "idvehiculo": {
+      "$id": "#/properties/idvehiculo",
+      "type": "integer"
+    },
+    "autor": {
+      "$id": "#/properties/autor",
+      "type": "integer",
+      "description": "id de la entidad que causo el evento"
+    },
+    "destinatario": {
+      "$id": "#/properties/destinatario",
+      "type": "integer",
+      "description": "id del destinatario del mensaje"
+    },
+    "mensaje": {
+      "$id": "#/properties/mensaje",
+      "type": "string",
+      "description": "mensaje que reporta el evento (en el caso de los comentarios, este es el contenido de los mismos)",
+      "pattern": "^(.*)$"
+    }
+  }
+}
 */
 	datos bson not null,
 	fechaAgregado datetime year to second

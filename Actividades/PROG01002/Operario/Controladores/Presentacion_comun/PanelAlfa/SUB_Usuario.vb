@@ -34,7 +34,7 @@ Public Class SUB_Usuario
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        padre.devolver(user)
+        padre.Devolver(user)
     End Sub
 
 
