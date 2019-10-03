@@ -1,43 +1,68 @@
 ﻿Public Class Alfa
 
     Private lista As New List(Of Form)
-    Private _tipo As Integer
-    Public Sub New(Optional tipo = 0)
+    Private _tipoObjeto As Type
+    Private _tipoPanel As Type
+    Public Sub New(tipoObjeto As Type, tipoPanel As Type)
 
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
-        Me.tipo = tipo
+        Me.TipoObjeto = tipoObjeto
+        Me.TipoPanel = tipoPanel
+        If Not tipoPanel.GetInterfaces().Contains(GetType(AlfaInterface)) Then
+            Throw New InvalidCastException("TipoPanel no implementa AlfaInterface")
+        End If
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
 
     End Sub
 
-    Public Property Tipo() As Integer
+    Public Property TipoPanel As Type
         Get
-            Return _tipo
+            Return _tipoPanel
         End Get
-        Set(ByVal value As Integer)
-            _tipo = value
+        Set(value As Type)
+            _tipoPanel = value
         End Set
     End Property
 
-    Public Sub devolver(elemento As Object)
-        Select Case Tipo 'PARA CADA POSIBLE FUNCIONALIDAD DEL PANEL, SE CREAN LOS LAS RESPECTIVAS OPCIONES AQUI, YA QUE ANTES DE CARGAR EL PANEL SI O SI SE TIENE QUE DECIR SU TIPO 
-            ' A MODO DE EJEMPLO, EN LA LISTA DE VEHICULO LOS ITEM VEHICULOS VAN A TENER UNA FUNCION (ACCEDER AL PANEL DE VEHICULO), PERO EN LA LISTA DE NO ASIGNADOS DEBERA LLAMAR
-            ' AL Panel ASIGNACION, ES POR ELLO QUE POR CADA FUNCION QUE QUERAMOS QUE CUMPLA SE DEBERA CREAR UNA OPCION AQUI 
-            Case 1
-                If TypeOf elemento Is Usuario Then
-                    Marco.getInstancia.CargarPanel(Of PanelInfoUsuario)(New PanelInfoUsuario(DirectCast(elemento, Usuario).ID_usuario))
-                End If
+    Public Property TipoObjeto() As Type
+        Get
+            Return _tipoObjeto
+        End Get
+        Set(ByVal value As Type)
+            _tipoObjeto = value
+        End Set
+    End Property
 
-            Case Else
-                Throw New Exception("Debe cargar ese tipo")
+    Public Delegate Sub LambdaGenerico(O As Object)
 
-        End Select
+    Public Shared LambdaRespuesta As New Dictionary(Of Type, LambdaGenerico) From
+        {
+         {
+            GetType(Usuario),
+            Sub(elemento) Marco.getInstancia.CargarPanel(Of PanelInfoUsuario)(New PanelInfoUsuario(DirectCast(elemento, Usuario).ID_usuario))
+                }
+        }
+
+    Public Sub Devolver(elemento As Object)
+        If elemento Is Nothing Then
+            Return
+        End If
+        If elemento.GetType IsNot TipoObjeto Then
+            Throw New InvalidCastException("El tipo del objeto no corresponde con el tipo configurado")
+        End If
+
+        If Not LambdaRespuesta.ContainsKey(TipoObjeto) Then
+            Throw New Exception("No hay implementación para ese tipo")
+        End If
+
+        LambdaRespuesta(TipoObjeto)(elemento)
     End Sub
 
-    Public Sub Nuevo(elemento As AlfaInterface, renderAutomatico As Boolean)
-        elemento.darAlfa(Me)
-        lista.Add(elemento.dameForm)
+    Public Sub Nuevo(elemento As Object, renderAutomatico As Boolean)
+        Dim objetoLista As AlfaInterface = TipoPanel.GetConstructors().Single.Invoke(New Object() {elemento})
+        objetoLista.darAlfa(Me)
+        lista.Add(objetoLista.dameForm)
         If renderAutomatico Then
             render()
         End If

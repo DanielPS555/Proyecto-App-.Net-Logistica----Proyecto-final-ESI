@@ -593,15 +593,13 @@ Public Class Fachada
                 Dim reg2 As RegistroDaños
                 If r2.Item(2).Equals("No actualiza") Then
                     tipo = RegistroDaños.TIPO_ACTUALIZACION_REGULAR
+                    reg2 = Nothing
                 Else
                     tipo = r2.Item(2)
                     reg2 = New RegistroDaños(New InformeDeDaños(vehi) With {.ID = Funciones_comunes.AutoNull(Of Object)(r2.Item(3))}) With {.ID = Funciones_comunes.AutoNull(Of Object)(r2.Item(4))}
                 End If
                 Dim reg As New RegistroDaños(l) With {.ID = r2.Item(0), .Descripcion = r2.Item(1),
-                        .TipoActualizacion = tipo}
-                If reg.TipoActualizacion <> RegistroDaños.TIPO_ACTUALIZACION_REGULAR Then
-                    reg.Actualiza = reg2
-                End If
+                        .TipoActualizacion = tipo, .Actualiza = reg2}
                 Dim dt3 As DataTable = Persistencia.getInstancia.Imagenes(l.ID, reg.ID)
                 For Each r3 As DataRow In dt3.Rows
                     reg.Imagenes.Add(Funciones_comunes.BitmapFromByteArray(r3.Item(1)))

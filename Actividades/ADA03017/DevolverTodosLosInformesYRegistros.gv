@@ -1,0 +1,17 @@
+digraph testing {
+  "Lista := new Lista" -> "Hay informes para el vehiculo";
+  "Hay informes para el vehiculo" -> "Devolver lista" [label="F"];
+  "Hay informes para el vehiculo" -> "Crear objeto del informe" [label="V: Tomar informe"];
+  "Crear objeto del informe" -> "Hay registros para el informe";
+  "Hay registros para el informe" -> "Es actualización" [label="V: Tomar registro"];
+  "Es actualización" -> "Reg.Actualiza = Registro_Actualizacion" [label="V: Tomar registro referenciado"];
+  "Reg.Actualiza = Registro_Actualizacion" -> "Crear objeto de registro";
+  "Es actualización" -> "Crear objeto de registro" [label="F"];
+  "Crear objeto de registro" -> "Hay imágenes";
+  "Hay imágenes" -> "Tomar imágen y vincular al registro, hay mas?" [label="V"];
+  "Tomar imágen y vincular al registro, hay mas?" -> "Tomar imágen y vincular al registro, hay mas?" [label="V"];
+  "Tomar imágen y vincular al registro, hay mas?" -> "Punto de reunion" [label="F"];
+  "Hay registros para el informe" -> "Hay informes para el vehiculo" [label="F: agregar informe a la lista"];
+  "Hay imágenes" -> "Punto de reunion" [label="F"];
+  "Punto de reunion" -> "Hay registros para el informe" [label="Agregar registro a la lista del informe"];
+}

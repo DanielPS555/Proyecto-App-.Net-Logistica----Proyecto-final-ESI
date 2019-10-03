@@ -6,9 +6,10 @@ Public Class ListarUsuario
 
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
-        alfa = New Controladores.Alfa(1)
-        alfa.Location = New Drawing.Point(13, 86)
-        alfa.Size = New Drawing.Size(853, 548)
+        alfa = New Controladores.Alfa(GetType(Controladores.Usuario), GetType(Controladores.SUB_Usuario)) With {
+            .Location = New Drawing.Point(13, 86),
+            .Size = New Drawing.Size(853, 548)
+        }
         Me.Controls.Add(alfa)
         Me.Update()
         carardatos()
@@ -19,7 +20,7 @@ Public Class ListarUsuario
     Private Sub carardatos()
         Usuariostabla = Controladores.Fachada.getInstancia.todosLosUsuarios
         For Each user As DataRow In Usuariostabla.Rows
-            Dim elemento As New Controladores.SUB_Usuario(New Controladores.Usuario With {.ID_usuario = user.Item(0), .NombreDeUsuario = user.Item(1), .Rol = user.Item(4)})
+            Dim elemento As New Controladores.Usuario With {.ID_usuario = user.Item(0), .NombreDeUsuario = user.Item(1), .Rol = user.Item(4)}
             alfa.Nuevo(elemento, False)
         Next
         alfa.render()

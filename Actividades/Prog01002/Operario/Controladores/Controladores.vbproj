@@ -255,6 +255,12 @@
     <Compile Include="Presentacion_comun\PanelAlfa\SUB_Medio.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Presentacion_comun\PanelAlfa\SUB_Mensaje.Designer.vb">
+      <DependentUpon>SUB_Mensaje.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion_comun\PanelAlfa\SUB_Mensaje.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Presentacion_comun\PanelAlfa\SUB_Usuario.Designer.vb">
       <DependentUpon>SUB_Usuario.vb</DependentUpon>
     </Compile>
