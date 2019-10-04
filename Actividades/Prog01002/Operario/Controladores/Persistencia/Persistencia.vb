@@ -146,13 +146,13 @@ order by fechaAgregado
         Return ds.Tables.Item(0)
     End Function
 
-    Public Function InformesDaño(id As Integer) As DataTable
+    Public Function InformesDaño(idvehiculo As Integer) As DataTable
         Dim selcmd As New OdbcCommand(" select informedanios.id,Descripcion,concat(usuario.primernombre, concat(' ', usuario.primerapellido)),
                                         Fecha,lugar.nombre, lugar.idlugar,usuario.idusuario
                                         from Informedanios inner join usuario on informedanios.idusuario=usuario.idusuario
                                         inner join lugar on informedanios.idlugar=lugar.idlugar
                                         where idvehiculo=? order by informedanios.id", _con)
-        selcmd.CrearParametro(DbType.Int32, id)
+        selcmd.CrearParametro(DbType.Int32, idvehiculo)
         Dim dt As New DataTable
         dt.Load(selcmd.ExecuteReader)
         Return dt
@@ -1280,7 +1280,14 @@ order by fechaAgregado
         com.CrearParametro(DbType.String, estado)
         com.CrearParametro(DbType.Int32, idtransporte)
         com.CrearParametro(DbType.Int32, idlote)
-        Return com.ExecuteNonQuery() > 0
+        Dim ret = com.ExecuteNonQuery() > 0
+        If Not ret Then Return False
+        Dim selCmd As New OdbcCommand("select vehiculo.idvehiculo from vehiculo inner join integra on integra.idvehiculo=vehiculo.idvehiculo inner join lote on lote.idlote=integra.lote inner join lugar on lote.destino=lugar.idlugar where lote.idlote=? and lugar.tipo='Establecimiento'", _con)
+        selCmd.CrearParametro(idlote)
+        Dim dt As New DataTable
+        dt.Load(selCmd.ExecuteReader)
+        Fachada.getInstancia.CargarDataBaseDelUsuario()
+        ForEach(dt.Rows.Cast(Of DataRow)(), Function(x) Me.BajaVehiculo(x(0), New Dictionary(Of String, String), Fachada.getInstancia.DevolverUsuarioActual.ID_usuario))
     End Function
 
     Public Function updatePrioridadlote(idlote As Integer, prio As String)

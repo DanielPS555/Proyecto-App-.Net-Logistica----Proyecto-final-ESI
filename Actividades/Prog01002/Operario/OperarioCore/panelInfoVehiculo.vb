@@ -46,11 +46,15 @@ Public Class panelInfoVehiculo
         TipoCombo.Items.AddRange(Controladores.Vehiculo.TIPOS_VEHICULOS)
         RegularTamañoColumnas()
         TomarValores()
-        Dim aqui = Fachada.getInstancia.DevolverUsuarioActual.Rol = Usuario.TIPO_ROL_ADMINISTRADOR OrElse (Fachada.getInstancia.TrabajaEnAcutual.Lugar.IDLugar = Fachada.getInstancia.MaximoAncestro(Fachada.getInstancia.UltimaPosicionVehiculo(vehiculo.VIN)(0)).IDLugar)
-        If Not aqui Then
-            Button1.Visible = False
+        Dim ultPosVehiculo As DataRow = Fachada.getInstancia.UltimaPosicionVehiculo(vehiculo.VIN)
+        Dim lugarPadreUltLugar As Lugar = Fachada.getInstancia.MaximoAncestro(ultPosVehiculo(0))
+        Dim aqui = Fachada.getInstancia.DevolverUsuarioActual.Rol = Usuario.TIPO_ROL_ADMINISTRADOR OrElse (Fachada.getInstancia.TrabajaEnAcutual.Lugar.IDLugar = lugarPadreUltLugar.IDLugar)
+        If Not aqui OrElse Persistencia.getInstancia.ExisteBaja(vehiculo.IdVehiculo) Then
+            bajaButton.Visible = False
             Button2.Visible = False
             Button4.Visible = False
+        ElseIf Not Fachada.getInstancia.TieneInformeEnLugar(vehiculo, lugarPadreUltLugar) Then
+            bajaButton.Visible = False
         End If
     End Sub
 
@@ -523,7 +527,7 @@ Public Class panelInfoVehiculo
         End If
     End Sub
 
-    Private Sub Button1_Click_2(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub Button1_Click_2(sender As Object, e As EventArgs) Handles bajaButton.Click
         Dim BV = New BajaVehiculo(Me.vehiculo)
         BV.ShowDialog()
     End Sub
