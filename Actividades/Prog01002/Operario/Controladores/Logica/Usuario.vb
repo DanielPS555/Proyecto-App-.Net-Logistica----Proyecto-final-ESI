@@ -6,6 +6,10 @@ Public Class Usuario
     Public Shared ReadOnly TIPO_ROL_OPERARIO As String = "O"
     Public Shared ReadOnly TIPO_ROL_TRANSPORTISTA As String = "T"
 
+    Public Overrides Function ToString() As String
+        Return NombreDeUsuario & " (" & Rol & ")"
+    End Function
+
     Public Sub New(iD_usuario As Integer, tele As String, rol As String, sexo As Char, username As String, nombre As String, email As String, fechaNacimiento As Date, preguntaSecreta As String, respuestaSecreeta As String, respuestaSecreta As String, linkRastreador As String)
         Me.ID_usuario = iD_usuario
         Me.Rol = rol

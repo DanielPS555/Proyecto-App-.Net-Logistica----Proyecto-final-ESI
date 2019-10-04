@@ -66,6 +66,54 @@ order by 7", _con)
         Return dt
     End Function
 
+    Public Function CheckViews(ids() As Integer) As DataTable
+        If ids.Count < 1 Then Return New DataTable
+        Dim parameterSubrange = String.Join(",", "?".Multiply(ids.Length).Cast(Of Object).ToArray)
+        Dim searchcmd As New OdbcCommand("select evento.id, nvl(bson_value_boolean(datos, 'leido'), 'f'::boolean) as leido from evento where id in (" + parameterSubrange + ");", _con)
+        For Each i In ids
+            searchcmd.CrearParametro(i)
+        Next
+        Dim dt As New DataTable
+        dt.Load(searchcmd.ExecuteReader)
+        Return dt
+    End Function
+
+    Public Function MensajesNoLeidos(iD_usuario1 As Integer, iD_usuario2 As Integer, lmid As Integer) As DataTable
+        Dim searchcmd As New OdbcCommand("select evento.id, evento.datos::json::lvarchar as evt, evento.fechaAgregado as fecha from evento
+where bson_value_lvarchar(datos, 'tipo')='mensaje' and (
+(bson_value_int(datos, 'autor')=? and
+ bson_value_int(datos, 'destinatario')=?)
+or 
+(bson_value_int(datos, 'autor')=? and
+ bson_value_int(datos, 'destinatario')=?)
+)
+and id > ?
+order by fechaAgregado
+", _con)
+        searchcmd.CrearParametro(iD_usuario1)
+        searchcmd.CrearParametro(iD_usuario2)
+        searchcmd.CrearParametro(iD_usuario2)
+        searchcmd.CrearParametro(iD_usuario1)
+        searchcmd.CrearParametro(lmid)
+        Dim dt As New DataTable
+        dt.Load(searchcmd.ExecuteReader)
+        For Each row As DataRow In dt.Rows
+            Dim jsonObject = Newtonsoft.Json.JsonConvert.DeserializeObject(Of Dictionary(Of String, Object))(CType(row(1), String))
+            If (jsonObject("destinatario") = Fachada.getInstancia.DevolverUsuarioActual.ID_usuario) Then
+                jsonObject("leido") = True
+                Dim updatecmd As New OdbcCommand("update evento set datos=?::json where id=?;", _con)
+                Dim jsonString As String = Newtonsoft.Json.JsonConvert.SerializeObject(jsonObject)
+                CType(updatecmd, OdbcCommand).CrearParametro(jsonString)
+                updatecmd.CrearParametro(row(0))
+                If updatecmd.ExecuteNonQuery() < 1 Then
+                    Console.Error.WriteLine($"No se pudo actualizar el leído del mensaje con ID={row(0)}")
+                End If
+                row(1) = jsonString
+            End If
+        Next
+        Return dt
+    End Function
+
     Public Function BajaVehiculo(idVehiculo As Integer, jsonObj As Dictionary(Of String, String), iD_usuario As Integer) As Boolean
         Dim insertCmd As New OdbcCommand("insert into vehiculoIngresa(idvehiculo, fecha, tipoingreso, usuario, detalle) values(?,current year to second, 'Baja', ?, ?::json);", _con)
         insertCmd.CrearParametro(idVehiculo)
@@ -995,6 +1043,35 @@ order by 7", _con)
                                     where (transporta.estado is null or  transporta.estado='Fallo' or transporta.estado='Cancelado') and lote.invalido='f' and lote.estado='Cerrado'", Conexcion)
         Dim dt As New DataTable
         dt.Load(com.ExecuteReader)
+        Return dt
+    End Function
+
+    Friend Function MensajesEntre(iD_usuario1 As Integer, iD_usuario2 As Integer) As DataTable
+        Dim searchcmd As New OdbcCommand("select evento.id, evento.datos::json::lvarchar as evt, evento.fechaAgregado, current year to second as fecha from evento
+where bson_value_lvarchar(datos, 'tipo')='mensaje' and (
+bson_value_int(datos, 'autor')=? and
+ bson_value_int(datos, 'destinatario')=?)
+or (
+bson_value_int(datos, 'autor')=? and
+ bson_value_int(datos, 'destinatario')=?)
+order by fechaAgregado
+", _con)
+        searchcmd.CrearParametro(iD_usuario1)
+        searchcmd.CrearParametro(iD_usuario2)
+        searchcmd.CrearParametro(iD_usuario2)
+        searchcmd.CrearParametro(iD_usuario1)
+        Dim dt As New DataTable
+        dt.Load(searchcmd.ExecuteReader)
+        For Each row As DataRow In dt.Rows
+            Dim jsonObject = Newtonsoft.Json.JsonConvert.DeserializeObject(Of Dictionary(Of String, Object))(CType(row(1), String))
+            If (jsonObject("destinatario") = Fachada.getInstancia.DevolverUsuarioActual.ID_usuario) Then
+                jsonObject("leido") = True
+                Dim updatecmd As New OdbcCommand("update evento set datos=?::json where id=?;", _con)
+                updatecmd.CrearParametro(Newtonsoft.Json.JsonConvert.SerializeObject(jsonObject))
+                updatecmd.CrearParametro(row(0))
+                updatecmd.ExecuteNonQuery()
+            End If
+        Next
         Return dt
     End Function
 

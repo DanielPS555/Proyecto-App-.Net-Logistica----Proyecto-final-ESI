@@ -10,8 +10,9 @@
     <AssemblyName>OperarioCore</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>Windows</MyType>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -65,6 +66,12 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DirectShow">
+      <HintPath>..\DirectShow.dll</HintPath>
+    </Reference>
+    <Reference Include="DirectX.Capture">
+      <HintPath>..\DirectX.Capture.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="QRCoder">
       <HintPath>..\QRCoder.dll</HintPath>
@@ -79,8 +86,8 @@
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Net.Http" />
-    <Reference Include="WiaDotNet">
-      <HintPath>..\WiaDotNet.dll</HintPath>
+    <Reference Include="WebCam">
+      <HintPath>..\WebCam.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="zxing">

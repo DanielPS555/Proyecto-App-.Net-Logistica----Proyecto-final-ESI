@@ -1,7 +1,7 @@
 ﻿Imports Controladores
 
 Public Class SUB_Usuario
-    Implements AlfaInterface
+    Implements IAlfaInterface
     Private user As Usuario
     Private padre As Alfa
 
@@ -24,11 +24,11 @@ Public Class SUB_Usuario
 
     End Sub
 
-    Public Sub darAncho(x As Integer) Implements AlfaInterface.darAncho
+    Public Sub darAncho(x As Integer) Implements IAlfaInterface.darAncho
         Me.Width = x
     End Sub
 
-    Public Sub darAlfa(alfa As Alfa) Implements AlfaInterface.darAlfa
+    Public Sub darAlfa(alfa As Alfa) Implements IAlfaInterface.darAlfa
         darAncho(alfa.tamaño.Width)
         Me.padre = alfa
     End Sub
@@ -38,7 +38,11 @@ Public Class SUB_Usuario
     End Sub
 
 
-    Public Function dameForm() As Form Implements AlfaInterface.dameForm
+    Public Function dameForm() As Form Implements IAlfaInterface.dameForm
         Return Me
+    End Function
+
+    Public Function dameContenido() As Object Implements IAlfaInterface.dameContenido
+        Return user
     End Function
 End Class

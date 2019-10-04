@@ -14,7 +14,8 @@
                   {"Precargas masivas", GetType(AdministradorCore.PrecargaMasiva)},
                   {"Mensajes", GetType(AdministradorCore.EventMessenger)},
                   {"Consola de Scheme", GetType(AdministradorCore.LispPanel)},
-                  {"Lista vehiculos", GetType(OperarioCore.ListaVehiculos)}
+                  {"Lista vehiculos", GetType(OperarioCore.ListaVehiculos)},
+                  {"Chat", GetType(Controladores.ChatInterno)}
                 }
                 Controladores.Marco.SetButtons(paneles)
                 Controladores.Marco.ReiniciarSingleton()

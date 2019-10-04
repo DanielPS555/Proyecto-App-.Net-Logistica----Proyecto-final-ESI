@@ -8,7 +8,7 @@ Imports Controladores.Extenciones
 Public Class WebcamForm
     Private bcReader As ZXing.BarcodeReader
     Private result As ZXing.Result
-    Private device As WiaDotNet.WiaDevice
+    Private imageBmp As Bitmap
 
     Private Sub WebcamForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bcReader = New ZXing.BarcodeReader With {
@@ -22,38 +22,34 @@ Public Class WebcamForm
             ZXing.BarcodeFormat.QR_CODE
         }
         OpenButton.Text = Funciones_comunes.I18N("Abrir imagen", Marco.Language)
-        Dim manager = New WiaDotNet.WiaManager()
-        For Each d In manager.Devices
-            If MsgBoxI18NFormat("{0} {1}, utilizar?", MsgBoxStyle.OkCancel, d.Manufacturer, d.Name) = MsgBoxResult.Ok Then
-                device = d
-                Exit For
-            End If
-        Next
-        If device IsNot Nothing Then
-            Dim timer As New Timer With {
-                .Interval = 1000 / 15
-            }
-            Dim frameCount = 0
+        Dim manager = New WebCam.WebCam
+        If manager IsNot Nothing Then
+            AddHandler manager.OnSnapshot, Sub(sdr, args)
+                                               imageBmp = args.Image.Clone
+                                           End Sub
+            timer = New Timer
             AddHandler timer.Tick, Sub()
-                                       frameCount += 1
-                                       Console.WriteLine(frameCount)
-                                       Dim res = manager.AcquireScan(device, WiaDotNet.DocumentSources.SingleSided, WiaDotNet.ScanTypes.None)
-                                       Dim img = res.Frames()(0)
-                                       Dim bmp = New Bitmap(img.PixelWidth, img.PixelHeight, PixelFormat.Format32bppRgb)
-                                       Dim bmpdata = bmp.LockBits(New Rectangle(Drawing.Point.Empty, bmp.Size), ImageLockMode.WriteOnly, PixelFormat.Format32bppRgb)
-                                       img.CopyPixels(Int32Rect.Empty, bmpdata.Scan0, bmpdata.Height * bmpdata.Stride, bmpdata.Stride)
-                                       bmp.UnlockBits(bmpdata)
-                                       image.Image = bmp
-                                       image.Refresh()
-                                       Me.Refresh()
-                                       result = bcReader.Decode(bmp)
-                                       If result IsNot Nothing Then
-                                           Close()
+                                       If imageBmp IsNot Nothing Then
+                                           result = bcReader.Decode(imageBmp)
+                                           If result IsNot Nothing Then
+                                               Close()
+                                           End If
                                        End If
+                                       manager.GetImage()
                                    End Sub
-            timer.Start()
+            Console.WriteLine(manager.VideoInputDevices.Count)
+            For Each k As DirectX.Capture.Filter In manager.VideoInputDevices
+                If MsgBox($"Desea abrir la cámara {k.Name}?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
+                    manager.Open(k, image)
+                End If
+            Next
+            If manager.IsConnected Then
+                timer.Start()
+                Console.WriteLine(manager.ToString)
+            End If
         End If
     End Sub
+    Private timer As Timer
 
     Public Shared Function GetQR()
         Dim wcForm = New WebcamForm

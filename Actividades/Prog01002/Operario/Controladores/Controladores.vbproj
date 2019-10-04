@@ -189,12 +189,19 @@
     <Compile Include="Persistencia\Extensiones.vb" />
     <Compile Include="Persistencia\Persistencia.vb" />
     <Compile Include="PICSVReader.vb" />
+    <Compile Include="Presentacion_comun\ChatInterno.Designer.vb">
+      <DependentUpon>ChatInterno.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion_comun\ChatInterno.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Presentacion_comun\ChildrenPane.Designer.vb">
       <DependentUpon>ChildrenPane.vb</DependentUpon>
     </Compile>
     <Compile Include="Presentacion_comun\ChildrenPane.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Presentacion_comun\Evento.vb" />
     <Compile Include="Presentacion_comun\Home.Designer.vb">
       <DependentUpon>Home.vb</DependentUpon>
     </Compile>
@@ -312,6 +319,9 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion_comun\ChatInterno.resx">
+      <DependentUpon>ChatInterno.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentacion_comun\ChildrenPane.resx">
       <DependentUpon>ChildrenPane.vb</DependentUpon>
     </EmbeddedResource>
@@ -332,6 +342,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion_comun\PanelAlfa\Alfa.resx">
       <DependentUpon>Alfa.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion_comun\PanelAlfa\SUB_Mensaje.resx">
+      <DependentUpon>SUB_Mensaje.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion_comun\PanelAlfa\SUB_Usuario.resx">
       <DependentUpon>SUB_Usuario.vb</DependentUpon>

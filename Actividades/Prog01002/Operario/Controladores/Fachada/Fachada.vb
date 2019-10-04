@@ -38,6 +38,38 @@ Public Class Fachada
         Persistencia.getInstancia.BajaVehiculo(vehiculo.IdVehiculo, jsonObj, DevolverUsuarioActual.ID_usuario)
     End Sub
 
+    Friend Function MensajePara(Destinatario As Usuario, Mensaje As String) As Boolean
+        Dim datos As New Dictionary(Of String, Object)
+        datos("tipo") = "mensaje"
+        datos("por") = "usuario"
+        datos("autor") = DevolverUsuarioActual.ID_usuario
+        datos("destinatario") = Destinatario.ID_usuario
+        datos("mensaje") = Mensaje
+        Return Persistencia.getInstancia.Evento(Newtonsoft.Json.JsonConvert.SerializeObject(datos))
+    End Function
+
+    Friend Function UltimosMensajes(Usuario1 As Usuario, Usuario2 As Usuario, ByRef lmid As Integer) As List(Of Evento)
+        Dim dt = Persistencia.getInstancia.MensajesNoLeidos(Usuario1.ID_usuario, Usuario2.ID_usuario, lmid)
+        Dim evtList As New List(Of Evento)
+        For Each r As DataRow In dt.Rows
+            If r(0) > lmid Then
+                lmid = r(0)
+            End If
+            Dim dict = Newtonsoft.Json.JsonConvert.DeserializeObject(Of Dictionary(Of String, Object))(r(1))
+            If Not dict.ContainsKey("leido") Then
+                dict("leido") = False
+            End If
+            Dim evt = New Evento() With {
+                .Datos = dict,
+                .ID = r(0),
+                .FechaAgregado = r(2),
+                .Tipo = Evento.TipoEvento.Mensaje
+                }
+            evtList.Add(evt)
+        Next
+        Return evtList
+    End Function
+
     Public Function MensajesVehiculo(v As Vehiculo) As List(Of String)
         Dim msgs As DataTable = Persistencia.getInstancia.MensajesVehiculo(v.VIN)
         Dim messages = msgs.Rows.Cast(Of DataRow).Select(Function(x) CType(x(0), String) & ": " & CType(x(2), String)).Zip(Enumerable.Range(0, msgs.Rows.Count), Function(x, y) New Tuple(Of String, Single)(x, y)).ToList
@@ -998,11 +1030,34 @@ Public Class Fachada
         Return Persistencia.getInstancia.listaDeLugaresPorIdcliente(idcliente)
     End Function
 
-    Public Function todosLosUsuarios() As DataTable
+    Public Function TodosLosUsuariosTabla() As DataTable
         Return Persistencia.getInstancia.ListarTodosLosUsuariosDelSistema()
     End Function
 
-    Public Function InformacionBasicaUsuario(idusuario As Integer)
+    Public Function TodosLosUsuariosObjetos() As List(Of Usuario)
+        Return TodosLosUsuariosTabla.Rows.Cast(Of DataRow).Select(Function(user) New Controladores.Usuario With {.ID_usuario = user.Item(0), .NombreDeUsuario = user.Item(1), .Rol = user.Item(4)}).ToList
+    End Function
+
+    Public Function MensajesEntre(Usuario1 As Usuario, Usuario2 As Usuario) As List(Of Evento)
+        Dim dt As DataTable = Persistencia.getInstancia.MensajesEntre(Usuario1.ID_usuario, Usuario2.ID_usuario)
+        Dim evtList As New List(Of Evento)
+        For Each r As DataRow In dt.Rows
+            Dim dict = Newtonsoft.Json.JsonConvert.DeserializeObject(Of Dictionary(Of String, Object))(r(1))
+            If Not dict.ContainsKey("leido") Then
+                dict("leido") = False
+            End If
+            Dim evt = New Evento() With {
+                .Datos = dict,
+                .ID = r(0),
+                .FechaAgregado = r(2),
+                .Tipo = Evento.TipoEvento.Mensaje
+                }
+            evtList.Add(evt)
+        Next
+        Return evtList
+    End Function
+
+    Public Function InformacionBasicaUsuario(idusuario As Integer) As Usuario
         Dim dt As DataRow = Persistencia.getInstancia.infobasicaUsuario(idusuario)
         Dim user As New Controladores.Usuario With {.ID_usuario = idusuario,
                                                     .NombreDeUsuario = dt.Item(0),

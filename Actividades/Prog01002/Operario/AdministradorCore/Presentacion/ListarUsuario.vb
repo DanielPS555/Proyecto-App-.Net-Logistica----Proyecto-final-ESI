@@ -18,7 +18,7 @@ Public Class ListarUsuario
     End Sub
 
     Private Sub carardatos()
-        Usuariostabla = Controladores.Fachada.getInstancia.todosLosUsuarios
+        Usuariostabla = Controladores.Fachada.getInstancia.TodosLosUsuariosTabla
         For Each user As DataRow In Usuariostabla.Rows
             Dim elemento As New Controladores.Usuario With {.ID_usuario = user.Item(0), .NombreDeUsuario = user.Item(1), .Rol = user.Item(4)}
             alfa.Nuevo(elemento, False)

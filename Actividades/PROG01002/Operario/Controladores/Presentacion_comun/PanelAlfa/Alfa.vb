@@ -3,18 +3,22 @@
     Private lista As New List(Of Form)
     Private _tipoObjeto As Type
     Private _tipoPanel As Type
-    Public Sub New(tipoObjeto As Type, tipoPanel As Type)
+    Public Sub New(Optional tipoObjeto As Type = Nothing, Optional tipoPanel As Type = Nothing)
 
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
         Me.TipoObjeto = tipoObjeto
         Me.TipoPanel = tipoPanel
-        If Not tipoPanel.GetInterfaces().Contains(GetType(AlfaInterface)) Then
+        If Not tipoPanel.GetInterfaces().Contains(GetType(IAlfaInterface)) Then
             Throw New InvalidCastException("TipoPanel no implementa AlfaInterface")
         End If
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
 
     End Sub
+
+    Public Function GetObjects() As IEnumerable(Of Object)
+        Return lista.Cast(Of IAlfaInterface).Select(Function(x) x.dameContenido).ToList
+    End Function
 
     Public Property TipoPanel As Type
         Get
@@ -33,6 +37,10 @@
             _tipoObjeto = value
         End Set
     End Property
+
+    Public Sub Limpiar()
+        Me.lista.Clear()
+    End Sub
 
     Public Delegate Sub LambdaGenerico(O As Object)
 
@@ -60,13 +68,12 @@
     End Sub
 
     Public Sub Nuevo(elemento As Object, renderAutomatico As Boolean)
-        Dim objetoLista As AlfaInterface = TipoPanel.GetConstructors().Single.Invoke(New Object() {elemento})
+        Dim objetoLista As IAlfaInterface = TipoPanel.GetConstructors().Single.Invoke(New Object() {elemento})
         objetoLista.darAlfa(Me)
         lista.Add(objetoLista.dameForm)
         If renderAutomatico Then
             render()
         End If
-
     End Sub
 
 

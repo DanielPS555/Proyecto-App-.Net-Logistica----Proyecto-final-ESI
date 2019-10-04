@@ -308,6 +308,11 @@ create table
       "type": "integer",
       "description": "id del destinatario del mensaje"
     },
+    "leido": {
+      "$id": "#/properties/leido",
+      "type": "boolean",
+      "description": "si fue leido el mensaje"
+    },
     "mensaje": {
       "$id": "#/properties/mensaje",
       "type": "string",

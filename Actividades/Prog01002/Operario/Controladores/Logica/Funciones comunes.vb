@@ -46,8 +46,12 @@ Public Class Funciones_comunes
         If SourceDictionary Is Nothing Then
             LoadI18N()
         End If
+        If Not SourceDictionary.ContainsKey(iHash) Then
+            Return OriginalString & " - UNTRANSLATED"
+        End If
         Dim dict = Array.IndexOf(Languages, toLang)
-        If dict = 0 Then
+
+            If dict = 0 Then
             Return SourceDictionary(iHash)
         ElseIf dict > 0 Then
             Return TargetDictionary(Languages(dict))(iHash)
