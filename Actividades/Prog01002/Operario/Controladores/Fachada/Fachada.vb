@@ -38,8 +38,8 @@ Public Class Fachada
         Persistencia.getInstancia.BajaVehiculo(vehiculo.IdVehiculo, jsonObj, DevolverUsuarioActual.ID_usuario)
     End Sub
 
-    Friend Function MensajePara(Destinatario As Usuario, Mensaje As String) As Boolean
-        Dim datos As New Dictionary(Of String, Object)
+    Friend Function MensajePara(Destinatario As Usuario, Mensaje As String, Optional datos As Dictionary(Of String, Object) = Nothing) As Boolean
+        If datos Is Nothing Then datos = New Dictionary(Of String, Object)
         datos("tipo") = "mensaje"
         datos("por") = "usuario"
         datos("autor") = DevolverUsuarioActual.ID_usuario
