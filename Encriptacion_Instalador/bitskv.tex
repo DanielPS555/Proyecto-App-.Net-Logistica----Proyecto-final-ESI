@@ -1,0 +1,662 @@
+\documentclass[11pt]{article}
+\usepackage{listings}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{systeme}
+\usepackage{array}
+\usepackage[table, svgnames]{xcolor}
+
+\title{\textbf{Bit SKV}}
+\author{Bit SRL\\
+		Equipo del SLTA-verse}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Descripción}
+SKV es un método de rápida autenticación de claves de instalación utilizando multiplicación de matrices, utilizando 4 matrices (el formato de encodeo de las matrices todavía está por definirse).
+
+El cliente de SLTA tendrá (en algún formato no directamente visible) 4 matrices, $ A_{3}, B_{3}, C_{2}, D_{2} $ donde $ A \times B = M1$ y $ C \times D = M2 $, donde $M1_{3} y M2_{2}$ se describen en las siguientes secciones.
+
+\section{M2}
+M2 es una matriz de tamaño $2\times2$ con los siguientes valores:
+
+\[
+\begin{bmatrix}
+S & T \\
+L & A
+\end{bmatrix}
+\xrightarrow{\text{letras a números}}
+\begin{bmatrix}
+19 & 20 \\
+12 & 1
+\end{bmatrix}
+\]
+Para llegar a este resultado, necesitaremos 2 matrices $C_{2}, D_{2} / C \times D = M2$.
+
+Por ejemplo, despejando del siguiente modo podemos llegar a valores ejemplo de C y D.
+\newpage
+\subsection{M2: C y D ejemplares}
+Empezamos declarando la ecuación
+\[
+C \times D = M2
+\]
+Remplazamos M2 por su valor, y C,D por matrices con variables
+
+\[
+\begin{bmatrix}
+a & b \\
+c & d
+\end{bmatrix}
+\times
+\begin{bmatrix}
+j & k \\
+l & m
+\end{bmatrix}
+=
+\begin{bmatrix}
+19 & 20 \\
+12 & 1
+\end{bmatrix}
+\]
+Damos a la matriz C valores para poder despejar la matriz D
+
+\[
+\begin{bmatrix}
+5 & 12 \\
+8 & 0
+\end{bmatrix}
+\times
+\begin{bmatrix}
+j & k \\
+l & m
+\end{bmatrix}
+=
+\begin{bmatrix}
+19 & 20 \\
+12 & 1
+\end{bmatrix}
+\]
+Definimos las ecuaciones que se están realizando dentro de esta multiplicación (o sea, los dot product entre las filas de C y las columnas de D)
+\begin{align*}
+M2_{11}&=5.j + 12.l&=19\\
+M2_{12}&=5.k + 12.m&=20\\
+M2_{21}&=8.j + 0.l&=12\\
+M2_{22}&=8.j + 0.m&=1\\
+\end{align*}
+\subsection{M2: primer sistema de ecuaciones}
+Tomamos las ecuaciones de la columna 1 en un sistema de ecuaciones (ya que tienen las mismas variables)
+\begin{equation*}
+\systeme{
+5j+12l = 19,
+8j = 12
+}
+\end{equation*}
+\begin{enumerate}
+\item $8j = 12 \rightarrow \boxed{j=\frac{3}{2}}$
+\item $5.\frac{3}{2} + 12.l=19 \rightarrow 12l=19 - \frac{15}{2} = \frac{23}{2} \rightarrow \boxed{l = \frac{23}{24}}$
+\end{enumerate}
+\newpage
+\subsection{M2: segundo sistema de ecuaciones}
+Tomamos las ecuaciones de la columna 2 en otro sistema de ecuaciones
+\begin{equation*}
+\systeme{
+5k+12m = 20,
+8k = 1
+}
+\end{equation*}
+\begin{enumerate}
+\item $8k = 1 \rightarrow \boxed{k=\frac{1}{8}}$
+\item $5.\frac{1}{8} + 12m = 20 \rightarrow 12m = \frac{160-5}{8} \rightarrow \frac{96m}{8} = \frac{155}{8} \rightarrow \boxed{m = \frac{155}{96}}$
+\end{enumerate}
+\subsection{M2: Resultado}
+Tras estos sistemas de ecuaciones, tenemos
+\[
+C = \begin{bmatrix}
+5 & 12\\
+8 & 0
+\end{bmatrix}, D = \begin{bmatrix}
+\frac{3}{2} & \frac{1}{8} \\
+\frac{23}{24} & \frac{155}{96}
+\end{bmatrix}
+\]
+Verificamos que $ C \times D $ sea igual a M2
+\begin{align*}
+(C \times D)_{11}&=5.\frac{3}{2} + 12.\frac{23}{24}&=\frac{456}{24}&=19\\
+(C \times D)_{12}&=\frac{5}{8} + 12.\frac{155}{96}&=\frac{1920}{96}&=20\\
+(C \times D)_{21}&=8.\frac{3}{2} + 0.\frac{23}{24}&&=12\\
+(C \times D)_{22}&=8.\frac{1}{8} + 0.\frac{155}{96}&&=1\\
+\end{align*}
+\[
+=
+\begin{bmatrix}
+19 & 20\\
+12 & 1
+\end{bmatrix}
+\]
+Lo cual significa que $\{C, D\}$ es parte de una clave válida para el sistema de Bit SKV.
+\pagebreak
+\section{M1}
+M1 es una matriz de tamaño $3\times3$ con los siguientes
+valores:
+\[
+\begin{bmatrix}
+B & S & S \\
+I & R & K \\
+T & L & V
+\end{bmatrix}
+\xrightarrow{\text{letras a números}}
+\begin{bmatrix}
+2 & 19 & 19 \\
+9 & 18 & 11 \\
+20 & 11 & 22
+\end{bmatrix}
+\]
+Para llegar a este resultado, necesitaremos 2 matrices
+$A_{3}, B_{3} / A \times B = M1$.
+
+Por ejemplo, despejando del siguiente modo podemos llegar a valores ejemplo de A y B.
+
+\subsection{M1: A y B ejemplares}
+Empezamos declarando la ecuación
+\[
+A \times B = M1
+\]
+Remplazamos M1 por su valor, y A,B por Matrices con variables
+
+\[
+\begin{bmatrix}
+a & b & c \\
+d & e & f \\
+g & h & i
+\end{bmatrix}
+\times
+\begin{bmatrix}
+j & k & l \\
+m & n & o \\
+p & q & r
+\end{bmatrix}
+=
+\begin{bmatrix}
+2 & 19 & 19 \\
+9 & 18 & 11 \\
+20 & 11 & 22
+\end{bmatrix}
+\]
+Damos a la matriz A valores para poder despejar la matriz B
+
+\[
+\begin{bmatrix}
+1 & 3 & 0 \\
+5 & 8 & 12 \\
+9 & 4 & 10
+\end{bmatrix}
+\times
+\begin{bmatrix}
+j & k & l \\
+m & n & o \\
+p & q & r
+\end{bmatrix}
+=
+\begin{bmatrix}
+2 & 19 & 19 \\
+9 & 18 & 11 \\
+20 & 11 & 22
+\end{bmatrix}
+\]
+
+Definimos las ecuaciones que se están realizando dentro de esta multiplicación
+
+\begin{align*}
+M1_{11}&=1.j + 3.m + 0.p &= 2\\
+M1_{12}&=1.k + 3.n + 0.q &= 19\\
+M1_{13}&=1.l + 3.o + 0.r &= 19\\
+M1_{21}&=5.j + 8.m + 12.p &= 9\\
+M1_{22}&=5.k + 8.n + 12.q &= 18\\
+M1_{23}&=5.l + 8.o + 12.r &= 11\\
+M1_{31}&=9.j + 4.m + 10.p &= 20\\
+M1_{32}&=9.k + 4.n + 10.q &= 11\\
+M1_{33}&=9.l + 4.o + 10.q &= 22
+\end{align*}
+\newpage
+\subsection{M1: primer sistema de ecuaciones}
+Separamos las ecuaciones para $M1_{11}, M1_{21}, M1_{31}$ en un sistema de ecuaciones ya que tienen las mismas variables:
+\begin{equation*}
+\systeme{
+1.j + 3.m = 2,
+5.j + 8.m + 12.p = 9 (-10),
+9.j + 4.m + 10.p = 20 (12)
+}
+\end{equation*}
+Multiplicamos la 2da y 3ra ecuación
+\begin{equation*}
+\systeme{-50.j - 80.m - 120.p = -90,
+108.j + 48.m + 120.p = 240
+}
+\end{equation*}
+\begin{equation*}
+58.j - 32.m = 150
+\end{equation*}
+Incluímos la ecuación resultante en un sistema de ecuaciones 2x2 junto con la 1ra ecuación del sistema anterior:
+\begin{equation*}
+\systeme{
+58.j - 32.m = 150 (1),
+j - 3.m = 2(-58)
+}
+\end{equation*}
+Multiplicamos las ecuaciones y reducimos:
+\begin{align*}
+58.j - 32.m = 150\\
+-58.j - 174.m = -116\\
+-206.m = 34\\
+m = \frac{-17}{103}
+\end{align*}
+Reusamos la primera ecuación $j + 3.m = 2$ para despejar $j$
+\begin{align*}
+j + 3.(\frac{-17}{103}) = 2 \\
+j = 2 + \frac{51}{103} = \frac{257}{103}
+\end{align*}
+
+Reusamos la segunda ecuación $5.j + 8.m + 12.p$ para despejar $p$
+\begin{align*}
+5.(\frac{257}{103}) + 8.(\frac{-17}{103}) + 12.p = 9\\
+\frac{1285 - 136 - 927}{103} = -12 . p\\
+12 . p = \frac{-222}{103}\\
+p = \frac{-37}{206}
+\end{align*}
+
+\subsection{M1: segundo sistema de ecucaciones}
+Separamos las ecuaciones para $M1_{12}, M1_{22}, M1_{32}$ en un sistema de ecuaciones
+\begin{equation*}
+\systeme{
+1.k + 3.n = 19,
+5.k + 8.n + 12.q = 18 (-10),
+9.k + 4.n + 10.q = 11 (12)
+}
+\end{equation*}
+Multiplicamos las ecuaciones
+
+\begin{equation*}
+\systeme{-50.k - 80.n - 120.q = -180,
+108.k + 48.n + 120.q = 132
+}
+\end{equation*}
+\begin{equation*}
+58.k - 32.n = -48
+\end{equation*}
+Incluímos la ecuación resultante en un sistema de ecuaciones 2x2 junto con la 1ra ecuación del sistema anterior:
+\begin{equation*}
+\systeme{
+58.k - 32.n = -48 (-1),
+k - 3.n = 19 (58)
+}
+\end{equation*}
+Multiplicamos las ecuaciones y reducimos:
+\begin{align*}
+-58.k + 32.n = 48\\
+58.k + 174.n = 1102\\
+206.n = 1150\\
+n = \frac{575}{103}
+\end{align*}
+Reusamos la primera ecuación $k + 3.n = 19$ para despejar $k$
+\begin{align*}
+n + 3.(\frac{575}{103}) = 19 \\
+n = 19 - \frac{1725}{103} = \frac{232}{103}
+\end{align*}
+
+Reusamos la segunda ecuación $5.k + 8.n + 12.q$ para despejar $q$
+\begin{align*}
+5.(\frac{232}{103}) + 8.(\frac{575}{103}) + 12.q = 18\\
+\frac{1160 + 4600 - 1854}{103} = -12 . q\\
+q = \frac{-3906}{1236}\\
+q = \frac{-651}{206}
+\end{align*}
+\pagebreak
+\subsection{M1: Tercer sistema de ecuaciones}
+
+Separamos las ecuaciones para $M1_{13}, M1_{23}, M1_{33}$ en un sistema de ecuaciones
+\begin{equation*}
+\systeme{
+1.l + 3.o = 19,
+5.l + 8.o + 12.r = 11 (-10),
+9.l + 4.o + 10.r = 22 (12)
+}
+\end{equation*}
+Multiplicamos las ecuaciones
+
+\begin{equation*}
+\systeme{-50.l - 80.o - 120.r = -110,
+108.l + 48.o + 120.r = 264
+}
+\end{equation*}
+\begin{equation*}
+58.l - 32.o = 154
+\end{equation*}
+Incluímos la ecuación resultante en un sistema de ecuaciones 2x2 junto con la 1ra ecuación del sistema anterior:
+\begin{equation*}
+\systeme{
+58.l - 32.o = 154,
+l - 3.o = 19 (-58)
+}
+\end{equation*}
+Multiplicamos la ecuación y reducimos:
+\begin{align*}
+58.l - 32.o = 154\\
+-58.l - 174.o = -1102\\
+-206.o = -948\\
+o = \frac{474}{103}
+\end{align*}
+Reusamos la primera ecuación $l + 3.o = 19$ para despejar $l$
+\begin{align*}
+l + 3.(\frac{474}{103}) = 19 \\
+l = 19 - \frac{1422}{103} = \frac{535}{103}
+\end{align*}
+
+Reusamos la segunda ecuación $5.l + 8.o + 12.r$ para despejar $r$
+\begin{align*}
+5.(\frac{535}{103}) + 8.(\frac{474}{103}) + 12.r = 11\\
+\frac{2675+3792-1133}{103} = -12 . r\\
+r = \frac{-5334}{1236}\\
+r = \frac{-889}{206}
+\end{align*}
+\pagebreak
+\subsection{M1: Resultado}
+Tras estos sistemas de ecuaciones, tenemos
+\[
+A = \begin{bmatrix}
+1 & 3 & 0\\
+5 & 8 & 12\\
+9 & 4 & 10
+\end{bmatrix}, B = \begin{bmatrix}
+\frac{257}{103} & \frac{232}{103} & \frac{535}{103} \\
+\frac{-17}{103} & \frac{575}{103} & \frac{474}{103} \\
+\frac{-37}{206} & \frac{-651}{206} & \frac{-889}{206}
+\end{bmatrix}
+\]
+\pagebreak
+\section{Verificacion de claves mediante M1 y M2}
+Bit SKV es un algoritmo para claves de autenticación de los productos de Bit SRL, los cuales tendrían como matrices A,C o B,D una tabla de datos que permita identificar al cliente y la otra matriz despejada a partir de la misma. Posteriormente, ambas se expresarían bajo la siguiente estructura de $((3*3*2*2)+(2*2*2*2))*2 = 104$ bytes:
+
+Cada número se representa con 4 bytes, 2 para su numerador (firmado) y 2 para su denominador (no firmado).
+
+Los primeros 36 bytes representan los números de A, donde $R_{i} = A_{(i idiv 3)+1,(i mod 3)+1}$, o sea los números de la misma fila se almacenan conjuntamente. Visualmente, esto parece
+\begin{center}
+
+\begin{tabular}{|*{8}{p{0.7cm}|}}
+  \hline
+  \rowcolor{WhiteSmoke!60!Lavender}$A_{11}$& $A_{12}$ & $A_{13}$ & $A_{21}$ & $A_{22} $& \dots & $A_{32}$ &$A_{33}$\rule{0pt}{0.5cm} \\
+  \hline
+\end{tabular}
+\end{center}
+
+Los próximos 36 bytes representan los números de B del mismo modo. Los últimos 32 bytes representan los números de C y D del mismo modo.
+
+Estos 104 bytes son codificados mediante \textit{base64}, un sistema de codificación binaria que utiliza caracteres del abecedario + dígitos + algunos caracteres especiales para codificar de una manera legible información en formato binario. Por ejemplo, nuestros ABCD de ejemplo en formato b64 serían el string (sin rotura de líneas)
+\begin{lstlisting}
+AQABAAMAAQAAAAEABQABAAgAAQAMAAEACQABAAQAAQAKAAEAAQFnAOgAZwAXAmcA7/9nAD8C
+ZwDaAWcA2//OAHX9zgCH/M4ABQABAAwAAQAIAAEAAAABAAMAAgABAAgAFwAYAJsAYAA=
+\end{lstlisting}
+
+\pagebreak
+\subsection{Programa ejemplo usando estas matrices}
+Un programa ejemplo, que encodea y decodea estas matrices (y muestra el resultado de A*B y C*D) es
+\lstset{
+	language=[Visual]Basic,
+	numbers=left,
+	breaklines=true,
+}
+
+\begin{lstlisting}
+Imports System
+Imports System.Linq
+Imports Fractions
+
+Public Structure Matrix
+    Public Values(,) as Fraction
+    Public ReadOnly Property Rows as Integer
+    	   Get
+		Return Values.GetLength(0)
+	   End Get
+    End Property
+
+    Public ReadOnly Property Columns as Integer
+    	   Get
+		Return Values.GetLength(1)
+	   End Get
+    End Property
+    
+    Public Sub New(mat as IEnumerable(Of IEnumerable(Of Fraction)))
+    	   ReDim Values(mat.Count-1, mat(0).Count-1)
+	   For i = 0 to mat.Count-1
+	       For j = 0 to mat(0).Count-1
+	       	   Values(i,j) = mat(i)(j)
+	       Next
+	   Next
+    End Sub
+
+    Public Overrides Function ToString() As String
+    	   Dim str = ""
+	   For y = 0 to Columns-1
+	       For x = 0 to Rows-1
+	       	   str += Values(y,x).ToString()
+		   str += vbTab
+	       Next
+	       str += vbNewLine
+	   Next
+	   Return str
+    End Function
+
+    Public Shared Operator *(ByVal m1 as Matrix, ByVal m2 as Matrix) as Matrix
+    	   If m1.Columns <> m2.Rows Then
+	      Throw New Exception("m1.Columns must be = m2.Rows")
+	   End If
+	   Dim values as New List(Of List(Of Fraction))
+	   For i = 0 to m1.Rows-1
+	       Dim row = new List(Of Fraction)
+	       values.Add(row)
+	       For j = 0 to m2.Columns-1
+	       	   Dim val as Fraction = 0
+		   For k = 0 to m2.Rows-1
+		       val += (m1.Values(i,k) * m2.Values(k,j))
+		   Next
+		   row.Add(val)
+	       Next
+	   Next
+	   Return New Matrix(values)
+    End Operator
+End Structure
+
+Module Program
+   Sub Encode()
+       Dim input = Console.ReadLine
+       Dim values_a = input.Split(";").Select(Function(x) x.Split(",").Select(Function(i) i.Split("/"))).ToList()
+       input = Console.ReadLine
+       Dim values_b = input.Split(";").Select(Function(x) x.Split(",").Select(Function(i) i.Split("/"))).ToList()
+       input = Console.ReadLine
+       Dim values_c = input.Split(";").Select(Function(x) x.Split(",").Select(Function(i) i.Split("/"))).ToList()
+       input = Console.ReadLine
+       Dim values_d = input.Split(";").Select(Function(x) x.Split(",").Select(Function(i) i.Split("/"))).ToList()
+       Dim bytevals(103) as Byte
+       For x = 0 to 2
+       	   For y = 0 to 2
+	   Try
+	       Dim num_d() as Byte = BitConverter.GetBytes(CType(Integer.Parse(values_a(y)(x)(0)), Int16))
+	       bytevals((y*3*4)+(x*4)) = num_d(0)
+	       bytevals((y*3*4)+(x*4)+1) = num_d(1)
+	       Dim div_d() as Byte = BitConverter.GetBytes(CType(Integer.Parse(values_a(y)(x)(1)), Int16))
+	       bytevals((y*3*4)+(x*4)+2) = div_d(0)
+	       bytevals((y*3*4)+(x*4)+3) = div_d(1)
+	   Catch e as Exception
+	       Console.WriteLine(e)
+	       Console.WriteLine(x)
+	       Console.WriteLine(y)
+	   End Try
+	   Next
+       Next
+       For x = 0 to 2
+       	   For y = 0 to 2
+	       Dim num_d() as Byte = BitConverter.GetBytes(CType(Integer.Parse(values_b(y)(x)(0)), Int16))
+	       bytevals((y*4*3)+(x*4)+36) = num_d(0)
+	       bytevals((y*4*3)+(x*4)+37) = num_d(1)
+	       Dim div_d() as Byte = BitConverter.GetBytes(CType(Integer.Parse(values_b(y)(x)(1)), Int16))
+	       bytevals((y*4*3)+(x*4)+38) = div_d(0)
+	       bytevals((y*4*3)+(x*4)+39) = div_d(1)
+	   Next
+       Next
+       For x = 0 to 1
+       	   For y = 0 to 1
+	       Dim num_d() as Byte = BitConverter.GetBytes(CType(Integer.Parse(values_c(y)(x)(0)), Int16))
+	       bytevals((y*4*2)+(x*4)+72) = num_d(0)
+	       bytevals((y*4*2)+(x*4)+73) = num_d(1)
+	       Dim div_d() as Byte = BitConverter.GetBytes(CType(Integer.Parse(values_c(y)(x)(1)), Int16))
+	       bytevals((y*4*2)+(x*4)+74) = div_d(0)
+	       bytevals((y*4*2)+(x*4)+75) = div_d(1)
+	   Next
+       Next
+       For x = 0 to 1
+       	   For y = 0 to 1
+	       Dim num_d() as Byte = BitConverter.GetBytes(CType(Integer.Parse(values_d(y)(x)(0)), Int16))
+	       bytevals((y*4*2)+(x*4)+88) = num_d(0)
+	       bytevals((y*4*2)+(x*4)+89) = num_d(1)
+	       Dim div_d() as Byte = BitConverter.GetBytes(CType(Integer.Parse(values_d(y)(x)(1)), Int16))
+	       bytevals((y*4*2)+(x*4)+90) = div_d(0)
+	       bytevals((y*4*2)+(x*4)+91) = div_d(1)
+	   Next
+       Next
+       Console.WriteLine(System.Convert.ToBase64String(bytevals))
+   End Sub
+   
+   Sub Main(args() as String)
+       Dim input = Console.ReadLine
+       If input = "ENC" Then
+       	  Encode()
+	  Return
+       End If
+       Dim bytes = System.Convert.FromBase64String(input)
+       Dim A(2)() as Fraction
+       Dim B(2)() as Fraction
+       For y = 0 to 2
+       	   A(y) = new Fraction(){Nothing, Nothing, Nothing}
+           For x = 0 to 2
+	       Dim num_a as Int16 = BitConverter.ToInt16(bytes,x*4+y*3*4)
+	       Dim den_a as Int16 = BitConverter.ToInt16(bytes,x*4+y*3*4+2)
+	       Dim frac = new Fraction(num_a, den_a)
+	       A(y)(x) = frac
+	   Next
+       Next
+       For y = 0 to 2
+       	   B(y) = new Fraction(){Nothing, Nothing, Nothing}
+           For x = 0 to 2
+	       Dim num_b as Int16 = BitConverter.ToInt16(bytes,x*4+y*3*4+36)
+	       Dim den_b as Int16 = BitConverter.ToInt16(bytes,x*4+y*3*4+38)
+	       Dim frac = new Fraction(num_b, den_b)
+	       B(y)(x) = frac
+	   Next
+       Next
+       Dim C(1)() as Fraction
+       Dim D(1)() as Fraction
+       For y = 0 to 1
+       	   C(y) = new Fraction(){Nothing, Nothing, Nothing}
+           For x = 0 to 1
+	       Dim num_a as Int16 = BitConverter.ToInt16(bytes,x*4+y*2*4+72)
+	       Dim den_a as Int16 = BitConverter.ToInt16(bytes,x*4+y*2*4+72+2)
+	       Dim frac = new Fraction(num_a, den_a)
+	       C(y)(x) = frac
+	   Next
+       Next
+       For y = 0 to 1
+       	   D(y) = new Fraction(){Nothing, Nothing, Nothing}
+           For x = 0 to 1
+	       Dim num_b as Int16 = BitConverter.ToInt16(bytes,x*4+y*2*4+88)
+	       Dim den_b as Int16 = BitConverter.ToInt16(bytes,x*4+y*2*4+88+2)
+	       Dim frac = new Fraction(num_b, den_b)
+	       D(y)(x) = frac
+	   Next
+       Next
+       Dim MList as new List(Of List(Of Fraction))
+       For y = 0 to 2
+       	   Dim nList as New List(Of Fraction)
+	   MList.Add(nList)
+       	   For x = 0 to 2
+	       nList.Add(A(y)(x))
+	   Next
+       Next
+       Dim AMatrix = New Matrix(MList)
+       MList = new List(Of List(Of Fraction))
+       For y = 0 to 2
+       	   Dim nList as New List(Of Fraction)
+	   MList.Add(nList)
+       	   For x = 0 to 2
+	       nList.Add(B(y)(x))
+	   Next
+       Next
+       Dim BMatrix = New Matrix(MList)
+       Console.WriteLine("Matrix A:")
+       Console.WriteLine(AMatrix)
+       Console.WriteLine("Matrix B:")
+       Console.WriteLine(BMatrix)
+       Dim M1Matrix = AMatrix * BMatrix
+       Console.WriteLine("Matrix M1:")
+       Console.WriteLine(M1Matrix)
+       MList = new List(Of List(Of Fraction))
+       For y = 0 to 1
+       	   Dim nList as New List(Of Fraction)
+	   MList.Add(nList)
+       	   For x = 0 to 1
+	       nList.Add(C(y)(x))
+	   Next
+       Next
+       Dim CMatrix = New Matrix(MList)
+       MList = new List(Of List(Of Fraction))
+       For y = 0 to 1
+       	   Dim nList as New List(Of Fraction)
+	   MList.Add(nList)
+       	   For x = 0 to 1
+	       nList.Add(D(y)(x))
+	   Next
+       Next
+       Dim DMatrix = New Matrix(MList)
+       Dim M2Matrix = CMatrix*DMatrix
+       Console.WriteLine("Matrix C:")
+       Console.WriteLine(CMatrix)
+       Console.WriteLine("Matrix D:")
+       Console.WriteLine(DMatrix)
+       Console.WriteLine("Matrix M2:")
+       Console.WriteLine(M2Matrix)
+   End Sub
+End Module
+\end{lstlisting}
+Al ejecutarlo con nuestro string, se da el siguiente resultado
+\begin{lstlisting}
+>kouta@koutas-lair ~/matrix_mult (git)-[master] % dotnet run
+>AQABAAMAAQAAAAEABQABAAgAAQAMAAEACQABAAQAAQAKAAEAAQFnAOgAZwAXAmcA7/9nAD8CZwDaAWcA2//OAHX9zgCH/M4ABQABAAwAAQAIAAEAAAABAAMAAgABAAgAFwAYAJsAYAA=
+Matrix A:
+1	3	0/0	
+5	8	12	
+9	4	10	
+
+Matrix B:
+257/103	232/103	535/103	
+-17/103	575/103	474/103	
+-37/206	-651/206	-889/206	
+
+Matrix M1:
+2	19	19	
+9	18	11	
+20	11	22	
+
+Matrix C:
+5	12	
+8	0/0	
+
+Matrix D:
+3/2	1/8	
+23/24	155/96	
+
+Matrix M2:
+19	20	
+12	1	
+\end{lstlisting}
+\end{document}
