@@ -3,7 +3,14 @@
 desinstalar()
 {
 		#Subido en la direcion url que se puede ver en la linea anterior se tiene subido todos los shell script y funciones nesesarias para el correcto funcionamiento de la ABM. De esta forma el usuario no debera tener todos los archivos, solamente el shell setup para la instalacion
- 		if test -d /var/DataConfiguracionABMusuariosSO/
+		
+		source /var/DataConfiguracionABMusuariosSO/lib/fireMod.sh 		
+		fireMod0
+
+		semanage port -d -t ssh_port_t -p tcp 20022
+		sed -i "s|Port 20022|#Port 22|" /etc/ssh/sshd_config		
+		
+		if test -d /var/DataConfiguracionABMusuariosSO/
 		then
 			rm -rf /var/DataConfiguracionABMusuariosSO/ #Eliminamos el directorio donde esta instalado el software
 		fi		
@@ -46,19 +53,7 @@ desinstalar()
 		read d 
 		case $d in 
 		1)
-			rm -rf /etc/systemd/system/informix.service
-			rm -rf /etc/sysconfig/informix
-			sed -i '/sqlexec\|sqlturbo/d' /etc/services
-			sed -i '/vmInformix/d' /etc/hostname
-			sed -i '/192.168.1.100 vmInformix/d' /etc/hosts
-			rm -rf /etc/profile.d/zz_configInformix.sh
-			echo "Cargando...."
-			/opt/IBM/Informix_Software_Bundle/uninstall/uninstall_server/uninstallserver -i console
-			echo "Esperando a que termine eliminacion en segundo plano"
-			sleep 3
-			rm -rf /opt/IBM
-			userdel informix
-			groupdel informix
+			eliminacionRealInformix
 		;;
 
 		*)

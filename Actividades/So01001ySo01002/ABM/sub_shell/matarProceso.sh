@@ -6,7 +6,7 @@ function killProc()
     read pid
     if test $(echo $pid | grep -E "^[0-9]{1,9}$"|wc -l) -eq 1 && test $(ps --pid $pid|wc -l) -eq 2
     then
-	if ! kill $pid
+	if ! kill -9 $pid
 	then
 	  echo "No se pudo matar al proceso $pid"
 	else

@@ -3,7 +3,7 @@
 echo " _____________________________________________"
 echo " |                                           |"
 echo " |                                           |"
-echo " |          Bienvenidos Al servidor          |"
+echo " |        Bienvenidos Al servidor  V3        |"
 echo " |                  por Bit                  |"
 echo " |                                           |"
 echo " |___________________________________________|"
