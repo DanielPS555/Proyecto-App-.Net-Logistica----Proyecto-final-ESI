@@ -23,8 +23,8 @@ Partial Class ListaLotes
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim buscar As System.Windows.Forms.Button
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Me.buscar = New System.Windows.Forms.Button()
         Me.lote = New System.Windows.Forms.DataGridView()
         Me.IDLote = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Nombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -36,30 +36,29 @@ Partial Class ListaLotes
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.buscador = New System.Windows.Forms.TextBox()
         Me.LugarCBox = New System.Windows.Forms.ComboBox()
-        buscar = New System.Windows.Forms.Button()
         CType(Me.lote, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'buscar
         '
-        buscar.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.buscar.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        buscar.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        buscar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        buscar.FlatAppearance.BorderSize = 0
-        buscar.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        buscar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        buscar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        buscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        buscar.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        buscar.ForeColor = System.Drawing.Color.White
-        buscar.Location = New System.Drawing.Point(779, 10)
-        buscar.Name = "buscar"
-        buscar.Size = New System.Drawing.Size(86, 35)
-        buscar.TabIndex = 31
-        buscar.Text = "Buscar"
-        buscar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        buscar.UseVisualStyleBackColor = False
+        Me.buscar.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.buscar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.buscar.FlatAppearance.BorderSize = 0
+        Me.buscar.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.buscar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        Me.buscar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        Me.buscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.buscar.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.buscar.ForeColor = System.Drawing.Color.White
+        Me.buscar.Location = New System.Drawing.Point(779, 10)
+        Me.buscar.Name = "buscar"
+        Me.buscar.Size = New System.Drawing.Size(86, 35)
+        Me.buscar.TabIndex = 31
+        Me.buscar.Text = "Buscar"
+        Me.buscar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.buscar.UseVisualStyleBackColor = False
         '
         'lote
         '
@@ -67,14 +66,14 @@ Partial Class ListaLotes
         Me.lote.AllowUserToDeleteRows = False
         Me.lote.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.lote.BackgroundColor = System.Drawing.Color.White
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(115, Byte), Integer), CType(CType(201, Byte), Integer))
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.lote.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(115, Byte), Integer), CType(CType(201, Byte), Integer))
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.lote.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.lote.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.lote.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IDLote, Me.Nombre, Me.Estado, Me.NumeroVehiculos, Me.lugar, Me.Transportado})
         Me.lote.Location = New System.Drawing.Point(13, 51)
@@ -164,7 +163,7 @@ Partial Class ListaLotes
         Me.ClientSize = New System.Drawing.Size(880, 650)
         Me.Controls.Add(Me.LugarCBox)
         Me.Controls.Add(Me.criterios)
-        Me.Controls.Add(buscar)
+        Me.Controls.Add(Me.buscar)
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.buscador)
         Me.Controls.Add(Me.lote)
@@ -188,4 +187,5 @@ Partial Class ListaLotes
     Friend WithEvents Panel2 As Panel
     Friend WithEvents buscador As TextBox
     Friend WithEvents LugarCBox As ComboBox
+    Friend WithEvents buscar As Button
 End Class

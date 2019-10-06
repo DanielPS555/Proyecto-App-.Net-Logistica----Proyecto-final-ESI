@@ -57,3 +57,6 @@ Mensajes
 Consola de Scheme
 Lista de transportes
 Medios autorizados
+Buscar
+ID Lote
+Nombre del lote
