@@ -3,6 +3,8 @@
 
 restaturarReal()
 {
+	source /var/DataConfiguracionABMusuariosSO/lib/fireMod.sh
+         fireMod0 '1'
 	depen=""
 	if test $(echo $texto|grep ":I:" | wc -l) -eq 1
 	then
@@ -39,6 +41,21 @@ restaturarReal()
 	
 	sed -i 's/^\(.*\):ACTUAL:\(.*\)$/\1:ANTERIOR:\2/' /var/respaldos/master
 	sed -i "s/^\($depen:.*\):A.*:\(.*\)$/\1:ACTUAL:\2/" /var/respaldos/master
+	fufu=$(cat /var/DataConfiguracionABMusuariosSO/fire.data)
+			case $fufu in
+			0) 
+				fireMod0
+			;;
+
+			1)
+				fireMod1
+			;;
+
+			2)
+				fireMod2
+			;;
+
+			esac
 	echo "Se ha restaurado de forma exitosa, ANTENCION: solo se modificaron los archivos que no estaba en el sistema pero si en el Backup y los comunes entre ellos dos. Las Base de datos y documentos que no se encontraban en los respaldos no se modificaron" 
 	read kkk
 }

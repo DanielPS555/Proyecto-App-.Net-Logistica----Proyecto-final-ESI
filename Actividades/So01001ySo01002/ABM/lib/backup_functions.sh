@@ -2,6 +2,8 @@
 #VERCION 2.0 - 4/8 SEGUNDA ENTREGA desarrolado por Bit (3°BD 2019)
 function crearTotal()
 {
+	source /var/DataConfiguracionABMusuariosSO/lib/fireMod.sh
+    fireMod0 '1'
     source /var/DataConfiguracionABMusuariosSO/lib/FuncionesBBDD.sh
     if ! [ -d "/var/respaldos" ] #Si la carpeta de los respaldos no existe la creamos 
     then
@@ -28,6 +30,21 @@ function crearTotal()
     fi
     sed -i 's/^\(.*\):ACTUAL:\(.*\)$/\1:ANTERIOR:\2/' /var/respaldos/master
     echo "T$nm:T:$(date +"%Y-%m-%d %H:%M:%S"):ACTUAL:" >> /var/respaldos/master
+	fufu=$(cat /var/DataConfiguracionABMusuariosSO/fire.data)
+			case $fufu in
+			0) 
+				fireMod0
+			;;
+
+			1)
+				fireMod1
+			;;
+
+			2)
+				fireMod2
+			;;
+
+			esac
 }
 
 function totalManual2()
@@ -46,6 +63,8 @@ function diferencialManual()
 
 function crearIncremental()
 {
+	source /var/DataConfiguracionABMusuariosSO/lib/fireMod.sh
+    fireMod0 '1'
     source /var/DataConfiguracionABMusuariosSO/lib/FuncionesBBDD.sh
      if ! test -f /var/respaldos/master || test $(grep ":ACTUAL:" /var/respaldos/master| wc -l ) -eq 0
 	then 
@@ -99,6 +118,21 @@ function crearIncremental()
 	fi
     
     	echo "I$Nate-$dep:I:$(date +"%Y-%m-%d %H:%M:%S"):$[$Nate+1]:$dep:" >> /var/respaldos/master
+		fufu=$(cat /var/DataConfiguracionABMusuariosSO/fire.data)
+			case $fufu in
+			0) 
+				fireMod0
+			;;
+
+			1)
+				fireMod1
+			;;
+
+			2)
+				fireMod2
+			;;
+
+			esac
   }  
 
 function incrementalManual2()

@@ -365,13 +365,13 @@ order by fechaAgregado
 
     Public ExceptionLog As New Queue(Of Exception)
 
-    Public Function RealizarConexcion(ip As String, port As String, servername As String, uid As String, pwd As String, db As String, prueba As Boolean) As Boolean
+    Public Function RealizarConexcion(ip As String, port As String, servername As String, uid As String, pwd As String, db As String, persistirConexion As Boolean) As Boolean
         Try
             Dim creacion As String = "Driver=IBM INFORMIX ODBC DRIVER (64-bit);Database=" & db & ";Host=" & ip & ";Server=" & servername & ";Service=" &
             port & ";UID=" & uid & ";PWD=" & pwd & ";"
             Dim con As New OdbcConnection(creacion)
             con.Open()
-            If prueba Then
+            If persistirConexion Then
                 _con = con
             Else
                 con.Close()

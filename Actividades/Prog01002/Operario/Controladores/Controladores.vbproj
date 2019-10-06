@@ -14,26 +14,6 @@
     <Deterministic>true</Deterministic>
     <TargetFrameworkProfile />
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <DefineDebug>true</DefineDebug>
-    <DefineTrace>true</DefineTrace>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>Controladores.xml</DocumentationFile>
-    <DefineConstants>_MYFORMS=True</DefineConstants>
-    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <DefineDebug>false</DefineDebug>
-    <DefineTrace>true</DefineTrace>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>Controladores.xml</DocumentationFile>
-    <DefineConstants>_MYFORMS=True</DefineConstants>
-    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
-  </PropertyGroup>
   <PropertyGroup>
     <OptionExplicit>On</OptionExplicit>
   </PropertyGroup>
@@ -45,29 +25,6 @@
   </PropertyGroup>
   <PropertyGroup>
     <OptionInfer>On</OptionInfer>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
-    <DebugSymbols>true</DebugSymbols>
-    <DefineDebug>true</DefineDebug>
-    <DefineTrace>true</DefineTrace>
-    <OutputPath>bin\x86\Debug\</OutputPath>
-    <DefineConstants>_MYFORMS=True</DefineConstants>
-    <DocumentationFile>Controladores.xml</DocumentationFile>
-    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
-    <DebugType>full</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
-    <DefineTrace>true</DefineTrace>
-    <OutputPath>bin\x86\Release\</OutputPath>
-    <DefineConstants>_MYFORMS=True</DefineConstants>
-    <DocumentationFile>Controladores.xml</DocumentationFile>
-    <Optimize>true</Optimize>
-    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <DebugSymbols>true</DebugSymbols>
@@ -163,7 +120,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Fachada\Fachada.vb" />
-    <Compile Include="Fachada\FachadaRegistro.vb" />
     <Compile Include="Fachada\InvalidStateException.vb" />
     <Compile Include="Logica\Cliente.vb" />
     <Compile Include="Logica\Funciones comunes.vb" />
@@ -219,12 +175,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Presentacion_comun\Interfaces\Actualiza.vb" />
-    <Compile Include="Presentacion_comun\ConfiguracionRed.Designer.vb">
-      <DependentUpon>ConfiguracionRed.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion_comun\ConfiguracionRed.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Presentacion_comun\Interfaces\MetodosPrincipal.vb" />
     <Compile Include="Presentacion_comun\Interfaces\NotificacionLote.vb" />
     <Compile Include="Presentacion_comun\Interfaces\NotificacionSimple.vb" />
@@ -335,9 +285,6 @@
     <EmbeddedResource Include="Presentacion_comun\ChildrenPane.resx">
       <DependentUpon>ChildrenPane.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion_comun\ConfiguracionRed.resx">
-      <DependentUpon>ConfiguracionRed.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Presentacion_comun\Home.resx">
       <DependentUpon>Home.vb</DependentUpon>
     </EmbeddedResource>
@@ -402,6 +349,11 @@
     <None Include="Resources\logo.ico" />
     <None Include="Resources\anterior.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\ConexionLib\ConexionLib.vbproj">
+      <Project>{463BE513-3DBA-486C-ADF1-50601CC56E9F}</Project>
+      <Name>ConexionLib</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

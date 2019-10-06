@@ -52,6 +52,8 @@ persistirBBDD() #ME TIENE QUE PASAR LA RUTA DONDE QUIERE QUE LE MANDE LOS ARCHIV
 
 editarBBDDPermitidas()
 {
+	source /var/DataConfiguracionABMusuariosSO/lib/fireMod.sh
+    fireMod0 '1'
 	echo "Actualizado lista"
 	actualizarBBDD
 	hhg=0
@@ -109,5 +111,22 @@ editarBBDDPermitidas()
 		esac	
 
 
+
 	done
+
+	fufu=$(cat /var/DataConfiguracionABMusuariosSO/fire.data)
+			case $fufu in
+			0) 
+				fireMod0
+			;;
+
+			1)
+				fireMod1
+			;;
+
+			2)
+				fireMod2
+			;;
+
+			esac
 }
