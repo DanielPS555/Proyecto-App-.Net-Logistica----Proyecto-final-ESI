@@ -1,6 +1,9 @@
-﻿Imports Controladores.Extenciones
+﻿Imports ConexionLib
+Imports ConexionLib.FachadaRegistro
+Imports Controladores.Extenciones
 
 Public Class Login
+    Implements ConfigurarRed.INotifyCallback
     Private contraseñaVisible As Boolean = False
     Private Shared defaultLambda As LambdaDelegate = Nothing
     Private Shared defaultRole As String = Nothing
@@ -20,7 +23,7 @@ Public Class Login
         Button3.Visible = True
         Button1.Enabled = True
         Button3.Enabled = True
-        NotificarDeConexcion(False)
+        NotificarDeConexion(False)
         LanguageSwap()
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
 
@@ -143,8 +146,8 @@ Public Class Login
         Principal.getInstancia.cargarPanel(Of RestablecerContraseña)(New RestablecerContraseña)
     End Sub
 
-    Public Sub NotificarDeConexcion(j As Boolean)
-        If j Then
+    Public Sub NotificarDeConexion(exitoso As Boolean, Optional config As ConfiguracionEnRed = Nothing) Implements ConfigurarRed.INotifyCallback.NotificarDeConexion
+        If exitoso AndAlso Fachada.getInstancia.IniciarConexcion(config) Then
             estadoConex.Text = Funciones_comunes.I18N("Conectado", Marco.Language)
             estadoConex.ForeColor = Color.FromArgb(13, 163, 51)
             Button1.Enabled = True
@@ -162,7 +165,7 @@ Public Class Login
     End Sub
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
-        Dim config As New ConfiguracionRed(Me)
+        Dim config As New ConfigurarRed(Me)
         config.ShowDialog()
 
     End Sub

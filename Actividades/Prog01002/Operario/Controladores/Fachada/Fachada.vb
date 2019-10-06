@@ -1,5 +1,6 @@
 ﻿
 Imports System.IO
+Imports ConexionLib.FachadaRegistro
 Imports Controladores
 Imports Controladores.Extenciones
 Imports GMap.NET

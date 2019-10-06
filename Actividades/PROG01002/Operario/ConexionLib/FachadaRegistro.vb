@@ -1,4 +1,6 @@
-﻿Public Module FachadaRegistro
+﻿Imports System.Data.Odbc
+
+Public Module FachadaRegistro
     Structure ConfiguracionEnRed
         Dim IP As String
         Dim Puerto As Integer
@@ -15,6 +17,24 @@
             Me.Password = password
             Me.Database = database
         End Sub
+
+        Public Function Probar() As Boolean
+            Try
+                Dim creacion As String = "Driver=IBM INFORMIX ODBC DRIVER (64-bit);Database=" & Database & ";Host=" & IP & ";Server=" & ServerName & ";Service=" &
+                Puerto & ";UID=" & UserName & ";PWD=" & Password & ";"
+                Dim con As New OdbcConnection(creacion)
+                con.Open()
+                con.Close()
+                Return True
+            Catch ee As Exception
+                MsgBox("Error en la conexcion: " & ee.Message, MsgBoxStyle.Critical)
+                Return False
+            End Try
+        End Function
+
+        Public Function Guardar() As Boolean
+            Return GuardarConfiguracion(Me)
+        End Function
     End Structure
     Private Const KeyName As String = "HKEY_CURRENT_USER\Software\Bit\SLTA"
     Public Function GuardarConfiguracion(cfg As ConfiguracionEnRed) As Boolean

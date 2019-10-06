@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ConexionLib;
 
 namespace Instalador
 {
@@ -151,7 +152,10 @@ namespace Instalador
                             Marshal.FinalReleaseComObject(shell);
                         }
                     }
-                    MessageBox.Show("Instalado con éxito!");
+                    if(MessageBox.Show("Instalado con éxito! ¿Desea abrir la configuración de red?", "Configuración de red", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        new ConfigurarRed(null).ShowDialog();
+                    }
                 }
             }
         }

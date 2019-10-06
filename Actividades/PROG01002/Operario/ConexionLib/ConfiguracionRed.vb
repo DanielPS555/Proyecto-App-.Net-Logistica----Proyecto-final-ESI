@@ -1,13 +1,17 @@
-﻿Imports Controladores.Fachada
-Public Class ConfiguracionRed
-    Private papa As Login
-    Private Config As Controladores.FachadaRegistro.ConfiguracionEnRed
-    Public Sub New(p As Login)
+﻿Imports System.Windows.Forms
+
+Public Class ConfigurarRed
+    Public Interface INotifyCallback
+        Sub NotificarDeConexion(exitoso As Boolean, Optional config As ConfiguracionEnRed = Nothing)
+    End Interface
+    Private papa As INotifyCallback
+    Private Config As ConfiguracionEnRed
+    Public Sub New(p As INotifyCallback)
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
         StartPosition = FormStartPosition.CenterScreen
         papa = p
-        Config = Controladores.FachadaRegistro.LeerConfiguracion
+        Config = LeerConfiguracion()
         ip.Text = Config.IP
         puerto.Text = Config.Puerto
         nomservidor.Text = Config.ServerName
@@ -23,9 +27,8 @@ Public Class ConfiguracionRed
         Config.UserName = nomInformix.Text
         Config.Password = pass.Text
         Config.Database = nomBd.Text
-        If Controladores.Fachada.getInstancia.ProbarConexcion(Config) Then
-            Controladores.FachadaRegistro.GuardarConfiguracion(Config)
-            Controladores.Fachada.getInstancia.IniciarConexcion(Config)
+        If Config.Probar() Then
+            Config.Guardar()
             Return True
         Else
             Return False
@@ -38,15 +41,15 @@ Public Class ConfiguracionRed
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         If EnviarDatos() Then
-            papa.NotificarDeConexcion(True)
+            If papa IsNot Nothing Then
+                papa.NotificarDeConexion(True, Me.Config)
+            End If
             Me.Close()
         Else
             MsgBox("No se puedo realizar la conexcion", MsgBoxStyle.Critical)
-            papa.NotificarDeConexcion(False)
+            If papa IsNot Nothing Then
+                papa.NotificarDeConexion(False)
+            End If
         End If
-    End Sub
-
-    Private Sub ConfiguracionRed_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
     End Sub
 End Class
