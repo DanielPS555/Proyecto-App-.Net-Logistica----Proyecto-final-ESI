@@ -2,6 +2,7 @@
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace Instalador
@@ -44,7 +45,8 @@ namespace Instalador
             try
             {
                 mats = BitMath.Matrix.FromBase64(x);
-            } catch (Exception _e)
+            }
+            catch (Exception _e)
             {
                 MessageBox.Show("Clave inválida");
                 return;
@@ -68,13 +70,16 @@ namespace Instalador
                 packageBox.Visible = true;
                 appLbl.Visible = true;
                 installBtn.Visible = true;
+                smCheck.Visible = true;
             }
         }
 
         private void installBtn_Click(object sender, EventArgs e)
         {
-            if(MessageBox.Show(@"El sistema se instalará en C:\Program Files\Bit\SLTA, continuar?", "Confirmar", MessageBoxButtons.YesNo) != DialogResult.Yes) return;
-            System.IO.Directory.CreateDirectory(@"C:\Program Files\Bit\SLTA");
+            var PFilesDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
+            var InstallPath = System.IO.Path.Combine(PFilesDirectory, "Bit", "SLTA");
+            if (MessageBox.Show($"El sistema se instalará en {InstallPath}, continuar?", "Confirmar", MessageBoxButtons.YesNo) != DialogResult.Yes) return;
+            System.IO.Directory.CreateDirectory(InstallPath);
             byte[] packageBytes = Properties.Resources.Paquetes;
             string[] conditions;
             using (var packageStream = new System.IO.MemoryStream(packageBytes))
@@ -92,7 +97,7 @@ namespace Instalador
                     conditions = conditions.Where(file =>
                     {
                         var parts = file.Split(':');
-                        var appliesFor = parts[1].Contains('|') ? parts[1].Split('|') : new string[]{ parts[1] };
+                        var appliesFor = parts[1].Contains('|') ? parts[1].Split('|') : new string[] { parts[1] };
                         bool v = appliesFor.Any(f => packageBox.CheckedItems.Cast<string>().Any(i => i.Trim() == f.Trim()));
                         Console.Write(string.Join(", ", appliesFor));
                         Console.Write(" is in ");
@@ -109,11 +114,42 @@ namespace Instalador
                         var fileName = file.Split(':')[0];
                         var fileEntry = zipArchive.GetEntry(fileName);
                         var fileStream = fileEntry.Open();
-                        var outputStream = new System.IO.FileStream(@"C:\Program Files\Bit\SLTA\" + fileName, System.IO.FileMode.Create);
+                        var outputStream = new System.IO.FileStream(System.IO.Path.Combine(InstallPath, fileName), System.IO.FileMode.Create);
                         var copyPromise = fileStream.CopyToAsync(outputStream);
                         copyPromise.Wait();
                         progressBar1.Value += 1;
                         Console.WriteLine(fileName);
+                    }
+                    if (smCheck.Checked)
+                    {
+                        var smPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonStartMenu);
+                        smPath = System.IO.Path.Combine(smPath, "Programs", "SLTA");
+                        System.IO.Directory.CreateDirectory(smPath);
+                        Type t = Type.GetTypeFromCLSID(new Guid("72C24DD5-D70A-438B-8A42-98424B88AFB8")); //Windows Script Host Shell Object
+                        dynamic shell = Activator.CreateInstance(t);
+                        try
+                        {
+                            foreach (var f in conditions.Where(x => x.Split(':')[0].EndsWith(".exe")))
+                            {
+                                var iconPath = System.IO.Path.Combine(smPath, f.Split(':')[0].Split('.')[0]) + ".lnk";
+                                var app = System.IO.Path.Combine(InstallPath, f.Split(':')[0]);
+                                var lnk = shell.CreateShortcut(iconPath);
+                                try
+                                {
+                                    lnk.TargetPath = app;
+                                    lnk.IconLocation = app;
+                                    lnk.Save();
+                                }
+                                finally
+                                {
+                                    Marshal.FinalReleaseComObject(lnk);
+                                }
+                            }
+                        }
+                        finally
+                        {
+                            Marshal.FinalReleaseComObject(shell);
+                        }
                     }
                     MessageBox.Show("Instalado con éxito!");
                 }

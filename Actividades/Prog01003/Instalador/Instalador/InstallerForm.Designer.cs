@@ -36,6 +36,7 @@
             this.installBtn = new System.Windows.Forms.Button();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.exit = new System.Windows.Forms.Button();
+            this.smCheck = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // packageBox
@@ -131,12 +132,24 @@
             this.exit.UseVisualStyleBackColor = true;
             this.exit.Click += new System.EventHandler(this.exit_Click);
             // 
+            // smCheck
+            // 
+            this.smCheck.AutoSize = true;
+            this.smCheck.Location = new System.Drawing.Point(417, 70);
+            this.smCheck.Name = "smCheck";
+            this.smCheck.Size = new System.Drawing.Size(145, 17);
+            this.smCheck.TabIndex = 8;
+            this.smCheck.Text = "Agregar al menu de inicio";
+            this.smCheck.UseVisualStyleBackColor = true;
+            this.smCheck.Visible = false;
+            // 
             // InstallerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSkyBlue;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.smCheck);
             this.Controls.Add(this.exit);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.installBtn);
@@ -164,6 +177,7 @@
         private System.Windows.Forms.Button installBtn;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Button exit;
+        private System.Windows.Forms.CheckBox smCheck;
     }
 }
 

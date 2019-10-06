@@ -93,16 +93,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="InstallerForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="InstallerForm.Designer.cs">
+      <DependentUpon>InstallerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="InstallerForm.resx">
+      <DependentUpon>InstallerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -131,26 +131,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Matrix.cs" />
-    <Content Include="Paquetes\Administrador.exe" />
-    <Content Include="Paquetes\AdministradorCore.dll" />
-    <Content Include="Paquetes\BCrypt.Net-Next.dll" />
-    <Content Include="Paquetes\Controladores.dll" />
-    <Content Include="Paquetes\DirectShow.dll" />
-    <Content Include="Paquetes\DirectX.Capture.dll" />
-    <Content Include="Paquetes\GMap.NET.Core.dll" />
-    <Content Include="Paquetes\GMap.NET.WindowsForms.dll" />
-    <Content Include="Paquetes\Microsoft.Msagl.dll" />
-    <Content Include="Paquetes\Microsoft.Msagl.Drawing.dll" />
-    <Content Include="Paquetes\Microsoft.Msagl.GraphViewerGdi.dll" />
-    <Content Include="Paquetes\Newtonsoft.Json.dll" />
-    <Content Include="Paquetes\Operario.exe" />
-    <Content Include="Paquetes\OperarioCore.dll" />
-    <Content Include="Paquetes\QRCoder.dll" />
-    <Content Include="Paquetes\schemy.dll" />
-    <Content Include="Paquetes\TransportistaCore.dll" />
-    <Content Include="Paquetes\TransportistaV2.exe" />
-    <Content Include="Paquetes\WebCam.dll" />
-    <Content Include="Paquetes\zxing.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
