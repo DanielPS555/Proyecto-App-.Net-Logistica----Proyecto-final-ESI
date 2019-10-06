@@ -1,14 +1,17 @@
 #!/bin/bash
 #VERCION 2.0 - 4/8 SEGUNDA ENTREGA desarrolado por Bit (3°BD 2019)
+yum install ncurses-compat-libs 
 groupadd informix
 useradd -g informix -s /bin/bash -m informix
 
 echo "postgres" | passwd --stdin informix
 echo "sqlturbo	1526/tcp" >> /etc/services
-echo "sqlexec	1527/tcp" >> /etc/services
-echo "sqlexec -ssl	1527/tcp" >> /etc/services
-echo "vmInformix" >> /etc/hostname
-echo "192.168.1.100 vmInformix" >> /etc/hosts
+echo "sqlexec	9088/tcp" >> /etc/services
+echo "sqlexec	9088/udp" >> /etc/services
+echo "sqlexec -ssl	9089/tcp" >> /etc/services
+echo "sqlexec -ssl	9089/tcp" >> /etc/services
+echo "Informix" >> /etc/hostname
+echo "0.0.0.0 Informix" >> /etc/hosts
 
 echo "Descargando archivos de informix...."
 git clone https://github.com/Daniel2242014/Informix2
@@ -49,6 +52,9 @@ chown informix:informix tempdbs
 touch root_mirror
 chmod 660 root_mirror
 chown informix:informix root_mirror
+touch datosdbs
+chmod 660 datosdbs 
+chown informix:informix datosdbs 
 cd /opt/IBM/Informix_Software_Bundle/etc
 cp onconfig.std onconfig.bit
 sed -i "s/ROOTNAME.*/ROOTNAME rootdbs/" onconfig.bit
@@ -61,8 +67,7 @@ sed -i "s/DBSERVERNAME.*/DBSERVERNAME bit/" onconfig.bit
 sed -i "s/TAPEDEV.*/TAPEDEV \/dev\/null/" onconfig.bit
 sed -i "s/LTAPEDEV.*/LTAPEDEV \/dev\/null/" onconfig.bit
 cat >>/opt/IBM/Informix_Software_Bundle/etc/sqlhosts.std <<EOF
-bit onipcshm vmInformix bit
-bit onsoctcp vmInformix sqlexec
+bit onsoctcp 192.168.1.100 9088
 EOF
 touch /var/DataConfiguracionABMusuariosSO/I_Inxo
 chmod 770 /opt/IBM

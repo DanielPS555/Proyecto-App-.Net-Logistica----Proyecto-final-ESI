@@ -95,30 +95,68 @@ EOF
 
 		source /var/DataConfiguracionABMusuariosSO/sub_shell/configurarRed.sh
 		configurarRed
+		echo "Desea eliminar FirewallD [0=no , 1=si]"
+		read rr
+		case $rr in
+			1)
+				systemctl stop firewalld
+				systemctl disable firewalld
+				yum remove firewall
+			;;
 
-		systemctl stop firewalld
-		systemctl disable firewalld
-		systemctl stop NetworkManager
-		systemctl disable NetworkManager
-		yum remove NetworkManager firewalld
+			*)
+				echo "No se prosede"
+			;;
+		esac
+
+		echo "Desea eliminar NetworkManager [0=no , 1=si]"
+		read rr
+		case $rr in
+			1)
+				systemctl stop NetworkManager
+				systemctl disable NetworkManager
+				yum remove NetworkManager
+			;;
+
+			*)
+				echo "No se prosede"
+			;;
+		esac
 		yum install policycoreutils-python git
+		yum install iptables-services 
+		sed -i 's|IPTABLES_SAVE_ON_STOP="no"|IPTABLES_SAVE_ON_STOP="yes"|' /etc/sysconfig/iptables-config
+		sed -i 's|IPTABLES_SAVE_ON_RESTART="no"|IPTABLES_SAVE_ON_RESTART="yes"|' /etc/sysconfig/iptables-config
+		sed -i 's|IPTABLES_SAVE_COUNTER="no"|IPTABLES_SAVE_COUNTER="yes"|' /etc/sysconfig/iptables-config
+		sed -i 's|IPTABLES_STATUS_NUMERIC="no"|IPTABLES_STATUS_NUMERIC="yes"|' /etc/sysconfig/iptables-config
+		systemctl enable iptables
+		systemctl start iptables
+		chkconfig iptables
+		semanage port -a -t ssh_port_t -p tcp 20022
+		sed -i "s|#Port 22|Port 20022|" /etc/ssh/sshd_config
+		systemctl restart sshd
+	
+
 		if ! test -d /opt/IBM
 		then
 			echo "¿Desea ademas instalar el gestor de base de datos Informix? [1=si, 0=no]"
 			read ddd
 			case $ddd in 
 			1)
-			source informix_install.sh 
+				source informix_install.sh 
 			;;
 			*)
-			echo "No se prosedera"
+				echo "No se prosedera"
 			;;
 			esac
 			else
 			echo "Informix ya esta instalado en el sistema"
 		fi
-	
+		touch /var/DataConfiguracionABMusuariosSO/fire.data
+		source /var/DataConfiguracionABMusuariosSO/lib/fireMod.sh
+		fireMod1
 		echo "Proseso terminado con exito, ejecute 'source setup.sh' desde la consola"
+		echo "Se recomienda reiniciar el sistema" 
+		read fff	
    fi
    
 }
@@ -147,10 +185,10 @@ then
 		else
 		    echo "   _____________________________________________  "
 		    echo "   |                                           | "
-		    echo "   |                                           | "
-		    echo "   |           ABM usuarios y grupos           | "
+		    echo "   |        	    INSTALADOR                 | "
+		    echo "   |    Centro de computos y Abm usuarios      | "
 		    echo "   |                  por Bit                  | "
-		    echo "   |                                           | "
+		    echo "   |                Vercion 3.0                | "
 		    echo "   |___________________________________________| "
 		    echo "" 
 		    echo "debe instalar el softare para utilizarlo" 
