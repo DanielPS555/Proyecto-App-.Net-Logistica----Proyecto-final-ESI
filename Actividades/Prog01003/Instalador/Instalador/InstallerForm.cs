@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Instalador
@@ -46,7 +48,7 @@ namespace Instalador
             {
                 mats = BitMath.Matrix.FromBase64(x);
             }
-            catch (Exception _e)
+            catch (Exception)
             {
                 MessageBox.Show("Clave inválida");
                 return;
@@ -99,26 +101,23 @@ namespace Instalador
                         var parts = file.Split(':');
                         var appliesFor = parts[1].Contains('|') ? parts[1].Split('|') : new string[] { parts[1] };
                         bool v = appliesFor.Any(f => packageBox.CheckedItems.Cast<string>().Any(i => i.Trim() == f.Trim()));
-                        Console.Write(string.Join(", ", appliesFor));
-                        Console.Write(" is in ");
-                        Console.Write(string.Join(", ", packageBox.CheckedItems.Cast<string>()));
-                        Console.Write(": ");
-                        Console.WriteLine(v);
                         return v;
                     }).ToArray();
                     progressBar1.Visible = true;
                     progressBar1.Maximum = conditions.Length;
                     progressBar1.Value = 0;
+                    InstallList.Visible = true;
                     foreach (var file in conditions)
                     {
                         var fileName = file.Split(':')[0];
                         var fileEntry = zipArchive.GetEntry(fileName);
                         var fileStream = fileEntry.Open();
-                        var outputStream = new System.IO.FileStream(System.IO.Path.Combine(InstallPath, fileName), System.IO.FileMode.Create);
-                        var copyPromise = fileStream.CopyToAsync(outputStream);
-                        copyPromise.Wait();
+                        string path = System.IO.Path.Combine(InstallPath, fileName);
+                        var outputStream = new System.IO.FileStream(path, System.IO.FileMode.Create);
+                        using (var copyPromise = fileStream.CopyToAsync(outputStream))
+                            copyPromise.Wait();
                         progressBar1.Value += 1;
-                        Console.WriteLine(fileName);
+                        InstallList.Items.Add(path);
                     }
                     if (smCheck.Checked)
                     {
@@ -139,6 +138,7 @@ namespace Instalador
                                     lnk.TargetPath = app;
                                     lnk.IconLocation = app;
                                     lnk.Save();
+                                    InstallList.Items.Add(iconPath);
                                 }
                                 finally
                                 {

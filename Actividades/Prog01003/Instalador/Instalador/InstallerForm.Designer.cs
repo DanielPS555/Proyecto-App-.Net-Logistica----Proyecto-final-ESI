@@ -37,6 +37,7 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.exit = new System.Windows.Forms.Button();
             this.smCheck = new System.Windows.Forms.CheckBox();
+            this.InstallList = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // packageBox
@@ -114,22 +115,25 @@
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(15, 95);
+            this.progressBar1.Location = new System.Drawing.Point(12, 95);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(658, 23);
+            this.progressBar1.Size = new System.Drawing.Size(776, 23);
             this.progressBar1.TabIndex = 6;
             this.progressBar1.Visible = false;
             // 
             // exit
             // 
+            this.exit.BackColor = System.Drawing.Color.Black;
+            this.exit.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.exit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.exit.Font = new System.Drawing.Font("Wingdings", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
+            this.exit.ForeColor = System.Drawing.Color.White;
             this.exit.Location = new System.Drawing.Point(765, 7);
             this.exit.Name = "exit";
             this.exit.Size = new System.Drawing.Size(23, 23);
             this.exit.TabIndex = 7;
             this.exit.Text = "x";
-            this.exit.UseVisualStyleBackColor = true;
+            this.exit.UseVisualStyleBackColor = false;
             this.exit.Click += new System.EventHandler(this.exit_Click);
             // 
             // smCheck
@@ -143,12 +147,25 @@
             this.smCheck.UseVisualStyleBackColor = true;
             this.smCheck.Visible = false;
             // 
+            // InstallList
+            // 
+            this.InstallList.BackColor = System.Drawing.Color.Black;
+            this.InstallList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.InstallList.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.InstallList.FormattingEnabled = true;
+            this.InstallList.Location = new System.Drawing.Point(12, 124);
+            this.InstallList.Name = "InstallList";
+            this.InstallList.Size = new System.Drawing.Size(776, 314);
+            this.InstallList.TabIndex = 9;
+            this.InstallList.Visible = false;
+            // 
             // InstallerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSkyBlue;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.InstallList);
             this.Controls.Add(this.smCheck);
             this.Controls.Add(this.exit);
             this.Controls.Add(this.progressBar1);
@@ -178,6 +195,7 @@
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Button exit;
         private System.Windows.Forms.CheckBox smCheck;
+        private System.Windows.Forms.ListBox InstallList;
     }
 }
 

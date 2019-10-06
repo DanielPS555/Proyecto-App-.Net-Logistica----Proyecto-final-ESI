@@ -205,5 +205,7 @@ namespace SLTA_KB
                 button3.Enabled = true;
             }
         }
+
+        private void toolStripButton3_Click(object sender, EventArgs e) => new MakeKey().ShowDialog();
     }
 }

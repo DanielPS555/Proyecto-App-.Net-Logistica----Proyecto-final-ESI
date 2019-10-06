@@ -37,6 +37,9 @@
     <Reference Include="LiteDB">
       <HintPath>..\LiteDB.dll</HintPath>
     </Reference>
+    <Reference Include="MathNet.Numerics">
+      <HintPath>..\MathNet.Numerics.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -63,6 +66,12 @@
       <DependentUpon>KDBForm.cs</DependentUpon>
     </Compile>
     <Compile Include="KnowledgeBase.cs" />
+    <Compile Include="MakeKey.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MakeKey.Designer.cs">
+      <DependentUpon>MakeKey.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserForm.cs">
@@ -82,6 +91,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="KDBForm.resx">
       <DependentUpon>KDBForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MakeKey.resx">
+      <DependentUpon>MakeKey.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
