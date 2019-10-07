@@ -50,7 +50,7 @@
         Select Case user.Rol
             Case "A"
                 rol.Text = "Administrador"
-
+                tab.TabPages.RemoveAt(2)
             Case "O"
                 rol.Text = "Operario"
                 datosDelOperario()
@@ -69,6 +69,8 @@
         nuevosVehiculos.DataSource = Controladores.Fachada.getInstancia.devolverVehiculosIngresadosPorIdusuario(user.ID_usuario)
         inspecionadosVehiculos.DataSource = Controladores.Fachada.getInstancia.vehiculosInspecionadosPorUsuario(user.ID_usuario)
     End Sub
+
+
 
     Private Sub datosDelTransportista()
         tab.TabPages.RemoveAt(3)

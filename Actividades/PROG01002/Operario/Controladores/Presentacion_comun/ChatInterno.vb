@@ -7,7 +7,7 @@
 
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
         alfa = New Alfa(GetType(Evento), GetType(SUB_Mensaje)) With {
-            .Size = New Drawing.Size(574, 380),
+            .Size = New Drawing.Size(574, 560),
             .Location = New Point(250, 12)
         }
         Me.Controls.Add(alfa)
@@ -60,7 +60,7 @@
             recvPictureBox.Image = bmp
         End If
         If newMsgs.Count > 0 Then
-            alfa.render()
+            alfa.Fastrender()
             Me.Update()
         End If
     End Sub

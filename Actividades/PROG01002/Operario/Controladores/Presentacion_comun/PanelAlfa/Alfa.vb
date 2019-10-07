@@ -99,6 +99,36 @@
         contenedor.Refresh()
     End Sub
 
+    Public Sub Fastrender() 'SOLO LOS NUEVOS, NO SE PUEDE HACER RENDER SI SE ELIMINA ALGO 
+
+        If contenedor.Controls.Count = 0 Then
+            render()
+            Return
+        End If
+
+        Dim ultimo As Integer = contenedor.Controls.Count - 1
+
+        If contenedor.Controls.Count = lista.Count Then
+            Return
+        End If
+
+        Dim tamaño As Integer = 0
+        For i As Integer = ultimo To lista.Count - 1
+            tamaño += lista(i).Height
+        Next
+        contenedor.Height += tamaño + 81 'POR LAS DUDAS 
+        For i As Integer = ultimo To lista.Count - 1
+            Dim con As Form = lista(i)
+            con.TopLevel = False
+            con.Dock = DockStyle.Top
+            con.FormBorderStyle = FormBorderStyle.None
+            contenedor.Controls.Add(con)
+            con.Show()
+            con.BringToFront()
+        Next
+        contenedor.Refresh()
+    End Sub
+
     Private Sub Alfa_Paint(sender As Object, e As PaintEventArgs) Handles Me.Paint
         e.Graphics.DrawString("Carge los elementos desde codigo", New Font("Arial", 9), New SolidBrush(Color.Black), New PointF(0, 0))
     End Sub
