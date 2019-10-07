@@ -77,8 +77,10 @@ CREATE table
 	IDTrabajaEn integer,
 	HoraIngreso datetime year to second not null,
 	HoraSalida datetime year to second,
-	foreign key(IDTrabajaEn) references trabajaen(ID) ON DELETE CASCADE,
-	primary key(IDTrabajaEn, HoraIngreso)
+	Usuario integer, 
+	primary key(Usuario,HoraIngreso),
+	foreign key(Usuario) references usuario(IDUsuario) ON DELETE CASCADE,
+	foreign key(IDTrabajaEn) references trabajaen(ID) ON DELETE CASCADE
 );
 
 CREATE table

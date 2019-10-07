@@ -30,6 +30,7 @@
         user = Controladores.Fachada.getInstancia.InformacionBasicaUsuario(user.ID_usuario)
         nombreDeUsuario.Text = user.NombreDeUsuario
         idusuario.Text = user.ID_usuario
+        conect.DataSource = Controladores.Fachada.getInstancia.ConexcionDeUsuarioTabla(user)
 
         nombreCompleto.Text = $"{user.Nombre} {user.Apellido}"
         fechaNac.Value = user.FechaNacimiento

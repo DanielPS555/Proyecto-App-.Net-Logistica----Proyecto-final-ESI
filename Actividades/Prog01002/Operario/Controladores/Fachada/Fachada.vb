@@ -12,6 +12,8 @@ Public Class Fachada
 
     End Sub
 
+
+
     Public Function VehiculosConMensajes() As List(Of Tuple(Of Vehiculo, Boolean))
         Dim vehiclelist As DataTable = Persistencia.getInstancia.VehiculosConMensaje()
         Dim vehicles As New List(Of Tuple(Of Vehiculo, Boolean))
@@ -316,19 +318,28 @@ Public Class Fachada
         Return t
     End Function
 
-    Public Sub NuevaConexcion(t As TrabajaEn)
-        Dim d As Date = Date.Now
-        Persistencia.getInstancia.NuevaConext(t.Id, d)
+    Public Sub asignarTrabajaEn(t As TrabajaEn)
         Persistencia.getInstancia().TrabajaEn = t
-        Persistencia.getInstancia().HoraDeLaConexcionActual = d
+    End Sub
+
+    Public Sub NuevaConexcion(t As TrabajaEn)
+        If Persistencia.getInstancia.ConexcionActiva = False Then
+            Dim d As Date = Date.Now
+            Persistencia.getInstancia.ConexcionActiva = True
+            Persistencia.getInstancia.NuevaConext(If(t IsNot Nothing, t.Id, -1), d, Persistencia.getInstancia.UsuarioActual.ID_usuario)
+
+            Persistencia.getInstancia().HoraDeLaConexcionActual = d
+        End If
+
     End Sub
 
     Public Sub CerrarSeccion()
-        'Persistencia.getInstancia.Cerrarseccion(Persistencia.getInstancia.TrabajaEn.Id, Persistencia.getInstancia.HoraDeLaConexcionActual)
+        Persistencia.getInstancia.Cerrarseccion(Persistencia.getInstancia.HoraDeLaConexcionActual, DevolverUsuarioActual.ID_usuario)
+        Persistencia.getInstancia.ConexcionActiva = False
     End Sub
 
     Public Function SeccionExsistente() As Boolean
-        Return Persistencia.getInstancia.TrabajaEn IsNot Nothing
+        Return Persistencia.getInstancia.ConexcionActiva
     End Function
 
     Public Function InfoVehiculos(ParamArray VIN() As String) As List(Of Vehiculo)
@@ -1182,6 +1193,15 @@ Public Class Fachada
 
     Public Function nombredeClienteEnUso(nombre As String) As Boolean 'True en uso, false= no es uso
         Return Persistencia.getInstancia.NumeroDeClienesConUnNombre(nombre) = 1
+    End Function
+
+    Public Function ConexcionDeUsuarioTabla(user As Usuario) As DataTable
+        If user.Rol = Usuario.TIPO_ROL_OPERARIO Then
+            Return Persistencia.getInstancia.ConexcionConTrabajaEn(user.ID_usuario)
+        Else
+            Return Persistencia.getInstancia.ConexcionSinTrabajaEn(user.ID_usuario)
+        End If
+
     End Function
 
 End Class

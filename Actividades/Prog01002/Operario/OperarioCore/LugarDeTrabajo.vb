@@ -10,14 +10,16 @@ Public Class LugarDeTrabajo
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        Fachada.getInstancia.NuevaConexcion(lugares.SelectedItem)
+        Fachada.getInstancia.asignarTrabajaEn(lugares.SelectedItem)
+        Fachada.getInstancia.CargarDataBaseDelUsuario()
+        Fachada.getInstancia.NuevaConexcion(DirectCast(lugares.SelectedItem, TrabajaEn))
         Dim paneles As New Dictionary(Of String, Type) From {
             {"Lista zonas", GetType(ListaZonas)},
             {"Lista vehiculos", GetType(ListaVehiculos)},
             {"Nuevo vehiculo", GetType(NuevoVehiculo)},
             {"Lista lotes", GetType(ListaLotes)}
         }
-        If Fachada.getInstancia.LugarZonasySubzonas(-1, CType(lugares.SelectedItem, TrabajaEn).Lugar).Tipo <> Lugar.TIPO_LUGAR_PUERTO Then
+        If Fachada.getInstancia.LugarZonasySubzonas(-1, CType(DirectCast(lugares.SelectedItem, TrabajaEn), TrabajaEn).Lugar).Tipo <> Lugar.TIPO_LUGAR_PUERTO Then
             paneles.Remove("Nuevo vehiculo")
         End If
         Marco.SetButtons(paneles)

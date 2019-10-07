@@ -51,27 +51,28 @@ insert into trabajaen values (0,(select IDLugar from lugar where Nombre="Deposit
 	(select idusuario from usuario where primernombre = "Juan"), "15/6/2019","17/6/2019");
 /*25*/
 	/*CONEXCION*/
-	insert into conexion values (1,"2019-6-27 8:02:00", "2019-6-27 18:06:00");
-	insert into conexion values (1,"2019-6-28 23:02:00","2019-6-29 02:01:00");
-	insert into conexion values (1,"2019-6-30 10:20:00","2019-6-30 16:06:00");
-	insert into conexion values (2,"2019-7-1 8:04:00","2019-6-27 19:06:00");
-	insert into conexion values (2,"2019-7-2 7:04:00","2019-6-27 18:06:00");
-	insert into conexion values (2,"2019-7-4 9:04:00","2019-6-27 18:06:00");
-	insert into conexion values (2,"2019-6-28 20:00:00","2019-6-28 22:00:00");
-	insert into conexion values (3,"2019-6-13 7:04:00","2019-6-13 12:06:00");
-	insert into conexion values (3,"2019-6-15 12:02:00","2019-6-15 18:01:00");
-  insert into conexion values (3,"2019-6-18 10:17:00","2019-6-18 16:09:00");
-	insert into conexion values (3,"2019-7-4 10:00:00","2019-7-4 18:00:00");
-	insert into conexion values (3,"2019-7-8 10:00:00","2019-7-8 19:00:00");
-  insert into conexion values (4,"2019-6-14 9:02:00","2019-6-14 18:29:00");
-  insert into conexion values (4,"2019-6-15 10:02:00","2019-6-29 11:01:00");
-  insert into conexion values (4,"2019-6-19 10:20:00","2019-6-30 20:06:00");
-  insert into conexion values (4,"2019-6-16 10:20:00","2019-6-30 18:02:00");
-	insert into conexion values (4,"2019-6-29 10:40:00","2019-6-29 14:15:00");
-	insert into conexion values (4,"2019-7-3 8:45:00","2019-7-3 17:15:00");
-  insert into conexion values (5,"2019-6-20 22:09:00","2019-6-21 02:01:00");
-  insert into conexion values (5,"2019-6-22 10:20:00","2019-6-22 17:06:00");
-	insert into conexion values (5,"2019-7-2 9:20:00","2019-7-2 17:06:00");
+	insert into conexion values (1,"2019-6-27 8:02:00", "2019-6-27 18:06:00",(select idusuario from usuario where primernombre = "Pepe"));
+	insert into conexion values (1,"2019-6-28 23:02:00","2019-6-29 02:01:00",(select idusuario from usuario where primernombre = "Pepe"));
+	insert into conexion values (1,"2019-6-30 10:20:00","2019-6-30 16:06:00",(select idusuario from usuario where primernombre = "Pepe"));
+	insert into conexion values (2,"2019-7-1 8:04:00","2019-6-27 19:06:00",(select idusuario from usuario where primernombre = "Pepe"));
+	insert into conexion values (2,"2019-7-2 7:04:00","2019-6-27 18:06:00",(select idusuario from usuario where primernombre = "Pepe"));
+	insert into conexion values (2,"2019-7-4 9:04:00","2019-6-27 18:06:00",(select idusuario from usuario where primernombre = "Pepe"));
+	insert into conexion values (2,"2019-6-28 20:00:00","2019-6-28 22:00:00",(select idusuario from usuario where primernombre = "Pepe"));
+	insert into conexion values (3,"2019-6-13 7:04:00","2019-6-13 12:06:00",(select idusuario from usuario where primernombre = "Juan"));
+	insert into conexion values (3,"2019-6-15 12:02:00","2019-6-15 18:01:00",(select idusuario from usuario where primernombre = "Juan"));
+  insert into conexion values (3,"2019-6-18 10:17:00","2019-6-18 16:09:00",(select idusuario from usuario where primernombre = "Juan"));
+	insert into conexion values (3,"2019-7-4 10:00:00","2019-7-4 18:00:00",(select idusuario from usuario where primernombre = "Juan"));
+	insert into conexion values (3,"2019-7-8 10:00:00","2019-7-8 19:00:00",(select idusuario from usuario where primernombre = "Juan"));
+  insert into conexion values (4,"2019-6-14 9:02:00","2019-6-14 18:29:00",(select idusuario from usuario where primernombre = "Juan"));
+  insert into conexion values (4,"2019-6-15 10:02:00","2019-6-29 11:01:00",(select idusuario from usuario where primernombre = "Juan"));
+  insert into conexion values (4,"2019-6-19 10:20:00","2019-6-30 20:06:00",(select idusuario from usuario where primernombre = "Juan"));
+  insert into conexion values (4,"2019-6-16 10:20:00","2019-6-30 18:02:00",(select idusuario from usuario where primernombre = "Juan"));
+	insert into conexion values (4,"2019-6-29 10:40:00","2019-6-29 14:15:00",(select idusuario from usuario where primernombre = "Juan"));
+	insert into conexion values (4,"2019-7-3 8:45:00","2019-7-3 17:15:00",(select idusuario from usuario where primernombre = "Juan"));
+  insert into conexion values (5,"2019-6-20 22:09:00","2019-6-21 02:01:00",(select idusuario from usuario where primernombre = "Juan"));
+  insert into conexion values (5,"2019-6-22 10:20:00","2019-6-22 17:06:00",(select idusuario from usuario where primernombre = "Juan"));
+	insert into conexion values (null,"2019-7-3 9:20:00","2019-7-2 17:06:00",(select idusuario from usuario where primernombre = "Felipe"));
+	insert into conexion values (null,"2019-7-2 9:20:00","2019-7-2 17:06:00",(select idusuario from usuario where primernombre = "Felipe"));
 
 		/*ZONA*/
 	execute function crear_zona("Zona A_pb", (select IDLugar from lugar where nombre="Deposito piedras blancas"), 1500);

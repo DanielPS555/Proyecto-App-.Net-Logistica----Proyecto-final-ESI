@@ -14,6 +14,9 @@ Public Class Marco
         acercaDe.Text = Funciones_comunes.I18N("Acerca de", Language)
         Micuenta.Text = Funciones_comunes.I18N("Mi cuenta", Language)
         Button1.Text = Funciones_comunes.I18N("Cerrar sesión", Language)
+        Controladores.Fachada.getInstancia.CargarDataBaseDelUsuario()
+
+        Controladores.Fachada.getInstancia.NuevaConexcion(Nothing) 'SI ES UN OPERARIO NO PASA NADA PORQUE YA FUE CREADA LA CONEXCION    
         For Each key As String In paneles.Keys
             If Not paneles(key).IsSubclassOf(GetType(Form)) Then
                 Continue For
@@ -128,7 +131,7 @@ Public Class Marco
     End Sub
 
     Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Micuenta.Click
-        MsgBox("¡Sin imploementar!")
+        Me.CargarPanel(Of PanelInfoUsuario)(New PanelInfoUsuario(Fachada.getInstancia.DevolverUsuarioActual.ID_usuario))
     End Sub
 
     Public Sub CargarPanel(sn As ScreenNode)

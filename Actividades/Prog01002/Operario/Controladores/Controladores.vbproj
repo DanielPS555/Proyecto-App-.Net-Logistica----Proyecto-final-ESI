@@ -120,6 +120,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Fachada\Fachada.vb" />
+    <Compile Include="Fachada\FachadaRegistro.vb" />
     <Compile Include="Fachada\InvalidStateException.vb" />
     <Compile Include="Logica\Cliente.vb" />
     <Compile Include="Logica\Funciones comunes.vb" />
@@ -165,6 +166,12 @@
       <DependentUpon>ChildrenPane.vb</DependentUpon>
     </Compile>
     <Compile Include="Presentacion_comun\ChildrenPane.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion_comun\ConfiguracionRed.Designer.vb">
+      <DependentUpon>ConfiguracionRed.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion_comun\ConfiguracionRed.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Presentacion_comun\Evento.vb" />
@@ -285,6 +292,9 @@
     <EmbeddedResource Include="Presentacion_comun\ChildrenPane.resx">
       <DependentUpon>ChildrenPane.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion_comun\ConfiguracionRed.resx">
+      <DependentUpon>ConfiguracionRed.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentacion_comun\Home.resx">
       <DependentUpon>Home.vb</DependentUpon>
     </EmbeddedResource>
@@ -348,12 +358,6 @@
     <None Include="Resources\ojo.png" />
     <None Include="Resources\logo.ico" />
     <None Include="Resources\anterior.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ConexionLib\ConexionLib.vbproj">
-      <Project>{463BE513-3DBA-486C-ADF1-50601CC56E9F}</Project>
-      <Name>ConexionLib</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

@@ -11,6 +11,16 @@ Public Class Persistencia
         _conexcionActualHora = Nothing
     End Sub
 
+    Private Activa As Boolean = False
+    Public Property ConexcionActiva() As Boolean
+        Get
+            Return Activa
+        End Get
+        Set(ByVal value As Boolean)
+            Activa = value
+        End Set
+    End Property
+
     Private Shared initi As Persistencia
 
     Friend Function VehiculosConMensaje() As DataTable
@@ -485,23 +495,20 @@ order by fechaAgregado
         End Try
     End Function
 
-    Public Function NuevaConext(id As Integer, horaInicio As DateTime) As Boolean
-        Dim com As New OdbcCommand("insert into conexion(IDTrabajaEn, HoraIngreso) values(?, ?);", Conexcion)
-        com.CrearParametro(DbType.Int64, id)
+    Public Function NuevaConext(id As Integer, horaInicio As DateTime, idusuario As Integer) As Boolean
+        Dim com As New OdbcCommand("insert into conexion(IDTrabajaEn, HoraIngreso,Usuario) values(?, ?, ?);", Conexcion)
+        com.CrearParametro(DbType.Int64, If(id = -1, DBNull.Value, id))
         com.CrearParametro(DbType.DateTime, Date.Now)
-        Try
-            Return com.ExecuteNonQuery() > 0
-        Catch e As Exception
-            Return False
-        End Try
+        com.CrearParametro(DbType.Int32, idusuario)
+        Return com.ExecuteNonQuery() > 0
 
     End Function
 
-    Public Sub Cerrarseccion(id As Integer, horaInico As Date)
-        Dim com As New OdbcCommand("update conexion set HoraSalida=? where idtrabajaen=? and HoraIngreso=?;", Conexcion)
+    Public Sub Cerrarseccion(horaInico As Date, idusuario As Integer)
+        Dim com As New OdbcCommand("update conexion set HoraSalida=? where HoraIngreso=? and Usuario=?;", Conexcion)
         com.CrearParametro(DbType.DateTime, Date.Now.ToString("yyyy-MM-dd HH:mm:ss"))
-        com.CrearParametro(DbType.Int32, id)
         com.CrearParametro(DbType.DateTime, horaInico.ToString("yyyy-MM-dd HH:mm:ss"))
+        com.CrearParametro(DbType.Int32, idusuario)
         com.ExecuteNonQuery()
         borrarDatosLocalesPorSeccion()
     End Sub
@@ -510,6 +517,7 @@ order by fechaAgregado
         _UsuarioIngresado = New Usuario()
         _trabajaEnActual = Nothing
         _conexcionActualHora = Nothing
+        Activa = False
     End Sub
 
     Public Function DatosBaseVehiculos(ParamArray VIN() As String) As DataTable
@@ -686,7 +694,7 @@ order by fechaAgregado
 
     Public Function DevolverInformacionBasicaDeZonasPorID_lugar(id As Integer) As DataTable
         Dim com As New OdbcCommand($"select unnamed_col_1 as idzona, unnamed_col_2 as nombrezona, unnamed_col_3 as capacidad from table(zonas_en_lugar({id}));", Conexcion)
-        'com.SelectCommand.CrearParametro(DbType.Int32, id)
+        'com.CrearParametro(DbType.Int32, id)
         Dim ds As New DataTable
         ds.Load(com.ExecuteReader)
         Return ds
@@ -1668,6 +1676,23 @@ order by fechaAgregado
         Dim com As New OdbcCommand("select count(*) from cliente where UPPER(nombre)=UPPER(?)", Conexcion)
         com.CrearParametro(DbType.String, nombre)
         Return com.ExecuteScalar
+    End Function
+
+    Public Function ConexcionSinTrabajaEn(idusuario As Integer)
+        Dim com As New OdbcCommand("select HoraIngreso as Hora_Ingreso, nvl(HoraSalida,'No registrada') as Hora_Salida from conexion where Usuario=?", Conexcion)
+        com.CrearParametro(DbType.Int32, idusuario)
+        Dim dt As New DataTable
+        dt.Load(com.ExecuteReader)
+        Return dt
+    End Function
+
+    Public Function ConexcionConTrabajaEn(idusuario As Integer)
+        Dim com As New OdbcCommand("select HoraIngreso as Hora_Ingreso, nvl(HoraSalida,'No registrada' ) as Hora_salida,lugar.nombre as nombreLugar from
+                                    conexion left join trabajaen on conexion.idtrabajaen=trabajaen.id inner join lugar on trabajaen.idlugar=lugar.idlugar where Usuario=?", Conexcion)
+        com.CrearParametro(DbType.Int32, idusuario)
+        Dim dt As New DataTable
+        dt.Load(com.ExecuteReader)
+        Return dt
     End Function
 
 
