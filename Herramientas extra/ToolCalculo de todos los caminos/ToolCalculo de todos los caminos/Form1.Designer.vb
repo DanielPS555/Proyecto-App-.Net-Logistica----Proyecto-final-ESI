@@ -30,13 +30,15 @@ Partial Class Form1
         Me.t4 = New System.Windows.Forms.DataGridView()
         Me.e2 = New System.Windows.Forms.TabPage()
         Me.t2 = New System.Windows.Forms.DataGridView()
-        Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.e1 = New System.Windows.Forms.TabPage()
         Me.t1 = New System.Windows.Forms.DataGridView()
-        Me.Duraciones = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.caminos = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Duraciones = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.resultados = New System.Windows.Forms.TabControl()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.Button3 = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         Me.r1.SuspendLayout()
         CType(Me.t4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -69,6 +71,8 @@ Partial Class Form1
         '
         'Panel1
         '
+        Me.Panel1.Controls.Add(Me.Button3)
+        Me.Panel1.Controls.Add(Me.Button2)
         Me.Panel1.Controls.Add(Me.Button1)
         Me.Panel1.Controls.Add(Me.Label1)
         Me.Panel1.Controls.Add(Me.Label2)
@@ -129,15 +133,15 @@ Partial Class Form1
         Me.t2.Size = New System.Drawing.Size(1143, 563)
         Me.t2.TabIndex = 1
         '
-        'DataGridViewTextBoxColumn2
-        '
-        Me.DataGridViewTextBoxColumn2.HeaderText = "duraciones"
-        Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
-        '
         'DataGridViewTextBoxColumn1
         '
         Me.DataGridViewTextBoxColumn1.HeaderText = "Caminos"
         Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
+        '
+        'DataGridViewTextBoxColumn2
+        '
+        Me.DataGridViewTextBoxColumn2.HeaderText = "duraciones"
+        Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
         '
         'e1
         '
@@ -161,15 +165,15 @@ Partial Class Form1
         Me.t1.Size = New System.Drawing.Size(1143, 563)
         Me.t1.TabIndex = 0
         '
-        'Duraciones
-        '
-        Me.Duraciones.HeaderText = "duraciones"
-        Me.Duraciones.Name = "Duraciones"
-        '
         'caminos
         '
         Me.caminos.HeaderText = "Caminos"
         Me.caminos.Name = "caminos"
+        '
+        'Duraciones
+        '
+        Me.Duraciones.HeaderText = "duraciones"
+        Me.Duraciones.Name = "Duraciones"
         '
         'resultados
         '
@@ -183,6 +187,24 @@ Partial Class Form1
         Me.resultados.SelectedIndex = 0
         Me.resultados.Size = New System.Drawing.Size(1157, 602)
         Me.resultados.TabIndex = 6
+        '
+        'Button2
+        '
+        Me.Button2.Location = New System.Drawing.Point(377, 4)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(196, 23)
+        Me.Button2.TabIndex = 6
+        Me.Button2.Text = "Ingrezar CVS Primera entrega"
+        Me.Button2.UseVisualStyleBackColor = True
+        '
+        'Button3
+        '
+        Me.Button3.Location = New System.Drawing.Point(377, 30)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(196, 23)
+        Me.Button3.TabIndex = 7
+        Me.Button3.Text = "Ingrezar CVS Segunda entrega"
+        Me.Button3.UseVisualStyleBackColor = True
         '
         'Form1
         '
@@ -221,4 +243,6 @@ Partial Class Form1
     Friend WithEvents caminos As DataGridViewTextBoxColumn
     Friend WithEvents Duraciones As DataGridViewTextBoxColumn
     Friend WithEvents resultados As TabControl
+    Friend WithEvents Button3 As Button
+    Friend WithEvents Button2 As Button
 End Class

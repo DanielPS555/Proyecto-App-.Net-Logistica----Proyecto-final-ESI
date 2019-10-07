@@ -68,5 +68,33 @@
         Next
     End Sub
 
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+
+    End Sub
+
+    Private Sub cargarCVS(p As Integer)
+        Dim e As New OpenFileDialog
+        Dim texto As String
+        If e.ShowDialog = ShowDialog.OK Then
+            Dim sr As New System.IO.StreamReader(e.OpenFile)
+            While Not sr.EndOfStream
+                Dim linea = sr.ReadLine
+                Dim tete As String
+                For Each a As Char In linea
+                    If a = ";" Then
+
+                    Else
+                        tete = $"{tete}{a}"
+                    End If
+                Next
+                sr.Close()
+            End While
+
+            texto = sr.ReadToEnd
+            sr.Close()
+        End If
+        MsgBox(texto)
+
+    End Sub
 
 End Class
