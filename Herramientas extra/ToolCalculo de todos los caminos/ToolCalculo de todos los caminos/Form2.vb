@@ -1,4 +1,4 @@
-﻿Public Class Form1
+﻿Public Class Form2
     Dim resultado As DataTable
 
     Public Sub New()
@@ -69,32 +69,42 @@
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-
+        cargarCVS(t1)
     End Sub
 
-    Private Sub cargarCVS(p As Integer)
+    Private Sub cargarCVS(pp As DataGridView)
         Dim e As New OpenFileDialog
-        Dim texto As String
         If e.ShowDialog = ShowDialog.OK Then
-            Dim sr As New System.IO.StreamReader(e.OpenFile)
+            Dim sr As New System.IO.StreamReader(e.FileName)
             While Not sr.EndOfStream
+                Dim aaa = pp.Rows.Add()
                 Dim linea = sr.ReadLine
-                Dim tete As String
+                Dim tete As String = ""
+                Dim j As Boolean = False
                 For Each a As Char In linea
                     If a = ";" Then
+                        If j Then
+                            pp.Rows(aaa).Cells(1).Value = tete
+                        Else
+                            pp.Rows(aaa).Cells(0).Value = tete
+                            j = True
+                        End If
 
+                        tete = ""
                     Else
                         tete = $"{tete}{a}"
                     End If
                 Next
-                sr.Close()
             End While
-
-            texto = sr.ReadToEnd
             sr.Close()
         End If
-        MsgBox(texto)
+
 
     End Sub
+
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        cargarCVS(t2)
+    End Sub
+
 
 End Class
