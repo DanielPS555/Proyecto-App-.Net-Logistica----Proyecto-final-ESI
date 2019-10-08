@@ -246,6 +246,10 @@ Public Class Fachada
         End If
     End Function
 
+    Public Sub ModificarSimplementeContraseñaUsuarioActual(contraseña As String)
+        Persistencia.getInstancia.ModificarContraseñaPorDatosDeRecuperacion(Me.DevolverUsuarioActual.NombreDeUsuario, contraseña)
+    End Sub
+
     Public Shared URUGUAYTOP = -30.0869656F
     Public Shared URUGUAYEAST = -53.0913658F
 
@@ -1201,7 +1205,14 @@ Public Class Fachada
         Else
             Return Persistencia.getInstancia.ConexcionSinTrabajaEn(user.ID_usuario)
         End If
+    End Function
 
+    Public Sub CambiarPreguntaYRespuestaDeRecuperacionDelUsuarioActual(pregunta As String, respuesta As String)
+        Persistencia.getInstancia.updatePreguntaYrespuesta(pregunta, respuesta, Me.DevolverUsuarioActual.NombreDeUsuario)
+    End Sub
+
+    Public Function Existenciadatosderecuperacion(nombredeusuario As String)
+        Return Persistencia.getInstancia.ExistenciaDePreguntaDeRecuperacion(nombredeusuario) = 0
     End Function
 
 End Class

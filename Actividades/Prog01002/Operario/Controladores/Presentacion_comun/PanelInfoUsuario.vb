@@ -119,4 +119,9 @@
         End If
 
     End Sub
+
+    Private Sub EditarInfo_Click(sender As Object, e As EventArgs) Handles editarInfo.Click
+        Dim ee = New CredencialesUsuario(False)
+        ee.ShowDialog()
+    End Sub
 End Class

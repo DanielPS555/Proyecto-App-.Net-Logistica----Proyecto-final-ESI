@@ -1695,6 +1695,18 @@ order by fechaAgregado
         Return dt
     End Function
 
+    Public Function updatePreguntaYrespuesta(pregunta As String, respuesta As String, nombredeusuario As String)
+        Dim com As New OdbcCommand("update usuario set PreguntaSecreta=?,RespuestaSecreta=? where nombredeusuario=?", Conexcion)
+        com.CrearParametro(DbType.String, pregunta)
+        com.CrearParametro(DbType.String, respuesta)
+        com.CrearParametro(DbType.String, nombredeusuario)
+        Return com.ExecuteNonQuery
+    End Function
 
+    Public Function ExistenciaDePreguntaDeRecuperacion(nombreDeUsuario As String) As Integer
+        Dim com As New OdbcCommand("select count(*) from usuario where nombredeusuario=? and PreguntaSecreta is null", Conexcion)
+        com.CrearParametro(DbType.String, nombreDeUsuario)
+        Return com.ExecuteScalar
+    End Function
 
 End Class

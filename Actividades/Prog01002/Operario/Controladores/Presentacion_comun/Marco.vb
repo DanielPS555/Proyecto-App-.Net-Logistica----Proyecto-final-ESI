@@ -49,7 +49,12 @@ Public Class Marco
                                       MsgBox("ERROR FATAL: No se encontraron constructores sin parámetros para el panel " + key)
                                   End Sub
             Panel5.Controls.Add(btn)
+
         Next
+        If Not Fachada.getInstancia.Existenciadatosderecuperacion(Fachada.getInstancia.DevolverUsuarioActual.NombreDeUsuario) Then
+            Dim e As New CredencialesUsuario(True)
+            e.ShowDialog()
+        End If
     End Sub
 
     Private Shared Sub CopyFlat(src As Button, dst As Button)
