@@ -37,6 +37,14 @@ Public Module FachadaRegistro
         End Function
     End Structure
     Private Const KeyName As String = "HKEY_CURRENT_USER\Software\Bit\SLTA"
+    Public Function EliminarConfiguracion() As Boolean
+        Try
+            Microsoft.Win32.Registry.Users.OpenSubKey("Software", True).DeleteSubKey("Bit")
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
     Public Function GuardarConfiguracion(cfg As ConfiguracionEnRed) As Boolean
         Try
             Microsoft.Win32.Registry.SetValue(KeyName, "Informix IP", cfg.IP, Microsoft.Win32.RegistryValueKind.String)

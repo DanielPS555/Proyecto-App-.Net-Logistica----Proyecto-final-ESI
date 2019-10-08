@@ -10,6 +10,8 @@ Public Class WebcamForm
     Private result As ZXing.Result
     Private imageBmp As Bitmap
 
+    Private manager As WebCam.WebCam
+
     Private Sub WebcamForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bcReader = New ZXing.BarcodeReader With {
             .AutoRotate = True,
@@ -22,7 +24,7 @@ Public Class WebcamForm
             ZXing.BarcodeFormat.QR_CODE
         }
         OpenButton.Text = Funciones_comunes.I18N("Abrir imagen", Marco.Language)
-        Dim manager = New WebCam.WebCam
+        manager = New WebCam.WebCam
         If manager IsNot Nothing Then
             AddHandler manager.OnSnapshot, Sub(sdr, args)
                                                imageBmp = args.Image.Clone
@@ -70,5 +72,9 @@ Public Class WebcamForm
                 MsgBoxI18N("No se encontraron codigos QR en la imagen")
             End If
         End If
+    End Sub
+
+    Private Sub WebcamForm_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        If manager.IsConnected Then manager.Close()
     End Sub
 End Class
