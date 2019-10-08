@@ -69,16 +69,24 @@ namespace Instalador
             }
             else
             {
-                verifyButton.BackColor = Color.Green;
-                packageBox.Visible = true;
-                appLbl.Visible = true;
-                installBtn.Visible = true;
-                smCheck.Visible = true;
+                label3.ForeColor = Color.Green;
+                label3.Text = "Clave ingrezada";
+                verifyButton.Enabled = false;
+                button1.Enabled = false;
+                packageBox.Enabled = true;
+                appLbl.Enabled = true;
+                installBtn.Enabled = true;
+                smCheck.Enabled = true;
             }
         }
 
         private void installBtn_Click(object sender, EventArgs e)
         {
+            if (packageBox.CheckedItems.Count == 0)
+            {
+                MessageBox.Show("Debe selecionar un elemento a insltalar");
+                return; 
+            }
             var PFilesDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
             var InstallPath = System.IO.Path.Combine(PFilesDirectory, "Bit", "SLTA");
             if (MessageBox.Show($"El sistema se instalará en {InstallPath}, continuar?", "Confirmar", MessageBoxButtons.YesNo) != DialogResult.Yes) return;
@@ -160,9 +168,18 @@ namespace Instalador
             }
         }
 
-        private void exit_Click(object sender, EventArgs e)
+        private void Button1_Click_1(object sender, EventArgs e)
         {
-            this.Close();
+            var open = new OpenFileDialog();
+            if (open.ShowDialog() == DialogResult.OK){
+                var sr = new System.IO.StreamReader(open.FileName);
+                var texto = sr.ReadToEnd();
+                keyBox.Text = texto;
+                sr.Close();
+            }
+
         }
+
+        
     }
 }
