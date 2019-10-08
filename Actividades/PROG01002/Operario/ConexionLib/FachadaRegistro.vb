@@ -36,7 +36,42 @@ Public Module FachadaRegistro
             Return GuardarConfiguracion(Me)
         End Function
     End Structure
+
     Private Const KeyName As String = "HKEY_CURRENT_USER\Software\Bit\SLTA"
+
+    Public Function RegistrarPrograma(InstallPath As String) As Boolean
+        If EstaRegistrado() Then Return False
+        Try
+            Microsoft.Win32.Registry.LocalMachine.OpenSubKey("Software", True).OpenSubKey("Bit", True).OpenSubKey("SLTA", True).SetValue("Path", InstallPath)
+            Return True
+        Catch e As Exception
+            Console.WriteLine(e.ToString)
+            Return False
+        End Try
+    End Function
+
+    Public Function EstaRegistrado() As Boolean
+        Dim sfwKey = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("Software")
+        If Not sfwKey.GetSubKeyNames.Contains("Bit") Then Return False
+        Dim bitKey = sfwKey.OpenSubKey("Bit")
+        If Not bitKey.GetSubKeyNames.Contains("SLTA") Then Return False
+        Dim sltaKey = bitKey.OpenSubKey("SLTA")
+        If Not sltaKey.GetValueNames.Contains("Path") OrElse Not System.IO.Directory.Exists(sltaKey.GetValue("Path")) Then Return False
+        Return True
+    End Function
+
+    Public Function DesregistrarPrograma() As Boolean
+        If Not EstaRegistrado() Then Return False
+        Try
+            Dim sfwKey = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("Software")
+            Dim bitKey = sfwKey.OpenSubKey("Bit")
+            bitKey.DeleteSubKeyTree("SLTA")
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
+
     Public Function GuardarConfiguracion(cfg As ConfiguracionEnRed) As Boolean
         Try
             Microsoft.Win32.Registry.SetValue(KeyName, "Informix IP", cfg.IP, Microsoft.Win32.RegistryValueKind.String)
@@ -50,6 +85,7 @@ Public Module FachadaRegistro
             Return False
         End Try
     End Function
+
     Public Function LeerConfiguracion() As ConfiguracionEnRed
         If Microsoft.Win32.Registry.GetValue(KeyName, "Informix IP", Nothing) Is Nothing Then
             Microsoft.Win32.Registry.SetValue(KeyName, "Informix IP", "localhost", Microsoft.Win32.RegistryValueKind.String)
