@@ -128,6 +128,7 @@ Partial Class CredencialesUsuario
         Me.contraseña.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.contraseña.Location = New System.Drawing.Point(236, 56)
         Me.contraseña.Name = "contraseña"
+        Me.contraseña.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.contraseña.Size = New System.Drawing.Size(481, 33)
         Me.contraseña.TabIndex = 9
         '
@@ -136,6 +137,7 @@ Partial Class CredencialesUsuario
         Me.contraseña2.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.contraseña2.Location = New System.Drawing.Point(236, 124)
         Me.contraseña2.Name = "contraseña2"
+        Me.contraseña2.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.contraseña2.Size = New System.Drawing.Size(481, 33)
         Me.contraseña2.TabIndex = 10
         '
@@ -167,6 +169,7 @@ Partial Class CredencialesUsuario
         Me.Button3.TabIndex = 13
         Me.Button3.Text = "Salir "
         Me.Button3.UseVisualStyleBackColor = False
+        Me.Button3.Visible = False
         '
         'CredencialesUsuario
         '
@@ -187,6 +190,7 @@ Partial Class CredencialesUsuario
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Name = "CredencialesUsuario"
         Me.Text = "CredencialesUsuario"
         Me.ResumeLayout(False)

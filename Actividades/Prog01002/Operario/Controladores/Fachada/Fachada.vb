@@ -1215,4 +1215,8 @@ Public Class Fachada
         Return Persistencia.getInstancia.ExistenciaDePreguntaDeRecuperacion(nombredeusuario) = 0
     End Function
 
+    Public Function ExistenciaDeMedioConIdTipoYIdLegak(idtipo As Integer, idlegal As String)
+        Return Persistencia.getInstancia.ExistenciaIdLegalParaIdTipoEnMedio(idtipo, idlegal) = 1
+    End Function
+
 End Class

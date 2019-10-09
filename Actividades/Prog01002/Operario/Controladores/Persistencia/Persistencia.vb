@@ -1709,4 +1709,11 @@ order by fechaAgregado
         Return com.ExecuteScalar
     End Function
 
+    Public Function ExistenciaIdLegalParaIdTipoEnMedio(idtipo As Integer, idlegal As String) As Integer
+        Dim com As New OdbcCommand("select count(*) from MedioTransporte where IDTipo=? and IDLegal=?", Conexcion)
+        com.CrearParametro(DbType.Int32, idtipo)
+        com.CrearParametro(DbType.String, idlegal)
+        Return com.ExecuteScalar
+    End Function
+
 End Class
