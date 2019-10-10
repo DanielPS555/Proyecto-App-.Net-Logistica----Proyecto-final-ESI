@@ -39,7 +39,7 @@ Public Module FachadaRegistro
     Private Const KeyName As String = "HKEY_CURRENT_USER\Software\Bit\SLTA"
     Public Function EliminarConfiguracion() As Boolean
         Try
-            Microsoft.Win32.Registry.Users.OpenSubKey("Software", True).DeleteSubKey("Bit")
+            Microsoft.Win32.Registry.CurrentUser.OpenSubKey("Software", True).DeleteSubKeyTree("Bit")
             Return True
         Catch ex As Exception
             Return False

@@ -89,5 +89,15 @@ namespace Instalador.Properties {
                 return ((byte[])(obj));
             }
         }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] Uninstaller {
+            get {
+                object obj = ResourceManager.GetObject("Uninstaller", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }

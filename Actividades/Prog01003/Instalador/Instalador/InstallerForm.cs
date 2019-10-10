@@ -19,10 +19,25 @@ namespace Instalador
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            if (System.Environment.OSVersion.Version.Major < 6 || (System.Environment.OSVersion.Version.Major == 6 && System.Environment.OSVersion.Version.Minor < 2))
+            OSCheck();
+            IfxCheck();
+            DotnetCheck();
+        }
+
+        private void DotnetCheck()
+        {
+            using (Microsoft.Win32.RegistryKey rk = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\NET Framework Setup\\NDP\\v4\\Full"))
             {
-                MessageBox.Show("El SLTA sólo tiene funcionamiento verificado en Windows 7 y Windows 10, no aseguramos que funcione correctamente en otras versiones del sistema", "Sistema antigüo", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                if (!rk.GetValueNames().Contains("Release") || (rk.GetValue("Release") as int?) < 461808)
+                {
+                    MessageBox.Show("Debe instalar .NET Framework 4.7.2 o mayor antes de instalar el SLTA", "Falta .NET Framework actualizado", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    this.Close();
+                }
             }
+        }
+
+        private void IfxCheck()
+        {
             using (Microsoft.Win32.RegistryKey rk = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("Software\\ODBC\\ODBCINST.INI"))
             {
                 if (!rk.GetSubKeyNames().Contains("IBM INFORMIX ODBC DRIVER (64-bit)"))
@@ -31,13 +46,13 @@ namespace Instalador
                     this.Close();
                 }
             }
-            using (Microsoft.Win32.RegistryKey rk = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\NET Framework Setup\\NDP\\v4\\Full"))
+        }
+
+        private static void OSCheck()
+        {
+            if (System.Environment.OSVersion.Version.Major < 6 || (System.Environment.OSVersion.Version.Major == 6 && System.Environment.OSVersion.Version.Minor < 2))
             {
-                if (!rk.GetValueNames().Contains("Release") || (rk.GetValue("Release") as int?) < 461808)
-                {
-                    MessageBox.Show("Debe instalar .NET Framework 4.7.2 o mayor antes de instalar el SLTA", "Falta .NET Framework actualizado", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
-                    this.Close();
-                }
+                MessageBox.Show("El SLTA sólo tiene funcionamiento verificado en Windows 7 y Windows 10, no aseguramos que funcione correctamente en otras versiones del sistema", "Sistema antigüo", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
             }
         }
 
@@ -58,11 +73,7 @@ namespace Instalador
             {
                 Console.WriteLine(m);
             }
-            var M1Mat = mats[0] * mats[1];
-            var M2Mat = mats[2] * mats[3];
-            var ExpectedM1 = new BitMath.Matrix(new Fractions.Fraction[][] { new Fractions.Fraction[] { 2, 19, 19 }, new Fractions.Fraction[] { 9, 18, 11 }, new Fractions.Fraction[] { 20, 11, 22 } });
-            var ExpectedM2 = new BitMath.Matrix(new Fractions.Fraction[][] { new Fractions.Fraction[] { 19, 20 }, new Fractions.Fraction[] { 12, 1 } });
-            if (M1Mat != ExpectedM1 || M2Mat != ExpectedM2)
+            if (!MatrixVerification(mats))
             {
                 MessageBox.Show("La clave ingresada es inválida!", "Clave errónea", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.Close();
@@ -78,6 +89,15 @@ namespace Instalador
                 installBtn.Enabled = true;
                 smCheck.Enabled = true;
             }
+        }
+
+        private static bool MatrixVerification(BitMath.Matrix[] mats)
+        {
+            var M1Mat = mats[0] * mats[1];
+            var M2Mat = mats[2] * mats[3];
+            var ExpectedM1 = new BitMath.Matrix(new Fractions.Fraction[][] { new Fractions.Fraction[] { 2, 19, 19 }, new Fractions.Fraction[] { 9, 18, 11 }, new Fractions.Fraction[] { 20, 11, 22 } });
+            var ExpectedM2 = new BitMath.Matrix(new Fractions.Fraction[][] { new Fractions.Fraction[] { 19, 20 }, new Fractions.Fraction[] { 12, 1 } });
+            return ExpectedM1 == M1Mat && ExpectedM2 == M2Mat;
         }
 
         private void installBtn_Click(object sender, EventArgs e)
