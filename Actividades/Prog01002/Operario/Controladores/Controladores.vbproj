@@ -127,9 +127,7 @@
     <Compile Include="Logica\Lote.vb" />
     <Compile Include="Logica\Lugar.vb" />
     <Compile Include="Logica\MedioDeTrasporte.vb" />
-    <Compile Include="Logica\Notificaciones.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Logica\Notificacion.vb" />
     <Compile Include="Logica\Posicion.vb" />
     <Compile Include="Logica\RegistroDaños.vb" />
     <Compile Include="Logica\Subzona.vb" />

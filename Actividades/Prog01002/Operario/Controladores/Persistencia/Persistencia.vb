@@ -1763,4 +1763,12 @@ order by fechaAgregado
         dt.Load(com.ExecuteReader)
         Return dt
     End Function
+
+    Public Function InsertNotificacion(jsonObj As Dictionary(Of String, Object), fecha As DateTime)
+        Dim com As New OdbcCommand("insert into evento values (0,?::json,?);", Conexcion)
+        Dim x = Newtonsoft.Json.JsonConvert.SerializeObject(jsonObj)
+        com.CrearParametro(x)
+        com.CrearParametro(DbType.DateTime, fecha)
+        Return com.ExecuteNonQuery > 0
+    End Function
 End Class
