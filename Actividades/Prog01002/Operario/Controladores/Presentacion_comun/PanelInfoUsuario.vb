@@ -11,6 +11,7 @@
         InitializeComponent()
         user = New Controladores.Usuario() With {.ID_usuario = idusuario}
         cargarDatosBasicos()
+        editarInfo.Visible = (idusuario = Fachada.getInstancia.DevolverUsuarioActual.ID_usuario)
     End Sub
 
     Public Sub actualizarPanel() Implements NotificacionSimple.actualizarPanel
@@ -118,5 +119,10 @@
             MsgBox("Eliminacion realizada")
         End If
 
+    End Sub
+
+    Private Sub EditarInfo_Click(sender As Object, e As EventArgs) Handles editarInfo.Click
+        Dim ee = New CredencialesUsuario(False)
+        ee.ShowDialog()
     End Sub
 End Class

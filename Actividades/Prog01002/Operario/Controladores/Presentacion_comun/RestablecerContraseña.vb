@@ -18,17 +18,21 @@ Public Class RestablecerContraseña
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
         If Controladores.Fachada.getInstancia.ComprobacionSoloNombreUsuario(username.Text) Then
+            If Not Controladores.Fachada.getInstancia.Existenciadatosderecuperacion(username.Text) Then
+                MsgBox("Este usuario no tiene datos de recuperacion, por favor ingrese con su contraseña asignada y ingrese unos", MsgBoxStyle.Critical)
+                Return
+            End If
             Dim usuarioPregunta = Controladores.Fachada.getInstancia.PreguntaSecretaUsuario(username.Text)
-            Pregunta.Text = usuarioPregunta
-            Pregunta.Visible = True
-            secretanswer.Visible = True
-            Label4.Visible = True
-            newpwd.Visible = True
-            Label5.Visible = True
-            Button1.Visible = True
-            preg.Visible = True
-        Else
-            MsgBox("Nombre de usuario incorrecto", MsgBoxStyle.Critical)
+                Pregunta.Text = usuarioPregunta
+                Pregunta.Visible = True
+                secretanswer.Visible = True
+                Label4.Visible = True
+                newpwd.Visible = True
+                Label5.Visible = True
+                Button1.Visible = True
+                preg.Visible = True
+            Else
+                MsgBox("Nombre de usuario incorrecto", MsgBoxStyle.Critical)
         End If
 
     End Sub

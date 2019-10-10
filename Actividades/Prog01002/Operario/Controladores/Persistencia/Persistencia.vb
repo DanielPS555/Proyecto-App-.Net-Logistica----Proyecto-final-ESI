@@ -1695,6 +1695,68 @@ order by fechaAgregado
         Return dt
     End Function
 
+    Public Function updatePreguntaYrespuesta(pregunta As String, respuesta As String, nombredeusuario As String)
+        Dim com As New OdbcCommand("update usuario set PreguntaSecreta=?,RespuestaSecreta=? where nombredeusuario=?", Conexcion)
+        com.CrearParametro(DbType.String, pregunta)
+        com.CrearParametro(DbType.String, respuesta)
+        com.CrearParametro(DbType.String, nombredeusuario)
+        Return com.ExecuteNonQuery
+    End Function
 
+    Public Function ExistenciaDePreguntaDeRecuperacion(nombreDeUsuario As String) As Integer
+        Dim com As New OdbcCommand("select count(*) from usuario where nombredeusuario=? and PreguntaSecreta is null", Conexcion)
+        com.CrearParametro(DbType.String, nombreDeUsuario)
+        Return com.ExecuteScalar
+    End Function
+
+    Public Function ExistenciaIdLegalParaIdTipoEnMedio(idtipo As Integer, idlegal As String) As Integer
+        Dim com As New OdbcCommand("select count(*) from MedioTransporte where IDTipo=? and IDLegal=?", Conexcion)
+        com.CrearParametro(DbType.Int32, idtipo)
+        com.CrearParametro(DbType.String, idlegal)
+        Return com.ExecuteScalar
+    End Function
+
+    Public Function ExistenciaDetipoDeTransporte(nombre As String) As Integer
+        Dim com As New OdbcCommand("select count(*) from TipoTransporte where Nombre=?", Conexcion)
+        com.CrearParametro(DbType.String, nombre)
+        Return com.ExecuteScalar
+    End Function
+
+    Public Function InsertTipoDeMedio(nombre As String)
+        Dim com As New OdbcCommand("insert into TipoTransporte values (0,?)", Conexcion)
+        com.CrearParametro(DbType.String, nombre)
+        Return com.ExecuteNonQuery
+    End Function
+
+    Public Function devolverIdSegunNombreDeTipoDeTransporte(nombre As String) As Integer
+        Dim com As New OdbcCommand("select idtipo from TipoTransporte where nombre=?", Conexcion)
+        com.CrearParametro(DbType.String, nombre)
+        Return com.ExecuteScalar
+    End Function
+
+    Public Function InsertMedio(idtipo As Integer, identificador As String, nombre As String, nomTipo As String, idcreador As Integer, fechaCreacion As DateTime, ncamiones As Integer, nautos As Integer, nsuv As Integer, nvan As Integer, nminivan As Integer)
+        Dim com As New OdbcCommand("insert into MedioTransporte values (?,?,?,?,?,?,?,?,?,?,?);", Conexcion)
+        com.CrearParametro(DbType.Int32, idtipo)
+        com.CrearParametro(DbType.String, identificador)
+        com.CrearParametro(DbType.String, nombre)
+        com.CrearParametro(DbType.String, nomTipo)
+        com.CrearParametro(DbType.Int32, idcreador)
+        com.CrearParametro(DbType.DateTime, fechaCreacion)
+        com.CrearParametro(DbType.Int32, ncamiones)
+        com.CrearParametro(DbType.Int32, nautos)
+        com.CrearParametro(DbType.Int32, nsuv)
+        com.CrearParametro(DbType.Int32, nvan)
+        com.CrearParametro(DbType.Int32, nminivan)
+        Return com.ExecuteNonQuery
+    End Function
+
+    Public Function TodosLosAdministradoresDelSistemaSinPermiteEnUnMedio(idtipo As Integer, idlegal As String) As DataTable
+        Dim com As New OdbcCommand("select idusuario from usuario where rol ='A' and idusuario not in (select Usuario from permite where IDTipo=? and IDLegal=?)", Conexcion)
+        com.CrearParametro(DbType.Int32, idtipo)
+        com.CrearParametro(DbType.String, idlegal)
+        Dim dt As New DataTable
+        dt.Load(com.ExecuteReader)
+        Return dt
+    End Function
 
 End Class

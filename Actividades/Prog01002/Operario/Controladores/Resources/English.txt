@@ -60,3 +60,13 @@ Authorized mediums
 Search
 Batch ID
 Batch name
+identifier cannot be empty
+The name cannot have spaces at the beginning or end
+You must select a media type
+You cannot leave the name empty
+The name cannot exceed 50 characters
+That name already exists for this medium
+The medium must be able to transport a vehicle
+There is already such a medium with this name
+name cannot be empty
+Half successfully added
