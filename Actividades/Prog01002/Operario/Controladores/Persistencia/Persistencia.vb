@@ -1764,23 +1764,13 @@ order by fechaAgregado
         Return dt
     End Function
 
-    Public Function InsertNotificacion(tipo As String, ref1 As Integer, ref2 As Object, ref3 As Object, fecha As DateTime)
-        Dim datos As String = "'{""tipo"": """ & tipo & """, ""ref"" : " & ref1 & "}'"
+    Public Function InsertNotificacion(jsonObj As Dictionary(Of String, Object), fecha As DateTime)
+        Dim com As New OdbcCommand("insert into evento values (0,?::json,?);", Conexcion)
+        Dim x = Newtonsoft.Json.JsonConvert.SerializeObject(jsonObj)
+        com.CrearParametro(x)
+        com.CrearParametro(DbType.DateTime, fecha)
+        Return com.ExecuteNonQuery > 0
 
-        Dim com As New OdbcCommand("insert into MedioTransporte values (?,?,?,?,?,?,?,?,?,?,?);", Conexcion)
-
-        com.CrearParametro(DbType.Int32, idtipo)
-        com.CrearParametro(DbType.String, identificador)
-        com.CrearParametro(DbType.String, nombre)
-        com.CrearParametro(DbType.String, nomTipo)
-        com.CrearParametro(DbType.Int32, idcreador)
-        com.CrearParametro(DbType.DateTime, fechaCreacion)
-        com.CrearParametro(DbType.Int32, ncamiones)
-        com.CrearParametro(DbType.Int32, nautos)
-        com.CrearParametro(DbType.Int32, nsuv)
-        com.CrearParametro(DbType.Int32, nvan)
-        com.CrearParametro(DbType.Int32, nminivan)
-        Return com.ExecuteNonQuery
     End Function
 
 

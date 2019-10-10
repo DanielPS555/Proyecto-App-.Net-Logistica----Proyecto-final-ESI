@@ -1,4 +1,4 @@
-﻿Public Class Notificaciones
+﻿Public Class Notificacion
     Public Shared ReadOnly TIPO_NOTIFICACION_NUEVO_USUARIO = "NU"
     Public Shared ReadOnly TIPO_NOTIFICACION_NUEVO_LUGAR = "NL"
     Public Shared ReadOnly TIPO_NOTIFICACION_NUEVO_MEDIO = "NM"
@@ -14,15 +14,25 @@
     Public Shared ReadOnly TIPO_NOTIFICACION_GENERICO = "GEN"
 
 
-    Private tipo As String
+    Private _tipo As String
     Private _ref1 As Object
     Private _ref2 As Object
     Private _ref3 As Object
 
+
+
     Public Sub New(tipo As String)
-        InitializeComponent()
         Me.tipo = tipo
     End Sub
+
+    Public Property Tipo() As String
+        Get
+            Return _tipo
+        End Get
+        Set(ByVal value As String)
+            _tipo = value
+        End Set
+    End Property
 
     Public Property Ref1() As Object
         Get
@@ -50,6 +60,5 @@
             _ref3 = value
         End Set
     End Property
-
 
 End Class

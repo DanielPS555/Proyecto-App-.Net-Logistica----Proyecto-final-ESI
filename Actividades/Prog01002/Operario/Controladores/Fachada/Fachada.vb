@@ -1233,4 +1233,22 @@ Public Class Fachada
             Persistencia.getInstancia.InsertPermite(r.Item(0), medio.Tipo.ID, medio.ID, False)
         Next
     End Sub
+
+    Public Sub NuevoNotificacion(notifi As Notificacion)
+        Dim json As New Dictionary(Of String, Object)
+        json("tipo") = notifi.Tipo
+        json("ref") = notifi.Ref1
+        If notifi.Ref2 IsNot Nothing Then
+            json("ref2") = notifi.Ref2
+        End If
+
+        If notifi.Ref3 IsNot Nothing Then
+            json("ref3") = notifi.Ref3
+        End If
+
+        Persistencia.getInstancia.InsertNotificacion(json, DateTime.Now)
+    End Sub
+
+
+
 End Class
