@@ -59,5 +59,6 @@ Public Class LugarDeTrabajo
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Me.Close()
+        Principal.getInstancia.cargarPanel(New Login)
     End Sub
 End Class

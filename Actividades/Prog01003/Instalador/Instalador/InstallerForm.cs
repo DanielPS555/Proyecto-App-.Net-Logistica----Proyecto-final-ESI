@@ -28,9 +28,9 @@ namespace Instalador
         {
             using (Microsoft.Win32.RegistryKey rk = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\NET Framework Setup\\NDP\\v4\\Full"))
             {
-                if (!rk.GetValueNames().Contains("Release") || (rk.GetValue("Release") as int?) < 461808)
+                if (!rk.GetValueNames().Contains("Release") || (rk.GetValue("Release") as int?) < 394271)
                 {
-                    MessageBox.Show("Debe instalar .NET Framework 4.7.2 o mayor antes de instalar el SLTA", "Falta .NET Framework actualizado", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBox.Show("Debe instalar .NET Framework 4.6 o mayor antes de instalar el SLTA", "Falta .NET Framework actualizado", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                     this.Close();
                 }
             }
@@ -50,9 +50,10 @@ namespace Instalador
 
         private static void OSCheck()
         {
+            Console.WriteLine(System.Environment.OSVersion.Version);
             if (System.Environment.OSVersion.Version.Major < 6 || (System.Environment.OSVersion.Version.Major == 6 && System.Environment.OSVersion.Version.Minor < 2))
             {
-                MessageBox.Show("El SLTA sólo tiene funcionamiento verificado en Windows 7 y Windows 10, no aseguramos que funcione correctamente en otras versiones del sistema", "Sistema antigüo", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                MessageBox.Show("El SLTA sólo tiene funcionamiento verificado en Windows 8 y Windows 10, no aseguramos que funcione correctamente en otras versiones del sistema", "Sistema antigüo", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
             }
         }
 
@@ -107,8 +108,7 @@ namespace Instalador
                 MessageBox.Show("Debe selecionar un elemento a insltalar");
                 return;
             }
-            var PFilesDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
-            var InstallPath = System.IO.Path.Combine(PFilesDirectory, "Bit", "SLTA");
+            string InstallPath = GetInstallPath();
             if (!ConexionLib.FachadaRegistro.RegistrarPrograma(InstallPath))
             {
                 MessageBox.Show("No se pudo registrar el programa, asegúrese de tener permisos de administrador");
@@ -152,36 +152,29 @@ namespace Instalador
                         progressBar1.Value += 1;
                         InstallList.Items.Add(path);
                     }
+                    var uninstallerPath = System.IO.Path.Combine(InstallPath, "Uninstall.exe");
+                    var uninstallerBytes = Properties.Resources.Uninstaller;
+                    var uninstStream = new System.IO.FileStream(uninstallerPath, System.IO.FileMode.Create);
+                    using (var copyPromise = uninstStream.WriteAsync(uninstallerBytes, 0, uninstallerBytes.Length))
+                        copyPromise.Wait();
+                    FachadaRegistro.RegistrarDesinstalador(uninstallerPath);
                     if (smCheck.Checked)
                     {
                         var smPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonStartMenu);
                         smPath = System.IO.Path.Combine(smPath, "Programs", "SLTA");
                         System.IO.Directory.CreateDirectory(smPath);
                         Type t = Type.GetTypeFromCLSID(new Guid("72C24DD5-D70A-438B-8A42-98424B88AFB8")); //Windows Script Host Shell Object
-                        dynamic shell = Activator.CreateInstance(t);
+                        dynamic wsh_shell = Activator.CreateInstance(t);
                         try
                         {
-                            foreach (var f in conditions.Where(x => x.Split(':')[0].EndsWith(".exe")))
+                            foreach (var executable in conditions.Where(x => x.Split(':')[0].EndsWith(".exe")))
                             {
-                                var iconPath = System.IO.Path.Combine(smPath, f.Split(':')[0].Split('.')[0]) + ".lnk";
-                                var app = System.IO.Path.Combine(InstallPath, f.Split(':')[0]);
-                                var lnk = shell.CreateShortcut(iconPath);
-                                try
-                                {
-                                    lnk.TargetPath = app;
-                                    lnk.IconLocation = app;
-                                    lnk.Save();
-                                    InstallList.Items.Add(iconPath);
-                                }
-                                finally
-                                {
-                                    Marshal.FinalReleaseComObject(lnk);
-                                }
+                                CreateLink(InstallPath, smPath, wsh_shell, executable);
                             }
                         }
                         finally
                         {
-                            Marshal.FinalReleaseComObject(shell);
+                            Marshal.FinalReleaseComObject(wsh_shell);
                         }
                     }
                     if (MessageBox.Show("Instalado con éxito! ¿Desea abrir la configuración de red?", "Configuración de red", MessageBoxButtons.YesNo) == DialogResult.Yes)
@@ -190,6 +183,31 @@ namespace Instalador
                     }
                 }
             }
+        }
+
+        private void CreateLink(string InstallPath, string smPath, dynamic shell, string f)
+        {
+            var iconPath = System.IO.Path.Combine(smPath, f.Split(':')[0].Split('.')[0]) + ".lnk";
+            var app = System.IO.Path.Combine(InstallPath, f.Split(':')[0]);
+            var lnk = shell.CreateShortcut(iconPath);
+            try
+            {
+                lnk.TargetPath = app;
+                lnk.IconLocation = app;
+                lnk.Save();
+                InstallList.Items.Add(iconPath);
+            }
+            finally
+            {
+                Marshal.FinalReleaseComObject(lnk);
+            }
+        }
+
+        private static string GetInstallPath()
+        {
+            var PFilesDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
+            var InstallPath = System.IO.Path.Combine(PFilesDirectory, "Bit", "SLTA");
+            return InstallPath;
         }
 
         private void Button1_Click_1(object sender, EventArgs e)

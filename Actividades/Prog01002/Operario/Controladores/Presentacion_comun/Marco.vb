@@ -9,6 +9,7 @@ Public Class Marco
         If paneles Is Nothing Then
             Throw New Exception("No se configuraron paneles para los botones")
         End If
+
         InitializeComponent()
         b10.Text = Funciones_comunes.I18N("Inicio", Language)
         acercaDe.Text = Funciones_comunes.I18N("Acerca de", Language)

@@ -1763,26 +1763,4 @@ order by fechaAgregado
         dt.Load(com.ExecuteReader)
         Return dt
     End Function
-
-    Public Function InsertNotificacion(tipo As String, ref1 As Integer, ref2 As Object, ref3 As Object, fecha As DateTime)
-        Dim datos As String = "'{""tipo"": """ & tipo & """, ""ref"" : " & ref1 & "}'"
-
-        Dim com As New OdbcCommand("insert into MedioTransporte values (?,?,?,?,?,?,?,?,?,?,?);", Conexcion)
-
-        com.CrearParametro(DbType.Int32, idtipo)
-        com.CrearParametro(DbType.String, identificador)
-        com.CrearParametro(DbType.String, nombre)
-        com.CrearParametro(DbType.String, nomTipo)
-        com.CrearParametro(DbType.Int32, idcreador)
-        com.CrearParametro(DbType.DateTime, fechaCreacion)
-        com.CrearParametro(DbType.Int32, ncamiones)
-        com.CrearParametro(DbType.Int32, nautos)
-        com.CrearParametro(DbType.Int32, nsuv)
-        com.CrearParametro(DbType.Int32, nvan)
-        com.CrearParametro(DbType.Int32, nminivan)
-        Return com.ExecuteNonQuery
-    End Function
-
-
-
 End Class

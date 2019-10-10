@@ -58,6 +58,22 @@ Public Module FachadaRegistro
         End Try
     End Function
 
+    Public Function RegistrarDesinstalador(UninstallerPath As String) As Boolean
+        Try
+            Dim uninstKey = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("Software")
+            uninstKey = uninstKey.OpenSubKey("Microsoft")
+            uninstKey = uninstKey.OpenSubKey("Windows")
+            uninstKey = uninstKey.OpenSubKey("CurrentVersion")
+            uninstKey = uninstKey.OpenSubKey("Uninstall")
+            uninstKey = uninstKey.OpenSubKey("SLTA", True)
+            uninstKey.SetValue("DisplayName", "SLTA", Microsoft.Win32.RegistryValueKind.String)
+            uninstKey.SetValue("UninstallString", UninstallerPath, Microsoft.Win32.RegistryValueKind.String)
+            Return True
+        Catch e As Exception
+            Return False
+        End Try
+    End Function
+
     Public Function EstaRegistrado() As Boolean
         Dim sfwKey = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("Software")
         If Not sfwKey.GetSubKeyNames.Contains("Bit") Then Return False
