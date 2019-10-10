@@ -127,6 +127,9 @@
     <Compile Include="Logica\Lote.vb" />
     <Compile Include="Logica\Lugar.vb" />
     <Compile Include="Logica\MedioDeTrasporte.vb" />
+    <Compile Include="Logica\Notificaciones.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Logica\Posicion.vb" />
     <Compile Include="Logica\RegistroDaños.vb" />
     <Compile Include="Logica\Subzona.vb" />
@@ -201,6 +204,12 @@
       <DependentUpon>Marco.vb</DependentUpon>
     </Compile>
     <Compile Include="Presentacion_comun\Marco.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion_comun\Notificaciones.Designer.vb">
+      <DependentUpon>Notificaciones.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion_comun\Notificaciones.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Presentacion_comun\PanelAlfa\AlfaInterface.vb" />
@@ -306,6 +315,9 @@
     <EmbeddedResource Include="Presentacion_comun\Marco.resx">
       <DependentUpon>Marco.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion_comun\Notificaciones.resx">
+      <DependentUpon>Notificaciones.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentacion_comun\PanelAlfa\Alfa.resx">
       <DependentUpon>Alfa.vb</DependentUpon>
     </EmbeddedResource>
@@ -347,6 +359,7 @@
     <Content Include="Persistencia\dql2.sql" />
     <Content Include="Persistencia\dql3.sql" />
     <Content Include="Persistencia\dql4.sql" />
+    <None Include="Resources\notificacion.png" />
     <None Include="Resources\Spanish.txt" />
     <None Include="Resources\English.txt" />
     <None Include="Resources\logo.jpg" />

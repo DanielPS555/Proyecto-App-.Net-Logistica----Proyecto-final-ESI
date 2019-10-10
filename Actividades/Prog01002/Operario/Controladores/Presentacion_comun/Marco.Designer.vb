@@ -36,12 +36,14 @@ Partial Class Marco
         Me.b10 = New System.Windows.Forms.Button()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.Button1 = New System.Windows.Forms.Button()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.contpr.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.Panel4.SuspendLayout()
         Me.Panel5.SuspendLayout()
         Me.Panel3.SuspendLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Micuenta
@@ -121,6 +123,7 @@ Partial Class Marco
         '
         'Panel1
         '
+        Me.Panel1.Controls.Add(Me.PictureBox1)
         Me.Panel1.Controls.Add(Me.Button2)
         Me.Panel1.Controls.Add(Me.atras)
         Me.Panel1.Controls.Add(Me.sigiente)
@@ -143,9 +146,9 @@ Partial Class Marco
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button2.Font = New System.Drawing.Font("Segoe UI Semilight", 20.0!)
         Me.Button2.ForeColor = System.Drawing.Color.White
-        Me.Button2.Location = New System.Drawing.Point(122, 3)
+        Me.Button2.Location = New System.Drawing.Point(112, 3)
         Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(57, 44)
+        Me.Button2.Size = New System.Drawing.Size(47, 44)
         Me.Button2.TabIndex = 20
         Me.Button2.Text = "X"
         Me.Button2.UseVisualStyleBackColor = False
@@ -185,7 +188,7 @@ Partial Class Marco
         Me.sigiente.ForeColor = System.Drawing.Color.White
         Me.sigiente.Location = New System.Drawing.Point(59, 3)
         Me.sigiente.Name = "sigiente"
-        Me.sigiente.Size = New System.Drawing.Size(57, 44)
+        Me.sigiente.Size = New System.Drawing.Size(47, 44)
         Me.sigiente.TabIndex = 19
         Me.sigiente.Text = ">"
         Me.sigiente.UseVisualStyleBackColor = False
@@ -257,6 +260,16 @@ Partial Class Marco
         Me.Button1.Text = "Cerrar secion "
         Me.Button1.UseVisualStyleBackColor = False
         '
+        'PictureBox1
+        '
+        Me.PictureBox1.Image = Global.Controladores.My.Resources.Resources.notificacion
+        Me.PictureBox1.Location = New System.Drawing.Point(165, 3)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(49, 47)
+        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox1.TabIndex = 20
+        Me.PictureBox1.TabStop = False
+        '
         'Marco
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -272,6 +285,7 @@ Partial Class Marco
         Me.Panel4.ResumeLayout(False)
         Me.Panel5.ResumeLayout(False)
         Me.Panel3.ResumeLayout(False)
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -289,4 +303,5 @@ Partial Class Marco
     Friend WithEvents Micuenta As Button
     Friend WithEvents b10 As Button
     Friend WithEvents Button2 As Button
+    Friend WithEvents PictureBox1 As PictureBox
 End Class
