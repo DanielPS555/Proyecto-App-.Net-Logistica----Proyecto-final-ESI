@@ -5,7 +5,7 @@ Public Class TrayectoVehicular
     Private conn As Odbc.OdbcConnection
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Controladores.Fachada.getInstancia.IniciarConexcion(Controladores.FachadaRegistro.LeerConfiguracion)
+        Controladores.Fachada.getInstancia.IniciarConexcion(ConexionLib.FachadaRegistro.LeerConfiguracion)
         conn = Controladores.Persistencia.getInstancia.Conexcion
         Dim selcmd As New Odbc.OdbcCommand("select VIN from vehiculo;", conn)
         Dim rdr = selcmd.ExecuteReader

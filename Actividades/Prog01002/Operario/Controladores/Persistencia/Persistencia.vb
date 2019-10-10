@@ -125,8 +125,9 @@ order by fechaAgregado
     End Function
 
     Public Function BajaVehiculo(idVehiculo As Integer, jsonObj As Dictionary(Of String, String), iD_usuario As Integer) As Boolean
-        Dim insertCmd As New OdbcCommand("insert into vehiculoIngresa(idvehiculo, fecha, tipoingreso, usuario, detalle) values(?,current year to second, 'Baja', ?, ?::json);", _con)
+        Dim insertCmd As New OdbcCommand("insert into vehiculoIngresa(idvehiculo, fecha, tipoingreso, usuario, detalle) values(?,?, 'Baja', ?, ?::json);", _con)
         insertCmd.CrearParametro(idVehiculo)
+        insertCmd.CrearParametro(DbType.DateTime, Date.Now)
         insertCmd.CrearParametro(iD_usuario)
         Dim x = Newtonsoft.Json.JsonConvert.SerializeObject(jsonObj)
         insertCmd.CrearParametro(x)
@@ -134,8 +135,9 @@ order by fechaAgregado
     End Function
 
     Public Function Evento(jsonObject As String) As Boolean
-        Dim insertCmd As New OdbcCommand("insert into evento(datos, fechaAgregado) values(?::json, current year to second);", _con)
+        Dim insertCmd As New OdbcCommand("insert into evento(datos, fechaAgregado) values(?::json, ?);", _con)
         insertCmd.CrearParametro(jsonObject)
+        insertCmd.CrearParametro(DbType.DateTime, Date.Now)
         Return insertCmd.ExecuteNonQuery > 0
     End Function
 
@@ -992,16 +994,18 @@ order by fechaAgregado
     End Function
 
     Public Function anularPosicionAnterior(idvehiculo As Integer) As Boolean
-        Dim com As New OdbcCommand("update posicionado set hasta=current year to second where idvehiculo=? and hasta is null;", Conexcion)
+        Dim com As New OdbcCommand("update posicionado set hasta=? where idvehiculo=? and hasta is null;", Conexcion)
+        com.CrearParametro(DbType.DateTime, Date.Now)
         com.CrearParametro(DbType.Int32, idvehiculo)
         Return com.ExecuteNonQuery() > 0
     End Function
 
     Public Function insertPosicion(idusuario As Integer, idsubzona As Integer, idvehiculo As Integer, posicion As Integer) As Boolean
-        Dim com As New OdbcCommand("insert into posicionado(idusuario, idlugar, idvehiculo, desde, posicion) values(?,?,?,current year to second, ?);", Conexcion)
+        Dim com As New OdbcCommand("insert into posicionado(idusuario, idlugar, idvehiculo, desde, posicion) values(?,?,?,?, ?);", Conexcion)
         com.CrearParametro(DbType.Int32, idusuario)
         com.CrearParametro(DbType.Int32, idsubzona)
         com.CrearParametro(DbType.Int32, idvehiculo)
+        com.CrearParametro(DbType.DateTime, Date.Now)
         com.CrearParametro(DbType.Int32, posicion)
         Return com.ExecuteNonQuery() > 0
     End Function
@@ -1310,7 +1314,8 @@ order by fechaAgregado
                                     From vehiculo inner Join integra On vehiculo.idvehiculo=integra.idvehiculo
                                     inner Join transporta on integra.lote = transporta.idlote
                                     inner Join lote on lote.idlote = integra.lote
-                                    where integra.invalidado ='f' and transporta.estado='Exitoso' and lote.destino=?", Conexcion)
+                                    left join posicionado on posicionado.idvehiculo=vehiculo.idvehiculo and maximo_ancestro(posicionado.idlugar)=lote.destino and posicionado.desde > FechaHoraLlegadaReal
+                                    where integra.invalidado ='f' and transporta.estado='Exitoso' and lote.destino=? and posicionado.idlugar is null", Conexcion)
         com.CrearParametro(DbType.Int32, idlugar)
         Dim dt As New DataTable
         dt.Load(com.ExecuteReader)

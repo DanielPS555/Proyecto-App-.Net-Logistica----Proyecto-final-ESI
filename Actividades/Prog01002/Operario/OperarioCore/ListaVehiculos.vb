@@ -2,7 +2,12 @@ Imports Controladores
 Imports System.Drawing
 Imports System.Windows.Forms
 Public Class ListaVehiculos
-    Private tipolista As Boolean = True
+    Private ReadOnly Property tipolista As Boolean
+        Get
+            Return Me.tiposListas.SelectedItem <> "No asignados"
+        End Get
+    End Property
+
     Public Sub New()
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
@@ -21,8 +26,6 @@ Public Class ListaVehiculos
         criterios.SelectedIndex = 0
         tiposListas.SelectedIndex = 0
     End Sub
-
-
 
     Private lugar As Lugar
 
@@ -54,7 +57,7 @@ Public Class ListaVehiculos
             Dim row = DataGridView1.Rows()(e.RowIndex)
             Marco.getInstancia.CargarPanel(New panelInfoVehiculo(row.Cells(1).Value)).Show()
         Else
-            Dim eleme As New Asignacion(DataGridView1.Rows(e.RowIndex).Cells(1).Value)
+            Dim eleme As New Asignacion(DataGridView1.Rows(e.RowIndex).Cells(1).Value, lugar)
             eleme.ShowDialog()
         End If
 
@@ -64,16 +67,6 @@ Public Class ListaVehiculos
         'CargarDatos(DataGridView1.Columns)
     End Sub
 
-    Private Sub Button2_Click(sender As Object, e As EventArgs)
-        NoAsignados()
-        tipolista = False
-    End Sub
-
-    Private Sub Button1_Click(sender As Object, e As EventArgs)
-        Asignados()
-        tipolista = True
-    End Sub
-
     Private Sub LugaresBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles LugaresBox.SelectedIndexChanged
         lugar = LugaresBox.SelectedItem
         If tipolista Then
@@ -81,6 +74,15 @@ Public Class ListaVehiculos
         Else
             NoAsignados()
         End If
+    End Sub
+
+    Private Sub tiposListas_SelectedIndexChanged(sender As Object, e As EventArgs) Handles tiposListas.SelectedIndexChanged
+        Select Case DirectCast(tiposListas.SelectedItem, String)
+            Case "Asignados"
+                Asignados()
+            Case "No asignados"
+                NoAsignados()
+        End Select
     End Sub
 End Class
 

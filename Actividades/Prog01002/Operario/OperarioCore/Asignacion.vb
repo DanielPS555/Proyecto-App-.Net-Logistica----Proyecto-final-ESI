@@ -6,20 +6,19 @@ Public Class Asignacion
     Private LoteFinal As Lote
     Private vehiculo As Vehiculo
     Private zonasDisponibles As List(Of Zona)
-    Public Sub New(vin As String)
+    Public Sub New(vin As String, lugar As Lugar)
 
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
 
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
         vehiculo = Fachada.getInstancia.DevolverDatosBasicosPorVIN_Vehiculo(vin)
+        lugarvehiculo = lugar
         CargarZonas()
 
     End Sub
     Private lugarvehiculo As Lugar
     Public Sub CargarZonas()
-        Fachada.getInstancia().CargarTrabajaEnConLugarZonasySubzonas()
-        lugarvehiculo = Fachada.getInstancia.DevolverPosicionActual(vehiculo.IdVehiculo).Subzona.ZonaPadre.LugarPadre
         zonas.Items.Clear()
 
         For Each z As Zona In lugarvehiculo.Zonas
@@ -77,7 +76,7 @@ Public Class Asignacion
     Private Sub Zonas_SelectedIndexChanged(sender As Object, e As EventArgs) Handles zonas.SelectedIndexChanged
         subzonas.Items.Clear()
         For Each su As Subzona In DirectCast(zonas.SelectedItem, Zona).Subzonas
-            subzonas.Items.Add(su.Nombre)
+            subzonas.Items.Add(su)
         Next
         subzonas.SelectedIndex = 0
     End Sub
