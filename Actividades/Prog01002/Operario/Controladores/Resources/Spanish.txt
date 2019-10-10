@@ -60,3 +60,13 @@ Medios autorizados
 Buscar
 ID Lote
 Nombre del lote
+identificador no puede ser vacio
+El nombre no puede tener espacios en el inicio ni en el final
+Debe seleccionar un tipo de medio
+No puede dejar el nombre vacío
+El nombre no puede superar los 50 caracteres
+Ya existe ese nombre para este medio
+El medio tiene que poder transportar algun vehiculo
+Ya hay un medio de este tipo con este nombre
+Nombre no puede ser vacio
+Medio ingrezado con exito

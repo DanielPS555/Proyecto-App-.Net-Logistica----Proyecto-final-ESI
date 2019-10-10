@@ -15,7 +15,8 @@
                   {"Mensajes", GetType(AdministradorCore.EventMessenger)},
                   {"Consola de Scheme", GetType(AdministradorCore.LispPanel)},
                   {"Lista vehiculos", GetType(OperarioCore.ListaVehiculos)},
-                  {"Chat", GetType(Controladores.ChatInterno)}
+                  {"Chat", GetType(Controladores.ChatInterno)},
+                  {"Alta medio", GetType(AdministradorCore.NuevoMedio)}
                 }
                 Controladores.Marco.SetButtons(paneles)
                 Controladores.Marco.ReiniciarSingleton()

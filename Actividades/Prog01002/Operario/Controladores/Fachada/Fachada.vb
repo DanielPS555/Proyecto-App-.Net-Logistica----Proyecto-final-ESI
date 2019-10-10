@@ -1219,4 +1219,18 @@ Public Class Fachada
         Return Persistencia.getInstancia.ExistenciaIdLegalParaIdTipoEnMedio(idtipo, idlegal) = 1
     End Function
 
+    Public Function ExistenciaDeNombreDeTipoDeMedio(nombre As String) As Boolean
+        Return Persistencia.getInstancia.ExistenciaDetipoDeTransporte(nombre) = 1
+    End Function
+
+    Public Sub NuevoMedio(medio As MedioDeTransporte, j As Boolean)
+        If Not j Then
+            Persistencia.getInstancia.InsertTipoDeMedio(medio.Tipo.Nombre)
+            medio.Tipo.ID = Persistencia.getInstancia.devolverIdSegunNombreDeTipoDeTransporte(medio.Tipo.Nombre)
+        End If
+        Persistencia.getInstancia.InsertMedio(medio.Tipo.ID, medio.ID, medio.Nombre, medio.Tipo.Nombre, Me.DevolverUsuarioActual.ID_usuario, DateTime.Now, medio.CantCamiones, medio.CantAutos, medio.CantSUV, medio.CantVAN, medio.CantMiniVan)
+        For Each r As DataRow In Persistencia.getInstancia.TodosLosAdministradoresDelSistemaSinPermiteEnUnMedio(medio.Tipo.ID, medio.ID).Rows
+            Persistencia.getInstancia.InsertPermite(r.Item(0), medio.Tipo.ID, medio.ID, False)
+        Next
+    End Sub
 End Class
