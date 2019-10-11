@@ -1787,4 +1787,26 @@ order by fechaAgregado
         Return com.ExecuteScalar
     End Function
 
+    Public Function NombreTipoDeMedioDeTransportePorIdTipoMedioTransporte(idtipo As Integer)
+        Dim com As New OdbcCommand("select Nombre from TipoTransporte where IDTipo=?", Conexcion)
+        com.CrearParametro(DbType.Int32, idtipo)
+        Return com.ExecuteScalar
+    End Function
+
+    Public Function NombreDeUsuarioYLugarEntrabajaEn(idtrabajaeen As Integer) As DataRow
+        Dim com As New OdbcCommand(" select lugar.nombre , usuario.nombredeusuario from trabajaen inner join lugar on
+trabajaen.idlugar=lugar.idlugar inner join usuario on trabajaen.idusuario=usuario.idusuario
+where trabajaen.ID=?", Conexcion)
+        com.CrearParametro(DbType.Int32, idtrabajaeen)
+        Dim dt As New DataTable
+        dt.Load(com.ExecuteReader)
+        Return dt.Rows(0)
+    End Function
+
+    Public Function idTrabajaenPor(idusuario As Integer) As Integer
+        Dim com As New OdbcCommand("select first 1 Id from trabajaen where idusuario=? order by id desc", Conexcion)
+        com.CrearParametro(DbType.Int32, idusuario)
+        Return com.ExecuteScalar
+    End Function
+
 End Class

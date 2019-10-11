@@ -1119,8 +1119,10 @@ Public Class Fachada
         Return Persistencia.getInstancia.existenciaDeTrabajaEnActualPorIdusuarioyIdLugar(idusuario, idlugar) = 1
     End Function
 
-    Public Function NuevoTrabajaEn(tr As TrabajaEn)
-        Return Persistencia.getInstancia.insertTrabajaEn(tr.Lugar.IDLugar, tr.Usuario.ID_usuario, DateTime.Now)
+    Public Function NuevoTrabajaEn(tr As TrabajaEn) As Integer
+        Persistencia.getInstancia.insertTrabajaEn(tr.Lugar.IDLugar, tr.Usuario.ID_usuario, DateTime.Now)
+        Return Persistencia.getInstancia.idTrabajaenPor(tr.Usuario.ID_usuario)
+
     End Function
 
     Public Function terminarTrabajaEn(tr As TrabajaEn)
@@ -1229,6 +1231,10 @@ Public Class Fachada
             medio.Tipo.ID = Persistencia.getInstancia.devolverIdSegunNombreDeTipoDeTransporte(medio.Tipo.Nombre)
         End If
         Persistencia.getInstancia.InsertMedio(medio.Tipo.ID, medio.ID, medio.Nombre, medio.Tipo.Nombre, Me.DevolverUsuarioActual.ID_usuario, DateTime.Now, medio.CantCamiones, medio.CantAutos, medio.CantSUV, medio.CantVAN, medio.CantMiniVan)
+        Dim notificacion As New Notificacion(Notificacion.TIPO_NOTIFICACION_NUEVO_MEDIO) With {.Fecha = DateTime.Now,
+                                                                                              .Ref1 = medio.Tipo.ID,
+                                                                                              .Ref2 = medio.ID}
+        NuevoNotificacion(notificacion)
         For Each r As DataRow In Persistencia.getInstancia.TodosLosAdministradoresDelSistemaSinPermiteEnUnMedio(medio.Tipo.ID, medio.ID).Rows
             Persistencia.getInstancia.InsertPermite(r.Item(0), medio.Tipo.ID, medio.ID, False)
         Next
@@ -1255,14 +1261,14 @@ Public Class Fachada
             Dim tipo As String = r.Item(0)
             Select Case rol
                 Case Usuario.TIPO_ROL_OPERARIO
-                    If Not (r = Notificacion.TIPO_NOTIFICACION_CAMBIO_DISTIBUCION_LUGAR OrElse r = Notificacion.TIPO_NOTIFICACION_NUEVO_TRABAJAEN) Then
+                    If Not (tipo = Notificacion.TIPO_NOTIFICACION_CAMBIO_DISTIBUCION_LUGAR OrElse tipo = Notificacion.TIPO_NOTIFICACION_NUEVO_TRABAJAEN) Then
                         Continue For
                     End If
                 Case Usuario.TIPO_ROL_ADMINISTRADOR
                     'SE PERMITE TODAS LAS NOTIFICACIONES  
 
                 Case Usuario.TIPO_ROL_TRANSPORTISTA
-                    If Not (r = Notificacion.TIPO_NOTIFICACION_NUEVO_PERMITE OrElse r = Notificacion.TIPO_NOTIFICACION_TRANSPORTE_FALLIDO) Then
+                    If Not (tipo = Notificacion.TIPO_NOTIFICACION_NUEVO_PERMITE OrElse tipo = Notificacion.TIPO_NOTIFICACION_TRANSPORTE_FALLIDO) Then
                         Continue For
                     End If
             End Select
@@ -1279,4 +1285,14 @@ Public Class Fachada
         Return Persistencia.getInstancia.devolverUtilmoUsuarioIngresoPorIdUsuarioCreador(user.ID_usuario)
     End Function
 
+    Public Function NombreTIpoMedioPorId(id As Integer) As String
+        Return Persistencia.getInstancia.NombreTipoDeMedioDeTransportePorIdTipoMedioTransporte(id)
+    End Function
+
+    Public Function NombreLugarYNombreUsuarioPorIdtrabajaen(idtrabajaen As Integer)
+        Dim dt As DataRow = Persistencia.getInstancia.NombreDeUsuarioYLugarEntrabajaEn(idtrabajaen)
+
+        Return New TrabajaEn With {.Usuario = New Usuario With {.NombreDeUsuario = dt.Item(1)},
+                                   .Lugar = New Lugar With {.Nombre = dt.Item(0)}}
+    End Function
 End Class

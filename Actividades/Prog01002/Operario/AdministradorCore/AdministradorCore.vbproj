@@ -188,22 +188,10 @@
     <Compile Include="Presentacion\NuevoMedio.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Presentacion\NuevoPermite.Designer.vb">
-      <DependentUpon>NuevoPermite.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion\NuevoPermite.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Presentacion\NuevoTipoDeMedio.Designer.vb">
       <DependentUpon>NuevoTipoDeMedio.vb</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\NuevoTipoDeMedio.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion\NuevoTrabajaEn.Designer.vb">
-      <DependentUpon>NuevoTrabajaEn.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion\NuevoTrabajaEn.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Presentacion\NuevoUsuario.Designer.vb">
@@ -289,14 +277,8 @@
     <EmbeddedResource Include="Presentacion\NuevoMedio.resx">
       <DependentUpon>NuevoMedio.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion\NuevoPermite.resx">
-      <DependentUpon>NuevoPermite.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\NuevoTipoDeMedio.resx">
       <DependentUpon>NuevoTipoDeMedio.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion\NuevoTrabajaEn.resx">
-      <DependentUpon>NuevoTrabajaEn.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\NuevoUsuario.resx">
       <DependentUpon>NuevoUsuario.vb</DependentUpon>

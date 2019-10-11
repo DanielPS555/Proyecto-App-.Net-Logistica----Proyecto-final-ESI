@@ -64,7 +64,7 @@ Public Class NuevoMedio
                                                                                     .CantVAN = van.Value,
                                                                                     .CantSUV = suv.Value,
                                                                                     .CantMiniVan = Minivan.Value}, If(TipoMedioLocal Is Nothing, True, False))
-        MsgBox(Controladores.Funciones_comunes.I18N("Medio ingrezado con exito", Controladores.Marco.getInstancia.Language), MsgBoxStyle.Critical)
+        MsgBox(Controladores.Funciones_comunes.I18N("Medio ingrezado con exito", Controladores.Marco.getInstancia.Language), MsgBoxStyle.Information)
 
     End Sub
 

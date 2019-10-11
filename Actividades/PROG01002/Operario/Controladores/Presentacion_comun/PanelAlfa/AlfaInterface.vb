@@ -6,4 +6,7 @@
 
     Sub darAlfa(alfa As Alfa)
 
+    Sub Reacomodarpropiedades()
+
+
 End Interface

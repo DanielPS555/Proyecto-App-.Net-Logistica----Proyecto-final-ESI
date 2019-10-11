@@ -1,4 +1,6 @@
-﻿Public Class PanelInfoUsuario
+﻿Imports Controladores
+
+Public Class PanelInfoUsuario
     Inherits Controladores.PanelInfoUsuario
 
     Public Sub New(idusuario As Integer)

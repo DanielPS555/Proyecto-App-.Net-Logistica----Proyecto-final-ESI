@@ -34,9 +34,13 @@
         Else
             Dim tr As New Controladores.TrabajaEn With {.Lugar = lugares.Item(lugar.SelectedIndex),
                                                       .Usuario = user}
-            Controladores.Fachada.getInstancia.NuevoTrabajaEn(tr)
+            Dim id = Controladores.Fachada.getInstancia.NuevoTrabajaEn(tr)
+            Dim notifi As New Notificacion(Notificacion.TIPO_NOTIFICACION_NUEVO_TRABAJAEN) With {.Fecha = DateTime.Now,
+                                                                                            .Ref1 = id,
+                                                                                            .Ref2 = Fachada.getInstancia.DevolverUsuarioActual.ID_usuario}
+            Fachada.getInstancia.NuevoNotificacion(notifi)
             actualizacion.actualizarPanel()
-            MsgBox("Ingrezado con exito")
+            MsgBox("Ingrezado con exito", MsgBoxStyle.Information)
 
             Me.Close()
         End If

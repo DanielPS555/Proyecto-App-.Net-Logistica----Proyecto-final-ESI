@@ -1,6 +1,6 @@
 ﻿Public Class Alfa
 
-    Private lista As New List(Of Form)
+    Private lista As New List(Of IAlfaInterface)
     Private _tipoObjeto As Type
     Private _tipoPanel As Type
     Public Sub New(Optional tipoObjeto As Type = Nothing, Optional tipoPanel As Type = Nothing)
@@ -74,7 +74,7 @@
     Public Sub Nuevo(elemento As Object, renderAutomatico As Boolean)
         Dim objetoLista As IAlfaInterface = TipoPanel.GetConstructors().Single.Invoke(New Object() {elemento})
         objetoLista.darAlfa(Me)
-        lista.Add(objetoLista.dameForm)
+        lista.Add(objetoLista)
         If renderAutomatico Then
             render()
         End If
@@ -88,18 +88,20 @@
     Public Sub render()
         contenedor.Controls.Clear()
         Dim tamaño As Integer = 0
-        For Each elemento As Form In lista
-            tamaño += elemento.Height
+        For Each elemento As IAlfaInterface In lista
+            Dim ele = elemento.dameForm
+            tamaño += ele.Height
         Next
         contenedor.Height = tamaño + 81 'POR LAS DUDAS 
-        For Each con As Form In lista
+        For Each epe As IAlfaInterface In lista
+            Dim con As Form = epe.dameForm
             con.TopLevel = False
             con.Dock = DockStyle.Top
             con.FormBorderStyle = FormBorderStyle.None
             contenedor.Controls.Add(con)
             con.Show()
             con.BringToFront()
-            con.Height = 81
+            epe.Reacomodarpropiedades()
         Next
         contenedor.Refresh()
     End Sub
@@ -119,17 +121,18 @@
 
         Dim tamaño As Integer = 0
         For i As Integer = ultimo To lista.Count - 1
-            tamaño += lista(i).Height
+            tamaño += lista(i).dameForm.Height
         Next
         contenedor.Height += tamaño + 81 'POR LAS DUDAS 
         For i As Integer = ultimo To lista.Count - 1
-            Dim con As Form = lista(i)
+            Dim con As Form = lista(i).dameForm
             con.TopLevel = False
             con.Dock = DockStyle.Top
             con.FormBorderStyle = FormBorderStyle.None
             contenedor.Controls.Add(con)
             con.Show()
             con.BringToFront()
+            lista(i).Reacomodarpropiedades()
         Next
         contenedor.Refresh()
     End Sub

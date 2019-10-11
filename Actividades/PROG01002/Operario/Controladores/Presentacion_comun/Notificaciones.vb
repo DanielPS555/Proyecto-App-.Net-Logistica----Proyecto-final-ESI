@@ -43,7 +43,17 @@
 
     Private Sub ListBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles tipos.SelectedIndexChanged
         alfa.Limpiar()
-        Dim elementos = listaNotificaciones.Where(Function(x) If(tiposElementos(tipos.SelectedIndex).Item1 Is Nothing, True, x.Tipo = tiposElementos(tipos.SelectedIndex).Item2)).ToList
+        Dim elementos As New List(Of Notificacion)
+        Dim tipoElegido = tiposElementos(tipos.SelectedIndex).Item1
+        If tipoElegido Is Nothing Then
+            elementos = listaNotificaciones
+        Else
+            For Each nnn As Notificacion In listaNotificaciones
+                If nnn.Tipo = tipoElegido Then
+                    elementos.Add(nnn)
+                End If
+            Next
+        End If
         If elementos.Count = 0 Then
             alfa.Visible = False
             SinElementos.Visible = True

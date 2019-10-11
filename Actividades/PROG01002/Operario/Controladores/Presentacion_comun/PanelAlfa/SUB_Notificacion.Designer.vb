@@ -53,7 +53,7 @@ Partial Class SUB_Notificacion
         Me.fecha.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.fecha.AutoSize = True
         Me.fecha.Font = New System.Drawing.Font("Segoe UI", 12.0!)
-        Me.fecha.Location = New System.Drawing.Point(324, 54)
+        Me.fecha.Location = New System.Drawing.Point(233, 55)
         Me.fecha.Name = "fecha"
         Me.fecha.Size = New System.Drawing.Size(40, 21)
         Me.fecha.TabIndex = 4

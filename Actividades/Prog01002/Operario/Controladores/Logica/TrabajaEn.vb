@@ -8,12 +8,7 @@ Public Class TrabajaEn
             Return _usuario
         End Get
         Set(ByVal value As Usuario)
-            If value.Rol = Usuario.TIPO_ROL_OPERARIO Then
-                _usuario = value
-            Else
-                Throw New Exception("Tipo de usuario incorrecto")
-            End If
-
+            _usuario = value
         End Set
     End Property
 

@@ -210,6 +210,18 @@
     <Compile Include="Presentacion_comun\Notificaciones.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Presentacion_comun\NuevoPermite.Designer.vb">
+      <DependentUpon>NuevoPermite.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion_comun\NuevoPermite.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion_comun\NuevoTrabajaEn.Designer.vb">
+      <DependentUpon>NuevoTrabajaEn.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion_comun\NuevoTrabajaEn.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Presentacion_comun\PanelAlfa\AlfaInterface.vb" />
     <Compile Include="Presentacion_comun\PanelAlfa\SUB_Cliente.Designer.vb">
       <DependentUpon>SUB_Cliente.vb</DependentUpon>
@@ -321,6 +333,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion_comun\Notificaciones.resx">
       <DependentUpon>Notificaciones.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion_comun\NuevoPermite.resx">
+      <DependentUpon>NuevoPermite.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion_comun\NuevoTrabajaEn.resx">
+      <DependentUpon>NuevoTrabajaEn.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion_comun\PanelAlfa\Alfa.resx">
       <DependentUpon>Alfa.vb</DependentUpon>
