@@ -196,4 +196,8 @@ Public Class Marco
             CurrentPanel.Close()
         End If
     End Sub
+
+    Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
+        Marco.getInstancia.CargarPanel(Of Notificaciones)(New Notificaciones())
+    End Sub
 End Class

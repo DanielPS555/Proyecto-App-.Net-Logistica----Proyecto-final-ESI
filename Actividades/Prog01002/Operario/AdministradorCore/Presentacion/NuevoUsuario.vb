@@ -100,6 +100,9 @@
         End Select
 
         Controladores.Fachada.getInstancia.crearUsuario(user, Contraseña.Text)
+        Dim iduser = Controladores.Fachada.getInstancia.devolverUltimaIdUsuarioIngresdaPorCreador(Controladores.Fachada.getInstancia.DevolverUsuarioActual)
+        Dim notifi As New Controladores.Notificacion(Controladores.Notificacion.TIPO_NOTIFICACION_NUEVO_USUARIO) With {.Ref1 = iduser}
+        Controladores.Fachada.getInstancia.NuevoNotificacion(notifi)
         MsgBox("Usuario ingresado con exito", MsgBoxStyle.Information)
         Controladores.Marco.getInstancia.CargarPanel(Of ListarUsuario)(New ListarUsuario)
 

@@ -1241,7 +1241,6 @@ Public Class Fachada
         If notifi.Ref2 IsNot Nothing Then
             json("ref2") = notifi.Ref2
         End If
-
         If notifi.Ref3 IsNot Nothing Then
             json("ref3") = notifi.Ref3
         End If
@@ -1249,6 +1248,35 @@ Public Class Fachada
         Persistencia.getInstancia.InsertNotificacion(json, DateTime.Now)
     End Sub
 
+    Public Function ListaDeTodasLasNotificacionesDelSistema(rol As Char) As List(Of Notificacion)
+        Dim lista As New List(Of Notificacion)
+        Dim dt As DataTable = Persistencia.getInstancia.devolverTodosLosEventosDelSistema
+        For Each r As DataRow In dt.Rows
+            Dim tipo As String = r.Item(0)
+            Select Case rol
+                Case Usuario.TIPO_ROL_OPERARIO
+                    If Not (r = Notificacion.TIPO_NOTIFICACION_CAMBIO_DISTIBUCION_LUGAR OrElse r = Notificacion.TIPO_NOTIFICACION_NUEVO_TRABAJAEN) Then
+                        Continue For
+                    End If
+                Case Usuario.TIPO_ROL_ADMINISTRADOR
+                    'SE PERMITE TODAS LAS NOTIFICACIONES  
 
+                Case Usuario.TIPO_ROL_TRANSPORTISTA
+                    If Not (r = Notificacion.TIPO_NOTIFICACION_NUEVO_PERMITE OrElse r = Notificacion.TIPO_NOTIFICACION_TRANSPORTE_FALLIDO) Then
+                        Continue For
+                    End If
+            End Select
+            lista.Add(New Notificacion(tipo) With {.Fecha = r.Item(5),
+                                                   .Ref1 = Funciones_comunes.AutoNull(Of Object)(r.Item(1)),
+                                                   .Ref2 = Funciones_comunes.AutoNull(Of Object)(r.Item(2)),
+                                                   .Ref3 = Funciones_comunes.AutoNull(Of Object)(r.Item(3))})
+        Next
+
+        Return lista
+    End Function
+
+    Public Function devolverUltimaIdUsuarioIngresdaPorCreador(user As Usuario)
+        Return Persistencia.getInstancia.devolverUtilmoUsuarioIngresoPorIdUsuarioCreador(user.ID_usuario)
+    End Function
 
 End Class

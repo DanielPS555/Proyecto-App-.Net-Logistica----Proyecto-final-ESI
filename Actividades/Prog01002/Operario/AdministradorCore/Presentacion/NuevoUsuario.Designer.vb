@@ -209,7 +209,7 @@ Partial Class NuevoUsuario
         Me.ingresar.Name = "ingresar"
         Me.ingresar.Size = New System.Drawing.Size(210, 45)
         Me.ingresar.TabIndex = 146
-        Me.ingresar.Text = "Ingrezar vehiculo "
+        Me.ingresar.Text = "Ingrezar Usuario"
         Me.ingresar.UseVisualStyleBackColor = False
         '
         'Label9

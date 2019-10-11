@@ -1771,4 +1771,20 @@ order by fechaAgregado
         com.CrearParametro(DbType.DateTime, fecha)
         Return com.ExecuteNonQuery > 0
     End Function
+
+    Public Function devolverTodosLosEventosDelSistema()
+        Dim com As New OdbcCommand("select distinct BSON_VALUE_VARCHAR(datos,'tipo') as Tipo,BSON_VALUE_VARCHAR(datos,'ref') as ref1,
+                                BSON_VALUE_VARCHAR(datos,'ref2') as ref2,BSON_VALUE_VARCHAR(datos,'ref3') as ref3,id, fechaAgregado
+                                from evento where not BSON_VALUE_VARCHAR(datos,'tipo') = 'mensaje'", Conexcion)
+        Dim dt As New DataTable
+        dt.Load(com.ExecuteReader)
+        Return dt
+    End Function
+
+    Public Function devolverUtilmoUsuarioIngresoPorIdUsuarioCreador(idcreador As Integer)
+        Dim com As New OdbcCommand("select first 1 idusuario from usuario where Creador=? order by idusuario desc", Conexcion)
+        com.CrearParametro(DbType.Int32, idcreador)
+        Return com.ExecuteScalar
+    End Function
+
 End Class

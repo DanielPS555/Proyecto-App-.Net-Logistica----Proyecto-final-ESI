@@ -28,6 +28,7 @@ Partial Class Marco
         Me.contenedor = New System.Windows.Forms.Panel()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.atras = New System.Windows.Forms.Button()
         Me.sigiente = New System.Windows.Forms.Button()
@@ -36,14 +37,13 @@ Partial Class Marco
         Me.b10 = New System.Windows.Forms.Button()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.Button1 = New System.Windows.Forms.Button()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.contpr.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.Panel1.SuspendLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel4.SuspendLayout()
         Me.Panel5.SuspendLayout()
         Me.Panel3.SuspendLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Micuenta
@@ -132,6 +132,16 @@ Partial Class Marco
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(220, 50)
         Me.Panel1.TabIndex = 0
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.Image = Global.Controladores.My.Resources.Resources.notificacion
+        Me.PictureBox1.Location = New System.Drawing.Point(165, 3)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(49, 47)
+        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox1.TabIndex = 20
+        Me.PictureBox1.TabStop = False
         '
         'Button2
         '
@@ -260,16 +270,6 @@ Partial Class Marco
         Me.Button1.Text = "Cerrar secion "
         Me.Button1.UseVisualStyleBackColor = False
         '
-        'PictureBox1
-        '
-        Me.PictureBox1.Image = Global.Controladores.My.Resources.Resources.notificacion
-        Me.PictureBox1.Location = New System.Drawing.Point(165, 3)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(49, 47)
-        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox1.TabIndex = 20
-        Me.PictureBox1.TabStop = False
-        '
         'Marco
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -282,10 +282,10 @@ Partial Class Marco
         Me.contpr.ResumeLayout(False)
         Me.Panel2.ResumeLayout(False)
         Me.Panel1.ResumeLayout(False)
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel4.ResumeLayout(False)
         Me.Panel5.ResumeLayout(False)
         Me.Panel3.ResumeLayout(False)
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

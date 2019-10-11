@@ -20,6 +20,10 @@
         Return lista.Cast(Of IAlfaInterface).Select(Function(x) x.dameContenido).ToList
     End Function
 
+    Public Sub EliminarLista()
+        lista.Clear()
+    End Sub
+
     Public Property TipoPanel As Type
         Get
             Return _tipoPanel
@@ -95,6 +99,7 @@
             contenedor.Controls.Add(con)
             con.Show()
             con.BringToFront()
+            con.Height = 81
         Next
         contenedor.Refresh()
     End Sub

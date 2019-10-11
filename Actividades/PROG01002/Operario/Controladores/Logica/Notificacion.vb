@@ -20,7 +20,15 @@
     Private _ref3 As Object
 
 
-
+    Private _fecha As DateTime
+    Public Property Fecha() As DateTime
+        Get
+            Return _fecha
+        End Get
+        Set(ByVal value As DateTime)
+            _fecha = value
+        End Set
+    End Property
     Public Sub New(tipo As String)
         Me.tipo = tipo
     End Sub
