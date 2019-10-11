@@ -28,10 +28,14 @@ namespace Uninstaller
             {
                 try
                 {
+                    System.IO.Directory.Delete(ConexionLib.FachadaRegistro.RutaPrograma(), true);
                     ConexionLib.FachadaRegistro.EliminarConfiguracion();
-                    System.IO.Directory.Delete(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles).PathConcat("Bit"), true);
+                    ConexionLib.FachadaRegistro.DesregistrarPrograma();
+                    ConexionLib.FachadaRegistro.DesregistrarDesinstalador();
                 }
-                catch { }
+                catch(Exception _e) {
+                    Console.WriteLine(_e);
+                }
             });
             uninst.Start();
             Timer t = new System.Windows.Forms.Timer();

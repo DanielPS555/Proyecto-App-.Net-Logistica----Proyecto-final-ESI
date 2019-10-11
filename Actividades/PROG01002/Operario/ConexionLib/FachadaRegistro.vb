@@ -37,7 +37,11 @@ Public Module FachadaRegistro
         End Function
     End Structure
 
-    Private Const KeyName As String = "HKEY_CURRENT_USER\Software\Bit\SLTA"
+    Public Function RutaPrograma() As String
+        Return Microsoft.Win32.Registry.LocalMachine.OpenSubKey("Software", True).CreateSubKey("Bit", True).CreateSubKey("SLTA", True).GetValue("Path")
+    End Function
+
+    Private Const UserConfigKey As String = "HKEY_CURRENT_USER\Software\Bit\SLTA"
     Public Function EliminarConfiguracion() As Boolean
         Try
             Microsoft.Win32.Registry.CurrentUser.OpenSubKey("Software", True).DeleteSubKeyTree("Bit")
@@ -50,7 +54,7 @@ Public Module FachadaRegistro
     Public Function RegistrarPrograma(InstallPath As String) As Boolean
         If EstaRegistrado() Then Return False
         Try
-            Microsoft.Win32.Registry.LocalMachine.OpenSubKey("Software", True).OpenSubKey("Bit", True).OpenSubKey("SLTA", True).SetValue("Path", InstallPath)
+            Microsoft.Win32.Registry.LocalMachine.OpenSubKey("Software", True).CreateSubKey("Bit", True).CreateSubKey("SLTA", True).SetValue("Path", InstallPath)
             Return True
         Catch e As Exception
             Console.WriteLine(e.ToString)
@@ -58,20 +62,25 @@ Public Module FachadaRegistro
         End Try
     End Function
 
+    Public Sub DesregistrarDesinstalador()
+        Dim uninstKey = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("Software", True)
+        uninstKey = uninstKey.OpenSubKey("Microsoft", True)
+        uninstKey = uninstKey.OpenSubKey("Windows", True)
+        uninstKey = uninstKey.OpenSubKey("CurrentVersion", True)
+        uninstKey = uninstKey.OpenSubKey("Uninstall", True)
+        uninstKey.DeleteSubKeyTree("SLTA", True)
+    End Sub
+
     Public Function RegistrarDesinstalador(UninstallerPath As String) As Boolean
-        Try
-            Dim uninstKey = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("Software")
-            uninstKey = uninstKey.OpenSubKey("Microsoft")
-            uninstKey = uninstKey.OpenSubKey("Windows")
-            uninstKey = uninstKey.OpenSubKey("CurrentVersion")
-            uninstKey = uninstKey.OpenSubKey("Uninstall")
-            uninstKey = uninstKey.OpenSubKey("SLTA", True)
-            uninstKey.SetValue("DisplayName", "SLTA", Microsoft.Win32.RegistryValueKind.String)
-            uninstKey.SetValue("UninstallString", UninstallerPath, Microsoft.Win32.RegistryValueKind.String)
-            Return True
-        Catch e As Exception
-            Return False
-        End Try
+        Dim uninstKey = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("Software", True)
+        uninstKey = uninstKey.OpenSubKey("Microsoft", True)
+        uninstKey = uninstKey.OpenSubKey("Windows", True)
+        uninstKey = uninstKey.OpenSubKey("CurrentVersion", True)
+        uninstKey = uninstKey.OpenSubKey("Uninstall", True)
+        uninstKey = uninstKey.CreateSubKey("SLTA", True)
+        uninstKey.SetValue("DisplayName", "SLTA", Microsoft.Win32.RegistryValueKind.String)
+        uninstKey.SetValue("UninstallString", UninstallerPath, Microsoft.Win32.RegistryValueKind.String)
+        Return True
     End Function
 
     Public Function EstaRegistrado() As Boolean
@@ -97,12 +106,12 @@ Public Module FachadaRegistro
     End Function
     Public Function GuardarConfiguracion(cfg As ConfiguracionEnRed) As Boolean
         Try
-            Microsoft.Win32.Registry.SetValue(KeyName, "Informix IP", cfg.IP, Microsoft.Win32.RegistryValueKind.String)
-            Microsoft.Win32.Registry.SetValue(KeyName, "Informix Port", cfg.Puerto, Microsoft.Win32.RegistryValueKind.String)
-            Microsoft.Win32.Registry.SetValue(KeyName, "Informix Server name", cfg.ServerName, Microsoft.Win32.RegistryValueKind.String)
-            Microsoft.Win32.Registry.SetValue(KeyName, "Username", cfg.UserName, Microsoft.Win32.RegistryValueKind.String)
-            Microsoft.Win32.Registry.SetValue(KeyName, "Password", cfg.Password, Microsoft.Win32.RegistryValueKind.String)
-            Microsoft.Win32.Registry.SetValue(KeyName, "Database", cfg.Database, Microsoft.Win32.RegistryValueKind.String)
+            Microsoft.Win32.Registry.SetValue(UserConfigKey, "Informix IP", cfg.IP, Microsoft.Win32.RegistryValueKind.String)
+            Microsoft.Win32.Registry.SetValue(UserConfigKey, "Informix Port", cfg.Puerto, Microsoft.Win32.RegistryValueKind.String)
+            Microsoft.Win32.Registry.SetValue(UserConfigKey, "Informix Server name", cfg.ServerName, Microsoft.Win32.RegistryValueKind.String)
+            Microsoft.Win32.Registry.SetValue(UserConfigKey, "Username", cfg.UserName, Microsoft.Win32.RegistryValueKind.String)
+            Microsoft.Win32.Registry.SetValue(UserConfigKey, "Password", cfg.Password, Microsoft.Win32.RegistryValueKind.String)
+            Microsoft.Win32.Registry.SetValue(UserConfigKey, "Database", cfg.Database, Microsoft.Win32.RegistryValueKind.String)
             Return True
         Catch e As Exception
             Return False
@@ -110,15 +119,15 @@ Public Module FachadaRegistro
     End Function
 
     Public Function LeerConfiguracion() As ConfiguracionEnRed
-        If Microsoft.Win32.Registry.GetValue(KeyName, "Informix IP", Nothing) Is Nothing Then
-            Microsoft.Win32.Registry.SetValue(KeyName, "Informix IP", "localhost", Microsoft.Win32.RegistryValueKind.String)
+        If Microsoft.Win32.Registry.GetValue(UserConfigKey, "Informix IP", Nothing) Is Nothing Then
+            Microsoft.Win32.Registry.SetValue(UserConfigKey, "Informix IP", "localhost", Microsoft.Win32.RegistryValueKind.String)
         End If
         Return New ConfiguracionEnRed(
-            Microsoft.Win32.Registry.GetValue(KeyName, "Informix IP", "localhost"),
-            Microsoft.Win32.Registry.GetValue(KeyName, "Informix Port", "9088"),
-            Microsoft.Win32.Registry.GetValue(KeyName, "Informix Server name", "ol_esi"),
-            Microsoft.Win32.Registry.GetValue(KeyName, "Username", "root"),
-            Microsoft.Win32.Registry.GetValue(KeyName, "Password", Nothing),
-            Microsoft.Win32.Registry.GetValue(KeyName, "Database", "bit"))
+            Microsoft.Win32.Registry.GetValue(UserConfigKey, "Informix IP", "localhost"),
+            Microsoft.Win32.Registry.GetValue(UserConfigKey, "Informix Port", "9088"),
+            Microsoft.Win32.Registry.GetValue(UserConfigKey, "Informix Server name", "ol_esi"),
+            Microsoft.Win32.Registry.GetValue(UserConfigKey, "Username", "root"),
+            Microsoft.Win32.Registry.GetValue(UserConfigKey, "Password", Nothing),
+            Microsoft.Win32.Registry.GetValue(UserConfigKey, "Database", "bit"))
     End Function
 End Module

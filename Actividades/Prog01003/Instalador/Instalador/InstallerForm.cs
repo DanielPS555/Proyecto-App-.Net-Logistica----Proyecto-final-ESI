@@ -157,7 +157,13 @@ namespace Instalador
                     var uninstStream = new System.IO.FileStream(uninstallerPath, System.IO.FileMode.Create);
                     using (var copyPromise = uninstStream.WriteAsync(uninstallerBytes, 0, uninstallerBytes.Length))
                         copyPromise.Wait();
-                    FachadaRegistro.RegistrarDesinstalador(uninstallerPath);
+                    try
+                    {
+                        FachadaRegistro.RegistrarDesinstalador(uninstallerPath);
+                    } catch(Exception e_)
+                    {
+                        MessageBox.Show(e_.ToString());
+                    }
                     if (smCheck.Checked)
                     {
                         var smPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonStartMenu);
