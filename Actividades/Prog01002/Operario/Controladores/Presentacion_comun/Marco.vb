@@ -13,6 +13,7 @@ Public Class Marco
 
         InitializeComponent()
         b10.Text = Funciones_comunes.I18N("Inicio", Language)
+
         'acercaDe.Text = Funciones_comunes.I18N("Acerca de", Language)
         'Micuenta.Text = Funciones_comunes.I18N("Mi cuenta", Language)
         Button1.Text = Funciones_comunes.I18N("Cerrar sesión", Language)
@@ -33,13 +34,13 @@ Public Class Marco
                 Continue For
             End If
             Dim img As Image = Nothing
-            If Imagenes.ContainsKey(key) Then img = New Bitmap(Imagenes(key), 48, 48)
+            If Imagenes.ContainsKey(key) Then img = New Bitmap(Imagenes(key), 26, 26)
             Dim btn As New Button With {
                 .Text = Funciones_comunes.I18N(key, Language),
                 .BackColor = b10.BackColor,
                 .Dock = DockStyle.Top,
                 .Font = b10.Font,
-                .ImageAlign = ContentAlignment.MiddleRight,
+                .ImageAlign = ContentAlignment.MiddleLeft,
                 .Image = img,
                 .TextAlign = b10.TextAlign,
                 .FlatStyle = b10.FlatStyle,
@@ -63,8 +64,10 @@ Public Class Marco
                                       Next
                                       MsgBox("ERROR FATAL: No se encontraron constructores sin parámetros para el panel " + key)
                                   End Sub
+            btn.Text = $"           {btn.Text}"
             Panel5.Controls.Add(btn)
-
+            b10.Image = New Bitmap(Controladores.My.Resources.Inicio, 26, 26)
+            b10.Text = $"           Inicio"
         Next
         If Not Fachada.getInstancia.Existenciadatosderecuperacion(Fachada.getInstancia.DevolverUsuarioActual.NombreDeUsuario) Then
             Dim e As New CredencialesUsuario(True)

@@ -1,9 +1,17 @@
 ﻿Imports Controladores
-
+Imports Controladores.Extenciones
 Public Class panel
     Implements Controladores.nuevoLugar
     Private lugares As List(Of Controladores.Lugar) = New List(Of Lugar)
     Private cliente As New Controladores.Cliente
+
+    Public Sub New()
+        InitializeComponent()
+        Label3.Traducir
+
+
+    End Sub
+
     Public Sub devolverlugar(lug As Lugar) Implements Controladores.nuevoLugar.devolverlugar
         If lugares.Select(Function(x) x.Nombre).Contains(lug.Nombre) Then
             Throw New Exception("Ese lugar ya esta cargado")

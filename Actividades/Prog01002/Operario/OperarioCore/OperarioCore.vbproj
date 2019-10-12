@@ -297,5 +297,20 @@
   <ItemGroup>
     <None Include="Resources\Lista vehiculos.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Inicio.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Lista_zonas.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Nuevo_vehiculo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Lista_lotes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Lista_vehiculos.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

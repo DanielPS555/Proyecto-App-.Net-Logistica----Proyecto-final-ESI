@@ -265,7 +265,7 @@ Partial Class Marco
         Me.b10.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(28, Byte), Integer), CType(CType(61, Byte), Integer))
         Me.b10.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(28, Byte), Integer), CType(CType(61, Byte), Integer))
         Me.b10.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.b10.Font = New System.Drawing.Font("Segoe UI Semilight", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.b10.Font = New System.Drawing.Font("Segoe UI Semilight", 13.0!)
         Me.b10.ForeColor = System.Drawing.Color.White
         Me.b10.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.b10.Location = New System.Drawing.Point(0, 0)

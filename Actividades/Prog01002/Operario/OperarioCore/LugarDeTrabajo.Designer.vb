@@ -72,7 +72,7 @@ Partial Class LugarDeTrabajo
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button1.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button1.ForeColor = System.Drawing.Color.White
-        Me.Button1.Location = New System.Drawing.Point(510, 591)
+        Me.Button1.Location = New System.Drawing.Point(502, 641)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(182, 47)
         Me.Button1.TabIndex = 2
@@ -87,7 +87,7 @@ Partial Class LugarDeTrabajo
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button2.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button2.ForeColor = System.Drawing.Color.White
-        Me.Button2.Location = New System.Drawing.Point(887, 591)
+        Me.Button2.Location = New System.Drawing.Point(884, 641)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(182, 47)
         Me.Button2.TabIndex = 3
@@ -204,7 +204,7 @@ Partial Class LugarDeTrabajo
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(1100, 650)
+        Me.ClientSize = New System.Drawing.Size(1100, 700)
         Me.Controls.Add(Me.tipo)
         Me.Controls.Add(Me.tipoLugar)
         Me.Controls.Add(Me.Label7)
