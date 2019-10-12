@@ -23,6 +23,16 @@ Public Class LugarDeTrabajo
             paneles.Remove("Nuevo vehiculo")
         End If
         Marco.SetButtons(paneles)
+        Marco.Imagenes = New Dictionary(Of String, Bitmap)
+        For Each z In paneles.Keys
+            Try
+                Dim img As Bitmap = My.Resources.ResourceManager.GetObject(z.Replace(" ", "_"))
+                If img Is Nothing Then Continue For
+                Marco.Imagenes(z) = img
+                My.Resources.ResourceManager.ReleaseAllResources()
+            Catch ex As Exception
+            End Try
+        Next
         Marco.ReiniciarSingleton()
         Principal.getInstancia.cargarPanel(Marco.getInstancia)
     End Sub
