@@ -21,6 +21,7 @@ Public Class ListaDeMediosAutorizados
             alfa.Nuevo(m, False)
         Next
         alfa.render()
+        Button1.Text = Controladores.Funciones_comunes.I18N("Nuevo medio", Controladores.Marco.getInstancia.Language)
     End Sub
 
     Private Sub Medios_CellContentClick(sender As Object, e As DataGridViewCellEventArgs)

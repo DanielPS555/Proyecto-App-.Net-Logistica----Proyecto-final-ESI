@@ -1,8 +1,10 @@
-﻿Imports Controladores
+﻿Imports Controladores.Extenciones.Extensiones
+Imports Controladores
 
 Public Class PrecargaMasiva
     Private Verify(-1) As Boolean
     Private clientList As List(Of Cliente) = Fachada.getInstancia.ClientesDelSistema
+
     Private Shared ColorDictionary As New Dictionary(Of String, Drawing.Color) From {
         {"rojo", Drawing.Color.Red},
         {"azul", Drawing.Color.Blue},
@@ -26,7 +28,7 @@ Public Class PrecargaMasiva
         For Each r In k.Rows.Cast(Of DataRow)
             Dim VIN As String = r("VIN")
             If VIN Is Nothing OrElse VIN.Length <> 17 Then
-                MsgBox("El VIN debe tener una longitud de 17, falló para " & VIN)
+                MsgBoxI18NFormat("El VIN debe tener una longitud de 17, falló para {0} ", VIN)
             End If
             Dim Marca As String = Funciones_comunes.AutoNull(Of String)(r("Marca"))
             If Marca Is Nothing OrElse Marca.Length < 1 Then
@@ -48,7 +50,7 @@ Public Class PrecargaMasiva
                         color = Funciones_comunes.HexToColor(colorString)
                     Catch ex As Exception
                         color = Nothing
-                        MsgBox("Error al interpretar el color: " & ex.ToString)
+                        MsgBoxI18NFormat("Error al interpretar el color: {0} ", ex.ToString)
                     End Try
                 End If
             End If
@@ -58,13 +60,13 @@ Public Class PrecargaMasiva
                 añoInt = 0
             Else
                 If Not Integer.TryParse(año, añoInt) Then
-                    MsgBox("El valor " & año & " no es un entero")
+                    MsgBoxI18NFormat("El valor {0} no es un entero", año)
                     añoInt = 0
                 End If
             End If
             Dim tipo As String = Funciones_comunes.AutoNull(Of String)(r("Tipo"))
             If tipo IsNot Nothing AndAlso Not Vehiculo.TIPOS_VEHICULOS.Contains(tipo) Then
-                MsgBox("El tipo " & tipo & " no se reconoció!")
+                MsgBoxI18NFormat("El tipo {0} no se reconoció!", tipo)
                 tipo = Nothing
             End If
             Dim NombreCliente As String = Funciones_comunes.AutoNull(Of String)(r("Cliente"))
@@ -95,10 +97,12 @@ Public Class PrecargaMasiva
             For Each v As Vehiculo In vehicleBox.Items
                 Fachada.getInstancia.nuevaPrecarga(v, Fachada.getInstancia.DevolverUsuarioActual)
             Next
-            MsgBox("Precargas subidas con éxito!")
+            MsgBoxI18N("Precargas subidas con éxito!")
             Marco.getInstancia.cerrarPanel(Of PrecargaMasiva)()
         Else
-            MsgBox("Debe acceder a todos los vehículos para subir la precarga")
+            MsgBoxI18N("Debe acceder a todos los vehículos para subir la precarga")
         End If
+        uploadPreloads.Text = Controladores.Funciones_comunes.I18N("Subir precargas", Controladores.Marco.getInstancia.Language)
+        openCSV.Text = Controladores.Funciones_comunes.I18N("Abrir CSV", Controladores.Marco.getInstancia.Language)
     End Sub
 End Class

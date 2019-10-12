@@ -1,4 +1,5 @@
-﻿Imports Controladores
+﻿Imports Controladores.Extenciones.Extensiones
+Imports Controladores
 
 Public Class NuevoMedio
     Implements Controladores.DevolverMedio
@@ -25,33 +26,33 @@ Public Class NuevoMedio
 
     Private Sub CrearButton_Click(sender As Object, e As EventArgs) Handles CrearButton.Click
         If idBox.Text.Length = 0 Then
-            MsgBox(Controladores.Funciones_comunes.I18N("identificador no puede ser vacio", Controladores.Marco.getInstancia.Language), MsgBoxStyle.Critical)
+            MsgBoxI18N("identificador no puede ser vacio")
             Return
         End If
 
         If nombre.Text.Length = 0 Then
-            MsgBox(Controladores.Funciones_comunes.I18N("Nombre no puede ser vacio", Controladores.Marco.getInstancia.Language), MsgBoxStyle.Critical)
+            MsgBoxI18N("Nombre no puede ser vacio")
             Return
         End If
 
         If idBox.Text.Length <> idBox.Text.Trim.Length Then
-            MsgBox(Controladores.Funciones_comunes.I18N("El nombre no puede tener espacios en el inicio ni en el final", Controladores.Marco.getInstancia.Language), MsgBoxStyle.Critical)
+            MsgBoxI18N("El nombre no puede tener espacios en el inicio ni en el final")
             Return
         End If
 
         If tipo.SelectedIndex = -1 Then
-            MsgBox(Controladores.Funciones_comunes.I18N("Debe seleccionar un tipo de medio", Controladores.Marco.getInstancia.Language), MsgBoxStyle.Critical)
+            MsgBoxI18N("Debe seleccionar un tipo de medio")
             Return
         End If
 
         If autos.Value + camiones.Value + van.Value + Minivan.Value + suv.Value = 0 Then
-            MsgBox(Controladores.Funciones_comunes.I18N("El medio tiene que poder transportar algun vehiculo", Controladores.Marco.getInstancia.Language), MsgBoxStyle.Critical)
+            MsgBoxI18N("El medio tiene que poder transportar algun vehiculo")
             Return
         End If
 
         If TipoMedioLocal Is Nothing Then
             If Controladores.Fachada.getInstancia.ExistenciaDeMedioConIdTipoYIdLegak(mediosDeTransporte(tipo.SelectedIndex).ID, idBox.Text) Then
-                MsgBox(Controladores.Funciones_comunes.I18N("Ya hay un medio de este tipo con este nombre", Controladores.Marco.getInstancia.Language), MsgBoxStyle.Critical)
+                MsgBoxI18N("Ya hay un medio de este tipo con este nombre")
                 Return
             End If
         End If
@@ -64,7 +65,7 @@ Public Class NuevoMedio
                                                                                     .CantVAN = van.Value,
                                                                                     .CantSUV = suv.Value,
                                                                                     .CantMiniVan = Minivan.Value}, If(TipoMedioLocal Is Nothing, True, False))
-        MsgBox(Controladores.Funciones_comunes.I18N("Medio ingrezado con exito", Controladores.Marco.getInstancia.Language), MsgBoxStyle.Information)
+        MsgBoxI18N("Medio ingrezado con exito")
 
     End Sub
 

@@ -7,5 +7,6 @@
         outputBox.SelectionLength = inputLine.Text.Length
         outputBox.SelectionColor = Drawing.Color.Green
         lispBox.ExecuteLine(inputLine.Text, outputBox)
+        insertButton.Text = Controladores.Funciones_comunes.I18N("Evaluar", Controladores.Marco.getInstancia.Language)
     End Sub
 End Class

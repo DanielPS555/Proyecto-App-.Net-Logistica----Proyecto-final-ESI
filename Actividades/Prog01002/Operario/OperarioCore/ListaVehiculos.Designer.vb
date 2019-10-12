@@ -23,8 +23,8 @@ Partial Class ListaVehiculos
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim buscar As System.Windows.Forms.Button
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Me.buscar = New System.Windows.Forms.Button()
         Me.nuevo = New System.Windows.Forms.Button()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.buscador = New System.Windows.Forms.TextBox()
@@ -34,31 +34,29 @@ Partial Class ListaVehiculos
         Me.tiposListas = New System.Windows.Forms.ComboBox()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.LugaresBox = New System.Windows.Forms.ComboBox()
-        buscar = New System.Windows.Forms.Button()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'buscar
         '
-        buscar.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.buscar.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        buscar.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        buscar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        buscar.FlatAppearance.BorderSize = 0
-        buscar.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        buscar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        buscar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        buscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        buscar.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        buscar.ForeColor = System.Drawing.Color.White
-        buscar.Location = New System.Drawing.Point(778, 12)
-        buscar.Name = "buscar"
-        buscar.Size = New System.Drawing.Size(86, 35)
-        buscar.TabIndex = 23
-        buscar.Text = "Buscar"
-        buscar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        buscar.UseVisualStyleBackColor = False
-        AddHandler buscar.Click, AddressOf Me.buscar_Click
+        Me.buscar.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.buscar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.buscar.FlatAppearance.BorderSize = 0
+        Me.buscar.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.buscar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        Me.buscar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        Me.buscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.buscar.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.buscar.ForeColor = System.Drawing.Color.White
+        Me.buscar.Location = New System.Drawing.Point(778, 12)
+        Me.buscar.Name = "buscar"
+        Me.buscar.Size = New System.Drawing.Size(86, 35)
+        Me.buscar.TabIndex = 23
+        Me.buscar.Text = "Buscar"
+        Me.buscar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.buscar.UseVisualStyleBackColor = False
         '
         'nuevo
         '
@@ -182,7 +180,7 @@ Partial Class ListaVehiculos
         Me.Controls.Add(Me.DataGridView1)
         Me.Controls.Add(Me.nuevo)
         Me.Controls.Add(Me.criterios)
-        Me.Controls.Add(buscar)
+        Me.Controls.Add(Me.buscar)
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.buscador)
         Me.Controls.Add(Me.Panel1)
@@ -203,4 +201,5 @@ Partial Class ListaVehiculos
     Friend WithEvents Label7 As Label
     Friend WithEvents LugaresBox As ComboBox
     Friend WithEvents nuevo As Button
+    Friend WithEvents buscar As Button
 End Class
