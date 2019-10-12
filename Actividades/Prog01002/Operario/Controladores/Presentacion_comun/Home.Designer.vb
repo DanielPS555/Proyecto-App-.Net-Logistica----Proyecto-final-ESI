@@ -25,6 +25,12 @@ Partial Class Home
         Me.Label1 = New System.Windows.Forms.Label()
         Me.NombreCompleto = New System.Windows.Forms.Label()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.r5 = New System.Windows.Forms.Label()
+        Me.r4 = New System.Windows.Forms.Label()
+        Me.r3 = New System.Windows.Forms.Label()
+        Me.p5 = New System.Windows.Forms.Label()
+        Me.p4 = New System.Windows.Forms.Label()
+        Me.p3 = New System.Windows.Forms.Label()
         Me.r2 = New System.Windows.Forms.Label()
         Me.r1 = New System.Windows.Forms.Label()
         Me.p2 = New System.Windows.Forms.Label()
@@ -39,14 +45,8 @@ Partial Class Home
         Me.nAccesos = New System.Windows.Forms.Label()
         Me.anteriorIngreso = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
-        Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Button2 = New System.Windows.Forms.Button()
-        Me.p3 = New System.Windows.Forms.Label()
-        Me.p4 = New System.Windows.Forms.Label()
-        Me.p5 = New System.Windows.Forms.Label()
-        Me.r3 = New System.Windows.Forms.Label()
-        Me.r4 = New System.Windows.Forms.Label()
-        Me.r5 = New System.Windows.Forms.Label()
+        Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Panel2.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
@@ -88,6 +88,66 @@ Partial Class Home
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(405, 500)
         Me.Panel2.TabIndex = 15
+        '
+        'r5
+        '
+        Me.r5.AutoSize = True
+        Me.r5.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.r5.Location = New System.Drawing.Point(312, 270)
+        Me.r5.Name = "r5"
+        Me.r5.Size = New System.Drawing.Size(52, 25)
+        Me.r5.TabIndex = 18
+        Me.r5.Text = "-----"
+        '
+        'r4
+        '
+        Me.r4.AutoSize = True
+        Me.r4.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.r4.Location = New System.Drawing.Point(312, 212)
+        Me.r4.Name = "r4"
+        Me.r4.Size = New System.Drawing.Size(52, 25)
+        Me.r4.TabIndex = 17
+        Me.r4.Text = "-----"
+        '
+        'r3
+        '
+        Me.r3.AutoSize = True
+        Me.r3.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.r3.Location = New System.Drawing.Point(312, 159)
+        Me.r3.Name = "r3"
+        Me.r3.Size = New System.Drawing.Size(52, 25)
+        Me.r3.TabIndex = 16
+        Me.r3.Text = "-----"
+        '
+        'p5
+        '
+        Me.p5.AutoSize = True
+        Me.p5.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.p5.Location = New System.Drawing.Point(3, 270)
+        Me.p5.Name = "p5"
+        Me.p5.Size = New System.Drawing.Size(104, 25)
+        Me.p5.TabIndex = 15
+        Me.p5.Text = "Pregunta 5"
+        '
+        'p4
+        '
+        Me.p4.AutoSize = True
+        Me.p4.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.p4.Location = New System.Drawing.Point(3, 212)
+        Me.p4.Name = "p4"
+        Me.p4.Size = New System.Drawing.Size(104, 25)
+        Me.p4.TabIndex = 14
+        Me.p4.Text = "Pregunta 4"
+        '
+        'p3
+        '
+        Me.p3.AutoSize = True
+        Me.p3.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.p3.Location = New System.Drawing.Point(3, 159)
+        Me.p3.Name = "p3"
+        Me.p3.Size = New System.Drawing.Size(104, 25)
+        Me.p3.TabIndex = 13
+        Me.p3.Text = "Pregunta 3"
         '
         'r2
         '
@@ -229,6 +289,22 @@ Partial Class Home
         Me.Label8.TabIndex = 14
         Me.Label8.Text = "Nº de accesos al sistema"
         '
+        'Button2
+        '
+        Me.Button2.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.Button2.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.Button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.Button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button2.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button2.ForeColor = System.Drawing.Color.White
+        Me.Button2.Location = New System.Drawing.Point(69, 445)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(224, 36)
+        Me.Button2.TabIndex = 15
+        Me.Button2.Text = "Ver mas "
+        Me.Button2.UseVisualStyleBackColor = False
+        '
         'Panel1
         '
         Me.Panel1.Controls.Add(Me.Button2)
@@ -246,83 +322,7 @@ Partial Class Home
         Me.Panel1.Size = New System.Drawing.Size(368, 500)
         Me.Panel1.TabIndex = 2
         '
-        'Button2
-        '
-        Me.Button2.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Me.Button2.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Me.Button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Me.Button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button2.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button2.ForeColor = System.Drawing.Color.White
-        Me.Button2.Location = New System.Drawing.Point(69, 445)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(224, 36)
-        Me.Button2.TabIndex = 15
-        Me.Button2.Text = "Ver mas "
-        Me.Button2.UseVisualStyleBackColor = False
-        '
-        'p3
-        '
-        Me.p3.AutoSize = True
-        Me.p3.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.p3.Location = New System.Drawing.Point(3, 159)
-        Me.p3.Name = "p3"
-        Me.p3.Size = New System.Drawing.Size(104, 25)
-        Me.p3.TabIndex = 13
-        Me.p3.Text = "Pregunta 3"
-        '
-        'p4
-        '
-        Me.p4.AutoSize = True
-        Me.p4.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.p4.Location = New System.Drawing.Point(3, 212)
-        Me.p4.Name = "p4"
-        Me.p4.Size = New System.Drawing.Size(104, 25)
-        Me.p4.TabIndex = 14
-        Me.p4.Text = "Pregunta 4"
-        '
-        'p5
-        '
-        Me.p5.AutoSize = True
-        Me.p5.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.p5.Location = New System.Drawing.Point(3, 270)
-        Me.p5.Name = "p5"
-        Me.p5.Size = New System.Drawing.Size(104, 25)
-        Me.p5.TabIndex = 15
-        Me.p5.Text = "Pregunta 5"
-        '
-        'r3
-        '
-        Me.r3.AutoSize = True
-        Me.r3.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.r3.Location = New System.Drawing.Point(312, 159)
-        Me.r3.Name = "r3"
-        Me.r3.Size = New System.Drawing.Size(52, 25)
-        Me.r3.TabIndex = 16
-        Me.r3.Text = "-----"
-        '
-        'r4
-        '
-        Me.r4.AutoSize = True
-        Me.r4.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.r4.Location = New System.Drawing.Point(312, 212)
-        Me.r4.Name = "r4"
-        Me.r4.Size = New System.Drawing.Size(52, 25)
-        Me.r4.TabIndex = 17
-        Me.r4.Text = "-----"
-        '
-        'r5
-        '
-        Me.r5.AutoSize = True
-        Me.r5.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.r5.Location = New System.Drawing.Point(312, 270)
-        Me.r5.Name = "r5"
-        Me.r5.Size = New System.Drawing.Size(52, 25)
-        Me.r5.TabIndex = 18
-        Me.r5.Text = "-----"
-        '
-        'OperarioHome
+        'Home
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -333,7 +333,7 @@ Partial Class Home
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.NombreCompleto)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
-        Me.Name = "OperarioHome"
+        Me.Name = "Home"
         Me.Text = "PuertoInicio"
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
@@ -352,6 +352,12 @@ Partial Class Home
     Friend WithEvents p2 As Label
     Friend WithEvents p1 As Label
     Friend WithEvents Label28 As Label
+    Friend WithEvents r5 As Label
+    Friend WithEvents r4 As Label
+    Friend WithEvents r3 As Label
+    Friend WithEvents p5 As Label
+    Friend WithEvents p4 As Label
+    Friend WithEvents p3 As Label
     Friend WithEvents Label15 As Label
     Friend WithEvents Label14 As Label
     Friend WithEvents Label13 As Label
@@ -361,12 +367,6 @@ Partial Class Home
     Friend WithEvents nAccesos As Label
     Friend WithEvents anteriorIngreso As Label
     Friend WithEvents Label8 As Label
-    Friend WithEvents Panel1 As Panel
     Friend WithEvents Button2 As Button
-    Friend WithEvents r5 As Label
-    Friend WithEvents r4 As Label
-    Friend WithEvents r3 As Label
-    Friend WithEvents p5 As Label
-    Friend WithEvents p4 As Label
-    Friend WithEvents p3 As Label
+    Friend WithEvents Panel1 As Panel
 End Class

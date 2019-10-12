@@ -1,11 +1,19 @@
 ﻿Imports Controladores
+Imports Controladores.Extenciones
 Public Class Home
     Public Sub New() 'me tiene que pasar un objeto de tipo usuario
 
 
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
-
+        For Each p In Me.Controls.OfType(Of Panel)
+            For Each l In p.Controls.Cast(Of Control)
+                l.Traducir
+            Next
+        Next
+        For Each l In Me.Controls.Cast(Of Control)
+            l.Traducir
+        Next
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
         Fachada.getInstancia.CargarDataBaseDelUsuario()
         Dim data As Usuario = Fachada.getInstancia.DevolverUsuarioActual

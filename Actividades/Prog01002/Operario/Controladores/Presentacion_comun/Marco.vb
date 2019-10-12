@@ -22,11 +22,20 @@ Public Class Marco
             If Not paneles(key).IsSubclassOf(GetType(Form)) Then
                 Continue For
             End If
+            Dim img As Image = Nothing
+            Try
+                Using stream = paneles(key).Assembly.GetManifestResourceStream(key)
+                    img = Image.FromStream(stream)
+                End Using
+            Catch E As Exception
+            End Try
             Dim btn As New Button With {
                 .Text = Funciones_comunes.I18N(key, Language),
                 .BackColor = b10.BackColor,
                 .Dock = DockStyle.Top,
                 .Font = b10.Font,
+                .ImageAlign = ContentAlignment.MiddleLeft,
+                .Image = img,
                 .TextAlign = b10.TextAlign,
                 .FlatStyle = b10.FlatStyle,
                 .UseVisualStyleBackColor = False,

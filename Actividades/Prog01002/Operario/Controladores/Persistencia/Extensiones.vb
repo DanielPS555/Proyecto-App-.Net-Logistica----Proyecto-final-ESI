@@ -8,6 +8,12 @@ Namespace Extenciones
         End Function
 
         <Runtime.CompilerServices.Extension>
+        Public Sub Traducir(obj As Control)
+            obj.Text = Funciones_comunes.I18N(Funciones_comunes.GetOriginalString(obj.Text), Marco.Language)
+            obj.Refresh()
+        End Sub
+
+        <Runtime.CompilerServices.Extension>
         Public Function UnionListas(Of T1)(Listas As IEnumerable(Of IEnumerable(Of T1))) As IEnumerable(Of T1)
             Dim lista As New List(Of T1)
             For Each l In Listas
