@@ -492,7 +492,7 @@ Partial Class NuevoVehiculo
         Me.lugar.TabIndex = 117
         Me.lugar.TabStop = False
         '
-        'nuevoVehiculo
+        'NuevoVehiculo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -535,7 +535,7 @@ Partial Class NuevoVehiculo
         Me.Controls.Add(Me.QR)
         Me.Controls.Add(Me.buscador)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
-        Me.Name = "nuevoVehiculo"
+        Me.Name = "NuevoVehiculo"
         Me.Text = "nuevoVehiculo"
         Me.ResumeLayout(False)
         Me.PerformLayout()

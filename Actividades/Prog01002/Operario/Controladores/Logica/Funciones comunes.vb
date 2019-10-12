@@ -11,6 +11,7 @@ Public Class Funciones_comunes
         Return BCrypt.Net.BCrypt.EnhancedHashPassword(password, hashType:=BCrypt.Net.HashType.SHA256)
     End Function
 
+
     Public Shared Function HexToColor(hex As String) As Color
         If hex Is Nothing Then
             Return Nothing
@@ -20,6 +21,16 @@ Public Class Funciones_comunes
 
     Private Shared SourceDictionary As SortedList(Of Int32, String)
     Private Shared TargetDictionary As Dictionary(Of String, SortedList(Of Int32, String))
+
+    Public Shared Function GetOriginalString(CurStr As String) As String
+        If SourceDictionary.ContainsValue(CurStr) Then Return CurStr
+        Try
+            Return SourceDictionary(TargetDictionary.Where(Function(x) x.Value.ContainsValue(CurStr)).First.Value.First(Function(z) z.Value = CurStr).Key)
+        Catch e As Exception
+            Return CurStr
+        End Try
+    End Function
+
     Public Shared ReadOnly Languages() As String = {"Spanish", "English"}
 
     Public Shared Sub Inter_test()
@@ -70,6 +81,7 @@ Public Class Funciones_comunes
         ' la lista de hashes (esperamos que cada String esté en la misma línea en todos los txt)
         For Each s In fileIn
             Dim line = s.Trim
+            If s.Trim.Length < 1 Then Continue For
             Dim lHash = KDHash(line)
             SourceDictionary(lHash) = line
             ' hasheamos la línea y guardamos su hash
@@ -79,7 +91,7 @@ Public Class Funciones_comunes
         For i = 1 To Languages.Length - 1
             TargetDictionary(Languages(i)) = New SortedList(Of Integer, String)
             Dim tdict = TargetDictionary(Languages(i))
-            fileIn = My.Resources.ResourceManager.GetString(Languages(i)).Split(vbNewLine)
+            fileIn = My.Resources.ResourceManager.GetString(Languages(i)).Split(vbNewLine).Where(Function(x) x.Trim.Length > 0).ToArray
             For s = 0 To hashes.Count - 1
                 Dim line = fileIn(s).Trim
                 ' usamos el hash de esta línea en el txt original como el hash de esta línea del diccionario alternativo
@@ -99,6 +111,7 @@ Public Class Funciones_comunes
         ' por último, se hace un xor con cada caracter del string, para intentar hacer un poco más único el hash
         ' sólo habría de colisionar en caso de tener strings que tengan el mismo largo, comiencen y terminen 
         ' con los mismos caracteres y tengan el mismo caracter en la mitad
+        If Input.Length < 1 Then Return 0
         Dim strLen = Input.Length Mod 256
         Dim strHash(3) As Byte
         strHash(0) = strLen
