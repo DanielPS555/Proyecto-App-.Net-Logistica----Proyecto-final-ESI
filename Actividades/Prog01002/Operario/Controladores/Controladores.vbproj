@@ -390,6 +390,10 @@
     <Content Include="Persistencia\dql2.sql" />
     <Content Include="Persistencia\dql3.sql" />
     <Content Include="Persistencia\dql4.sql" />
+    <None Include="Resources\iconoF.png" />
+    <None Include="Resources\logoConCierto.png" />
+    <None Include="Resources\info.png" />
+    <None Include="Resources\user.png" />
     <None Include="Resources\notificacion.png" />
     <None Include="Resources\Spanish.txt" />
     <None Include="Resources\English.txt" />

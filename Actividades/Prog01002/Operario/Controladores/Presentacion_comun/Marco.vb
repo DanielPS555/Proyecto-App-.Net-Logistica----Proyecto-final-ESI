@@ -12,10 +12,19 @@ Public Class Marco
 
         InitializeComponent()
         b10.Text = Funciones_comunes.I18N("Inicio", Language)
-        acercaDe.Text = Funciones_comunes.I18N("Acerca de", Language)
-        Micuenta.Text = Funciones_comunes.I18N("Mi cuenta", Language)
+        'acercaDe.Text = Funciones_comunes.I18N("Acerca de", Language)
+        'Micuenta.Text = Funciones_comunes.I18N("Mi cuenta", Language)
         Button1.Text = Funciones_comunes.I18N("Cerrar sesión", Language)
         Controladores.Fachada.getInstancia.CargarDataBaseDelUsuario()
+        NombreDeUsuario.Text = Fachada.getInstancia.DevolverUsuarioActual.NombreDeUsuario
+        Select Case Fachada.getInstancia.DevolverUsuarioActual.Rol
+            Case Usuario.TIPO_ROL_OPERARIO
+                rol.Text = "Operario"
+            Case Usuario.TIPO_ROL_ADMINISTRADOR
+                rol.Text = "Transportista"
+            Case Usuario.TIPO_ROL_TRANSPORTISTA
+                rol.Text = "Administrador"
+        End Select
 
         Controladores.Fachada.getInstancia.NuevaConexcion(Nothing) 'SI ES UN OPERARIO NO PASA NADA PORQUE YA FUE CREADA LA CONEXCION    
         For Each key As String In paneles.Keys
@@ -122,8 +131,8 @@ Public Class Marco
 
     Private Sub accion(j As Boolean)
         b10.Enabled = j
-        acercaDe.Enabled = j
-        Micuenta.Enabled = j
+        'acercaDe.Enabled = j
+        ' Micuenta.Enabled = j
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
@@ -136,7 +145,7 @@ Public Class Marco
         CerrarUltimo()
     End Sub
 
-    Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Micuenta.Click
+    Private Sub Button8_Click(sender As Object, e As EventArgs)
         Me.CargarPanel(Of PanelInfoUsuario)(New PanelInfoUsuario(Fachada.getInstancia.DevolverUsuarioActual.ID_usuario))
     End Sub
 
@@ -199,5 +208,9 @@ Public Class Marco
 
     Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
         Marco.getInstancia.CargarPanel(Of Notificaciones)(New Notificaciones())
+    End Sub
+
+    Private Sub PictureBox2_Click(sender As Object, e As EventArgs) Handles PictureBox2.Click
+        Me.CargarPanel(Of PanelInfoUsuario)(New PanelInfoUsuario(Fachada.getInstancia.DevolverUsuarioActual.ID_usuario))
     End Sub
 End Class

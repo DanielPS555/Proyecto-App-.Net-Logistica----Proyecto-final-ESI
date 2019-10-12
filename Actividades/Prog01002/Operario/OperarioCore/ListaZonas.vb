@@ -13,10 +13,12 @@ Public Class ListaZonas
         cargarZonas(Fachada.getInstancia.TrabajaEnAcutual.Lugar)
     End Sub
 
-    Public Sub New(lugar As Lugar)
+    Public Sub New(idlugar As Integer)
 
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
+
+        Me.lugar = Fachada.getInstancia.LugarZonasySubzonas(idlugar)
         cargarZonas(lugar)
     End Sub
 

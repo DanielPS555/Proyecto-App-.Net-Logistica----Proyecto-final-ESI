@@ -297,6 +297,14 @@
       <Project>{513a34cc-0479-486d-8b03-f3eda1ab0383}</Project>
       <Name>Controladores</Name>
     </ProjectReference>
+    <ProjectReference Include="..\OperarioCore\OperarioCore.vbproj">
+      <Project>{69731113-dad7-41bc-9e64-2b4ca65452d4}</Project>
+      <Name>OperarioCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TransportistaCore\TransportistaCore.vbproj">
+      <Project>{17e16538-9d66-48ad-ba8d-7af25db7b7cc}</Project>
+      <Name>TransportistaCore</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

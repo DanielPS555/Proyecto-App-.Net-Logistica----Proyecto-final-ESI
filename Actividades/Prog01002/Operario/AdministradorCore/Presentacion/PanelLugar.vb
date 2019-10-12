@@ -42,6 +42,7 @@ Public Class PanelLugar
     End Sub
 
     Private Sub verZonas_Click(sender As Object, e As EventArgs) Handles verZonas.Click
-        'Controladores.Marco.getInstancia.cargarPanel(Of ListaZonas)(New ListaZonas(lugar))
+
+        Controladores.Marco.getInstancia.CargarPanel(Of OperarioCore.ListaZonas)(New OperarioCore.ListaZonas(lugar.IDLugar))
     End Sub
 End Class
