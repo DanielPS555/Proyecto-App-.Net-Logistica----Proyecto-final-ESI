@@ -51,9 +51,9 @@ Partial Class ListaDeMediosAutorizados
         DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.medios.DefaultCellStyle = DataGridViewCellStyle2
-        Me.medios.Location = New System.Drawing.Point(13, 58)
+        Me.medios.Location = New System.Drawing.Point(13, 101)
         Me.medios.Name = "medios"
-        Me.medios.Size = New System.Drawing.Size(855, 582)
+        Me.medios.Size = New System.Drawing.Size(855, 539)
         Me.medios.TabIndex = 4
         '
         'Label2

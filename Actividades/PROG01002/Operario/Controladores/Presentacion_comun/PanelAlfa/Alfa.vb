@@ -3,12 +3,14 @@
     Private lista As New List(Of IAlfaInterface)
     Private _tipoObjeto As Type
     Private _tipoPanel As Type
-    Public Sub New(Optional tipoObjeto As Type = Nothing, Optional tipoPanel As Type = Nothing)
+    Private accion As LambdaGenerico
+    Public Sub New(Optional tipoObjeto As Type = Nothing, Optional tipoPanel As Type = Nothing, Optional accion As LambdaGenerico = Nothing)
 
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
         Me.TipoObjeto = tipoObjeto
         Me.TipoPanel = tipoPanel
+        Me.accion = accion
         If Not tipoPanel.GetInterfaces().Contains(GetType(IAlfaInterface)) Then
             Throw New InvalidCastException("TipoPanel no implementa AlfaInterface")
         End If
@@ -48,14 +50,6 @@
 
     Public Delegate Sub LambdaGenerico(O As Object)
 
-    Public Shared LambdaRespuesta As New Dictionary(Of Type, LambdaGenerico) From
-        {
-         {
-            GetType(Usuario),
-            Sub(elemento) Marco.getInstancia.CargarPanel(Of PanelInfoUsuario)(New PanelInfoUsuario(DirectCast(elemento, Usuario).ID_usuario))
-                }
-        }
-
     Public Sub Devolver(elemento As Object)
         If elemento Is Nothing Then
             Return
@@ -64,11 +58,11 @@
             Throw New InvalidCastException("El tipo del objeto no corresponde con el tipo configurado")
         End If
 
-        If Not LambdaRespuesta.ContainsKey(TipoObjeto) Then
-            Throw New Exception("No hay implementación para ese tipo")
+        If accion Is Nothing Then
+            Throw New InvalidCastException("No hay accion para este tipo de elemento")
         End If
 
-        LambdaRespuesta(TipoObjeto)(elemento)
+        accion(elemento)
     End Sub
 
     Public Sub Nuevo(elemento As Object, renderAutomatico As Boolean)

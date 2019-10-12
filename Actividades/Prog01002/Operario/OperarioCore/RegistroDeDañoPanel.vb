@@ -16,6 +16,10 @@ Public Class RegistroDeDañoPanel
         padre = informe
         regpadre = registroPadre
         registro = New Controladores.RegistroDaños(informe.InformeDeDaños)
+        If registroPadre Is Nothing Then
+            tipo.SelectedIndex = 0
+        End If
+
         If informe.NuevoVehiculo Then
             tipo.Enabled = False
             infoOrigen.Visible = False

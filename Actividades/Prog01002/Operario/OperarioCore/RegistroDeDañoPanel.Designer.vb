@@ -270,7 +270,7 @@ Partial Class RegistroDeDañoPanel
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
-        Me.Label5.Location = New System.Drawing.Point(71, 107)
+        Me.Label5.Location = New System.Drawing.Point(62, 107)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(109, 22)
         Me.Label5.TabIndex = 8
@@ -280,9 +280,9 @@ Partial Class RegistroDeDañoPanel
         '
         Me.infoOrigen.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.infoOrigen.FormattingEnabled = True
-        Me.infoOrigen.Location = New System.Drawing.Point(195, 104)
+        Me.infoOrigen.Location = New System.Drawing.Point(168, 101)
         Me.infoOrigen.Name = "infoOrigen"
-        Me.infoOrigen.Size = New System.Drawing.Size(121, 30)
+        Me.infoOrigen.Size = New System.Drawing.Size(261, 30)
         Me.infoOrigen.TabIndex = 9
         Me.infoOrigen.Visible = False
         '
@@ -291,7 +291,7 @@ Partial Class RegistroDeDañoPanel
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
-        Me.Label6.Location = New System.Drawing.Point(335, 107)
+        Me.Label6.Location = New System.Drawing.Point(435, 107)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(115, 22)
         Me.Label6.TabIndex = 10
@@ -301,9 +301,9 @@ Partial Class RegistroDeDañoPanel
         '
         Me.registroOrigen.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.registroOrigen.FormattingEnabled = True
-        Me.registroOrigen.Location = New System.Drawing.Point(456, 104)
+        Me.registroOrigen.Location = New System.Drawing.Point(579, 104)
         Me.registroOrigen.Name = "registroOrigen"
-        Me.registroOrigen.Size = New System.Drawing.Size(121, 30)
+        Me.registroOrigen.Size = New System.Drawing.Size(275, 30)
         Me.registroOrigen.TabIndex = 11
         Me.registroOrigen.Visible = False
         '

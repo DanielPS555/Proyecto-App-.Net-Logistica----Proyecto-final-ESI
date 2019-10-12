@@ -13,6 +13,11 @@ Public Class ListaVehiculos
         InitializeComponent()
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
 
+        If Controladores.Fachada.getInstancia.TrabajaEnAcutual IsNot Nothing AndAlso Controladores.Fachada.getInstancia.TrabajaEnAcutual.Lugar.Tipo = Lugar.TIPO_LUGAR_PUERTO Then
+            nuevo.Visible = True
+        Else
+            nuevo.Visible = False
+        End If
 
         If Fachada.getInstancia.DevolverUsuarioActual.Rol <> Usuario.TIPO_ROL_ADMINISTRADOR Then
             LugaresBox.Items.Add(Fachada.getInstancia.TrabajaEnAcutual.Lugar)
@@ -48,7 +53,7 @@ Public Class ListaVehiculos
         g.DrawRectangle(New Pen(Color.FromArgb(35, 35, 35), 2), New Rectangle(criterios.Location, criterios.Size)) 'para dibujarle un rectangulo al combobox
     End Sub
 
-    Private Sub nuevo_Click(sender As Object, e As EventArgs)
+    Private Sub nuevo_Click(sender As Object, e As EventArgs) Handles nuevo.Click
         Marco.getInstancia.CargarPanel(Of NuevoVehiculo)(New NuevoVehiculo)
     End Sub
 

@@ -8,6 +8,7 @@ Public Class crearInformaDeDaños
     Private subida As Boolean
     Private Info As Controladores.InformeDeDaños
     Private panelVehiculo As panelInfoVehiculo
+    Private lugarOrigen As Controladores.Lugar
 
     Public Property ListaDeTodosLosInformes() As List(Of Controladores.InformeDeDaños)
         Get
@@ -38,6 +39,7 @@ Public Class crearInformaDeDaños
         idvehiculo = id
         InitializeComponent()
         tipo.SelectedIndex = 0
+        lugarOrigen = padre.LugarSelecionado
         If Controladores.Fachada.getInstancia.DevolverUsuarioActual.Rol = Controladores.Usuario.TIPO_ROL_ADMINISTRADOR Then
             tipo.Enabled = True
         Else
@@ -45,9 +47,8 @@ Public Class crearInformaDeDaños
         End If
         _listaDeTodosLosinformes = New List(Of Controladores.InformeDeDaños)
         Dim vehiculo As Controladores.Vehiculo = New Controladores.Vehiculo With {.IdVehiculo = id}
-        Dim lugarActual = Controladores.Fachada.getInstancia.DevolverPosicionActual(vehiculo.IdVehiculo)
         Info = New Controladores.InformeDeDaños(vehiculo) With {.Fecha = Date.Now,
-                                                                .Lugar = lugarActual.Subzona.ZonaPadre.LugarPadre,
+                                                                .Lugar = lugarOrigen,
                                                                 .Creador = Controladores.Fachada.getInstancia.DevolverUsuarioActual}
         _nuevo = True
         PanelDelVehiculo = padre
@@ -58,7 +59,9 @@ Public Class crearInformaDeDaños
         InitializeComponent()
         Me.subida = subida
         panelVehiculo = papote
+        idvehiculo = informePrevio.VehiculoPadre.IdVehiculo
         Info = informePrevio
+        lugarOrigen = Controladores.Fachada.getInstancia.DevolverPosicionActual(idvehiculo).Subzona.ZonaPadre.LugarPadre
         _nuevo = False
         If Controladores.Fachada.getInstancia.DevolverUsuarioActual.Rol = Controladores.Usuario.TIPO_ROL_ADMINISTRADOR Then
             tipo.Enabled = True
@@ -89,6 +92,7 @@ Public Class crearInformaDeDaños
 
     Public Sub New(InformePrevio As Controladores.InformeDeDaños, padre As NuevoVehiculo)
         InitializeComponent()
+        lugarOrigen = padre.LugarSelecionado
         Info = InformePrevio
         _nuevo = True
         PanelDelVehiculo = padre
@@ -190,7 +194,7 @@ Public Class crearInformaDeDaños
                     Info.Tipo = Controladores.InformeDeDaños.TIPO_INFORME_TOTAL
             End Select
             Info.Fecha = DateTime.Now
-            Info.Lugar = Controladores.Fachada.getInstancia.DevolverPosicionActual(idvehiculo).Subzona.ZonaPadre.LugarPadre
+            Info.Lugar = lugarOrigen
             Info.Creador = Controladores.Fachada.getInstancia.DevolverUsuarioActual
             PanelDelVehiculo.NotificarDeInforme(Info)
         End If

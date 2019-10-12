@@ -175,8 +175,15 @@ Public Class Fachada
         Return ViewOnRow(posicion, 3, 6, 0, 1) ' idlugar, nombrelugar, posicion, desde
     End Function
 
-    Public Function listarTodosLosPuertos() As DataTable
-        Return Persistencia.getInstancia.ListaPuertos()
+    Public Function listarTodosLosPuertos() As List(Of Lugar)
+        Dim lista As New List(Of Lugar)
+        Dim dt As DataTable = Persistencia.getInstancia.ListaPuertos()
+
+        For Each r As DataRow In dt.Rows
+            Dim lug As New Lugar() With {.IDLugar = r.Item(0), .Nombre = r.Item(1), .Tipo = r.Item(2)}
+            lista.Add(lug)
+        Next
+        Return lista
     End Function
 
     Public Function ComrpobarUsuario(NombreUsuario As String, contraseña As String) As Boolean

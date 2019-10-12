@@ -98,4 +98,8 @@ Public Class RegistroDaños
         End Set
     End Property
 
+    Public Overrides Function ToString() As String
+        Return $"Id registro: {ID}"
+    End Function
+
 End Class

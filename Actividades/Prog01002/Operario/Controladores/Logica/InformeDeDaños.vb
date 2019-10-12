@@ -122,4 +122,8 @@ Public Class InformeDeDaños
         Return daños IsNot Nothing AndAlso
                ID = daños.ID
     End Function
+
+    Public Overrides Function ToString() As String
+        Return $"Id Informe: {ID}"
+    End Function
 End Class

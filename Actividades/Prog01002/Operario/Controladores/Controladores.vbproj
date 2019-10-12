@@ -343,6 +343,9 @@
     <EmbeddedResource Include="Presentacion_comun\PanelAlfa\Alfa.resx">
       <DependentUpon>Alfa.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion_comun\PanelAlfa\SUB_Medio.resx">
+      <DependentUpon>SUB_Medio.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentacion_comun\PanelAlfa\SUB_Mensaje.resx">
       <DependentUpon>SUB_Mensaje.vb</DependentUpon>
     </EmbeddedResource>

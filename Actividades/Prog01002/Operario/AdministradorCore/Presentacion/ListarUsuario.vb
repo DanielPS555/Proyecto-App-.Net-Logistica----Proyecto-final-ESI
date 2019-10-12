@@ -6,7 +6,7 @@ Public Class ListarUsuario
 
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
-        alfa = New Controladores.Alfa(GetType(Controladores.Usuario), GetType(Controladores.SUB_Usuario)) With {
+        alfa = New Controladores.Alfa(GetType(Controladores.Usuario), GetType(Controladores.SUB_Usuario), Sub(elemento) Controladores.Marco.getInstancia.CargarPanel(Of PanelInfoUsuario)(New PanelInfoUsuario(DirectCast(elemento, Controladores.Usuario).ID_usuario))) With {
             .Location = New Drawing.Point(13, 86),
             .Size = New Drawing.Size(853, 548)
         }

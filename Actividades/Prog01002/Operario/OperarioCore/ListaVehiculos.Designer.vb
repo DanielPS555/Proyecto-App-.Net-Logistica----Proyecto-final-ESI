@@ -24,8 +24,8 @@ Partial Class ListaVehiculos
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim buscar As System.Windows.Forms.Button
-        Dim nuevo As System.Windows.Forms.Button
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Me.nuevo = New System.Windows.Forms.Button()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.buscador = New System.Windows.Forms.TextBox()
         Me.Panel2 = New System.Windows.Forms.Panel()
@@ -35,7 +35,6 @@ Partial Class ListaVehiculos
         Me.Label7 = New System.Windows.Forms.Label()
         Me.LugaresBox = New System.Windows.Forms.ComboBox()
         buscar = New System.Windows.Forms.Button()
-        nuevo = New System.Windows.Forms.Button()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -63,24 +62,23 @@ Partial Class ListaVehiculos
         '
         'nuevo
         '
-        nuevo.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.nuevo.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        nuevo.BackColor = System.Drawing.Color.White
-        nuevo.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        nuevo.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        nuevo.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        nuevo.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        nuevo.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        nuevo.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        nuevo.ForeColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        nuevo.Location = New System.Drawing.Point(671, 63)
-        nuevo.Name = "nuevo"
-        nuevo.Size = New System.Drawing.Size(193, 35)
-        nuevo.TabIndex = 25
-        nuevo.Text = "Nuevo vehiculo "
-        nuevo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        nuevo.UseVisualStyleBackColor = False
-        AddHandler nuevo.Click, AddressOf Me.nuevo_Click
+        Me.nuevo.BackColor = System.Drawing.Color.White
+        Me.nuevo.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.nuevo.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.nuevo.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        Me.nuevo.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        Me.nuevo.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.nuevo.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.nuevo.ForeColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.nuevo.Location = New System.Drawing.Point(671, 63)
+        Me.nuevo.Name = "nuevo"
+        Me.nuevo.Size = New System.Drawing.Size(193, 35)
+        Me.nuevo.TabIndex = 25
+        Me.nuevo.Text = "Nuevo vehiculo "
+        Me.nuevo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.nuevo.UseVisualStyleBackColor = False
         '
         'Panel1
         '
@@ -126,14 +124,14 @@ Partial Class ListaVehiculos
         Me.DataGridView1.AllowUserToDeleteRows = False
         Me.DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridView1.BackgroundColor = System.Drawing.Color.White
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("Century Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Century Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Location = New System.Drawing.Point(14, 112)
         Me.DataGridView1.Name = "DataGridView1"
@@ -182,7 +180,7 @@ Partial Class ListaVehiculos
         Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.tiposListas)
         Me.Controls.Add(Me.DataGridView1)
-        Me.Controls.Add(nuevo)
+        Me.Controls.Add(Me.nuevo)
         Me.Controls.Add(Me.criterios)
         Me.Controls.Add(buscar)
         Me.Controls.Add(Me.Panel2)
@@ -204,4 +202,5 @@ Partial Class ListaVehiculos
     Friend WithEvents tiposListas As ComboBox
     Friend WithEvents Label7 As Label
     Friend WithEvents LugaresBox As ComboBox
+    Friend WithEvents nuevo As Button
 End Class

@@ -8,6 +8,13 @@ Public Class NuevoVehiculo
     Private clienteshabi As New List(Of Cliente)
     Private informe As InformeDeDaños
     Private LoteFinal As Lote
+    Private lugaresCombo As List(Of Lugar)
+
+    Public ReadOnly Property LugarSelecionado() As Lugar
+        Get
+            Return lugaresCombo(lugar.SelectedIndex)
+        End Get
+    End Property
 
     Public Property Vehiculo As New Vehiculo()
 
@@ -36,22 +43,22 @@ Public Class NuevoVehiculo
         Next
         anio.SelectedItem = Date.Now.Year
 
-        Dim lugares = Fachada.getInstancia.listarTodosLosPuertos.ToList.Select(Function(x) Fachada.getInstancia.informacionBaseDelLugarPorIdlugar(x(0))).ToArray
+        lugaresCombo = Fachada.getInstancia.listarTodosLosPuertos
         lugar.Items.Clear()
-        lugar.Items.AddRange(lugares)
-        lugar.SelectedIndex = -1
-        If Fachada.getInstancia.DevolverUsuarioActual.Rol <> Usuario.TIPO_ROL_ADMINISTRADOR Then
-            lugar.Enabled = False
-            lugar.SelectedIndex = Array.IndexOf(lugares, Fachada.getInstancia.TrabajaEnAcutual.Lugar)
+        lugar.Items.AddRange(lugaresCombo.Select(Function(x) x.Nombre).ToArray)
+        lugar.SelectedIndex = If(lugaresCombo.Count = 0, -1, 0)
+        If Fachada.getInstancia.DevolverUsuarioActual.Rol = Usuario.TIPO_ROL_ADMINISTRADOR Then
+            lugar.Enabled = True
         Else
-            lugar.SelectedIndex = 0
+            lugar.Enabled = False
+            lugar.SelectedItem = Controladores.Fachada.getInstancia.TrabajaEnAcutual.Lugar.Nombre
         End If
     End Sub
 
     Private Sub loadLotes()
         lote.Items.Clear()
 
-        For Each l As Lote In Fachada.getInstancia.LotesDisponiblesPorLugar(lugar.SelectedItem)
+        For Each l As Lote In Fachada.getInstancia.LotesDisponiblesPorLugar(lugaresCombo(lugar.SelectedIndex))
             lote.Items.Add(l)
         Next
         If lote.Items.Count > 0 Then
@@ -289,7 +296,7 @@ Public Class NuevoVehiculo
 
     Private Sub LinkLabel2_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles crearomodificarLote.LinkClicked
         If LoteFinal Is Nothing Then
-            Dim d As New NuevoLote(Me, DirectCast(lugar.SelectedItem, Lugar))
+            Dim d As New NuevoLote(Me, lugaresCombo(lugar.SelectedIndex))
             d.ShowDialog()
         Else
             Dim d As New NuevoLote(Me, LoteFinal)
@@ -340,7 +347,7 @@ Public Class NuevoVehiculo
 
     Private Sub lugar_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lugar.SelectedIndexChanged
         zonas.Items.Clear()
-        Dim lug = DirectCast(lugar.SelectedItem, Lugar)
+        Dim lug = lugaresCombo(lugar.SelectedIndex)
         Fachada.getInstancia.LugarZonasySubzonas(lug.IDLugar, lug)
         For Each z As Zona In lug.Zonas
             zonas.Items.Add(z)
