@@ -128,5 +128,14 @@
       <Name>TransportistaCore</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Lista_lotes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Lista_de_transportes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Lista_de_medios.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

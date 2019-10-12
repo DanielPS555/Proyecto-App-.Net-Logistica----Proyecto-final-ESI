@@ -16,6 +16,16 @@
                   {"Chat", GetType(Controladores.ChatInterno)}
                 }
                 Controladores.Marco.SetButtons(paneles)
+                Controladores.Marco.Imagenes = New Dictionary(Of String, Bitmap)
+                For Each z In paneles.Keys
+                    Try
+                        Dim img As Bitmap = My.Resources.ResourceManager.GetObject(z.Replace(" ", "_"))
+                        If img Is Nothing Then Continue For
+                        Controladores.Marco.Imagenes(z) = img
+                        My.Resources.ResourceManager.ReleaseAllResources()
+                    Catch ex As Exception
+                    End Try
+                Next
                 Controladores.Marco.ReiniciarSingleton()
                 Controladores.Principal.getInstancia.cargarPanel(Controladores.Marco.getInstancia())
             End Sub, Controladores.Usuario.TIPO_ROL_ADMINISTRADOR)

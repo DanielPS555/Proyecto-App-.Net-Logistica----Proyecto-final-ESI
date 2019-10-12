@@ -23,9 +23,9 @@ Public Class Marco
             Case Usuario.TIPO_ROL_OPERARIO
                 rol.Text = "Operario"
             Case Usuario.TIPO_ROL_ADMINISTRADOR
-                rol.Text = "Transportista"
-            Case Usuario.TIPO_ROL_TRANSPORTISTA
                 rol.Text = "Administrador"
+            Case Usuario.TIPO_ROL_TRANSPORTISTA
+                rol.Text = "Transportista"
         End Select
 
         Controladores.Fachada.getInstancia.NuevaConexcion(Nothing) 'SI ES UN OPERARIO NO PASA NADA PORQUE YA FUE CREADA LA CONEXCION    
@@ -64,10 +64,10 @@ Public Class Marco
                                       Next
                                       MsgBox("ERROR FATAL: No se encontraron constructores sin parámetros para el panel " + key)
                                   End Sub
-            btn.Text = $"           {btn.Text}"
+            btn.Text = $"        {btn.Text}"
             Panel5.Controls.Add(btn)
             b10.Image = New Bitmap(Controladores.My.Resources.Inicio, 26, 26)
-            b10.Text = $"           Inicio"
+            b10.Text = $"        Inicio"
         Next
         If Not Fachada.getInstancia.Existenciadatosderecuperacion(Fachada.getInstancia.DevolverUsuarioActual.NombreDeUsuario) Then
             Dim e As New CredencialesUsuario(True)

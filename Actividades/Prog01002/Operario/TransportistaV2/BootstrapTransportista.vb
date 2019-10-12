@@ -1,5 +1,6 @@
 ﻿Imports TransportistaCore
 Imports Controladores
+Imports System.Drawing
 
 Public Class BootstrapTransportista
     Public Shared Sub Main()
@@ -8,9 +9,19 @@ Public Class BootstrapTransportista
                                                            Dim paneles = New Dictionary(Of String, Type) From {
                                                  {"Lista lotes", GetType(TransportistaCore.Lista_de_trasportes)},
                                                  {"Lista de transportes", GetType(TransportistaCore.ListaDeTrasportes)},
-                                                 {"Medios autorizados", GetType(TransportistaCore.ListaDeMediosAutorizados)}
+                                                 {"Lista de medios", GetType(TransportistaCore.ListaDeMediosAutorizados)}
                                              }
                                                            Controladores.Marco.SetButtons(paneles)
+                                                           Controladores.Marco.Imagenes = New Dictionary(Of String, Bitmap)
+                                                           For Each z In paneles.Keys
+                                                               Try
+                                                                   Dim img As Bitmap = My.Resources.ResourceManager.GetObject(z.Replace(" ", "_"))
+                                                                   If img Is Nothing Then Continue For
+                                                                   Controladores.Marco.Imagenes(z) = img
+                                                                   My.Resources.ResourceManager.ReleaseAllResources()
+                                                               Catch ex As Exception
+                                                               End Try
+                                                           Next
                                                            Marco.ReiniciarSingleton()
                                                            Principal.getInstancia.cargarPanel(Marco.getInstancia())
                                                        End Sub, Usuario.TIPO_ROL_TRANSPORTISTA)

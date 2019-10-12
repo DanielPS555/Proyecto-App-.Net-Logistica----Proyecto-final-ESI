@@ -306,5 +306,35 @@
       <Name>TransportistaCore</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Listar_Clientes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Listar_Lugares.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Listar_Usuario.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Nueva_Precarga.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Precargas_masivas.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Mensajes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Consola_de_Scheme.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Lista_vehiculos.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Chat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Lista_de_medios.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

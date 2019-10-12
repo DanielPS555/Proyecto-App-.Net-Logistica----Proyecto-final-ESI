@@ -19,6 +19,11 @@
 
     End Sub
 
+    Public Sub New(idlugar As Integer)
+        InitializeComponent()
+        lugar = Controladores.Fachada.getInstancia.LugarZonasySubzonas(idlugar)
+    End Sub
+
     Private Sub cargarDatosZona(altura As Integer)
         zonas.Items.Clear()
         If lugar.Zonas.Count > 0 Then

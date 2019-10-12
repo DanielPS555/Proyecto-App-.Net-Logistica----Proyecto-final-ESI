@@ -171,24 +171,24 @@ Partial Class Marco
         '
         'rol
         '
-        Me.rol.AutoSize = True
+        Me.rol.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.rol.Font = New System.Drawing.Font("Segoe UI Semilight", 9.0!)
-        Me.rol.Location = New System.Drawing.Point(672, 32)
+        Me.rol.Location = New System.Drawing.Point(593, 25)
         Me.rol.Name = "rol"
         Me.rol.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.rol.Size = New System.Drawing.Size(41, 15)
+        Me.rol.Size = New System.Drawing.Size(123, 15)
         Me.rol.TabIndex = 23
         Me.rol.Text = "Label2"
-        Me.rol.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.rol.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'NombreDeUsuario
         '
-        Me.NombreDeUsuario.AutoSize = True
+        Me.NombreDeUsuario.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.NombreDeUsuario.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.NombreDeUsuario.Location = New System.Drawing.Point(662, 9)
+        Me.NombreDeUsuario.Location = New System.Drawing.Point(565, 3)
         Me.NombreDeUsuario.Name = "NombreDeUsuario"
         Me.NombreDeUsuario.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.NombreDeUsuario.Size = New System.Drawing.Size(55, 21)
+        Me.NombreDeUsuario.Size = New System.Drawing.Size(152, 21)
         Me.NombreDeUsuario.TabIndex = 22
         Me.NombreDeUsuario.Text = "Label1"
         '
@@ -265,7 +265,7 @@ Partial Class Marco
         Me.b10.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(28, Byte), Integer), CType(CType(61, Byte), Integer))
         Me.b10.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(28, Byte), Integer), CType(CType(61, Byte), Integer))
         Me.b10.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.b10.Font = New System.Drawing.Font("Segoe UI Semilight", 13.0!)
+        Me.b10.Font = New System.Drawing.Font("Segoe UI Semilight", 14.0!)
         Me.b10.ForeColor = System.Drawing.Color.White
         Me.b10.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.b10.Location = New System.Drawing.Point(0, 0)
@@ -306,7 +306,6 @@ Partial Class Marco
         Me.contpr.ResumeLayout(False)
         Me.Panel6.ResumeLayout(False)
         Me.header.ResumeLayout(False)
-        Me.header.PerformLayout()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
