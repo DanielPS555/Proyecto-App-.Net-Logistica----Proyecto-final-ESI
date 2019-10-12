@@ -93,3 +93,4 @@ El valor {0} no es un entero
 El tipo {0} no se reconoció!
 Error al interpretar el color: {0}
 El VIN debe tener una longitud de 17, falló para {0}
+Nombre

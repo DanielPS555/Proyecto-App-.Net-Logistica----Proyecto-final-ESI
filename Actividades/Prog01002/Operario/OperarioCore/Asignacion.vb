@@ -1,5 +1,6 @@
 ﻿Imports Controladores
 Imports System.Windows.Forms
+Imports Controladores.Extenciones.Extensiones
 Public Class Asignacion
     Implements NotificacionLote
     Private lotesDisponibles As New List(Of Lote)
@@ -16,6 +17,7 @@ Public Class Asignacion
         lugarvehiculo = lugar
         CargarLotes()
         CargarZonas()
+        l_lote.Traducir
 
     End Sub
     Private lugarvehiculo As Lugar

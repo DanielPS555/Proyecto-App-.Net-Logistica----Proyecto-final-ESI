@@ -8,7 +8,7 @@ Public Class panel
     Public Sub New()
         InitializeComponent()
         Label3.Traducir
-
+        Button4.Traducir
 
     End Sub
 

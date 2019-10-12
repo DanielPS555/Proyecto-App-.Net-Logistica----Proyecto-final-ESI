@@ -138,5 +138,23 @@ Namespace Extenciones
             Next
             Return r
         End Function
+
+
+        <Runtime.CompilerServices.Extension>
+        Public Sub Traducir(but As Button)
+            If but.Text.Length = 0 Then
+                Throw New DataException("No esta cargado el texto")
+            End If
+            but.Text = Controladores.Funciones_comunes.I18N(but.Text, Marco.getInstancia.Language)
+        End Sub
+
+        <Runtime.CompilerServices.Extension>
+        Public Sub Traducir(lab As Label)
+            If lab.Text.Length = 0 Then
+                Throw New DataException("No esta cargado el texto")
+            End If
+            lab.Text = Controladores.Funciones_comunes.I18N(lab.Text, Marco.getInstancia.Language)
+        End Sub
+
     End Module
 End Namespace

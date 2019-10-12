@@ -93,3 +93,4 @@ The value {0} is not an integer
 Type {0} was not recognized!
 Error interpreting color: {0}
 The VIN must have a length of 17, failed for {0}
+Name

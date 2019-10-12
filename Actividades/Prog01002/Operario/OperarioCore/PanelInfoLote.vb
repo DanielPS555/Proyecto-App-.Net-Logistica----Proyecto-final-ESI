@@ -1,6 +1,7 @@
 ﻿Imports System.Drawing
 Imports Controladores
 Imports System.Windows.Forms
+Imports Controladores.Extenciones.Extensiones
 Public Class PanelInfoLote
     Private idlote As Integer
     Public Sub New(nombrelote As String)
@@ -11,17 +12,22 @@ Public Class PanelInfoLote
 
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
-        Label1.Text = $"Nombre: {lote.Nombre}"
+        Label1.Traducir
+        Label1.Text = $"{Label1.Text}: {lote.Nombre}"
         If lote.Destino Is Nothing Then
             lote = Fachada.getInstancia.InfoLote(ID:=lote.IDLote)
         End If
-        Label2.Text = $"Destino: {lote.Destino.Nombre}"
-        Label3.Text = $"Estado: {lote.Estado}"
+        'Label2.Traducir
+        Label2.Text = $"{Label2.Text}: {lote.Destino.Nombre}"
+        'Label3.Traducir
+        Label3.Text = $"{Label3.Text}: {lote.Estado}"
         If lote.Estado <> "Abierto" Then
             Button1.Visible = False
         End If
-        Label4.Text = $"Prioridad: {lote.Prioridad}"
-        Label5.Text = $"Fecha de creación: {lote.FechaCreacion}"
+        'Label4.Traducir
+        Label4.Text = $"{Label4.Text}: {lote.Prioridad}"
+        'Label5.Traducir
+        Label5.Text = $"{Label5.Text}: {lote.FechaCreacion}"
         idlote = lote.IDLote
         Dim vehiculos = Fachada.getInstancia.VehiculosEnLote(idlote)
         For Each i In vehiculos
@@ -33,6 +39,7 @@ Public Class PanelInfoLote
             Next
             DataGridView1.Rows.Add(i.VIN, i.Marca, i.Modelo, i.Tipo, colorColumn, i.Cliente.Nombre)
         Next
+
     End Sub
 
     Private vehiculo As panelInfoVehiculo
