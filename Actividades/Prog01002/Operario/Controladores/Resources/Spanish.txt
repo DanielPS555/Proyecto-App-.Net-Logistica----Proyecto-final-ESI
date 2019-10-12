@@ -38,6 +38,7 @@ Posicion
 Lote
 Guardar código
 Ver más
+Ver mas
 Cambiar lote
 Eliminar selección
 Cancelar
@@ -82,3 +83,13 @@ Debe ingresar el año
 Debe ingresar el tipo de vehiculo
 Debe ingresar el cliente del vehiculo
 No hay ningún lote seleccionado de la lista
+Enviar
+Evaluar
+Subir precargas
+Abrir CSV
+Debe acceder a todos los vehículos para subir la precarga
+Precargas subidas con éxito!
+El valor {0} no es un entero
+El tipo {0} no se reconoció!
+Error al interpretar el color: {0}
+El VIN debe tener una longitud de 17, falló para {0}

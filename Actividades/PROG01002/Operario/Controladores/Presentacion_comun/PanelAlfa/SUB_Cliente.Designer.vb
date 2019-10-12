@@ -55,7 +55,7 @@ Partial Class SUB_cliente
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button1.Font = New System.Drawing.Font("Segoe UI", 11.0!)
         Me.Button1.ForeColor = System.Drawing.Color.White
-        Me.Button1.Location = New System.Drawing.Point(340, 43)
+        Me.Button1.Location = New System.Drawing.Point(336, 43)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(92, 37)
         Me.Button1.TabIndex = 2

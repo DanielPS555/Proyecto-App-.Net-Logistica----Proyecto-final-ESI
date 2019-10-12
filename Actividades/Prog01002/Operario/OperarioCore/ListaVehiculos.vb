@@ -30,6 +30,9 @@ Public Class ListaVehiculos
         DataGridView1.MultiSelect = False
         criterios.SelectedIndex = 0
         tiposListas.SelectedIndex = 0
+        buscar.Text = Controladores.Funciones_comunes.I18N("Buscar", Controladores.Marco.getInstancia.Language)
+        nuevo.Text = Controladores.Funciones_comunes.I18N("Nuevo vehiculo", Controladores.Marco.getInstancia.Language)
+
     End Sub
 
     Private lugar As Lugar
@@ -68,7 +71,7 @@ Public Class ListaVehiculos
 
     End Sub
 
-    Private Sub buscar_Click(sender As Object, e As EventArgs)
+    Private Sub buscar_Click(sender As Object, e As EventArgs) Handles buscar.Click
         'CargarDatos(DataGridView1.Columns)
     End Sub
 

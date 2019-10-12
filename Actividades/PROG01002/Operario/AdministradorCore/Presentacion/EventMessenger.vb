@@ -5,7 +5,7 @@
         InitializeComponent()
 
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
-
+        enviarBtn.Text = Controladores.Funciones_comunes.I18N("Enviar", Controladores.Marco.getInstancia.Language)
     End Sub
 
     Private Sub EventMessenger_Load(sender As Object, e As EventArgs) Handles MyBase.Load
