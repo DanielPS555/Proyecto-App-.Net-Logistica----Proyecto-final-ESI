@@ -6,11 +6,10 @@ Public Class ListarUsuario
 
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
-        alfa = New Controladores.Alfa(GetType(Controladores.Usuario), GetType(Controladores.SUB_Usuario), Sub(elemento) Controladores.Marco.getInstancia.CargarPanel(Of PanelInfoUsuario)(New PanelInfoUsuario(DirectCast(elemento, Controladores.Usuario).ID_usuario))) With {
-            .Location = New Drawing.Point(13, 86),
-            .Size = New Drawing.Size(853, 548)
-        }
+        alfa = New Controladores.Alfa(GetType(Controladores.Usuario), GetType(Controladores.SUB_Usuario), Sub(elemento) Controladores.Marco.getInstancia.CargarPanel(Of PanelInfoUsuario)(New PanelInfoUsuario(DirectCast(elemento, Controladores.Usuario).ID_usuario)))
         Me.Controls.Add(alfa)
+        alfa.Location = New Drawing.Point(13, 65)
+        alfa.Size = New Drawing.Size(853, 570)
         Me.Update()
         carardatos()
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().

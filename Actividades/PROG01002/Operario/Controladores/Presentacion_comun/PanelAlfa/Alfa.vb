@@ -74,7 +74,6 @@
         End If
     End Sub
 
-
     Public Function tamaño() As Size
         Return contenedor.Size
     End Function

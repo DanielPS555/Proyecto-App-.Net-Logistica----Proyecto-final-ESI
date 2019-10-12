@@ -26,10 +26,8 @@ Partial Class ListarUsuario
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.Button1 = New System.Windows.Forms.Button()
-        Me.buscar = New System.Windows.Forms.Button()
-        Me.criterios = New System.Windows.Forms.ComboBox()
-        Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.buscador = New System.Windows.Forms.TextBox()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'Button1
@@ -44,7 +42,7 @@ Partial Class ListarUsuario
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button1.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Me.Button1.Location = New System.Drawing.Point(700, 59)
+        Me.Button1.Location = New System.Drawing.Point(700, 12)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(168, 35)
         Me.Button1.TabIndex = 35
@@ -52,53 +50,23 @@ Partial Class ListarUsuario
         Me.Button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Button1.UseVisualStyleBackColor = False
         '
-        'buscar
+        'Panel1
         '
-        Me.buscar.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.buscar.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Me.buscar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Me.buscar.FlatAppearance.BorderSize = 0
-        Me.buscar.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Me.buscar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        Me.buscar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        Me.buscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.buscar.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.buscar.ForeColor = System.Drawing.Color.White
-        Me.buscar.Location = New System.Drawing.Point(779, 11)
-        Me.buscar.Name = "buscar"
-        Me.buscar.Size = New System.Drawing.Size(86, 35)
-        Me.buscar.TabIndex = 33
-        Me.buscar.Text = "Buscar"
-        Me.buscar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.buscar.UseVisualStyleBackColor = False
+        Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.Panel1.Location = New System.Drawing.Point(13, 55)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(855, 2)
+        Me.Panel1.TabIndex = 41
         '
-        'criterios
+        'Label2
         '
-        Me.criterios.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.criterios.FormattingEnabled = True
-        Me.criterios.Items.AddRange(New Object() {"Asignados", "No asignados", "En transporte ", "Precargados", "Entregados ", "Eliminados"})
-        Me.criterios.Location = New System.Drawing.Point(519, 11)
-        Me.criterios.Name = "criterios"
-        Me.criterios.Size = New System.Drawing.Size(254, 33)
-        Me.criterios.TabIndex = 34
-        '
-        'Panel2
-        '
-        Me.Panel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
-        Me.Panel2.Location = New System.Drawing.Point(13, 42)
-        Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(500, 2)
-        Me.Panel2.TabIndex = 32
-        '
-        'buscador
-        '
-        Me.buscador.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.buscador.Font = New System.Drawing.Font("Century Gothic", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.buscador.Location = New System.Drawing.Point(13, 13)
-        Me.buscador.Name = "buscador"
-        Me.buscador.Size = New System.Drawing.Size(500, 25)
-        Me.buscador.TabIndex = 31
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Segoe UI Semilight", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Location = New System.Drawing.Point(12, 12)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(210, 37)
+        Me.Label2.TabIndex = 40
+        Me.Label2.Text = "Lista de usuarios"
         '
         'ListarUsuario
         '
@@ -106,11 +74,9 @@ Partial Class ListarUsuario
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(880, 650)
+        Me.Controls.Add(Me.Panel1)
+        Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Button1)
-        Me.Controls.Add(Me.criterios)
-        Me.Controls.Add(Me.buscar)
-        Me.Controls.Add(Me.Panel2)
-        Me.Controls.Add(Me.buscador)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "ListarUsuario"
         Me.Text = "ListaUsuarios"
@@ -118,11 +84,7 @@ Partial Class ListarUsuario
         Me.PerformLayout()
 
     End Sub
-
-    Friend WithEvents criterios As ComboBox
-    Friend WithEvents Panel2 As Windows.Forms.Panel
-    Friend WithEvents buscador As TextBox
     Friend WithEvents Button1 As Button
-    Friend WithEvents buscar As Button
-
+    Friend WithEvents Panel1 As Windows.Forms.Panel
+    Friend WithEvents Label2 As Label
 End Class

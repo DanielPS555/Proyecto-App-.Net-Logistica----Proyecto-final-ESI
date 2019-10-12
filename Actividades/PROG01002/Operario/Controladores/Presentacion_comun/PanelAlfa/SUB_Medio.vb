@@ -15,7 +15,7 @@
         propiedadesDuplicas.Add(New Tuple(Of Size, Point)(Label1.Size, Label1.Location))
         propiedadesDuplicas.Add(New Tuple(Of Size, Point)(tipo.Size, tipo.Location))
         propiedadesDuplicas.Add(New Tuple(Of Size, Point)(Button1.Size, Button1.Location))
-
+        medio = med
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
 
     End Sub

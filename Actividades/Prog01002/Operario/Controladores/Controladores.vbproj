@@ -223,10 +223,10 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Presentacion_comun\PanelAlfa\AlfaInterface.vb" />
-    <Compile Include="Presentacion_comun\PanelAlfa\SUB_Cliente.Designer.vb">
-      <DependentUpon>SUB_Cliente.vb</DependentUpon>
+    <Compile Include="Presentacion_comun\PanelAlfa\SUB_cliente.Designer.vb">
+      <DependentUpon>SUB_cliente.vb</DependentUpon>
     </Compile>
-    <Compile Include="Presentacion_comun\PanelAlfa\SUB_Cliente.vb">
+    <Compile Include="Presentacion_comun\PanelAlfa\SUB_cliente.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Presentacion_comun\PanelAlfa\SUB_lote.Designer.vb">
@@ -342,6 +342,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion_comun\PanelAlfa\Alfa.resx">
       <DependentUpon>Alfa.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion_comun\PanelAlfa\SUB_cliente.resx">
+      <DependentUpon>SUB_cliente.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion_comun\PanelAlfa\SUB_Medio.resx">
       <DependentUpon>SUB_Medio.vb</DependentUpon>

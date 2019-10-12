@@ -8,15 +8,12 @@
                   {"Listar Lugares", GetType(AdministradorCore.ListarLugares)},
                   {"Listar Usuario", GetType(AdministradorCore.ListarUsuario)},
                   {"Nueva Precarga", GetType(AdministradorCore.NuevaPrecarga)},
-                  {"Nuevo Cliente", GetType(AdministradorCore.panel)},
-                  {"Nuevo Lugar", GetType(AdministradorCore.NuevoLugar)},
                   {"Lista de medios", GetType(TransportistaCore.ListaDeMediosAutorizados)},
                   {"Precargas masivas", GetType(AdministradorCore.PrecargaMasiva)},
                   {"Mensajes", GetType(AdministradorCore.EventMessenger)},
                   {"Consola de Scheme", GetType(AdministradorCore.LispPanel)},
                   {"Lista vehiculos", GetType(OperarioCore.ListaVehiculos)},
-                  {"Chat", GetType(Controladores.ChatInterno)},
-                  {"Alta medio", GetType(AdministradorCore.NuevoMedio)}
+                  {"Chat", GetType(Controladores.ChatInterno)}
                 }
                 Controladores.Marco.SetButtons(paneles)
                 Controladores.Marco.ReiniciarSingleton()
