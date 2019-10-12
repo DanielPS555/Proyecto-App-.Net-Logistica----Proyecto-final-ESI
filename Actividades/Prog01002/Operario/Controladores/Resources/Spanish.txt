@@ -70,3 +70,23 @@ El medio tiene que poder transportar algun vehiculo
 Ya hay un medio de este tipo con este nombre
 Nombre no puede ser vacio
 Medio ingrezado con exito
+Sin informe
+Aceptado
+Vin sin precarga o no existe
+Crear lote
+Informe realizado
+Modifica lote
+Debe ingresar la marca
+Debe ingresar el modelo del vehiculo
+Debe ingresar el año
+Debe ingresar el tipo de vehiculo
+Debe ingresar el cliente del vehiculo
+
+
+
+
+
+
+
+
+

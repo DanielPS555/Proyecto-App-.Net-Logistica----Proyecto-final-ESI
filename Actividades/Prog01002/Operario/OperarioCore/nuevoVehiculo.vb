@@ -99,7 +99,7 @@ Public Class NuevoVehiculo
 
     Private Sub Buscar_Click(sender As Object, e As EventArgs) Handles Buscar.Click
         If Controladores.Fachada.getInstancia.ExistenciaDevehiculoPrecargado(buscador.Text) Then
-            EstadoBusqueda.Text = "Aceptado"
+            EstadoBusqueda.Text = Controladores.Funciones_comunes.I18N("Aceptado", Controladores.Marco.getInstancia.Language)
             EstadoBusqueda.ForeColor = Drawing.Color.FromArgb(18, 161, 13)
             Dim vehiculo As Controladores.Vehiculo = Controladores.Fachada.getInstancia.DevolverDatosBasicosPorVIN_Vehiculo(buscador.Text)
             ingresar.Enabled = False
@@ -113,7 +113,7 @@ Public Class NuevoVehiculo
             cargarDatosDeLaPrecarga()
             ingresar.Enabled = True
         Else
-            EstadoBusqueda.Text = "Vin sin precarga o no existe"
+            EstadoBusqueda.Text = Controladores.Funciones_comunes.I18N("Vin sin precarga o no existe", Controladores.Marco.getInstancia.Language)
             EstadoBusqueda.ForeColor = Drawing.Color.FromArgb(180, 20, 20)
             habilitar(False)
             ingresar.Enabled = False
@@ -211,34 +211,34 @@ Public Class NuevoVehiculo
 
     Private Sub ingresar_Click(sender As Object, e As EventArgs) Handles ingresar.Click
         If marca.Text.Trim.Length = 0 Then
-            MsgBox("Debe ingresar la marca")
+            MsgBox(Controladores.Funciones_comunes.I18N("Debe ingresar la marca", Controladores.Marco.getInstancia.Language))
             Return
         End If
         Vehiculo.Marca = marca.Text
 
         If modelo.Text.Trim.Length = 0 Then
-            MsgBox("Debe ingresar el modelo del vehiculo")
+            MsgBox(Controladores.Funciones_comunes.I18N("Debe ingresar el modelo del vehiculo", Controladores.Marco.getInstancia.Language))
             Return
         Else
             Vehiculo.Modelo = modelo.Text
         End If
 
         If anio.SelectedIndex = -1 Then
-            MsgBox("Debe ingresar el año ")
+            MsgBox(Controladores.Funciones_comunes.I18N("Debe ingresar el año ", Controladores.Marco.getInstancia.Language))
             Return
         Else
             Vehiculo.Año = anio.SelectedItem
         End If
 
         If tipo.SelectedIndex = -1 Then
-            MsgBox("Debe ingresar el tipo de vehiculo")
+            MsgBox(Controladores.Funciones_comunes.I18N("Debe ingresar el tipo de vehiculo", Controladores.Marco.getInstancia.Language))
             Return
         Else
             Vehiculo.Tipo = tipo.SelectedItem
         End If
 
         If clientes.SelectedIndex = -1 Then
-            MsgBox("Debe ingresar el cliente del vehiculo")
+            MsgBox(Controladores.Funciones_comunes.I18N("Debe ingresar el cliente del vehiculo", Controladores.Marco.getInstancia.Language))
             Return
         Else
             Vehiculo.Cliente = clienteshabi(clientes.SelectedIndex)
@@ -313,7 +313,7 @@ Public Class NuevoVehiculo
     Private Sub EliminarInforme_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles eliminarInforme.LinkClicked
         eliminarInforme.Visible = False
         ModificarInforme.Visible = False
-        EstadoInforme.Text = "Sin informe"
+        EstadoInforme.Text = Controladores.Funciones_comunes.I18N("Sin informe", Controladores.Marco.getInstancia.Language)
         infoDaños.Enabled = True
         informe = Nothing
     End Sub
@@ -322,20 +322,20 @@ Public Class NuevoVehiculo
         lote.Enabled = True
         LoteFinal = Nothing
         eliminarlote.Visible = False
-        crearomodificarLote.Text = "Crear lote"
+        crearomodificarLote.Text = Controladores.Funciones_comunes.I18N("Crear lote", Controladores.Marco.getInstancia.Language)
     End Sub
 
     Public Sub NotificarDeInforme(info As InformeDeDaños)
         eliminarInforme.Visible = True
         ModificarInforme.Visible = True
         informe = info
-        EstadoInforme.Text = "Informe realizado"
+        EstadoInforme.Text = Controladores.Funciones_comunes.I18N("Informe realizado", Controladores.Marco.getInstancia.Language)
         infoDaños.Enabled = False
     End Sub
 
     Public Sub NotificarLote(l As Lote) Implements NotificacionLote.NotificarLote
         lote.Enabled = False
-        crearomodificarLote.Text = "Modifica lote"
+        crearomodificarLote.Text = Controladores.Funciones_comunes.I18N("Modifica lote", Controladores.Marco.getInstancia.Language)
         eliminarlote.Visible = True
         LoteFinal = l
     End Sub
