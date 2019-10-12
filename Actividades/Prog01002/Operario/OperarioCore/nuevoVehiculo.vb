@@ -29,7 +29,6 @@ Public Class NuevoVehiculo
         CarcarComboBox()
         habilitar(True)
         loadClientes()
-
     End Sub
 
 
@@ -211,34 +210,34 @@ Public Class NuevoVehiculo
 
     Private Sub ingresar_Click(sender As Object, e As EventArgs) Handles ingresar.Click
         If marca.Text.Trim.Length = 0 Then
-            MsgBox(Controladores.Funciones_comunes.I18N("Debe ingresar la marca", Controladores.Marco.getInstancia.Language))
+            MsgBoxI18N("Debe ingresar la marca")
             Return
         End If
         Vehiculo.Marca = marca.Text
 
         If modelo.Text.Trim.Length = 0 Then
-            MsgBox(Controladores.Funciones_comunes.I18N("Debe ingresar el modelo del vehiculo", Controladores.Marco.getInstancia.Language))
+            MsgBoxI18N("Debe ingresar el modelo del vehiculo")
             Return
         Else
             Vehiculo.Modelo = modelo.Text
         End If
 
         If anio.SelectedIndex = -1 Then
-            MsgBox(Controladores.Funciones_comunes.I18N("Debe ingresar el año ", Controladores.Marco.getInstancia.Language))
+            MsgBoxI18N("Debe ingresar el año ")
             Return
         Else
             Vehiculo.Año = anio.SelectedItem
         End If
 
         If tipo.SelectedIndex = -1 Then
-            MsgBox(Controladores.Funciones_comunes.I18N("Debe ingresar el tipo de vehiculo", Controladores.Marco.getInstancia.Language))
+            MsgBoxI18N("Debe ingresar el tipo de vehiculo",)
             Return
         Else
             Vehiculo.Tipo = tipo.SelectedItem
         End If
 
         If clientes.SelectedIndex = -1 Then
-            MsgBox(Controladores.Funciones_comunes.I18N("Debe ingresar el cliente del vehiculo", Controladores.Marco.getInstancia.Language))
+            MsgBoxI18N("Debe ingresar el cliente del vehiculo")
             Return
         Else
             Vehiculo.Cliente = clienteshabi(clientes.SelectedIndex)
@@ -246,6 +245,11 @@ Public Class NuevoVehiculo
 
         Vehiculo.Color = muestra_color.BackColor
 
+
+        If lote.SelectedItem Is Nothing Then
+            MsgBoxI18N("No hay ningún lote seleccionado de la lista")
+            Return
+        End If
         Fachada.getInstancia.altaVehiculoConUpdate(Vehiculo, Fachada.getInstancia.DevolverUsuarioActual)
         If LoteFinal IsNot Nothing Then
             LoteFinal.IDLote = Fachada.getInstancia.nuevoLote(LoteFinal)
@@ -359,4 +363,5 @@ Public Class NuevoVehiculo
     Private Sub QR_Click(sender As Object, e As EventArgs) Handles QR.Click
         buscador.Text = WebcamForm.GetQR()
     End Sub
+
 End Class
