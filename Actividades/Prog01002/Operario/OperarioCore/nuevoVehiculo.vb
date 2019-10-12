@@ -246,8 +246,8 @@ Public Class NuevoVehiculo
         Vehiculo.Color = muestra_color.BackColor
 
 
-        If lote.SelectedItem Is Nothing Then
-            MsgBoxI18N("No hay ningún lote seleccionado de la lista")
+        If lote.SelectedItem Is Nothing OrElse LoteFinal Is Nothing Then
+            MsgBoxI18N("No hay ningún lote seleccionado de la lista", MsgBoxStyle.Critical)
             Return
         End If
         Fachada.getInstancia.altaVehiculoConUpdate(Vehiculo, Fachada.getInstancia.DevolverUsuarioActual)

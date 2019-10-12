@@ -24,6 +24,8 @@ Partial Class Login
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.panelLogin = New System.Windows.Forms.Panel()
+        Me.aplicacionModo = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.LanguageBox = New System.Windows.Forms.ComboBox()
         Me.estadoConex = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -42,8 +44,6 @@ Partial Class Login
         Me.Button4 = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Tiempo = New System.Windows.Forms.Timer(Me.components)
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.aplicacionModo = New System.Windows.Forms.Label()
         Me.panelLogin.SuspendLayout()
         CType(Me.ver, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -76,16 +76,36 @@ Partial Class Login
         Me.panelLogin.Font = New System.Drawing.Font("Century Gothic", 18.0!, System.Drawing.FontStyle.Bold)
         Me.panelLogin.Location = New System.Drawing.Point(0, 0)
         Me.panelLogin.Name = "panelLogin"
-        Me.panelLogin.Size = New System.Drawing.Size(1100, 650)
+        Me.panelLogin.Size = New System.Drawing.Size(1100, 700)
         Me.panelLogin.TabIndex = 2
+        '
+        'aplicacionModo
+        '
+        Me.aplicacionModo.AutoSize = True
+        Me.aplicacionModo.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.aplicacionModo.Location = New System.Drawing.Point(3, 9)
+        Me.aplicacionModo.Name = "aplicacionModo"
+        Me.aplicacionModo.Size = New System.Drawing.Size(181, 22)
+        Me.aplicacionModo.TabIndex = 21
+        Me.aplicacionModo.Text = "Aplicacion del: -----"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Location = New System.Drawing.Point(376, 636)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(161, 22)
+        Me.Label2.TabIndex = 20
+        Me.Label2.Text = "Eliga su lenguaje"
         '
         'LanguageBox
         '
-        Me.LanguageBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.LanguageBox.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LanguageBox.FormattingEnabled = True
-        Me.LanguageBox.Location = New System.Drawing.Point(793, 37)
+        Me.LanguageBox.Location = New System.Drawing.Point(543, 631)
         Me.LanguageBox.Name = "LanguageBox"
-        Me.LanguageBox.Size = New System.Drawing.Size(295, 36)
+        Me.LanguageBox.Size = New System.Drawing.Size(170, 33)
         Me.LanguageBox.TabIndex = 19
         '
         'estadoConex
@@ -94,7 +114,7 @@ Partial Class Login
         Me.estadoConex.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.estadoConex.ForeColor = System.Drawing.Color.FromArgb(CType(CType(180, Byte), Integer), CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer))
         Me.estadoConex.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.estadoConex.Location = New System.Drawing.Point(658, 586)
+        Me.estadoConex.Location = New System.Drawing.Point(625, 593)
         Me.estadoConex.Name = "estadoConex"
         Me.estadoConex.Size = New System.Drawing.Size(148, 22)
         Me.estadoConex.TabIndex = 18
@@ -104,7 +124,7 @@ Partial Class Login
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(575, 586)
+        Me.Label1.Location = New System.Drawing.Point(542, 593)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(77, 22)
         Me.Label1.TabIndex = 17
@@ -186,7 +206,7 @@ Partial Class Login
         'PictureBox2
         '
         Me.PictureBox2.Image = Global.Controladores.My.Resources.Resources.texto
-        Me.PictureBox2.Location = New System.Drawing.Point(579, 620)
+        Me.PictureBox2.Location = New System.Drawing.Point(579, 670)
         Me.PictureBox2.Name = "PictureBox2"
         Me.PictureBox2.Size = New System.Drawing.Size(35, 21)
         Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -197,7 +217,7 @@ Partial Class Login
         '
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(467, 620)
+        Me.Label3.Location = New System.Drawing.Point(461, 670)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(113, 21)
         Me.Label3.TabIndex = 6
@@ -252,7 +272,7 @@ Partial Class Login
         Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button4.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(115, Byte), Integer), CType(CType(201, Byte), Integer))
-        Me.Button4.Location = New System.Drawing.Point(376, 578)
+        Me.Button4.Location = New System.Drawing.Point(380, 585)
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(156, 39)
         Me.Button4.TabIndex = 16
@@ -280,31 +300,11 @@ Partial Class Login
         '
         Me.Tiempo.Interval = 500
         '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(789, 12)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(161, 22)
-        Me.Label2.TabIndex = 20
-        Me.Label2.Text = "Eliga su lenguaje"
-        '
-        'aplicacionModo
-        '
-        Me.aplicacionModo.AutoSize = True
-        Me.aplicacionModo.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.aplicacionModo.Location = New System.Drawing.Point(3, 9)
-        Me.aplicacionModo.Name = "aplicacionModo"
-        Me.aplicacionModo.Size = New System.Drawing.Size(181, 22)
-        Me.aplicacionModo.TabIndex = 21
-        Me.aplicacionModo.Text = "Aplicacion del: -----"
-        '
         'Login
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1100, 650)
+        Me.ClientSize = New System.Drawing.Size(1100, 700)
         Me.Controls.Add(Me.panelLogin)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "Login"

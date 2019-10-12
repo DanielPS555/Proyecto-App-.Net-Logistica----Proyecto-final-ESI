@@ -401,7 +401,7 @@ Partial Class NuevoVehiculo
         Me.ingresar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ingresar.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ingresar.ForeColor = System.Drawing.Color.White
-        Me.ingresar.Location = New System.Drawing.Point(651, 585)
+        Me.ingresar.Location = New System.Drawing.Point(651, 575)
         Me.ingresar.Name = "ingresar"
         Me.ingresar.Size = New System.Drawing.Size(198, 35)
         Me.ingresar.TabIndex = 52

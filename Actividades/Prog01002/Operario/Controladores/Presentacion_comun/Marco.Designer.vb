@@ -37,7 +37,6 @@ Partial Class Marco
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.PictureBox4 = New System.Windows.Forms.PictureBox()
         Me.Panel4 = New System.Windows.Forms.Panel()
         Me.Panel5 = New System.Windows.Forms.Panel()
         Me.b10 = New System.Windows.Forms.Button()
@@ -49,8 +48,6 @@ Partial Class Marco
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
-        Me.Panel1.SuspendLayout()
-        CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel4.SuspendLayout()
         Me.Panel5.SuspendLayout()
         Me.SuspendLayout()
@@ -231,22 +228,11 @@ Partial Class Marco
         'Panel1
         '
         Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(51, Byte), Integer))
-        Me.Panel1.Controls.Add(Me.PictureBox4)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(220, 172)
+        Me.Panel1.Size = New System.Drawing.Size(220, 47)
         Me.Panel1.TabIndex = 0
-        '
-        'PictureBox4
-        '
-        Me.PictureBox4.Image = Global.Controladores.My.Resources.Resources.iconoF
-        Me.PictureBox4.Location = New System.Drawing.Point(23, 3)
-        Me.PictureBox4.Name = "PictureBox4"
-        Me.PictureBox4.Size = New System.Drawing.Size(176, 166)
-        Me.PictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox4.TabIndex = 22
-        Me.PictureBox4.TabStop = False
         '
         'Panel4
         '
@@ -263,9 +249,9 @@ Partial Class Marco
         Me.Panel5.AutoScroll = True
         Me.Panel5.BackColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(51, Byte), Integer))
         Me.Panel5.Controls.Add(Me.b10)
-        Me.Panel5.Location = New System.Drawing.Point(0, 166)
+        Me.Panel5.Location = New System.Drawing.Point(0, 50)
         Me.Panel5.Name = "Panel5"
-        Me.Panel5.Size = New System.Drawing.Size(220, 477)
+        Me.Panel5.Size = New System.Drawing.Size(220, 593)
         Me.Panel5.TabIndex = 18
         '
         'b10
@@ -281,6 +267,7 @@ Partial Class Marco
         Me.b10.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.b10.Font = New System.Drawing.Font("Segoe UI Semilight", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.b10.ForeColor = System.Drawing.Color.White
+        Me.b10.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.b10.Location = New System.Drawing.Point(0, 0)
         Me.b10.Name = "b10"
         Me.b10.Size = New System.Drawing.Size(220, 35)
@@ -324,8 +311,6 @@ Partial Class Marco
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel2.ResumeLayout(False)
-        Me.Panel1.ResumeLayout(False)
-        CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel4.ResumeLayout(False)
         Me.Panel5.ResumeLayout(False)
         Me.ResumeLayout(False)
@@ -349,5 +334,4 @@ Partial Class Marco
     Friend WithEvents rol As Label
     Friend WithEvents NombreDeUsuario As Label
     Friend WithEvents PictureBox3 As PictureBox
-    Friend WithEvents PictureBox4 As PictureBox
 End Class

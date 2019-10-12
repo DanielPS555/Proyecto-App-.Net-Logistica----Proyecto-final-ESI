@@ -37,14 +37,14 @@ Partial Class Principal
         Me.contenedorDePaneles.Dock = System.Windows.Forms.DockStyle.Fill
         Me.contenedorDePaneles.Location = New System.Drawing.Point(0, 0)
         Me.contenedorDePaneles.Name = "contenedorDePaneles"
-        Me.contenedorDePaneles.Size = New System.Drawing.Size(1100, 650)
+        Me.contenedorDePaneles.Size = New System.Drawing.Size(1100, 700)
         Me.contenedorDePaneles.TabIndex = 2
         '
         'Principal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1100, 650)
+        Me.ClientSize = New System.Drawing.Size(1100, 700)
         Me.Controls.Add(Me.contenedorDePaneles)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
