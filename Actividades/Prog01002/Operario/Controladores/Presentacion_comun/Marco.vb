@@ -4,6 +4,7 @@ Public Class Marco
     Private Shared initi As Marco = Nothing
     Public Shared Language As String = Funciones_comunes.Languages(0)
     Public CurrentPanel As ScreenNode = Nothing
+    Public Shared Imagenes As Dictionary(Of String, Bitmap)
 
     Public Sub New()
         If paneles Is Nothing Then
@@ -32,18 +33,13 @@ Public Class Marco
                 Continue For
             End If
             Dim img As Image = Nothing
-            Try
-                Using stream = paneles(key).Assembly.GetManifestResourceStream(key)
-                    img = Image.FromStream(stream)
-                End Using
-            Catch E As Exception
-            End Try
+            If Imagenes.ContainsKey(key) Then img = New Bitmap(Imagenes(key), 48, 48)
             Dim btn As New Button With {
                 .Text = Funciones_comunes.I18N(key, Language),
                 .BackColor = b10.BackColor,
                 .Dock = DockStyle.Top,
                 .Font = b10.Font,
-                .ImageAlign = ContentAlignment.MiddleLeft,
+                .ImageAlign = ContentAlignment.MiddleRight,
                 .Image = img,
                 .TextAlign = b10.TextAlign,
                 .FlatStyle = b10.FlatStyle,
