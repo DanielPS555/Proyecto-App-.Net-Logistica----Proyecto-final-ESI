@@ -70,3 +70,24 @@ The medium must be able to transport a vehicle
 There is already such a medium with this name
 name cannot be empty
 Half successfully added
+No report
+accepted
+Vin without preload or does not exist
+Create lot
+Report made
+Modify Lot
+You must enter the brand
+You must enter the vehicle model
+You must enter the year
+You must enter the type of vehicle
+The customer of the vehicle must enter
+
+
+
+
+
+
+
+
+
+
