@@ -81,13 +81,4 @@ You must enter the vehicle model
 You must enter the year
 You must enter the type of vehicle
 The customer of the vehicle must enter
-
-
-
-
-
-
-
-
-
-
+There is no batch selected from the list

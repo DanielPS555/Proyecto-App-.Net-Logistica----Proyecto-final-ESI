@@ -81,12 +81,4 @@ Debe ingresar el modelo del vehiculo
 Debe ingresar el año
 Debe ingresar el tipo de vehiculo
 Debe ingresar el cliente del vehiculo
-
-
-
-
-
-
-
-
-
+No hay ningún lote seleccionado de la lista
