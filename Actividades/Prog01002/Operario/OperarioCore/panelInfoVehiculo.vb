@@ -47,14 +47,20 @@ Public Class panelInfoVehiculo
         RegularTamañoColumnas()
         TomarValores()
         Dim ultPosVehiculo As DataRow = Fachada.getInstancia.UltimaPosicionVehiculo(vehiculo.VIN)
-        Dim lugarPadreUltLugar As Lugar = Fachada.getInstancia.MaximoAncestro(ultPosVehiculo(0))
-        Dim aqui = Fachada.getInstancia.DevolverUsuarioActual.Rol = Usuario.TIPO_ROL_ADMINISTRADOR OrElse (Fachada.getInstancia.TrabajaEnAcutual.Lugar.IDLugar = lugarPadreUltLugar.IDLugar)
-        If Not aqui OrElse Persistencia.getInstancia.ExisteBaja(vehiculo.IdVehiculo) Then
+        If ultPosVehiculo IsNot Nothing Then
+            Dim lugarPadreUltLugar As Lugar = Fachada.getInstancia.MaximoAncestro(ultPosVehiculo(0))
+            Dim aqui = Fachada.getInstancia.DevolverUsuarioActual.Rol = Usuario.TIPO_ROL_ADMINISTRADOR OrElse (Fachada.getInstancia.TrabajaEnAcutual.Lugar.IDLugar = lugarPadreUltLugar.IDLugar)
+            If Not aqui OrElse Persistencia.getInstancia.ExisteBaja(vehiculo.IdVehiculo) Then
+                bajaButton.Visible = False
+                Button2.Visible = False
+                Button4.Visible = False
+            ElseIf Not Fachada.getInstancia.TieneInformeEnLugar(vehiculo, lugarPadreUltLugar) Then
+                bajaButton.Visible = False
+            End If
+        Else
             bajaButton.Visible = False
             Button2.Visible = False
             Button4.Visible = False
-        ElseIf Not Fachada.getInstancia.TieneInformeEnLugar(vehiculo, lugarPadreUltLugar) Then
-            bajaButton.Visible = False
         End If
     End Sub
 
@@ -150,6 +156,9 @@ Public Class panelInfoVehiculo
 
     Private Sub CargarTraslados()
         Dim ultpos = Controladores.Fachada.getInstancia.UltimaPosicionVehiculo(vin)
+        If ultpos Is Nothing Then
+            Return
+        End If
         Dim zona = Controladores.Persistencia.getInstancia.PadreDeLugar(ultpos.Item(0))
         traslados.Columns.Clear()
         Dim dt As New DataTable

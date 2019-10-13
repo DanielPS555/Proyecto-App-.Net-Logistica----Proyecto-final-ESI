@@ -76,6 +76,16 @@ order by 7", _con)
         Return dt
     End Function
 
+    Friend Function VehiculosPrecargados() As DataTable
+        Dim selectCmd As New OdbcCommand("select vehiculo.idvehiculo as IDVehiculo, vin as VIN
+from vehiculo
+left join vehiculoIngresa on vehiculoIngresa.idvehiculo=vehiculo.idvehiculo and vehiculoIngresa.tipoIngreso='Alta'
+where vehiculoingresa.idvehiculo is null", _con)
+        Dim dt As New DataTable
+        dt.Load(selectCmd.ExecuteReader)
+        Return dt
+    End Function
+
     Friend Function VehiculosDañados() As DataTable
         Dim selectCmd As New OdbcCommand("select vehiculo.idvehiculo as IDVehiculo, vin as VIN, lugar.nombre as Lugar, nvl(bson_value_lvarchar(detalle, 'mensaje'), 'Ninguno') as Mensaje
 from vehiculo inner join vehiculoIngresa on vehiculoIngresa.tipoIngreso='Baja' and vehiculoIngresa.idvehiculo=vehiculo.idvehiculo
