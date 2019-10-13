@@ -22,6 +22,11 @@
     Public Sub New(idlugar As Integer)
         InitializeComponent()
         lugar = Controladores.Fachada.getInstancia.LugarZonasySubzonas(idlugar)
+        capacidad.Maximum = lugar.Capasidad
+        lugarnom.Text = lugar.Nombre
+        capasidadLugar.Text = lugar.Capasidad
+        cargarDatosZona(0)
+        comprobar()
     End Sub
 
     Private Sub cargarDatosZona(altura As Integer)
@@ -197,9 +202,14 @@
     End Sub
 
     Private Sub Aceptar_Click(sender As Object, e As EventArgs) Handles aceptar.Click
-        padre.devolverlugar(lugar)
-        Controladores.Marco.getInstancia.cerrarPanel(Of AdministrarZonasYSubzonas)()
-        Me.Close()
+        If padre Is Nothing Then
+            padre.devolverlugar(lugar)
+            Controladores.Marco.getInstancia.cerrarPanel(Of AdministrarZonasYSubzonas)()
+            Me.Close()
+        Else
+            ' lugar.Zonas(0).Subzonas(0).
+        End If
+
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click

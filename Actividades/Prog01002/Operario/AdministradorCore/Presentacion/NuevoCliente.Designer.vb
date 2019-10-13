@@ -123,7 +123,7 @@ Partial Class panel
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(233, 49)
         Me.Button4.TabIndex = 8
-        Me.Button4.Text = "Ingresar "
+        Me.Button4.Text = "Ingresar  "
         Me.Button4.UseVisualStyleBackColor = False
         '
         'rutTextBox
@@ -164,7 +164,7 @@ Partial Class panel
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Name = "panel"
-        Me.Text = "NuevoCliente"
+        Me.Text = "NuevoCliente  "
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
