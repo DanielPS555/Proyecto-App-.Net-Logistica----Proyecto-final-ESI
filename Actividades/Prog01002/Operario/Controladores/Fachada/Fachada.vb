@@ -1302,4 +1302,14 @@ Public Class Fachada
         Return New TrabajaEn With {.Usuario = New Usuario With {.NombreDeUsuario = dt.Item(1)},
                                    .Lugar = New Lugar With {.Nombre = dt.Item(0)}}
     End Function
+
+    Public Function PosicionesActualesPorIdlugar(idlugar As Integer) As List(Of Posicion)
+        Dim lista As New List(Of Posicion)
+        Dim dt As DataTable = Persistencia.getInstancia.vehiculosPosicionadosActualmentePorIdlugar(idlugar)
+        For Each r As DataRow In dt.Rows
+            Dim p As New Posicion With {.Vehiculo = New Vehiculo() With {.IdVehiculo = r.Item(0), .VIN = r.Item(1)}, .Subzona = New Subzona With {.IDSubzona = r.Item(2), .Nombre = r.Item(4)}, .Posicion = r.Item(3)}
+            lista.Add(p)
+        Next
+        Return lista
+    End Function
 End Class

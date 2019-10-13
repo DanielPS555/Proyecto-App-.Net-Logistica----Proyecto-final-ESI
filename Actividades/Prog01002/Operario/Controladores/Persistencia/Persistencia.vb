@@ -1809,4 +1809,14 @@ where trabajaen.ID=?", Conexcion)
         Return com.ExecuteScalar
     End Function
 
+    Public Function vehiculosPosicionadosActualmentePorIdlugar(idlugar As Integer) As DataTable
+        Dim com As New OdbcCommand("select vehiculo.idvehiculo, vin,lugar.IDLugar,posicion,lugar.nombre from posicionado inner join vehiculo on vehiculo.idvehiculo=posicionado.idvehiculo
+                                    inner join lugar on lugar.idlugar=posicionado.idlugar
+                                    where lugar.IDLugar in (select unnamed_col_1 from table(subzonas_en_lugar(?::integer))) and hasta is null", Conexcion)
+        com.CrearParametro(DbType.Int32, idlugar)
+        Dim dt As New DataTable
+        dt.Load(com.ExecuteReader)
+        Return dt
+    End Function
+
 End Class
