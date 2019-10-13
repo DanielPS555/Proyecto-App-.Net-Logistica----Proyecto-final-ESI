@@ -43,36 +43,36 @@ Public Class NuevoLugar
     Private Sub CrearButton_Click(sender As Object, e As EventArgs) Handles CrearButton.Click
 
         If nombreBox.Text.Trim.Length = 0 Then
-            MsgBox("Debe haber un nombre para el lugar", MsgBoxStyle.Critical)
+            MsgBoxI18N("Debe haber un nombre para el lugar ", MsgBoxStyle.Critical)
             Return
         End If
 
         If Fachada.getInstancia.numeroDeLugarGrandeConEseNombre(nombreBox.Text.Trim) = 1 Then
-            MsgBox("El nombre ya existe para ese lugar", MsgBoxStyle.Critical)
+            MsgBoxI18N("El nombre ya existe para ese lugar ", MsgBoxStyle.Critical)
             Return
         End If
 
         If position Is Nothing Then
-            MsgBox("Debe establecer la posición del lugar")
+            MsgBoxI18N("Debe establecer la posición del lugar")
             Return
         End If
         If TipoLugar.SelectedIndex < 0 Then
-            MsgBox("Debe establecer el tipo del lugar")
+            MsgBoxI18N("Debe establecer el tipo del lugar")
             Return
         End If
         If mediosPermitidos.CheckedItems.Count < 1 Then
-            MsgBox("Debe permitir al menos un medio de transporte")
+            MsgBoxI18N("Debe permitir al menos un medio de transporte")
             Return
         End If
 
         If Not TipoLugar.SelectedIndex = 0 Then
             If posicionesLugar Is Nothing Then
-                MsgBox("Debe selecionar las zonas y subzonas a ingresar dentro del lugar", MsgBoxStyle.Critical)
+                MsgBoxI18N("Debe selecionar las zonas y subzonas a ingresar dentro del lugar", MsgBoxStyle.Critical)
                 Return
             End If
 
             If capacidad.Value <= 0 Then
-                MsgBox("La capasidad del lugar debe ser mayor a 0", MsgBoxStyle.Critical)
+                MsgBoxI18N("La capacidad del lugar debe ser mayor a 0", MsgBoxStyle.Critical)
                 Return
             End If
         End If
@@ -91,10 +91,10 @@ Public Class NuevoLugar
                     Controladores.Marco.getInstancia.CargarPanel(New PanelLugar(lugar.IDLugar))
                     Controladores.Marco.getInstancia.cerrarPanel(Of NuevoLugar)()
                 Else
-                    MsgBox("No se pudo crear el lugar, por favor verifique la información")
+                    MsgBoxI18N("No se pudo crear el lugar, por favor verifique la información")
                 End If
             Catch ex As Controladores.InvalidStateException(Of Integer)
-                MsgBox("Excepción!")
+                MsgBoxI18N("Excepción!")
                 MsgBox(ex.Message)
             End Try
         Else
@@ -110,7 +110,7 @@ Public Class NuevoLugar
                 Controladores.Marco.getInstancia.cerrarPanel(Of NuevoLugar)()
                 Return
             Catch ex As Exception
-                MsgBox("Ya hay un lugar con este nombre cargado para ese cliente", MsgBoxStyle.Critical)
+                MsgBoxI18N("Ya hay un lugar con este nombre cargado para ese cliente", MsgBoxStyle.Critical)
                 Return
             End Try
 
@@ -165,7 +165,7 @@ Public Class NuevoLugar
             HScrollBar1.Value = XScroll
             VScrollBar1.Value = YScroll
         Else
-            MsgBox($"No se pudo encontrar el lugar: {[Enum].GetName(GetType(GMap.NET.GeoCoderStatusCode), gcsc)}")
+            MsgBox(Controladores.Funciones_comunes.I18N("No se pudo encontrar el lugar:", Controladores.Marco.getInstancia.Language) & [Enum].GetName(GetType(GMap.NET.GeoCoderStatusCode), gcsc))
         End If
     End Sub
 
@@ -178,6 +178,8 @@ Public Class NuevoLugar
         clientes = Controladores.Fachada.getInstancia.listaClientes()
         dueños.Items.AddRange(clientes.Select(Function(x) x.Nombre).ToArray)
         dueños.SelectedIndex = 0
+        CrearButton.Text = Controladores.Funciones_comunes.I18N("Aceptar", Controladores.Marco.getInstancia.Language)
+        cancelar.Text = Controladores.Funciones_comunes.I18N("Cancelar", Controladores.Marco.getInstancia.Language)
     End Sub
 
     Public Sub New(papa As Controladores.nuevoLugar)
@@ -196,11 +198,11 @@ Public Class NuevoLugar
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles zonasysubzonas.Click
         If TipoLugar.SelectedIndex = 0 Then
-            MsgBox("Los establesimientos no tiene zonas y subzonas")
+            MsgBoxI18N("Los establesimientos no tiene zonas y subzonas")
         End If
 
         If nombreBox.Text.Trim.Length = 0 OrElse capacidad.Value = 0 Then
-            MsgBox("Primero debe elegir el nombre y la capacidad")
+            MsgBoxI18N("Primero debe elegir el nombre y la capacidad")
             Return
         End If
         If posicionesLugar Is Nothing Then
@@ -216,24 +218,24 @@ Public Class NuevoLugar
 
     Public Sub devolverlugar(lug As Lugar) Implements Controladores.nuevoLugar.devolverlugar
         posicionesLugar = lug
-        estadozonas.Text = "Listo"
+        estadozonas.Text = Controladores.Funciones_comunes.I18N("Listo", Controladores.Marco.getInstancia.Language)
         estadozonas.ForeColor = Drawing.Color.FromArgb(35, 35, 35)
     End Sub
 
     Private Sub TipoLugar_SelectedIndexChanged(sender As Object, e As EventArgs) Handles TipoLugar.SelectedIndexChanged
         If TipoLugar.SelectedIndex = 0 Then
             zonasysubzonas.Enabled = False
-            estadozonas.Text = "No requerido"
+            estadozonas.Text = Controladores.Funciones_comunes.I18N("No requerido", Controladores.Marco.getInstancia.Language)
             dueños.Enabled = True
             capacidad.Enabled = False
         Else
             zonasysubzonas.Enabled = True
             capacidad.Enabled = True
             If posicionesLugar Is Nothing Then
-                estadozonas.Text = "Sin realizar"
+                estadozonas.Text = Controladores.Funciones_comunes.I18N("Sin realizar", Controladores.Marco.getInstancia.Language)
                 estadozonas.ForeColor = Drawing.Color.FromArgb(180, 20, 20)
             Else
-                estadozonas.Text = "Listo"
+                estadozonas.Text = Controladores.Funciones_comunes.I18N("Listo", Controladores.Marco.getInstancia.Language)
                 estadozonas.ForeColor = Drawing.Color.FromArgb(35, 35, 35)
             End If
             dueños.Enabled = False

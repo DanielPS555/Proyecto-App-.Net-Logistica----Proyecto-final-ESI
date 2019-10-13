@@ -17,7 +17,7 @@
         propiedadesDuplicas.Add(New Tuple(Of Size, Point)(Button1.Size, Button1.Location))
         medio = med
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
-
+        Button1.Text = Controladores.Funciones_comunes.I18N("Ver mas", Marco.getInstancia.Language)
     End Sub
 
     Public Sub darAncho(x As Integer) Implements IAlfaInterface.darAncho

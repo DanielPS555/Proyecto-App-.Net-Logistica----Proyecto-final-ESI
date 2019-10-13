@@ -29,7 +29,6 @@ Partial Class panel
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
-        Me.Button3 = New System.Windows.Forms.Button()
         Me.Button4 = New System.Windows.Forms.Button()
         Me.rutTextBox = New System.Windows.Forms.TextBox()
         Me.nombre = New System.Windows.Forms.TextBox()
@@ -112,18 +111,6 @@ Partial Class panel
         Me.Button2.Text = "Nuevo "
         Me.Button2.UseVisualStyleBackColor = True
         '
-        'Button3
-        '
-        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button3.Font = New System.Drawing.Font("Segoe UI Semilight", 15.0!)
-        Me.Button3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(140, Byte), Integer), CType(CType(217, Byte), Integer))
-        Me.Button3.Location = New System.Drawing.Point(635, 352)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(233, 40)
-        Me.Button3.TabIndex = 7
-        Me.Button3.Text = "Editar"
-        Me.Button3.UseVisualStyleBackColor = True
-        '
         'Button4
         '
         Me.Button4.BackColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(140, Byte), Integer), CType(CType(217, Byte), Integer))
@@ -166,7 +153,6 @@ Partial Class panel
         Me.Controls.Add(Me.nombre)
         Me.Controls.Add(Me.rutTextBox)
         Me.Controls.Add(Me.Button4)
-        Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Label4)
@@ -191,7 +177,6 @@ Partial Class panel
     Friend WithEvents Label4 As Windows.Forms.Label
     Friend WithEvents Button1 As Windows.Forms.Button
     Friend WithEvents Button2 As Windows.Forms.Button
-    Friend WithEvents Button3 As Windows.Forms.Button
     Friend WithEvents Button4 As Windows.Forms.Button
     Friend WithEvents rutTextBox As Windows.Forms.TextBox
     Friend WithEvents nombre As Windows.Forms.TextBox

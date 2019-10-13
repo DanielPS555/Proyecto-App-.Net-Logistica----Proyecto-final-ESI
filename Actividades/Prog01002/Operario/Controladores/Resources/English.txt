@@ -3,7 +3,7 @@ Client list
 Place list
 User list
 New preload
-New client
+New Client
 New place
 Zones list
 Batch list
@@ -94,3 +94,33 @@ Type {0} was not recognized!
 Error interpreting color: {0}
 The VIN must have a length of 17, failed for {0}
 Name
+New medium
+Accept
+There must be a name for the place
+The name already exists for that place
+You must establish the position of the place
+You must set the type of place
+You must allow at least one means of transport
+You must select the zones and subzones to enter within the place
+The capacity of the place must be greater than 0
+The place could not be created, please verify the information
+Exception!
+There is already a place with this name loaded for that customer
+Could not find place:
+The establishments do not have zones and subzones
+First you must choose the name and capacity
+Ready
+Not required
+Undone
+New
+Remove
+New client
+Customer Establishments
+You must first enter the name of the client
+You must select a place to delete
+Error, Rut or client name empty
+The Ruth must be 12 digits only
+It must be only numeric
+Error, the name of this client is already in use
+At least you must load a customer establishment
+Added successfully

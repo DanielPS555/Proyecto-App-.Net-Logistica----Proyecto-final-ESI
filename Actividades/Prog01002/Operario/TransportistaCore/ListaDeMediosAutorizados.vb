@@ -30,5 +30,6 @@ Public Class ListaDeMediosAutorizados
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Marco.getInstancia.CargarPanel(Of NuevoMedio)(New NuevoMedio)
+        Button1.Text = Controladores.Funciones_comunes.I18N("Nuevo medio", Controladores.Marco.getInstancia.Language)
     End Sub
 End Class

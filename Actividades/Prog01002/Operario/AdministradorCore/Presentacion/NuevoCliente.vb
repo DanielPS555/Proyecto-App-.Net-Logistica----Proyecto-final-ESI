@@ -9,7 +9,11 @@ Public Class panel
         InitializeComponent()
         Label3.Traducir
         Button4.Traducir
-
+        Button2.Traducir
+        Button1.Traducir
+        Label1.Traducir
+        Label3.Traducir
+        Label4.Traducir
     End Sub
 
     Public Sub devolverlugar(lug As Lugar) Implements Controladores.nuevoLugar.devolverlugar
@@ -24,12 +28,12 @@ Public Class panel
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         If nombre.Text.Trim.Length = 0 Then
-            MsgBox("Primero debe ingresar el nombre del cliente", MsgBoxStyle.Critical)
+            MsgBoxI18N("Primero debe ingresar el nombre del cliente", MsgBoxStyle.Critical)
             Return
         End If
 
         If nombre.Text.Trim.Length = 0 Then
-            MsgBox("Primero debe ingresar el nombre del cliente", MsgBoxStyle.Critical)
+            MsgBoxI18N("Primero debe ingresar el nombre del cliente", MsgBoxStyle.Critical)
             Return
         End If
         cliente.Nombre = nombre.Text
@@ -38,7 +42,7 @@ Public Class panel
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         If listaDeLugares.SelectedIndex = -1 Then
-            MsgBox("Debe selecionar un lugar que eliminar")
+            MsgBoxI18N("Debe selecionar un lugar que eliminar")
         Else
             cliente.Lugares.RemoveAt(listaDeLugares.SelectedIndex)
             listaDeLugares.Items.RemoveAt(listaDeLugares.SelectedIndex)
@@ -47,33 +51,33 @@ Public Class panel
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
         If rutTextBox.Text.Trim.Length = 0 OrElse nombre.Text.Trim.Length = 0 Then
-            MsgBox("Error, Rut o nombre del cliente vacios", MsgBoxStyle.Critical)
+            MsgBoxI18N("Error, Rut o nombre del cliente vacios", MsgBoxStyle.Critical)
             Return
         End If
 
         If rutTextBox.Text.Trim.Length <> 12 Then
-            MsgBox("El Rut debe ser de 12 dijitos unicamente", MsgBoxStyle.Critical)
+            MsgBoxI18N("El Rut debe ser de 12 dijitos unicamente", MsgBoxStyle.Critical)
             Return
         End If
 
         If Not Funciones_comunes.soloNumeros(rutTextBox.Text.Trim) Then
-            MsgBox("Debe ser unicamente numerico", MsgBoxStyle.Critical)
+            MsgBoxI18N("Debe ser unicamente numerico", MsgBoxStyle.Critical)
             Return
         End If
 
         If Controladores.Fachada.getInstancia.nombredeClienteEnUso(nombre.Text) Then
-            MsgBox("Error, el nombre de este cliente ya esta en uso", MsgBoxStyle.Critical)
+            MsgBoxI18N("Error, el nombre de este cliente ya esta en uso", MsgBoxStyle.Critical)
             Return
         End If
 
         If cliente.Lugares.Count = 0 Then
-            MsgBox("Al menos debe cargar un establecimiento del cliente", MsgBoxStyle.Critical)
+            MsgBoxI18N("Al menos debe cargar un establecimiento del cliente", MsgBoxStyle.Critical)
             Return
         End If
         cliente.Nombre = nombre.Text.Trim
         cliente.RUT = rutTextBox.Text.Trim
         Fachada.getInstancia.nuevoCliente(cliente)
-        MsgBox("Agregado con exito")
+        MsgBoxI18N("Agregado con exito")
         Marco.getInstancia.CargarPanel(Of ListarClientes)(New ListarClientes)
         Me.Close()
     End Sub

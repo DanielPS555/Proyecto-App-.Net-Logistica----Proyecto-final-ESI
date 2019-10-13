@@ -94,3 +94,33 @@ El tipo {0} no se reconoció!
 Error al interpretar el color: {0}
 El VIN debe tener una longitud de 17, falló para {0}
 Nombre
+Nuevo medio
+Aceptar
+Debe haber un nombre para el lugar
+El nombre ya existe para ese lugar
+Debe establecer la posición del lugar
+Debe establecer el tipo del lugar
+Debe permitir al menos un medio de transporte
+Debe selecionar las zonas y subzonas a ingresar dentro del lugar
+La capacidad del lugar debe ser mayor a 0
+No se pudo crear el lugar, por favor verifique la información
+Excepción!
+Ya hay un lugar con este nombre cargado para ese cliente
+No se pudo encontrar el lugar:
+Los establesimientos no tiene zonas y subzonas
+Primero debe elegir el nombre y la capacidad
+Listo
+No requerido
+Sin realizar
+Nuevo
+Eliminar
+Nuevo cliente
+Establecimientos del cliente
+Primero debe ingresar el nombre del cliente
+Debe selecionar un lugar que eliminar
+Error, Rut o nombre del cliente vacios
+El Rut debe ser de 12 dijitos unicamente
+Debe ser unicamente numerico
+Error, el nombre de este cliente ya esta en uso
+Al menos debe cargar un establecimiento del cliente
+Agregado con exito
