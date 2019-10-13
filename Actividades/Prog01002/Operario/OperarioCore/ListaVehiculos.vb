@@ -42,7 +42,13 @@ Public Class ListaVehiculos
                 NoAsignados()
             Case "Entregados"
                 Entregados()
+            Case "Retirados"
+                Retirados()
         End Select
+    End Sub
+
+    Public Sub Retirados()
+        DataGridView1.DataSource = Fachada.getInstancia.VehiculosRetirados()
     End Sub
 
     Public Sub Entregados()
