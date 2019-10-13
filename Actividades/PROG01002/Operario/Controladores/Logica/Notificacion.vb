@@ -30,7 +30,8 @@
         End Set
     End Property
     Public Sub New(tipo As String)
-        Me.tipo = tipo
+        Me.Tipo = tipo
+        Me._fecha = DateTime.Now
     End Sub
 
     Public Property Tipo() As String

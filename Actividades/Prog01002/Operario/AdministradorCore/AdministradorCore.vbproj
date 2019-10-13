@@ -57,6 +57,15 @@
     <Reference Include="GMap.NET.WindowsForms">
       <HintPath>..\GMap.NET.WindowsForms.dll</HintPath>
     </Reference>
+    <Reference Include="IronPython">
+      <HintPath>..\IronPython.dll</HintPath>
+    </Reference>
+    <Reference Include="IronPython.Modules">
+      <HintPath>..\IronPython.Modules.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamic">
+      <HintPath>..\Microsoft.Dynamic.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Msagl">
       <HintPath>..\Administrador\Microsoft.Msagl.dll</HintPath>
     </Reference>
@@ -66,14 +75,14 @@
     <Reference Include="Microsoft.Msagl.GraphViewerGdi">
       <HintPath>..\Administrador\Microsoft.Msagl.GraphViewerGdi.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Scripting">
+      <HintPath>..\Microsoft.Scripting.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="QRCoder">
       <HintPath>..\QRCoder.dll</HintPath>
-    </Reference>
-    <Reference Include="schemy">
-      <HintPath>..\schemy.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -99,7 +108,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LispBox.vb" />
+    <Compile Include="PythonBox.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -140,10 +149,10 @@
     <Compile Include="Presentacion\Incongrencia.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Presentacion\LispPanel.Designer.vb">
-      <DependentUpon>LispPanel.vb</DependentUpon>
+    <Compile Include="Presentacion\PythonPanel.Designer.vb">
+      <DependentUpon>PythonPanel.vb</DependentUpon>
     </Compile>
-    <Compile Include="Presentacion\LispPanel.vb">
+    <Compile Include="Presentacion\PythonPanel.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Presentacion\ListaDeTrasportes.Designer.vb">
@@ -247,8 +256,8 @@
     <EmbeddedResource Include="Presentacion\Incongrencia.resx">
       <DependentUpon>Incongrencia.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion\LispPanel.resx">
-      <DependentUpon>LispPanel.vb</DependentUpon>
+    <EmbeddedResource Include="Presentacion\PythonPanel.resx">
+      <DependentUpon>PythonPanel.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\ListaDeTrasportes.resx">
       <DependentUpon>ListaDeTrasportes.vb</DependentUpon>
@@ -316,34 +325,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Listar_Clientes.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Listar_Lugares.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Listar_Usuario.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Nueva_Precarga.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Precargas_masivas.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Mensajes.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Consola_de_Scheme.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Lista_vehiculos.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Chat.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Lista_de_medios.png" />
+    <Folder Include="Resources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

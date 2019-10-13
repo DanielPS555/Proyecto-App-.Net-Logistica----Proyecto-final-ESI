@@ -124,9 +124,6 @@
   <data name="Chat" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Chat.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Consola_de_Scheme" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Consola_de_Scheme.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Listar_Clientes" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Listar_Clientes.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -180,5 +177,8 @@
   </data>
   <data name="texto" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\texto.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Consola_de_Python" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Consola_de_Python.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

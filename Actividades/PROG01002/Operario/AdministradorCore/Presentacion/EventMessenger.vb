@@ -26,7 +26,8 @@
 
     Private Sub enviarBtn_Click(sender As Object, e As EventArgs) Handles enviarBtn.Click
         Controladores.Fachada.getInstancia.CargarDataBaseDelUsuario()
-        Controladores.Fachada.getInstancia.EnviarMensaje(Controladores.Fachada.getInstancia.DevolverUsuarioActual, CType(vehicleList.SelectedItem, Tuple(Of Controladores.Vehiculo, Boolean)).Item1, messageLine.Text)
+        Dim datoVehiculo As Tuple(Of Controladores.Vehiculo, Boolean) = vehicleList.SelectedItem
+        Controladores.Fachada.getInstancia.EnviarMensaje(datoVehiculo.Item1, messageLine.Text)
         ActualizarMensajes()
     End Sub
 End Class

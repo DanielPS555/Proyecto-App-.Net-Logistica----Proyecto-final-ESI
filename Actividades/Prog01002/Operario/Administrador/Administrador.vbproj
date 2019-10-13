@@ -206,7 +206,7 @@
     <None Include="Resources\Chat.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Consola_de_Scheme.png" />
+    <None Include="Resources\Consola_de_Python.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Lista_de_medios.png" />

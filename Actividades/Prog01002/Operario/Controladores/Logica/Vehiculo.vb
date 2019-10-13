@@ -24,6 +24,10 @@
         End Get
     End Property
 
+    Public Function AsTuple() As Tuple(Of String, String, String, Integer, String)
+        Return New Tuple(Of String, String, String, Integer, String)(VIN, Marca, Modelo, Año, Cliente.Nombre)
+    End Function
+
     Public Sub New()
 
     End Sub

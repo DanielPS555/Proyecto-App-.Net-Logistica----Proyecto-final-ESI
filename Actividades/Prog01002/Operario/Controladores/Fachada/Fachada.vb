@@ -86,11 +86,11 @@ Public Class Fachada
         Return messages.Select(Function(x) x.Item1).ToList
     End Function
 
-    Public Function EnviarMensaje(usuarioEnvia As Usuario, vehiculo As Vehiculo, mensaje As String)
+    Public Function EnviarMensaje(vehiculo As Vehiculo, mensaje As String)
         Dim jsonObject As New Dictionary(Of String, Object)
         jsonObject("tipo") = "comentario"
         jsonObject("por") = "admin"
-        jsonObject("autor") = usuarioEnvia.ID_usuario
+        jsonObject("autor") = DevolverUsuarioActual().ID_usuario ' No hay ninguna necesidad de exponer la API a llamadas por otros usuarios
         jsonObject("idvehiculo") = vehiculo.IdVehiculo
         jsonObject("mensaje") = mensaje
         Dim jsonString = Newtonsoft.Json.JsonConvert.SerializeObject(jsonObject)

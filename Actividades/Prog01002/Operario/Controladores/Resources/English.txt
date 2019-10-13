@@ -55,7 +55,7 @@ Insert a description for the report
 If it's an register update/nulling you must select a register to reference.
 Massive preloads
 Messages
-Scheme REPL
+Python REPL
 Transport list
 Authorized mediums
 Search
