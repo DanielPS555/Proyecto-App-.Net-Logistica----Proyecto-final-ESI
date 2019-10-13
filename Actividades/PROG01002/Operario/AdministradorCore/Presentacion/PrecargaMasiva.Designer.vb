@@ -28,6 +28,7 @@ Partial Class PrecargaMasiva
         Me.uploadPreloads = New System.Windows.Forms.Button()
         Me.vehicleBox = New System.Windows.Forms.ListBox()
         Me.Label2 = New System.Windows.Forms.Label()
+        Me.clearList = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'OptionalColumns
@@ -62,9 +63,9 @@ Partial Class PrecargaMasiva
         'uploadPreloads
         '
         Me.uploadPreloads.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.uploadPreloads.Location = New System.Drawing.Point(738, 25)
+        Me.uploadPreloads.Location = New System.Drawing.Point(527, 25)
         Me.uploadPreloads.Name = "uploadPreloads"
-        Me.uploadPreloads.Size = New System.Drawing.Size(130, 23)
+        Me.uploadPreloads.Size = New System.Drawing.Size(341, 23)
         Me.uploadPreloads.TabIndex = 4
         Me.uploadPreloads.Text = "Subir precargas"
         Me.uploadPreloads.UseVisualStyleBackColor = True
@@ -86,12 +87,23 @@ Partial Class PrecargaMasiva
         Me.Label2.TabIndex = 6
         Me.Label2.Text = "Haga click en los elementos de la lista para acceder al panel de Precarga"
         '
+        'clearList
+        '
+        Me.clearList.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.clearList.Location = New System.Drawing.Point(527, 66)
+        Me.clearList.Name = "clearList"
+        Me.clearList.Size = New System.Drawing.Size(341, 23)
+        Me.clearList.TabIndex = 7
+        Me.clearList.Text = "Vaciar listardovich"
+        Me.clearList.UseVisualStyleBackColor = True
+        '
         'PrecargaMasiva
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(880, 650)
+        Me.Controls.Add(Me.clearList)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.vehicleBox)
         Me.Controls.Add(Me.uploadPreloads)
@@ -112,4 +124,5 @@ Partial Class PrecargaMasiva
     Friend WithEvents uploadPreloads As Windows.Forms.Button
     Friend WithEvents vehicleBox As Windows.Forms.ListBox
     Friend WithEvents Label2 As Windows.Forms.Label
+    Friend WithEvents clearList As Windows.Forms.Button
 End Class

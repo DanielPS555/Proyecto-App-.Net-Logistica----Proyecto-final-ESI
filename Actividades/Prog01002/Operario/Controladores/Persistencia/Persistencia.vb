@@ -76,6 +76,17 @@ order by 7", _con)
         Return dt
     End Function
 
+    Friend Function VehiculosEntregados() As DataTable
+        Dim selectCmd As New OdbcCommand("select vehiculo.idvehiculo as IDVehiculo, vin as VIN, lugar.nombre as Lugar
+from lugar inner join lote on lote.destino=lugar.idlugar and lugar.tipo='Establecimiento'
+inner join transporta on transporta.idlote=lote.idlote and transporta.estado='Exitoso'
+inner join integra on integra.lote=lote.idlote
+inner join vehiculo on vehiculo.idvehiculo=integra.idvehiculo", _con)
+        Dim dt As New DataTable
+        dt.Load(selectCmd.ExecuteReader)
+        Return dt
+    End Function
+
     Public Function CheckViews(ids() As Integer) As DataTable
         If ids.Count < 1 Then Return New DataTable
         Dim parameterSubrange = String.Join(",", "?".Multiply(ids.Length).Cast(Of Object).ToArray)

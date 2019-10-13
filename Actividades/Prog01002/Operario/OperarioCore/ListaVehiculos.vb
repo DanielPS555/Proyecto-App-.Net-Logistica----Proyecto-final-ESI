@@ -2,18 +2,12 @@ Imports Controladores
 Imports System.Drawing
 Imports System.Windows.Forms
 Public Class ListaVehiculos
-    Private ReadOnly Property tipolista As Boolean
-        Get
-            Return Me.tiposListas.SelectedItem <> "No asignados"
-        End Get
-    End Property
-
     Public Sub New()
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
 
-        If Controladores.Fachada.getInstancia.TrabajaEnAcutual IsNot Nothing AndAlso Controladores.Fachada.getInstancia.TrabajaEnAcutual.Lugar.Tipo = Lugar.TIPO_LUGAR_PUERTO Then
+        If Fachada.getInstancia.TrabajaEnAcutual IsNot Nothing AndAlso Fachada.getInstancia.TrabajaEnAcutual.Lugar.Tipo = Lugar.TIPO_LUGAR_PUERTO Then
             nuevo.Visible = True
         Else
             nuevo.Visible = False
@@ -22,6 +16,7 @@ Public Class ListaVehiculos
         If Fachada.getInstancia.DevolverUsuarioActual.Rol <> Usuario.TIPO_ROL_ADMINISTRADOR Then
             LugaresBox.Items.Add(Fachada.getInstancia.TrabajaEnAcutual.Lugar)
             LugaresBox.Enabled = False
+            tiposListas.Items.Remove("Entregados")
         Else
             LugaresBox.Items.AddRange(Fachada.getInstancia.LugaresObjetos)
         End If
@@ -30,14 +25,29 @@ Public Class ListaVehiculos
         DataGridView1.MultiSelect = False
         criterios.SelectedIndex = 0
         tiposListas.SelectedIndex = 0
-        buscar.Text = Controladores.Funciones_comunes.I18N("Buscar", Controladores.Marco.getInstancia.Language)
-        nuevo.Text = Controladores.Funciones_comunes.I18N("Nuevo vehiculo", Controladores.Marco.getInstancia.Language)
+        buscar.Text = Controladores.Funciones_comunes.I18N("Buscar", Marco.Language)
+        nuevo.Text = Controladores.Funciones_comunes.I18N("Nuevo vehiculo", Marco.Language)
 
     End Sub
 
     Private lugar As Lugar
 
     Dim t As DataTable
+
+    Public Sub UpdateVehicles()
+        Select Case tiposListas.SelectedItem
+            Case "Asignados"
+                Asignados()
+            Case "No asignados"
+                NoAsignados()
+            Case "Entregados"
+                Entregados()
+        End Select
+    End Sub
+
+    Public Sub Entregados()
+        DataGridView1.DataSource = Fachada.getInstancia.VehiculosEntregados()
+    End Sub
 
     Public Sub Asignados()
         If lugar IsNot Nothing Then
@@ -61,13 +71,16 @@ Public Class ListaVehiculos
     End Sub
 
     Private Sub DataGridView1_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellDoubleClick
-        If tipolista Then
-            Dim row = DataGridView1.Rows()(e.RowIndex)
-            Marco.getInstancia.CargarPanel(New panelInfoVehiculo(row.Cells(1).Value)).Show()
-        Else
-            Dim eleme As New Asignacion(DataGridView1.Rows(e.RowIndex).Cells(1).Value, lugar)
-            eleme.ShowDialog()
-        End If
+        '            
+        Select Case tiposListas.SelectedItem
+            Case "No asignados"
+                Dim eleme As New Asignacion(DataGridView1.Rows(e.RowIndex).Cells(1).Value, lugar)
+                eleme.ShowDialog()
+            Case Else
+                Dim row = DataGridView1.Rows()(e.RowIndex)
+                Marco.getInstancia.CargarPanel(New panelInfoVehiculo(row.Cells(1).Value)).Show()
+        End Select
+        '
 
     End Sub
 
@@ -77,20 +90,11 @@ Public Class ListaVehiculos
 
     Private Sub LugaresBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles LugaresBox.SelectedIndexChanged
         lugar = LugaresBox.SelectedItem
-        If tipolista Then
-            Asignados()
-        Else
-            NoAsignados()
-        End If
+        UpdateVehicles()
     End Sub
 
     Private Sub tiposListas_SelectedIndexChanged(sender As Object, e As EventArgs) Handles tiposListas.SelectedIndexChanged
-        Select Case DirectCast(tiposListas.SelectedItem, String)
-            Case "Asignados"
-                Asignados()
-            Case "No asignados"
-                NoAsignados()
-        End Select
+        UpdateVehicles()
     End Sub
 End Class
 

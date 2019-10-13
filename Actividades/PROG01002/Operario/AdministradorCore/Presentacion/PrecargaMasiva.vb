@@ -10,16 +10,17 @@ Public Class PrecargaMasiva
         {"azul", Drawing.Color.Blue},
         {"amarillo", Drawing.Color.Yellow},
         {"verde", Drawing.Color.Green}
-        }
+    }
     Public Sub New()
 
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
 
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
-        uploadPreloads.Text = Controladores.Funciones_comunes.I18N("Subir precargas", Controladores.Marco.getInstancia.Language)
-        openCSV.Text = Controladores.Funciones_comunes.I18N("Abrir CSV", Controladores.Marco.getInstancia.Language)
+        uploadPreloads.Text = Funciones_comunes.I18N("Subir precargas", Marco.Language)
+        openCSV.Text = Funciones_comunes.I18N("Abrir CSV", Marco.Language)
     End Sub
+
     Private Sub openCSV_Click(sender As Object, e As EventArgs) Handles openCSV.Click
         Dim cols(OptionalColumns.CheckedItems.Count) As String
         OptionalColumns.CheckedItems.CopyTo(cols, 1)
@@ -36,7 +37,7 @@ Public Class PrecargaMasiva
         For Each r In k.Rows.Cast(Of DataRow)
             Dim VIN As String = r("VIN")
             If VIN Is Nothing OrElse VIN.Length <> 17 Then
-                MsgBoxI18NFormat("El VIN debe tener una longitud de 17, falló para {0} ", VIN)
+                MsgBoxI18NFormat("El VIN debe tener una longitud de 17, falló para {0}", VIN)
             End If
             Dim Marca As String = Funciones_comunes.AutoNull(Of String)(r("Marca"))
             If Marca Is Nothing OrElse Marca.Length < 1 Then
@@ -101,7 +102,6 @@ Public Class PrecargaMasiva
     Private Sub uploadPreloads_Click(sender As Object, e As EventArgs) Handles uploadPreloads.Click
         If Verify.Length > 0 And Verify.Aggregate(True, Function(x, y) x And y) Then
             Fachada.getInstancia.CargarDataBaseDelUsuario()
-
             For Each v As Vehiculo In vehicleBox.Items
                 Fachada.getInstancia.nuevaPrecarga(v, Fachada.getInstancia.DevolverUsuarioActual)
             Next
@@ -110,6 +110,10 @@ Public Class PrecargaMasiva
         Else
             MsgBoxI18N("Debe acceder a todos los vehículos para subir la precarga")
         End If
+    End Sub
 
+    Private Sub clearList_Click(sender As Object, e As EventArgs) Handles clearList.Click
+        vehicleBox.Items.Clear()
+        ReDim Verify(-1)
     End Sub
 End Class

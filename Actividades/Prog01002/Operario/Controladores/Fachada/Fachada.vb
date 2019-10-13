@@ -41,6 +41,11 @@ Public Class Fachada
         Persistencia.getInstancia.BajaVehiculo(vehiculo.IdVehiculo, jsonObj, DevolverUsuarioActual.ID_usuario)
     End Sub
 
+    Public Function VehiculosEntregados() As DataTable ' re que es un alias para no llamar directamente a persistencia xdddddddddddd
+        ' high end software architecture
+        Return Persistencia.getInstancia.VehiculosEntregados()
+    End Function
+
     Friend Function MensajePara(Destinatario As Usuario, Mensaje As String, Optional datos As Dictionary(Of String, Object) = Nothing) As Boolean
         If datos Is Nothing Then datos = New Dictionary(Of String, Object)
         datos("tipo") = "mensaje"
@@ -1014,8 +1019,16 @@ Public Class Fachada
     End Function
 
     Public Function LugaresObjetos() As Lugar()
-        Return Me.listarTodosLosLugares.Rows.Cast(Of DataRow).Select(
-                                         Function(x) New Lugar() With {.IDLugar = x.Item(0), .Nombre = x.Item(1)}).ToArray
+        Return listarTodosLosLugares.Rows.Cast(Of DataRow).
+            Select(
+                Function(x) New Lugar() With {
+                    .IDLugar = x.Item(0),
+                    .Nombre = x.Item(1),
+                    .Tipo = x.Item(2)
+                }
+            ).
+            Where(Function(x) x.Tipo <> "Establecimiento").
+            ToArray
     End Function
 
     Public Function informacionBaseDelLugarPorIdlugar(idlugar As Integer) As Lugar
@@ -1063,7 +1076,20 @@ Public Class Fachada
     End Function
 
     Public Function TodosLosUsuariosObjetos() As List(Of Usuario)
-        Return TodosLosUsuariosTabla.Rows.Cast(Of DataRow).Select(Function(user) New Controladores.Usuario With {.ID_usuario = user.Item(0), .NombreDeUsuario = user.Item(1), .Rol = user.Item(4)}).ToList
+        Dim usuarioActual As String = NombreUsuarioActual() ' Si esto fuese C++, el programa estuviese bien diseñado, y NombreUsuarioActual
+        ' estuviese marcada como Const,
+        ' no necesitaría guardar el resultado en variable porque el compilador optimizaría todas las llamadas a una variable local
+        ' lamentablemente, como esto no es C++, el programa hace llamadas a BD dentro de la función NombreUsuarioActual, y por ende
+        ' no es una función constante (modifica el objeto al que pertenece), tengo que guardar el nombre en una variable local
+        Return TodosLosUsuariosTabla.Rows.Cast(Of DataRow).
+            Select(
+            Function(user) New Controladores.Usuario With {
+                    .ID_usuario = user.Item(0),
+                    .NombreDeUsuario = user.Item(1),
+                    .Rol = user.Item(4)
+            }).
+            Where(Function(x) x.NombreDeUsuario <> usuarioActual). ' no me maten
+            ToList()
     End Function
 
     Public Function MensajesEntre(Usuario1 As Usuario, Usuario2 As Usuario) As List(Of Evento)

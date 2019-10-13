@@ -17,7 +17,8 @@ Public Class LugarDeTrabajo
             {"Lista zonas", GetType(ListaZonas)},
             {"Lista vehiculos", GetType(ListaVehiculos)},
             {"Nuevo vehiculo", GetType(NuevoVehiculo)},
-            {"Lista lotes", GetType(ListaLotes)}
+            {"Lista lotes", GetType(ListaLotes)},
+            {"Chat", GetType(ChatInterno)}
         }
         If Fachada.getInstancia.LugarZonasySubzonas(-1, CType(DirectCast(lugares.SelectedItem, TrabajaEn), TrabajaEn).Lugar).Tipo <> Lugar.TIPO_LUGAR_PUERTO Then
             paneles.Remove("Nuevo vehiculo")

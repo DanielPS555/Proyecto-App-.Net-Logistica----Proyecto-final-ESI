@@ -6,6 +6,7 @@
         InitializeComponent()
 
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
+
         alfa = New Alfa(GetType(Evento), GetType(SUB_Mensaje)) With {
             .Size = New Drawing.Size(574, 560),
             .Location = New Point(250, 12)
@@ -13,7 +14,8 @@
         Me.Controls.Add(alfa)
         Me.Update()
 
-        UsuariosMensajeria.Items.AddRange(Fachada.getInstancia.TodosLosUsuariosObjetos.ToArray)
+        UsuariosMensajeria.Items.AddRange(Fachada.getInstancia.TodosLosUsuariosObjetos.ToArray) ' Agregamos la lista de usuarios
+
     End Sub
 
     Private Sub UsuariosMensajeria_SelectedIndexChanged(sender As Object, e As EventArgs) Handles UsuariosMensajeria.SelectedIndexChanged
@@ -39,7 +41,10 @@
             UsuariosMensajeria_SelectedIndexChanged(Nothing, Nothing)
             Return
         End If
-        Dim videoEvent As Controladores.Evento
+
+        Dim videoEvent As Evento = Nothing
+        ' Si no asignamos = nothing se queja de que no tiene asignación, a pesar de que (teoréticamente) al ser un lenguaje GC la asignación por defecto debería ser nothing
+
         For Each m In newMsgs
             alfa.Nuevo(m, False)
             If m.Datos.ContainsKey("video") AndAlso m.Datos("autor") <> Fachada.getInstancia.DevolverUsuarioActual.ID_usuario Then
