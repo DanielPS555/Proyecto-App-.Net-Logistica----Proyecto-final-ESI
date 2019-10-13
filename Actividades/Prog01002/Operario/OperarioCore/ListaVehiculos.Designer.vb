@@ -50,9 +50,9 @@ Partial Class ListaVehiculos
         Me.buscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.buscar.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.buscar.ForeColor = System.Drawing.Color.White
-        Me.buscar.Location = New System.Drawing.Point(778, 12)
+        Me.buscar.Location = New System.Drawing.Point(759, 12)
         Me.buscar.Name = "buscar"
-        Me.buscar.Size = New System.Drawing.Size(86, 35)
+        Me.buscar.Size = New System.Drawing.Size(105, 35)
         Me.buscar.TabIndex = 23
         Me.buscar.Text = "Buscar"
         Me.buscar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -113,7 +113,7 @@ Partial Class ListaVehiculos
         Me.criterios.Items.AddRange(New Object() {"VIN", "Marca", "Modelo", "Tipo"})
         Me.criterios.Location = New System.Drawing.Point(519, 12)
         Me.criterios.Name = "criterios"
-        Me.criterios.Size = New System.Drawing.Size(253, 31)
+        Me.criterios.Size = New System.Drawing.Size(234, 31)
         Me.criterios.TabIndex = 24
         '
         'DataGridView1
