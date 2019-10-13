@@ -44,7 +44,13 @@ Public Class ListaVehiculos
                 Entregados()
             Case "Retirados"
                 Retirados()
+            Case "Dañados"
+                Dañados()
         End Select
+    End Sub
+
+    Private Sub Dañados()
+        DataGridView1.DataSource = Fachada.getInstancia.VehiculosDañados()
     End Sub
 
     Public Sub Retirados()

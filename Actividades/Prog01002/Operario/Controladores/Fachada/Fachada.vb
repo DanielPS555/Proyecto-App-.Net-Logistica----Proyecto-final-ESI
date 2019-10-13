@@ -46,6 +46,10 @@ Public Class Fachada
         Return Persistencia.getInstancia.VehiculosEntregados()
     End Function
 
+    Public Function VehiculosDañados() As DataTable
+        Return Persistencia.getInstancia.VehiculosDañados()
+    End Function
+
     Public Function VehiculosRetirados() As DataTable
         Return Persistencia.getInstancia.VehiculosRetirados()
     End Function

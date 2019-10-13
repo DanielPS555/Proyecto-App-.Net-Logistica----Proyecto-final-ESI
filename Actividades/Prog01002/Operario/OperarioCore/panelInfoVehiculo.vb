@@ -137,6 +137,7 @@ Public Class panelInfoVehiculo
     Public Sub CargarMiLote()
         loteActual = Fachada.getInstancia.LoteVehiculo(vehiculo.VIN)
         LoteCombo.Items.Clear()
+        If loteActual Is Nothing Then Return
         LoteCombo.Items.Add($"ID: {loteActual.IDLote} / NOM: {loteActual.Nombre}")
         LoteCombo.SelectedIndex = 0
     End Sub

@@ -38,3 +38,15 @@ insert into vehiculo(VIN, Tipo, Cliente) values ('002M0859H98LI4Y10', 'Auto', 1)
 insert into vehiculoIngresa(IDVehiculo, Fecha, TipoIngreso, Usuario) values ((select IDVehiculo from vehiculo where vin='002M0859H98LI4Y10'), current year to day, 'Precarga', 1);
 insert into vehiculo(VIN, Tipo, Cliente) values ('21761862Q65525166', 'Auto', 1);
 insert into vehiculoIngresa(IDVehiculo, Fecha, TipoIngreso, Usuario) values ((select IDVehiculo from vehiculo where vin='21761862Q65525166'), current year to day, 'Precarga', 1);
+
+insert into vehiculoIngresa(IDVehiculo, Fecha, TipoIngreso, Usuario) values
+((select IDVehiculo from vehiculo where vin='47873NZU8380A767A'),
+ "2019-07-10 12:35:04", 'Alta', 1);
+insert into posicionado values
+((select idlugar from lugar where nombre="Zona A_1_mvd"),
+ (select idvehiculo from vehiculo where vin="47873NZU8380A767A"),
+ "2019-07-10 12:35:04", "2019-06-29 13:03:21",18,
+ (select idusuario from usuario where primernombre = "Pepe"));
+insert into vehiculoIngresa(IDVehiculo, Fecha, TipoIngreso, Usuario, Detalle) values
+((select IDVehiculo from vehiculo where vin='47873NZU8380A767A'), "2019-07-10 15:50:00", 'Baja', 1,
+ '{"tipo": "destruccion", "idlugar": 1, "mensaje": "ndeah alto tsundere tsunami kyuun"}'::json);
