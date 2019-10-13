@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class PythonPanel
     Inherits System.Windows.Forms.Form
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class PythonPanel
     'NOTA: el Diseñador de Windows Forms necesita el siguiente procedimiento
     'Se puede modificar usando el Diseñador de Windows Forms.  
     'No lo modifique con el editor de código.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.outputBox = New System.Windows.Forms.RichTextBox()
         Me.inputLine = New System.Windows.Forms.TextBox()
@@ -31,11 +31,12 @@ Partial Class PythonPanel
         '
         Me.outputBox.BackColor = System.Drawing.Color.White
         Me.outputBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.outputBox.Dock = System.Windows.Forms.DockStyle.Top
         Me.outputBox.Font = New System.Drawing.Font("Consolas", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.outputBox.Location = New System.Drawing.Point(12, 12)
+        Me.outputBox.Location = New System.Drawing.Point(0, 0)
         Me.outputBox.Name = "outputBox"
         Me.outputBox.ReadOnly = True
-        Me.outputBox.Size = New System.Drawing.Size(856, 532)
+        Me.outputBox.Size = New System.Drawing.Size(880, 650)
         Me.outputBox.TabIndex = 0
         Me.outputBox.Text = ""
         '
@@ -44,23 +45,25 @@ Partial Class PythonPanel
         Me.inputLine.AcceptsTab = True
         Me.inputLine.BackColor = System.Drawing.Color.MistyRose
         Me.inputLine.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.inputLine.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.inputLine.Font = New System.Drawing.Font("Consolas", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.inputLine.Location = New System.Drawing.Point(12, 550)
+        Me.inputLine.Location = New System.Drawing.Point(0, 527)
         Me.inputLine.Multiline = True
         Me.inputLine.Name = "inputLine"
         Me.inputLine.ScrollBars = System.Windows.Forms.ScrollBars.Both
-        Me.inputLine.Size = New System.Drawing.Size(775, 88)
+        Me.inputLine.Size = New System.Drawing.Size(880, 123)
         Me.inputLine.TabIndex = 1
         Me.inputLine.WordWrap = False
         '
         'insertButton
         '
         Me.insertButton.BackColor = System.Drawing.Color.DimGray
+        Me.insertButton.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.insertButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.insertButton.ForeColor = System.Drawing.Color.LightSalmon
-        Me.insertButton.Location = New System.Drawing.Point(793, 550)
+        Me.insertButton.Location = New System.Drawing.Point(0, 464)
         Me.insertButton.Name = "insertButton"
-        Me.insertButton.Size = New System.Drawing.Size(75, 88)
+        Me.insertButton.Size = New System.Drawing.Size(880, 63)
         Me.insertButton.TabIndex = 2
         Me.insertButton.Text = "Evaluar"
         Me.insertButton.UseVisualStyleBackColor = False

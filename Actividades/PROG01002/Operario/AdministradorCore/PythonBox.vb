@@ -5,6 +5,11 @@ Public Class PythonBox
     Private engine As Microsoft.Scripting.Hosting.ScriptEngine = Nothing
     Private scope As Microsoft.Scripting.Hosting.ScriptScope = Nothing
     Private Shared box As PythonBox = Nothing
+    Public ReadOnly Property Locals As IList
+        Get
+            Return scope.GetVariableNames.Select(Function(x) x + ": " + Me.MarshalString(scope.GetVariable(x))).ToList
+        End Get
+    End Property
 
     Public Shared Function GetInstancia() As PythonBox
         If box Is Nothing Then
@@ -14,6 +19,7 @@ Public Class PythonBox
     End Function
 
     Public Function MarshalString(pyObj As Object) As String
+        If pyObj Is Nothing Then Return Nothing
         Try
             If engine.Operations.GetMemberNames(pyObj).Contains("__repr__") Then
                 Return engine.Operations.InvokeMember(pyObj, "__repr__")

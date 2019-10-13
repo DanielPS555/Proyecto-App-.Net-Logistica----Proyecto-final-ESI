@@ -45,6 +45,7 @@
     End Property
 
     Public Sub Limpiar()
+        Me.lista.ForEach(Sub(x) x.dameForm.Close())
         Me.lista.Clear()
     End Sub
 

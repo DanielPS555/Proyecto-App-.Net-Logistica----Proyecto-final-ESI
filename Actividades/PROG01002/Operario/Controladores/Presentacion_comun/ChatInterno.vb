@@ -26,8 +26,10 @@
         timer = New Timer With {
             .Interval = 350
         }
+        alfa.Limpiar()
         AddHandler timer.Tick, AddressOf UpdateMessages
         lastMessageId = 0
+        alfa.Refresh()
         timer.Start()
     End Sub
 
@@ -44,7 +46,6 @@
 
         Dim videoEvent As Evento = Nothing
         ' Si no asignamos = nothing se queja de que no tiene asignación, a pesar de que (teoréticamente) al ser un lenguaje GC la asignación por defecto debería ser nothing
-
         For Each m In newMsgs
             alfa.Nuevo(m, False)
             If m.Datos.ContainsKey("video") AndAlso m.Datos("autor") <> Fachada.getInstancia.DevolverUsuarioActual.ID_usuario Then

@@ -38,7 +38,7 @@ Public Class panelInfoVehiculo
         EliminarLoteSelecion.Text = Funciones_comunes.I18N("Eliminar selección", Marco.Language)
         Cancelar.Text = Funciones_comunes.I18N("Cancelar", Marco.Language)
         TabPage5.Visible = Fachada.getInstancia.DevolverUsuarioActual.Rol = Usuario.TIPO_ROL_ADMINISTRADOR
-        'HAY QUE CARGAR EL LUGAR ACTUAL DEL VEHICULO 
+        'HAY QUE CARGAR EL LUGAR ACTUAL DEL VEHICULO
 
         LoteCombo.Enabled = False
         Me.vin = VIN
