@@ -8,6 +8,7 @@ Public Class NuevoMedio
 
     Public Sub New()
         InitializeComponent()
+        CrearButton.Traducir
         mediosDeTransporte = Controladores.Fachada.getInstancia.TodosLosTiposDeMediosDisponibles()
         tipo.Items.AddRange(mediosDeTransporte.Select(Function(x) x.Nombre).ToArray)
 
