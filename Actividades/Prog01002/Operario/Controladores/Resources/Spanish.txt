@@ -17,7 +17,7 @@ Conectado
 Desconectado
 Nombre de usuario
 Contraseña
-Ingresar
+Ingresar 
 Restaurar
 Configurar red
 Estado:
