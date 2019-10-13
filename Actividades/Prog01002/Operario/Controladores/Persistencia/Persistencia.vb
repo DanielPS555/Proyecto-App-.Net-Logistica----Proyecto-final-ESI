@@ -1810,9 +1810,13 @@ where trabajaen.ID=?", Conexcion)
     End Function
 
     Public Function vehiculosPosicionadosActualmentePorIdlugar(idlugar As Integer) As DataTable
-        Dim com As New OdbcCommand("select vehiculo.idvehiculo, vin,lugar.IDLugar,posicion,lugar.nombre from posicionado inner join vehiculo on vehiculo.idvehiculo=posicionado.idvehiculo
-                                    inner join lugar on lugar.idlugar=posicionado.idlugar
-                                    where lugar.IDLugar in (select unnamed_col_1 from table(subzonas_en_lugar(?::integer))) and hasta is null", Conexcion)
+        Dim com As New OdbcCommand("select vehiculo.idvehiculo, vin,sub.IDLugar,posicion,sub.nombre,zoe.idlugar, zoe.nombre
+from posicionado inner join vehiculo on vehiculo.idvehiculo=posicionado.idvehiculo
+inner join lugar as sub on sub.idlugar=posicionado.idlugar
+inner join incluye on incluye.menor = sub.idlugar
+inner join lugar as zoe on incluye.mayor = zoe.idlugar
+where sub.IDLugar in (select unnamed_col_1 from table(subzonas_en_lugar(?::integer))) and hasta is null
+", Conexcion)
         com.CrearParametro(DbType.Int32, idlugar)
         Dim dt As New DataTable
         dt.Load(com.ExecuteReader)

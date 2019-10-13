@@ -45,4 +45,8 @@ Public Class PanelLugar
 
         Controladores.Marco.getInstancia.CargarPanel(Of OperarioCore.ListaZonas)(New OperarioCore.ListaZonas(lugar.IDLugar))
     End Sub
+
+    Private Sub EditarSubzonas_Click(sender As Object, e As EventArgs) Handles EditarSubzonas.Click
+        Controladores.Marco.getInstancia.CargarPanel(Of AdministrarZonasYSubzonas)(New AdministrarZonasYSubzonas(lugar.IDLugar))
+    End Sub
 End Class

@@ -1,6 +1,7 @@
 ﻿Public Class AdministrarZonasYSubzonas
     Private lugar As Controladores.Lugar
     Private padre As Controladores.nuevoLugar
+    Private lugarViejo As Controladores.Lugar
     Public Sub New(lug As Controladores.Lugar, padre As Controladores.nuevoLugar)
         If lug.Zonas Is Nothing Then
             lug.Zonas = New List(Of Controladores.Zona)
@@ -22,6 +23,7 @@
     Public Sub New(idlugar As Integer)
         InitializeComponent()
         lugar = Controladores.Fachada.getInstancia.LugarZonasySubzonas(idlugar)
+        lugarViejo = lugar
         capacidad.Maximum = lugar.Capasidad
         lugarnom.Text = lugar.Nombre
         capasidadLugar.Text = lugar.Capasidad
@@ -202,18 +204,25 @@
     End Sub
 
     Private Sub Aceptar_Click(sender As Object, e As EventArgs) Handles aceptar.Click
-        If padre Is Nothing Then
+        If padre IsNot Nothing Then
             padre.devolverlugar(lugar)
             Controladores.Marco.getInstancia.cerrarPanel(Of AdministrarZonasYSubzonas)()
             Me.Close()
         Else
-            ' lugar.Zonas(0).Subzonas(0).
+            If Controladores.Fachada.getInstancia.PosicionesActualesPorIdlugar(lugarViejo.IDLugar).Count = 0 Then
+                If MsgBox("Al no haber nigun vehiculo asignado en dicho lugar se puede realizar la modificacion directamente, ¿Desea continuar?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
+                    'AQUI DEBEMOS REALIZAR DIRECTAMENTE EL ALTA
+                End If
+
+            Else
+                    Controladores.Marco.getInstancia.CargarPanel(Of Incongrencia)(New Incongrencia(lugarViejo, lugar, Me))
+            End If
+
         End If
 
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Controladores.Marco.getInstancia.cerrarPanel(Of AdministrarZonasYSubzonas)()
-        Me.Close()
     End Sub
 End Class

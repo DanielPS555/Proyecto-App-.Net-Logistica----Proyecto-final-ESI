@@ -12,6 +12,16 @@ Public Class Posicion
         End Set
     End Property
 
+    Private _auth As Boolean
+    Public Property Autorizado() As Boolean
+        Get
+            Return _auth
+        End Get
+        Set(ByVal value As Boolean)
+            _auth = value
+        End Set
+    End Property
+
     Private _subzona As Subzona
     Public Property Subzona() As Subzona
         Get

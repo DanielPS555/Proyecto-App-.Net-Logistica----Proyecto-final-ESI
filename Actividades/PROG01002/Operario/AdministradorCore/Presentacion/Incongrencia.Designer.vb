@@ -32,15 +32,10 @@ Partial Class Incongrencia
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Button2 = New System.Windows.Forms.Button()
-        Me.vin = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Zona = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.subzona = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Posicion = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Estado = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.zona_combo = New System.Windows.Forms.ComboBox()
-        Me.ComboBox2 = New System.Windows.Forms.ComboBox()
-        Me.ComboBox3 = New System.Windows.Forms.ComboBox()
-        Me.Button3 = New System.Windows.Forms.Button()
+        Me.subzona_combo = New System.Windows.Forms.ComboBox()
+        Me.posicones_combo = New System.Windows.Forms.ComboBox()
+        Me.modi = New System.Windows.Forms.Button()
         CType(Me.data, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -50,9 +45,9 @@ Partial Class Incongrencia
         Me.Label1.Font = New System.Drawing.Font("Segoe UI Semilight", 24.0!)
         Me.Label1.Location = New System.Drawing.Point(12, 9)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(205, 45)
+        Me.Label1.Size = New System.Drawing.Size(459, 45)
         Me.Label1.TabIndex = 2
-        Me.Label1.Text = "Incongrencia "
+        Me.Label1.Text = "Selecionar las nuevas posiciones"
         '
         'Button1
         '
@@ -96,7 +91,6 @@ Partial Class Incongrencia
         DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.data.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle5
         Me.data.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.data.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.vin, Me.Zona, Me.subzona, Me.Posicion, Me.Estado})
         Me.data.Location = New System.Drawing.Point(20, 58)
         Me.data.Name = "data"
         Me.data.ReadOnly = True
@@ -138,7 +132,6 @@ Partial Class Incongrencia
         'Button2
         '
         Me.Button2.BackColor = System.Drawing.Color.White
-        Me.Button2.Enabled = False
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button2.Font = New System.Drawing.Font("Segoe UI Semilight", 15.0!)
         Me.Button2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
@@ -149,42 +142,6 @@ Partial Class Incongrencia
         Me.Button2.Text = "Actualizar tabla"
         Me.Button2.UseVisualStyleBackColor = False
         '
-        'vin
-        '
-        Me.vin.HeaderText = "VIN"
-        Me.vin.Name = "vin"
-        Me.vin.ReadOnly = True
-        '
-        'Zona
-        '
-        Me.Zona.HeaderText = "Zona"
-        Me.Zona.Name = "Zona"
-        Me.Zona.ReadOnly = True
-        Me.Zona.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Zona.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
-        'subzona
-        '
-        Me.subzona.HeaderText = "Subzona"
-        Me.subzona.Name = "subzona"
-        Me.subzona.ReadOnly = True
-        Me.subzona.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.subzona.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
-        'Posicion
-        '
-        Me.Posicion.HeaderText = "Posicion"
-        Me.Posicion.Name = "Posicion"
-        Me.Posicion.ReadOnly = True
-        Me.Posicion.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Posicion.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
-        'Estado
-        '
-        Me.Estado.HeaderText = "Estado"
-        Me.Estado.Name = "Estado"
-        Me.Estado.ReadOnly = True
-        '
         'zona_combo
         '
         Me.zona_combo.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -194,37 +151,36 @@ Partial Class Incongrencia
         Me.zona_combo.Size = New System.Drawing.Size(438, 29)
         Me.zona_combo.TabIndex = 28
         '
-        'ComboBox2
+        'subzona_combo
         '
-        Me.ComboBox2.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ComboBox2.FormattingEnabled = True
-        Me.ComboBox2.Location = New System.Drawing.Point(127, 488)
-        Me.ComboBox2.Name = "ComboBox2"
-        Me.ComboBox2.Size = New System.Drawing.Size(438, 29)
-        Me.ComboBox2.TabIndex = 29
+        Me.subzona_combo.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.subzona_combo.FormattingEnabled = True
+        Me.subzona_combo.Location = New System.Drawing.Point(127, 488)
+        Me.subzona_combo.Name = "subzona_combo"
+        Me.subzona_combo.Size = New System.Drawing.Size(438, 29)
+        Me.subzona_combo.TabIndex = 29
         '
-        'ComboBox3
+        'posicones_combo
         '
-        Me.ComboBox3.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ComboBox3.FormattingEnabled = True
-        Me.ComboBox3.Location = New System.Drawing.Point(127, 537)
-        Me.ComboBox3.Name = "ComboBox3"
-        Me.ComboBox3.Size = New System.Drawing.Size(438, 29)
-        Me.ComboBox3.TabIndex = 30
+        Me.posicones_combo.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.posicones_combo.FormattingEnabled = True
+        Me.posicones_combo.Location = New System.Drawing.Point(127, 537)
+        Me.posicones_combo.Name = "posicones_combo"
+        Me.posicones_combo.Size = New System.Drawing.Size(438, 29)
+        Me.posicones_combo.TabIndex = 30
         '
-        'Button3
+        'modi
         '
-        Me.Button3.BackColor = System.Drawing.Color.White
-        Me.Button3.Enabled = False
-        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button3.Font = New System.Drawing.Font("Segoe UI Semilight", 15.0!)
-        Me.Button3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(140, Byte), Integer), CType(CType(217, Byte), Integer))
-        Me.Button3.Location = New System.Drawing.Point(615, 479)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(205, 48)
-        Me.Button3.TabIndex = 31
-        Me.Button3.Text = "Actualizar tabla"
-        Me.Button3.UseVisualStyleBackColor = False
+        Me.modi.BackColor = System.Drawing.Color.White
+        Me.modi.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.modi.Font = New System.Drawing.Font("Segoe UI Semilight", 15.0!)
+        Me.modi.ForeColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(140, Byte), Integer), CType(CType(217, Byte), Integer))
+        Me.modi.Location = New System.Drawing.Point(615, 479)
+        Me.modi.Name = "modi"
+        Me.modi.Size = New System.Drawing.Size(205, 48)
+        Me.modi.TabIndex = 31
+        Me.modi.Text = "Modificar"
+        Me.modi.UseVisualStyleBackColor = False
         '
         'Incongrencia
         '
@@ -232,9 +188,9 @@ Partial Class Incongrencia
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(880, 650)
-        Me.Controls.Add(Me.Button3)
-        Me.Controls.Add(Me.ComboBox3)
-        Me.Controls.Add(Me.ComboBox2)
+        Me.Controls.Add(Me.modi)
+        Me.Controls.Add(Me.posicones_combo)
+        Me.Controls.Add(Me.subzona_combo)
         Me.Controls.Add(Me.zona_combo)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Label4)
@@ -257,17 +213,12 @@ Partial Class Incongrencia
     Friend WithEvents Button1 As Windows.Forms.Button
     Friend WithEvents aceptar As Windows.Forms.Button
     Friend WithEvents data As Windows.Forms.DataGridView
-    Friend WithEvents vin As Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Zona As Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents subzona As Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Posicion As Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Estado As Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Label2 As Windows.Forms.Label
     Friend WithEvents Label3 As Windows.Forms.Label
     Friend WithEvents Label4 As Windows.Forms.Label
     Friend WithEvents Button2 As Windows.Forms.Button
     Friend WithEvents zona_combo As Windows.Forms.ComboBox
-    Friend WithEvents ComboBox2 As Windows.Forms.ComboBox
-    Friend WithEvents ComboBox3 As Windows.Forms.ComboBox
-    Friend WithEvents Button3 As Windows.Forms.Button
+    Friend WithEvents subzona_combo As Windows.Forms.ComboBox
+    Friend WithEvents posicones_combo As Windows.Forms.ComboBox
+    Friend WithEvents modi As Windows.Forms.Button
 End Class

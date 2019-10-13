@@ -1307,7 +1307,13 @@ Public Class Fachada
         Dim lista As New List(Of Posicion)
         Dim dt As DataTable = Persistencia.getInstancia.vehiculosPosicionadosActualmentePorIdlugar(idlugar)
         For Each r As DataRow In dt.Rows
-            Dim p As New Posicion With {.Vehiculo = New Vehiculo() With {.IdVehiculo = r.Item(0), .VIN = r.Item(1)}, .Subzona = New Subzona With {.IDSubzona = r.Item(2), .Nombre = r.Item(4)}, .Posicion = r.Item(3)}
+            Dim p As New Posicion With {.Vehiculo = New Vehiculo() With {.IdVehiculo = r.Item(0), .VIN = r.Item(1)},
+                                                                         .Subzona = New Subzona With {.IDSubzona = r.Item(2),
+                                                                                                      .Nombre = r.Item(4),
+                                                                                                      .ZonaPadre = New Zona With {.IDZona = r.Item(5),
+                                                                                                                                  .Nombre = r.Item(6)}},
+                                                                         .Posicion = r.Item(3),
+                                                                         .Autorizado = False}
             lista.Add(p)
         Next
         Return lista
