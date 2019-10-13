@@ -8,8 +8,9 @@ Public Class panel
     Public Sub New()
         InitializeComponent()
         Label3.Traducir
-        Button4.Traducir
-        Button2.Traducir
+        ' Button4.Traducir
+        Button4.Text = Controladores.Funciones_comunes.I18N("Ingresar", Controladores.Marco.getInstancia.Language)
+        Button2.Text = Controladores.Funciones_comunes.I18N("Nuevo", Controladores.Marco.getInstancia.Language)
         Button1.Traducir
         Label1.Traducir
         Label3.Traducir

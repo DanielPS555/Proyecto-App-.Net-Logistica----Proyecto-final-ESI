@@ -11,7 +11,15 @@ Public Class PrecargaMasiva
         {"amarillo", Drawing.Color.Yellow},
         {"verde", Drawing.Color.Green}
         }
+    Public Sub New()
 
+        ' Esta llamada es exigida por el diseñador.
+        InitializeComponent()
+
+        ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
+        uploadPreloads.Text = Controladores.Funciones_comunes.I18N("Subir precargas", Controladores.Marco.getInstancia.Language)
+        openCSV.Text = Controladores.Funciones_comunes.I18N("Abrir CSV", Controladores.Marco.getInstancia.Language)
+    End Sub
     Private Sub openCSV_Click(sender As Object, e As EventArgs) Handles openCSV.Click
         Dim cols(OptionalColumns.CheckedItems.Count) As String
         OptionalColumns.CheckedItems.CopyTo(cols, 1)
@@ -102,7 +110,6 @@ Public Class PrecargaMasiva
         Else
             MsgBoxI18N("Debe acceder a todos los vehículos para subir la precarga")
         End If
-        uploadPreloads.Text = Controladores.Funciones_comunes.I18N("Subir precargas", Controladores.Marco.getInstancia.Language)
-        openCSV.Text = Controladores.Funciones_comunes.I18N("Abrir CSV", Controladores.Marco.getInstancia.Language)
+
     End Sub
 End Class
