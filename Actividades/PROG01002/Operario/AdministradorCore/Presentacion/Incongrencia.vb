@@ -144,7 +144,6 @@
             comprobacionTotal()
             Return False
         Else
-            MsgBox("No se han encontrado variantes en la lista")
             Return True
         End If
 
@@ -161,10 +160,16 @@
 
     Private Sub Aceptar_Click(sender As Object, e As EventArgs) Handles aceptar.Click
         If Not actualizarValores() Then
-            MsgBox("Realize los cambios nesesarios y luego vuelva a intentarlo")
+            MsgBox("Se han actualizado los elementos y se han encontrado diferencias. Realize los cambios nesesarios y luego vuelva a intentarlo")
             Return
         End If
+        If MsgBox("Esta modificacion realizara grandes modificaciones en el sistema ¿Esta seguro que desea continuar?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
+            Controladores.Fachada.getInstancia.ActualizarLugar(lugar_antigo, lugar_nuevo, posiciones)
+            Dim n As New Controladores.Notificacion(Controladores.Notificacion.TIPO_NOTIFICACION_CAMBIO_DISTIBUCION_LUGAR) With {.Ref1 = lugar_antigo.IDLugar, .Ref2 = Controladores.Fachada.getInstancia.DevolverUsuarioActual.ID_usuario, .Fecha = DateTime.Now}
+            Controladores.Fachada.getInstancia.NuevoNotificacion(n)
+            MsgBox("Cambios realizados con exito", MsgBoxStyle.Information)
+            Controladores.Marco.getInstancia.CargarPanel(Of OperarioCore.ListaZonas)(New OperarioCore.ListaZonas(lugar_antigo.IDLugar))
+        End If
 
-        Controladores.Fachada.getInstancia.ActualizarLugar(lugar_antigo, lugar_nuevo, posiciones)
     End Sub
 End Class

@@ -22,8 +22,13 @@ Public Class SUB_Notificacion
                 nom.Text = $"Usuario: {ttr.Usuario.NombreDeUsuario} Asignado a {ttr.Lugar.Nombre}"
                 Dim user As Usuario = Controladores.Fachada.getInstancia.InformacionBasicaUsuario(Integer.Parse(n.Ref2))
                 sec.Text = $"Asignado por {user.NombreDeUsuario}"
+            Case Notificacion.TIPO_NOTIFICACION_CAMBIO_DISTIBUCION_LUGAR
+                nom.Text = $"Cambio de distribucion del lugar {Fachada.getInstancia.nombreLugarPoridlugar(n.Ref1)}"
+                Dim user As Usuario = Controladores.Fachada.getInstancia.InformacionBasicaUsuario(Integer.Parse(n.Ref2))
+                sec.Text = $"hecho por {user.NombreDeUsuario}"
+
         End Select
-        fecha.Text = n.Fecha.ToString("HH:mm:ss dd-MMMM-yyyy")
+        fecha.Text = n.Fecha.ToString("HHmm:ss dd-MMMM-yyyy")
         tamañoDuplicado = Me.Height
         propiedadesDuplicas.Add(New Tuple(Of Size, Point)(nom.Size, nom.Location))
         propiedadesDuplicas.Add(New Tuple(Of Size, Point)(sec.Size, sec.Location))

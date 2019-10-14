@@ -75,8 +75,10 @@ Partial Class Marco
         '
         'contenedor
         '
+        Me.contenedor.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.contenedor.BackColor = System.Drawing.Color.White
-        Me.contenedor.Dock = System.Windows.Forms.DockStyle.Fill
         Me.contenedor.Location = New System.Drawing.Point(0, 50)
         Me.contenedor.Name = "contenedor"
         Me.contenedor.Size = New System.Drawing.Size(880, 650)
@@ -101,8 +103,6 @@ Partial Class Marco
         '
         'Button2
         '
-        Me.Button2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Button2.BackColor = System.Drawing.Color.Transparent
         Me.Button2.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(250, Byte), Integer), CType(CType(250, Byte), Integer), CType(CType(250, Byte), Integer))
         Me.Button2.FlatAppearance.BorderSize = 0
@@ -121,6 +121,7 @@ Partial Class Marco
         '
         'PictureBox3
         '
+        Me.PictureBox3.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.PictureBox3.Image = Global.Controladores.My.Resources.Resources.info
         Me.PictureBox3.Location = New System.Drawing.Point(828, 3)
         Me.PictureBox3.Name = "PictureBox3"
@@ -131,8 +132,6 @@ Partial Class Marco
         '
         'sigiente
         '
-        Me.sigiente.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.sigiente.BackColor = System.Drawing.Color.Transparent
         Me.sigiente.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(250, Byte), Integer), CType(CType(250, Byte), Integer), CType(CType(250, Byte), Integer))
         Me.sigiente.FlatAppearance.BorderSize = 0
@@ -151,8 +150,6 @@ Partial Class Marco
         '
         'atras
         '
-        Me.atras.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.atras.BackColor = System.Drawing.Color.Transparent
         Me.atras.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(250, Byte), Integer), CType(CType(250, Byte), Integer), CType(CType(250, Byte), Integer))
         Me.atras.FlatAppearance.BorderSize = 0
@@ -194,6 +191,7 @@ Partial Class Marco
         '
         'PictureBox2
         '
+        Me.PictureBox2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.PictureBox2.Image = Global.Controladores.My.Resources.Resources.user
         Me.PictureBox2.Location = New System.Drawing.Point(723, 3)
         Me.PictureBox2.Name = "PictureBox2"
@@ -204,6 +202,7 @@ Partial Class Marco
         '
         'PictureBox1
         '
+        Me.PictureBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), System.Drawing.Image)
         Me.PictureBox1.Location = New System.Drawing.Point(778, 3)
         Me.PictureBox1.Name = "PictureBox1"

@@ -161,6 +161,7 @@ Public Class Marco
         Dim obj = sn.Panel
         obj.TopLevel = False
         obj.FormBorderStyle = FormBorderStyle.None
+        obj.Dock = DockStyle.Fill
 
         If contenedor.Controls.Contains(obj) Then
             contenedor.Controls.Remove(obj)
@@ -176,6 +177,7 @@ Public Class Marco
     Public Function CargarPanel(Of T As {Form})(obj As T) As T
         obj.TopLevel = False
         obj.FormBorderStyle = FormBorderStyle.None
+        obj.Dock = DockStyle.Fill
 
         contenedor.Controls.Add(obj)
         obj.Show()

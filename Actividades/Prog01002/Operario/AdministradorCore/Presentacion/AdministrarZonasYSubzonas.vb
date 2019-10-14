@@ -1,7 +1,6 @@
 ﻿Public Class AdministrarZonasYSubzonas
     Private lugar As Controladores.Lugar
     Private padre As Controladores.nuevoLugar
-    Private lugarViejo As Controladores.Lugar
     Public Sub New(lug As Controladores.Lugar, padre As Controladores.nuevoLugar)
         If lug.Zonas Is Nothing Then
             lug.Zonas = New List(Of Controladores.Zona)
@@ -23,7 +22,6 @@
     Public Sub New(idlugar As Integer)
         InitializeComponent()
         lugar = Controladores.Fachada.getInstancia.LugarZonasySubzonas(idlugar)
-        lugarViejo = lugar
         capacidad.Maximum = lugar.Capasidad
         lugarnom.Text = lugar.Nombre
         capasidadLugar.Text = lugar.Capasidad
@@ -209,13 +207,18 @@
             Controladores.Marco.getInstancia.cerrarPanel(Of AdministrarZonasYSubzonas)()
             Me.Close()
         Else
+            Dim lugarviejo = Controladores.Fachada.getInstancia.LugarZonasySubzonas(lugar.IDLugar)
             If Controladores.Fachada.getInstancia.PosicionesActualesPorIdlugar(lugarViejo.IDLugar).Count = 0 Then
                 If MsgBox("Al no haber nigun vehiculo asignado en dicho lugar se puede realizar la modificacion directamente, ¿Desea continuar?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
-                    Controladores.Fachada.getInstancia.ActualizarLugar(lugarViejo, lugar, Nothing)
+                    Controladores.Fachada.getInstancia.ActualizarLugar(lugarviejo, lugar, Nothing)
+                    Dim n As New Controladores.Notificacion(Controladores.Notificacion.TIPO_NOTIFICACION_CAMBIO_DISTIBUCION_LUGAR) With {.Ref1 = lugarviejo.IDLugar, .Ref2 = Controladores.Fachada.getInstancia.DevolverUsuarioActual.ID_usuario, .Fecha = DateTime.Now}
+                    Controladores.Fachada.getInstancia.NuevoNotificacion(n)
+                    MsgBox("Cambios realizados con exito", MsgBoxStyle.Information)
+                    Controladores.Marco.getInstancia.CargarPanel(Of OperarioCore.ListaZonas)(New OperarioCore.ListaZonas(lugarviejo.IDLugar))
                 End If
 
             Else
-                    Controladores.Marco.getInstancia.CargarPanel(Of Incongrencia)(New Incongrencia(lugarViejo, lugar, Me))
+                Controladores.Marco.getInstancia.CargarPanel(Of Incongrencia)(New Incongrencia(lugarViejo, lugar, Me))
             End If
 
         End If

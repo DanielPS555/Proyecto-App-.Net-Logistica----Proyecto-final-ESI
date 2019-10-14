@@ -91,7 +91,7 @@ Partial Class Login
         '
         'Label2
         '
-        Me.Label2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label2.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.Label2.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.Location = New System.Drawing.Point(291, 636)
         Me.Label2.Name = "Label2"
@@ -103,6 +103,7 @@ Partial Class Login
         '
         'LanguageBox
         '
+        Me.LanguageBox.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.LanguageBox.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LanguageBox.FormattingEnabled = True
         Me.LanguageBox.Location = New System.Drawing.Point(543, 631)
@@ -112,6 +113,7 @@ Partial Class Login
         '
         'estadoConex
         '
+        Me.estadoConex.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.estadoConex.AutoSize = True
         Me.estadoConex.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.estadoConex.ForeColor = System.Drawing.Color.FromArgb(CType(CType(180, Byte), Integer), CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer))
@@ -124,6 +126,7 @@ Partial Class Login
         '
         'Label1
         '
+        Me.Label1.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.Location = New System.Drawing.Point(542, 593)
@@ -134,8 +137,7 @@ Partial Class Login
         '
         'Button3
         '
-        Me.Button3.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Button3.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.Button3.BackColor = System.Drawing.Color.White
         Me.Button3.Enabled = False
         Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
@@ -151,6 +153,7 @@ Partial Class Login
         '
         'estado
         '
+        Me.estado.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.estado.AutoSize = True
         Me.estado.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.estado.ForeColor = System.Drawing.Color.White
@@ -162,8 +165,7 @@ Partial Class Login
         '
         'ver
         '
-        Me.ver.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.ver.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.ver.Image = Global.Controladores.My.Resources.Resources.ojo
         Me.ver.Location = New System.Drawing.Point(751, 354)
         Me.ver.Name = "ver"
@@ -174,8 +176,7 @@ Partial Class Login
         '
         'e2
         '
-        Me.e2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.e2.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.e2.BackColor = System.Drawing.Color.FromArgb(CType(CType(23, Byte), Integer), CType(CType(23, Byte), Integer), CType(CType(23, Byte), Integer))
         Me.e2.Location = New System.Drawing.Point(330, 389)
         Me.e2.Name = "e2"
@@ -184,8 +185,7 @@ Partial Class Login
         '
         'e1
         '
-        Me.e1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.e1.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.e1.BackColor = System.Drawing.Color.FromArgb(CType(CType(23, Byte), Integer), CType(CType(23, Byte), Integer), CType(CType(23, Byte), Integer))
         Me.e1.Location = New System.Drawing.Point(334, 313)
         Me.e1.Name = "e1"
@@ -194,8 +194,7 @@ Partial Class Login
         '
         'pass
         '
-        Me.pass.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.pass.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.pass.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.pass.Font = New System.Drawing.Font("Century Gothic", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.pass.ForeColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(100, Byte), Integer), CType(CType(100, Byte), Integer))
@@ -207,6 +206,7 @@ Partial Class Login
         '
         'PictureBox2
         '
+        Me.PictureBox2.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.PictureBox2.Image = Global.Controladores.My.Resources.Resources.texto
         Me.PictureBox2.Location = New System.Drawing.Point(579, 670)
         Me.PictureBox2.Name = "PictureBox2"
@@ -217,6 +217,7 @@ Partial Class Login
         '
         'Label3
         '
+        Me.Label3.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.Location = New System.Drawing.Point(461, 670)
@@ -227,6 +228,7 @@ Partial Class Login
         '
         'hora
         '
+        Me.hora.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.hora.AutoSize = True
         Me.hora.Font = New System.Drawing.Font("Century Gothic", 24.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.hora.Location = New System.Drawing.Point(670, 224)
@@ -236,6 +238,7 @@ Partial Class Login
         '
         'fecha
         '
+        Me.fecha.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.fecha.AutoSize = True
         Me.fecha.Font = New System.Drawing.Font("Century Gothic", 24.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.fecha.Location = New System.Drawing.Point(295, 224)
@@ -245,8 +248,7 @@ Partial Class Login
         '
         'PictureBox1
         '
-        Me.PictureBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.PictureBox1.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.PictureBox1.Image = Global.Controladores.My.Resources.Resources.logo1
         Me.PictureBox1.Location = New System.Drawing.Point(435, 12)
         Me.PictureBox1.Name = "PictureBox1"
@@ -257,8 +259,7 @@ Partial Class Login
         '
         'user
         '
-        Me.user.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.user.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.user.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.user.Font = New System.Drawing.Font("Century Gothic", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.user.ForeColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(100, Byte), Integer), CType(CType(100, Byte), Integer))
@@ -270,6 +271,7 @@ Partial Class Login
         '
         'Button4
         '
+        Me.Button4.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.Button4.FlatAppearance.BorderSize = 0
         Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button4.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -283,8 +285,7 @@ Partial Class Login
         '
         'Button1
         '
-        Me.Button1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Button1.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(115, Byte), Integer), CType(CType(201, Byte), Integer))
         Me.Button1.Enabled = False
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat

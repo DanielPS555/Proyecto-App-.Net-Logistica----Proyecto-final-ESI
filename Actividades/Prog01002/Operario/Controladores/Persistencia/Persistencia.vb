@@ -97,7 +97,7 @@ left join lugar on lugar.idlugar=bson_value_int(detalle, 'idlugar')", _con)
     End Function
 
     Friend Function VehiculosRetirados() As DataTable
-        Dim selectCmd As New OdbcCommand("select vehiculo.idvehiculo as IDVehiculo, vin as VIN, lugar.nombre as Lugar, nvl(bson_value_lvarchar(detalle, 'mensaje'), 'Ninguno') as Mensaje, fechaAgregado as HoraRetiro
+        Dim selectCmd As New OdbcCommand("select vehiculo.idvehiculo as IDVehiculo, vin as VIN, lugar.nombre as Lugar, nvl(bson_value_lvarchar(detalle, 'mensaje'), 'Ninguno') as Mensaje
 from vehiculo inner join vehiculoIngresa on vehiculoIngresa.tipoIngreso='Baja' and vehiculoIngresa.idvehiculo=vehiculo.idvehiculo
 and bson_value_lvarchar(detalle, 'tipo')='recogido'
 inner join lugar on lugar.idlugar=bson_value_int(detalle, 'idlugar')", _con)
@@ -706,11 +706,8 @@ order by fechaAgregado
 
     Public Function DatosBasicosParaListarVehiculosPorSubzona(idlugar As Integer) As DataTable ' IDVehiculo, VIN, Marca, Modelo, Tipo
 
-        Dim com As New OdbcCommand($"select distinct vehiculo.idvehiculo, vehiculo.vin, vehiculo.marca, vehiculo.modelo, vehiculo.tipo 
-                                    from vehiculo, posicionado, vehiculoIngresa
-                                    where posicionado.idvehiculo=vehiculo.idvehiculo and vehiculoIngresa.idvehiculo = vehiculo.idvehiculo
-                                    and posicionado.idlugar=? and posicionado.hasta is null",
-                                  Conexcion)
+        Dim com As New OdbcCommand("select vin, posicion, desde, hasta from posicionado inner join vehiculo on
+                                    posicionado.idvehiculo=vehiculo.idvehiculo where hasta is null and idlugar=?", Conexcion)
         com.CrearParametro(DbType.Int32, idlugar)
         Dim dt As New DataTable
         dt.Load(com.ExecuteReader)
@@ -1570,6 +1567,12 @@ order by fechaAgregado
         Return dt(0)
     End Function
 
+    Public Function nombreLugarPorIdlugar(idlugar As Integer) As String
+        Dim com As New OdbcCommand("select nombre from lugar where idlugar=?", Conexcion)
+        com.CrearParametro(DbType.Int32, idlugar)
+        Return com.ExecuteScalar
+    End Function
+
     Public Function trabajaenPorIdusuario(idusuario As Integer) As DataTable
         Dim com As New OdbcCommand("select trabajaen.id, lugar.nombre, FechaInicio,FechaFin, count(HoraIngreso) as numeroDeConexciones from
                                     trabajaen inner join lugar on lugar.idlugar=trabajaen.idlugar
@@ -1862,14 +1865,14 @@ where trabajaen.ID=?", Conexcion)
     End Function
 
     Public Function inhabilitadoLugarPorIdlugar(idlugar As Integer, j As Boolean)
-        Dim com As New OdbcCommand("update lugar set inhabilitado='?' where idlugar=? ", Conexcion)
+        Dim com As New OdbcCommand("update lugar set inhabilitado=? where idlugar=? ", Conexcion)
         com.CrearParametro(DbType.Boolean, j)
         com.CrearParametro(DbType.Int32, idlugar)
         Return com.ExecuteNonQuery
     End Function
 
     Public Function cambiarcapasidadPorIdlugar(idlugar As Integer, capasidad As Integer)
-        Dim com As New OdbcCommand("update lugar set Capacidad='?' where idlugar=? ", Conexcion)
+        Dim com As New OdbcCommand("update lugar set Capacidad=? where idlugar=? ", Conexcion)
         com.CrearParametro(DbType.Int32, capasidad)
         com.CrearParametro(DbType.Int32, idlugar)
         Return com.ExecuteNonQuery
@@ -1877,7 +1880,7 @@ where trabajaen.ID=?", Conexcion)
 
     Public Function existenciaDeZona(idlugar As Integer, nombreZona As String) As Boolean
         Dim com As New OdbcCommand("select  count(*) from lugar
-                                    where idlugar in (select unnamed_col_1 from table(subzonas_en_lugar(?::integer)))
+                                    where idlugar in (select unnamed_col_1 from table(zonas_en_lugar(?::integer)))
                                     and nombre =?", Conexcion)
         com.CrearParametro(DbType.Int32, idlugar)
         com.CrearParametro(DbType.String, nombreZona)
@@ -1895,6 +1898,11 @@ where trabajaen.ID=?", Conexcion)
         Return com.ExecuteScalar = 1
     End Function
 
+    Public Function existenciaVIN(vin As String) As Boolean
+        Dim com As New OdbcCommand("select count(*) from vehiculo where vin=?", Conexcion)
+        com.CrearParametro(DbType.String, vin)
+        Return com.ExecuteScalar = 1
+    End Function
 
 
 End Class

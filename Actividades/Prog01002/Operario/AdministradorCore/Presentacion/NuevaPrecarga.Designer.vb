@@ -50,6 +50,8 @@ Partial Class NuevaPrecarga
         '
         'clientes
         '
+        Me.clientes.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.clientes.Font = New System.Drawing.Font("Century Gothic", 15.0!)
         Me.clientes.FormattingEnabled = True
         Me.clientes.Location = New System.Drawing.Point(123, 487)
@@ -67,8 +69,6 @@ Partial Class NuevaPrecarga
         '
         'Guardar
         '
-        Me.Guardar.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Guardar.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
         Me.Guardar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
         Me.Guardar.FlatAppearance.BorderSize = 0
@@ -87,8 +87,6 @@ Partial Class NuevaPrecarga
         '
         'Seleccionarbtn
         '
-        Me.Seleccionarbtn.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Seleccionarbtn.BackColor = System.Drawing.Color.White
         Me.Seleccionarbtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
         Me.Seleccionarbtn.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
@@ -107,6 +105,8 @@ Partial Class NuevaPrecarga
         '
         'tipo
         '
+        Me.tipo.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.tipo.Font = New System.Drawing.Font("Century Gothic", 15.0!)
         Me.tipo.FormattingEnabled = True
         Me.tipo.Items.AddRange(New Object() {"Auto", "Camion", "SUV", "Van", "MiniVan"})
@@ -147,6 +147,8 @@ Partial Class NuevaPrecarga
         '
         'anio
         '
+        Me.anio.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.anio.Font = New System.Drawing.Font("Century Gothic", 15.0!)
         Me.anio.FormattingEnabled = True
         Me.anio.Location = New System.Drawing.Point(123, 217)
@@ -176,6 +178,8 @@ Partial Class NuevaPrecarga
         '
         'modelo
         '
+        Me.modelo.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.modelo.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.modelo.Font = New System.Drawing.Font("Century Gothic", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.modelo.Location = New System.Drawing.Point(123, 151)
@@ -185,6 +189,8 @@ Partial Class NuevaPrecarga
         '
         'marca
         '
+        Me.marca.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.marca.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.marca.Font = New System.Drawing.Font("Century Gothic", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.marca.Location = New System.Drawing.Point(123, 92)
@@ -214,6 +220,8 @@ Partial Class NuevaPrecarga
         '
         'vin
         '
+        Me.vin.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.vin.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.vin.Font = New System.Drawing.Font("Century Gothic", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.vin.Location = New System.Drawing.Point(123, 33)
@@ -233,6 +241,7 @@ Partial Class NuevaPrecarga
         '
         'añoNoIngrezar
         '
+        Me.añoNoIngrezar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.añoNoIngrezar.AutoSize = True
         Me.añoNoIngrezar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.añoNoIngrezar.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -245,6 +254,7 @@ Partial Class NuevaPrecarga
         '
         'tipoNoIngrezar
         '
+        Me.tipoNoIngrezar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.tipoNoIngrezar.AutoSize = True
         Me.tipoNoIngrezar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.tipoNoIngrezar.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -269,6 +279,7 @@ Partial Class NuevaPrecarga
         '
         'modeloNoIngrezar
         '
+        Me.modeloNoIngrezar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.modeloNoIngrezar.AutoSize = True
         Me.modeloNoIngrezar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.modeloNoIngrezar.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -281,6 +292,7 @@ Partial Class NuevaPrecarga
         '
         'marcaNoIngrezar
         '
+        Me.marcaNoIngrezar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.marcaNoIngrezar.AutoSize = True
         Me.marcaNoIngrezar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.marcaNoIngrezar.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))

@@ -605,6 +605,10 @@ Public Class Fachada
         Return Persistencia.getInstancia.ExistenciaDeVehiculoPRecargado(vin) = 0
     End Function
 
+    Public Function ExistenciaDeVin(vin As String) As Boolean
+        Return Persistencia.getInstancia.existenciaVIN(vin)
+    End Function
+
     Public Function ClientesDelSistema() As List(Of Cliente)
         Dim clientes As New List(Of Cliente)
         Dim dt As DataTable = Persistencia.getInstancia.clienteDelSistema()
@@ -1333,6 +1337,10 @@ Public Class Fachada
         Return Persistencia.getInstancia.devolverUtilmoUsuarioIngresoPorIdUsuarioCreador(user.ID_usuario)
     End Function
 
+    Public Function nombreLugarPoridlugar(idlugar As Integer) As String
+        Return Persistencia.getInstancia.nombreLugarPorIdlugar(idlugar)
+    End Function
+
     Public Function NombreTIpoMedioPorId(id As Integer) As String
         Return Persistencia.getInstancia.NombreTipoDeMedioDeTransportePorIdTipoMedioTransporte(id)
     End Function
@@ -1361,6 +1369,9 @@ Public Class Fachada
     End Function
 
     Public Sub ActualizarLugar(lugarAntiguo As Lugar, lugarNuevo As Lugar, posiciones As List(Of Posicion))
+
+        Dim listaPosicionamientoActual = Me.PosicionesActualesPorIdlugar(lugarAntiguo.IDLugar) 'DATOS NESESARIOS PARA EL FINAL 
+
         'crear nuevas zonas y subzonas. Tambien actualizar capasidades
         For Each lug As Zona In lugarNuevo.Zonas
             If Not Persistencia.getInstancia.existenciaDeZona(lugarAntiguo.IDLugar, lug.Nombre) Then
@@ -1378,7 +1389,7 @@ Public Class Fachada
                         subb.IDSubzona = Persistencia.getInstancia.CrearSubzona(idz, subb.Nombre, subb.Capasidad)
                     Else
                         Dim ids As Integer = lug.Subzonas.Where(Function(x) x.Nombre.Equals(subb.Nombre)).Single.IDSubzona
-                        Persistencia.getInstancia.cambiarcapasidadPorIdlugar(ids, lug.Capacidad) 'SI ESTA IGUAL NO IMPORTA PORQUE VA A SEGI QUEDANDO ASI 
+                        Persistencia.getInstancia.cambiarcapasidadPorIdlugar(ids, lugarNuevo.Zonas.Where(Function(x) x.Nombre.Equals(lug.Nombre)).Single.Subzonas.Where(Function(x) x.Nombre.Equals(subb.Nombre)).Single.Capasidad) 'SI ESTA IGUAL NO IMPORTA PORQUE VA A SEGI QUEDANDO ASI 
                     End If
                 Next
             End If
@@ -1389,13 +1400,18 @@ Public Class Fachada
         For Each lug As Zona In lugarAntiguo.Zonas
             If lugarNuevo.Zonas.Select(Function(x) x.Nombre).Contains(lug.Nombre) Then
                 For Each suub As Subzona In lug.Subzonas
-                    If lugarNuevo.Zonas.Where(Function(x) x.Nombre.Equals(lug.Nombre)).Select(Function(x) x.Nombre).Contains(suub.Nombre) Then
+                    If Not lugarNuevo.Zonas.Where(Function(x) x.Nombre.Equals(lug.Nombre)).Single.Subzonas.Select(Function(x) x.Nombre).Contains(suub.Nombre) Then
                         Persistencia.getInstancia.inhabilitadoLugarPorIdlugar(suub.IDSubzona, True)
+                    Else
+                        Dim ids As Integer = lug.Subzonas.Where(Function(x) x.Nombre.Equals(suub.Nombre)).Single.IDSubzona
+                        Persistencia.getInstancia.cambiarcapasidadPorIdlugar(ids, lugarNuevo.Zonas.Where(Function(x) x.Nombre.Equals(lug.Nombre)).Single.Subzonas.Where(Function(x) x.Nombre = suub.Nombre).Single.Capasidad) 'SI ESTA IGUAL NO IMPORTA PORQUE VA A SEGI QUEDANDO ASI 
                     End If
                 Next
             Else
                 Persistencia.getInstancia.inhabilitadoLugarPorIdlugar(lug.IDZona, True)
-                lug.Subzonas.ForEach(Sub(x) Persistencia.getInstancia.inhabilitadoLugarPorIdlugar(x.IDSubzona, True))
+                For Each x As Subzona In lug.Subzonas
+                    Persistencia.getInstancia.inhabilitadoLugarPorIdlugar(x.IDSubzona, True)
+                Next
             End If
         Next
 
@@ -1404,8 +1420,6 @@ Public Class Fachada
         If posiciones Is Nothing Then 'NO DEBERIA REPOSICONAR VEHICULOS SI NO LOS HAY
             Return
         End If
-
-        Dim listaPosicionamientoActual = Me.PosicionesActualesPorIdlugar(lugarAntiguo.IDLugar)
 
         For Each p As Posicion In posiciones
             Dim postvin = listaPosicionamientoActual.Where(Function(x) x.Vehiculo.IdVehiculo = p.Vehiculo.IdVehiculo).Single

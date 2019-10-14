@@ -121,7 +121,7 @@ Public Class NuevoVehiculo
     End Sub
 
     Private Sub Buscar_Click(sender As Object, e As EventArgs) Handles Buscar.Click
-        If Controladores.Fachada.getInstancia.ExistenciaDevehiculoPrecargado(buscador.Text) Then
+        If Controladores.Fachada.getInstancia.ExistenciaDeVin(buscador.Text) AndAlso Controladores.Fachada.getInstancia.ExistenciaDevehiculoPrecargado(buscador.Text) Then
             EstadoBusqueda.Text = Controladores.Funciones_comunes.I18N("Aceptado", Controladores.Marco.getInstancia.Language)
             EstadoBusqueda.ForeColor = Drawing.Color.FromArgb(18, 161, 13)
             Dim vehiculo As Controladores.Vehiculo = Controladores.Fachada.getInstancia.DevolverDatosBasicosPorVIN_Vehiculo(buscador.Text)

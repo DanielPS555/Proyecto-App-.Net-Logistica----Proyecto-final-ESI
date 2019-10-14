@@ -14,7 +14,8 @@
                   {"Consola de Python", GetType(AdministradorCore.PythonPanel)},
                   {"Lista vehiculos", GetType(OperarioCore.ListaVehiculos)},
                   {"Chat", GetType(Controladores.ChatInterno)},
-                  {"Lista lotes", GetType(OperarioCore.ListaLotes)}
+                  {"Lista lotes", GetType(OperarioCore.ListaLotes)},
+                  {"Nuevo vehiculo", GetType(OperarioCore.NuevoVehiculo)}
                 }
                 Controladores.Marco.SetButtons(paneles)
                 Controladores.Marco.Imagenes = New Dictionary(Of String, Bitmap)
