@@ -13,7 +13,8 @@
                   {"Mensajes", GetType(AdministradorCore.EventMessenger)},
                   {"Consola de Python", GetType(AdministradorCore.PythonPanel)},
                   {"Lista vehiculos", GetType(OperarioCore.ListaVehiculos)},
-                  {"Chat", GetType(Controladores.ChatInterno)}
+                  {"Chat", GetType(Controladores.ChatInterno)},
+                  {"Lista lotes", GetType(OperarioCore.ListaLotes)}
                 }
                 Controladores.Marco.SetButtons(paneles)
                 Controladores.Marco.Imagenes = New Dictionary(Of String, Bitmap)

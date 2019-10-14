@@ -43,6 +43,9 @@ Public Class Fachada
 
     Public Function VehiculosEntregados() As DataTable ' re que es un alias para no llamar directamente a persistencia xdddddddddddd
         ' high end software architecture
+
+        'EXACTO - DANIEL
+
         Return Persistencia.getInstancia.VehiculosEntregados()
     End Function
 

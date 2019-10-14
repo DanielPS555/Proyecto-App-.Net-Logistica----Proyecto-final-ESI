@@ -26,10 +26,10 @@ Public Class NuevoLote
 
 
     Public Sub New(padre As NotificacionLote, oldlote As Lote)
+        InitializeComponent()
         Me.origen = oldlote.Origen
         Me.padre = padre
         Me.nom.Text = oldlote.Nombre
-        InitializeComponent()
         StartPosition = FormStartPosition.CenterScreen
         destino.Items.Clear()
         destinosPosibles = Fachada.getInstancia.devolverPosiblesDestinos(oldlote.Origen, padre.dameVehiculoalLote)

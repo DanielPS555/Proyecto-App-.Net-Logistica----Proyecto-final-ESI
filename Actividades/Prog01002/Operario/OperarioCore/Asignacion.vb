@@ -15,6 +15,7 @@ Public Class Asignacion
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
         vehiculo = Fachada.getInstancia.DevolverDatosBasicosPorVIN_Vehiculo(vin)
         lugarvehiculo = lugar
+        lugar.Zonas = Controladores.Fachada.getInstancia.LugarZonasySubzonas(lugar.IDLugar).Zonas
         CargarLotes()
         CargarZonas()
         l_lote.Traducir

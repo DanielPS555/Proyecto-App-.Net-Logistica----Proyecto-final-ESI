@@ -23,7 +23,6 @@ Public Class PanelInfoUsuario
         Label11.Traducir
         LinkLabel1.Traducir
         editarInfo.Traducir
-        cambioContraseña.Traducir
         CambiarDatosPersonales.Traducir
         Button1.Traducir
         Button2.Traducir
@@ -111,6 +110,11 @@ Public Class PanelInfoUsuario
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        If Fachada.getInstancia.DevolverUsuarioActual.Rol <> Usuario.TIPO_ROL_ADMINISTRADOR Then
+            MsgBox("Debe ser administrador para realizar esta accion", MsgBoxStyle.Critical)
+            Return
+        End If
+
         If filaSelex <> -1 Then
             If Controladores.Funciones_comunes.AutoNull(Of Object)(ListaTrabajaen.Rows(filaSelex).Item(3)) Is Nothing Then
                 Controladores.Fachada.getInstancia.terminarTrabajaEn(New Controladores.TrabajaEn() With {.Id = ListaTrabajaen.Rows(filaSelex).Item(0)})
@@ -129,6 +133,11 @@ Public Class PanelInfoUsuario
     End Sub
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+
+        If Fachada.getInstancia.DevolverUsuarioActual.Rol <> Usuario.TIPO_ROL_ADMINISTRADOR Then
+            MsgBox("Debe ser administrador para realizar esta accion", MsgBoxStyle.Critical)
+            Return
+        End If
         If filaSelexMedio = -1 Then
             MsgBoxI18N("Selecione un permiso de conducion que eliminar", MsgBoxStyle.Critical)
             Return
@@ -148,11 +157,20 @@ Public Class PanelInfoUsuario
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Dim m As New NuevoTrabajaEn(user, Me)
-        m.ShowDialog()
+        If Fachada.getInstancia.DevolverUsuarioActual.Rol = Usuario.TIPO_ROL_ADMINISTRADOR Then
+            Dim m As New NuevoTrabajaEn(user, Me)
+            m.ShowDialog()
+        Else
+            MsgBox("Debe ser administrador para realizar esta accion", MsgBoxStyle.Critical)
+        End If
+
     End Sub
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+        If Fachada.getInstancia.DevolverUsuarioActual.Rol <> Usuario.TIPO_ROL_ADMINISTRADOR Then
+            MsgBox("Debe ser administrador para realizar esta accion", MsgBoxStyle.Critical)
+            Return
+        End If
         Dim m As New NuevoPermite(user, Me)
         m.ShowDialog()
     End Sub

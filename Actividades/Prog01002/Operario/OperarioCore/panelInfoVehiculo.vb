@@ -17,10 +17,11 @@ Public Class panelInfoVehiculo
     Private todosLosLotesDisponibles As List(Of Controladores.Lote)
     Private loteActual As Controladores.Lote
     Private qrcode As Bitmap
+    Private superpepe As Boolean
     Public Sub New(VIN As String)
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
-
+        superpepe = False
         MarcaLbl.Text = Funciones_comunes.I18N("Marca", Marco.Language) + ":"
         ModeloLbl.Text = Funciones_comunes.I18N("Modelo", Marco.Language) + ":"
         ClienteLbl.Text = Funciones_comunes.I18N("Cliente", Marco.Language) + ":"
@@ -485,7 +486,8 @@ Public Class panelInfoVehiculo
     End Sub
 
     Private Sub CambiarGuardarLote_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles cambiarGuardarLote.LinkClicked
-        If cambiarGuardarLote.Text.Equals("Cambiar lote ") Then
+        If Not superpepe Then
+            superpepe = True
             CargarLotes()
             cambiarGuardarLote.Text = "Guardar"
             nuevoLote.Visible = True
@@ -495,7 +497,8 @@ Public Class panelInfoVehiculo
             LoteCombo.Enabled = True
             vermasLote.Enabled = False
         Else
-            cambiarGuardarLote.Text = "Cambiar lote "
+            superpepe = False
+            cambiarGuardarLote.Text = "Cambiar lote"
             nuevoLote.Visible = False
             EliminarLoteSelecion.Visible = False
             Cancelar.Visible = False

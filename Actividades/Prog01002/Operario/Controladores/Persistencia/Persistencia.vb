@@ -97,7 +97,7 @@ left join lugar on lugar.idlugar=bson_value_int(detalle, 'idlugar')", _con)
     End Function
 
     Friend Function VehiculosRetirados() As DataTable
-        Dim selectCmd As New OdbcCommand("select vehiculo.idvehiculo as IDVehiculo, vin as VIN, lugar.nombre as Lugar, nvl(bson_value_lvarchar(detalle, 'mensaje'), 'Ninguno') as Mensaje
+        Dim selectCmd As New OdbcCommand("select vehiculo.idvehiculo as IDVehiculo, vin as VIN, lugar.nombre as Lugar, nvl(bson_value_lvarchar(detalle, 'mensaje'), 'Ninguno') as Mensaje, fechaAgregado as HoraRetiro
 from vehiculo inner join vehiculoIngresa on vehiculoIngresa.tipoIngreso='Baja' and vehiculoIngresa.idvehiculo=vehiculo.idvehiculo
 and bson_value_lvarchar(detalle, 'tipo')='recogido'
 inner join lugar on lugar.idlugar=bson_value_int(detalle, 'idlugar')", _con)
@@ -107,7 +107,7 @@ inner join lugar on lugar.idlugar=bson_value_int(detalle, 'idlugar')", _con)
     End Function
 
     Friend Function VehiculosEntregados() As DataTable
-        Dim selectCmd As New OdbcCommand("select vehiculo.idvehiculo as IDVehiculo, vin as VIN, lugar.nombre as Lugar
+        Dim selectCmd As New OdbcCommand("select vehiculo.idvehiculo as IDVehiculo, vin as VIN, lugar.nombre as Lugar, FechaHoraLlegadaReal as Hora_de_entrega
 from lugar inner join lote on lote.destino=lugar.idlugar and lugar.tipo='Establecimiento'
 inner join transporta on transporta.idlote=lote.idlote and transporta.estado='Exitoso'
 inner join integra on integra.lote=lote.idlote

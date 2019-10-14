@@ -8,6 +8,9 @@ Public Class ListaDeMediosAutorizados
 
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
+        If Fachada.getInstancia.DevolverUsuarioActual.Rol <> Usuario.TIPO_ROL_ADMINISTRADOR Then
+            Button1.Visible = False
+        End If
         Dim alfa As New Alfa(GetType(Controladores.MedioDeTransporte), GetType(Controladores.SUB_Medio), Sub(x) Controladores.Marco.getInstancia.CargarPanel(Of PanelMedioDeTrasporte)(New PanelMedioDeTrasporte(DirectCast(x, MedioDeTransporte).ID)))
         Me.Controls.Add(alfa)
         alfa.Size = New Drawing.Size(855, 565)
