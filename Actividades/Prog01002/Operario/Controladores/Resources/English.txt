@@ -33,6 +33,7 @@ Year
 Type
 Zone
 Subzone
+Sub zone
 Place
 Position
 Batch
@@ -124,3 +125,121 @@ It must be only numeric
 Error, the name of this client is already in use
 At least you must load a customer establishment
 Added successfully
+New means of transport
+ID
+New kind
+Delete Type Created
+Media type
+Car quantity
+Truck Quantity
+SUV Amount
+VAN Amount
+Mini van quantity
+Types:
+Enter the vehicle VIN
+Color
+Set location
+Available positions
+Delete batch
+Make a damage report
+Delete report
+Edit Report
+Enter vehicle
+Clear List
+Optional columns
+Click on the items in the list to access the Preload panel
+Open
+Okay
+Authorized media list
+Name:
+Total capacity:
+Owner
+Manage zones and subzones
+Customer id
+Added to the system by
+Date Added
+Customer Establishments
+The customer cannot be null!
+If you do not want to enter a value for the brand you must specify it with the checkbox
+If you do not want to enter a value for the model you must specify it with the checkbox
+Preload done
+You cannot enter blank spaces
+This Vin has already been entered
+Accepted
+Must include at least one letter
+{0} characters left
+Vin
+Brand
+Model
+Year
+Kind
+Client
+Save
+Do not enter
+Select
+17 characters left
+User List
+New user
+List of places
+Connectivity map
+New place
+Owner Client:
+Vehicles delivered
+Id place
+Type of place
+Capacity
+Added to the system by
+Registration date
+Operators working on it
+See location
+Edit ratings
+Edit zones and subzones
+See distribution of zones and subzones
+User id
+Public Identifier
+State
+Date added to the system
+Added by
+Capacities:
+Number of cars
+Number of Trucks
+SUV Number
+VAN Number
+MiniVAN Number
+Users enabled
+NO INFORMATION
+Made by
+Through:
+creation date and time
+Date and time of departure
+Estimated end date and time
+End date and time Real
+Lots
+Vehicle
+Data of the zone
+Use
+Administrator
+Operator
+haulier
+Period over
+This work period has expired
+You must select a row to delete
+Select a driving license to remove
+Are you sure you want to remove the permission
+Elimination done
+Username
+User ID
+Role
+Full name
+Birth date
+Email
+Phone
+Sex
+Created by
+Creation date
+Current location
+Show
+Change Password
+Edit recovery data
+Edit Personal Information
+Delete (Finish)

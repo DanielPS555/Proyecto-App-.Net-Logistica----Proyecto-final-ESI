@@ -355,9 +355,9 @@ Partial Class PanelInfoUsuario
         Me.Label3.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.Location = New System.Drawing.Point(11, 266)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(56, 22)
+        Me.Label3.Size = New System.Drawing.Size(179, 22)
         Me.Label3.TabIndex = 108
-        Me.Label3.Text = "Email"
+        Me.Label3.Text = "Correo Electronico"
         '
         'Label2
         '

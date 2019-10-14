@@ -25,8 +25,8 @@ Partial Class NuevaPrecarga
     Private Sub InitializeComponent()
         Me.clientes = New System.Windows.Forms.ComboBox()
         Me.muestra_color = New System.Windows.Forms.Panel()
-        Me.ingresar = New System.Windows.Forms.Button()
-        Me.color = New System.Windows.Forms.Button()
+        Me.Guardar = New System.Windows.Forms.Button()
+        Me.Seleccionarbtn = New System.Windows.Forms.Button()
         Me.tipo = New System.Windows.Forms.ComboBox()
         Me.l_tipo = New System.Windows.Forms.Label()
         Me.l_cliente = New System.Windows.Forms.Label()
@@ -60,50 +60,50 @@ Partial Class NuevaPrecarga
         'muestra_color
         '
         Me.muestra_color.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.muestra_color.Location = New System.Drawing.Point(260, 378)
+        Me.muestra_color.Location = New System.Drawing.Point(291, 378)
         Me.muestra_color.Name = "muestra_color"
         Me.muestra_color.Size = New System.Drawing.Size(203, 53)
         Me.muestra_color.TabIndex = 144
         '
-        'ingresar
+        'Guardar
         '
-        Me.ingresar.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.Guardar.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.ingresar.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Me.ingresar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Me.ingresar.FlatAppearance.BorderSize = 0
-        Me.ingresar.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Me.ingresar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        Me.ingresar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        Me.ingresar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ingresar.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ingresar.ForeColor = System.Drawing.Color.White
-        Me.ingresar.Location = New System.Drawing.Point(24, 586)
-        Me.ingresar.Name = "ingresar"
-        Me.ingresar.Size = New System.Drawing.Size(272, 52)
-        Me.ingresar.TabIndex = 143
-        Me.ingresar.Text = "Ingrezar vehiculo "
-        Me.ingresar.UseVisualStyleBackColor = False
+        Me.Guardar.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.Guardar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.Guardar.FlatAppearance.BorderSize = 0
+        Me.Guardar.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.Guardar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        Me.Guardar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
+        Me.Guardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Guardar.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Guardar.ForeColor = System.Drawing.Color.White
+        Me.Guardar.Location = New System.Drawing.Point(24, 586)
+        Me.Guardar.Name = "Guardar"
+        Me.Guardar.Size = New System.Drawing.Size(272, 52)
+        Me.Guardar.TabIndex = 143
+        Me.Guardar.Text = "Guardar "
+        Me.Guardar.UseVisualStyleBackColor = False
         '
-        'color
+        'Seleccionarbtn
         '
-        Me.color.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.Seleccionarbtn.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.color.BackColor = System.Drawing.Color.White
-        Me.color.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
-        Me.color.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Me.color.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White
-        Me.color.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White
-        Me.color.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.color.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.color.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
-        Me.color.Location = New System.Drawing.Point(123, 387)
-        Me.color.Name = "color"
-        Me.color.Size = New System.Drawing.Size(126, 35)
-        Me.color.TabIndex = 140
-        Me.color.Text = "Selecionar"
-        Me.color.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.color.UseVisualStyleBackColor = False
+        Me.Seleccionarbtn.BackColor = System.Drawing.Color.White
+        Me.Seleccionarbtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
+        Me.Seleccionarbtn.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.Seleccionarbtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White
+        Me.Seleccionarbtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White
+        Me.Seleccionarbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Seleccionarbtn.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Seleccionarbtn.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
+        Me.Seleccionarbtn.Location = New System.Drawing.Point(123, 387)
+        Me.Seleccionarbtn.Name = "Seleccionarbtn"
+        Me.Seleccionarbtn.Size = New System.Drawing.Size(162, 35)
+        Me.Seleccionarbtn.TabIndex = 140
+        Me.Seleccionarbtn.Text = "Seleccionar"
+        Me.Seleccionarbtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Seleccionarbtn.UseVisualStyleBackColor = False
         '
         'tipo
         '
@@ -238,9 +238,9 @@ Partial Class NuevaPrecarga
         Me.añoNoIngrezar.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.añoNoIngrezar.Location = New System.Drawing.Point(759, 218)
         Me.añoNoIngrezar.Name = "añoNoIngrezar"
-        Me.añoNoIngrezar.Size = New System.Drawing.Size(118, 25)
+        Me.añoNoIngrezar.Size = New System.Drawing.Size(117, 25)
         Me.añoNoIngrezar.TabIndex = 152
-        Me.añoNoIngrezar.Text = "No ingrezar "
+        Me.añoNoIngrezar.Text = "No ingresar "
         Me.añoNoIngrezar.UseVisualStyleBackColor = True
         '
         'tipoNoIngrezar
@@ -250,9 +250,9 @@ Partial Class NuevaPrecarga
         Me.tipoNoIngrezar.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tipoNoIngrezar.Location = New System.Drawing.Point(759, 288)
         Me.tipoNoIngrezar.Name = "tipoNoIngrezar"
-        Me.tipoNoIngrezar.Size = New System.Drawing.Size(118, 25)
+        Me.tipoNoIngrezar.Size = New System.Drawing.Size(117, 25)
         Me.tipoNoIngrezar.TabIndex = 153
-        Me.tipoNoIngrezar.Text = "No ingrezar "
+        Me.tipoNoIngrezar.Text = "No ingresar "
         Me.tipoNoIngrezar.UseVisualStyleBackColor = True
         '
         'colorNoIngrezar
@@ -260,11 +260,11 @@ Partial Class NuevaPrecarga
         Me.colorNoIngrezar.AutoSize = True
         Me.colorNoIngrezar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.colorNoIngrezar.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.colorNoIngrezar.Location = New System.Drawing.Point(469, 394)
+        Me.colorNoIngrezar.Location = New System.Drawing.Point(500, 394)
         Me.colorNoIngrezar.Name = "colorNoIngrezar"
-        Me.colorNoIngrezar.Size = New System.Drawing.Size(118, 25)
+        Me.colorNoIngrezar.Size = New System.Drawing.Size(117, 25)
         Me.colorNoIngrezar.TabIndex = 154
-        Me.colorNoIngrezar.Text = "No ingrezar "
+        Me.colorNoIngrezar.Text = "No ingresar "
         Me.colorNoIngrezar.UseVisualStyleBackColor = True
         '
         'modeloNoIngrezar
@@ -274,9 +274,9 @@ Partial Class NuevaPrecarga
         Me.modeloNoIngrezar.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.modeloNoIngrezar.Location = New System.Drawing.Point(759, 151)
         Me.modeloNoIngrezar.Name = "modeloNoIngrezar"
-        Me.modeloNoIngrezar.Size = New System.Drawing.Size(118, 25)
+        Me.modeloNoIngrezar.Size = New System.Drawing.Size(117, 25)
         Me.modeloNoIngrezar.TabIndex = 155
-        Me.modeloNoIngrezar.Text = "No ingrezar "
+        Me.modeloNoIngrezar.Text = "No ingresar "
         Me.modeloNoIngrezar.UseVisualStyleBackColor = True
         '
         'marcaNoIngrezar
@@ -286,9 +286,9 @@ Partial Class NuevaPrecarga
         Me.marcaNoIngrezar.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.marcaNoIngrezar.Location = New System.Drawing.Point(759, 92)
         Me.marcaNoIngrezar.Name = "marcaNoIngrezar"
-        Me.marcaNoIngrezar.Size = New System.Drawing.Size(118, 25)
+        Me.marcaNoIngrezar.Size = New System.Drawing.Size(117, 25)
         Me.marcaNoIngrezar.TabIndex = 156
-        Me.marcaNoIngrezar.Text = "No ingrezar "
+        Me.marcaNoIngrezar.Text = "No ingresar "
         Me.marcaNoIngrezar.UseVisualStyleBackColor = True
         '
         'NuevaPrecarga
@@ -307,8 +307,8 @@ Partial Class NuevaPrecarga
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.clientes)
         Me.Controls.Add(Me.muestra_color)
-        Me.Controls.Add(Me.ingresar)
-        Me.Controls.Add(Me.color)
+        Me.Controls.Add(Me.Guardar)
+        Me.Controls.Add(Me.Seleccionarbtn)
         Me.Controls.Add(Me.tipo)
         Me.Controls.Add(Me.l_tipo)
         Me.Controls.Add(Me.l_cliente)
@@ -329,8 +329,8 @@ Partial Class NuevaPrecarga
 
     Friend WithEvents clientes As ComboBox
     Friend WithEvents muestra_color As Windows.Forms.Panel
-    Friend WithEvents ingresar As Button
-    Friend WithEvents color As Button
+    Friend WithEvents Guardar As Button
+    Friend WithEvents Seleccionarbtn As Button
     Friend WithEvents tipo As ComboBox
     Friend WithEvents l_tipo As Label
     Friend WithEvents l_cliente As Label

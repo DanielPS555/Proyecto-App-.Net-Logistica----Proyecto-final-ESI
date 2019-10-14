@@ -94,7 +94,7 @@ Partial Class PrecargaMasiva
         Me.clearList.Name = "clearList"
         Me.clearList.Size = New System.Drawing.Size(341, 23)
         Me.clearList.TabIndex = 7
-        Me.clearList.Text = "Vaciar listardovich"
+        Me.clearList.Text = "Vaciar lista"
         Me.clearList.UseVisualStyleBackColor = True
         '
         'PrecargaMasiva

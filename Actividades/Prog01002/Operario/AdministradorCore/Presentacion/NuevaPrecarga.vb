@@ -1,5 +1,6 @@
 ﻿Imports System.Drawing
 Imports System.Windows.Forms
+Imports Controladores.Extenciones.Extensiones
 Public Class NuevaPrecarga
     Private colorin As Color
     Private isCSVPreload As Boolean = False
@@ -8,7 +9,8 @@ Public Class NuevaPrecarga
     Public Sub New(vehiculo As Controladores.Vehiculo, padre As PrecargaMasiva)
         LoadPanel()
         CopyFromVehiculo(vehiculo)
-        ingresar.Text = "Guardar"
+
+
         isCSVPreload = True
         Me.padre = padre
     End Sub
@@ -18,7 +20,7 @@ Public Class NuevaPrecarga
         Me.vin.Text = vehiculo.VIN
         Me.modelo.Text = vehiculo.Modelo
         Me.marca.Text = vehiculo.Marca
-        Me.color.BackColor = vehiculo.Color
+        Me.Seleccionarbtn.BackColor = vehiculo.Color
         Me.anio.Text = vehiculo.Año
         Dim zippedClients = Me.clientes.Items.
             Cast(Of Controladores.Cliente).
@@ -40,7 +42,26 @@ Public Class NuevaPrecarga
 
     Public Sub New()
         LoadPanel()
+        Guardar.Traducir
+        Label1.Traducir
+        estado.Traducir
+        l_marca.Traducir
+        l_modelo.Traducir
+        l_anio.Traducir
+        l_tipo.Traducir
+        l_color.Traducir
+        l_cliente.Traducir
+        Seleccionarbtn.Traducir
+        marcaNoIngrezar.Traducir
+        modeloNoIngrezar.Traducir
+        añoNoIngrezar.Traducir
+        tipoNoIngrezar.Traducir
+        colorNoIngrezar.Traducir
+
+
+
         Me.vehiculo = New Controladores.Vehiculo
+
     End Sub
 
     Private Sub cargarItem()
@@ -76,9 +97,9 @@ Public Class NuevaPrecarga
 
     Private vehiculo As Controladores.Vehiculo
 
-    Private Sub Ingresar_Click(sender As Object, e As EventArgs) Handles ingresar.Click
+    Private Sub Ingresar_Click(sender As Object, e As EventArgs) Handles Guardar.Click
         If clientes.SelectedItem Is Nothing Then
-            MsgBox("El cliente no puede ser nulo!")
+            MsgBoxI18N("El cliente no puede ser nulo!")
             Return
         End If
 
@@ -86,7 +107,7 @@ Public Class NuevaPrecarga
             If marca.Text.Trim.Length > 0 Then
                 vehiculo.Marca = marca.Text.Trim
             Else
-                MsgBox("Si no desea ingresar un valor para la marca debe explicitarlo con el checkbox")
+                MsgBoxI18N("Si no desea ingresar un valor para la marca debe explicitarlo con el checkbox")
                 Return
             End If
         End If
@@ -94,7 +115,7 @@ Public Class NuevaPrecarga
             If modelo.Text.Trim.Length > 0 Then
                 vehiculo.Modelo = modelo.Text.Trim
             Else
-                MsgBox("Si no desea ingresar un valor para el modelo debe explicitarlo con el checkbox")
+                MsgBoxI18N("Si no desea ingresar un valor para el modelo debe explicitarlo con el checkbox")
                 Return
             End If
         End If
@@ -121,7 +142,7 @@ Public Class NuevaPrecarga
         If Not isCSVPreload Then
             Controladores.Fachada.getInstancia.nuevaPrecarga(vehiculo, Controladores.Fachada.getInstancia.DevolverUsuarioActual)
 
-            MsgBox("Precarga realizada", MsgBoxStyle.Information)
+            MsgBoxI18N("Precarga realizada", MsgBoxStyle.Information)
         Else
             Dim itms = padre.vehicleBox.Items.Cast(Of Controladores.Vehiculo).ToList
             padre.vehicleBox.Items.Clear()
@@ -135,7 +156,7 @@ Public Class NuevaPrecarga
         If vin.Text.Length > 0 Then
             For Each c As Char In vin.Text
                 If c = " " Then
-                    estado.Text = "No puede ingresar espacios en blanco"
+                    estado.Text = Controladores.Funciones_comunes.I18N("No puede ingresar espacios en blanco", Controladores.Marco.Language)
                     estado.ForeColor = Drawing.Color.FromArgb(180, 20, 20)
                     Return
                 End If
@@ -143,27 +164,28 @@ Public Class NuevaPrecarga
         End If
         If vin.Text.Length = 17 Then
             If Controladores.Fachada.getInstancia.verificarVinExistente(vin.Text) Then
-                estado.Text = "Esta Vin ya fue ingrezada"
+                estado.Text = Controladores.Funciones_comunes.I18N("Esta Vin ya fue ingresada", Controladores.Marco.Language)
             Else
                 For Each c As Char In vin.Text
                     If Char.IsLetter(c) Then
-                        estado.Text = "Aceptado"
+                        estado.Text = Controladores.Funciones_comunes.I18N("Aceptado", Controladores.Marco.Language)
                         estado.ForeColor = Drawing.Color.FromArgb(19, 176, 25)
                         Return
                     End If
                 Next
-                estado.Text = "Debe incluir al menos una letra"
+                estado.Text = Controladores.Funciones_comunes.I18N("Debe incluir al menos una letra", Controladores.Marco.Language)
                 estado.ForeColor = Drawing.Color.FromArgb(255, 0, 0)
             End If
         Else
-            estado.Text = $"Faltan {17 - vin.Text.Length} caracteres "
+            ' estado.Text = $"Faltan {17 - vin.Text.Length} caracteres "
+            estado.Text = Controladores.Funciones_comunes.I18N($"Faltan {0} caracteres ", Controladores.Marco.Language).Format(17 - vin.Text.Length)
         End If
         estado.ForeColor = Drawing.Color.FromArgb(180, 20, 20)
 
 
     End Sub
 
-    Private Sub color_Click(sender As Object, e As EventArgs) Handles color.Click
+    Private Sub color_Click(sender As Object, e As EventArgs) Handles Seleccionarbtn.Click
         If ColorDialog1.ShowDialog <> Windows.Forms.DialogResult.Cancel Then
             muestra_color.BackColor = ColorDialog1.Color
             colorin = ColorDialog1.Color
@@ -179,6 +201,6 @@ Public Class NuevaPrecarga
     End Sub
 
     Private Sub colorNoIngrezar_CheckedChanged(sender As Object, e As EventArgs) Handles colorNoIngrezar.CheckedChanged
-        Me.color.Enabled = Not colorNoIngrezar.Checked
+        Me.Seleccionarbtn.Enabled = Not colorNoIngrezar.Checked
     End Sub
 End Class

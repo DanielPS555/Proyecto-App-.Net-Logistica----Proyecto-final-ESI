@@ -1,10 +1,12 @@
 ﻿Imports System.Windows.Forms
+Imports Controladores.Extenciones.Extensiones
 Public Class ListaDeTrasportes
     Dim lista As DataTable
     Public Sub New()
 
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
+        buscar.Traducir
         lista = Controladores.Fachada.getInstancia.ListaDeTrasportesPorIdUsuario(Controladores.Fachada.getInstancia.DevolverUsuarioActual.ID_usuario)
         trasportes.DataSource = lista
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().

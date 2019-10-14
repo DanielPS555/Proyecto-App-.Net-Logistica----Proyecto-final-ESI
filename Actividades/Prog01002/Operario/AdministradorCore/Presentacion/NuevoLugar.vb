@@ -178,6 +178,15 @@ Public Class NuevoLugar
         clientes = Controladores.Fachada.getInstancia.listaClientes()
         dueños.Items.AddRange(clientes.Select(Function(x) x.Nombre).ToArray)
         dueños.SelectedIndex = 0
+        Label4.Traducir
+        Label1.Traducir
+        Label3.Traducir
+        Label2.Traducir
+        Label5.Traducir
+        estadozonas.Traducir
+        Button1.Traducir
+        zonasysubzonas.Traducir
+
         CrearButton.Text = Controladores.Funciones_comunes.I18N("Aceptar", Controladores.Marco.getInstancia.Language)
         cancelar.Text = Controladores.Funciones_comunes.I18N("Cancelar", Controladores.Marco.getInstancia.Language)
     End Sub

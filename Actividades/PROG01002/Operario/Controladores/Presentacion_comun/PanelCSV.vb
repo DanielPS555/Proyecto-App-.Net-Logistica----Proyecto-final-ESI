@@ -1,4 +1,6 @@
-﻿Public Class PanelCSV
+﻿Imports Controladores.Extenciones.Extensiones
+Public Class PanelCSV
+
     Private csvreader As PICSVReader
     Private cols() As String
     Public ColumnCount As Integer? = Nothing
@@ -8,7 +10,11 @@
         InitializeComponent()
 
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
+        Cancel.Traducir
+        OpenBtn.Traducir
+        okbtn.Traducir
         cols = columns
+
 
     End Sub
 

@@ -33,6 +33,7 @@ Año
 Tipo
 Zona
 Subzona
+Sub zona
 Lugar
 Posicion
 Lote
@@ -124,3 +125,121 @@ Debe ser unicamente numerico
 Error, el nombre de este cliente ya esta en uso
 Al menos debe cargar un establecimiento del cliente
 Agregado con exito
+Nuevo Medio de transporte
+ID
+Nuevo Tipo
+Eliminar Tipo creado
+Tipo de medio
+Cantidad autos
+Cantidad Camiones
+Cantidad SUV
+Cantidad VAN
+Cantidad Mini van
+Tipos:
+Ingrese el VIN del vehiculo
+Color
+Establecer ubicacion
+Posiciones disponibles 
+Eliminar lote
+Realizar un informe de daños
+Eliminar informe
+Modificar informe
+Ingresar vehiculo 
+Vaciar lista
+Columnas opcionales
+Haga click en los elementos de la lista para acceder al panel de Precarga
+Abrir
+OK
+Lista de medios autorizados
+Nombre:
+Capacidad total:
+Dueño
+Administrar zonas y subzonas
+Id cliente
+Agregado al sistema por
+Fecha de agregado
+Establecimientos del cliente
+El cliente no puede ser nulo!
+Si no desea ingresar un valor para la marca debe explicitarlo con el checkbox
+Si no desea ingresar un valor para el modelo debe explicitarlo con el checkbox
+Precarga realizada
+No puede ingresar espacios en blanco
+Esta Vin ya fue ingresada
+Aceptado
+Debe incluir al menos una letra
+Faltan {0} caracteres
+Vin
+Marca
+Modelo
+Año 
+Tipo
+Cliente
+Guardar 
+No ingresar 
+Seleccionar
+Faltan 17 caracteres 
+Lista de usuarios
+Nuevo usuario 
+Lista de lugares
+Mapa de conectividad
+Nuevo lugar
+Cliente dueño:
+Vehiculos entregados
+Id lugar
+Tipo de lugar
+Capacidad
+Agregado al sistema por
+Fecha de registro
+Operarios que trabajan en ella 
+Ver ubicacion 
+Editar habilitaciones
+Editar zonas y subzonas
+Ver distibucion de zonas y subzonas
+Id usuario
+Identificador publico
+Estado 
+Fecha  agregado al sistema
+Agregado por 
+Capacidades: 
+Numero de autos
+Numero de Camiones
+Numero de SUV
+Numero de VAN
+Numero de MiniVAN
+Usuarios habilitados
+SIN INFORMACION
+Hecho por
+Por medio de: 
+fecha y hora de creacion 
+Fecha y hora de salida
+Fecha y hora de finalizacion estimada
+Fecha y hora de finalizacion Real
+Lotes
+Vehiculo
+Datos de la zona
+Uso
+Administrador
+Operario
+Transportista
+Perido terminado
+Este periodo de trabajo ya expiro
+Debe selecionar una fila que eliminar
+Selecione un permiso de conducion que eliminar
+Esta seguro que desea eliminar el permiso
+Eliminacion realizada
+Nombre de usuario 
+ID usuario 
+Rol
+Nombre completo 
+Fecha nacimiento 
+Correo Electronico
+Telefono 
+Sexo 
+Creado por
+Fecha de creacion 
+Ubicacion actual 
+Ver
+Cambiar contraseña 
+Editar datos de recuperacion 
+Editar informacion Personal 
+Eliminar (Finalizar)

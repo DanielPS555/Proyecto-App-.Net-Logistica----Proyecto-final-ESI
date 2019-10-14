@@ -1,6 +1,17 @@
-﻿Public Class PanelTrasporte
+﻿Imports Controladores.Extenciones.Extensiones
+Public Class PanelTrasporte
     Public Sub New(idtransporte)
         InitializeComponent()
+        Label2.Traducir
+        Label3.Traducir
+        Label10.Traducir
+        Label4.Traducir
+        Label5.Traducir
+        Label6.Traducir
+        Label7.Traducir
+        Label8.Traducir
+        Label9.Traducir
+        verUbicacion.Traducir
 
         Dim t As Controladores.Trasporte = Controladores.Fachada.getInstancia.InformacionCompletaDelTrasporteSIN_LOTES(idtransporte)
         id.Text = t.ID
@@ -27,8 +38,8 @@
         Next
 
 
-        FechaDeFinalizacionEstimada.Text = If(estimada Is Nothing, "SIN INFORMACION", estimada)
-        FechaDeFinalizacionReal.Text = If(real Is Nothing, "SIN INFORMACION", real)
+        FechaDeFinalizacionEstimada.Text = If(estimada Is Nothing, Controladores.Funciones_comunes.I18N("SIN INFORMACION", Controladores.Marco.Language), estimada)
+        FechaDeFinalizacionReal.Text = If(real Is Nothing, Controladores.Funciones_comunes.I18N("SIN INFORMACION", Controladores.Marco.Language), real)
 
     End Sub
 End Class

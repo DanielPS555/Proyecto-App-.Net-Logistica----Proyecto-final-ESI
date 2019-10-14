@@ -1,4 +1,5 @@
-﻿Public Class PanelInfoUsuario
+﻿Imports Controladores.Extenciones.Extensiones
+Public Class PanelInfoUsuario
     Implements NotificacionSimple
     Dim filaSelexMedio As Integer = -1
     Dim filaSelex As Integer = -1
@@ -9,6 +10,26 @@
     Public Sub New(idusuario As Integer)
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
+        Label13.Traducir
+        Label1.Traducir
+        Label6.Traducir
+        Label2.Traducir
+        Label5.Traducir
+        Label3.Traducir
+        Label4.Traducir
+        Label7.Traducir
+        Label8.Traducir
+        Label9.Traducir
+        Label11.Traducir
+        LinkLabel1.Traducir
+        editarInfo.Traducir
+        cambioContraseña.Traducir
+        CambiarDatosPersonales.Traducir
+        Button1.Traducir
+        Button2.Traducir
+        Button4.Traducir
+        Button3.Traducir
+        'falta traducir la tablita de arriba tab.tabpages algo -facu.
         user = New Controladores.Usuario() With {.ID_usuario = idusuario}
         cargarDatosBasicos()
         editarInfo.Visible = (idusuario = Fachada.getInstancia.DevolverUsuarioActual.ID_usuario)
@@ -50,13 +71,13 @@
 
         Select Case user.Rol
             Case "A"
-                rol.Text = "Administrador"
+                rol.Text = Controladores.Funciones_comunes.I18N("Administrador", Controladores.Marco.Language)
                 tab.TabPages.RemoveAt(2)
             Case "O"
-                rol.Text = "Operario"
+                rol.Text = Controladores.Funciones_comunes.I18N("Operario", Controladores.Marco.Language)
                 datosDelOperario()
             Case "T"
-                rol.Text = "Transportista"
+                rol.Text = Controladores.Funciones_comunes.I18N("Transportista", Controladores.Marco.Language)
                 datosDelTransportista()
         End Select
 
@@ -94,12 +115,12 @@
             If Controladores.Funciones_comunes.AutoNull(Of Object)(ListaTrabajaen.Rows(filaSelex).Item(3)) Is Nothing Then
                 Controladores.Fachada.getInstancia.terminarTrabajaEn(New Controladores.TrabajaEn() With {.Id = ListaTrabajaen.Rows(filaSelex).Item(0)})
                 actualizarPanel()
-                MsgBox("Perido terminado", MsgBoxStyle.Information)
+                MsgBoxI18N("Perido terminado", MsgBoxStyle.Information)
             Else
-                MsgBox("Este periodo de trabajo ya expiro", MsgBoxStyle.Critical)
+                MsgBoxI18N("Este periodo de trabajo ya expiro", MsgBoxStyle.Critical)
             End If
         Else
-            MsgBox("Debe selecionar una fila que eliminar", MsgBoxStyle.Critical)
+            MsgBoxI18N("Debe selecionar una fila que eliminar", MsgBoxStyle.Critical)
         End If
     End Sub
 
@@ -109,14 +130,14 @@
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
         If filaSelexMedio = -1 Then
-            MsgBox("Selecione un permiso de conducion que eliminar", MsgBoxStyle.Critical)
+            MsgBoxI18N("Selecione un permiso de conducion que eliminar", MsgBoxStyle.Critical)
             Return
         End If
 
-        If MsgBox("Esta seguro que desea eliminar el permiso", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
+        If MsgBox(Controladores.Funciones_comunes.I18N("Esta seguro que desea eliminar el permiso", Controladores.Marco.Language), MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
             Controladores.Fachada.getInstancia.InavilitarPermite(New Controladores.MedioDeTransporte With {.ID = listaMedios.Rows(filaSelexMedio).Item(0)}, user)
             actualizarPanel()
-            MsgBox("Eliminacion realizada")
+            MsgBoxI18N("Eliminacion realizada")
         End If
 
     End Sub
@@ -134,5 +155,9 @@
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
         Dim m As New NuevoPermite(user, Me)
         m.ShowDialog()
+    End Sub
+
+    Private Sub Label8_Click(sender As Object, e As EventArgs) Handles Label8.Click
+
     End Sub
 End Class

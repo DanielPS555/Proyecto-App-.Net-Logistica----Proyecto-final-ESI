@@ -1,5 +1,6 @@
 ﻿Imports System.Windows.Forms
 Imports Controladores
+Imports Controladores.Extenciones.Extensiones
 
 Public Class ListaDeMediosAutorizados
     Dim dataTabla As New DataTable
@@ -21,6 +22,7 @@ Public Class ListaDeMediosAutorizados
             alfa.Nuevo(m, False)
         Next
         alfa.render()
+        Label2.Traducir
         Button1.Text = Controladores.Funciones_comunes.I18N("Nuevo medio", Controladores.Marco.getInstancia.Language)
     End Sub
 

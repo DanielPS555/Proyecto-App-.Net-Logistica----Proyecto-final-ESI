@@ -17,6 +17,9 @@ Public Class PrecargaMasiva
         InitializeComponent()
 
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
+        clearList.Traducir
+        Label1.Traducir
+        Label2.Traducir
         uploadPreloads.Text = Funciones_comunes.I18N("Subir precargas", Marco.Language)
         openCSV.Text = Funciones_comunes.I18N("Abrir CSV", Marco.Language)
     End Sub

@@ -1,4 +1,5 @@
 ﻿Imports System.Windows.Forms
+Imports Controladores.Extenciones.Extensiones
 Public Class ListarUsuario
     Dim alfa As Controladores.Alfa
     Private Usuariostabla As DataTable
@@ -6,7 +7,11 @@ Public Class ListarUsuario
 
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
-        alfa = New Controladores.Alfa(GetType(Controladores.Usuario), GetType(Controladores.SUB_Usuario), Sub(elemento) Controladores.Marco.getInstancia.CargarPanel(Of PanelInfoUsuario)(New PanelInfoUsuario(DirectCast(elemento, Controladores.Usuario).ID_usuario)))
+        Button1.Traducir
+        Label2.Traducir
+
+
+        alfa = New Controladores.Alfa(GetType(Controladores.Usuario), GetType(Controladores.SUB_Usuario), Sub(elemento) Controladores.Marco.getInstancia.CargarPanel(Of Controladores.PanelInfoUsuario)(New Controladores.PanelInfoUsuario(DirectCast(elemento, Controladores.Usuario).ID_usuario)))
         Me.Controls.Add(alfa)
         alfa.Location = New Drawing.Point(13, 65)
         alfa.Size = New Drawing.Size(853, 570)
@@ -26,8 +31,8 @@ Public Class ListarUsuario
         'usuarios.DataSource = Usuariostabla
     End Sub
 
-    Private Sub Usuarios_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) 
-        Controladores.Marco.getInstancia.CargarPanel(Of PanelInfoUsuario)(New PanelInfoUsuario(Usuariostabla.Rows(e.RowIndex).Item(0)))
+    Private Sub Usuarios_CellContentClick(sender As Object, e As DataGridViewCellEventArgs)
+        Controladores.Marco.getInstancia.CargarPanel(Of Controladores.PanelInfoUsuario)(New Controladores.PanelInfoUsuario(Usuariostabla.Rows(e.RowIndex).Item(0)))
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click

@@ -78,9 +78,9 @@ Partial Class NuevoVehiculo
         Me.EstadoBusqueda.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.EstadoBusqueda.Location = New System.Drawing.Point(13, 70)
         Me.EstadoBusqueda.Name = "EstadoBusqueda"
-        Me.EstadoBusqueda.Size = New System.Drawing.Size(178, 17)
+        Me.EstadoBusqueda.Size = New System.Drawing.Size(177, 17)
         Me.EstadoBusqueda.TabIndex = 28
-        Me.EstadoBusqueda.Text = "Ingrese el VIM del vehiculo"
+        Me.EstadoBusqueda.Text = "Ingrese el VIN del vehiculo"
         '
         'l_marca
         '
@@ -146,7 +146,7 @@ Partial Class NuevoVehiculo
         '
         Me.l_color.AutoSize = True
         Me.l_color.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.l_color.Location = New System.Drawing.Point(570, 197)
+        Me.l_color.Location = New System.Drawing.Point(564, 197)
         Me.l_color.Name = "l_color"
         Me.l_color.Size = New System.Drawing.Size(58, 22)
         Me.l_color.TabIndex = 35
@@ -189,9 +189,9 @@ Partial Class NuevoVehiculo
         Me.Label8.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label8.Location = New System.Drawing.Point(8, 307)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(198, 22)
+        Me.Label8.Size = New System.Drawing.Size(202, 22)
         Me.Label8.TabIndex = 40
-        Me.Label8.Text = "Establaser ubicacion"
+        Me.Label8.Text = "Establecer ubicacion"
         '
         'subzonas
         '
@@ -237,7 +237,7 @@ Partial Class NuevoVehiculo
         '
         Me.l_zona.AutoSize = True
         Me.l_zona.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.l_zona.Location = New System.Drawing.Point(369, 344)
+        Me.l_zona.Location = New System.Drawing.Point(370, 344)
         Me.l_zona.Name = "l_zona"
         Me.l_zona.Size = New System.Drawing.Size(56, 22)
         Me.l_zona.TabIndex = 41
@@ -358,9 +358,9 @@ Partial Class NuevoVehiculo
         Me.color.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.color.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.color.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
-        Me.color.Location = New System.Drawing.Point(634, 190)
+        Me.color.Location = New System.Drawing.Point(624, 191)
         Me.color.Name = "color"
-        Me.color.Size = New System.Drawing.Size(126, 35)
+        Me.color.Size = New System.Drawing.Size(130, 35)
         Me.color.TabIndex = 48
         Me.color.Text = "Selecionar"
         Me.color.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -405,7 +405,7 @@ Partial Class NuevoVehiculo
         Me.ingresar.Name = "ingresar"
         Me.ingresar.Size = New System.Drawing.Size(198, 35)
         Me.ingresar.TabIndex = 52
-        Me.ingresar.Text = "Ingrezar vehiculo "
+        Me.ingresar.Text = "Ingresar vehiculo "
         Me.ingresar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.ingresar.UseVisualStyleBackColor = False
         '

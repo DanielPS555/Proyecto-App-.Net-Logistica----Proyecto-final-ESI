@@ -8,6 +8,16 @@ Public Class ListaZonas
     Public Sub New()
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
+        Label3.Traducir
+        Label4.Traducir
+        Label5.Traducir
+        Label1.Traducir
+        Label6.Traducir
+        Label7.Traducir
+        Label8.Traducir
+        Label9.Traducir
+        Label10.Traducir
+        Label11.Traducir
 
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
         cargarZonas(Fachada.getInstancia.TrabajaEnAcutual.Lugar)

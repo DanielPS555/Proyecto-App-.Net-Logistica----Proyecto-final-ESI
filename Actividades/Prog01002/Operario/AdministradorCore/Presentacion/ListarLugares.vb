@@ -1,9 +1,14 @@
 ﻿Imports System.Windows.Forms
+Imports Controladores.Extenciones.Extensiones
 Public Class ListarLugares
     Private lugaresTabla As DataTable
     Private alfa As Controladores.Alfa
     Public Sub New()
         InitializeComponent()
+        Label2.Traducir
+        Button2.Traducir
+        Button1.Traducir
+
         alfa = New Controladores.Alfa(GetType(Controladores.Lugar), GetType(Controladores.SUB_lugar), Sub(x) Controladores.Marco.getInstancia.CargarPanel(Of PanelLugar)(New PanelLugar(DirectCast(x, Controladores.Lugar).IDLugar)))
         Me.Controls.Add(alfa)
         alfa.Size = New Drawing.Size(855, 570)

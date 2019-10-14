@@ -1,4 +1,5 @@
 ﻿Imports GMap.NET
+Imports Controladores.Extenciones.Extensiones
 
 Public Class PanelLugar
 
@@ -10,6 +11,19 @@ Public Class PanelLugar
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
         cargarInfoBasica(idlugar)
+        Label1.Traducir
+        Label6.Traducir
+        Label7.Traducir
+        Label2.Traducir
+        Label3.Traducir
+        Label4.Traducir
+        Label5.Traducir
+        verUbicacion.Traducir
+        Button1.Traducir
+        EditarSubzonas.Traducir
+        verZonas.Traducir
+
+
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
 
     End Sub
@@ -23,9 +37,9 @@ Public Class PanelLugar
         Me.fechacreacion.Text = lugar.FechaCreacion
 
         If lugar.Tipo = Controladores.Lugar.TIPO_LUGAR_ESTABLECIMIENTO Then
-            Label2.Text = "Cliente dueño:"
+            Label2.Text = Controladores.Funciones_comunes.I18N("Cliente dueño:", Controladores.Marco.Language)
             Me.capasidad.Text = lugar.Dueño.Nombre
-            Label5.Text = "Vehiculos entregados"
+            Label5.Text = Controladores.Funciones_comunes.I18N("Vehiculos entregados", Controladores.Marco.Language)
             usuarios.DataSource = Controladores.Fachada.getInstancia.todosLosVehiculosEntregadosEnUnLugar(lugar.IDLugar)
             EditarSubzonas.Visible = False
             verZonas.Visible = False

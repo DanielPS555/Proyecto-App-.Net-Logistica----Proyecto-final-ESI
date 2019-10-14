@@ -209,9 +209,6 @@
     <Compile Include="Presentacion\PanelCliente.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Presentacion\PanelInfoUsuario.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Presentacion\PanelLugar.Designer.vb">
       <DependentUpon>PanelLugar.vb</DependentUpon>
     </Compile>
