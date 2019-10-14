@@ -1,7 +1,14 @@
-﻿Public Class PanelCliente
+﻿Imports Controladores.Extenciones.Extensiones
+Public Class PanelCliente
     Private clienteFinal As Controladores.Cliente
     Public Sub New(idcliente As Integer)
         InitializeComponent()
+        Label1.Traducir
+        Label6.Traducir
+        Label3.Traducir
+        Label4.Traducir
+        Label5.Traducir
+
         cargardatos(idcliente)
     End Sub
 

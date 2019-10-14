@@ -25,6 +25,29 @@ Public Class NuevoVehiculo
         InitializeComponent()
 
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
+        QR.Traducir
+        Buscar.Traducir
+        EstadoBusqueda.Traducir
+        l_marca.Traducir
+        l_anio.Traducir
+        l_tipo.Traducir
+        l_color.Traducir
+        l_cliente.Traducir
+        Label8.Traducir
+        Label2.Traducir
+        l_zona.Traducir
+        l_sz.Traducir
+        l_posDis.Traducir
+        l_lote.Traducir
+        crearomodificarLote.Traducir
+        eliminarlote.Traducir
+        Label1.Traducir
+        infoDaños.Traducir
+        eliminarInforme.Traducir
+        ModificarInforme.Traducir
+        EstadoInforme.Traducir
+
+
         loadClientes()
         CarcarComboBox()
         habilitar(True)

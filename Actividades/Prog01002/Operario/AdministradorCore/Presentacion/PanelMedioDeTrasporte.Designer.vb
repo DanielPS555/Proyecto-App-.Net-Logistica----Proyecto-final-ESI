@@ -97,9 +97,9 @@ Partial Class PanelMedioDeTrasporte
         Me.Label6.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label6.Location = New System.Drawing.Point(21, 281)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(341, 24)
+        Me.Label6.Size = New System.Drawing.Size(297, 24)
         Me.Label6.TabIndex = 5
-        Me.Label6.Text = "Fecha de agregacion al sistema"
+        Me.Label6.Text = "Fecha  agregado al sistema"
         '
         'Label7
         '
@@ -117,9 +117,9 @@ Partial Class PanelMedioDeTrasporte
         Me.Label8.Font = New System.Drawing.Font("Century Gothic", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label8.Location = New System.Drawing.Point(20, 418)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(185, 30)
+        Me.Label8.Size = New System.Drawing.Size(191, 30)
         Me.Label8.TabIndex = 7
-        Me.Label8.Text = "Capasidades: "
+        Me.Label8.Text = "Capacidades: "
         '
         'Label9
         '
@@ -277,9 +277,9 @@ Partial Class PanelMedioDeTrasporte
         Me.Label1.Font = New System.Drawing.Font("Century Gothic", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.Location = New System.Drawing.Point(377, 418)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(257, 30)
+        Me.Label1.Size = New System.Drawing.Size(247, 30)
         Me.Label1.TabIndex = 25
-        Me.Label1.Text = "Ususarios habilitados"
+        Me.Label1.Text = "Usuarios habilitados"
         '
         'userA
         '

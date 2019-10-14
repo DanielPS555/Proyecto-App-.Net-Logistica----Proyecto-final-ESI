@@ -1,11 +1,15 @@
 Imports Controladores
 Imports System.Drawing
 Imports System.Windows.Forms
+Imports Controladores.Extenciones.Extensiones
 Public Class ListaVehiculos
     Public Sub New()
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
+        buscar.Text = Controladores.Funciones_comunes.I18N("Buscar", Marco.Language)
+        nuevo.Text = Controladores.Funciones_comunes.I18N("Nuevo vehiculo", Marco.Language)
+        Label7.Traducir
 
         If Fachada.getInstancia.TrabajaEnAcutual IsNot Nothing AndAlso Fachada.getInstancia.TrabajaEnAcutual.Lugar.Tipo = Lugar.TIPO_LUGAR_PUERTO Then
             nuevo.Visible = True
@@ -25,8 +29,6 @@ Public Class ListaVehiculos
         DataGridView1.MultiSelect = False
         criterios.SelectedIndex = 0
         tiposListas.SelectedIndex = 0
-        buscar.Text = Controladores.Funciones_comunes.I18N("Buscar", Marco.Language)
-        nuevo.Text = Controladores.Funciones_comunes.I18N("Nuevo vehiculo", Marco.Language)
 
     End Sub
 

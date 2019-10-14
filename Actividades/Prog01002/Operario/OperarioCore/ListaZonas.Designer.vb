@@ -148,9 +148,9 @@ Partial Class ListaZonas
         Me.Label7.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label7.Location = New System.Drawing.Point(280, 122)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(113, 22)
+        Me.Label7.Size = New System.Drawing.Size(118, 22)
         Me.Label7.TabIndex = 9
-        Me.Label7.Text = "Capasidad"
+        Me.Label7.Text = "Capacidad"
         '
         'Label8
         '
@@ -168,9 +168,9 @@ Partial Class ListaZonas
         Me.Label9.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label9.Location = New System.Drawing.Point(280, 258)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(113, 22)
+        Me.Label9.Size = New System.Drawing.Size(118, 22)
         Me.Label9.TabIndex = 11
-        Me.Label9.Text = "Capasidad"
+        Me.Label9.Text = "Capacidad"
         '
         'Label10
         '

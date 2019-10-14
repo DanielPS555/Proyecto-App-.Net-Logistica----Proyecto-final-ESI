@@ -9,8 +9,21 @@ Public Class NuevoMedio
     Public Sub New()
         InitializeComponent()
         CrearButton.Traducir
+        Label1.Traducir
+        Label2.Traducir
+        Label3.Traducir
+        Label4.Traducir
+        Label5.Traducir
+        Label6.Traducir
+        Label7.Traducir
+        Label8.Traducir
+        Label9.Traducir
+        nuevoTipo.Traducir
+        eliminar.Traducir
         mediosDeTransporte = Controladores.Fachada.getInstancia.TodosLosTiposDeMediosDisponibles()
         tipo.Items.AddRange(mediosDeTransporte.Select(Function(x) x.Nombre).ToArray)
+
+
 
         If tipo.Items.Count <> 0 Then
             tipo.SelectedIndex = 0
