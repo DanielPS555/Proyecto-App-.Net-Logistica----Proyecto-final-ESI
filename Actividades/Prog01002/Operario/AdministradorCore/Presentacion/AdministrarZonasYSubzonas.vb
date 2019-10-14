@@ -211,7 +211,7 @@
         Else
             If Controladores.Fachada.getInstancia.PosicionesActualesPorIdlugar(lugarViejo.IDLugar).Count = 0 Then
                 If MsgBox("Al no haber nigun vehiculo asignado en dicho lugar se puede realizar la modificacion directamente, ¿Desea continuar?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
-                    'AQUI DEBEMOS REALIZAR DIRECTAMENTE EL ALTA
+                    Controladores.Fachada.getInstancia.ActualizarLugar(lugarViejo, lugar, Nothing)
                 End If
 
             Else

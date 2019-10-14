@@ -53,10 +53,10 @@ Public Class NuevaPrecarga
         l_cliente.Traducir
         Seleccionarbtn.Traducir
         marcaNoIngrezar.Traducir
-        modeloNoIngrezar.Traducir
-        añoNoIngrezar.Traducir
-        tipoNoIngrezar.Traducir
-        colorNoIngrezar.Traducir
+        modeloNoIngrezar.Text = Controladores.Funciones_comunes.I18N(modeloNoIngrezar.Text.Trim, Controladores.Marco.Language)
+        añoNoIngrezar.Text = Controladores.Funciones_comunes.I18N(añoNoIngrezar.Text.Trim, Controladores.Marco.Language)
+        tipoNoIngrezar.Text = Controladores.Funciones_comunes.I18N(tipoNoIngrezar.Text.Trim, Controladores.Marco.Language)
+        colorNoIngrezar.Text = Controladores.Funciones_comunes.I18N(colorNoIngrezar.Text.Trim, Controladores.Marco.Language)
 
 
 

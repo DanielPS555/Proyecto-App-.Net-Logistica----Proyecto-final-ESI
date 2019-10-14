@@ -30,6 +30,16 @@ Public Class ListaZonas
 
         Me.lugar = Fachada.getInstancia.LugarZonasySubzonas(idlugar)
         cargarZonas(lugar)
+        Label3.Traducir
+        Label4.Traducir
+        Label5.Traducir
+        Label1.Traducir
+        Label6.Traducir
+        Label7.Traducir
+        Label8.Traducir
+        Label9.Traducir
+        Label10.Traducir
+        Label11.Traducir
     End Sub
 
     Private Sub cargarZonas(lugar As Lugar)

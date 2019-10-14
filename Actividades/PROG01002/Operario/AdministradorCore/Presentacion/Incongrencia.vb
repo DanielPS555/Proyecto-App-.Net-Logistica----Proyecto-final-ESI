@@ -79,7 +79,7 @@
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Controladores.Marco.getInstancia.CargarPanel(Of AdministrarZonasYSubzonas)(anterior)
+        Controladores.Marco.getInstancia.cerrarPanel(Of Incongrencia)()
     End Sub
 
     Private Function comprobarCongruencia(subzona As Controladores.Subzona, posicion As Integer)
@@ -165,6 +165,6 @@
             Return
         End If
 
-        'LUEGO SE HACE LA ALTA
+        Controladores.Fachada.getInstancia.ActualizarLugar(lugar_antigo, lugar_nuevo, posiciones)
     End Sub
 End Class

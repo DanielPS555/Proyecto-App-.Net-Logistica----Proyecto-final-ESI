@@ -14,10 +14,10 @@ Public Class PanelLugar
         Label1.Traducir
         Label6.Traducir
         Label7.Traducir
-        Label2.Traducir
+
         Label3.Traducir
         Label4.Traducir
-        Label5.Traducir
+
         verUbicacion.Traducir
         Button1.Traducir
         EditarSubzonas.Traducir
@@ -44,6 +44,8 @@ Public Class PanelLugar
             EditarSubzonas.Visible = False
             verZonas.Visible = False
         Else
+            Label2.Traducir
+            Label5.Traducir
             Me.capasidad.Text = lugar.Capasidad
             usuarios.DataSource = Controladores.Fachada.getInstancia.devolverListaDeTrabajaEnPorIdlugar(lugar.IDLugar)
         End If

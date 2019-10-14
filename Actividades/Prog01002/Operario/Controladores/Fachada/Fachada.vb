@@ -1365,16 +1365,17 @@ Public Class Fachada
         For Each lug As Zona In lugarNuevo.Zonas
             If Not Persistencia.getInstancia.existenciaDeZona(lugarAntiguo.IDLugar, lug.Nombre) Then
                 Dim idz As Integer = Persistencia.getInstancia.CrearZona(lugarAntiguo.IDLugar, lug.Nombre, lug.Capacidad)
+                lug.IDZona = idz
                 For Each subb As Subzona In lug.Subzonas
                     Dim ids As Integer = Persistencia.getInstancia.CrearSubzona(idz, subb.Nombre, subb.Capasidad)
-
+                    subb.IDSubzona = ids
                 Next
             Else
                 Dim idz As Integer = lugarAntiguo.Zonas.Where(Function(x) x.Nombre.Equals(lug.Nombre)).Single.IDZona
                 Persistencia.getInstancia.cambiarcapasidadPorIdlugar(idz, lug.Capacidad) 'SI ESTA IGUAL NO IMPORTA PORQUE VA A SEGI QUEDANDO ASI 
                 For Each subb As Subzona In lug.Subzonas
                     If Not Persistencia.getInstancia.existenciaDeSubZona(lugarAntiguo.IDLugar, lug.Nombre, subb.Nombre) Then
-                        Persistencia.getInstancia.CrearSubzona(idz, subb.Nombre, subb.Capasidad)
+                        subb.IDSubzona = Persistencia.getInstancia.CrearSubzona(idz, subb.Nombre, subb.Capasidad)
                     Else
                         Dim ids As Integer = lug.Subzonas.Where(Function(x) x.Nombre.Equals(subb.Nombre)).Single.IDSubzona
                         Persistencia.getInstancia.cambiarcapasidadPorIdlugar(ids, lug.Capacidad) 'SI ESTA IGUAL NO IMPORTA PORQUE VA A SEGI QUEDANDO ASI 
@@ -1383,14 +1384,14 @@ Public Class Fachada
             End If
         Next
 
-
-
         'Inhabilitar las zonas y subzonas ya no usadas 
 
         For Each lug As Zona In lugarAntiguo.Zonas
             If lugarNuevo.Zonas.Select(Function(x) x.Nombre).Contains(lug.Nombre) Then
                 For Each suub As Subzona In lug.Subzonas
-                    'If lugarNuevo.Zonas.Where(Function(x) ) Then
+                    If lugarNuevo.Zonas.Where(Function(x) x.Nombre.Equals(lug.Nombre)).Select(Function(x) x.Nombre).Contains(suub.Nombre) Then
+                        Persistencia.getInstancia.inhabilitadoLugarPorIdlugar(suub.IDSubzona, True)
+                    End If
                 Next
             Else
                 Persistencia.getInstancia.inhabilitadoLugarPorIdlugar(lug.IDZona, True)
@@ -1398,18 +1399,24 @@ Public Class Fachada
             End If
         Next
 
-
-
-
         'VAMOS A CARGAR LOS POSICIONES NUEVAS (SE COMPRARAN CON LAS ACTUALES, SI HAY CAMBIOS DIRECTAMENTE SE REALIZA, SINO SE PROSESDE
 
+        If posiciones Is Nothing Then 'NO DEBERIA REPOSICONAR VEHICULOS SI NO LOS HAY
+            Return
+        End If
 
-        'For Each p As Posicion In posiciones.Where(Function(x) x.Subzona.Nombre.Equals(subb.Nombre))
-        '    Dim userid As Integer = Persistencia.getInstancia.PosicionActualVehiculo(p.Vehiculo.IdVehiculo).Item(4)
-        '    'DEJO COMO QUIEN LO POSICIONO ES EL USUARIO ANTERIOR
-        '    Persistencia.getInstancia.anularPosicionAnterior(p.Vehiculo.IdVehiculo)
-        '    Persistencia.getInstancia.insertPosicion(userid, subb.IDSubzona, p.Vehiculo.IdVehiculo, p.Posicion)
-        'Next
+        Dim listaPosicionamientoActual = Me.PosicionesActualesPorIdlugar(lugarAntiguo.IDLugar)
+
+        For Each p As Posicion In posiciones
+            Dim postvin = listaPosicionamientoActual.Where(Function(x) x.Vehiculo.IdVehiculo = p.Vehiculo.IdVehiculo).Single
+            If Not (p.Subzona.Nombre.Equals(postvin.Subzona.Nombre) AndAlso p.Subzona.ZonaPadre.Nombre.Equals(postvin.Subzona.ZonaPadre.Nombre) AndAlso p.Posicion = postvin.Posicion) Then 'SI LA POSICION ACTUAL CON LA ANTERIOR ES IDENTICAMENTE IGUAL NO LO TOCO 
+                Dim usuarioanterior = Persistencia.getInstancia.PosicionActualVehiculo(p.Vehiculo.IdVehiculo).Item(4)
+                Persistencia.getInstancia.anularPosicionAnterior(postvin.Vehiculo.IdVehiculo)
+                Persistencia.getInstancia.insertPosicion(usuarioanterior, p.Subzona.IDSubzona, p.Vehiculo.IdVehiculo, p.Posicion)
+            End If
+        Next
+
+        'LUEGO DE RESETEAR 1000000 PADRES NUESTROS Y 20000 ESPIRITU SANTOS REZEMOS QUE FUNCIONE
 
     End Sub
 

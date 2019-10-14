@@ -156,5 +156,12 @@ Namespace Extenciones
             lab.Text = Controladores.Funciones_comunes.I18N(lab.Text.Trim, Marco.getInstancia.Language)
         End Sub
 
+        Public Sub Traducir(che As CheckBox)
+            If che.Text.Length = 0 Then
+                Throw New DataException("No esta cargado el texto")
+            End If
+            che.Text = Controladores.Funciones_comunes.I18N(che.Text.Trim, Marco.getInstancia.Language)
+        End Sub
+
     End Module
 End Namespace
