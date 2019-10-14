@@ -141,6 +141,8 @@ Partial Class PanelTrasporte
         '
         'lote
         '
+        Me.lote.AllowUserToAddRows = False
+        Me.lote.AllowUserToDeleteRows = False
         Me.lote.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.lote.BackgroundColor = System.Drawing.Color.White
         DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
@@ -162,6 +164,7 @@ Partial Class PanelTrasporte
         Me.lote.DefaultCellStyle = DataGridViewCellStyle2
         Me.lote.Location = New System.Drawing.Point(13, 462)
         Me.lote.Name = "lote"
+        Me.lote.ReadOnly = True
         Me.lote.Size = New System.Drawing.Size(855, 176)
         Me.lote.TabIndex = 9
         '

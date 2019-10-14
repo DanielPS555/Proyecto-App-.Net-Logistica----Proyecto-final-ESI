@@ -1390,7 +1390,7 @@ Public Class Fachada
         For Each lug As Zona In lugarAntiguo.Zonas
             If lugarNuevo.Zonas.Select(Function(x) x.Nombre).Contains(lug.Nombre) Then
                 For Each suub As Subzona In lug.Subzonas
-                    ' If lugarNuevo.Zonas.Where() Then
+                    'If lugarNuevo.Zonas.Where(Function(x) ) Then
                 Next
             Else
                 Persistencia.getInstancia.inhabilitadoLugarPorIdlugar(lug.IDZona, True)

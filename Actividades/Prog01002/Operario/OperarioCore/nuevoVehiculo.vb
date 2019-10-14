@@ -51,7 +51,7 @@ Public Class NuevoVehiculo
 
         loadClientes()
         CarcarComboBox()
-        habilitar(True)
+        'habilitar(True)
         loadClientes()
     End Sub
 

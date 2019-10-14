@@ -42,6 +42,8 @@ Partial Class ListaDeTrasportes
         '
         'trasportes
         '
+        Me.trasportes.AllowUserToAddRows = False
+        Me.trasportes.AllowUserToDeleteRows = False
         Me.trasportes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.trasportes.BackgroundColor = System.Drawing.Color.White
         DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
@@ -63,6 +65,7 @@ Partial Class ListaDeTrasportes
         Me.trasportes.DefaultCellStyle = DataGridViewCellStyle2
         Me.trasportes.Location = New System.Drawing.Point(13, 56)
         Me.trasportes.Name = "trasportes"
+        Me.trasportes.ReadOnly = True
         Me.trasportes.RowHeadersVisible = False
         Me.trasportes.Size = New System.Drawing.Size(855, 582)
         Me.trasportes.TabIndex = 2
