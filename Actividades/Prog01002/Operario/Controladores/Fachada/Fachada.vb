@@ -1356,4 +1356,60 @@ Public Class Fachada
         Next
         Return lista
     End Function
+
+    Public Sub ActualizarLugar(lugarAntiguo As Lugar, lugarNuevo As Lugar, posiciones As List(Of Posicion))
+        'crear nuevas zonas y subzonas. Tambien actualizar capasidades
+        For Each lug As Zona In lugarNuevo.Zonas
+            If Not Persistencia.getInstancia.existenciaDeZona(lugarAntiguo.IDLugar, lug.Nombre) Then
+                Dim idz As Integer = Persistencia.getInstancia.CrearZona(lugarAntiguo.IDLugar, lug.Nombre, lug.Capacidad)
+                For Each subb As Subzona In lug.Subzonas
+                    Dim ids As Integer = Persistencia.getInstancia.CrearSubzona(idz, subb.Nombre, subb.Capasidad)
+
+                Next
+            Else
+                Dim idz As Integer = lugarAntiguo.Zonas.Where(Function(x) x.Nombre.Equals(lug.Nombre)).Single.IDZona
+                Persistencia.getInstancia.cambiarcapasidadPorIdlugar(idz, lug.Capacidad) 'SI ESTA IGUAL NO IMPORTA PORQUE VA A SEGI QUEDANDO ASI 
+                For Each subb As Subzona In lug.Subzonas
+                    If Not Persistencia.getInstancia.existenciaDeSubZona(lugarAntiguo.IDLugar, lug.Nombre, subb.Nombre) Then
+                        Persistencia.getInstancia.CrearSubzona(idz, subb.Nombre, subb.Capasidad)
+                    Else
+                        Dim ids As Integer = lug.Subzonas.Where(Function(x) x.Nombre.Equals(subb.Nombre)).Single.IDSubzona
+                        Persistencia.getInstancia.cambiarcapasidadPorIdlugar(ids, lug.Capacidad) 'SI ESTA IGUAL NO IMPORTA PORQUE VA A SEGI QUEDANDO ASI 
+                    End If
+                Next
+            End If
+        Next
+
+
+
+        'Inhabilitar las zonas y subzonas ya no usadas 
+
+        For Each lug As Zona In lugarAntiguo.Zonas
+            If lugarNuevo.Zonas.Select(Function(x) x.Nombre).Contains(lug.Nombre) Then
+                For Each suub As Subzona In lug.Subzonas
+                    ' If lugarNuevo.Zonas.Where() Then
+                Next
+            Else
+                Persistencia.getInstancia.inhabilitadoLugarPorIdlugar(lug.IDZona, True)
+                lug.Subzonas.ForEach(Sub(x) Persistencia.getInstancia.inhabilitadoLugarPorIdlugar(x.IDSubzona, True))
+            End If
+        Next
+
+
+
+
+        'VAMOS A CARGAR LOS POSICIONES NUEVAS (SE COMPRARAN CON LAS ACTUALES, SI HAY CAMBIOS DIRECTAMENTE SE REALIZA, SINO SE PROSESDE
+
+
+        'For Each p As Posicion In posiciones.Where(Function(x) x.Subzona.Nombre.Equals(subb.Nombre))
+        '    Dim userid As Integer = Persistencia.getInstancia.PosicionActualVehiculo(p.Vehiculo.IdVehiculo).Item(4)
+        '    'DEJO COMO QUIEN LO POSICIONO ES EL USUARIO ANTERIOR
+        '    Persistencia.getInstancia.anularPosicionAnterior(p.Vehiculo.IdVehiculo)
+        '    Persistencia.getInstancia.insertPosicion(userid, subb.IDSubzona, p.Vehiculo.IdVehiculo, p.Posicion)
+        'Next
+
+    End Sub
+
+
+
 End Class

@@ -1852,16 +1852,49 @@ where trabajaen.ID=?", Conexcion)
 
     Public Function vehiculosPosicionadosActualmentePorIdlugar(idlugar As Integer) As DataTable
         Dim com As New OdbcCommand("select vehiculo.idvehiculo, vin,sub.IDLugar,posicion,sub.nombre,zoe.idlugar, zoe.nombre
-from posicionado inner join vehiculo on vehiculo.idvehiculo=posicionado.idvehiculo
-inner join lugar as sub on sub.idlugar=posicionado.idlugar
-inner join incluye on incluye.menor = sub.idlugar
-inner join lugar as zoe on incluye.mayor = zoe.idlugar
-where sub.IDLugar in (select unnamed_col_1 from table(subzonas_en_lugar(?::integer))) and hasta is null
-", Conexcion)
+                                    from posicionado inner join vehiculo on vehiculo.idvehiculo=posicionado.idvehiculo inner join lugar as sub on sub.idlugar=posicionado.idlugar
+                                    inner join incluye on incluye.menor = sub.idlugar inner join lugar as zoe on incluye.mayor = zoe.idlugar
+                                    where sub.IDLugar in (select unnamed_col_1 from table(subzonas_en_lugar(?::integer))) and hasta is null", Conexcion)
         com.CrearParametro(DbType.Int32, idlugar)
         Dim dt As New DataTable
         dt.Load(com.ExecuteReader)
         Return dt
     End Function
+
+    Public Function inhabilitadoLugarPorIdlugar(idlugar As Integer, j As Boolean)
+        Dim com As New OdbcCommand("update lugar set inhabilitado='?' where idlugar=? ", Conexcion)
+        com.CrearParametro(DbType.Boolean, j)
+        com.CrearParametro(DbType.Int32, idlugar)
+        Return com.ExecuteNonQuery
+    End Function
+
+    Public Function cambiarcapasidadPorIdlugar(idlugar As Integer, capasidad As Integer)
+        Dim com As New OdbcCommand("update lugar set Capacidad='?' where idlugar=? ", Conexcion)
+        com.CrearParametro(DbType.Int32, capasidad)
+        com.CrearParametro(DbType.Int32, idlugar)
+        Return com.ExecuteNonQuery
+    End Function
+
+    Public Function existenciaDeZona(idlugar As Integer, nombreZona As String) As Boolean
+        Dim com As New OdbcCommand("select  count(*) from lugar
+                                    where idlugar in (select unnamed_col_1 from table(subzonas_en_lugar(?::integer)))
+                                    and nombre =?", Conexcion)
+        com.CrearParametro(DbType.Int32, idlugar)
+        com.CrearParametro(DbType.String, nombreZona)
+        Return com.ExecuteScalar = 1
+    End Function
+
+    Public Function existenciaDeSubZona(idlugar As Integer, nombrezona As String, nombresubZona As String) As Boolean
+        Dim com As New OdbcCommand("select count(*) from lugar as sub
+                                     inner join incluye on incluye.menor = sub.idlugar inner join lugar as zoe on incluye.mayor = zoe.idlugar
+                                    where sub.idlugar in (select unnamed_col_1 from table(subzonas_en_lugar(?::integer)))
+                                    and sub.nombre=? and zoe.nombre=?", Conexcion)
+        com.CrearParametro(DbType.Int32, idlugar)
+        com.CrearParametro(DbType.String, nombresubZona)
+        com.CrearParametro(DbType.String, nombrezona)
+        Return com.ExecuteScalar = 1
+    End Function
+
+
 
 End Class

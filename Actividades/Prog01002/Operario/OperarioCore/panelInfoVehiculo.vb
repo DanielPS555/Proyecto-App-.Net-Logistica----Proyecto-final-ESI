@@ -368,7 +368,8 @@ Public Class panelInfoVehiculo
         LoteCombo.Enabled = False
         Dim nl As NuevoLote
         If loteTemp Is Nothing Then
-            nl = New NuevoLote(Me)
+            Dim p = Controladores.Fachada.getInstancia.DevolverPosicionActual(vehiculo.IdVehiculo)
+            nl = New NuevoLote(Me, p.Subzona.ZonaPadre.LugarPadre)
         Else
             nl = New NuevoLote(Me, loteTemp)
         End If

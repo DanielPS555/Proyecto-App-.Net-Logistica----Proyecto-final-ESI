@@ -57,7 +57,7 @@ Public Class Asignacion
 
     Private Sub CrearomodificarLote_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles crearomodificarLote.LinkClicked
         If LoteFinal Is Nothing Then
-            Dim d As New NuevoLote(Me)
+            Dim d As New NuevoLote(Me, lugarvehiculo)
             d.ShowDialog()
         Else
             Dim d As New NuevoLote(Me, LoteFinal)

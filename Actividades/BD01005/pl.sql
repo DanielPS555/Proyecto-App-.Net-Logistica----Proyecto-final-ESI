@@ -82,7 +82,7 @@ create function zonas_en_lugar(lugarid like lugar.idlugar)
 	  (select menor as idlugar from incluye
 	   start with mayor=lugarid
 	   connect by prior menor=mayor) as children on lugar.idlugar=children.idlugar
-	  where lugar.tipo="Zona"
+	  where lugar.tipo="Zona" and inhabilitado='f'
 	  return idz, nmz, cpz WITH RESUME;
 	END FOREACH;
 end function;
@@ -99,7 +99,7 @@ create function subzonas_en_zona(lugarid like lugar.idlugar, zonaid like lugar.i
 	  (select menor as idlugar from incluye
 	   start with mayor=lugarid and menor=zonaid
 	   connect by prior menor=mayor) as children on lugar.idlugar=children.idlugar
-	  where lugar.tipo="Subzona"
+	  where lugar.tipo="Subzona" and inhabilitado='f'
 	  return idz, nmz, cpz WITH RESUME;
 	END FOREACH;
 end function;
@@ -116,7 +116,7 @@ create function subzonas_en_lugar(lugarid like lugar.idlugar)
 	  (select menor as idlugar from incluye
 	   start with mayor=lugarid
 	   connect by prior menor=mayor) as children on lugar.idlugar=children.idlugar
-	  where lugar.tipo="Subzona"
+	  where lugar.tipo="Subzona" and inhabilitado='f'
 	  return idz, nmz, cpz WITH RESUME;
 	END FOREACH;
 end function;

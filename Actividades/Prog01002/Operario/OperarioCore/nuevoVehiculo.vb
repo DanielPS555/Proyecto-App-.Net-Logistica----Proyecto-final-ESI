@@ -9,6 +9,7 @@ Public Class NuevoVehiculo
     Private informe As InformeDeDaños
     Private LoteFinal As Lote
     Private lugaresCombo As List(Of Lugar)
+    Private todosLosLotes As List(Of Lote)
 
     Public ReadOnly Property LugarSelecionado() As Lugar
         Get
@@ -56,8 +57,8 @@ Public Class NuevoVehiculo
 
     Private Sub loadLotes()
         lote.Items.Clear()
-
-        For Each l As Lote In Fachada.getInstancia.LotesDisponiblesPorLugar(lugaresCombo(lugar.SelectedIndex))
+        todosLosLotes = Fachada.getInstancia.LotesDisponiblesPorLugar(lugaresCombo(lugar.SelectedIndex))
+        For Each l As Lote In todosLosLotes
             lote.Items.Add(l)
         Next
         If lote.Items.Count > 0 Then
@@ -246,7 +247,7 @@ Public Class NuevoVehiculo
         Vehiculo.Color = muestra_color.BackColor
 
 
-        If lote.SelectedItem Is Nothing OrElse LoteFinal Is Nothing Then
+        If lote.SelectedItem Is Nothing AndAlso LoteFinal Is Nothing Then
             MsgBoxI18N("No hay ningún lote seleccionado de la lista", MsgBoxStyle.Critical)
             Return
         End If
@@ -324,6 +325,9 @@ Public Class NuevoVehiculo
 
     Private Sub Eliminarlote_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles eliminarlote.LinkClicked
         lote.Enabled = True
+        lote.Items.Clear()
+        lote.Items.AddRange(todosLosLotes.ToArray)
+        lote.SelectedIndex = If(lote.Items.Count = 0, -1, 0)
         LoteFinal = Nothing
         eliminarlote.Visible = False
         crearomodificarLote.Text = Controladores.Funciones_comunes.I18N("Crear lote", Controladores.Marco.getInstancia.Language)
@@ -341,6 +345,9 @@ Public Class NuevoVehiculo
         lote.Enabled = False
         crearomodificarLote.Text = Controladores.Funciones_comunes.I18N("Modifica lote", Controladores.Marco.getInstancia.Language)
         eliminarlote.Visible = True
+        lote.Items.Clear()
+        lote.Items.Add(l)
+        lote.SelectedIndex = 0
         LoteFinal = l
     End Sub
 

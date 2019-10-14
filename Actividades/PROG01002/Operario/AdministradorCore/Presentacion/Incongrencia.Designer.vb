@@ -22,8 +22,8 @@ Partial Class Incongrencia
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.aceptar = New System.Windows.Forms.Button()
@@ -36,6 +36,7 @@ Partial Class Incongrencia
         Me.subzona_combo = New System.Windows.Forms.ComboBox()
         Me.posicones_combo = New System.Windows.Forms.ComboBox()
         Me.modi = New System.Windows.Forms.Button()
+        Me.estado = New System.Windows.Forms.Label()
         CType(Me.data, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -82,20 +83,20 @@ Partial Class Incongrencia
         Me.data.AllowUserToDeleteRows = False
         Me.data.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.data.BackgroundColor = System.Drawing.Color.White
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle5.Font = New System.Drawing.Font("Segoe UI Semibold", 12.25!, System.Drawing.FontStyle.Bold)
-        DataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
-        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.data.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Segoe UI Semibold", 12.25!, System.Drawing.FontStyle.Bold)
+        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.data.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.data.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.data.Location = New System.Drawing.Point(20, 58)
         Me.data.Name = "data"
         Me.data.ReadOnly = True
-        DataGridViewCellStyle6.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.data.RowsDefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.data.RowsDefaultCellStyle = DataGridViewCellStyle2
         Me.data.Size = New System.Drawing.Size(848, 364)
         Me.data.TabIndex = 23
         '
@@ -182,12 +183,24 @@ Partial Class Incongrencia
         Me.modi.Text = "Modificar"
         Me.modi.UseVisualStyleBackColor = False
         '
+        'estado
+        '
+        Me.estado.AutoSize = True
+        Me.estado.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.estado.ForeColor = System.Drawing.Color.FromArgb(CType(CType(180, Byte), Integer), CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer))
+        Me.estado.Location = New System.Drawing.Point(553, 598)
+        Me.estado.Name = "estado"
+        Me.estado.Size = New System.Drawing.Size(187, 21)
+        Me.estado.TabIndex = 32
+        Me.estado.Text = "Solucione la incongrencia"
+        '
         'Incongrencia
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(880, 650)
+        Me.Controls.Add(Me.estado)
         Me.Controls.Add(Me.modi)
         Me.Controls.Add(Me.posicones_combo)
         Me.Controls.Add(Me.subzona_combo)
@@ -221,4 +234,5 @@ Partial Class Incongrencia
     Friend WithEvents subzona_combo As Windows.Forms.ComboBox
     Friend WithEvents posicones_combo As Windows.Forms.ComboBox
     Friend WithEvents modi As Windows.Forms.Button
+    Friend WithEvents estado As Windows.Forms.Label
 End Class

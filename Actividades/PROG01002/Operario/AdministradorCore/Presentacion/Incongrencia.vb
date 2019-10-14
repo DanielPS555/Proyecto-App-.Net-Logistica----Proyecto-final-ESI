@@ -106,7 +106,12 @@
     Private Sub comprobacionTotal()
         If posiciones.Where(Function(x) x.Autorizado).ToList.Count = posiciones.Count Then
             aceptar.Enabled = True
-            MsgBox("Ya puede realizar el cambio, De todas formas antes se comprobara que no hay nuevos vehiculos que solucionar")
+            estado.Text = "Aceptado"
+            estado.ForeColor = Drawing.Color.Green
+        Else
+            estado.Text = "Solucione incongrencias"
+            estado.ForeColor = Drawing.Color.Red
+
         End If
     End Sub
 

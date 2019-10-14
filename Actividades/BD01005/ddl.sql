@@ -45,7 +45,8 @@ CREATE table
 	UsuarioCreador integer NOT null references usuario(IDUsuario),
 	fechaRegistro datetime year to second not null , 
 	Tipo varchar(15) NOT null check (Tipo IN
-		    	         ("Patio","Puerto","Establecimiento", 'Zona', 'Subzona'))
+		    	         ("Patio","Puerto","Establecimiento", 'Zona', 'Subzona')),
+	inhabilitado boolean default 'f' not null  					 
 );
 
 create table

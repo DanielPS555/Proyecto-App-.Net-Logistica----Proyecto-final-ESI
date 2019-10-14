@@ -23,13 +23,20 @@ Public Class NuevoLote
         destino.SelectedIndex = 0
     End Sub
 
-    Public Sub New(padre As NotificacionLote)
-        Me.New(padre, Fachada.getInstancia.TrabajaEnAcutual.Lugar)
-    End Sub
+
 
     Public Sub New(padre As NotificacionLote, oldlote As Lote)
-        Me.New(padre, Fachada.getInstancia.InfoLote(oldlote.IDLote).Origen)
-        oldlote = Fachada.getInstancia.InfoLote(oldlote.IDLote)
+        Me.origen = oldlote.Origen
+        Me.padre = padre
+        Me.nom.Text = oldlote.Nombre
+        InitializeComponent()
+        StartPosition = FormStartPosition.CenterScreen
+        destino.Items.Clear()
+        destinosPosibles = Fachada.getInstancia.devolverPosiblesDestinos(oldlote.Origen, padre.dameVehiculoalLote)
+        For Each l As Lugar In destinosPosibles
+            destino.Items.Add(l)
+        Next
+        destino.SelectedItem = oldlote.Destino
     End Sub
 
     Private Sub ingresar_Click(sender As Object, e As EventArgs)
