@@ -1,0 +1,25 @@
+se creashea cuando busco un VIN vacio
+
+se crashea cuando trato de modificar el lote recien creado de un vehiculo
+
+la ubicacion del vehiculo solo se puede ver desde el admin pero esta en operario xd
+
+se me rompio cuando quise abrir un QR que tenia guardado
+
+se crashea cuando quiero crear un lote sin haber ingresado un VIN
+
+un transportista se puede autoasignar un medio de transporte (ES LA BESTIA)
+
+hay 2 botones que sobran en la info del usuario
+
+cuando vas a elegir el lote en la parte del medio dice que para trenvia el vehiculo es un barco xd // LIMPIAR EL MEDIO DE TRANSPORTE CUANDO EL TRANSPORTISTA NO PUEDE TRANSPORTAR POR DICHO MEDIO
+
+se creashea cuando clickeas en la linea vacia de la lista de transportes
+
+el transportista puede agregar un nuevo medio de transporte (NADA QUE VER)
+
+el transportista puede cambiar el nombre de un lote que haya transportado (EL TRANSPORTISTA)
+
+el transportista puede escribir en la lista de lotes que transporto y medio se rompe
+
+se puede cambiar la contra de un usuario admin por ej desde otra app
