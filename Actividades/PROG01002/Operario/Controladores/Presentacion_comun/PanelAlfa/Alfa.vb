@@ -18,6 +18,8 @@
 
     End Sub
 
+
+
     Public Function GetObjects() As IEnumerable(Of Object)
         Return lista.Cast(Of IAlfaInterface).Select(Function(x) x.dameContenido).ToList
     End Function
@@ -88,6 +90,7 @@
         Next
         contenedor.Height = tamaño + 81 'POR LAS DUDAS 
         For Each epe As IAlfaInterface In lista
+            epe.darAncho(Me.Width)
             Dim con As Form = epe.dameForm
             con.TopLevel = False
             con.Dock = DockStyle.Top
@@ -133,5 +136,17 @@
 
     Private Sub Alfa_Paint(sender As Object, e As PaintEventArgs) Handles Me.Paint
         e.Graphics.DrawString("Carge los elementos desde codigo", New Font("Arial", 9), New SolidBrush(Color.Black), New PointF(0, 0))
+    End Sub
+
+    Private Sub Alfa_SizeChanged(sender As Object, e As EventArgs) Handles Me.SizeChanged
+        Dim elementosposte As New List(Of IAlfaInterface)
+        elementosposte = lista
+        lista.Clear()
+        For Each i As IAlfaInterface In elementosposte
+            Dim objetoLista As IAlfaInterface = TipoPanel.GetConstructors().Single.Invoke(New Object() {i.dameContenido})
+            objetoLista.darAlfa(Me)
+            lista.Add(objetoLista)
+        Next
+        render()
     End Sub
 End Class

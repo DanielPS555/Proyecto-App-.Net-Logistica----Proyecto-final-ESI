@@ -36,6 +36,7 @@
         Me.Controls.Add(alfa)
         alfa.Size = New Drawing.Size(495, 625)
         alfa.Location = New Point(373, 12)
+        alfa.Anchor = (AnchorStyles.Left Or AnchorStyles.Right Or AnchorStyles.Top)
         listaNotificaciones = Controladores.Fachada.getInstancia.ListaDeTodasLasNotificacionesDelSistema(Fachada.getInstancia.DevolverUsuarioActual.Rol)
         tipos.SelectedIndex = 0
 

@@ -37,7 +37,8 @@ Public Class SUB_Notificacion
 
     Public Sub darAncho(x As Integer) Implements IAlfaInterface.darAncho
         Me.Width = x
-
+        propiedadesDuplicas.RemoveAt(2)
+        propiedadesDuplicas.Add(New Tuple(Of Size, Point)(fecha.Size, fecha.Location))
     End Sub
 
     Public Sub darAlfa(alfa As Alfa) Implements IAlfaInterface.darAlfa
