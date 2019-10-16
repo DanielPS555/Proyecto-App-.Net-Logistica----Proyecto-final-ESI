@@ -38,6 +38,9 @@ Public Class ListaVehiculos
 
     Public Sub UpdateVehicles()
         Select Case tiposListas.SelectedItem
+            ' esto es, efectivamente, un hashtable de funciones pero en versión
+            ' "la utu nunca dió hashtables ni mapas ni diccionarios y, discutiblemente, funciones"
+            ' TODO: hacer esto con un hashtable, no seamos hijos de puta, respetemos el oficio
             Case "Asignados"
                 Asignados()
             Case "No asignados"
@@ -50,7 +53,13 @@ Public Class ListaVehiculos
                 Dañados()
             Case "Precargados"
                 Precargados()
+            Case "En transporte"
+                EnTransporte()
         End Select
+    End Sub
+
+    Private Sub EnTransporte()
+        DataGridView1.DataSource = Fachada.getInstancia.VehiculosEnTransporte()
     End Sub
 
     Private Sub Precargados()

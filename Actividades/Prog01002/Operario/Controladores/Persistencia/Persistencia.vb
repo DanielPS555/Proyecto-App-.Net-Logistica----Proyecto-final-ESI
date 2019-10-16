@@ -76,6 +76,20 @@ order by 7", _con)
         Return dt
     End Function
 
+    Friend Function VehiculosEnTransporte() As DataTable
+        Dim selectCmd As New OdbcCommand("select vehiculo.idvehiculo as IDVehiculo, vin as VIN, lote.nombre as nombre_lote, destino.nombre as nombre_lugar, transporte.fechahorasalida
+from vehiculo
+inner join integra on integra.idvehiculo=vehiculo.idvehiculo
+inner join lote on lote.idlote=integra.lote
+inner join transporta on transporta.idlote=lote.idlote
+inner join transporte on transporte.transporteid=transporta.transporteid
+inner join lugar as destino on lote.destino=destino.idlugar
+where transporta.fechahorallegadareal is null", _con)
+        Dim dt As New DataTable
+        dt.Load(selectCmd.ExecuteReader)
+        Return dt
+    End Function
+
     Friend Function VehiculosPrecargados() As DataTable
         Dim selectCmd As New OdbcCommand("select vehiculo.idvehiculo as IDVehiculo, vin as VIN
 from vehiculo
@@ -1050,10 +1064,17 @@ order by fechaAgregado
 
 
 
-    Public Function anularAnteriorIntegra(idvehiculo As Integer)
+    Public Function anularAnteriorIntegra(idvehiculo As Integer) As Boolean
         Dim consultaPrevia As New OdbcCommand("select first 1 fecha
-                                    from integra where idvehiculo=? order by fecha desc", Conexcion)
+                                    from integra where idvehiculo=? and invalidado='f' order by fecha desc", Conexcion)
         consultaPrevia.CrearParametro(DbType.Int32, idvehiculo)
+
+        If Not consultaPrevia.ExecuteReader.HasRows Then
+            MsgBoxI18N("Grave error: se intentó anular integra de un vehículo que no tiene integra anterior. " &
+                       "El sistema procederá ignorando ese aspecto, pero por favor reporte esto a los desarrolladores," &
+                       " y si es posible repórtelo a su DBA y pídale que investigue cómo el sistema llegó a este estado", MsgBoxStyle.Critical)
+            Return True
+        End If
 
         Dim com As New OdbcCommand("update integra set invalidado=? 
                                     where idvehiculo=? and fecha=?", Conexcion)

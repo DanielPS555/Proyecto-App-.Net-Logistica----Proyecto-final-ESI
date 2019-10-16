@@ -61,6 +61,10 @@ Public Class Fachada
         Return Persistencia.getInstancia.VehiculosRetirados()
     End Function
 
+    Public Function VehiculosEnTransporte() As Object
+        Return Persistencia.getInstancia.VehiculosEnTransporte()
+    End Function
+
     Friend Function MensajePara(Destinatario As Usuario, Mensaje As String, Optional datos As Dictionary(Of String, Object) = Nothing) As Boolean
         If datos Is Nothing Then datos = New Dictionary(Of String, Object)
         datos("tipo") = "mensaje"

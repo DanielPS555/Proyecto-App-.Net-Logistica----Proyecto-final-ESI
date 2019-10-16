@@ -39,8 +39,8 @@ Public Class panelInfoVehiculo
         EliminarLoteSelecion.Text = Funciones_comunes.I18N("Eliminar selección", Marco.Language)
         Cancelar.Text = Funciones_comunes.I18N("Cancelar", Marco.Language)
         TabPage5.Visible = Fachada.getInstancia.DevolverUsuarioActual.Rol = Usuario.TIPO_ROL_ADMINISTRADOR
-        'HAY QUE CARGAR EL LUGAR ACTUAL DEL VEHICULO
 
+        'HAY QUE CARGAR EL LUGAR ACTUAL DEL VEHICULO
         LoteCombo.Enabled = False
         Me.vin = VIN
         TipoCombo.Items.Clear()
@@ -512,11 +512,15 @@ Public Class panelInfoVehiculo
             Else
                 Fachada.getInstancia.insertIntegra(todosLosLotesDisponibles(LoteCombo.SelectedIndex), vehiculo, Fachada.getInstancia.DevolverUsuarioActual, True)
             End If
-            Fachada.getInstancia.eliminarLoteSiNoTieneVehiculos(loteActual)
+            If loteActual IsNot Nothing Then
+                Fachada.getInstancia.eliminarLoteSiNoTieneVehiculos(loteActual)
+            Else
+                Extenciones.MsgBoxI18N("Este vehículo no tiene lote. Esto no debería suceder, por lo cual debe haber un error en el programa o alguna manipulación de la base de datos. Por favor, reporte esto a su DBA así como a los desarrolladores.", MsgBoxStyle.Critical)
+            End If
 
             CargarMiLote()
-            loteTemp = Nothing
-        End If
+                loteTemp = Nothing
+            End If
     End Sub
 
     Private Sub Cancelar_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles Cancelar.LinkClicked
