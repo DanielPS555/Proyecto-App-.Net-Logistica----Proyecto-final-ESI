@@ -2,7 +2,8 @@
 Imports GMap.NET
 Imports System.Windows.Forms
 Public Class SUB_informeLote
-    Private _lote As Controladores.Lote
+    Private _lote As Lote
+
     Public Property Lote() As Controladores.Lote
         Get
             Return _lote
@@ -11,6 +12,7 @@ Public Class SUB_informeLote
             _lote = value
         End Set
     End Property
+
     Public Sub New(lote As Controladores.Lote)
         InitializeComponent()
         Me.Lote = lote
@@ -18,7 +20,9 @@ Public Class SUB_informeLote
         origen.Text = lote.Origen.Nombre
         destino.Text = lote.Destino.Nombre
         numeroDeVehiculos.Text = lote.Vehiculos.Count
-
+        If lote.Prioridad = Lote.TIPO_PRIORIDAD_ALTA Then
+            BackColor = Drawing.Color.Red
+        End If
     End Sub
 
     Private _selecionado As Boolean

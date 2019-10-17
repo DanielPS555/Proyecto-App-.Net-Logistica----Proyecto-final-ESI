@@ -119,7 +119,7 @@ Public Class Lista_de_trasportes
             Return
         End If
 
-        For Each lug As Controladores.Lugar In lotesElegidos.Select(Function(x) x.Destino).ToList
+        For Each lug As Lugar In lotesElegidos.Select(Function(x) x.Destino).ToList
             If Not lug.TiposDeMediosDeTrasporteHabilitados.Select(Function(x) x.Nombre).ToList.Contains(tiposDeMedio(TiposDeMedioAutorizados.SelectedIndex).Nombre) Then
                 MsgBox("Todos los destinos debe soportar el medio de trasporte selecionado", MsgBoxStyle.Critical)
                 Return
@@ -134,30 +134,42 @@ Public Class Lista_de_trasportes
         Dim minivan As Integer = 0
         Dim suv As Integer = 0
 
-        For Each l As Controladores.Lote In lotesElegidos
-            For Each v As Controladores.Vehiculo In l.Vehiculos
+        For Each l As Lote In lotesElegidos
+            For Each v As Vehiculo In l.Vehiculos
                 Select Case v.Tipo
-                    Case Controladores.Vehiculo.TIPO_VEHICULO_AUTO
+                    Case Vehiculo.TIPO_VEHICULO_AUTO
                         auto += 1
-                    Case Controladores.Vehiculo.TIPO_VEHICULO_CAMION
+                    Case Vehiculo.TIPO_VEHICULO_CAMION
                         camion += 1
-                    Case Controladores.Vehiculo.TIPO_VEHICULO_VAN
+                    Case Vehiculo.TIPO_VEHICULO_VAN
                         van += 1
-                    Case Controladores.Vehiculo.TIPO_VEHICULO_MINIVAN
+                    Case Vehiculo.TIPO_VEHICULO_MINIVAN
                         minivan += 1
-                    Case Controladores.Vehiculo.TIPO_VEHICULO_SUV
+                    Case Vehiculo.TIPO_VEHICULO_SUV
                         suv += 1
                 End Select
             Next
         Next
 
-        Dim medioSelecionado As Controladores.MedioDeTransporte
+        Dim medioSelecionado As Controladores.MedioDeTransporte = Nothing
         For Each m As Controladores.MedioDeTransporte In listaDeMedios
             If mediosAutorizados.SelectedItem.Equals(m.Nombre) Then
                 medioSelecionado = m
                 Exit For
             End If
         Next
+
+        If medioSelecionado Is Nothing Then
+            MsgBox("ERROR FATAL")
+            Return
+        End If
+
+        If lotes.Any(Function(x) x.Prioridad = Lote.TIPO_PRIORIDAD_ALTA) Then
+            Dim loteFallido = lotes.First(Function(x) x.Prioridad = Lote.TIPO_PRIORIDAD_ALTA)
+            Extenciones.MsgBoxI18N("Uno de sus lotes era un lote fallido, por ende se mostrará la posición actual del mismo")
+            Dim curPos = New TiempoRealGooglePlex(Fachada.getInstancia.TransporteFallido(loteFallido))
+            curPos.ShowDialog()
+        End If
 
         If auto > medioSelecionado.CantAutos OrElse camion > medioSelecionado.CantCamiones OrElse van > medioSelecionado.CantVAN OrElse minivan > medioSelecionado.CantMiniVan OrElse suv > medioSelecionado.CantSUV Then
             MsgBox("La capasidad del medio no es suficiente para el transporte de lotes selecionado", MsgBoxStyle.Critical)

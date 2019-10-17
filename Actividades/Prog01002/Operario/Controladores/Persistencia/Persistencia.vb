@@ -165,6 +165,16 @@ order by fechaAgregado
         Return dt
     End Function
 
+    Friend Function UbicacionTransporteLote(iDLote As Integer)
+        Dim selectCmd As New OdbcCommand("select first 1 link.link
+  from transporta
+  inner join transporte on transporta.transporteid=transporte.transporteid and transporta.idlote=?
+  inner join link on link.transportista=transporte.Usuario
+  order by transporte.fechahorasalida desc", _con)
+        selectCmd.CrearParametro(iDLote)
+        Return selectCmd.ExecuteScalar
+    End Function
+
     Public Function BajaVehiculo(idVehiculo As Integer, jsonObj As Dictionary(Of String, String), iD_usuario As Integer) As Boolean
         Dim insertCmd As New OdbcCommand("insert into vehiculoIngresa(idvehiculo, fecha, tipoingreso, usuario, detalle) values(?,?, 'Baja', ?, ?::json);", _con)
         insertCmd.CrearParametro(idVehiculo)
@@ -843,6 +853,7 @@ order by fechaAgregado
         Return dt
     End Function
 
+
     Public Function InsertLote(nombre As String, idorigen As Integer, destinoId As Integer, prioridad As String, creadorid As Integer, fechacreacion As DateTime, estado As String) As Boolean
         Dim com As New OdbcCommand("insert into lote values (0,?,?,?,?,?,?,?,'f')", Conexcion)
         com.CrearParametro(DbType.String, nombre)
@@ -1060,7 +1071,11 @@ order by fechaAgregado
         com.CrearParametro(DbType.Boolean, True)
         com.CrearParametro(DbType.Int32, idvehiculo)
         com.CrearParametro(DbType.DateTime, consultaPrevia.ExecuteScalar)
-        Return com.ExecuteNonQuery() > 0
+        Try
+            Return com.ExecuteNonQuery() > 0
+        Catch e As Exception
+            Return True
+        End Try
     End Function
 
     Public Function eliminarlote(idlote As Integer)
@@ -1083,6 +1098,21 @@ order by fechaAgregado
         Dim com As New OdbcCommand("select first 1 idlote from lote where creadorid=? order by fechacreacion desc,idlote desc", Conexcion)
         com.CrearParametro(DbType.Int32, idusuario)
         Return com.ExecuteScalar
+    End Function
+
+    Friend Function LotesFallidos() As DataTable
+        Dim com As New OdbcCommand("select DISTINCT lote.idlote,lote.nombre,Prioridad, l1.idlugar as idlugarOrigen, l1.nombre as nombreorigen, l2.idlugar, l2.nombre, l1.GeoX, L1.GeoY, l2.Geox, l2.GeoY,transporta.estado from
+                                    lote left join (select idlote,max(FechaHoraLlegadaReal) as ccc from transporta group by idlote) as maxi on maxi.idlote=lote.idlote
+                                    left  join transporta on maxi.idlote=transporta.idlote and maxi.ccc=transporta.FechaHoraLlegadaReal
+                                    inner  join lugar as l1 on origen=l1.idlugar inner join lugar as l2 on destino=l2.idlugar
+                                    where (transporta.estado='Fallo') and lote.invalido='f' and lote.Prioridad='Alto' and lote.estado='Cerrado'", Conexcion)
+        Dim dt As New DataTable
+        dt.Load(com.ExecuteReader)
+        If dt.Rows.Count < 1 Then
+            Return Nothing
+        Else
+            Return dt
+        End If
     End Function
 
     Public Function LotesDisponiblesATrasportar() As DataTable
@@ -1336,22 +1366,29 @@ order by fechaAgregado
         Return com.ExecuteNonQuery() > 0
     End Function
 
-    Public Function updateEstadoDeUnTransporta(idtransporte As Integer, idlote As Integer, estado As String)
+    Public Function updateEstadoDeUnTransporta(idtransporte As Integer, idlote As Integer, estado As String) As Boolean
         Dim com As New OdbcCommand("update transporta set Estado=? where transporteID=? and idlote=?", Conexcion)
         com.CrearParametro(DbType.String, estado)
         com.CrearParametro(DbType.Int32, idtransporte)
         com.CrearParametro(DbType.Int32, idlote)
-        Dim ret = com.ExecuteNonQuery() > 0
-        If Not ret Then Return False
-        Dim selCmd As New OdbcCommand("select vehiculo.idvehiculo from vehiculo inner join integra on integra.idvehiculo=vehiculo.idvehiculo inner join lote on lote.idlote=integra.lote inner join lugar on lote.destino=lugar.idlugar where lote.idlote=? and lugar.tipo='Establecimiento'", _con)
+        If Not com.ExecuteNonQuery() > 0 Then Return False
+        Dim selCmd As New OdbcCommand("select vehiculo.idvehiculo
+  from vehiculo inner join integra on integra.idvehiculo=vehiculo.idvehiculo
+  inner join lote on lote.idlote=integra.lote
+  inner join lugar on lote.destino=lugar.idlugar
+  where lote.idlote=? and lugar.tipo='Establecimiento'", _con)
         selCmd.CrearParametro(idlote)
         Dim dt As New DataTable
         dt.Load(selCmd.ExecuteReader)
         Fachada.getInstancia.CargarDataBaseDelUsuario()
-        ForEach(dt.Rows.Cast(Of DataRow)(), Function(x) Me.BajaVehiculo(x(0), New Dictionary(Of String, String), Fachada.getInstancia.DevolverUsuarioActual.ID_usuario))
+        Return dt.
+            Rows.
+            Cast(Of DataRow)().
+            Select(Function(x) BajaVehiculo(x(0), New Dictionary(Of String, String), Fachada.getInstancia.DevolverUsuarioActual.ID_usuario)).
+            Where(Function(x) x).Count = dt.Rows.Count
     End Function
 
-    Public Function updatePrioridadlote(idlote As Integer, prio As String)
+    Public Function updatePrioridadlote(idlote As Integer, prio As String) As Boolean
         Dim com As New OdbcCommand("update lote set Prioridad=? where idlote=?", Conexcion)
         com.CrearParametro(DbType.String, prio)
         com.CrearParametro(DbType.Int32, idlote)

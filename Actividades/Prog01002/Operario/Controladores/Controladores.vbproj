@@ -301,6 +301,12 @@
     <Compile Include="Presentacion_comun\PanelInfoUsuario.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Presentacion_comun\TiempoRealGooglePlex.Designer.vb">
+      <DependentUpon>TiempoRealGooglePlex.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion_comun\TiempoRealGooglePlex.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ScreenNode.vb" />
   </ItemGroup>
   <ItemGroup>
@@ -369,6 +375,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion_comun\PanelInfoUsuario.resx">
       <DependentUpon>PanelInfoUsuario.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion_comun\TiempoRealGooglePlex.resx">
+      <DependentUpon>TiempoRealGooglePlex.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
