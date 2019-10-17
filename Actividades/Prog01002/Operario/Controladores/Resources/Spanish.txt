@@ -256,3 +256,6 @@ El telefono debe ser puramente numerico
 Debe selecionar un sexo
 Cambio realizado con exito
 No puede superar los 255 caracteres
+Chat
+Transportar lotes
+Lista transportes

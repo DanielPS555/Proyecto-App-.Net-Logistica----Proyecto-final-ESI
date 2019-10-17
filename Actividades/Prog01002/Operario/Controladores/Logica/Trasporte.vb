@@ -4,10 +4,11 @@ Public Class Trasporte
     Public Shared ReadOnly TIPO_ESTADO_PROSESO As String = "Proceso"
     Public Shared ReadOnly TIPO_ESTADO_FALLO As String = "Fallo"
     Public Shared ReadOnly TIPO_ESTADO_EXISTOSO As String = "Exitoso"
+    Public Shared ReadOnly TIPO_ESTADO_CANCELADO As String = "Cancelado"
 
     Public Shared ReadOnly Property TIPOS_ESTADOS() As String()
         Get
-            Return {TIPO_ESTADO_PROSESO, TIPO_ESTADO_FALLO, TIPO_ESTADO_EXISTOSO}
+            Return {TIPO_ESTADO_PROSESO, TIPO_ESTADO_FALLO, TIPO_ESTADO_EXISTOSO, TIPO_ESTADO_CANCELADO}
         End Get
     End Property
 
@@ -95,11 +96,9 @@ Public Class Trasporte
             Return _estado
         End Get
         Set(ByVal value As String)
-            If TIPOS_ESTADOS.Contains(value) Then
-                _estado = value
-            Else
-                Throw New Exception("Valor de estado incorrecto")
-            End If
+
+            _estado = value
+
 
         End Set
     End Property
