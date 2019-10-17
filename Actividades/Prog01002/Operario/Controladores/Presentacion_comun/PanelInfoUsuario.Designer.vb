@@ -39,11 +39,12 @@ Partial Class PanelInfoUsuario
         Dim DataGridViewCellStyle30 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.tab = New System.Windows.Forms.TabControl()
         Me.general = New System.Windows.Forms.TabPage()
+        Me.guardar = New System.Windows.Forms.LinkLabel()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.apellido = New System.Windows.Forms.TextBox()
         Me.link = New System.Windows.Forms.TextBox()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.invalidado = New System.Windows.Forms.Button()
-        Me.ubicacion = New System.Windows.Forms.LinkLabel()
-        Me.Label11 = New System.Windows.Forms.Label()
         Me.sexo = New System.Windows.Forms.ComboBox()
         Me.telefono = New System.Windows.Forms.TextBox()
         Me.email = New System.Windows.Forms.TextBox()
@@ -83,8 +84,6 @@ Partial Class PanelInfoUsuario
         Me.mediosAuto = New System.Windows.Forms.DataGridView()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.conect = New System.Windows.Forms.DataGridView()
-        Me.apellido = New System.Windows.Forms.TextBox()
-        Me.Label12 = New System.Windows.Forms.Label()
         Me.tab.SuspendLayout()
         Me.general.SuspendLayout()
         Me.lugarTrabajo.SuspendLayout()
@@ -124,13 +123,12 @@ Partial Class PanelInfoUsuario
         'general
         '
         Me.general.BackColor = System.Drawing.Color.White
+        Me.general.Controls.Add(Me.guardar)
         Me.general.Controls.Add(Me.Label12)
         Me.general.Controls.Add(Me.apellido)
         Me.general.Controls.Add(Me.link)
         Me.general.Controls.Add(Me.Label10)
         Me.general.Controls.Add(Me.invalidado)
-        Me.general.Controls.Add(Me.ubicacion)
-        Me.general.Controls.Add(Me.Label11)
         Me.general.Controls.Add(Me.sexo)
         Me.general.Controls.Add(Me.telefono)
         Me.general.Controls.Add(Me.email)
@@ -159,14 +157,48 @@ Partial Class PanelInfoUsuario
         Me.general.TabIndex = 0
         Me.general.Text = "General"
         '
+        'guardar
+        '
+        Me.guardar.ActiveLinkColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.guardar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.guardar.AutoSize = True
+        Me.guardar.Enabled = False
+        Me.guardar.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.guardar.LinkColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.guardar.Location = New System.Drawing.Point(792, 498)
+        Me.guardar.Name = "guardar"
+        Me.guardar.Size = New System.Drawing.Size(77, 21)
+        Me.guardar.TabIndex = 152
+        Me.guardar.TabStop = True
+        Me.guardar.Text = "Guardar"
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label12.Location = New System.Drawing.Point(8, 190)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(180, 22)
+        Me.Label12.TabIndex = 151
+        Me.Label12.Text = "Apellido Completo"
+        '
+        'apellido
+        '
+        Me.apellido.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.apellido.Enabled = False
+        Me.apellido.Location = New System.Drawing.Point(235, 186)
+        Me.apellido.Name = "apellido"
+        Me.apellido.Size = New System.Drawing.Size(567, 26)
+        Me.apellido.TabIndex = 150
+        '
         'link
         '
         Me.link.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.link.Enabled = False
         Me.link.Location = New System.Drawing.Point(233, 496)
         Me.link.Name = "link"
-        Me.link.Size = New System.Drawing.Size(313, 26)
+        Me.link.Size = New System.Drawing.Size(555, 26)
         Me.link.TabIndex = 149
         Me.link.Visible = False
         '
@@ -195,31 +227,6 @@ Partial Class PanelInfoUsuario
         Me.invalidado.Text = "Invalidar  "
         Me.invalidado.UseVisualStyleBackColor = True
         '
-        'ubicacion
-        '
-        Me.ubicacion.ActiveLinkColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Me.ubicacion.AutoSize = True
-        Me.ubicacion.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ubicacion.LinkColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Me.ubicacion.Location = New System.Drawing.Point(229, 536)
-        Me.ubicacion.Name = "ubicacion"
-        Me.ubicacion.Size = New System.Drawing.Size(36, 21)
-        Me.ubicacion.TabIndex = 146
-        Me.ubicacion.TabStop = True
-        Me.ubicacion.Text = "Ver"
-        Me.ubicacion.Visible = False
-        '
-        'Label11
-        '
-        Me.Label11.AutoSize = True
-        Me.Label11.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label11.Location = New System.Drawing.Point(11, 535)
-        Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(172, 22)
-        Me.Label11.TabIndex = 144
-        Me.Label11.Text = "Ubicacion actual "
-        Me.Label11.Visible = False
-        '
         'sexo
         '
         Me.sexo.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
@@ -229,7 +236,7 @@ Partial Class PanelInfoUsuario
         Me.sexo.Items.AddRange(New Object() {"Masculino", "Femenino", "Otro"})
         Me.sexo.Location = New System.Drawing.Point(235, 378)
         Me.sexo.Name = "sexo"
-        Me.sexo.Size = New System.Drawing.Size(311, 28)
+        Me.sexo.Size = New System.Drawing.Size(567, 28)
         Me.sexo.TabIndex = 143
         '
         'telefono
@@ -237,9 +244,9 @@ Partial Class PanelInfoUsuario
         Me.telefono.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.telefono.Enabled = False
-        Me.telefono.Location = New System.Drawing.Point(233, 328)
+        Me.telefono.Location = New System.Drawing.Point(235, 328)
         Me.telefono.Name = "telefono"
-        Me.telefono.Size = New System.Drawing.Size(311, 26)
+        Me.telefono.Size = New System.Drawing.Size(567, 26)
         Me.telefono.TabIndex = 142
         '
         'email
@@ -249,7 +256,7 @@ Partial Class PanelInfoUsuario
         Me.email.Enabled = False
         Me.email.Location = New System.Drawing.Point(235, 278)
         Me.email.Name = "email"
-        Me.email.Size = New System.Drawing.Size(311, 26)
+        Me.email.Size = New System.Drawing.Size(567, 26)
         Me.email.TabIndex = 141
         '
         'nombre
@@ -257,9 +264,9 @@ Partial Class PanelInfoUsuario
         Me.nombre.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.nombre.Enabled = False
-        Me.nombre.Location = New System.Drawing.Point(235, 154)
+        Me.nombre.Location = New System.Drawing.Point(235, 142)
         Me.nombre.Name = "nombre"
-        Me.nombre.Size = New System.Drawing.Size(311, 26)
+        Me.nombre.Size = New System.Drawing.Size(567, 26)
         Me.nombre.TabIndex = 140
         '
         'fechaNac
@@ -269,7 +276,7 @@ Partial Class PanelInfoUsuario
         Me.fechaNac.Enabled = False
         Me.fechaNac.Location = New System.Drawing.Point(235, 227)
         Me.fechaNac.Name = "fechaNac"
-        Me.fechaNac.Size = New System.Drawing.Size(311, 26)
+        Me.fechaNac.Size = New System.Drawing.Size(567, 26)
         Me.fechaNac.TabIndex = 139
         '
         'fechaCreacion
@@ -296,7 +303,7 @@ Partial Class PanelInfoUsuario
         '
         Me.rol.AutoSize = True
         Me.rol.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.rol.Location = New System.Drawing.Point(231, 107)
+        Me.rol.Location = New System.Drawing.Point(231, 94)
         Me.rol.Name = "rol"
         Me.rol.Size = New System.Drawing.Size(34, 22)
         Me.rol.TabIndex = 136
@@ -306,7 +313,7 @@ Partial Class PanelInfoUsuario
         '
         Me.idusuario.AutoSize = True
         Me.idusuario.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.idusuario.Location = New System.Drawing.Point(231, 58)
+        Me.idusuario.Location = New System.Drawing.Point(231, 47)
         Me.idusuario.Name = "idusuario"
         Me.idusuario.Size = New System.Drawing.Size(34, 22)
         Me.idusuario.TabIndex = 135
@@ -385,7 +392,7 @@ Partial Class PanelInfoUsuario
         '
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(8, 107)
+        Me.Label6.Location = New System.Drawing.Point(8, 94)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(37, 22)
         Me.Label6.TabIndex = 111
@@ -395,7 +402,7 @@ Partial Class PanelInfoUsuario
         '
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(11, 231)
+        Me.Label5.Location = New System.Drawing.Point(8, 231)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(181, 22)
         Me.Label5.TabIndex = 110
@@ -425,7 +432,7 @@ Partial Class PanelInfoUsuario
         '
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(8, 154)
+        Me.Label2.Location = New System.Drawing.Point(8, 142)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(180, 22)
         Me.Label2.TabIndex = 107
@@ -435,7 +442,7 @@ Partial Class PanelInfoUsuario
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(8, 58)
+        Me.Label1.Location = New System.Drawing.Point(8, 47)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(104, 22)
         Me.Label1.TabIndex = 106
@@ -659,6 +666,8 @@ Partial Class PanelInfoUsuario
         '
         'tablatransportes
         '
+        Me.tablatransportes.AllowUserToAddRows = False
+        Me.tablatransportes.AllowUserToDeleteRows = False
         Me.tablatransportes.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -683,6 +692,7 @@ Partial Class PanelInfoUsuario
         Me.tablatransportes.DefaultCellStyle = DataGridViewCellStyle26
         Me.tablatransportes.Location = New System.Drawing.Point(0, 5)
         Me.tablatransportes.Name = "tablatransportes"
+        Me.tablatransportes.ReadOnly = True
         Me.tablatransportes.RowHeadersVisible = False
         Me.tablatransportes.Size = New System.Drawing.Size(864, 606)
         Me.tablatransportes.TabIndex = 127
@@ -805,26 +815,6 @@ Partial Class PanelInfoUsuario
         Me.conect.Size = New System.Drawing.Size(856, 606)
         Me.conect.TabIndex = 128
         '
-        'apellido
-        '
-        Me.apellido.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.apellido.Enabled = False
-        Me.apellido.Location = New System.Drawing.Point(235, 190)
-        Me.apellido.Name = "apellido"
-        Me.apellido.Size = New System.Drawing.Size(311, 26)
-        Me.apellido.TabIndex = 150
-        '
-        'Label12
-        '
-        Me.Label12.AutoSize = True
-        Me.Label12.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label12.Location = New System.Drawing.Point(8, 194)
-        Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(180, 22)
-        Me.Label12.TabIndex = 151
-        Me.Label12.Text = "Apellido Completo"
-        '
         'PanelInfoUsuario
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -892,8 +882,6 @@ Partial Class PanelInfoUsuario
     Friend WithEvents inspecionadosVehiculos As DataGridView
     Friend WithEvents tablatransportes As DataGridView
     Friend WithEvents mediosAuto As DataGridView
-    Friend WithEvents Label11 As Label
-    Friend WithEvents ubicacion As LinkLabel
     Friend WithEvents Button3 As Button
     Protected Friend WithEvents Button4 As Button ' protected friend withbenefits
     Friend WithEvents TabPage1 As TabPage
@@ -903,4 +891,5 @@ Partial Class PanelInfoUsuario
     Friend WithEvents Label10 As Label
     Friend WithEvents Label12 As Label
     Friend WithEvents apellido As TextBox
+    Friend WithEvents guardar As LinkLabel
 End Class

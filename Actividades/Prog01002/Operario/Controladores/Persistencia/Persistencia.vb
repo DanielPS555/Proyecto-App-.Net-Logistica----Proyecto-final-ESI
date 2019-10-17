@@ -1251,6 +1251,17 @@ order by fechaAgregado
         Return dt
     End Function
 
+    Public Function TrasportesRealizadosDelSistema() As DataTable
+        Dim com As New OdbcCommand("select transporte.transporteID, IDLegal,FechaHoraCreacion,FechaHoraLlegadaReal, lote.origen,
+                                    count(transporte.transporteID) as Numero_Lotes, usuario.nombredeusuario as Transportista
+                                    from transporte inner join transporta on transporte.transporteID = transporta.transporteID
+                                    inner join lote on transporta.idlote = lote.idlote inner join usuario on usuario.idusuario = transporte.usuario
+                                    group by transporte.transporteID, IDLegal,FechaHoraCreacion,FechaHoraLlegadaReal, lote.origen,Transportista", Conexcion)
+        Dim dt As New DataTable
+        dt.Load(com.ExecuteReader)
+        Return dt
+    End Function
+
     Public Function InformacionBasicaDelTrasporte(idtrasporte As Integer) As DataRow
         Dim com As New OdbcCommand("select transporte.transporteid,Usuario.nombredeusuario, transporte.idlegal, TipoTransporte.nombre,
                                     FechaHoraCreacion,FechaHoraSalida from
@@ -1925,6 +1936,31 @@ where trabajaen.ID=?", Conexcion)
         com.CrearParametro(DbType.String, Email)
         com.CrearParametro(DbType.String, Telefono)
         com.CrearParametro(DbType.String, Sexo)
+        com.CrearParametro(DbType.Int32, idusuario)
+        Return com.ExecuteNonQuery
+    End Function
+
+    Public Function linkTransportista(idusuario As Integer) As String
+        Dim com2 As New OdbcCommand("select count(link) from link where transportista=?", Conexcion)
+        com2.CrearParametro(DbType.Int32, idusuario)
+        If com2.ExecuteScalar = 0 Then
+            Return Nothing
+        End If
+        Dim com As New OdbcCommand("select link from link where transportista=?", Conexcion)
+        com.CrearParametro(DbType.Int32, idusuario)
+        Return com.ExecuteScalar
+    End Function
+
+    Public Function insertlink(idusuario As Integer, link As String)
+        Dim com As New OdbcCommand("insert into link values (?,?);", Conexcion)
+        com.CrearParametro(DbType.String, link)
+        com.CrearParametro(DbType.Int32, idusuario)
+        Return com.ExecuteNonQuery
+    End Function
+
+    Public Function updatelink(idusuario As Integer, link As String)
+        Dim com As New OdbcCommand("update link set link=? where transportista=?", Conexcion)
+        com.CrearParametro(DbType.String, link)
         com.CrearParametro(DbType.Int32, idusuario)
         Return com.ExecuteNonQuery
     End Function

@@ -15,7 +15,9 @@
                   {"Lista vehiculos", GetType(OperarioCore.ListaVehiculos)},
                   {"Chat", GetType(Controladores.ChatInterno)},
                   {"Lista lotes", GetType(OperarioCore.ListaLotes)},
-                  {"Nuevo vehiculo", GetType(OperarioCore.NuevoVehiculo)}
+                  {"Nuevo vehiculo", GetType(OperarioCore.NuevoVehiculo)},
+                  {"Transportar lotes", GetType(TransportistaCore.Lista_de_trasportes)},
+                  {"Lista transpostes", GetType(TransportistaCore.ListaDeTrasportes)}
                 }
                 Controladores.Marco.SetButtons(paneles)
                 Controladores.Marco.Imagenes = New Dictionary(Of String, Bitmap)

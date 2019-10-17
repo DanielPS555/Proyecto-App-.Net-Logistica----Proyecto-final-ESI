@@ -247,3 +247,12 @@ Eliminar (Finalizar)
 Validar
 Invalidar
 Este usuario ha sido invalidado
+Alguno de los campos esta vacio, verifiquelos
+El nombre de usuario es demaciado largo, no mas de 50 caracteres
+El Apellido de usuario es demaciado largo, no mas de 50 caracteres
+El correo no tiene el formato correcto
+El telefono puede ser unicamente entre 9 a 15 numeros
+El telefono debe ser puramente numerico
+Debe selecionar un sexo
+Cambio realizado con exito
+No puede superar los 255 caracteres

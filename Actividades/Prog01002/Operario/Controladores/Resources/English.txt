@@ -247,3 +247,12 @@ Delete (Finish)
 Validar
 Invalidate
 This user has been invalidated
+Some of the fields are empty, check them
+The username is too long, no more than 50 characters
+Username is too long, no more than 50 characters
+The email does not have the correct format
+The phone can only be between 9 to 15 numbers
+The phone must be purely numeric
+You must select a sex
+Successful change
+It cannot exceed 255 characters

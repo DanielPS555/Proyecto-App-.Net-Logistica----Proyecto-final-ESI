@@ -11,9 +11,6 @@ Public Class Fachada
     Private Sub New()
 
     End Sub
-
-
-
     Public Function VehiculosConMensajes() As List(Of Tuple(Of Vehiculo, Boolean))
         Dim vehiclelist As DataTable = Persistencia.getInstancia.VehiculosConMensaje()
         Dim vehicles As New List(Of Tuple(Of Vehiculo, Boolean))
@@ -958,6 +955,15 @@ Public Class Fachada
         Return dt
     End Function
 
+    Public Function ListaDeTrasportesDelSistema()
+        Dim dt As DataTable = Persistencia.getInstancia.TrasportesRealizadosDelSistema()
+        dt.Columns.Add(New DataColumn("Estado"))
+        For Each r As DataRow In dt.Rows
+            r.Item(7) = estadoDeUnTrasporte(r.Item(0))
+        Next
+        Return dt
+    End Function
+
     Public Function InformacionCompletaDelTrasporteSIN_LOTES(idtrasporte As Integer)
         Dim dt As DataRow = Persistencia.getInstancia.InformacionBasicaDelTrasporte(idtrasporte)
         Dim t As New Trasporte With {.ID = idtrasporte,
@@ -1441,5 +1447,28 @@ Public Class Fachada
     Public Function modificarInvalidadoDelUsuario(idusuario As Integer, j As Boolean)
         Return Persistencia.getInstancia.updateInvalidadoUsuario(idusuario, j)
     End Function
+
+    Public Sub cambiarDatosbasicosUsuario(user As Usuario)
+        Persistencia.getInstancia.updateDatosBaseUsuario(user.ID_usuario, user.Nombre, user.Apellido, user.FechaNacimiento, user.Email, user.Telefono, user.sexo)
+    End Sub
+
+    Public Sub modificarLinkTransportista(iduser As Integer, link As String)
+        If Fachada.getInstancia.linkDelTransportista(iduser) Is Nothing Then
+            Persistencia.getInstancia.insertlink(iduser, link)
+        Else
+            Persistencia.getInstancia.updatelink(iduser, link)
+        End If
+    End Sub
+
+    Public Function linkDelTransportista(idusuario As Integer) As String
+        Return Persistencia.getInstancia.linkTransportista(idusuario)
+    End Function
+
+    Public Sub habilitadTodosLosMediosPorIdUsuario(idusuario As Integer)
+        Dim dt As DataTable = Persistencia.getInstancia.todosLosMediosDelSistemaInfoBasica()
+        For Each r As DataRow In dt.Rows
+            Persistencia.getInstancia.InsertPermite(idusuario, r.Item(2), r.Item(0), False)
+        Next
+    End Sub
 
 End Class

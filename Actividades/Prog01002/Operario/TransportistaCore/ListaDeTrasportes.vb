@@ -7,7 +7,12 @@ Public Class ListaDeTrasportes
 
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
-        lista = Controladores.Fachada.getInstancia.ListaDeTrasportesPorIdUsuario(Controladores.Fachada.getInstancia.DevolverUsuarioActual.ID_usuario)
+        If Controladores.Fachada.getInstancia.DevolverUsuarioActual.Rol = Controladores.Usuario.TIPO_ROL_TRANSPORTISTA Then
+            lista = Controladores.Fachada.getInstancia.ListaDeTrasportesPorIdUsuario(Controladores.Fachada.getInstancia.DevolverUsuarioActual.ID_usuario)
+        ElseIf Controladores.Fachada.getInstancia.DevolverUsuarioActual.Rol = Controladores.Usuario.TIPO_ROL_ADMINISTRADOR Then
+            lista = Controladores.Fachada.getInstancia.ListaDeTrasportesDelSistema()
+        End If
+
         trasportes.DataSource = lista
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
 
