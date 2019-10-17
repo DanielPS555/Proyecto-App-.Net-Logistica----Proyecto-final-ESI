@@ -1964,4 +1964,44 @@ where trabajaen.ID=?", Conexcion)
         com.CrearParametro(DbType.Int32, idusuario)
         Return com.ExecuteNonQuery
     End Function
+
+    Public Function estadoUltimoTransportePorIdvehiculo(idvehiculo As Integer) As String
+        Dim com As New OdbcCommand("select count(transporta.estado) from vehiculo inner join integra on vehiculo.idvehiculo = integra.IDVehiculo
+          inner join lote on integra.Lote = lote.idlote
+          inner join transporta on lote.idlote = transporta.idlote
+          inner join transporte on transporta.transporteID = transporte.transporteID
+          where vehiculo.idvehiculo=?", Conexcion)
+        com.CrearParametro(DbType.Int32, idvehiculo)
+        If com.ExecuteScalar = 0 Then
+            Return Nothing
+        End If
+
+        Dim com2 As New OdbcCommand("select first 1 transporta.estado from vehiculo inner join integra on vehiculo.idvehiculo = integra.IDVehiculo
+          inner join lote on integra.Lote = lote.idlote
+          inner join transporta on lote.idlote = transporta.idlote
+          inner join transporte on transporta.transporteID = transporte.transporteID
+          where vehiculo.idvehiculo=?
+          order by transporte.FechaHoraCreacion desc", Conexcion)
+        com2.CrearParametro(DbType.Int32, idvehiculo)
+        Return com2.ExecuteScalar
+    End Function
+
+    Public Function estadoUltimoTransportePorIdLote(idlote As Integer) As String
+        Dim com2 As New OdbcCommand("select count(transporta.estado) from 
+          lote inner join transporta on lote.idlote = transporta.idlote
+          inner join transporte on transporta.transporteID = transporte.transporteID
+          where lote.idlote=?", Conexcion)
+        com2.CrearParametro(DbType.Int32, idlote)
+        If com2.ExecuteScalar = 0 Then
+            Return Nothing
+        End If
+
+        Dim com As New OdbcCommand("select first 1 transporta.estado from 
+          lote inner join transporta on lote.idlote = transporta.idlote
+          inner join transporte on transporta.transporteID = transporte.transporteID
+          where lote.idlote=?
+          order by transporte.FechaHoraCreacion desc", Conexcion)
+        com.CrearParametro(DbType.Int32, idlote)
+        Return com.ExecuteScalar
+    End Function
 End Class

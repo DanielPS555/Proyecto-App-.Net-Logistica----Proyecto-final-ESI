@@ -256,3 +256,6 @@ The phone must be purely numeric
 You must select a sex
 Successful change
 It cannot exceed 255 characters
+Chat
+Transport lots
+Transportation List

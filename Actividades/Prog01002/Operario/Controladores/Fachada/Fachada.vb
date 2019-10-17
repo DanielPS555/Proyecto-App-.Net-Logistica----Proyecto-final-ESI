@@ -1471,4 +1471,12 @@ Public Class Fachada
         Next
     End Sub
 
+    Public Function UltimoEstadoTransportePorIdVehiculo(idvehiculo As Integer) As String
+        Return Persistencia.getInstancia.estadoUltimoTransportePorIdvehiculo(idvehiculo)
+    End Function
+
+    Public Function UtimoEstadoTransportePorIdlote(idlote As Integer) As String
+        Return Persistencia.getInstancia.estadoUltimoTransportePorIdLote(idlote)
+    End Function
+
 End Class
