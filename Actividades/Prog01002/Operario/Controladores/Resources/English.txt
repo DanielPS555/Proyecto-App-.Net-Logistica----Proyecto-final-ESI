@@ -230,7 +230,8 @@ Elimination done
 Username
 User ID
 Role
-Full name
+Full Name
+Full Surname
 Birth date
 Email
 Phone
@@ -243,3 +244,6 @@ Change Password
 Edit recovery data
 Edit Personal Information
 Delete (Finish)
+Validar
+Invalidate
+This user has been invalidated

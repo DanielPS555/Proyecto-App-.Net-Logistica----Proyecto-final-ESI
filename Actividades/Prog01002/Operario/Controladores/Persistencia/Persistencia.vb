@@ -1904,5 +1904,28 @@ where trabajaen.ID=?", Conexcion)
         Return com.ExecuteScalar = 1
     End Function
 
+    Public Function usuarioInvalidado(nombredeusuario As String)
+        Dim com As New OdbcCommand("select count(*) from usuario where nombredeusuario=? and invalido='f'", Conexcion)
+        com.CrearParametro(DbType.String, nombredeusuario)
+        Return com.ExecuteScalar = 0
+    End Function
 
+    Public Function updateInvalidadoUsuario(idusuario As Integer, inv As Boolean)
+        Dim com As New OdbcCommand("update usuario set invalido=? where IDUsuario=? ", Conexcion)
+        com.CrearParametro(DbType.Boolean, inv)
+        com.CrearParametro(DbType.Int32, idusuario)
+        Return com.ExecuteNonQuery
+    End Function
+
+    Public Function updateDatosBaseUsuario(idusuario As Integer, PrimerNombre As String, PrimerApellido As String, FechaNac As DateTime, Email As String, Telefono As String, Sexo As Char)
+        Dim com As New OdbcCommand("update usuario set PrimerNombre=?, PrimerApellido=?, FechaNac=?, Email=?, Telefono=?, Sexo=?  where IDUsuario=? ", Conexcion)
+        com.CrearParametro(DbType.String, PrimerNombre)
+        com.CrearParametro(DbType.String, PrimerApellido)
+        com.CrearParametro(DbType.Date, FechaNac)
+        com.CrearParametro(DbType.String, Email)
+        com.CrearParametro(DbType.String, Telefono)
+        com.CrearParametro(DbType.String, Sexo)
+        com.CrearParametro(DbType.Int32, idusuario)
+        Return com.ExecuteNonQuery
+    End Function
 End Class

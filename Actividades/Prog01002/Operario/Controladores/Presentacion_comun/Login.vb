@@ -133,6 +133,10 @@ Public Class Login
             MsgBoxI18N("Credenciales incorrectas. Intente nuevamente", MsgBoxStyle.Critical)
         Else
             If Controladores.Fachada.getInstancia.rolDeUnUsuarioPorElNombreDeUsuario(user.Text) = ForRole Then
+                If Controladores.Fachada.getInstancia.usuarioInvalidado(user.Text) Then
+                    MsgBoxI18N("Este usuario ha sido invalidado", MsgBoxStyle.Critical)
+                    Return
+                End If
                 Redirect()
             Else
                 MsgBoxI18NFormat("Esta aplicacion es unicamente para los {0}", ForRole)
@@ -175,4 +179,7 @@ Public Class Login
         LanguageSwap()
     End Sub
 
+    Private Sub PanelLogin_SizeChanged(sender As Object, e As EventArgs) Handles panelLogin.SizeChanged
+        super.Location = New Point((Me.Width / 2) - (super.Width / 2), (Me.Height / 2) - (super.Height / 2))
+    End Sub
 End Class

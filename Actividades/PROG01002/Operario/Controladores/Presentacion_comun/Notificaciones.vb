@@ -43,7 +43,7 @@
     End Sub
 
     Private Sub ListBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles tipos.SelectedIndexChanged
-        alfa.Limpiar()
+        alfa.Limpiar(True)
         Dim elementos As New List(Of Notificacion)
         Dim tipoElegido = tiposElementos(tipos.SelectedIndex).Item1
         If tipoElegido Is Nothing Then
@@ -63,7 +63,7 @@
             SinElementos.Visible = False
         End If
         For Each no As Notificacion In elementos
-            alfa.Nuevo(no, False)
+            alfa.Nuevo(no, False, True)
         Next
         alfa.render()
     End Sub

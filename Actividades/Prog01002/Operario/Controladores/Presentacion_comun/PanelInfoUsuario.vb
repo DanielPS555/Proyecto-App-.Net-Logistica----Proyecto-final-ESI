@@ -6,6 +6,7 @@ Public Class PanelInfoUsuario
     Protected Friend user As Controladores.Usuario
     Dim ListaTrabajaen As DataTable
     Dim listaMedios As DataTable
+    Private cambioDatos As Boolean = False
 
     Public Sub New(idusuario As Integer)
         ' Esta llamada es exigida por el diseñador.
@@ -21,13 +22,15 @@ Public Class PanelInfoUsuario
         Label8.Traducir
         Label9.Traducir
         Label11.Traducir
-        LinkLabel1.Traducir
+        ubicacion.Traducir
         editarInfo.Traducir
         CambiarDatosPersonales.Traducir
         Button1.Traducir
         Button2.Traducir
         Button4.Traducir
         Button3.Traducir
+
+
         'falta traducir la tablita de arriba tab.tabpages algo -facu.
         user = New Controladores.Usuario() With {.ID_usuario = idusuario}
         cargarDatosBasicos()
@@ -53,7 +56,8 @@ Public Class PanelInfoUsuario
         idusuario.Text = user.ID_usuario
         conect.DataSource = Controladores.Fachada.getInstancia.ConexcionDeUsuarioTabla(user)
 
-        nombreCompleto.Text = $"{user.Nombre} {user.Apellido}"
+        nombre.Text = user.Nombre
+        apellido.Text = user.Apellido
         fechaNac.Value = user.FechaNacimiento
         email.Text = user.Email
         telefono.Text = user.Telefono
@@ -72,14 +76,34 @@ Public Class PanelInfoUsuario
             Case "A"
                 rol.Text = Controladores.Funciones_comunes.I18N("Administrador", Controladores.Marco.Language)
                 tab.TabPages.RemoveAt(2)
+                tab.TabPages.RemoveAt(1)
             Case "O"
                 rol.Text = Controladores.Funciones_comunes.I18N("Operario", Controladores.Marco.Language)
                 datosDelOperario()
             Case "T"
                 rol.Text = Controladores.Funciones_comunes.I18N("Transportista", Controladores.Marco.Language)
                 datosDelTransportista()
+                Label10.Visible = True
+                Label11.Visible = True
+                link.Visible = True
+                ubicacion.Visible = True
+
         End Select
 
+        If user.ID_usuario = Controladores.Fachada.getInstancia.DevolverUsuarioActual.ID_usuario Then
+            invalidado.Visible = False
+        Else
+            cargarinvalidado()
+        End If
+    End Sub
+
+    Private Sub cargarinvalidado()
+        If Controladores.Fachada.getInstancia.usuarioInvalidado(user.NombreDeUsuario) Then
+            invalidado.Text = "Validar"
+        Else
+            invalidado.Text = "Invalidar"
+        End If
+        invalidado.Traducir
     End Sub
 
     Private Sub datosDelOperario()
@@ -177,5 +201,20 @@ Public Class PanelInfoUsuario
 
     Private Sub Label8_Click(sender As Object, e As EventArgs) Handles Label8.Click
 
+    End Sub
+
+    Private Sub Invalidado_Click(sender As Object, e As EventArgs) Handles invalidado.Click
+        Controladores.Fachada.getInstancia.modificarInvalidadoDelUsuario(user.ID_usuario, Not Controladores.Fachada.getInstancia.usuarioInvalidado(user.NombreDeUsuario))
+        cargarinvalidado()
+    End Sub
+
+    Private Sub CambiarDatosPersonales_Click(sender As Object, e As EventArgs) Handles CambiarDatosPersonales.Click
+        If cambioDatos Then
+
+            cambioDatos = True
+        Else
+
+            cambioDatos = False
+        End If
     End Sub
 End Class

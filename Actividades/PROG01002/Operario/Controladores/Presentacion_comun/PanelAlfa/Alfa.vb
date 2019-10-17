@@ -1,6 +1,7 @@
 ﻿Public Class Alfa
 
     Private lista As New List(Of IAlfaInterface)
+    Private listaDeNotificacionesParaRecontrucion As New List(Of Object)
     Private _tipoObjeto As Type
     Private _tipoPanel As Type
     Private accion As LambdaGenerico
@@ -46,9 +47,12 @@
         End Set
     End Property
 
-    Public Sub Limpiar()
+    Public Sub Limpiar(j As Boolean)
         Me.lista.ForEach(Sub(x) x.dameForm.Close())
         Me.lista.Clear()
+        If j Then
+            listaDeNotificacionesParaRecontrucion.Clear()
+        End If
     End Sub
 
     Public Delegate Sub LambdaGenerico(O As Object)
@@ -68,7 +72,10 @@
         accion(elemento)
     End Sub
 
-    Public Sub Nuevo(elemento As Object, renderAutomatico As Boolean)
+    Public Sub Nuevo(elemento As Object, renderAutomatico As Boolean, Optional jj As Boolean = False)
+        If jj Then
+            listaDeNotificacionesParaRecontrucion.Add(elemento)
+        End If
         Dim objetoLista As IAlfaInterface = TipoPanel.GetConstructors().Single.Invoke(New Object() {elemento})
         objetoLista.darAlfa(Me)
         lista.Add(objetoLista)
@@ -139,13 +146,10 @@
     End Sub
 
     Private Sub Alfa_SizeChanged(sender As Object, e As EventArgs) Handles Me.SizeChanged
-        Dim elementosposte As New List(Of IAlfaInterface)
-        elementosposte = lista
-        lista.Clear()
-        For Each i As IAlfaInterface In elementosposte
-            Dim objetoLista As IAlfaInterface = TipoPanel.GetConstructors().Single.Invoke(New Object() {i.dameContenido})
-            objetoLista.darAlfa(Me)
-            lista.Add(objetoLista)
+        Me.Limpiar(False)
+
+        For Each i As Object In listaDeNotificacionesParaRecontrucion
+            Me.Nuevo(i, False)
         Next
         render()
     End Sub

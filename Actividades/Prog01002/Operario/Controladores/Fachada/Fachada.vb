@@ -1434,6 +1434,12 @@ Public Class Fachada
 
     End Sub
 
+    Public Function usuarioInvalidado(nombredeusuario As String) As Boolean
+        Return Persistencia.getInstancia.usuarioInvalidado(nombredeusuario)
+    End Function
 
+    Public Function modificarInvalidadoDelUsuario(idusuario As Integer, j As Boolean)
+        Return Persistencia.getInstancia.updateInvalidadoUsuario(idusuario, j)
+    End Function
 
 End Class
