@@ -1,0 +1,4 @@
+digraph NuevoPermite {
+"El usuario tiene permisos para usar el medio de transporte?" -> "Invalida el permiso existente" [label = "V"];
+"El usuario tiene permisos para usar el medio de transporte?" -> "Le concede un permiso valido" [label = "F"];
+}

@@ -1,0 +1,4 @@
+digraph nombredeClienteEnUso {
+"El nombre del cliente esta en uso?" -> "El nombre esta en uso" [label = "V"];
+"El nombre del cliente esta en uso?" -> "El nombre No esta en uso" [label = "F"];
+}

@@ -1,0 +1,7 @@
+digraph ConexionesLugares {
+"Crea una lista para las conexiones entres si" -> "Llama a ConexionesEntreLugares";
+"Llama a ConexionesEntreLugares" -> "Hay conexiones en comun?";
+"Hay conexiones en comun?" -> "Agrega los lugares y sus conexiones a la lista" [label = "V"];
+"Agrega los lugares y sus conexiones a la lista" -> "Hay conexiones en comun?";
+"Hay conexiones en comun?" -> "Devuelve la lista" [label = "F"];
+}
