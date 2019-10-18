@@ -198,7 +198,6 @@ Public Class crearInformaDeDaños
             Info.Creador = Controladores.Fachada.getInstancia.DevolverUsuarioActual
             PanelDelVehiculo.NotificarDeInforme(Info)
         End If
-        Me.Dispose()
         Controladores.Marco.getInstancia.cerrarPanel(Of crearInformaDeDaños)()
     End Sub
 

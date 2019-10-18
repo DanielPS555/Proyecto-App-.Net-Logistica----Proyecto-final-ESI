@@ -1,0 +1,6 @@
+digraph listaClientes {
+"Pide la tabla de los Clientes" -> "Hay mas Clientes?";
+"Hay mas Clientes?" -> "Lo agrega a la lista" [label = "V"];
+"Hay mas Clientes?" -> "Devuelve la lista completa" [label = "F"];
+"Lo agrega a la lista" -> "Hay mas Clientes?";
+}

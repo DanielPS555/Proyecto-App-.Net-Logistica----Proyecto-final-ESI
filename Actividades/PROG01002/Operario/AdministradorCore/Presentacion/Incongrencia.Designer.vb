@@ -52,6 +52,7 @@ Partial Class Incongrencia
         '
         'Button1
         '
+        Me.Button1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(180, Byte), Integer), CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer))
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button1.Font = New System.Drawing.Font("Segoe UI Semilight", 15.0!)
@@ -65,6 +66,7 @@ Partial Class Incongrencia
         '
         'aceptar
         '
+        Me.aceptar.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.aceptar.BackColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(140, Byte), Integer), CType(CType(217, Byte), Integer))
         Me.aceptar.Enabled = False
         Me.aceptar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
@@ -102,6 +104,7 @@ Partial Class Incongrencia
         '
         'Label2
         '
+        Me.Label2.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.Location = New System.Drawing.Point(15, 436)
@@ -112,6 +115,7 @@ Partial Class Incongrencia
         '
         'Label3
         '
+        Me.Label3.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.Location = New System.Drawing.Point(15, 488)
@@ -122,6 +126,7 @@ Partial Class Incongrencia
         '
         'Label4
         '
+        Me.Label4.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.Location = New System.Drawing.Point(15, 537)
@@ -145,6 +150,8 @@ Partial Class Incongrencia
         '
         'zona_combo
         '
+        Me.zona_combo.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.zona_combo.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.zona_combo.FormattingEnabled = True
         Me.zona_combo.Location = New System.Drawing.Point(127, 436)
@@ -154,6 +161,8 @@ Partial Class Incongrencia
         '
         'subzona_combo
         '
+        Me.subzona_combo.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.subzona_combo.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.subzona_combo.FormattingEnabled = True
         Me.subzona_combo.Location = New System.Drawing.Point(127, 488)
@@ -163,6 +172,8 @@ Partial Class Incongrencia
         '
         'posicones_combo
         '
+        Me.posicones_combo.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.posicones_combo.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.posicones_combo.FormattingEnabled = True
         Me.posicones_combo.Location = New System.Drawing.Point(127, 537)
@@ -172,6 +183,7 @@ Partial Class Incongrencia
         '
         'modi
         '
+        Me.modi.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.modi.BackColor = System.Drawing.Color.White
         Me.modi.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.modi.Font = New System.Drawing.Font("Segoe UI Semilight", 15.0!)
@@ -185,10 +197,11 @@ Partial Class Incongrencia
         '
         'estado
         '
+        Me.estado.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.estado.AutoSize = True
         Me.estado.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.estado.ForeColor = System.Drawing.Color.FromArgb(CType(CType(180, Byte), Integer), CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer))
-        Me.estado.Location = New System.Drawing.Point(553, 598)
+        Me.estado.Location = New System.Drawing.Point(624, 537)
         Me.estado.Name = "estado"
         Me.estado.Size = New System.Drawing.Size(187, 21)
         Me.estado.TabIndex = 32

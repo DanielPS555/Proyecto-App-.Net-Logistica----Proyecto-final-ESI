@@ -77,6 +77,7 @@ Partial Class AdministrarZonasYSubzonas
         '
         'zonas
         '
+        Me.zonas.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.zonas.ForeColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(119, Byte), Integer), CType(CType(184, Byte), Integer))
         Me.zonas.FormattingEnabled = True
         Me.zonas.ItemHeight = 25
@@ -87,6 +88,7 @@ Partial Class AdministrarZonasYSubzonas
         '
         'subzonas
         '
+        Me.subzonas.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.subzonas.ForeColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(119, Byte), Integer), CType(CType(184, Byte), Integer))
         Me.subzonas.FormattingEnabled = True
         Me.subzonas.ItemHeight = 25
@@ -157,6 +159,8 @@ Partial Class AdministrarZonasYSubzonas
         '
         'nombre
         '
+        Me.nombre.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.nombre.Font = New System.Drawing.Font("Segoe UI Semilight", 14.0!)
         Me.nombre.Location = New System.Drawing.Point(125, 513)
         Me.nombre.Name = "nombre"
@@ -165,6 +169,8 @@ Partial Class AdministrarZonasYSubzonas
         '
         'capacidad
         '
+        Me.capacidad.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.capacidad.Location = New System.Drawing.Point(125, 551)
         Me.capacidad.Name = "capacidad"
         Me.capacidad.Size = New System.Drawing.Size(312, 33)
@@ -172,6 +178,7 @@ Partial Class AdministrarZonasYSubzonas
         '
         'nuevazona
         '
+        Me.nuevazona.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.nuevazona.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.nuevazona.Font = New System.Drawing.Font("Segoe UI Semilight", 15.0!)
         Me.nuevazona.ForeColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(140, Byte), Integer), CType(CType(217, Byte), Integer))
@@ -184,6 +191,7 @@ Partial Class AdministrarZonasYSubzonas
         '
         'nuevasubzona
         '
+        Me.nuevasubzona.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.nuevasubzona.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.nuevasubzona.Font = New System.Drawing.Font("Segoe UI Semilight", 15.0!)
         Me.nuevasubzona.ForeColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(140, Byte), Integer), CType(CType(217, Byte), Integer))
@@ -196,6 +204,7 @@ Partial Class AdministrarZonasYSubzonas
         '
         'eliminar
         '
+        Me.eliminar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.eliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.eliminar.Font = New System.Drawing.Font("Segoe UI Semilight", 15.0!)
         Me.eliminar.ForeColor = System.Drawing.Color.FromArgb(CType(CType(180, Byte), Integer), CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer))
@@ -208,6 +217,7 @@ Partial Class AdministrarZonasYSubzonas
         '
         'aceptar
         '
+        Me.aceptar.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.aceptar.BackColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(140, Byte), Integer), CType(CType(217, Byte), Integer))
         Me.aceptar.Enabled = False
         Me.aceptar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
@@ -222,6 +232,7 @@ Partial Class AdministrarZonasYSubzonas
         '
         'Button5
         '
+        Me.Button5.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button5.Font = New System.Drawing.Font("Segoe UI Semilight", 15.0!)
         Me.Button5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(180, Byte), Integer), CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer))
@@ -245,6 +256,7 @@ Partial Class AdministrarZonasYSubzonas
         '
         'Button1
         '
+        Me.Button1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(180, Byte), Integer), CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer))
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button1.Font = New System.Drawing.Font("Segoe UI Semilight", 15.0!)

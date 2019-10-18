@@ -26,7 +26,7 @@
         timer = New Timer With {
             .Interval = 350
         }
-        alfa.Limpiar()
+        alfa.Limpiar(True)
         AddHandler timer.Tick, AddressOf UpdateMessages
         lastMessageId = 0
         alfa.Refresh()

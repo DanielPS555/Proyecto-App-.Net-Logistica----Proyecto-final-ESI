@@ -1,0 +1,6 @@
+digraph ListaDeMediosDelSistema {
+"Crea una lista de medios de transporte" -> "Hay mas medios de transportes?";
+"Hay mas medios de transportes?" -> "Lo agrega a la lista" [label = "V"];
+"Lo agrega a la lista" -> "Hay mas medios de transportes?";
+"Hay mas medios de transportes?" -> "Devuelve la lista" [label = "F"];
+}

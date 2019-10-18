@@ -1,0 +1,12 @@
+digraph uwu2 {
+"init" -> "Esta vacia la tabla de este usuario?";
+"Esta vacia la tabla de este usuario?" -> "Devuelve la lista" [label = "T"];
+"Esta vacia la tabla de este usuario?" -> "Crea un objeto usuario y una lista" [label = "F"]
+"Crea un objeto usuario y una lista" -> "Hay mas filas?";
+"Hay mas filas?" -> "Trabajaen no tiene fin?" [label = "T"];
+"Hay mas filas?" -> "Devuelve la lista" [label = "F"];
+"Trabajaen no tiene fin?" -> "termina su trabajo en ese lugar  y lo agrega a la lista" [label = "T"];
+"Trabajaen no tiene fin?" -> "Hay mas filas?" [label = "F"];
+"termina su trabajo en ese lugar  y lo agrega a la lista" -> "Crea un objeto usuario y una lista";
+"termina su trabajo en ese lugar  y lo agrega a la lista" -> "Devuelve la lista";
+}

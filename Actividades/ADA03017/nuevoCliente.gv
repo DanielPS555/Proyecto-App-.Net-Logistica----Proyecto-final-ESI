@@ -1,0 +1,6 @@
+digraph nuevoCliente {
+"Crea el cliente" -> "El cliente tiene lugares sin agregar?";
+"El cliente tiene lugares sin agregar?" -> "Agrega el lugar del cliente" [label = "V"];
+"El cliente tiene lugares sin agregar?" -> "Termina" [label = "F" ];
+"Agrega el lugar del cliente" -> "El cliente tiene lugares sin agregar?";
+}

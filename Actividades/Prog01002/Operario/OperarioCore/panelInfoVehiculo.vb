@@ -84,8 +84,12 @@ Public Class panelInfoVehiculo
         CargarTraslados()
         CargarLugares()
         PosicionOEstado()
-
         ListaInformes = Controladores.Fachada.getInstancia.devolverTodosLosInformesYregistrosCompletos(vehiculo)
+        Dim estadoultimo = Controladores.Fachada.getInstancia.UltimoEstadoTransportePorIdVehiculo(vehiculo.IdVehiculo)
+        If estadoultimo Is Nothing Or estadoultimo.Equals(Controladores.Trasporte.TIPO_ESTADO_FALLO) Or estadoultimo.Equals(Controladores.Trasporte.TIPO_ESTADO_PROSESO) Then
+            datosEnTransporte()
+        End If
+
         If ListaInformes.Count = 0 Then
 
             visualizarElementosRegistro(False, False)
@@ -312,6 +316,11 @@ Public Class panelInfoVehiculo
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        Dim estadoultimo = Controladores.Fachada.getInstancia.UltimoEstadoTransportePorIdVehiculo(vehiculo.IdVehiculo)
+        If estadoultimo Is Nothing Or estadoultimo.Equals(Controladores.Trasporte.TIPO_ESTADO_FALLO) Or estadoultimo.Equals(Controladores.Trasporte.TIPO_ESTADO_PROSESO) Then
+            datosEnTransporte()
+            Return
+        End If
         Dim tInterno = New TrasladoInterno(vehiculo.IdVehiculo, Me)
         tInterno.ShowDialog()
     End Sub
@@ -357,6 +366,12 @@ Public Class panelInfoVehiculo
     End Sub
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+        Dim estadoultimo = Controladores.Fachada.getInstancia.UltimoEstadoTransportePorIdVehiculo(vehiculo.IdVehiculo)
+        If estadoultimo Is Nothing Or estadoultimo.Equals(Controladores.Trasporte.TIPO_ESTADO_FALLO) Or estadoultimo.Equals(Controladores.Trasporte.TIPO_ESTADO_PROSESO) Then
+            datosEnTransporte()
+            Return
+        End If
+
         Marco.getInstancia.CargarPanel(Of crearInformaDeDaños)(New crearInformaDeDaños(New Controladores.InformeDeDaños(vehiculo) With {.Creador = Fachada.getInstancia.DevolverUsuarioActual,
                                                                                                                                         .Lugar = Fachada.getInstancia.DevolverPosicionActual(vehiculo.IdVehiculo).Subzona.ZonaPadre.LugarPadre,
                                                                                                                                         .Fecha = DateTime.Now}, True, Me) With {.ListaDeTodosLosInformes = ListaInformes})
@@ -485,7 +500,20 @@ Public Class panelInfoVehiculo
         nuevoLote.Text = "Nuevo lote"
     End Sub
 
+    Private Sub datosEnTransporte()
+        cambiarGuardarLote.Enabled = False
+        Entransporte.Visible = True
+        bajaButton.Enabled = False
+        Button4.Enabled = False
+        Button2.Enabled = False
+    End Sub
+
     Private Sub CambiarGuardarLote_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles cambiarGuardarLote.LinkClicked
+        Dim estadoultimo = Controladores.Fachada.getInstancia.UltimoEstadoTransportePorIdVehiculo(vehiculo.IdVehiculo)
+        If estadoultimo Is Nothing Or estadoultimo.Equals(Controladores.Trasporte.TIPO_ESTADO_FALLO) Or estadoultimo.Equals(Controladores.Trasporte.TIPO_ESTADO_PROSESO) Then
+            datosEnTransporte()
+            Return
+        End If
         If Not superpepe Then
             superpepe = True
             CargarLotes()
@@ -546,6 +574,12 @@ Public Class panelInfoVehiculo
     End Sub
 
     Private Sub Button1_Click_2(sender As Object, e As EventArgs) Handles bajaButton.Click
+        Dim estadoultimo = Controladores.Fachada.getInstancia.UltimoEstadoTransportePorIdVehiculo(vehiculo.IdVehiculo)
+        If estadoultimo Is Nothing Or estadoultimo.Equals(Controladores.Trasporte.TIPO_ESTADO_FALLO) Or estadoultimo.Equals(Controladores.Trasporte.TIPO_ESTADO_PROSESO) Then
+            datosEnTransporte()
+            Return
+        End If
+
         Dim BV = New BajaVehiculo(Me.vehiculo)
         BV.ShowDialog()
     End Sub

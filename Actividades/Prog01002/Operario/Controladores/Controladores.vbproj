@@ -155,6 +155,12 @@
     <Compile Include="Persistencia\Extensiones.vb" />
     <Compile Include="Persistencia\Persistencia.vb" />
     <Compile Include="PICSVReader.vb" />
+    <Compile Include="Presentacion_comun\AcercaDe.Designer.vb">
+      <DependentUpon>AcercaDe.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion_comun\AcercaDe.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Presentacion_comun\ChatInterno.Designer.vb">
       <DependentUpon>ChatInterno.vb</DependentUpon>
     </Compile>
@@ -301,6 +307,12 @@
     <Compile Include="Presentacion_comun\PanelInfoUsuario.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Presentacion_comun\TiempoRealGooglePlex.Designer.vb">
+      <DependentUpon>TiempoRealGooglePlex.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion_comun\TiempoRealGooglePlex.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ScreenNode.vb" />
   </ItemGroup>
   <ItemGroup>
@@ -309,6 +321,9 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion_comun\AcercaDe.resx">
+      <DependentUpon>AcercaDe.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion_comun\ChatInterno.resx">
       <DependentUpon>ChatInterno.vb</DependentUpon>
@@ -369,6 +384,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion_comun\PanelInfoUsuario.resx">
       <DependentUpon>PanelInfoUsuario.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion_comun\TiempoRealGooglePlex.resx">
+      <DependentUpon>TiempoRealGooglePlex.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

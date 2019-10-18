@@ -101,6 +101,9 @@
 
         Controladores.Fachada.getInstancia.crearUsuario(user, Contraseña.Text)
         Dim iduser = Controladores.Fachada.getInstancia.devolverUltimaIdUsuarioIngresdaPorCreador(Controladores.Fachada.getInstancia.DevolverUsuarioActual)
+        If user.Rol = Controladores.Usuario.TIPO_ROL_ADMINISTRADOR Then
+            Controladores.Fachada.getInstancia.habilitadTodosLosMediosPorIdUsuario(iduser)
+        End If
         Dim notifi As New Controladores.Notificacion(Controladores.Notificacion.TIPO_NOTIFICACION_NUEVO_USUARIO) With {.Ref1 = iduser}
         Controladores.Fachada.getInstancia.NuevoNotificacion(notifi)
         MsgBox("Usuario ingresado con exito", MsgBoxStyle.Information)

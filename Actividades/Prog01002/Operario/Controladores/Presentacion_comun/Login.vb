@@ -133,6 +133,10 @@ Public Class Login
             MsgBoxI18N("Credenciales incorrectas. Intente nuevamente", MsgBoxStyle.Critical)
         Else
             If Controladores.Fachada.getInstancia.rolDeUnUsuarioPorElNombreDeUsuario(user.Text) = ForRole Then
+                If Controladores.Fachada.getInstancia.usuarioInvalidado(user.Text) Then
+                    MsgBoxI18N("Este usuario ha sido invalidado", MsgBoxStyle.Critical)
+                    Return
+                End If
                 Redirect()
             Else
                 MsgBoxI18NFormat("Esta aplicacion es unicamente para los {0}", ForRole)
@@ -147,7 +151,7 @@ Public Class Login
     End Sub
 
     Public Sub NotificarDeConexion(exitoso As Boolean, Optional config As ConfiguracionEnRed = Nothing) Implements ConfigurarRed.INotifyCallback.NotificarDeConexion
-        If exitoso AndAlso Fachada.getInstancia.IniciarConexcion(config) Then
+        If exitoso AndAlso (config.Database Is Nothing OrElse Fachada.getInstancia.IniciarConexcion(config)) Then
             estadoConex.Text = Funciones_comunes.I18N("Conectado", Marco.Language)
             estadoConex.ForeColor = Color.FromArgb(13, 163, 51)
             Button1.Enabled = True
@@ -175,4 +179,7 @@ Public Class Login
         LanguageSwap()
     End Sub
 
+    Private Sub PanelLogin_SizeChanged(sender As Object, e As EventArgs) Handles panelLogin.SizeChanged
+        super.Location = New Point((Me.Width / 2) - (super.Width / 2), (Me.Height / 2) - (super.Height / 2))
+    End Sub
 End Class

@@ -1,0 +1,5 @@
+digraph ConexionDeUsuarioTabla {
+"Sos un Operario?" -> "Te devuelve Conexion sin TrabajaEn" [label = "F"];
+"Sos un Operario?" -> "Te devuelve Conexion con TrabajaEn" [label = "V"];
+
+}

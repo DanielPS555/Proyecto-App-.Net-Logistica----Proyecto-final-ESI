@@ -139,13 +139,18 @@ Public Class Marco
 
     Private Sub accion(j As Boolean)
         b10.Enabled = j
+        Panel5.Controls.OfType(Of Button).ForEach(Sub(x) x.Enabled = j)
+        header.Controls.OfType(Of Button).ForEach(Sub(x) x.Enabled = j)
+        header.Controls.OfType(Of PictureBox).ForEach(Sub(x) x.Enabled = j)
         'acercaDe.Enabled = j
         ' Micuenta.Enabled = j
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Fachada.getInstancia.CerrarSeccion()
-        Principal.getInstancia.cargarPanel(New Login)
+        Dim l As Login
+        l.NotificarDeConexion(True)
+        Principal.getInstancia.cargarPanel(l)
         Me.Close()
     End Sub
 
@@ -222,5 +227,10 @@ Public Class Marco
 
     Private Sub PictureBox2_Click(sender As Object, e As EventArgs) Handles PictureBox2.Click
         Me.CargarPanel(Of PanelInfoUsuario)(New PanelInfoUsuario(Fachada.getInstancia.DevolverUsuarioActual.ID_usuario))
+    End Sub
+
+    Private Sub PictureBox3_Click(sender As Object, e As EventArgs) Handles PictureBox3.Click
+        Dim ac As New AcercaDe
+        ac.ShowDialog()
     End Sub
 End Class

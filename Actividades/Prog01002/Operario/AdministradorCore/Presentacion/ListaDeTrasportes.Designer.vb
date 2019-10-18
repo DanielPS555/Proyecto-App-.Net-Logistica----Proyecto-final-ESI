@@ -4,7 +4,7 @@ Partial Class ListaDeTrasportes
     Inherits System.Windows.Forms.Form
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -21,38 +21,15 @@ Partial Class ListaDeTrasportes
     'NOTA: el Diseñador de Windows Forms necesita el siguiente procedimiento
     'Se puede modificar usando el Diseñador de Windows Forms.  
     'No lo modifique con el editor de código.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Me.buscar = New System.Windows.Forms.Button()
         Me.trasportes = New System.Windows.Forms.DataGridView()
-        Me.criterios = New System.Windows.Forms.ComboBox()
-        Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.buscador = New System.Windows.Forms.TextBox()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Label2 = New System.Windows.Forms.Label()
         CType(Me.trasportes, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'buscar
-        '
-        Me.buscar.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.buscar.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Me.buscar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Me.buscar.FlatAppearance.BorderSize = 0
-        Me.buscar.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Me.buscar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        Me.buscar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(173, Byte), Integer))
-        Me.buscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.buscar.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.buscar.ForeColor = System.Drawing.Color.White
-        Me.buscar.Location = New System.Drawing.Point(779, 12)
-        Me.buscar.Name = "buscar"
-        Me.buscar.Size = New System.Drawing.Size(86, 35)
-        Me.buscar.TabIndex = 31
-        Me.buscar.Text = "Buscar"
-        Me.buscar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.buscar.UseVisualStyleBackColor = False
         '
         'trasportes
         '
@@ -77,39 +54,32 @@ Partial Class ListaDeTrasportes
         DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.trasportes.DefaultCellStyle = DataGridViewCellStyle2
-        Me.trasportes.Location = New System.Drawing.Point(13, 53)
+        Me.trasportes.Location = New System.Drawing.Point(13, 60)
         Me.trasportes.Name = "trasportes"
         Me.trasportes.ReadOnly = True
         Me.trasportes.RowHeadersVisible = False
-        Me.trasportes.Size = New System.Drawing.Size(855, 585)
+        Me.trasportes.Size = New System.Drawing.Size(855, 578)
         Me.trasportes.TabIndex = 2
         '
-        'criterios
+        'Panel1
         '
-        Me.criterios.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.criterios.FormattingEnabled = True
-        Me.criterios.Items.AddRange(New Object() {"Asignados", "No asignados", "En transporte ", "Precargados", "Entregados ", "Eliminados"})
-        Me.criterios.Location = New System.Drawing.Point(519, 14)
-        Me.criterios.Name = "criterios"
-        Me.criterios.Size = New System.Drawing.Size(254, 33)
-        Me.criterios.TabIndex = 32
+        Me.Panel1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.Panel1.Location = New System.Drawing.Point(13, 52)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(855, 2)
+        Me.Panel1.TabIndex = 43
         '
-        'Panel2
+        'Label2
         '
-        Me.Panel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
-        Me.Panel2.Location = New System.Drawing.Point(13, 41)
-        Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(500, 2)
-        Me.Panel2.TabIndex = 30
-        '
-        'buscador
-        '
-        Me.buscador.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.buscador.Font = New System.Drawing.Font("Century Gothic", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.buscador.Location = New System.Drawing.Point(13, 12)
-        Me.buscador.Name = "buscador"
-        Me.buscador.Size = New System.Drawing.Size(500, 25)
-        Me.buscador.TabIndex = 29
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Segoe UI Semilight", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Location = New System.Drawing.Point(12, 9)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(210, 37)
+        Me.Label2.TabIndex = 42
+        Me.Label2.Text = "Lista de usuarios"
         '
         'ListaDeTrasportes
         '
@@ -117,10 +87,8 @@ Partial Class ListaDeTrasportes
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(880, 650)
-        Me.Controls.Add(Me.criterios)
-        Me.Controls.Add(Me.buscar)
-        Me.Controls.Add(Me.Panel2)
-        Me.Controls.Add(Me.buscador)
+        Me.Controls.Add(Me.Panel1)
+        Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.trasportes)
         Me.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
@@ -133,8 +101,6 @@ Partial Class ListaDeTrasportes
 
     End Sub
     Friend WithEvents trasportes As DataGridView
-    Friend WithEvents criterios As ComboBox
-    Friend WithEvents Panel2 As Windows.Forms.Panel
-    Friend WithEvents buscador As TextBox
-    Friend WithEvents buscar As Button
+    Friend WithEvents Panel1 As Windows.Forms.Panel
+    Friend WithEvents Label2 As Label
 End Class

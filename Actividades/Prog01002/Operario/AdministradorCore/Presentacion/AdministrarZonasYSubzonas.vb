@@ -228,4 +228,13 @@
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Controladores.Marco.getInstancia.cerrarPanel(Of AdministrarZonasYSubzonas)()
     End Sub
+
+    Private Sub AdministrarZonasYSubzonas_SizeChanged(sender As Object, e As EventArgs) Handles MyBase.SizeChanged
+        zonas.Width = (Me.Width / 2) - 40
+        zonas.Location = New Drawing.Point(20, 150)
+        subzonas.Width = (Me.Width / 2) - 40
+        subzonas.Location = New Drawing.Point((Me.Width / 2) + 20, 150)
+        Label3.Location = New Drawing.Point(20, 115)
+        Label4.Location = New Drawing.Point((Me.Width / 2) + 20, 115)
+    End Sub
 End Class

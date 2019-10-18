@@ -13,6 +13,7 @@ Public Class ListarLugares
         Me.Controls.Add(alfa)
         alfa.Size = New Drawing.Size(855, 570)
         alfa.Location = New Drawing.Point(13, 68)
+        alfa.Anchor = (AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right Or AnchorStyles.Bottom)
         cargarDatos()
 
     End Sub
@@ -20,7 +21,7 @@ Public Class ListarLugares
     Private Sub cargarDatos()
         lugaresTabla = Controladores.Fachada.getInstancia.listarTodosLosLugares
         For Each r As DataRow In lugaresTabla.Rows
-            alfa.Nuevo(New Controladores.Lugar() With {.IDLugar = r.Item(0), .Nombre = r.Item(1), .Tipo = r.Item(2)}, False)
+            alfa.Nuevo(New Controladores.Lugar() With {.IDLugar = r.Item(0), .Nombre = r.Item(1), .Tipo = r.Item(2)}, False, True)
         Next
         alfa.render()
     End Sub
@@ -34,4 +35,7 @@ Public Class ListarLugares
         Controladores.Marco.getInstancia.CargarPanel(New Conectividad)
     End Sub
 
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Controladores.Marco.getInstancia.CargarPanel(New NuevoLugar)
+    End Sub
 End Class

@@ -18,6 +18,7 @@
 	Sexo char(1) NOT null,
 	Rol char(1) not null,
 	Imagen byte default null,
+	invalido boolean default 'f' not null,
 	CHECK (Rol in ('A', 'O', 'T')),
 	CHECK (Sexo IN ('M',
 	'F',

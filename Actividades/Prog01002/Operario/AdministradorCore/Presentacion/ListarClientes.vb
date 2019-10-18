@@ -10,6 +10,7 @@ Public Class ListarClientes
         Me.Controls.Add(alfa)
         alfa.Size = New Drawing.Size(855, 570)
         alfa.Location = New Drawing.Point(13, 68)
+        alfa.Anchor = (AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right Or AnchorStyles.Bottom)
         cargarDatos()
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
 
@@ -18,7 +19,7 @@ Public Class ListarClientes
     Public Sub cargarDatos()
         clientesTabla = Controladores.Fachada.getInstancia.listaDeClientesActuales
         For Each r As DataRow In clientesTabla.Rows
-            alfa.Nuevo(New Controladores.Cliente With {.IDCliente = r.Item(0), .RUT = r.Item(1), .Nombre = r.Item(2)}, False)
+            alfa.Nuevo(New Controladores.Cliente With {.IDCliente = r.Item(0), .RUT = r.Item(1), .Nombre = r.Item(2)}, False, True)
         Next
         alfa.render()
     End Sub

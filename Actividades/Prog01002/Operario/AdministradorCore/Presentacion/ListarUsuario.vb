@@ -15,6 +15,7 @@ Public Class ListarUsuario
         Me.Controls.Add(alfa)
         alfa.Location = New Drawing.Point(13, 65)
         alfa.Size = New Drawing.Size(853, 570)
+        alfa.Anchor = (AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right Or AnchorStyles.Bottom)
         Me.Update()
         carardatos()
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
@@ -25,7 +26,7 @@ Public Class ListarUsuario
         Usuariostabla = Controladores.Fachada.getInstancia.TodosLosUsuariosTabla
         For Each user As DataRow In Usuariostabla.Rows
             Dim elemento As New Controladores.Usuario With {.ID_usuario = user.Item(0), .NombreDeUsuario = user.Item(1), .Rol = user.Item(4)}
-            alfa.Nuevo(elemento, False)
+            alfa.Nuevo(elemento, False, True)
         Next
         alfa.render()
         'usuarios.DataSource = Usuariostabla

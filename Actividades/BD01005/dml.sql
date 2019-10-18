@@ -1,20 +1,20 @@
 ﻿
 	/*USUARIO*/
 insert into usuario values (0,"Felipe3","aaaagria","felip49@gmail.com", "27/8/1981", "09877745",
-"Felipe","Camacho", "Cual fue su primer juego", "lol", null, "20/3/2018" , 'M','A', null);
+"Felipe","Camacho", "Cual fue su primer juego", "lol", null, "20/3/2018" , 'M','A', null,'f');
 /*NO SE PONE CONTRASEÑA AQUI POR EL FUNCIONAMIENTO DE LA ENCRIPTACION DEL PROGRAMA*/
 insert into usuario values (0,"Fernanda1654","","ferti49@gmail.com",  "27/8/1981", "098545574"
-,"Fernanda","Lopes", "Cual fue su primer telefono" , "Un poquet", 1, "21/3/2018" , 'F','A', null);
+,"Fernanda","Lopes", "Cual fue su primer telefono" , "Un poquet", 1, "21/3/2018" , 'F','A', null,'f');
 insert into usuario values (0,"Pepe12","aaaagria","e1@gmail.com", "27/8/1981", "098167462"
-,"Pepe","Miranda", "Cual es tu color favorito" , "Rojo" , 1, "21/3/2018", 'M','O', null);
+,"Pepe","Miranda", "Cual es tu color favorito" , "Rojo" , 1, "21/3/2018", 'M','O', null,'f');
 insert into usuario values (0,"Juan24","aaaagria","re2@outlook.com", "27/8/1981", "098427894"
-,"Juan","Simon", "Cual es el nombre de tu perro" , "fido", 1, "21/3/2018", 'F','O', null);
+,"Juan","Simon", "Cual es el nombre de tu perro" , "fido", 1, "21/3/2018", 'F','O', null,'f');
 insert into usuario values (0,"Anto322","","anti@gmail.com", "27/8/1981", "098456782"
-,"Antonio","Pardiñas", "Cual es el nombre de su pelicula favorita" , "Blanca nieves", 1, "21/3/2018",'O','T', null);
+,"Antonio","Pardiñas", "Cual es el nombre de su pelicula favorita" , "Blanca nieves", 1, "21/3/2018",'O','T', null,'f');
 insert into usuario values (0,"PedroB43","","Pedro43563@outlook.com", "27/8/1981", "098452746"
-,"Pedro","Couto", "El nomrbe de mi cancion favorita" , "Hello", 1, "21/3/2018", 'M','T', null);
+,"Pedro","Couto", "El nomrbe de mi cancion favorita" , "Hello", 1, "21/3/2018", 'M','T', null,'f');
 insert into usuario values (0,"JulioMS", "","pachecodemicorazon@adinet.com.uy", "1/1/1928", "911",
- "Julio", "Sanguinetti","15vs19","19",1,"25/3/2017","M","T", null);
+ "Julio", "Sanguinetti","15vs19","19",1,"25/3/2017","M","T", null,'f');
 /*9*/
 
 

@@ -36,13 +36,14 @@
         Me.Controls.Add(alfa)
         alfa.Size = New Drawing.Size(495, 625)
         alfa.Location = New Point(373, 12)
+        alfa.Anchor = (AnchorStyles.Left Or AnchorStyles.Right Or AnchorStyles.Top)
         listaNotificaciones = Controladores.Fachada.getInstancia.ListaDeTodasLasNotificacionesDelSistema(Fachada.getInstancia.DevolverUsuarioActual.Rol)
         tipos.SelectedIndex = 0
 
     End Sub
 
     Private Sub ListBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles tipos.SelectedIndexChanged
-        alfa.Limpiar()
+        alfa.Limpiar(True)
         Dim elementos As New List(Of Notificacion)
         Dim tipoElegido = tiposElementos(tipos.SelectedIndex).Item1
         If tipoElegido Is Nothing Then
@@ -62,7 +63,7 @@
             SinElementos.Visible = False
         End If
         For Each no As Notificacion In elementos
-            alfa.Nuevo(no, False)
+            alfa.Nuevo(no, False, True)
         Next
         alfa.render()
     End Sub
