@@ -259,3 +259,10 @@ No puede superar los 255 caracteres
 Chat
 Transportar lotes
 Lista transportes
+El nombre tiene caracteres no permitidos
+El nombre de la marca tiene caracteres no permitidos
+El nombre del modelo tiene caracteres no permitidos
+el nombre del lugar tiene caracteres no permitidos
+El nombre de usuario tiene caracteres no permitidos
+El nombre real del usuario tiene caracteres no permitidos
+El apellido real del usuario tiene caracteres no permitidos

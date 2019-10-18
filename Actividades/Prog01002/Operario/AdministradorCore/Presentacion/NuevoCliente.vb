@@ -75,6 +75,11 @@ Public Class panel
             MsgBoxI18N("Al menos debe cargar un establecimiento del cliente", MsgBoxStyle.Critical)
             Return
         End If
+
+        If Not Controladores.Funciones_comunes.sinCaracteresEspeciales(nombre.Text) Then
+            MsgBoxI18N("El nombre tiene caracteres no permitidos", MsgBoxStyle.Critical)
+            Return
+        End If
         cliente.Nombre = nombre.Text.Trim
         cliente.RUT = rutTextBox.Text.Trim
         Fachada.getInstancia.nuevoCliente(cliente)

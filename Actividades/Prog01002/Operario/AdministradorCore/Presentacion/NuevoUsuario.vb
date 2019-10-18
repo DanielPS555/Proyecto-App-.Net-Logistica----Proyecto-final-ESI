@@ -1,4 +1,5 @@
-﻿Public Class NuevoUsuario
+﻿Imports Controladores.Extenciones
+Public Class NuevoUsuario
     Public Sub New()
         InitializeComponent()
         Dim max As New DateTime(DateTime.Now.Year - 18, DateTime.Now.Month, DateTime.Now.Day)
@@ -11,6 +12,22 @@
     End Sub
 
     Private Sub Ingresar_Click(sender As Object, e As EventArgs) Handles ingresar.Click
+
+        If Not Controladores.Funciones_comunes.sinCaracteresEspeciales(nombreDeUsuario.Text) Then
+            MsgBoxI18N("El nombre de usuario tiene caracteres no permitidos", MsgBoxStyle.Critical)
+            Return
+        End If
+
+        If Not Controladores.Funciones_comunes.sinCaracteresEspeciales(NombreReal.Text) Then
+            MsgBoxI18N("El nombre real del usuario tiene caracteres no permitidos", MsgBoxStyle.Critical)
+            Return
+        End If
+
+        If Not Controladores.Funciones_comunes.sinCaracteresEspeciales(ApellidoReal.Text) Then
+            MsgBoxI18N("El apellido real del usuario tiene caracteres no permitidos", MsgBoxStyle.Critical)
+            Return
+        End If
+
         If nombreDeUsuario.Text.Trim.Length = 0 Then
             MsgBox("El nombre de usuario no puede estar vacio", MsgBoxStyle.Critical)
             Return

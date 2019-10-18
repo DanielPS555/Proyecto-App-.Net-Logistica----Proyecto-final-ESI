@@ -3,6 +3,7 @@ Imports System.Drawing
 Imports System.Windows.Forms
 Imports Controladores.Extenciones.Extensiones
 Public Class ListaVehiculos
+    Private datos As DataTable
     Public Sub New()
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
@@ -27,7 +28,6 @@ Public Class ListaVehiculos
         LugaresBox.SelectedIndex = 0
         Asignados()
         DataGridView1.MultiSelect = False
-        criterios.SelectedIndex = 0
         tiposListas.SelectedIndex = 0
 
     End Sub
@@ -37,56 +37,83 @@ Public Class ListaVehiculos
     Dim t As DataTable
 
     Public Sub UpdateVehicles()
+        criterios.Items.Clear()
+        criterios.Items.Add("ID vehiculo")
         Select Case tiposListas.SelectedItem
             ' esto es, efectivamente, un hashtable de funciones pero en versión
             ' "la utu nunca dió hashtables ni mapas ni diccionarios y, discutiblemente, funciones"
             ' TODO: hacer esto con un hashtable, no seamos hijos de puta, respetemos el oficio
             Case "Asignados"
+                criterios.Items.Add("Vin")
+                criterios.Items.Add("IdLote")
+                criterios.Items.Add("En el lugar")
+                criterios.Items.Add("Fuera del lugar")
+                criterios.Items.Add("Fuera del sistema")
                 Asignados()
             Case "No asignados"
+                criterios.Items.Add("Vin")
+                criterios.Items.Add("IdLote")
+                criterios.Items.Add("En el lugar")
+                criterios.Items.Add("Fecha llegada")
                 NoAsignados()
             Case "Entregados"
+                criterios.Items.Add("Lugar entrega")
                 Entregados()
             Case "Retirados"
+                criterios.Items.Add("Lugar retiro")
                 Retirados()
             Case "Dañados"
+                criterios.Items.Add("Lugar retiro")
                 Dañados()
             Case "Precargados"
+                criterios.Items.Add("VIN")
                 Precargados()
             Case "En transporte"
+
+                criterios.Items.Add("VIN")
+                criterios.Items.Add("Id Lote")
+                criterios.Items.Add("Destino")
                 EnTransporte()
         End Select
+        criterios.SelectedIndex = 0
     End Sub
 
     Private Sub EnTransporte()
-        DataGridView1.DataSource = Fachada.getInstancia.VehiculosEnTransporte()
+        datos = Fachada.getInstancia.VehiculosEnTransporte()
+        DataGridView1.DataSource = datos
     End Sub
 
     Private Sub Precargados()
-        DataGridView1.DataSource = Fachada.getInstancia.VehiculosPrecargados()
+        datos = Fachada.getInstancia.VehiculosPrecargados()
+        DataGridView1.DataSource = datos
     End Sub
 
     Private Sub Dañados()
-        DataGridView1.DataSource = Fachada.getInstancia.VehiculosDañados()
+        datos = Fachada.getInstancia.VehiculosDañados()
+        DataGridView1.DataSource = datos
     End Sub
 
     Public Sub Retirados()
-        DataGridView1.DataSource = Fachada.getInstancia.VehiculosRetirados()
+        datos = Fachada.getInstancia.VehiculosRetirados()
+        DataGridView1.DataSource = datos
     End Sub
 
     Public Sub Entregados()
-        DataGridView1.DataSource = Fachada.getInstancia.VehiculosEntregados()
+        datos = Fachada.getInstancia.VehiculosEntregados()
+        DataGridView1.DataSource = datos
     End Sub
 
     Public Sub Asignados()
         If lugar IsNot Nothing Then
-            DataGridView1.DataSource = Fachada.getInstancia.ListaVehiculos(lugar)
+            datos = Fachada.getInstancia.ListaVehiculos(lugar)
+            DataGridView1.DataSource = datos
         End If
     End Sub
 
     Public Sub NoAsignados()
         If lugar IsNot Nothing Then
-            DataGridView1.DataSource = Controladores.Fachada.getInstancia.listaDeVehiculosSinLoteNiPosicion(lugar.IDLugar)
+            datos = Controladores.Fachada.getInstancia.listaDeVehiculosSinLoteNiPosicion(lugar.IDLugar)
+            DataGridView1.DataSource = datos
         End If
     End Sub
 
@@ -114,7 +141,77 @@ Public Class ListaVehiculos
     End Sub
 
     Private Sub buscar_Click(sender As Object, e As EventArgs) Handles buscar.Click
-        'CargarDatos(DataGridView1.Columns)
+
+
+
+
+        Select Case tiposListas.SelectedItem
+            Case "Asignados"
+                'criterios.Items.Add("Vin")
+                'criterios.Items.Add("IdLote")
+                'criterios.Items.Add("En el lugar")
+                'criterios.Items.Add("Fuera del lugar")
+                'criterios.Items.Add("Fuera del sistema")
+                Select Case criterios.SelectedIndex
+                    Case 0
+                        FiltadoParcial(1, buscador.Text)
+                    Case 1
+                        FiltadoCompleto(5, buscador.Text)
+                    Case 2
+
+                    Case 3
+                End Select
+
+
+            Case "No asignados"
+                'criterios.Items.Add("Vin")
+                'criterios.Items.Add("IdLote")
+                'criterios.Items.Add("En el lugar")
+                'criterios.Items.Add("Fecha llegada")
+
+            Case "Entregados"
+                'criterios.Items.Add("Lugar entrega")
+
+            Case "Retirados"
+                'criterios.Items.Add("Lugar retiro")
+
+            Case "Dañados"
+                'criterios.Items.Add("Lugar retiro")
+
+            Case "Precargados"
+                'criterios.Items.Add("VIN")
+
+            Case "En transporte"
+
+                'criterios.Items.Add("VIN")
+                'criterios.Items.Add("Id Lote")
+                'criterios.Items.Add("Destino")
+        End Select
+
+
+    End Sub
+
+    Private Sub FiltadoCompleto(posicion As Integer, elemento As Object)
+        Dim tabAux As New DataTable
+        'tabAux.Load(datos)
+        For Each r As DataRow In datos.Rows
+            If Not r.Item(posicion).Equals(elemento) Then
+                tabAux.Rows.Remove(r)
+            End If
+        Next
+        DataGridView1.DataSource = tabAux
+    End Sub
+
+    Private Sub FiltadoParcial(posicion As Integer, elemento As String)
+        Dim tabAux As New DataTable
+        'tabAux.Load(datos)
+        For Each r As DataRow In datos.Rows
+            Dim rs = DirectCast(r.Item(posicion), String)
+            If rs.Length < elemento.Length OrElse rs.Substring(0, elemento.Length).Equals(rs) Then
+                tabAux.Rows.Remove(r)
+            End If
+        Next
+        DataGridView1.DataSource = tabAux
     End Sub
 
     Private Sub LugaresBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles LugaresBox.SelectedIndexChanged
@@ -125,5 +222,7 @@ Public Class ListaVehiculos
     Private Sub tiposListas_SelectedIndexChanged(sender As Object, e As EventArgs) Handles tiposListas.SelectedIndexChanged
         UpdateVehicles()
     End Sub
+
+
 End Class
 

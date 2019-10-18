@@ -77,14 +77,16 @@ order by 7", _con)
     End Function
 
     Friend Function VehiculosEnTransporte() As DataTable
-        Dim selectCmd As New OdbcCommand("select vehiculo.idvehiculo as IDVehiculo, vin as VIN, lote.nombre as nombre_lote, destino.nombre as nombre_lugar, transporte.fechahorasalida
-from vehiculo
-inner join integra on integra.idvehiculo=vehiculo.idvehiculo
-inner join lote on lote.idlote=integra.lote
-inner join transporta on transporta.idlote=lote.idlote
-inner join transporte on transporte.transporteid=transporta.transporteid
-inner join lugar as destino on lote.destino=destino.idlugar
-where transporta.fechahorallegadareal is null", _con)
+        Dim selectCmd As New OdbcCommand("select vehiculo.idvehiculo as IDVehiculo, vin as VIN, lote.nombre as nombre_lote,l.nombre as lugar_origen,destino.nombre  as lugar_destino 
+                                            , transporte.fechahorasalida
+                                            from vehiculo
+                                            inner join integra on integra.idvehiculo=vehiculo.idvehiculo
+                                            inner join lote on lote.idlote=integra.lote
+                                            inner join transporta on transporta.idlote=lote.idlote
+                                            inner join transporte on transporte.transporteid=transporta.transporteid
+                                            inner join lugar as destino on lote.destino=destino.idlugar
+                                            inner join lugar as l on l.idlugar=lote.origen
+                                            where transporta.fechahorallegadareal is null", _con)
         Dim dt As New DataTable
         dt.Load(selectCmd.ExecuteReader)
         Return dt

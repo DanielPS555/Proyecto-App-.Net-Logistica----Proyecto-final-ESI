@@ -133,9 +133,9 @@ Partial Class NuevoLugar
         Me.Label3.Font = New System.Drawing.Font("Segoe UI Semilight", 14.25!)
         Me.Label3.Location = New System.Drawing.Point(12, 101)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(52, 25)
+        Me.Label3.Size = New System.Drawing.Size(48, 25)
         Me.Label3.TabIndex = 9
-        Me.Label3.Text = "Tipo:"
+        Me.Label3.Text = "Tipo"
         '
         'VScrollBar1
         '

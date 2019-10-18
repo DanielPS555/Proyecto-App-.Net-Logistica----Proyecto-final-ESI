@@ -120,6 +120,16 @@ Public Class NuevaPrecarga
             End If
         End If
 
+        If Not Controladores.Funciones_comunes.sinCaracteresEspeciales(marca.Text) Then
+            MsgBoxI18N("El nombre de la marca tiene caracteres no permitidos", MsgBoxStyle.Critical)
+            Return
+        End If
+
+        If Not Controladores.Funciones_comunes.sinCaracteresEspeciales(modelo.Text) Then
+            MsgBoxI18N("El nombre del modelo tiene caracteres no permitidos", MsgBoxStyle.Critical)
+            Return
+        End If
+
         If Not añoNoIngrezar.Checked Then
             vehiculo.Año = anio.SelectedItem
         Else

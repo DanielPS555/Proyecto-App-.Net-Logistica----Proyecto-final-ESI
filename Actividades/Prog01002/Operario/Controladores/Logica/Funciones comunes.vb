@@ -312,6 +312,15 @@ Public Class Funciones_comunes
         Return True
     End Function
 
+    Public Shared Function sinCaracteresEspeciales(texto As String) As Boolean
+        For Each c As Char In texto
+            If Not Char.IsNumber(c) AndAlso Not Char.IsLetter(c) Then
+                Return False
+            End If
+        Next
+        Return True
+    End Function
+
 
 
 End Class

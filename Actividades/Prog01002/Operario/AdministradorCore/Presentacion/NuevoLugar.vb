@@ -47,6 +47,11 @@ Public Class NuevoLugar
             Return
         End If
 
+        If Not Controladores.Funciones_comunes.sinCaracteresEspeciales(nombreBox.Text) Then
+            MsgBoxI18N("el nombre del lugar tiene caracteres no permitidos", MsgBoxStyle.Critical)
+            Return
+        End If
+
         If Fachada.getInstancia.numeroDeLugarGrandeConEseNombre(nombreBox.Text.Trim) = 1 Then
             MsgBoxI18N("El nombre ya existe para ese lugar ", MsgBoxStyle.Critical)
             Return

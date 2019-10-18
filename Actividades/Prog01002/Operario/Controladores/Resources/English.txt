@@ -259,3 +259,10 @@ It cannot exceed 255 characters
 Chat
 Transport lots
 Transportation List
+Name has characters not allowed
+Brand name has characters not allowed
+The model name has characters not allowed
+the name of the place has characters not allowed
+Username has characters not allowed
+The real name of the user has characters not allowed
+The user's real last name has characters not allowed
