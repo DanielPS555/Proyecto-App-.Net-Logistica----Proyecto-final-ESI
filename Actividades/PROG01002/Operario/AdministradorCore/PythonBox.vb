@@ -51,19 +51,28 @@ Public Class PythonBox
             engine = runtime.GetEngine("Python")
         End If
         If scope Is Nothing Then
-            scope = engine.CreateScope()
-            scope.SetVariable("alert", Sub(x) MsgBox(x))
-            scope.SetVariable("request", Function(x, y) InputBox(x, y))
-            scope.ImportModule("clr")
-            engine.Execute("import clr", scope)
-            engine.Execute("clr.AddReference(""Controladores"")", scope)
-            engine.Execute("import Controladores", scope)
+            CreateScope()
         End If
     End Sub
 
     Public Function Execute(script As String)
-        Dim scr = engine.CreateScriptSourceFromString(script)
-        Dim ret = scr.Execute(scope)
-        Return ret
+        Try
+            Dim scr = engine.CreateScriptSourceFromString(script)
+            Dim ret = scr.Execute(scope)
+            Return ret
+        Catch e As Exception
+            CreateScope()
+            Return New List(Of Object) From {"No se pudo ejecutar el script!", e.ToString}
+        End Try
     End Function
+
+    Private Sub CreateScope()
+        scope = engine.CreateScope()
+        scope.SetVariable("alert", Sub(x) MsgBox(x))
+        scope.SetVariable("request", Function(x, y) InputBox(x, y))
+        scope.ImportModule("clr")
+        engine.Execute("import clr", scope)
+        engine.Execute("clr.AddReference(""Controladores"")", scope)
+        engine.Execute("import Controladores", scope)
+    End Sub
 End Class

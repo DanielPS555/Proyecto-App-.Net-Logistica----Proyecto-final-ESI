@@ -389,6 +389,10 @@ Public Class Fachada
         Return Persistencia.getInstancia.ConexcionActiva
     End Function
 
+    Public Function VehiculosLugar(place As Lugar) As List(Of Vehiculo)
+        Return InfoVehiculos(Persistencia.getInstancia.DatosBasicosParaListarVehiculosPorLugar(place.IDLugar).Select().Select(Function(x) CType(x.Item(1), String)).ToArray)
+    End Function
+
     Public Function InfoVehiculos(ParamArray VIN() As String) As List(Of Vehiculo)
         Dim dt = Persistencia.getInstancia.DatosBaseVehiculos(VIN)
         Dim lst As New List(Of Vehiculo)

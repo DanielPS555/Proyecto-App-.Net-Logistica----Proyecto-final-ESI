@@ -36,7 +36,7 @@ Partial Class PythonPanel
         Me.outputBox.Location = New System.Drawing.Point(0, 0)
         Me.outputBox.Name = "outputBox"
         Me.outputBox.ReadOnly = True
-        Me.outputBox.Size = New System.Drawing.Size(880, 650)
+        Me.outputBox.Size = New System.Drawing.Size(880, 458)
         Me.outputBox.TabIndex = 0
         Me.outputBox.Text = ""
         '

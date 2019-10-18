@@ -716,8 +716,7 @@ order by fechaAgregado
     End Function
 
     Public Function DatosBasicosParaListarVehiculosPorLugar(idlugar As Integer) As DataTable
-
-        Dim com As New OdbcCommand("select distinct vehiculo.idvehiculo, vehiculo.vin, vehiculo.marca, vehiculo.modelo, vehiculo.tipo 
+        Dim com As New OdbcCommand("select distinct vehiculo.idvehiculo, vehiculo.vin, vehiculo.marca, vehiculo.modelo, vehiculo.tipo
                                     from vehiculo inner join posicionado
                                     on posicionado.idvehiculo=vehiculo.idvehiculo
                                     where posicionado.idlugar in (select unnamed_col_1 from table(subzonas_en_lugar(?::integer)))",
