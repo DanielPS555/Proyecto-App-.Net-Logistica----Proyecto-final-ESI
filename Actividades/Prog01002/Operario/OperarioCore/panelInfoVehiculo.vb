@@ -86,7 +86,7 @@ Public Class panelInfoVehiculo
         PosicionOEstado()
         ListaInformes = Controladores.Fachada.getInstancia.devolverTodosLosInformesYregistrosCompletos(vehiculo)
         Dim estadoultimo = Controladores.Fachada.getInstancia.UltimoEstadoTransportePorIdVehiculo(vehiculo.IdVehiculo)
-        If estadoultimo Is Nothing Or estadoultimo.Equals(Controladores.Trasporte.TIPO_ESTADO_FALLO) Or estadoultimo.Equals(Controladores.Trasporte.TIPO_ESTADO_PROSESO) Then
+        If estadoultimo IsNot Nothing AndAlso (estadoultimo.Equals(Controladores.Trasporte.TIPO_ESTADO_FALLO) OrElse estadoultimo.Equals(Controladores.Trasporte.TIPO_ESTADO_PROSESO)) Then
             datosEnTransporte()
         End If
 
@@ -317,7 +317,7 @@ Public Class panelInfoVehiculo
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         Dim estadoultimo = Controladores.Fachada.getInstancia.UltimoEstadoTransportePorIdVehiculo(vehiculo.IdVehiculo)
-        If estadoultimo Is Nothing Or estadoultimo.Equals(Controladores.Trasporte.TIPO_ESTADO_FALLO) Or estadoultimo.Equals(Controladores.Trasporte.TIPO_ESTADO_PROSESO) Then
+        If estadoultimo IsNot Nothing AndAlso (estadoultimo.Equals(Controladores.Trasporte.TIPO_ESTADO_FALLO) OrElse estadoultimo.Equals(Controladores.Trasporte.TIPO_ESTADO_PROSESO)) Then
             datosEnTransporte()
             Return
         End If
@@ -366,15 +366,16 @@ Public Class panelInfoVehiculo
     End Sub
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
-        Dim estadoultimo = Controladores.Fachada.getInstancia.UltimoEstadoTransportePorIdVehiculo(vehiculo.IdVehiculo)
-        If estadoultimo Is Nothing Or estadoultimo.Equals(Controladores.Trasporte.TIPO_ESTADO_FALLO) Or estadoultimo.Equals(Controladores.Trasporte.TIPO_ESTADO_PROSESO) Then
+        Dim estadoultimo = Fachada.getInstancia.UltimoEstadoTransportePorIdVehiculo(vehiculo.IdVehiculo)
+        If estadoultimo IsNot Nothing AndAlso (estadoultimo.Equals(Controladores.Trasporte.TIPO_ESTADO_FALLO) OrElse estadoultimo.Equals(Controladores.Trasporte.TIPO_ESTADO_PROSESO)) Then
             datosEnTransporte()
             Return
         End If
 
-        Marco.getInstancia.CargarPanel(Of crearInformaDeDaños)(New crearInformaDeDaños(New Controladores.InformeDeDaños(vehiculo) With {.Creador = Fachada.getInstancia.DevolverUsuarioActual,
-                                                                                                                                        .Lugar = Fachada.getInstancia.DevolverPosicionActual(vehiculo.IdVehiculo).Subzona.ZonaPadre.LugarPadre,
-                                                                                                                                        .Fecha = DateTime.Now}, True, Me) With {.ListaDeTodosLosInformes = ListaInformes})
+        Marco.getInstancia.CargarPanel(Of crearInformaDeDaños)(
+            New crearInformaDeDaños(New Controladores.InformeDeDaños(vehiculo) With {.Creador = Fachada.getInstancia.DevolverUsuarioActual,
+                                                                                     .Lugar = Fachada.getInstancia.DevolverPosicionActual(vehiculo.IdVehiculo).Subzona.ZonaPadre.LugarPadre,
+                                                                                     .Fecha = DateTime.Now}, True, Me) With {.ListaDeTodosLosInformes = ListaInformes})
     End Sub
 
 
@@ -510,7 +511,7 @@ Public Class panelInfoVehiculo
 
     Private Sub CambiarGuardarLote_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles cambiarGuardarLote.LinkClicked
         Dim estadoultimo = Controladores.Fachada.getInstancia.UltimoEstadoTransportePorIdVehiculo(vehiculo.IdVehiculo)
-        If estadoultimo Is Nothing Or estadoultimo.Equals(Controladores.Trasporte.TIPO_ESTADO_FALLO) Or estadoultimo.Equals(Controladores.Trasporte.TIPO_ESTADO_PROSESO) Then
+        If estadoultimo IsNot Nothing AndAlso (estadoultimo.Equals(Controladores.Trasporte.TIPO_ESTADO_FALLO) OrElse estadoultimo.Equals(Controladores.Trasporte.TIPO_ESTADO_PROSESO)) Then
             datosEnTransporte()
             Return
         End If
@@ -547,8 +548,8 @@ Public Class panelInfoVehiculo
             End If
 
             CargarMiLote()
-                loteTemp = Nothing
-            End If
+            loteTemp = Nothing
+        End If
     End Sub
 
     Private Sub Cancelar_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles Cancelar.LinkClicked
@@ -575,7 +576,7 @@ Public Class panelInfoVehiculo
 
     Private Sub Button1_Click_2(sender As Object, e As EventArgs) Handles bajaButton.Click
         Dim estadoultimo = Controladores.Fachada.getInstancia.UltimoEstadoTransportePorIdVehiculo(vehiculo.IdVehiculo)
-        If estadoultimo Is Nothing Or estadoultimo.Equals(Controladores.Trasporte.TIPO_ESTADO_FALLO) Or estadoultimo.Equals(Controladores.Trasporte.TIPO_ESTADO_PROSESO) Then
+        If estadoultimo IsNot Nothing AndAlso (estadoultimo.Equals(Trasporte.TIPO_ESTADO_FALLO) OrElse estadoultimo.Equals(Trasporte.TIPO_ESTADO_PROSESO)) Then
             datosEnTransporte()
             Return
         End If

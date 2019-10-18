@@ -136,9 +136,11 @@ Public Class Fachada
     End Function
 
     Public Function FalloTransporte(transporte As Trasporte) As Boolean
-        Dim Lotes = listaDeLotesPorTransporte(transporte.ID).Rows.Cast(Of DataRow).Select(Function(x) x.Item(0)).Select(Function(x) InfoLote(Nothing, x)).ToArray
+        Dim Lotes = listaDeLotesPorTransporte(transporte.ID).Rows.Cast(Of DataRow).Select(Function(x) InfoLote(Nothing, x.Item(0))).ToArray
         For Each lote In Lotes
-            If Not Persistencia.getInstancia.updateEstadoDeUnTransporta(transporte.ID, lote.IDLote, "Fallo") Then
+            If Persistencia.getInstancia.updateEstadoDeUnTransporta(transporte.ID, lote.IDLote, "Fallo") Then
+                Persistencia.getInstancia.updatePrioridadlote(lote.IDLote, "Alta")
+            Else
                 Return False
             End If
         Next
@@ -860,32 +862,33 @@ Public Class Fachada
     Public Function DevolverLotesDisponblesCompletos() As List(Of Lote)
         Dim lista As New List(Of Lote)
         Dim ap_dt As DataTable = Persistencia.getInstancia.LotesFallidos()
+        Dim dt As DataTable = Nothing
         If ap_dt IsNot Nothing Then
-
+            dt = ap_dt
         Else
-            Dim dt As DataTable = Persistencia.getInstancia.LotesDisponiblesATrasportar
-            For Each r As DataRow In dt.Rows
-                Dim lo As New Lote With {.IDLote = r.Item(0), .Nombre = r.Item(1), .Prioridad = r.Item(2)}
-                Dim l1 As New Lugar With {.IDLugar = r.Item(3), .Nombre = r.Item(4), .PosicionX = r.Item(7), .PosicionY = r.Item(8)}
-                Dim l2 As New Lugar With {.IDLugar = r.Item(5), .Nombre = r.Item(6), .PosicionX = r.Item(9), .PosicionY = r.Item(10)}
-                Dim dt_l1 As DataTable = Persistencia.getInstancia.HabilitacionPorIdlugar(l1.IDLugar)
-                For Each r2 As DataRow In dt_l1.Rows
-                    l1.TiposDeMediosDeTrasporteHabilitados.Add(New TipoMedioTransporte(r2.Item(1)) With {.ID = r2.Item(0)})
-                Next
-                Dim dt_l2 As DataTable = Persistencia.getInstancia.HabilitacionPorIdlugar(l2.IDLugar)
-                For Each r2 As DataRow In dt_l2.Rows
-                    l2.TiposDeMediosDeTrasporteHabilitados.Add(New TipoMedioTransporte(r2.Item(1)) With {.ID = r2.Item(0)})
-                Next
-                Dim dt_vehiculo As DataTable = Persistencia.getInstancia.vehiculosSemiCompletoPorLote(lo.IDLote)
-                For Each r3 As DataRow In dt_vehiculo.Rows
-                    Dim vehi As New Vehiculo() With {.IdVehiculo = r3.Item(0), .Tipo = r3.Item(1), .VIN = r3.Item(2), .Modelo = r3.Item(3), .Marca = r3.Item(4)}
-                    lo.Vehiculos.Add(vehi)
-                Next
-                lo.Origen = l1
-                lo.Destino = l2
-                lista.Add(lo)
-            Next
+            dt = Persistencia.getInstancia.LotesDisponiblesATrasportar
         End If
+        For Each filaLote As DataRow In dt.Rows
+            Dim lo As New Lote With {.IDLote = filaLote.Item(0), .Nombre = filaLote.Item(1), .Prioridad = filaLote.Item(2)}
+            Dim l1 As New Lugar With {.IDLugar = filaLote.Item(3), .Nombre = filaLote.Item(4), .PosicionX = filaLote.Item(7), .PosicionY = filaLote.Item(8)}
+            Dim l2 As New Lugar With {.IDLugar = filaLote.Item(5), .Nombre = filaLote.Item(6), .PosicionX = filaLote.Item(9), .PosicionY = filaLote.Item(10)}
+            Dim habilitaLugar1 As DataTable = Persistencia.getInstancia.HabilitacionPorIdlugar(l1.IDLugar)
+            For Each filaHabilita As DataRow In habilitaLugar1.Rows
+                l1.TiposDeMediosDeTrasporteHabilitados.Add(New TipoMedioTransporte(filaHabilita.Item(1)) With {.ID = filaHabilita.Item(0)})
+            Next
+            Dim habilitaLugar2 As DataTable = Persistencia.getInstancia.HabilitacionPorIdlugar(l2.IDLugar)
+            For Each filaHabilita As DataRow In habilitaLugar2.Rows
+                l2.TiposDeMediosDeTrasporteHabilitados.Add(New TipoMedioTransporte(filaHabilita.Item(1)) With {.ID = filaHabilita.Item(0)})
+            Next
+            Dim dt_vehiculo As DataTable = Persistencia.getInstancia.vehiculosSemiCompletoPorLote(lo.IDLote)
+            For Each filaVehiculo As DataRow In dt_vehiculo.Rows
+                Dim vehi As New Vehiculo() With {.IdVehiculo = filaVehiculo.Item(0), .Tipo = filaVehiculo.Item(1), .VIN = filaVehiculo.Item(2), .Modelo = filaVehiculo.Item(3), .Marca = filaVehiculo.Item(4)}
+                lo.Vehiculos.Add(vehi)
+            Next
+            lo.Origen = l1
+            lo.Destino = l2
+            lista.Add(lo)
+        Next
         Return lista
     End Function
     Public Function TablaDeMedios() As DataTable

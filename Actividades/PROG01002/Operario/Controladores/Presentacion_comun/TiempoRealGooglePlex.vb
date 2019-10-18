@@ -1,6 +1,6 @@
 ﻿Public Class TiempoRealGooglePlex
     Public Sub New(link As String)
-
+        link = If(link, "http://boards.4channel.org/a/")
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
 

@@ -128,6 +128,7 @@ Public Class PanelTrasporteEnAccion
             cancelar.Enabled = False
             emergencia.Enabled = False
             Button3.Enabled = False
+            ListaDestinos.Enabled = False
         End If
     End Sub
 End Class

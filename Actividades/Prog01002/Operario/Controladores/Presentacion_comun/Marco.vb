@@ -148,7 +148,7 @@ Public Class Marco
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Fachada.getInstancia.CerrarSeccion()
-        Dim l As Login
+        Dim l As New Login()
         l.NotificarDeConexion(True)
         Principal.getInstancia.cargarPanel(l)
         Me.Close()
