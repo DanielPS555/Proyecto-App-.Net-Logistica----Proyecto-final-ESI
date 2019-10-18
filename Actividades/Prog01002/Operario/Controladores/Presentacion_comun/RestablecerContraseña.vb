@@ -7,13 +7,16 @@ Public Class RestablecerContraseña
             Button1.Enabled = False
             Dim tboxes() As TextBox = {username, secretanswer, newpwd}
             tboxes.ForEach(Sub(x) x.Enabled = False)
+            MsgBox("Modificado con exito")
         Else
             MsgBox("Respuesta incorrecta")
         End If
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        Principal.getInstancia.cargarPanel(Of Login)(New Login)
+        Dim l As New Login
+        l.NotificarDeConexion(True)
+        Principal.getInstancia.cargarPanel(Of Login)(l)
     End Sub
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click

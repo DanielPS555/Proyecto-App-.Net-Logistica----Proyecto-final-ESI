@@ -151,7 +151,7 @@ Public Class Login
     End Sub
 
     Public Sub NotificarDeConexion(exitoso As Boolean, Optional config As ConfiguracionEnRed = Nothing) Implements ConfigurarRed.INotifyCallback.NotificarDeConexion
-        If exitoso AndAlso Fachada.getInstancia.IniciarConexcion(config) Then
+        If exitoso AndAlso (config.Database Is Nothing OrElse Fachada.getInstancia.IniciarConexcion(config)) Then
             estadoConex.Text = Funciones_comunes.I18N("Conectado", Marco.Language)
             estadoConex.ForeColor = Color.FromArgb(13, 163, 51)
             Button1.Enabled = True
