@@ -154,8 +154,10 @@ Public Class ListaVehiculos
                 'criterios.Items.Add("Fuera del sistema")
                 Select Case criterios.SelectedIndex
                     Case 0
-                        FiltadoParcial(1, buscador.Text)
+                        FiltadoCompleto(0, buscador.Text)
                     Case 1
+                        FiltadoParcial(1, buscador.Text)
+                    Case 2
                         FiltadoCompleto(5, buscador.Text)
                     Case 2
 
@@ -191,12 +193,14 @@ Public Class ListaVehiculos
 
     End Sub
 
-    Private Sub FiltadoCompleto(posicion As Integer, elemento As Object)
+    Private Sub FiltadoCompleto(posicion As Integer, elemento As String)
         Dim tabAux As New DataTable
-        'tabAux.Load(datos)
+        'For Each i As DataColumn In datos.Columns.Item
+        '    tabAux.Columns.Add(New DataColumn(i.)
+        'Next
         For Each r As DataRow In datos.Rows
-            If Not r.Item(posicion).Equals(elemento) Then
-                tabAux.Rows.Remove(r)
+            If r.Item(posicion).ToString.Equals(elemento) Then
+                tabAux.Rows.Add(r)
             End If
         Next
         DataGridView1.DataSource = tabAux
@@ -204,11 +208,13 @@ Public Class ListaVehiculos
 
     Private Sub FiltadoParcial(posicion As Integer, elemento As String)
         Dim tabAux As New DataTable
-        'tabAux.Load(datos)
+        'For Each i In datos.Columns
+        '    tabAux.Columns.Add(i)
+        'Next
         For Each r As DataRow In datos.Rows
             Dim rs = DirectCast(r.Item(posicion), String)
-            If rs.Length < elemento.Length OrElse rs.Substring(0, elemento.Length).Equals(rs) Then
-                tabAux.Rows.Remove(r)
+            If rs.Length >= elemento.Length AndAlso rs.Substring(0, elemento.Length).Equals(rs) Then
+                tabAux.Rows.Add(r)
             End If
         Next
         DataGridView1.DataSource = tabAux
