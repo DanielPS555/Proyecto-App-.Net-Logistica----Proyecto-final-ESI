@@ -164,7 +164,7 @@ Public Class Lista_de_trasportes
             Return
         End If
 
-        If lotes.Any(Function(x) x.Prioridad = Lote.TIPO_PRIORIDAD_ALTA) Then
+        If lotesElegidos.Any(Function(x) x.Prioridad = Lote.TIPO_PRIORIDAD_ALTA) Then
             Dim loteFallido = lotes.First(Function(x) x.Prioridad = Lote.TIPO_PRIORIDAD_ALTA)
             Extenciones.MsgBoxI18N("Uno de sus lotes era un lote fallido, por ende se mostrará la posición actual del mismo")
             Dim curPos = New TiempoRealGooglePlex(Fachada.getInstancia.TransporteFallido(loteFallido))

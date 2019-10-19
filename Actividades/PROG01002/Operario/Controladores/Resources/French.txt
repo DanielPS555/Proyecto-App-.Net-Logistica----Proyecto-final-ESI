@@ -1,0 +1,229 @@
+Lista de mídia
+Listar Clientes
+Listar locais
+Listar Usuário
+Novo pré-carregamento
+Novo Cliente
+Lugar novo
+Lista de zonas
+Lista de lotes
+Lista de Veículos
+Lote novo
+Veículo novo
+Credenciais ruins Tente novamente
+Este aplicativo é apenas para {0}
+Classe de login não definida corretamente
+Conectado
+Desconectado
+Nome de usuário
+Senha
+Entrar
+Restaurar
+Configurar rede
+Estado:
+Desenhado por
+Página inicial
+Sobre
+Minha conta
+Fechar Sessão
+Marca
+Modelo
+Cliente
+Ano
+Tipo
+Zona
+Subzona
+Subzona
+Local
+Posição
+Lot
+Salvar código
+Ver mais
+Ver mais
+Alterar lote
+Excluir seleção
+Cancelar
+Abrir imagem
+{0} {1}, usa?
+Nenhum código QR encontrado na imagem
+Aplicativo Administrador
+Aplicativo do Operador
+Aplicação da transportadora
+Escolha seu idioma
+Nunca
+Você deve inserir pelo menos uma imagem
+Digite uma descrição do relatório
+Se for um registro de cancelamento ou atualização, você deverá escolher um registro para referenciar
+Pré-cargas em massa
+Mensagens
+Console Python
+Lista de transporte
+Meios autorizados
+Pesquisar
+ID do lote
+Nome do lote
+identificador não pode estar vazio
+O nome não pode ter espaços no início ou no final
+Você deve selecionar um tipo de mídia
+Você não pode deixar o nome vazio
+O nome não pode exceder 50 caracteres
+Esse nome já existe para este meio
+O meio deve poder transportar um veículo
+Já existe um meio com esse nome
+O nome não pode estar vazio
+Meia tinta com sucesso
+Nenhum relatório
+Aceito
+Vin sem pré-carga ou não existe
+Criar lote
+Relatório elaborado
+Modificar lote
+Você deve inserir a marca
+Você deve inserir o modelo do veículo
+Você deve entrar no ano
+Você deve inserir o tipo de veículo
+O cliente do veículo deve entrar
+Não há lote selecionado na lista
+Enviar
+Avaliar
+Carregar pré-carregamentos
+Abrir CSV
+Você deve acessar todos os veículos para aumentar a pré-carga
+Pré-carregamentos enviados com sucesso!
+O valor {0} não é um número inteiro
+O tipo {0} não foi reconhecido!
+Erro ao interpretar cores: {0}
+O VIN deve ter um comprimento de 17, falhou para {0}
+Primeiro nome
+Novo meio
+Aceitar
+Deve haver um nome para o local
+O nome já existe para esse local
+Você deve estabelecer a posição do local
+Você deve definir o tipo de local
+Você deve permitir pelo menos um meio de transporte
+Você deve selecionar as zonas e subzonas para entrar no local
+A capacidade do local deve ser maior que 0
+Não foi possível criar o local. Verifique as informações
+Exceção!
+Já existe um local com esse nome carregado para esse cliente
+Não foi possível encontrar o local:
+Os estabelecimentos não possuem zonas e subzonas
+Primeiro você deve escolher o nome e a capacidade
+Pronto
+Não requerido
+Não feito
+Novo
+Remover
+Novo cliente
+Estabelecimentos do cliente
+Você deve primeiro digitar o nome do cliente
+Você deve selecionar um local para excluir
+Erro, rota ou nome do cliente vazio
+Ruth deve ter apenas 12 dígitos
+Deve ser apenas numérico
+Erro, o nome deste cliente já está em uso
+Pelo menos você deve carregar um estabelecimento do cliente
+Adicionado com sucesso
+Novos meios de transporte
+ID
+Novo tipo
+Excluir tipo criado
+Tipo de mídia
+Quantidade de carros
+Quantidade do caminhão
+Quantidade de SUV
+Montante da VAN
+Quantidade de mini van
+Tipos:
+Entre no veículo VIN
+Cor
+Definir local
+Posições disponíveis
+Excluir lote
+Faça um relatório de danos
+Excluir relatório
+Editar relatório
+Entrar no veículo
+Lista vazia
+Colunas opcionais
+Clique nos itens da lista para acessar o painel Pré-carregamento
+Aberto
+Ok
+Lista de mídia autorizada
+Nome:
+Capacidade total:
+Proprietário
+Gerenciar zonas e subzonas
+ID do cliente
+Adicionado ao sistema por
+Data de adição
+Estabelecimentos do cliente
+O cliente não pode ser nulo!
+Se você não deseja inserir um valor para a marca, especifique-o com a caixa de seleção
+Se você não deseja inserir um valor para o modelo, especifique-o com a caixa de seleção
+Pré-carregamento concluído
+Você não pode inserir espaços em branco
+Este Vin já foi inserido
+Aceito
+Deve incluir pelo menos uma letra
+{0} caracteres restantes
+Vin
+Marca
+Modelo
+Ano
+Tipo
+Cliente
+Salvar
+Não entre
+Selecione
+17 caracteres restantes
+Lista de Usuários
+Novo usuário
+Lista de lugares
+Mapa de conectividade
+Lugar novo
+Cliente Proprietário:
+Veículos entregues
+ID do local
+Tipo de local
+Capacidade
+Adicionado ao sistema por
+Data de registro
+Operadores trabalhando nele
+Ver localização
+Editar classificações
+Editar zonas e subzonas
+Ver distribuição de zonas e subzonas
+ID do usuário
+Identificador público
+Estado
+Data adicionada ao sistema
+Adicionado por
+Capacidades:
+Número de carros
+Número de caminhões
+Número SUV
+Número da VAN
+Número MiniVAN
+Usuários habilitados
+SEM INFORMAÇÃO
+Feito por
+Por meio de:
+data e hora da criação
+Data e hora da partida
+Data e hora estimadas do término
+Data e hora de término Real
+Lotes
+Veículo
+Dados da zona
+Use
+Administrador
+Operador
+Transportadora
+Período
+Este período de trabalho expirou
+Você deve selecionar uma linha para excluir
+Selecione uma carta de condução para remover
+Tem certeza de que deseja remover a permissão
+Eliminação realizada

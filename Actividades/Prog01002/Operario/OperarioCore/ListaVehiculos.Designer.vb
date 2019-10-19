@@ -23,18 +23,18 @@ Partial Class ListaVehiculos
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.buscar = New System.Windows.Forms.Button()
         Me.nuevo = New System.Windows.Forms.Button()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.buscador = New System.Windows.Forms.TextBox()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.criterios = New System.Windows.Forms.ComboBox()
-        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.tabla = New System.Windows.Forms.DataGridView()
         Me.tiposListas = New System.Windows.Forms.ComboBox()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.LugaresBox = New System.Windows.Forms.ComboBox()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.tabla, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'buscar
@@ -78,6 +78,8 @@ Partial Class ListaVehiculos
         '
         'Panel1
         '
+        Me.Panel1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
         Me.Panel1.Location = New System.Drawing.Point(13, 104)
         Me.Panel1.Name = "Panel1"
@@ -109,8 +111,7 @@ Partial Class ListaVehiculos
         '
         Me.criterios.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.criterios.BackColor = System.Drawing.Color.White
-        Me.criterios.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.criterios.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.criterios.FlatStyle = System.Windows.Forms.FlatStyle.System
         Me.criterios.Font = New System.Drawing.Font("Century Gothic", 15.0!)
         Me.criterios.FormattingEnabled = True
         Me.criterios.Items.AddRange(New Object() {"VIN", "Marca", "Modelo", "Tipo", "Fuera del lugar", "En el lugar"})
@@ -119,30 +120,30 @@ Partial Class ListaVehiculos
         Me.criterios.Size = New System.Drawing.Size(234, 31)
         Me.criterios.TabIndex = 24
         '
-        'DataGridView1
+        'tabla
         '
-        Me.DataGridView1.AllowUserToAddRows = False
-        Me.DataGridView1.AllowUserToDeleteRows = False
-        Me.DataGridView1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+        Me.tabla.AllowUserToAddRows = False
+        Me.tabla.AllowUserToDeleteRows = False
+        Me.tabla.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
-        Me.DataGridView1.BackgroundColor = System.Drawing.Color.White
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Century Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
-        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Location = New System.Drawing.Point(14, 112)
-        Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.ReadOnly = True
-        Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DataGridView1.Size = New System.Drawing.Size(849, 526)
-        Me.DataGridView1.TabIndex = 26
+        Me.tabla.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.tabla.BackgroundColor = System.Drawing.Color.White
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Century Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.tabla.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle3
+        Me.tabla.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.tabla.Location = New System.Drawing.Point(14, 112)
+        Me.tabla.Name = "tabla"
+        Me.tabla.ReadOnly = True
+        Me.tabla.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.tabla.Size = New System.Drawing.Size(849, 526)
+        Me.tabla.TabIndex = 26
         '
         'tiposListas
         '
@@ -166,7 +167,8 @@ Partial Class ListaVehiculos
         '
         'LugaresBox
         '
-        Me.LugaresBox.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.LugaresBox.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.LugaresBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!)
         Me.LugaresBox.FormattingEnabled = True
         Me.LugaresBox.ItemHeight = 25
@@ -184,7 +186,7 @@ Partial Class ListaVehiculos
         Me.Controls.Add(Me.LugaresBox)
         Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.tiposListas)
-        Me.Controls.Add(Me.DataGridView1)
+        Me.Controls.Add(Me.tabla)
         Me.Controls.Add(Me.nuevo)
         Me.Controls.Add(Me.criterios)
         Me.Controls.Add(Me.buscar)
@@ -194,7 +196,7 @@ Partial Class ListaVehiculos
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "ListaVehiculos"
         Me.Text = "PuertosVeiculos"
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.tabla, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -203,7 +205,7 @@ Partial Class ListaVehiculos
     Friend WithEvents buscador As TextBox
     Friend WithEvents Panel2 As Panel
     Friend WithEvents criterios As ComboBox
-    Friend WithEvents DataGridView1 As DataGridView
+    Friend WithEvents tabla As DataGridView
     Friend WithEvents tiposListas As ComboBox
     Friend WithEvents Label7 As Label
     Friend WithEvents LugaresBox As ComboBox

@@ -101,6 +101,7 @@ Public Class PanelTrasporteEnAccion
                 If Not l.Selecionado Then
                     For Each lote As Controladores.Lote In l.Lotes
                         Controladores.Fachada.getInstancia().cambiarEstadoDelTransporta(lote, transporte, "Cancelado")
+                        Controladores.Fachada.getInstancia.cambiarBajarProridadLote(lote.IDLote)
                         If Not inicio.Text.Equals("INDETERMINADO") Then
                             For Each v As Controladores.Vehiculo In lote.Vehiculos
                                 Dim jau = Controladores.Fachada.getInstancia.DevolverPosicionActual(v.IdVehiculo)
@@ -131,6 +132,8 @@ Public Class PanelTrasporteEnAccion
             ListaDestinos.Enabled = False
         End If
     End Sub
+
+
 End Class
 
 Public Class ContenedorLote

@@ -76,7 +76,7 @@ Namespace My.Resources
         '''Place list
         '''User list
         '''New preload
-        '''New client
+        '''New Client
         '''New place
         '''Zones list
         '''Batch list
@@ -106,17 +106,61 @@ Namespace My.Resources
         '''Type
         '''Zone
         '''Subzone
+        '''Sub zone
         '''Place
         '''Position
         '''Batch
         '''Save code
         '''Read more
-        '''Change batch
-        ''' [resto de la cadena truncado]&quot;;.
+        '''Show [resto de la cadena truncado]&quot;;.
         '''</summary>
         Friend ReadOnly Property English() As String
             Get
                 Return ResourceManager.GetString("English", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca una cadena traducida similar a Lista de mídia
+        '''Listar Clientes
+        '''Listar locais
+        '''Listar Usuário
+        '''Novo pré-carregamento
+        '''Novo Cliente
+        '''Lugar novo
+        '''Lista de zonas
+        '''Lista de lotes
+        '''Lista de Veículos
+        '''Lote novo
+        '''Veículo novo
+        '''Credenciais ruins Tente novamente
+        '''Este aplicativo é apenas para {0}
+        '''Classe de login não definida corretamente
+        '''Conectado
+        '''Desconectado
+        '''Nome de usuário
+        '''Senha
+        '''Entrar
+        '''Restaurar
+        '''Configurar rede
+        '''Estado:
+        '''Desenhado por
+        '''Página inicial
+        '''Sobre
+        '''Minha conta
+        '''Fechar Sessão
+        '''Marca
+        '''Modelo
+        '''Cliente
+        '''Ano
+        '''Tipo
+        '''Zona
+        '''Subzona
+        ''' [resto de la cadena truncado]&quot;;.
+        '''</summary>
+        Friend ReadOnly Property French() As String
+            Get
+                Return ResourceManager.GetString("French", resourceCulture)
             End Get
         End Property
         
@@ -240,7 +284,7 @@ Namespace My.Resources
         '''Desconectado
         '''Nombre de usuario
         '''Contraseña
-        '''Ingresar
+        '''Ingresar 
         '''Restaurar
         '''Configurar red
         '''Estado:
@@ -252,7 +296,7 @@ Namespace My.Resources
         '''Marca
         '''Modelo
         '''Cliente
-        '''Añ [resto de la cadena truncado]&quot;;.
+        '''A [resto de la cadena truncado]&quot;;.
         '''</summary>
         Friend ReadOnly Property Spanish() As String
             Get

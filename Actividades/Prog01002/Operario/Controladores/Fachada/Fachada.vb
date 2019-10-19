@@ -147,8 +147,13 @@ Public Class Fachada
         Return True
     End Function
 
+    Public Sub cambiarBajarProridadLote(idlote)
+        Persistencia.getInstancia.updatePrioridadlote(idlote, "Normal")
+    End Sub
+
     Public Function TransporteFallido(loteFallido As Lote) As String
         Dim link = Persistencia.getInstancia.UbicacionTransporteLote(loteFallido.IDLote)
+        Return link
     End Function
 
     Public Function informacionBaseDelLugarPorNombre(item1 As String) As Lugar
