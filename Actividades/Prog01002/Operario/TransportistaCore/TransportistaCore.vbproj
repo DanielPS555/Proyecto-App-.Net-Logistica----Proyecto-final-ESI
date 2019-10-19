@@ -122,6 +122,12 @@
     <Compile Include="NuevoTipoDeMedio.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="PanelDeFalloEstatus.Designer.vb">
+      <DependentUpon>PanelDeFalloEstatus.vb</DependentUpon>
+    </Compile>
+    <Compile Include="PanelDeFalloEstatus.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="PanelInfoLote.Designer.vb">
       <DependentUpon>PanelInfoLote.vb</DependentUpon>
     </Compile>
@@ -174,6 +180,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NuevoTipoDeMedio.resx">
       <DependentUpon>NuevoTipoDeMedio.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PanelDeFalloEstatus.resx">
+      <DependentUpon>PanelDeFalloEstatus.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PanelInfoLote.resx">
       <DependentUpon>PanelInfoLote.vb</DependentUpon>

@@ -124,13 +124,28 @@ Public Class PanelTrasporteEnAccion
     End Sub
 
     Private Sub emergencia_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles emergencia.LinkClicked
-        If Fachada.getInstancia.FalloTransporte(transporte) Then
-            Extenciones.MsgBoxI18N("Se ha cancelado el transporte, ahora estarán disponibles los lotes para todos los transportistas. Por favor no se retire de su ubicación hasta que hayan retirado todos los lotes, ya que se utilizará su ubicación para informar a los otros transportistas de la ubicación del lote")
-            cancelar.Enabled = False
-            emergencia.Enabled = False
-            Button3.Enabled = False
-            ListaDestinos.Enabled = False
+        If MsgBox("¿Esta seguro que desea reportar un fallo que imposibilite?, Si ingresa que si estos lotes seran publicados para demas transportitas. NO PODRA CANCELAR", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
+
+            If Fachada.getInstancia.FalloTransporte(transporte) Then
+                Dim lotes As New List(Of Lote)
+                For Each l As ContenedorLote In listaDeSUBLote
+                    If Not l.Selecionado Then
+                        For Each lote As Controladores.Lote In l.Lotes
+                            lotes.Add(lote)
+                        Next
+                    End If
+                Next
+                Dim d As New PanelDeFalloEstatus(lotes, transporte)
+                d.ShowDialog()
+
+
+                cancelar.Enabled = False
+                emergencia.Enabled = False
+                Button3.Enabled = False
+                ListaDestinos.Enabled = False
+            End If
         End If
+
     End Sub
 
 

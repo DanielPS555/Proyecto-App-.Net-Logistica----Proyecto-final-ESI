@@ -1260,14 +1260,26 @@ order by fechaAgregado
     End Function
 
     Public Function UltimoEstadoDelTrasporteDeUnMedio(idlegal As String) As String
-        Dim com As New OdbcCommand("select first 1 count(estado), FechaHoraCreacion
+        Dim com As New OdbcCommand("select  estado , FechaHoraCreacion
                                     from transporte left join transporta on transporta.transporteID=transporte.transporteID
-                                     where idlegal=?  and estado='Proceso'
-                                    group by FechaHoraCreacion
+                                     where idlegal=?
                                     order by FechaHoraCreacion desc", Conexcion)
+        com.CrearParametro(DbType.String, idlegal)
+        Return Funciones_comunes.AutoNull(Of Object)(com.ExecuteScalar)
+    End Function
+
+    Public Function ultimoIdTransportePorMedio(idlegal As String) As Integer
+        Dim com As New OdbcCommand("select max(transporteID) from transporte where IDLegal=?", Conexcion)
         com.CrearParametro(DbType.String, idlegal)
         Return com.ExecuteScalar
     End Function
+
+    Public Function ultimoidTransportaPorIdlote(idlote As Integer)
+        Dim com As New OdbcCommand("select max(transporteID) from transporta where idlote=?", Conexcion)
+        com.CrearParametro(DbType.Int32, idlote)
+        Return com.ExecuteScalar
+    End Function
+
 
     Public Function EstadosDeUnTrasporte(trasporteid As Integer) As DataTable
         Dim com As New OdbcCommand("select count(*),transporta.estado
@@ -1327,7 +1339,7 @@ order by fechaAgregado
     End Function
 
     Public Function LotesEnUnTransporte(idtrasporte As Integer) As DataTable
-        Dim com As New OdbcCommand("select lote.nombre, l1.nombre, l2.nombre, lote.Prioridad, transporta.estado,transporta.FechaHoraLlegadaEstm ,transporta.FechaHoraLlegadaReal from
+        Dim com As New OdbcCommand("select lote.idlote, lote.nombre, l1.nombre, l2.nombre, lote.Prioridad, transporta.estado,transporta.FechaHoraLlegadaEstm ,transporta.FechaHoraLlegadaReal from
                                     lote inner join lugar as l1 on lote.origen=l1.idlugar
                                     inner join lugar as l2 on lote.destino=l2.idlugar
                                     inner join transporta on lote.idlote = transporta.idlote
@@ -1394,6 +1406,9 @@ order by fechaAgregado
         com.CrearParametro(DbType.Int32, idtransporte)
         com.CrearParametro(DbType.Int32, idlote)
         If Not com.ExecuteNonQuery() > 0 Then Return False
+        If Not estado.Equals("Exitoso") Then 'SOLO PODEMOS DAR DE BAJA SI EL VEHICULO FUE REALMENTE ENTREGADO 
+            Return True
+        End If
         Dim selCmd As New OdbcCommand("select vehiculo.idvehiculo
   from vehiculo inner join integra on integra.idvehiculo=vehiculo.idvehiculo
   inner join lote on lote.idlote=integra.lote
@@ -2063,4 +2078,11 @@ where trabajaen.ID=?", Conexcion)
         com.CrearParametro(DbType.Int32, idlote)
         Return com.ExecuteScalar
     End Function
+
+    Public Function ultimoIdTransportaDelIdLote(idlote As Integer)
+        Dim com As New OdbcCommand("select max(transporteID) from transporta where idlote=?", Conexcion)
+        com.CrearParametro(DbType.Int32, idlote)
+        Return com.ExecuteScalar
+    End Function
+
 End Class

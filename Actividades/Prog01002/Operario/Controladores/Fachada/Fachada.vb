@@ -136,9 +136,10 @@ Public Class Fachada
     End Function
 
     Public Function FalloTransporte(transporte As Trasporte) As Boolean
-        Dim Lotes = listaDeLotesPorTransporte(transporte.ID).Rows.Cast(Of DataRow).Select(Function(x) InfoLote(Nothing, x.Item(0))).ToArray
+        Dim Lotes = listaDeLotesPorTransporte(transporte.ID).Rows.Cast(Of DataRow).Select(Function(x) InfoLote(Nothing, x.Item(1))).ToArray
         For Each lote In Lotes
-            If Persistencia.getInstancia.updateEstadoDeUnTransporta(transporte.ID, lote.IDLote, "Fallo") Then
+
+            If Fachada.getInstancia.cambiarEstadoDelTransporta(lote, transporte, "Fallo") Then
                 Persistencia.getInstancia.updatePrioridadlote(lote.IDLote, "Alta")
             Else
                 Return False
@@ -943,10 +944,25 @@ Public Class Fachada
 
     Public Function estadoDeUnMedioDeTrasporte(idlegal As String) ' conflictos si hay más de un medio de transporte con IDLegal equivalente en distintos tipos de medios
         Dim estate As String = Persistencia.getInstancia.UltimoEstadoDelTrasporteDeUnMedio(idlegal)
-        If estate Is Nothing OrElse estate = 0 Then
+        If estate Is Nothing OrElse estate = "Exitoso" OrElse estate = "Cancelado" Then
             Return "Disponible"
-        Else
+        ElseIf estate = "Cancelado" Then
             Return "Ocupado"
+        Else
+            Dim idtran = Persistencia.getInstancia.ultimoIdTransportePorMedio(idlegal)
+            Dim j As Boolean = True
+            For Each r As DataRow In Persistencia.getInstancia.LotesEnUnTransporte(idtran).Rows
+                If idtran = Persistencia.getInstancia.ultimoidTransportaPorIdlote(r.Item(0)) Then
+                    j = False
+                End If
+            Next
+
+            If j Then
+                Return "Disponible"
+            Else
+                Return "Ocupado"
+            End If
+
         End If
     End Function
 
@@ -1512,5 +1528,10 @@ Public Class Fachada
     Public Function UtimoEstadoTransportePorIdlote(idlote As Integer) As String
         Return Persistencia.getInstancia.estadoUltimoTransportePorIdLote(idlote)
     End Function
+
+    Public Function UltimoTransportePorIdLote(lote As Lote) As Integer
+        Return Persistencia.getInstancia.ultimoIdTransportaDelIdLote(lote.IDLote)
+    End Function
+
 
 End Class
