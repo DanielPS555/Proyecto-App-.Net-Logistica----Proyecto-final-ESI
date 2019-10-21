@@ -51,6 +51,7 @@ Partial Class WebcamForm
         Me.ClientSize = New System.Drawing.Size(399, 266)
         Me.Controls.Add(Me.image)
         Me.Controls.Add(Me.OpenButton)
+        Me.MaximizeBox = False
         Me.Name = "WebcamForm"
         Me.Text = "WebcamForm"
         CType(Me.image, System.ComponentModel.ISupportInitialize).EndInit()

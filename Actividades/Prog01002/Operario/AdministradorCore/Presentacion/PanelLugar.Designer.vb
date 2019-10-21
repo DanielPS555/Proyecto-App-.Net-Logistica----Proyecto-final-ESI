@@ -88,6 +88,9 @@ Partial Class PanelLugar
         '
         'usuarios
         '
+        Me.usuarios.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.usuarios.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.usuarios.BackgroundColor = System.Drawing.Color.White
         DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
@@ -115,6 +118,7 @@ Partial Class PanelLugar
         '
         'EditarSubzonas
         '
+        Me.EditarSubzonas.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.EditarSubzonas.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(147, Byte), Integer), CType(CType(227, Byte), Integer))
         Me.EditarSubzonas.FlatAppearance.BorderSize = 2
         Me.EditarSubzonas.FlatStyle = System.Windows.Forms.FlatStyle.Flat
@@ -129,6 +133,7 @@ Partial Class PanelLugar
         '
         'verZonas
         '
+        Me.verZonas.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.verZonas.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(147, Byte), Integer), CType(CType(227, Byte), Integer))
         Me.verZonas.FlatAppearance.BorderSize = 2
         Me.verZonas.FlatStyle = System.Windows.Forms.FlatStyle.Flat
@@ -173,6 +178,7 @@ Partial Class PanelLugar
         '
         'verUbicacion
         '
+        Me.verUbicacion.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.verUbicacion.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(147, Byte), Integer), CType(CType(227, Byte), Integer))
         Me.verUbicacion.FlatAppearance.BorderSize = 2
         Me.verUbicacion.FlatStyle = System.Windows.Forms.FlatStyle.Flat
@@ -247,6 +253,7 @@ Partial Class PanelLugar
         '
         'Button1
         '
+        Me.Button1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(147, Byte), Integer), CType(CType(227, Byte), Integer))
         Me.Button1.FlatAppearance.BorderSize = 2
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat

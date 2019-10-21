@@ -45,6 +45,7 @@ Partial Class ChatInterno
         '
         'InputBox
         '
+        Me.InputBox.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.InputBox.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.InputBox.Location = New System.Drawing.Point(16, 608)
         Me.InputBox.Name = "InputBox"
@@ -53,6 +54,7 @@ Partial Class ChatInterno
         '
         'SendButton
         '
+        Me.SendButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.SendButton.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SendButton.Location = New System.Drawing.Point(707, 608)
         Me.SendButton.Name = "SendButton"

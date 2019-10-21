@@ -35,8 +35,6 @@ Partial Class PanelMedioDeTrasporte
         Me.Label11 = New System.Windows.Forms.Label()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.Label13 = New System.Windows.Forms.Label()
-        Me.nombre = New System.Windows.Forms.Label()
-        Me.idpublico = New System.Windows.Forms.Label()
         Me.estado = New System.Windows.Forms.Label()
         Me.tipodeMedio = New System.Windows.Forms.Label()
         Me.fechadeagreacion = New System.Windows.Forms.Label()
@@ -48,6 +46,8 @@ Partial Class PanelMedioDeTrasporte
         Me.n_minivan = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.userA = New System.Windows.Forms.DataGridView()
+        Me.idpublico = New System.Windows.Forms.TextBox()
+        Me.nombre = New System.Windows.Forms.TextBox()
         CType(Me.userA, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -97,9 +97,9 @@ Partial Class PanelMedioDeTrasporte
         Me.Label6.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label6.Location = New System.Drawing.Point(21, 281)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(341, 24)
+        Me.Label6.Size = New System.Drawing.Size(297, 24)
         Me.Label6.TabIndex = 5
-        Me.Label6.Text = "Fecha de agregacion al sistema"
+        Me.Label6.Text = "Fecha  agregado al sistema"
         '
         'Label7
         '
@@ -117,9 +117,9 @@ Partial Class PanelMedioDeTrasporte
         Me.Label8.Font = New System.Drawing.Font("Century Gothic", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label8.Location = New System.Drawing.Point(20, 418)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(185, 30)
+        Me.Label8.Size = New System.Drawing.Size(191, 30)
         Me.Label8.TabIndex = 7
-        Me.Label8.Text = "Capasidades: "
+        Me.Label8.Text = "Capacidades: "
         '
         'Label9
         '
@@ -165,26 +165,6 @@ Partial Class PanelMedioDeTrasporte
         Me.Label13.Size = New System.Drawing.Size(158, 20)
         Me.Label13.TabIndex = 12
         Me.Label13.Text = "Numero de MiniVAN"
-        '
-        'nombre
-        '
-        Me.nombre.AutoSize = True
-        Me.nombre.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.nombre.Location = New System.Drawing.Point(378, 49)
-        Me.nombre.Name = "nombre"
-        Me.nombre.Size = New System.Drawing.Size(37, 24)
-        Me.nombre.TabIndex = 14
-        Me.nombre.Text = "///"
-        '
-        'idpublico
-        '
-        Me.idpublico.AutoSize = True
-        Me.idpublico.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.idpublico.Location = New System.Drawing.Point(378, 118)
-        Me.idpublico.Name = "idpublico"
-        Me.idpublico.Size = New System.Drawing.Size(37, 24)
-        Me.idpublico.TabIndex = 15
-        Me.idpublico.Text = "///"
         '
         'estado
         '
@@ -277,12 +257,15 @@ Partial Class PanelMedioDeTrasporte
         Me.Label1.Font = New System.Drawing.Font("Century Gothic", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.Location = New System.Drawing.Point(377, 418)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(257, 30)
+        Me.Label1.Size = New System.Drawing.Size(247, 30)
         Me.Label1.TabIndex = 25
-        Me.Label1.Text = "Ususarios habilitados"
+        Me.Label1.Text = "Usuarios habilitados"
         '
         'userA
         '
+        Me.userA.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.userA.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.userA.BackgroundColor = System.Drawing.Color.White
         Me.userA.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
@@ -291,12 +274,36 @@ Partial Class PanelMedioDeTrasporte
         Me.userA.Size = New System.Drawing.Size(486, 187)
         Me.userA.TabIndex = 26
         '
+        'idpublico
+        '
+        Me.idpublico.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.idpublico.Enabled = False
+        Me.idpublico.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.idpublico.Location = New System.Drawing.Point(382, 117)
+        Me.idpublico.Name = "idpublico"
+        Me.idpublico.Size = New System.Drawing.Size(486, 29)
+        Me.idpublico.TabIndex = 27
+        '
+        'nombre
+        '
+        Me.nombre.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.nombre.Enabled = False
+        Me.nombre.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.nombre.Location = New System.Drawing.Point(382, 49)
+        Me.nombre.Name = "nombre"
+        Me.nombre.Size = New System.Drawing.Size(486, 29)
+        Me.nombre.TabIndex = 28
+        '
         'PanelMedioDeTrasporte
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(880, 650)
+        Me.Controls.Add(Me.nombre)
+        Me.Controls.Add(Me.idpublico)
         Me.Controls.Add(Me.userA)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.n_minivan)
@@ -308,8 +315,6 @@ Partial Class PanelMedioDeTrasporte
         Me.Controls.Add(Me.fechadeagreacion)
         Me.Controls.Add(Me.tipodeMedio)
         Me.Controls.Add(Me.estado)
-        Me.Controls.Add(Me.idpublico)
-        Me.Controls.Add(Me.nombre)
         Me.Controls.Add(Me.Label13)
         Me.Controls.Add(Me.Label12)
         Me.Controls.Add(Me.Label11)
@@ -344,8 +349,6 @@ Partial Class PanelMedioDeTrasporte
     Friend WithEvents Label11 As Label
     Friend WithEvents Label12 As Label
     Friend WithEvents Label13 As Label
-    Friend WithEvents nombre As Label
-    Friend WithEvents idpublico As Label
     Friend WithEvents estado As Label
     Friend WithEvents tipodeMedio As Label
     Friend WithEvents fechadeagreacion As Label
@@ -357,4 +360,6 @@ Partial Class PanelMedioDeTrasporte
     Friend WithEvents n_minivan As Label
     Friend WithEvents Label1 As Label
     Friend WithEvents userA As DataGridView
+    Friend WithEvents idpublico As TextBox
+    Friend WithEvents nombre As TextBox
 End Class

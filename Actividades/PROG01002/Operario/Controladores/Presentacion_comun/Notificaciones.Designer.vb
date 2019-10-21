@@ -71,13 +71,15 @@ Partial Class Notificaciones
         '
         'SinElementos
         '
-        Me.SinElementos.AutoSize = True
+        Me.SinElementos.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.SinElementos.Font = New System.Drawing.Font("Segoe UI", 16.0!)
-        Me.SinElementos.Location = New System.Drawing.Point(546, 299)
+        Me.SinElementos.Location = New System.Drawing.Point(367, 299)
         Me.SinElementos.Name = "SinElementos"
-        Me.SinElementos.Size = New System.Drawing.Size(155, 30)
+        Me.SinElementos.Size = New System.Drawing.Size(509, 30)
         Me.SinElementos.TabIndex = 4
         Me.SinElementos.Text = "Sin elementos "
+        Me.SinElementos.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         Me.SinElementos.Visible = False
         '
         'Notificaciones

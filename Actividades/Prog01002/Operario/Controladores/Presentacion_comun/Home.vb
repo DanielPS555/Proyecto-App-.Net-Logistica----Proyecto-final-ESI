@@ -33,7 +33,14 @@ Public Class Home
         ' lotesCreados.Text = Fachada.getInstancia.NumeroDeLotesCreadorPorElUsuarioActual
     End Sub
 
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+    Private Sub Button2_Click(sender As Object, e As EventArgs)
         MsgBox("¡Sin implementar!")
+    End Sub
+
+    Private Sub Home_SizeChanged(sender As Object, e As EventArgs) Handles Me.SizeChanged
+        Panel1.Width = (Me.Width - 90) / 2
+        Panel1.Location = New Point(30, 100)
+        Panel2.Width = (Me.Width - 90) / 2
+        Panel2.Location = New Point((Me.Width / 2) + 15, 100)
     End Sub
 End Class

@@ -86,6 +86,7 @@ Partial Class MapaPanelGrande
         Me.ClientSize = New System.Drawing.Size(699, 480)
         Me.Controls.Add(Me.mapa)
         Me.Controls.Add(Me.Panel1)
+        Me.MinimizeBox = False
         Me.Name = "MapaPanelGrande"
         Me.Text = "MapaPanelGrande"
         Me.Panel1.ResumeLayout(False)

@@ -191,6 +191,7 @@ Partial Class CredencialesUsuario
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.MaximizeBox = False
         Me.Name = "CredencialesUsuario"
         Me.Text = "CredencialesUsuario"
         Me.ResumeLayout(False)

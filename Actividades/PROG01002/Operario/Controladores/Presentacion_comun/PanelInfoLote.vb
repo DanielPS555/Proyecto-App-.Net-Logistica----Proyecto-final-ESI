@@ -42,16 +42,6 @@ Public Class PanelInfoLote
 
     End Sub
 
-    Private vehiculo As panelInfoVehiculo
-
-    Private Sub dgv(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellClick
-        If e.RowIndex < 0 Then
-            Return
-        End If
-        Dim row = DataGridView1.Rows(e.RowIndex)
-        Dim vehiculo = New panelInfoVehiculo(row.Cells.Cast(Of DataGridViewCell).First.Value)
-        Marco.getInstancia.CargarPanel(Of panelInfoVehiculo)(vehiculo)
-    End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         CType(sender, Button).Visible = Not (Fachada.getInstancia.CerrarLote(idlote))

@@ -65,6 +65,8 @@ Partial Class NuevoVehiculo
         'buscador
         '
         Me.buscador.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton
+        Me.buscador.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.buscador.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.buscador.Font = New System.Drawing.Font("Century Gothic", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.buscador.Location = New System.Drawing.Point(12, 30)
@@ -94,6 +96,8 @@ Partial Class NuevoVehiculo
         '
         'marca
         '
+        Me.marca.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.marca.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.marca.Enabled = False
         Me.marca.Font = New System.Drawing.Font("Century Gothic", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -104,6 +108,8 @@ Partial Class NuevoVehiculo
         '
         'modelo
         '
+        Me.modelo.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.modelo.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.modelo.Enabled = False
         Me.modelo.Font = New System.Drawing.Font("Century Gothic", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -144,6 +150,7 @@ Partial Class NuevoVehiculo
         '
         'l_color
         '
+        Me.l_color.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.l_color.AutoSize = True
         Me.l_color.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.l_color.Location = New System.Drawing.Point(564, 197)
@@ -174,6 +181,8 @@ Partial Class NuevoVehiculo
         '
         'tipo
         '
+        Me.tipo.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.tipo.Enabled = False
         Me.tipo.Font = New System.Drawing.Font("Century Gothic", 15.0!)
         Me.tipo.FormattingEnabled = True
@@ -195,6 +204,7 @@ Partial Class NuevoVehiculo
         '
         'subzonas
         '
+        Me.subzonas.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.subzonas.Enabled = False
         Me.subzonas.Font = New System.Drawing.Font("Century Gothic", 15.0!)
         Me.subzonas.FormattingEnabled = True
@@ -205,6 +215,7 @@ Partial Class NuevoVehiculo
         '
         'l_sz
         '
+        Me.l_sz.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.l_sz.AutoSize = True
         Me.l_sz.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.l_sz.Location = New System.Drawing.Point(597, 344)
@@ -225,6 +236,7 @@ Partial Class NuevoVehiculo
         '
         'zonas
         '
+        Me.zonas.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.zonas.Enabled = False
         Me.zonas.Font = New System.Drawing.Font("Century Gothic", 15.0!)
         Me.zonas.FormattingEnabled = True
@@ -235,6 +247,7 @@ Partial Class NuevoVehiculo
         '
         'l_zona
         '
+        Me.l_zona.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.l_zona.AutoSize = True
         Me.l_zona.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.l_zona.Location = New System.Drawing.Point(370, 344)
@@ -245,19 +258,21 @@ Partial Class NuevoVehiculo
         '
         'posDis
         '
+        Me.posDis.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.posDis.Enabled = False
         Me.posDis.Font = New System.Drawing.Font("Century Gothic", 15.0!)
         Me.posDis.FormattingEnabled = True
         Me.posDis.Location = New System.Drawing.Point(259, 385)
         Me.posDis.Name = "posDis"
-        Me.posDis.Size = New System.Drawing.Size(120, 31)
+        Me.posDis.Size = New System.Drawing.Size(252, 31)
         Me.posDis.TabIndex = 46
         '
         'l_lote
         '
         Me.l_lote.AutoSize = True
         Me.l_lote.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.l_lote.Location = New System.Drawing.Point(16, 433)
+        Me.l_lote.Location = New System.Drawing.Point(195, 434)
         Me.l_lote.Name = "l_lote"
         Me.l_lote.Size = New System.Drawing.Size(50, 22)
         Me.l_lote.TabIndex = 47
@@ -265,16 +280,19 @@ Partial Class NuevoVehiculo
         '
         'lote
         '
+        Me.lote.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lote.Enabled = False
         Me.lote.Font = New System.Drawing.Font("Century Gothic", 15.0!)
         Me.lote.FormattingEnabled = True
-        Me.lote.Location = New System.Drawing.Point(72, 430)
+        Me.lote.Location = New System.Drawing.Point(259, 430)
         Me.lote.Name = "lote"
-        Me.lote.Size = New System.Drawing.Size(160, 31)
+        Me.lote.Size = New System.Drawing.Size(259, 31)
         Me.lote.TabIndex = 49
         '
         'muestra_color
         '
+        Me.muestra_color.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.muestra_color.Location = New System.Drawing.Point(784, 180)
         Me.muestra_color.Name = "muestra_color"
         Me.muestra_color.Size = New System.Drawing.Size(17, 53)
@@ -283,11 +301,12 @@ Partial Class NuevoVehiculo
         'crearomodificarLote
         '
         Me.crearomodificarLote.ActiveLinkColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.crearomodificarLote.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.crearomodificarLote.AutoSize = True
         Me.crearomodificarLote.Enabled = False
         Me.crearomodificarLote.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.crearomodificarLote.LinkColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Me.crearomodificarLote.Location = New System.Drawing.Point(238, 435)
+        Me.crearomodificarLote.Location = New System.Drawing.Point(534, 434)
         Me.crearomodificarLote.Name = "crearomodificarLote"
         Me.crearomodificarLote.Size = New System.Drawing.Size(88, 21)
         Me.crearomodificarLote.TabIndex = 109
@@ -296,18 +315,19 @@ Partial Class NuevoVehiculo
         '
         'clientes
         '
+        Me.clientes.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.clientes.Enabled = False
         Me.clientes.Font = New System.Drawing.Font("Century Gothic", 15.0!)
         Me.clientes.FormattingEnabled = True
         Me.clientes.Location = New System.Drawing.Point(92, 254)
         Me.clientes.Name = "clientes"
-        Me.clientes.Size = New System.Drawing.Size(432, 31)
+        Me.clientes.Size = New System.Drawing.Size(709, 31)
         Me.clientes.TabIndex = 110
         '
         'QR
         '
-        Me.QR.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.QR.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.QR.BackColor = System.Drawing.Color.White
         Me.QR.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
         Me.QR.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
@@ -326,8 +346,7 @@ Partial Class NuevoVehiculo
         '
         'Buscar
         '
-        Me.Buscar.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Buscar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Buscar.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
         Me.Buscar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
         Me.Buscar.FlatAppearance.BorderSize = 0
@@ -347,8 +366,7 @@ Partial Class NuevoVehiculo
         '
         'color
         '
-        Me.color.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.color.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.color.BackColor = System.Drawing.Color.White
         Me.color.Enabled = False
         Me.color.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
@@ -368,8 +386,6 @@ Partial Class NuevoVehiculo
         '
         'infoDaños
         '
-        Me.infoDaños.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.infoDaños.BackColor = System.Drawing.Color.White
         Me.infoDaños.Enabled = False
         Me.infoDaños.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
@@ -389,8 +405,7 @@ Partial Class NuevoVehiculo
         '
         'ingresar
         '
-        Me.ingresar.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.ingresar.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.ingresar.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
         Me.ingresar.Enabled = False
         Me.ingresar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
@@ -401,12 +416,11 @@ Partial Class NuevoVehiculo
         Me.ingresar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ingresar.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ingresar.ForeColor = System.Drawing.Color.White
-        Me.ingresar.Location = New System.Drawing.Point(651, 575)
+        Me.ingresar.Location = New System.Drawing.Point(601, 575)
         Me.ingresar.Name = "ingresar"
-        Me.ingresar.Size = New System.Drawing.Size(198, 35)
+        Me.ingresar.Size = New System.Drawing.Size(248, 52)
         Me.ingresar.TabIndex = 52
         Me.ingresar.Text = "Ingresar vehiculo "
-        Me.ingresar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.ingresar.UseVisualStyleBackColor = False
         '
         'Label1
@@ -460,10 +474,11 @@ Partial Class NuevoVehiculo
         'eliminarlote
         '
         Me.eliminarlote.ActiveLinkColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.eliminarlote.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.eliminarlote.AutoSize = True
         Me.eliminarlote.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.eliminarlote.LinkColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Me.eliminarlote.Location = New System.Drawing.Point(358, 435)
+        Me.eliminarlote.Location = New System.Drawing.Point(620, 434)
         Me.eliminarlote.Name = "eliminarlote"
         Me.eliminarlote.Size = New System.Drawing.Size(103, 21)
         Me.eliminarlote.TabIndex = 115
@@ -483,6 +498,8 @@ Partial Class NuevoVehiculo
         '
         'lugar
         '
+        Me.lugar.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lugar.Enabled = False
         Me.lugar.Font = New System.Drawing.Font("Century Gothic", 15.0!)
         Me.lugar.FormattingEnabled = True

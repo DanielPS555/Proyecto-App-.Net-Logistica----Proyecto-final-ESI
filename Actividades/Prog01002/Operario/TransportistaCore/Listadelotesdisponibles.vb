@@ -37,6 +37,10 @@ Public Class Lista_de_trasportes
 
     End Sub
 
+
+
+
+
     Private Sub cargarmediosPortipo()
         mediosAutorizados.Items.Clear()
 
@@ -79,10 +83,10 @@ Public Class Lista_de_trasportes
             ele1.Controls.Add(p)
             p.Show()
         Next
-
-
-
     End Sub
+
+
+
 
     Private Sub Aceptar_Click(sender As Object, e As EventArgs) Handles aceptar.Click
         Dim lotesElegidos As New List(Of Controladores.Lote)
@@ -189,5 +193,16 @@ Public Class Lista_de_trasportes
         cargarmediosPortipo()
     End Sub
 
+    Private Sub Lista_de_trasportes_SizeChanged(sender As Object, e As EventArgs) Handles Me.SizeChanged
+        cargarLosPaneles()
+        Label1.Location = New Point(20, TiposDeMedioAutorizados.Location.Y)
+        TiposDeMedioAutorizados.Location = New Point(20 + Label1.Width + 10, TiposDeMedioAutorizados.Location.Y)
+        TiposDeMedioAutorizados.Width = (Me.Width / 2) - 70
+        Label2.Location = New Point((Me.Width / 2) + 20, TiposDeMedioAutorizados.Location.Y)
+        mediosAutorizados.Location = New Point((Me.Width / 2) + 20 + Label2.Width + 10, TiposDeMedioAutorizados.Location.Y)
+        mediosAutorizados.Width = (Me.Width / 2) - Label2.Width - 40
+        aceptar.Location = New Point((Me.Width / 2) - 150, aceptar.Location.Y)
+        aceptar.Width = 300
 
+    End Sub
 End Class

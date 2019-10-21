@@ -99,6 +99,7 @@ Partial Class NuevoPermite
         Me.Controls.Add(Me.Buscar)
         Me.Controls.Add(Me.medios)
         Me.Controls.Add(Me.Label2)
+        Me.MaximizeBox = False
         Me.Name = "NuevoPermite"
         Me.Text = "NuevoPermite"
         Me.ResumeLayout(False)

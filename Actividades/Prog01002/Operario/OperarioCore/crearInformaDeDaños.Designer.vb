@@ -29,7 +29,6 @@ Partial Class crearInformaDeDaños
         Dim Button2 As System.Windows.Forms.Button
         Dim Button3 As System.Windows.Forms.Button
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.fecha = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.tipo = New System.Windows.Forms.ComboBox()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -47,8 +46,7 @@ Partial Class crearInformaDeDaños
         '
         'ingresarBtn
         '
-        ingresarBtn.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        ingresarBtn.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         ingresarBtn.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
         ingresarBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
         ingresarBtn.FlatAppearance.BorderSize = 0
@@ -58,7 +56,7 @@ Partial Class crearInformaDeDaños
         ingresarBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         ingresarBtn.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         ingresarBtn.ForeColor = System.Drawing.Color.White
-        ingresarBtn.Location = New System.Drawing.Point(673, 603)
+        ingresarBtn.Location = New System.Drawing.Point(643, 603)
         ingresarBtn.Name = "ingresarBtn"
         ingresarBtn.Size = New System.Drawing.Size(174, 35)
         ingresarBtn.TabIndex = 62
@@ -68,8 +66,7 @@ Partial Class crearInformaDeDaños
         '
         'Button1
         '
-        Button1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Button1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(180, Byte), Integer), CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer))
         Button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
         Button1.FlatAppearance.BorderSize = 0
@@ -79,7 +76,7 @@ Partial Class crearInformaDeDaños
         Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Button1.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Button1.ForeColor = System.Drawing.Color.White
-        Button1.Location = New System.Drawing.Point(429, 603)
+        Button1.Location = New System.Drawing.Point(449, 603)
         Button1.Name = "Button1"
         Button1.Size = New System.Drawing.Size(174, 35)
         Button1.TabIndex = 63
@@ -89,8 +86,7 @@ Partial Class crearInformaDeDaños
         '
         'nuevo
         '
-        nuevo.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        nuevo.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         nuevo.BackColor = System.Drawing.Color.FromArgb(CType(CType(20, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(40, Byte), Integer))
         nuevo.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
         nuevo.FlatAppearance.BorderSize = 0
@@ -108,114 +104,9 @@ Partial Class crearInformaDeDaños
         nuevo.UseVisualStyleBackColor = False
         AddHandler nuevo.Click, AddressOf Me.nuevo_Click
         '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Century Gothic", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
-        Me.Label1.Location = New System.Drawing.Point(12, 9)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(323, 30)
-        Me.Label1.TabIndex = 0
-        Me.Label1.Text = "Realizar informa de daños"
-        '
-        'fecha
-        '
-        Me.fecha.AutoSize = True
-        Me.fecha.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.fecha.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
-        Me.fecha.Location = New System.Drawing.Point(765, 13)
-        Me.fecha.Name = "fecha"
-        Me.fecha.Size = New System.Drawing.Size(103, 22)
-        Me.fecha.TabIndex = 1
-        Me.fecha.Text = "25/5/2019"
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
-        Me.Label2.Location = New System.Drawing.Point(14, 89)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(49, 24)
-        Me.Label2.TabIndex = 2
-        Me.Label2.Text = "Tipo"
-        '
-        'tipo
-        '
-        Me.tipo.BackColor = System.Drawing.Color.White
-        Me.tipo.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tipo.FormattingEnabled = True
-        Me.tipo.Items.AddRange(New Object() {"Parcial", "Total"})
-        Me.tipo.Location = New System.Drawing.Point(83, 88)
-        Me.tipo.Name = "tipo"
-        Me.tipo.Size = New System.Drawing.Size(121, 30)
-        Me.tipo.TabIndex = 3
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
-        Me.Label3.Location = New System.Drawing.Point(14, 133)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(129, 24)
-        Me.Label3.TabIndex = 4
-        Me.Label3.Text = "Descripcion"
-        '
-        'descipt
-        '
-        Me.descipt.Location = New System.Drawing.Point(18, 160)
-        Me.descipt.Multiline = True
-        Me.descipt.Name = "descipt"
-        Me.descipt.Size = New System.Drawing.Size(284, 404)
-        Me.descipt.TabIndex = 35
-        '
-        'cp
-        '
-        Me.cp.AutoSize = True
-        Me.cp.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cp.Location = New System.Drawing.Point(175, 567)
-        Me.cp.Name = "cp"
-        Me.cp.Size = New System.Drawing.Size(29, 17)
-        Me.cp.TabIndex = 60
-        Me.cp.Text = "255"
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(15, 567)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(159, 16)
-        Me.Label5.TabIndex = 59
-        Me.Label5.Text = "Caracteres disponibles"
-        '
-        'Registros
-        '
-        Me.Registros.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Registros.FormattingEnabled = True
-        Me.Registros.ItemHeight = 21
-        Me.Registros.Location = New System.Drawing.Point(357, 76)
-        Me.Registros.Name = "Registros"
-        Me.Registros.Size = New System.Drawing.Size(460, 487)
-        Me.Registros.TabIndex = 61
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
-        Me.Label4.Location = New System.Drawing.Point(353, 49)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(192, 24)
-        Me.Label4.TabIndex = 67
-        Me.Label4.Text = "Registros de daño"
-        '
         'Button2
         '
-        Button2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Button2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Button2.BackColor = System.Drawing.Color.FromArgb(CType(CType(180, Byte), Integer), CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer))
         Button2.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
         Button2.FlatAppearance.BorderSize = 0
@@ -235,8 +126,7 @@ Partial Class crearInformaDeDaños
         '
         'Button3
         '
-        Button3.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Button3.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Button3.BackColor = System.Drawing.Color.FromArgb(CType(CType(34, Byte), Integer), CType(CType(103, Byte), Integer), CType(CType(199, Byte), Integer))
         Button3.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
         Button3.FlatAppearance.BorderSize = 0
@@ -253,6 +143,108 @@ Partial Class crearInformaDeDaños
         Button3.Text = "E"
         Button3.UseVisualStyleBackColor = False
         AddHandler Button3.Click, AddressOf Me.Button3_Click
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Century Gothic", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
+        Me.Label1.Location = New System.Drawing.Point(12, 9)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(323, 30)
+        Me.Label1.TabIndex = 0
+        Me.Label1.Text = "Realizar informa de daños"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
+        Me.Label2.Location = New System.Drawing.Point(14, 59)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(49, 24)
+        Me.Label2.TabIndex = 2
+        Me.Label2.Text = "Tipo"
+        '
+        'tipo
+        '
+        Me.tipo.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.tipo.BackColor = System.Drawing.Color.White
+        Me.tipo.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.tipo.FormattingEnabled = True
+        Me.tipo.Items.AddRange(New Object() {"Parcial", "Total"})
+        Me.tipo.Location = New System.Drawing.Point(18, 88)
+        Me.tipo.Name = "tipo"
+        Me.tipo.Size = New System.Drawing.Size(284, 30)
+        Me.tipo.TabIndex = 3
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
+        Me.Label3.Location = New System.Drawing.Point(14, 133)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(129, 24)
+        Me.Label3.TabIndex = 4
+        Me.Label3.Text = "Descripcion"
+        '
+        'descipt
+        '
+        Me.descipt.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.descipt.Location = New System.Drawing.Point(18, 160)
+        Me.descipt.Multiline = True
+        Me.descipt.Name = "descipt"
+        Me.descipt.Size = New System.Drawing.Size(284, 404)
+        Me.descipt.TabIndex = 35
+        '
+        'cp
+        '
+        Me.cp.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.cp.AutoSize = True
+        Me.cp.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cp.Location = New System.Drawing.Point(175, 567)
+        Me.cp.Name = "cp"
+        Me.cp.Size = New System.Drawing.Size(29, 17)
+        Me.cp.TabIndex = 60
+        Me.cp.Text = "255"
+        '
+        'Label5
+        '
+        Me.Label5.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.Label5.AutoSize = True
+        Me.Label5.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.Location = New System.Drawing.Point(15, 567)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(159, 16)
+        Me.Label5.TabIndex = 59
+        Me.Label5.Text = "Caracteres disponibles"
+        '
+        'Registros
+        '
+        Me.Registros.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Registros.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Registros.FormattingEnabled = True
+        Me.Registros.ItemHeight = 21
+        Me.Registros.Location = New System.Drawing.Point(357, 76)
+        Me.Registros.Name = "Registros"
+        Me.Registros.Size = New System.Drawing.Size(460, 487)
+        Me.Registros.TabIndex = 61
+        '
+        'Label4
+        '
+        Me.Label4.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
+        Me.Label4.Location = New System.Drawing.Point(353, 49)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(192, 24)
+        Me.Label4.TabIndex = 67
+        Me.Label4.Text = "Registros de daño"
         '
         'crearInformaDeDaños
         '
@@ -273,7 +265,6 @@ Partial Class crearInformaDeDaños
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.tipo)
         Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.fecha)
         Me.Controls.Add(Me.Label1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "crearInformaDeDaños"
@@ -283,7 +274,6 @@ Partial Class crearInformaDeDaños
 
     End Sub
     Friend WithEvents Label1 As Label
-    Friend WithEvents fecha As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents tipo As ComboBox
     Friend WithEvents Label3 As Label

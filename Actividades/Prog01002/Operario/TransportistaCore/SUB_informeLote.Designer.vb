@@ -79,6 +79,7 @@ Partial Class SUB_informeLote
         '
         'LinkLabel1
         '
+        Me.LinkLabel1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.LinkLabel1.AutoSize = True
         Me.LinkLabel1.LinkColor = System.Drawing.Color.FromArgb(CType(CType(20, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(186, Byte), Integer))
         Me.LinkLabel1.Location = New System.Drawing.Point(736, 51)
@@ -90,6 +91,7 @@ Partial Class SUB_informeLote
         '
         'selecionar
         '
+        Me.selecionar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.selecionar.AutoSize = True
         Me.selecionar.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.selecionar.Location = New System.Drawing.Point(695, 4)
@@ -143,6 +145,8 @@ Partial Class SUB_informeLote
         '
         'Panel1
         '
+        Me.Panel1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
         Me.Panel1.Location = New System.Drawing.Point(0, 78)
         Me.Panel1.Name = "Panel1"

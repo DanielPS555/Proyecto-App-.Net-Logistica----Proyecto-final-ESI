@@ -48,19 +48,22 @@ Partial Class ListaZonas
         '
         'zonas
         '
-        Me.zonas.Font = New System.Drawing.Font("Century Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.zonas.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.zonas.ForeColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
         Me.zonas.FormattingEnabled = True
-        Me.zonas.ItemHeight = 20
-        Me.zonas.Location = New System.Drawing.Point(12, 78)
+        Me.zonas.ItemHeight = 25
+        Me.zonas.Location = New System.Drawing.Point(12, 53)
         Me.zonas.Name = "zonas"
-        Me.zonas.Size = New System.Drawing.Size(215, 224)
+        Me.zonas.Size = New System.Drawing.Size(215, 254)
         Me.zonas.TabIndex = 0
         '
         'vehi
         '
         Me.vehi.AllowUserToAddRows = False
         Me.vehi.AllowUserToDeleteRows = False
+        Me.vehi.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.vehi.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.vehi.BackgroundColor = System.Drawing.Color.White
         Me.vehi.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
@@ -95,7 +98,7 @@ Partial Class ListaZonas
         '
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(12, 37)
+        Me.Label3.Location = New System.Drawing.Point(12, 27)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(56, 22)
         Me.Label3.TabIndex = 4
@@ -113,13 +116,15 @@ Partial Class ListaZonas
         '
         'subzonas
         '
-        Me.subzonas.Font = New System.Drawing.Font("Century Gothic", 11.25!)
+        Me.subzonas.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.subzonas.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.subzonas.ForeColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
         Me.subzonas.FormattingEnabled = True
-        Me.subzonas.ItemHeight = 20
-        Me.subzonas.Location = New System.Drawing.Point(12, 359)
+        Me.subzonas.ItemHeight = 25
+        Me.subzonas.Location = New System.Drawing.Point(12, 358)
         Me.subzonas.Name = "subzonas"
-        Me.subzonas.Size = New System.Drawing.Size(215, 284)
+        Me.subzonas.Size = New System.Drawing.Size(215, 279)
         Me.subzonas.TabIndex = 6
         '
         'Label5

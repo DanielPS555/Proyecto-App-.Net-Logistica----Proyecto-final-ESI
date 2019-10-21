@@ -178,7 +178,7 @@ Partial Class ConfigurarRed
         Me.nomBd.TabIndex = 14
         Me.nomBd.Text = "bit"
         '
-        'ConfiguracionRed
+        'ConfigurarRed
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -199,7 +199,8 @@ Partial Class ConfigurarRed
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
-        Me.Name = "ConfiguracionRed"
+        Me.MaximizeBox = False
+        Me.Name = "ConfigurarRed"
         Me.Text = "ConfiguracionRed"
         Me.ResumeLayout(False)
         Me.PerformLayout()

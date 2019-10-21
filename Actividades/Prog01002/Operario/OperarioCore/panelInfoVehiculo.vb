@@ -1,6 +1,8 @@
 ﻿Imports System.Drawing
 Imports System.Windows.Forms
 Imports Controladores
+Imports GMap.NET
+Imports GMap.NET.MapProviders
 
 
 
@@ -38,7 +40,7 @@ Public Class panelInfoVehiculo
         nuevoLote.Text = Funciones_comunes.I18N("Nuevo lote", Marco.Language)
         EliminarLoteSelecion.Text = Funciones_comunes.I18N("Eliminar selección", Marco.Language)
         Cancelar.Text = Funciones_comunes.I18N("Cancelar", Marco.Language)
-        TabPage5.Visible = Fachada.getInstancia.DevolverUsuarioActual.Rol = Usuario.TIPO_ROL_ADMINISTRADOR
+
 
         'HAY QUE CARGAR EL LUGAR ACTUAL DEL VEHICULO
         LoteCombo.Enabled = False
@@ -268,7 +270,6 @@ Public Class panelInfoVehiculo
         Label20.Visible = j
         Label18.Visible = j
         tipoRegistro.Visible = j
-        verReferencia.Visible = j
         anteriorRegistro.Visible = j
         AnteriorImagen.Visible = j
         SigienteRegistro.Visible = j
@@ -583,5 +584,22 @@ Public Class panelInfoVehiculo
 
         Dim BV = New BajaVehiculo(Me.vehiculo)
         BV.ShowDialog()
+    End Sub
+
+    Private Sub Button1_Click_3(sender As Object, e As EventArgs) Handles Button1.Click
+        Dim estadoultimo = Controladores.Fachada.getInstancia.UltimoEstadoTransportePorIdVehiculo(vehiculo.IdVehiculo)
+        If estadoultimo IsNot Nothing AndAlso (estadoultimo.Equals(Trasporte.TIPO_ESTADO_CANCELADO) OrElse estadoultimo.Equals(Trasporte.TIPO_ESTADO_EXISTOSO)) Then
+            Dim punto As PointF = Fachada.getInstancia.cordanadasPoscionActualDelvehiculo(vehiculo.IdVehiculo)
+            Dim ss As New MapaPanelGrande(New PointLatLng(punto.X, punto.Y))
+            ss.ShowDialog()
+        ElseIf estadoultimo IsNot Nothing AndAlso (estadoultimo.Equals(Trasporte.TIPO_ESTADO_PROSESO)) Then
+            Dim link As String = Controladores.Fachada.getInstancia.linkTransportistaPortransporteIdvehiculo(vehiculo.IdVehiculo)
+            If link IsNot Nothing Then
+                Dim ss As New Controladores.TiempoRealGooglePlex(link)
+                ss.ShowDialog()
+            Else
+                MsgBox("El transportista no tiene link de rastreo activo. No se puede mostrar su ubicacion", MsgBoxStyle.Critical)
+            End If
+        End If
     End Sub
 End Class

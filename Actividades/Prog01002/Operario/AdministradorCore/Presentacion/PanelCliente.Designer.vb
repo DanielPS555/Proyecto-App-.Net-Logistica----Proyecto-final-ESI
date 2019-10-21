@@ -23,8 +23,8 @@ Partial Class PanelCliente
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.fechacreacion = New System.Windows.Forms.Label()
         Me.usuariocreador = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
@@ -34,9 +34,9 @@ Partial Class PanelCliente
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
-        Me.rut = New System.Windows.Forms.Label()
-        Me.nombre = New System.Windows.Forms.Label()
         Me.idcliente = New System.Windows.Forms.Label()
+        Me.rut = New System.Windows.Forms.TextBox()
+        Me.nombre = New System.Windows.Forms.TextBox()
         CType(Me.lugares, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -74,25 +74,28 @@ Partial Class PanelCliente
         '
         Me.lugares.AllowUserToAddRows = False
         Me.lugares.AllowUserToDeleteRows = False
+        Me.lugares.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lugares.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.lugares.BackgroundColor = System.Drawing.Color.White
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(130, Byte), Integer), CType(CType(199, Byte), Integer))
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle3.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.lugares.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(130, Byte), Integer), CType(CType(199, Byte), Integer))
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.lugares.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.lugares.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle4.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
-        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.lugares.DefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.lugares.DefaultCellStyle = DataGridViewCellStyle2
         Me.lugares.Location = New System.Drawing.Point(13, 314)
         Me.lugares.Name = "lugares"
         Me.lugares.ReadOnly = True
@@ -150,26 +153,6 @@ Partial Class PanelCliente
         Me.Label7.TabIndex = 133
         Me.Label7.Text = "RUT"
         '
-        'rut
-        '
-        Me.rut.AutoSize = True
-        Me.rut.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.rut.Location = New System.Drawing.Point(362, 103)
-        Me.rut.Name = "rut"
-        Me.rut.Size = New System.Drawing.Size(46, 24)
-        Me.rut.TabIndex = 134
-        Me.rut.Text = "////"
-        '
-        'nombre
-        '
-        Me.nombre.AutoSize = True
-        Me.nombre.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.nombre.Location = New System.Drawing.Point(362, 57)
-        Me.nombre.Name = "nombre"
-        Me.nombre.Size = New System.Drawing.Size(46, 24)
-        Me.nombre.TabIndex = 135
-        Me.nombre.Text = "////"
-        '
         'idcliente
         '
         Me.idcliente.AutoSize = True
@@ -180,15 +163,37 @@ Partial Class PanelCliente
         Me.idcliente.TabIndex = 136
         Me.idcliente.Text = "////"
         '
+        'rut
+        '
+        Me.rut.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.rut.Enabled = False
+        Me.rut.Font = New System.Drawing.Font("Century Gothic", 15.75!)
+        Me.rut.Location = New System.Drawing.Point(366, 100)
+        Me.rut.Name = "rut"
+        Me.rut.Size = New System.Drawing.Size(502, 33)
+        Me.rut.TabIndex = 137
+        '
+        'nombre
+        '
+        Me.nombre.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.nombre.Enabled = False
+        Me.nombre.Font = New System.Drawing.Font("Century Gothic", 15.75!)
+        Me.nombre.Location = New System.Drawing.Point(366, 54)
+        Me.nombre.Name = "nombre"
+        Me.nombre.Size = New System.Drawing.Size(502, 33)
+        Me.nombre.TabIndex = 138
+        '
         'PanelCliente
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(880, 650)
-        Me.Controls.Add(Me.idcliente)
         Me.Controls.Add(Me.nombre)
         Me.Controls.Add(Me.rut)
+        Me.Controls.Add(Me.idcliente)
         Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.Label1)
@@ -216,7 +221,7 @@ Partial Class PanelCliente
     Friend WithEvents Label1 As Label
     Friend WithEvents Label6 As Label
     Friend WithEvents Label7 As Label
-    Friend WithEvents rut As Label
-    Friend WithEvents nombre As Label
     Friend WithEvents idcliente As Label
+    Friend WithEvents rut As TextBox
+    Friend WithEvents nombre As TextBox
 End Class

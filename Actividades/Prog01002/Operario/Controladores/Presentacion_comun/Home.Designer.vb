@@ -45,7 +45,6 @@ Partial Class Home
         Me.nAccesos = New System.Windows.Forms.Label()
         Me.anteriorIngreso = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
-        Me.Button2 = New System.Windows.Forms.Button()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Panel2.SuspendLayout()
         Me.Panel1.SuspendLayout()
@@ -73,6 +72,7 @@ Partial Class Home
         '
         'Panel2
         '
+        Me.Panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Panel2.Controls.Add(Me.r5)
         Me.Panel2.Controls.Add(Me.r4)
         Me.Panel2.Controls.Add(Me.r3)
@@ -91,6 +91,8 @@ Partial Class Home
         '
         'r5
         '
+        Me.r5.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.r5.AutoSize = True
         Me.r5.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.r5.Location = New System.Drawing.Point(312, 270)
@@ -101,6 +103,8 @@ Partial Class Home
         '
         'r4
         '
+        Me.r4.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.r4.AutoSize = True
         Me.r4.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.r4.Location = New System.Drawing.Point(312, 212)
@@ -111,6 +115,8 @@ Partial Class Home
         '
         'r3
         '
+        Me.r3.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.r3.AutoSize = True
         Me.r3.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.r3.Location = New System.Drawing.Point(312, 159)
@@ -151,6 +157,8 @@ Partial Class Home
         '
         'r2
         '
+        Me.r2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.r2.AutoSize = True
         Me.r2.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.r2.Location = New System.Drawing.Point(312, 106)
@@ -161,6 +169,8 @@ Partial Class Home
         '
         'r1
         '
+        Me.r1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.r1.AutoSize = True
         Me.r1.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.r1.Location = New System.Drawing.Point(312, 53)
@@ -241,9 +251,10 @@ Partial Class Home
         '
         'nombreUsuario
         '
+        Me.nombreUsuario.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.nombreUsuario.AutoSize = True
         Me.nombreUsuario.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.nombreUsuario.Location = New System.Drawing.Point(288, 53)
+        Me.nombreUsuario.Location = New System.Drawing.Point(286, 53)
         Me.nombreUsuario.Name = "nombreUsuario"
         Me.nombreUsuario.Size = New System.Drawing.Size(52, 25)
         Me.nombreUsuario.TabIndex = 9
@@ -251,9 +262,10 @@ Partial Class Home
         '
         'rolUsuario
         '
+        Me.rolUsuario.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.rolUsuario.AutoSize = True
         Me.rolUsuario.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.rolUsuario.Location = New System.Drawing.Point(288, 107)
+        Me.rolUsuario.Location = New System.Drawing.Point(286, 107)
         Me.rolUsuario.Name = "rolUsuario"
         Me.rolUsuario.Size = New System.Drawing.Size(52, 25)
         Me.rolUsuario.TabIndex = 10
@@ -261,9 +273,10 @@ Partial Class Home
         '
         'nAccesos
         '
+        Me.nAccesos.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.nAccesos.AutoSize = True
         Me.nAccesos.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.nAccesos.Location = New System.Drawing.Point(288, 158)
+        Me.nAccesos.Location = New System.Drawing.Point(286, 158)
         Me.nAccesos.Name = "nAccesos"
         Me.nAccesos.Size = New System.Drawing.Size(52, 25)
         Me.nAccesos.TabIndex = 11
@@ -271,9 +284,10 @@ Partial Class Home
         '
         'anteriorIngreso
         '
+        Me.anteriorIngreso.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.anteriorIngreso.AutoSize = True
         Me.anteriorIngreso.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.anteriorIngreso.Location = New System.Drawing.Point(288, 212)
+        Me.anteriorIngreso.Location = New System.Drawing.Point(286, 212)
         Me.anteriorIngreso.Name = "anteriorIngreso"
         Me.anteriorIngreso.Size = New System.Drawing.Size(52, 25)
         Me.anteriorIngreso.TabIndex = 13
@@ -289,25 +303,9 @@ Partial Class Home
         Me.Label8.TabIndex = 14
         Me.Label8.Text = "Nº de accesos al sistema"
         '
-        'Button2
-        '
-        Me.Button2.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Me.Button2.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Me.Button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Me.Button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
-        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button2.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button2.ForeColor = System.Drawing.Color.White
-        Me.Button2.Location = New System.Drawing.Point(69, 445)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(224, 36)
-        Me.Button2.TabIndex = 15
-        Me.Button2.Text = "Ver mas "
-        Me.Button2.UseVisualStyleBackColor = False
-        '
         'Panel1
         '
-        Me.Panel1.Controls.Add(Me.Button2)
+        Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Panel1.Controls.Add(Me.Label8)
         Me.Panel1.Controls.Add(Me.anteriorIngreso)
         Me.Panel1.Controls.Add(Me.nAccesos)
@@ -319,7 +317,7 @@ Partial Class Home
         Me.Panel1.Controls.Add(Me.Label15)
         Me.Panel1.Location = New System.Drawing.Point(18, 99)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(368, 500)
+        Me.Panel1.Size = New System.Drawing.Size(402, 500)
         Me.Panel1.TabIndex = 2
         '
         'Home
@@ -367,6 +365,5 @@ Partial Class Home
     Friend WithEvents nAccesos As Label
     Friend WithEvents anteriorIngreso As Label
     Friend WithEvents Label8 As Label
-    Friend WithEvents Button2 As Button
     Friend WithEvents Panel1 As Panel
 End Class

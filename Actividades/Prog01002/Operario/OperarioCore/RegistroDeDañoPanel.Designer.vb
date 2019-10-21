@@ -30,10 +30,6 @@ Partial Class RegistroDeDañoPanel
         Me.bajar = New System.Windows.Forms.Button()
         Me.subir = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.infoDaños = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.regisDaños = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.tipo = New System.Windows.Forms.ComboBox()
         Me.Label5 = New System.Windows.Forms.Label()
@@ -63,8 +59,7 @@ Partial Class RegistroDeDañoPanel
         '
         'NuevaFotografia
         '
-        NuevaFotografia.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        NuevaFotografia.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         NuevaFotografia.BackColor = System.Drawing.SystemColors.Control
         NuevaFotografia.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
         NuevaFotografia.FlatAppearance.BorderSize = 0
@@ -84,8 +79,7 @@ Partial Class RegistroDeDañoPanel
         '
         'Button4
         '
-        Button4.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Button4.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Button4.BackColor = System.Drawing.Color.FromArgb(CType(CType(180, Byte), Integer), CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer))
         Button4.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
         Button4.FlatAppearance.BorderSize = 0
@@ -105,8 +99,7 @@ Partial Class RegistroDeDañoPanel
         '
         'Button5
         '
-        Button5.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Button5.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Button5.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
         Button5.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
         Button5.FlatAppearance.BorderSize = 0
@@ -126,8 +119,7 @@ Partial Class RegistroDeDañoPanel
         '
         'Button1
         '
-        Button1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Button1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Button1.BackColor = System.Drawing.SystemColors.Control
         Button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
         Button1.FlatAppearance.BorderSize = 0
@@ -147,8 +139,7 @@ Partial Class RegistroDeDañoPanel
         '
         'bajar
         '
-        Me.bajar.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.bajar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.bajar.BackColor = System.Drawing.SystemColors.Control
         Me.bajar.Enabled = False
         Me.bajar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
@@ -169,8 +160,7 @@ Partial Class RegistroDeDañoPanel
         '
         'subir
         '
-        Me.subir.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.subir.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.subir.BackColor = System.Drawing.SystemColors.Control
         Me.subir.Enabled = False
         Me.subir.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
@@ -200,50 +190,6 @@ Partial Class RegistroDeDañoPanel
         Me.Label1.TabIndex = 1
         Me.Label1.Text = "Registro de daños"
         '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
-        Me.Label2.Location = New System.Drawing.Point(661, 31)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(75, 22)
-        Me.Label2.TabIndex = 2
-        Me.Label2.Text = "Sub Nº:"
-        '
-        'infoDaños
-        '
-        Me.infoDaños.AutoSize = True
-        Me.infoDaños.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.infoDaños.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
-        Me.infoDaños.Location = New System.Drawing.Point(737, 9)
-        Me.infoDaños.Name = "infoDaños"
-        Me.infoDaños.Size = New System.Drawing.Size(24, 22)
-        Me.infoDaños.TabIndex = 3
-        Me.infoDaños.Text = "#"
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
-        Me.Label4.Location = New System.Drawing.Point(542, 9)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(191, 22)
-        Me.Label4.TabIndex = 4
-        Me.Label4.Text = "Informe de daño Nº"
-        '
-        'regisDaños
-        '
-        Me.regisDaños.AutoSize = True
-        Me.regisDaños.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.regisDaños.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
-        Me.regisDaños.Location = New System.Drawing.Point(737, 31)
-        Me.regisDaños.Name = "regisDaños"
-        Me.regisDaños.Size = New System.Drawing.Size(24, 22)
-        Me.regisDaños.TabIndex = 5
-        Me.regisDaños.Text = "#"
-        '
         'Label3
         '
         Me.Label3.AutoSize = True
@@ -262,7 +208,7 @@ Partial Class RegistroDeDañoPanel
         Me.tipo.Items.AddRange(New Object() {"Regular", "Anulacion", "Actualizacion"})
         Me.tipo.Location = New System.Drawing.Point(75, 65)
         Me.tipo.Name = "tipo"
-        Me.tipo.Size = New System.Drawing.Size(121, 30)
+        Me.tipo.Size = New System.Drawing.Size(163, 30)
         Me.tipo.TabIndex = 7
         '
         'Label5
@@ -301,7 +247,7 @@ Partial Class RegistroDeDañoPanel
         '
         Me.registroOrigen.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.registroOrigen.FormattingEnabled = True
-        Me.registroOrigen.Location = New System.Drawing.Point(579, 104)
+        Me.registroOrigen.Location = New System.Drawing.Point(556, 104)
         Me.registroOrigen.Name = "registroOrigen"
         Me.registroOrigen.Size = New System.Drawing.Size(275, 30)
         Me.registroOrigen.TabIndex = 11
@@ -309,6 +255,7 @@ Partial Class RegistroDeDañoPanel
         '
         'cp
         '
+        Me.cp.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.cp.AutoSize = True
         Me.cp.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cp.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
@@ -320,6 +267,7 @@ Partial Class RegistroDeDañoPanel
         '
         'Label7
         '
+        Me.Label7.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label7.AutoSize = True
         Me.Label7.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label7.Location = New System.Drawing.Point(12, 592)
@@ -330,6 +278,10 @@ Partial Class RegistroDeDañoPanel
         '
         'descipt
         '
+        Me.descipt.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.descipt.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.descipt.Location = New System.Drawing.Point(12, 185)
         Me.descipt.Multiline = True
         Me.descipt.Name = "descipt"
@@ -368,7 +320,7 @@ Partial Class RegistroDeDañoPanel
         '
         'panelFotografias
         '
-        Me.panelFotografias.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.panelFotografias.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.panelFotografias.Image = Global.OperarioCore.My.Resources.Resources.sinContenidoFotografico
         Me.panelFotografias.InitialImage = Global.OperarioCore.My.Resources.Resources.sinContenidoFotografico
         Me.panelFotografias.Location = New System.Drawing.Point(0, 0)
@@ -380,6 +332,7 @@ Partial Class RegistroDeDañoPanel
         '
         'p1
         '
+        Me.p1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.p1.Location = New System.Drawing.Point(767, 202)
         Me.p1.Name = "p1"
         Me.p1.Size = New System.Drawing.Size(100, 100)
@@ -389,6 +342,7 @@ Partial Class RegistroDeDañoPanel
         '
         'p2
         '
+        Me.p2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.p2.Location = New System.Drawing.Point(768, 308)
         Me.p2.Name = "p2"
         Me.p2.Size = New System.Drawing.Size(100, 100)
@@ -398,6 +352,7 @@ Partial Class RegistroDeDañoPanel
         '
         'p3
         '
+        Me.p3.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.p3.Location = New System.Drawing.Point(767, 414)
         Me.p3.Name = "p3"
         Me.p3.Size = New System.Drawing.Size(100, 100)
@@ -432,10 +387,6 @@ Partial Class RegistroDeDañoPanel
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.tipo)
         Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.regisDaños)
-        Me.Controls.Add(Me.Label4)
-        Me.Controls.Add(Me.infoDaños)
-        Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "RegistroDeDañoPanel"
@@ -451,10 +402,6 @@ Partial Class RegistroDeDañoPanel
     End Sub
 
     Friend WithEvents Label1 As Label
-    Friend WithEvents Label2 As Label
-    Friend WithEvents infoDaños As Label
-    Friend WithEvents Label4 As Label
-    Friend WithEvents regisDaños As Label
     Friend WithEvents Label3 As Label
     Friend WithEvents tipo As ComboBox
     Friend WithEvents Label5 As Label

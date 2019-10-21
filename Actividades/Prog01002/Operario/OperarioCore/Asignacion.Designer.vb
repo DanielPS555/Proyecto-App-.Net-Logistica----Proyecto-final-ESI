@@ -215,6 +215,7 @@ Partial Class Asignacion
         Me.Controls.Add(Me.posDis)
         Me.Controls.Add(Me.l_sz)
         Me.Controls.Add(Me.l_posDis)
+        Me.MaximizeBox = False
         Me.Name = "Asignacion"
         Me.Text = "Asignacion"
         Me.ResumeLayout(False)

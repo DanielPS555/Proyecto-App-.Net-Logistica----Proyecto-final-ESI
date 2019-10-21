@@ -33,6 +33,8 @@ Partial Class PrecargaMasiva
         '
         'OptionalColumns
         '
+        Me.OptionalColumns.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.OptionalColumns.FormattingEnabled = True
         Me.OptionalColumns.Items.AddRange(New Object() {"Marca", "Modelo", "Cliente", "Color", "Año", "Tipo"})
         Me.OptionalColumns.Location = New System.Drawing.Point(12, 25)
@@ -62,6 +64,7 @@ Partial Class PrecargaMasiva
         '
         'uploadPreloads
         '
+        Me.uploadPreloads.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.uploadPreloads.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.uploadPreloads.Location = New System.Drawing.Point(527, 25)
         Me.uploadPreloads.Name = "uploadPreloads"
@@ -72,6 +75,9 @@ Partial Class PrecargaMasiva
         '
         'vehicleBox
         '
+        Me.vehicleBox.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.vehicleBox.FormattingEnabled = True
         Me.vehicleBox.Location = New System.Drawing.Point(12, 124)
         Me.vehicleBox.Name = "vehicleBox"
@@ -89,6 +95,7 @@ Partial Class PrecargaMasiva
         '
         'clearList
         '
+        Me.clearList.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.clearList.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.clearList.Location = New System.Drawing.Point(527, 66)
         Me.clearList.Name = "clearList"

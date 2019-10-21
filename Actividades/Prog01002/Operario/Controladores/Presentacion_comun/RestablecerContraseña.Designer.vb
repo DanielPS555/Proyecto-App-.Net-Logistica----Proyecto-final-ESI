@@ -48,10 +48,12 @@ Partial Class RestablecerContraseña
         '
         'secretanswer
         '
+        Me.secretanswer.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.secretanswer.Font = New System.Drawing.Font("Century Gothic", 14.25!)
-        Me.secretanswer.Location = New System.Drawing.Point(249, 253)
+        Me.secretanswer.Location = New System.Drawing.Point(249, 299)
         Me.secretanswer.Name = "secretanswer"
-        Me.secretanswer.Size = New System.Drawing.Size(362, 31)
+        Me.secretanswer.Size = New System.Drawing.Size(805, 31)
         Me.secretanswer.TabIndex = 4
         Me.secretanswer.Visible = False
         '
@@ -59,7 +61,7 @@ Partial Class RestablecerContraseña
         '
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Century Gothic", 14.25!)
-        Me.Label4.Location = New System.Drawing.Point(14, 256)
+        Me.Label4.Location = New System.Drawing.Point(12, 302)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(198, 22)
         Me.Label4.TabIndex = 4
@@ -68,11 +70,13 @@ Partial Class RestablecerContraseña
         '
         'newpwd
         '
+        Me.newpwd.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.newpwd.Font = New System.Drawing.Font("Century Gothic", 14.25!)
-        Me.newpwd.Location = New System.Drawing.Point(249, 317)
+        Me.newpwd.Location = New System.Drawing.Point(249, 376)
         Me.newpwd.Name = "newpwd"
         Me.newpwd.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
-        Me.newpwd.Size = New System.Drawing.Size(362, 31)
+        Me.newpwd.Size = New System.Drawing.Size(805, 31)
         Me.newpwd.TabIndex = 5
         Me.newpwd.Visible = False
         '
@@ -80,7 +84,7 @@ Partial Class RestablecerContraseña
         '
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Century Gothic", 14.25!)
-        Me.Label5.Location = New System.Drawing.Point(14, 320)
+        Me.Label5.Location = New System.Drawing.Point(14, 379)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(208, 22)
         Me.Label5.TabIndex = 6
@@ -89,15 +93,16 @@ Partial Class RestablecerContraseña
         '
         'Button1
         '
+        Me.Button1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(156, Byte), Integer), CType(CType(224, Byte), Integer))
         Me.Button1.FlatAppearance.BorderSize = 0
         Me.Button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(37, Byte), Integer), CType(CType(143, Byte), Integer), CType(CType(204, Byte), Integer))
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.Font = New System.Drawing.Font("Century Gothic", 14.25!)
+        Me.Button1.Font = New System.Drawing.Font("Century Gothic", 20.25!)
         Me.Button1.ForeColor = System.Drawing.Color.White
-        Me.Button1.Location = New System.Drawing.Point(18, 374)
+        Me.Button1.Location = New System.Drawing.Point(873, 548)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(198, 45)
+        Me.Button1.Size = New System.Drawing.Size(249, 51)
         Me.Button1.TabIndex = 6
         Me.Button1.Text = "Cambiar"
         Me.Button1.UseVisualStyleBackColor = False
@@ -105,10 +110,12 @@ Partial Class RestablecerContraseña
         '
         'username
         '
+        Me.username.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.username.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.username.Location = New System.Drawing.Point(237, 70)
         Me.username.Name = "username"
-        Me.username.Size = New System.Drawing.Size(362, 31)
+        Me.username.Size = New System.Drawing.Size(825, 31)
         Me.username.TabIndex = 1
         '
         'Label6
@@ -123,23 +130,25 @@ Partial Class RestablecerContraseña
         '
         'Button2
         '
+        Me.Button2.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Button2.BackColor = System.Drawing.Color.FromArgb(CType(CType(180, Byte), Integer), CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer))
         Me.Button2.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(148, Byte), Integer), CType(CType(18, Byte), Integer), CType(CType(18, Byte), Integer))
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button2.Font = New System.Drawing.Font("Century Gothic", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button2.ForeColor = System.Drawing.Color.White
-        Me.Button2.Location = New System.Drawing.Point(18, 546)
+        Me.Button2.Location = New System.Drawing.Point(597, 548)
         Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(463, 53)
+        Me.Button2.Size = New System.Drawing.Size(258, 51)
         Me.Button2.TabIndex = 13
         Me.Button2.Text = "Salir"
         Me.Button2.UseVisualStyleBackColor = False
         '
         'Button3
         '
+        Me.Button3.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button3.Font = New System.Drawing.Font("Century Gothic", 14.25!)
-        Me.Button3.Location = New System.Drawing.Point(18, 119)
+        Me.Button3.Location = New System.Drawing.Point(864, 116)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(198, 39)
         Me.Button3.TabIndex = 2
@@ -148,12 +157,14 @@ Partial Class RestablecerContraseña
         '
         'Pregunta
         '
+        Me.Pregunta.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Pregunta.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Pregunta.Location = New System.Drawing.Point(245, 192)
+        Me.Pregunta.Location = New System.Drawing.Point(245, 235)
         Me.Pregunta.Name = "Pregunta"
-        Me.Pregunta.Size = New System.Drawing.Size(757, 26)
+        Me.Pregunta.Size = New System.Drawing.Size(809, 26)
         Me.Pregunta.TabIndex = 15
-        Me.Pregunta.Text = "Label3"
+        Me.Pregunta.Text = "//////////////////"
         Me.Pregunta.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Pregunta.Visible = False
         '
@@ -161,7 +172,7 @@ Partial Class RestablecerContraseña
         '
         Me.preg.AutoSize = True
         Me.preg.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.preg.Location = New System.Drawing.Point(14, 192)
+        Me.preg.Location = New System.Drawing.Point(14, 239)
         Me.preg.Name = "preg"
         Me.preg.Size = New System.Drawing.Size(96, 22)
         Me.preg.TabIndex = 16

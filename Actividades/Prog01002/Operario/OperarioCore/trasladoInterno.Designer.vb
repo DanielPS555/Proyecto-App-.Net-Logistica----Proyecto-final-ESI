@@ -243,7 +243,7 @@ Partial Class TrasladoInterno
         Me.dePosicion.TabIndex = 120
         Me.dePosicion.Text = "//"
         '
-        'trasladoInterno
+        'TrasladoInterno
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -268,7 +268,8 @@ Partial Class TrasladoInterno
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.Label13)
         Me.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Name = "trasladoInterno"
+        Me.MaximizeBox = False
+        Me.Name = "TrasladoInterno"
         Me.Text = "S.T.L.A"
         Me.ResumeLayout(False)
         Me.PerformLayout()

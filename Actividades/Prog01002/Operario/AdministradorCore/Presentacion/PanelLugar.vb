@@ -65,4 +65,16 @@ Public Class PanelLugar
     Private Sub EditarSubzonas_Click(sender As Object, e As EventArgs) Handles EditarSubzonas.Click
         Controladores.Marco.getInstancia.CargarPanel(Of AdministrarZonasYSubzonas)(New AdministrarZonasYSubzonas(lugar.IDLugar))
     End Sub
+
+    Private Sub PanelLugar_SizeChanged(sender As Object, e As EventArgs) Handles Me.SizeChanged
+        Dim x = (Me.Width / 3) - 20
+        Button1.Location = New Drawing.Point(10, Button1.Location.Y)
+        Button1.Width = x
+        EditarSubzonas.Width = x
+        EditarSubzonas.Location = New Drawing.Point(x + 15, EditarSubzonas.Location.Y)
+        verZonas.Width = x
+        verZonas.Location = New Drawing.Point(2 * x + 20, EditarSubzonas.Location.Y)
+
+
+    End Sub
 End Class

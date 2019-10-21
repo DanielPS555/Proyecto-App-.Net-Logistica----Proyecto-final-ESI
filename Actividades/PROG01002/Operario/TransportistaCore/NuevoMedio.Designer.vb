@@ -79,6 +79,7 @@ Partial Class NuevoMedio
         '
         'CrearButton
         '
+        Me.CrearButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.CrearButton.BackColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(140, Byte), Integer), CType(CType(217, Byte), Integer))
         Me.CrearButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.CrearButton.Font = New System.Drawing.Font("Segoe UI Semilight", 15.0!)
@@ -93,6 +94,7 @@ Partial Class NuevoMedio
         'nuevoTipo
         '
         Me.nuevoTipo.ActiveLinkColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.nuevoTipo.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.nuevoTipo.AutoSize = True
         Me.nuevoTipo.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.nuevoTipo.LinkColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
@@ -105,6 +107,8 @@ Partial Class NuevoMedio
         '
         'tipo
         '
+        Me.tipo.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.tipo.FormattingEnabled = True
         Me.tipo.Location = New System.Drawing.Point(232, 200)
         Me.tipo.Name = "tipo"
@@ -113,6 +117,8 @@ Partial Class NuevoMedio
         '
         'idBox
         '
+        Me.idBox.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.idBox.Font = New System.Drawing.Font("Segoe UI Semilight", 14.25!)
         Me.idBox.Location = New System.Drawing.Point(232, 92)
         Me.idBox.Name = "idBox"
@@ -122,6 +128,7 @@ Partial Class NuevoMedio
         'eliminar
         '
         Me.eliminar.ActiveLinkColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.eliminar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.eliminar.AutoSize = True
         Me.eliminar.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.eliminar.LinkColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
@@ -180,6 +187,8 @@ Partial Class NuevoMedio
         '
         'autos
         '
+        Me.autos.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.autos.Location = New System.Drawing.Point(232, 264)
         Me.autos.Maximum = New Decimal(New Integer() {3000, 0, 0, 0})
         Me.autos.Name = "autos"
@@ -188,6 +197,8 @@ Partial Class NuevoMedio
         '
         'camiones
         '
+        Me.camiones.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.camiones.Location = New System.Drawing.Point(232, 329)
         Me.camiones.Maximum = New Decimal(New Integer() {3000, 0, 0, 0})
         Me.camiones.Name = "camiones"
@@ -196,6 +207,8 @@ Partial Class NuevoMedio
         '
         'suv
         '
+        Me.suv.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.suv.Location = New System.Drawing.Point(232, 402)
         Me.suv.Maximum = New Decimal(New Integer() {3000, 0, 0, 0})
         Me.suv.Name = "suv"
@@ -204,6 +217,8 @@ Partial Class NuevoMedio
         '
         'van
         '
+        Me.van.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.van.Location = New System.Drawing.Point(232, 472)
         Me.van.Maximum = New Decimal(New Integer() {3000, 0, 0, 0})
         Me.van.Name = "van"
@@ -212,6 +227,8 @@ Partial Class NuevoMedio
         '
         'Minivan
         '
+        Me.Minivan.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Minivan.Location = New System.Drawing.Point(232, 536)
         Me.Minivan.Maximum = New Decimal(New Integer() {3000, 0, 0, 0})
         Me.Minivan.Name = "Minivan"
@@ -229,6 +246,8 @@ Partial Class NuevoMedio
         '
         'nombre
         '
+        Me.nombre.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.nombre.Font = New System.Drawing.Font("Segoe UI Semilight", 14.25!)
         Me.nombre.Location = New System.Drawing.Point(232, 140)
         Me.nombre.Name = "nombre"

@@ -516,12 +516,20 @@ Public Class Fachada
                 r.Item(5) = "-"
             Else
                 r.Item(5) = idLote.ToString
-                If Persistencia.getInstancia.ComprobarLoteTrasladoRealizado(idLote) Then
-                    r.Item(6) = "Fuera del lugar"
+                If Persistencia.getInstancia.lugarEntregadoVehiculo(r.Item(0)) = -1 Then
+                    Dim p As Integer = Persistencia.getInstancia.PosicionActualVehiculo(r.Item(0)).Item(3)
+                    If Persistencia.getInstancia.idlugarPorIdsubzona(p).Item(0) = lugar.IDLugar Then
+                        r.Item(6) = "Fuera del lugar"
+                        r.Item(6) = "En el lugar"
+                    Else
+                        r.Item(6) = "Fuera del lugar"
+                    End If
+
                 Else
-                    r.Item(6) = "En el lugar"
+                    r.Item(6) = "Fuera del lugar"
                 End If
             End If
+
         Next
         Return dt
     End Function
@@ -1531,6 +1539,24 @@ Public Class Fachada
 
     Public Function UltimoTransportePorIdLote(lote As Lote) As Integer
         Return Persistencia.getInstancia.ultimoIdTransportaDelIdLote(lote.IDLote)
+    End Function
+
+    Public Function linkTransportistaPortransporteIdvehiculo(idvehiculo As Integer)
+        Return Funciones_comunes.AutoNull(Of String)(Persistencia.getInstancia.linkDelTransportistaDeUnTransladoPorIdvehiculo(idvehiculo))
+    End Function
+
+
+    Public Function cordanadasPoscionActualDelvehiculo(idvehiculo As Integer) As PointF
+        Dim idlugarEstablesimiento = Persistencia.getInstancia.lugarEntregadoVehiculo(idvehiculo)
+        If idlugarEstablesimiento <> -1 Then
+            Dim lugar = Controladores.Fachada.getInstancia.informacionBaseDelLugarPorIdlugar(idlugarEstablesimiento)
+            Return New PointF(lugar.PosicionX, lugar.PosicionY)
+        Else
+            Dim idsub As Integer = Persistencia.getInstancia.PosicionActualVehiculo(idvehiculo).Item(3)
+            Dim lugar As DataRow = Persistencia.getInstancia.idlugarPorIdsubzona(idsub)
+            Return New PointF(lugar.Item(1), lugar.Item(2))
+        End If
+
     End Function
 
 

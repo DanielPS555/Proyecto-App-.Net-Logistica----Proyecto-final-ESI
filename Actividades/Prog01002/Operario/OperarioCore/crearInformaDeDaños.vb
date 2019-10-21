@@ -241,5 +241,12 @@ Public Class crearInformaDeDaños
         End If
     End Sub
 
-
+    Private Sub crearInformaDeDaños_SizeChanged(sender As Object, e As EventArgs) Handles Me.SizeChanged
+        tipo.Location = New Point(20, 88)
+        descipt.Location = New Point(20, 160)
+        tipo.Width = (Me.Width / 3) - 20
+        descipt.Width = (Me.Width / 3) - 20
+        Registros.Location = New Point((Me.Width / 3) + 20, 88)
+        Registros.Width = (Me.Width / 3) * 2 - 65
+    End Sub
 End Class

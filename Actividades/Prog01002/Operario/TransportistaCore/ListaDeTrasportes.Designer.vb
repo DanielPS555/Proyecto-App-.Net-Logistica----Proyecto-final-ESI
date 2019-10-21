@@ -25,25 +25,19 @@ Partial Class ListaDeTrasportes
     Private Sub InitializeComponent()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Me.Label2 = New System.Windows.Forms.Label()
         Me.trasportes = New System.Windows.Forms.DataGridView()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Label1 = New System.Windows.Forms.Label()
         CType(Me.trasportes, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Century Gothic", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(12, 9)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(224, 30)
-        Me.Label2.TabIndex = 1
-        Me.Label2.Text = "Lista de trasportes"
         '
         'trasportes
         '
         Me.trasportes.AllowUserToAddRows = False
         Me.trasportes.AllowUserToDeleteRows = False
+        Me.trasportes.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.trasportes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.trasportes.BackgroundColor = System.Drawing.Color.White
         DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
@@ -63,12 +57,32 @@ Partial Class ListaDeTrasportes
         DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.trasportes.DefaultCellStyle = DataGridViewCellStyle2
-        Me.trasportes.Location = New System.Drawing.Point(13, 56)
+        Me.trasportes.Location = New System.Drawing.Point(12, 57)
         Me.trasportes.Name = "trasportes"
         Me.trasportes.ReadOnly = True
         Me.trasportes.RowHeadersVisible = False
         Me.trasportes.Size = New System.Drawing.Size(855, 582)
         Me.trasportes.TabIndex = 2
+        '
+        'Panel1
+        '
+        Me.Panel1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.Panel1.Location = New System.Drawing.Point(12, 49)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(855, 2)
+        Me.Panel1.TabIndex = 45
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Segoe UI Semilight", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(12, 9)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(249, 37)
+        Me.Label1.TabIndex = 44
+        Me.Label1.Text = "Lista de Transportes"
         '
         'ListaDeTrasportes
         '
@@ -76,8 +90,9 @@ Partial Class ListaDeTrasportes
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(880, 650)
+        Me.Controls.Add(Me.Panel1)
+        Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.trasportes)
-        Me.Controls.Add(Me.Label2)
         Me.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Margin = New System.Windows.Forms.Padding(5)
@@ -88,7 +103,7 @@ Partial Class ListaDeTrasportes
         Me.PerformLayout()
 
     End Sub
-
-    Friend WithEvents Label2 As Label
     Friend WithEvents trasportes As DataGridView
+    Friend WithEvents Panel1 As Panel
+    Friend WithEvents Label1 As Label
 End Class

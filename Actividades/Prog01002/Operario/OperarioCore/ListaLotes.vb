@@ -9,7 +9,7 @@ Public Class ListaLotes
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
         Cargar()
 
-        buscar.Text = Funciones_comunes.I18N("Buscar", Marco.Language)
+
         lote.Columns.Item(0).HeaderText = Funciones_comunes.I18N("ID Lote", Marco.Language)
         lote.Columns.Item(1).HeaderText = Funciones_comunes.I18N("Nombre del lote", Marco.Language)
 

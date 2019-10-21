@@ -82,6 +82,7 @@ Partial Class NuevoTipoDeMedio
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.nombre)
         Me.Controls.Add(Me.Label1)
+        Me.MinimizeBox = False
         Me.Name = "NuevoTipoDeMedio"
         Me.Text = "NuevoTipoDeMedio"
         Me.ResumeLayout(False)

@@ -155,12 +155,6 @@
     <Compile Include="Presentacion\PythonPanel.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Presentacion\ListaDeTrasportes.Designer.vb">
-      <DependentUpon>ListaDeTrasportes.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion\ListaDeTrasportes.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Presentacion\ListarClientes.Designer.vb">
       <DependentUpon>ListarClientes.vb</DependentUpon>
     </Compile>
@@ -215,18 +209,6 @@
     <Compile Include="Presentacion\PanelLugar.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Presentacion\PanelMedioDeTrasporte.Designer.vb">
-      <DependentUpon>PanelMedioDeTrasporte.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion\PanelMedioDeTrasporte.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion\PanelTrasporte.Designer.vb">
-      <DependentUpon>PanelTrasporte.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion\PanelTrasporte.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Presentacion\PrecargaMasiva.Designer.vb">
       <DependentUpon>PrecargaMasiva.vb</DependentUpon>
     </Compile>
@@ -256,9 +238,6 @@
     <EmbeddedResource Include="Presentacion\PythonPanel.resx">
       <DependentUpon>PythonPanel.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion\ListaDeTrasportes.resx">
-      <DependentUpon>ListaDeTrasportes.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\ListarClientes.resx">
       <DependentUpon>ListarClientes.vb</DependentUpon>
     </EmbeddedResource>
@@ -285,12 +264,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\PanelLugar.resx">
       <DependentUpon>PanelLugar.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion\PanelMedioDeTrasporte.resx">
-      <DependentUpon>PanelMedioDeTrasporte.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion\PanelTrasporte.resx">
-      <DependentUpon>PanelTrasporte.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\PrecargaMasiva.resx">
       <DependentUpon>PrecargaMasiva.vb</DependentUpon>

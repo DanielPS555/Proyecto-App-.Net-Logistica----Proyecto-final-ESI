@@ -99,6 +99,7 @@ Partial Class NuevoTrabajaEn
         Me.Controls.Add(Me.Buscar)
         Me.Controls.Add(Me.lugar)
         Me.Controls.Add(Me.Label2)
+        Me.MinimizeBox = False
         Me.Name = "NuevoTrabajaEn"
         Me.Text = "NuevoTrabajaEn"
         Me.ResumeLayout(False)

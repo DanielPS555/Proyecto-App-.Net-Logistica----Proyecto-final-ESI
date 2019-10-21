@@ -29,9 +29,11 @@ Partial Class PythonPanel
         '
         'outputBox
         '
+        Me.outputBox.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.outputBox.BackColor = System.Drawing.Color.White
         Me.outputBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.outputBox.Dock = System.Windows.Forms.DockStyle.Top
         Me.outputBox.Font = New System.Drawing.Font("Consolas", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.outputBox.Location = New System.Drawing.Point(0, 0)
         Me.outputBox.Name = "outputBox"
@@ -43,9 +45,10 @@ Partial Class PythonPanel
         'inputLine
         '
         Me.inputLine.AcceptsTab = True
+        Me.inputLine.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.inputLine.BackColor = System.Drawing.Color.MistyRose
         Me.inputLine.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.inputLine.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.inputLine.Font = New System.Drawing.Font("Consolas", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.inputLine.Location = New System.Drawing.Point(0, 527)
         Me.inputLine.Multiline = True
@@ -57,8 +60,9 @@ Partial Class PythonPanel
         '
         'insertButton
         '
+        Me.insertButton.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.insertButton.BackColor = System.Drawing.Color.DimGray
-        Me.insertButton.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.insertButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.insertButton.ForeColor = System.Drawing.Color.LightSalmon
         Me.insertButton.Location = New System.Drawing.Point(0, 464)

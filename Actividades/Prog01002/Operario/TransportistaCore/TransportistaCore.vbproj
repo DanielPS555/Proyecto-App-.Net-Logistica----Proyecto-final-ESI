@@ -128,22 +128,10 @@
     <Compile Include="PanelDeFalloEstatus.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PanelInfoLote.Designer.vb">
-      <DependentUpon>PanelInfoLote.vb</DependentUpon>
-    </Compile>
-    <Compile Include="PanelInfoLote.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="PanelMedioDeTrasporte.Designer.vb">
       <DependentUpon>PanelMedioDeTrasporte.vb</DependentUpon>
     </Compile>
     <Compile Include="PanelMedioDeTrasporte.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PanelTrasporte.Designer.vb">
-      <DependentUpon>PanelTrasporte.vb</DependentUpon>
-    </Compile>
-    <Compile Include="PanelTrasporte.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="PanelTrasporteEnAccion.Designer.vb">
@@ -184,14 +172,8 @@
     <EmbeddedResource Include="PanelDeFalloEstatus.resx">
       <DependentUpon>PanelDeFalloEstatus.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PanelInfoLote.resx">
-      <DependentUpon>PanelInfoLote.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="PanelMedioDeTrasporte.resx">
       <DependentUpon>PanelMedioDeTrasporte.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PanelTrasporte.resx">
-      <DependentUpon>PanelTrasporte.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PanelTrasporteEnAccion.resx">
       <DependentUpon>PanelTrasporteEnAccion.vb</DependentUpon>

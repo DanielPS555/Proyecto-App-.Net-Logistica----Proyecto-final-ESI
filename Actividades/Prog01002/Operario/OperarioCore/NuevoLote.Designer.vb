@@ -158,6 +158,7 @@ Partial Class NuevoLote
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(548, 554)
         Me.Controls.Add(Me.Panel1)
+        Me.MaximizeBox = False
         Me.Name = "NuevoLote"
         Me.Text = "S.T.L.A"
         Me.Panel1.ResumeLayout(False)

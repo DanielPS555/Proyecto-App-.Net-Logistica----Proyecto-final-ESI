@@ -2085,4 +2085,46 @@ where trabajaen.ID=?", Conexcion)
         Return com.ExecuteScalar
     End Function
 
+    Public Function idlugarPorIdsubzona(idlugar As Integer) As DataRow
+        Dim com As New OdbcCommand("select idlugar,geox,geoy from lugar where tipo in ('Patio','Puerto') and ? in (select unnamed_col_1 from table(subzonas_en_lugar(idlugar::integer)))", Conexcion)
+        com.CrearParametro(DbType.Int32, idlugar)
+        Dim dt As New DataTable
+        dt.Load(com.ExecuteReader)
+        Return dt.Rows(0)
+    End Function
+
+    Public Function linkDelTransportistaDeUnTransladoPorIdvehiculo(idvehiculo As Integer)
+        Dim com As New OdbcCommand("select link , nombredeusuario from vehiculo inner join integra on vehiculo.idvehiculo = integra.idvehiculo and integra.invalidado='f'
+                                    inner join lote on integra.Lote = lote.idlote
+                                    inner join transporta on transporta.idlote = lote.idlote
+                                    inner join transporte on transporta.transporteID = transporte.transporteID
+                                    inner join usuario on transporte.Usuario = usuario.idusuario
+                                    inner join link on usuario.idusuario = transportista
+                                    where transporta.estado='Proceso' and vehiculo.idvehiculo=?", Conexcion)
+        com.CrearParametro(DbType.Int32, idvehiculo)
+        Return com.ExecuteScalar
+    End Function
+
+
+    Public Function lugarEntregadoVehiculo(idvehiculo As Integer) As Integer
+        Dim com As New OdbcCommand("select count(lugar.idlugar) from transporta inner join lote on transporta.IDLote = lote.idlote
+                                    inner join lugar on lote.Destino = lugar.idlugar
+                                    inner join integra on integra.lote = lote.idlote
+                                    inner join vehiculo on vehiculo.idvehiculo = integra.IDVehiculo
+                                    where transporta.estado='Exitoso' and lugar.tipo='Establecimiento' and vehiculo.idvehiculo=?", Conexcion)
+        com.CrearParametro(DbType.Int32, idvehiculo)
+        If com.ExecuteScalar = 1 Then
+            Dim com2 As New OdbcCommand("select lugar.idlugar from transporta inner join lote on transporta.IDLote = lote.idlote
+                                    inner join lugar on lote.Destino = lugar.idlugar
+                                    inner join integra on integra.lote = lote.idlote
+                                    inner join vehiculo on vehiculo.idvehiculo = integra.IDVehiculo
+                                    where transporta.estado='Exitoso' and lugar.tipo='Establecimiento' and vehiculo.idvehiculo=?", Conexcion)
+            com2.CrearParametro(DbType.Int32, idvehiculo)
+            Return com2.ExecuteScalar
+        Else
+            Return -1
+        End If
+
+    End Function
+
 End Class

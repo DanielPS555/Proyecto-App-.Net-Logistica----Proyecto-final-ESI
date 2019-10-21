@@ -66,6 +66,9 @@ Partial Class panel
         '
         'listaDeLugares
         '
+        Me.listaDeLugares.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.listaDeLugares.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.listaDeLugares.Font = New System.Drawing.Font("Segoe UI Semilight", 15.0!)
         Me.listaDeLugares.ForeColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(119, Byte), Integer), CType(CType(184, Byte), Integer))
@@ -88,6 +91,7 @@ Partial Class panel
         '
         'Button1
         '
+        Me.Button1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Button1.BackColor = System.Drawing.Color.White
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button1.Font = New System.Drawing.Font("Segoe UI Semilight", 15.0!)
@@ -101,6 +105,7 @@ Partial Class panel
         '
         'Button2
         '
+        Me.Button2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button2.Font = New System.Drawing.Font("Segoe UI Semilight", 15.0!)
         Me.Button2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(168, Byte), Integer), CType(CType(30, Byte), Integer))
@@ -113,6 +118,7 @@ Partial Class panel
         '
         'Button4
         '
+        Me.Button4.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Button4.BackColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(140, Byte), Integer), CType(CType(217, Byte), Integer))
         Me.Button4.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(119, Byte), Integer), CType(CType(184, Byte), Integer))
         Me.Button4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(119, Byte), Integer), CType(CType(184, Byte), Integer))
@@ -128,6 +134,8 @@ Partial Class panel
         '
         'rutTextBox
         '
+        Me.rutTextBox.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.rutTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.rutTextBox.Font = New System.Drawing.Font("Segoe UI Semilight", 14.0!)
         Me.rutTextBox.Location = New System.Drawing.Point(136, 72)
@@ -137,6 +145,8 @@ Partial Class panel
         '
         'nombre
         '
+        Me.nombre.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.nombre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.nombre.Font = New System.Drawing.Font("Segoe UI Semilight", 14.0!)
         Me.nombre.Location = New System.Drawing.Point(136, 124)

@@ -31,9 +31,9 @@ Partial Class TiempoRealGooglePlex
         Me.Button1.BackColor = System.Drawing.Color.LightBlue
         Me.Button1.DialogResult = System.Windows.Forms.DialogResult.OK
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.Button1.Location = New System.Drawing.Point(715, 414)
+        Me.Button1.Location = New System.Drawing.Point(644, 414)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(73, 24)
+        Me.Button1.Size = New System.Drawing.Size(144, 24)
         Me.Button1.TabIndex = 0
         Me.Button1.Text = "Cerrar"
         Me.Button1.UseVisualStyleBackColor = False
@@ -57,6 +57,7 @@ Partial Class TiempoRealGooglePlex
         Me.Controls.Add(Me.WebBrowser1)
         Me.Controls.Add(Me.Button1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
+        Me.MinimizeBox = False
         Me.Name = "TiempoRealGooglePlex"
         Me.Text = "Posición actual"
         Me.ResumeLayout(False)

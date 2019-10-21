@@ -47,6 +47,8 @@ Partial Class NuevoLugar
         '
         'Label1
         '
+        Me.Label1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Segoe UI Semilight", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.Location = New System.Drawing.Point(10, 62)
@@ -57,6 +59,8 @@ Partial Class NuevoLugar
         '
         'nombreBox
         '
+        Me.nombreBox.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.nombreBox.Font = New System.Drawing.Font("Segoe UI Semilight", 14.25!)
         Me.nombreBox.Location = New System.Drawing.Point(117, 59)
         Me.nombreBox.Name = "nombreBox"
@@ -65,6 +69,8 @@ Partial Class NuevoLugar
         '
         'Label2
         '
+        Me.Label2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Segoe UI Semilight", 14.25!)
         Me.Label2.Location = New System.Drawing.Point(12, 143)
@@ -75,6 +81,8 @@ Partial Class NuevoLugar
         '
         'capacidad
         '
+        Me.capacidad.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.capacidad.Font = New System.Drawing.Font("Segoe UI Semilight", 14.25!)
         Me.capacidad.Location = New System.Drawing.Point(195, 141)
         Me.capacidad.Maximum = New Decimal(New Integer() {100000, 0, 0, 0})
@@ -84,6 +92,9 @@ Partial Class NuevoLugar
         '
         'mediosPermitidos
         '
+        Me.mediosPermitidos.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.mediosPermitidos.CheckOnClick = True
         Me.mediosPermitidos.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.mediosPermitidos.FormattingEnabled = True
@@ -94,6 +105,7 @@ Partial Class NuevoLugar
         '
         'GMapControl1
         '
+        Me.GMapControl1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GMapControl1.Bearing = 0!
         Me.GMapControl1.CanDragMap = True
         Me.GMapControl1.EmptyTileColor = System.Drawing.Color.Navy
@@ -120,6 +132,8 @@ Partial Class NuevoLugar
         '
         'TipoLugar
         '
+        Me.TipoLugar.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TipoLugar.Font = New System.Drawing.Font("Segoe UI Semilight", 14.25!)
         Me.TipoLugar.FormattingEnabled = True
         Me.TipoLugar.Location = New System.Drawing.Point(117, 98)
@@ -129,6 +143,8 @@ Partial Class NuevoLugar
         '
         'Label3
         '
+        Me.Label3.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Segoe UI Semilight", 14.25!)
         Me.Label3.Location = New System.Drawing.Point(12, 101)
@@ -139,6 +155,7 @@ Partial Class NuevoLugar
         '
         'VScrollBar1
         '
+        Me.VScrollBar1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.VScrollBar1.Location = New System.Drawing.Point(854, 12)
         Me.VScrollBar1.Name = "VScrollBar1"
         Me.VScrollBar1.Size = New System.Drawing.Size(17, 446)
@@ -146,6 +163,7 @@ Partial Class NuevoLugar
         '
         'HScrollBar1
         '
+        Me.HScrollBar1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.HScrollBar1.Location = New System.Drawing.Point(436, 461)
         Me.HScrollBar1.Name = "HScrollBar1"
         Me.HScrollBar1.Size = New System.Drawing.Size(415, 17)
@@ -153,6 +171,7 @@ Partial Class NuevoLugar
         '
         'buscarText
         '
+        Me.buscarText.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.buscarText.Font = New System.Drawing.Font("Segoe UI Semilight", 13.0!)
         Me.buscarText.Location = New System.Drawing.Point(436, 488)
         Me.buscarText.Name = "buscarText"
@@ -161,6 +180,7 @@ Partial Class NuevoLugar
         '
         'Button1
         '
+        Me.Button1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button1.Font = New System.Drawing.Font("Segoe UI Semilight", 13.0!)
         Me.Button1.Location = New System.Drawing.Point(765, 483)
@@ -182,6 +202,7 @@ Partial Class NuevoLugar
         '
         'zonasysubzonas
         '
+        Me.zonasysubzonas.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.zonasysubzonas.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.zonasysubzonas.Font = New System.Drawing.Font("Segoe UI Semilight", 13.0!)
         Me.zonasysubzonas.Location = New System.Drawing.Point(8, 538)
@@ -193,6 +214,7 @@ Partial Class NuevoLugar
         '
         'CrearButton
         '
+        Me.CrearButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.CrearButton.BackColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(140, Byte), Integer), CType(CType(217, Byte), Integer))
         Me.CrearButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.CrearButton.Font = New System.Drawing.Font("Segoe UI Semilight", 15.0!)
@@ -206,6 +228,7 @@ Partial Class NuevoLugar
         '
         'estadozonas
         '
+        Me.estadozonas.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.estadozonas.AutoSize = True
         Me.estadozonas.Font = New System.Drawing.Font("Segoe UI Semilight", 14.25!)
         Me.estadozonas.ForeColor = System.Drawing.Color.FromArgb(CType(CType(180, Byte), Integer), CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer))
@@ -217,6 +240,7 @@ Partial Class NuevoLugar
         '
         'cancelar
         '
+        Me.cancelar.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.cancelar.BackColor = System.Drawing.Color.FromArgb(CType(CType(180, Byte), Integer), CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer))
         Me.cancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cancelar.Font = New System.Drawing.Font("Segoe UI Semilight", 15.0!)
@@ -231,6 +255,8 @@ Partial Class NuevoLugar
         '
         'Label5
         '
+        Me.Label5.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Segoe UI Semilight", 14.25!)
         Me.Label5.Location = New System.Drawing.Point(12, 191)
@@ -241,6 +267,8 @@ Partial Class NuevoLugar
         '
         'dueños
         '
+        Me.dueños.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dueños.Font = New System.Drawing.Font("Segoe UI Semilight", 14.25!)
         Me.dueños.FormattingEnabled = True
         Me.dueños.Location = New System.Drawing.Point(117, 188)

@@ -289,6 +289,18 @@
     <Compile Include="Presentacion_comun\PanelCSV.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Presentacion_comun\PanelInfoLote.Designer.vb">
+      <DependentUpon>PanelInfoLote.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion_comun\PanelInfoLote.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion_comun\PanelTrasporte.Designer.vb">
+      <DependentUpon>PanelTrasporte.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion_comun\PanelTrasporte.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Presentacion_comun\Principal.Designer.vb">
       <DependentUpon>Principal.vb</DependentUpon>
     </Compile>
@@ -375,6 +387,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion_comun\PanelCSV.resx">
       <DependentUpon>PanelCSV.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion_comun\PanelInfoLote.resx">
+      <DependentUpon>PanelInfoLote.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion_comun\PanelTrasporte.resx">
+      <DependentUpon>PanelTrasporte.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion_comun\Principal.resx">
       <DependentUpon>Principal.vb</DependentUpon>

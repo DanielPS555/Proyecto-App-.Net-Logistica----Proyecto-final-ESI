@@ -11,6 +11,7 @@
             .Size = New Drawing.Size(574, 560),
             .Location = New Point(250, 12)
         }
+        alfa.Anchor = (AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right Or AnchorStyles.Bottom)
         Me.Controls.Add(alfa)
         Me.Update()
 
@@ -47,7 +48,7 @@
         Dim videoEvent As Evento = Nothing
         ' Si no asignamos = nothing se queja de que no tiene asignación, a pesar de que (teoréticamente) al ser un lenguaje GC la asignación por defecto debería ser nothing
         For Each m In newMsgs
-            alfa.Nuevo(m, False)
+            alfa.Nuevo(m, False, True)
             If m.Datos.ContainsKey("video") AndAlso m.Datos("autor") <> Fachada.getInstancia.DevolverUsuarioActual.ID_usuario Then
                 videoEvent = m
             End If
