@@ -38,7 +38,7 @@
             Dim notifi As New Notificacion(Notificacion.TIPO_NOTIFICACION_NUEVO_TRABAJAEN) With {.Fecha = DateTime.Now,
                                                                                             .Ref1 = id,
                                                                                             .Ref2 = Fachada.getInstancia.DevolverUsuarioActual.ID_usuario}
-            Fachada.getInstancia.NuevoNotificacion(notifi)
+            Fachada.getInstancia.NuevaNotificacion(notifi)
             actualizacion.actualizarPanel()
             MsgBox("Ingrezado con exito", MsgBoxStyle.Information)
 

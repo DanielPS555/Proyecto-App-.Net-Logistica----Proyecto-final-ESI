@@ -14,9 +14,21 @@ Public Class SUB_Notificacion
                 Dim user As Usuario = Controladores.Fachada.getInstancia.InformacionBasicaUsuario(Integer.Parse(n.Ref1))
                 nom.Text = $"Nuevo usuario: {user.NombreDeUsuario}"
                 sec.Text = $"Creado por {user.Creador.Nombre}"
+            Case Notificacion.TIPO_NOTIFICACION_NUEVO_LUGAR
+                Dim user As Usuario = Controladores.Fachada.getInstancia.InformacionBasicaUsuario(Integer.Parse(n.Ref2))
+                nom.Text = $"Nuevo Lugar: {Controladores.Fachada.getInstancia.informacionBaseDelLugarPorIdlugar(n.Ref1).Nombre}"
+                sec.Text = $"Creado por {user.NombreDeUsuario}"
             Case Notificacion.TIPO_NOTIFICACION_NUEVO_MEDIO
-                nom.Text = $"Nuevo Medio: {n.Ref2}"
+                nom.Text = $"Nuevo Medio {n.Ref2}"
                 sec.Text = $"Tipo {Fachada.getInstancia.NombreTIpoMedioPorId(Integer.Parse(n.Ref1))}"
+            Case Notificacion.TIPO_NOTIFICACION_NUEVO_ALTA
+                nom.Text = $"Nueva alta del Vin: {Controladores.Fachada.getInstancia.VinPorIdvehiculo(n.Ref1)}"
+                Dim user As Usuario = Controladores.Fachada.getInstancia.InformacionBasicaUsuario(Integer.Parse(n.Ref2))
+                sec.Text = $"hecho por {user.NombreDeUsuario}"
+            Case Notificacion.TIPO_NOTIFICACION_NUEVA_ENTREGA
+                nom.Text = $"Los lotes del transporte: {n.Ref1} fuero entregados"
+                Dim user As Usuario = Controladores.Fachada.getInstancia.InformacionBasicaUsuario(Integer.Parse(n.Ref2))
+                sec.Text = $"hecho por {user.NombreDeUsuario}"
             Case Notificacion.TIPO_NOTIFICACION_NUEVO_TRABAJAEN
                 Dim ttr As TrabajaEn = Fachada.getInstancia.NombreLugarYNombreUsuarioPorIdtrabajaen(Integer.Parse(n.Ref1))
                 nom.Text = $"Usuario: {ttr.Usuario.NombreDeUsuario} Asignado a {ttr.Lugar.Nombre}"
@@ -26,7 +38,19 @@ Public Class SUB_Notificacion
                 nom.Text = $"Cambio de distribucion del lugar {Fachada.getInstancia.nombreLugarPoridlugar(n.Ref1)}"
                 Dim user As Usuario = Controladores.Fachada.getInstancia.InformacionBasicaUsuario(Integer.Parse(n.Ref2))
                 sec.Text = $"hecho por {user.NombreDeUsuario}"
-
+            Case Notificacion.TIPO_NOTIFICACION_NUEVO_PERMITE
+                Dim user1 As Usuario = Controladores.Fachada.getInstancia.InformacionBasicaUsuario(Integer.Parse(n.Ref1))
+                nom.Text = $"Se ha habilitado el usuario {user1.NombreDeUsuario} al medio {n.Ref3}"
+                Dim user As Usuario = Controladores.Fachada.getInstancia.InformacionBasicaUsuario(Integer.Parse(n.Ref2))
+                sec.Text = $"Tipo {Fachada.getInstancia.NombreTIpoMedioPorId(Integer.Parse(n.Ref2))}"
+            Case Notificacion.TIPO_NOTIFICACION_TRANSPORTE_FALLIDO
+                nom.Text = $"Transporte :{n.Ref2} fallido"
+                Dim user As Usuario = Controladores.Fachada.getInstancia.InformacionBasicaUsuario(Integer.Parse(n.Ref1))
+                sec.Text = $"Transportado por {user.NombreDeUsuario}"
+            Case Notificacion.TIPO_NOTIFICACION_ANULACION_TRANSPORTE
+                nom.Text = $"Anulacion transporte id:{n.Ref1}"
+                Dim user As Usuario = Controladores.Fachada.getInstancia.InformacionBasicaUsuario(Integer.Parse(n.Ref2))
+                sec.Text = $"hecho por {user.NombreDeUsuario}"
         End Select
         fecha.Text = n.Fecha.ToString("HHmm:ss dd-MMMM-yyyy")
         tamañoDuplicado = Me.Height

@@ -69,6 +69,6 @@
     End Sub
 
     Private Sub PanelDeFalloEstatus_FormClosing(sender As Object, e As Windows.Forms.FormClosingEventArgs) Handles MyBase.FormClosing
-        e.Cancel = aceptar.Enabled
+        e.Cancel = Not aceptar.Enabled
     End Sub
 End Class

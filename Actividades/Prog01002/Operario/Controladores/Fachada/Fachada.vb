@@ -312,17 +312,20 @@ Public Class Fachada
         If LugarID < 0 Then
             Return Nothing
         End If
-        For Each z In Zonas
-            Dim zonaId = Persistencia.getInstancia.CrearZona(LugarID, z.Nombre, z.Capacidad)
-            If zonaId < 0 Then
-                Throw New InvalidStateException(Of Integer)("El sistema permitió crear un lugar pero no permitió crear una zona", LugarID)
-            End If
-            For Each sz In z.Subzonas
-                If Persistencia.getInstancia.CrearSubzona(zonaId, sz.Nombre, sz.Capasidad) < 0 Then
-                    Throw New InvalidStateException(Of Integer)("El sistema permitió crear un lugar pero no permitió crear una subzona", LugarID)
+        If Zonas IsNot Nothing Then
+            For Each z In Zonas
+                Dim zonaId = Persistencia.getInstancia.CrearZona(LugarID, z.Nombre, z.Capacidad)
+                If zonaId < 0 Then
+                    Throw New InvalidStateException(Of Integer)("El sistema permitió crear un lugar pero no permitió crear una zona", LugarID)
                 End If
+                For Each sz In z.Subzonas
+                    If Persistencia.getInstancia.CrearSubzona(zonaId, sz.Nombre, sz.Capasidad) < 0 Then
+                        Throw New InvalidStateException(Of Integer)("El sistema permitió crear un lugar pero no permitió crear una subzona", LugarID)
+                    End If
+                Next
             Next
-        Next
+        End If
+
         If cliente IsNot Nothing Then
             Persistencia.getInstancia.insertPerteneceA(LugarID, cliente.IDCliente)
         End If
@@ -977,11 +980,22 @@ Public Class Fachada
     Public Function estadoDeUnTrasporte(idtrasporte As Integer)
         Dim estados As DataTable = Persistencia.getInstancia.EstadosDeUnTrasporte(idtrasporte)
         If estados.Rows(0).Item(1) = Trasporte.TIPO_ESTADO_PROSESO AndAlso estados.Rows(0).Item(0) > 0 Then
-            Return "En proseso"
+            Return Trasporte.TIPO_ESTADO_PROSESO
         ElseIf estados.Rows(0).Item(1) = Trasporte.TIPO_ESTADO_FALLO AndAlso estados.Rows(0).Item(0) > 0 Then
-            Return "Fallido"
+            Return Trasporte.TIPO_ESTADO_FALLO
         Else
-            Return "Exitoso"
+            Dim j As Boolean = True
+            For Each e As DataRow In estados.Rows
+                If e.Item(1).Equals(Trasporte.TIPO_ESTADO_CANCELADO) Then
+                    j = False
+                End If
+            Next
+            If j Then
+                Return Trasporte.TIPO_ESTADO_EXISTOSO
+            Else
+                Return Trasporte.TIPO_ESTADO_CANCELADO
+            End If
+
         End If
     End Function
 
@@ -1350,13 +1364,13 @@ Public Class Fachada
         Dim notificacion As New Notificacion(Notificacion.TIPO_NOTIFICACION_NUEVO_MEDIO) With {.Fecha = DateTime.Now,
                                                                                               .Ref1 = medio.Tipo.ID,
                                                                                               .Ref2 = medio.ID}
-        NuevoNotificacion(notificacion)
+        NuevaNotificacion(notificacion)
         For Each r As DataRow In Persistencia.getInstancia.TodosLosAdministradoresDelSistemaSinPermiteEnUnMedio(medio.Tipo.ID, medio.ID).Rows
             Persistencia.getInstancia.InsertPermite(r.Item(0), medio.Tipo.ID, medio.ID, False)
         Next
     End Sub
 
-    Public Sub NuevoNotificacion(notifi As Notificacion)
+    Public Sub NuevaNotificacion(notifi As Notificacion)
         Dim json As New Dictionary(Of String, Object)
         json("tipo") = notifi.Tipo
         json("ref") = notifi.Ref1
@@ -1367,7 +1381,20 @@ Public Class Fachada
             json("ref3") = notifi.Ref3
         End If
 
-        Persistencia.getInstancia.InsertNotificacion(json, DateTime.Now)
+        Persistencia.getInstancia.InsertEvento(json, DateTime.Now)
+    End Sub
+
+    Public Sub CancelacionAbrutctaTransporte(transporte As Controladores.Trasporte)
+
+        Persistencia.getInstancia.CancelarTodosLosTransportaPorIdTransporte(transporte.ID)
+
+        Dim json As New Dictionary(Of String, Object)
+        json("tipo") = "TCA"
+        json("ref") = transporte.ID
+        json("ref2") = Fachada.getInstancia.DevolverUsuarioActual.ID_usuario
+
+
+        Persistencia.getInstancia.InsertEvento(json, DateTime.Now)
     End Sub
 
     Public Function ListaDeTodasLasNotificacionesDelSistema(rol As Char) As List(Of Notificacion)
@@ -1557,6 +1584,18 @@ Public Class Fachada
             Return New PointF(lugar.Item(1), lugar.Item(2))
         End If
 
+    End Function
+
+    Public Function comprobarCancelacionTransporte(idtransporte As Integer) As Boolean
+        Return Persistencia.getInstancia.verificarAnulacionTransporte(idtransporte) = 1
+    End Function
+
+    Public Function linkTransportistaPorIdTransporte(idtransporte As Integer) As String
+        Return Persistencia.getInstancia.linkTransportistaPorIdTransporte(idtransporte)
+    End Function
+
+    Public Function VinPorIdvehiculo(idvehiculo As Integer)
+        Return Persistencia.getInstancia.vinporidvehiculo(idvehiculo)
     End Function
 
 

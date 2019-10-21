@@ -1,5 +1,6 @@
 ﻿Imports System.Globalization
 Imports System.IO
+Imports System.Net
 Imports System.Resources
 Imports Controladores.Extenciones.Extensiones
 Public Class Funciones_comunes
@@ -62,7 +63,7 @@ Public Class Funciones_comunes
         End If
         Dim dict = Array.IndexOf(Languages, toLang)
 
-            If dict = 0 Then
+        If dict = 0 Then
             Return SourceDictionary(iHash)
         ElseIf dict > 0 Then
             Return TargetDictionary(Languages(dict))(iHash)
@@ -321,6 +322,16 @@ Public Class Funciones_comunes
         Return True
     End Function
 
+    Public Shared Function URLExist(url As String) As Boolean
+        Try
+            Dim req As WebRequest = WebRequest.Create(url)
 
+            Dim res As WebResponse = req.GetResponse()
+
+            Return True
+        Catch ex As WebException
+            Return False
+        End Try
+    End Function
 
 End Class

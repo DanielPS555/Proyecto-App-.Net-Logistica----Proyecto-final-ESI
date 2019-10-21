@@ -212,7 +212,7 @@
                 If MsgBox("Al no haber nigun vehiculo asignado en dicho lugar se puede realizar la modificacion directamente, ¿Desea continuar?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
                     Controladores.Fachada.getInstancia.ActualizarLugar(lugarviejo, lugar, Nothing)
                     Dim n As New Controladores.Notificacion(Controladores.Notificacion.TIPO_NOTIFICACION_CAMBIO_DISTIBUCION_LUGAR) With {.Ref1 = lugarviejo.IDLugar, .Ref2 = Controladores.Fachada.getInstancia.DevolverUsuarioActual.ID_usuario, .Fecha = DateTime.Now}
-                    Controladores.Fachada.getInstancia.NuevoNotificacion(n)
+                    Controladores.Fachada.getInstancia.NuevaNotificacion(n)
                     MsgBox("Cambios realizados con exito", MsgBoxStyle.Information)
                     Controladores.Marco.getInstancia.CargarPanel(Of OperarioCore.ListaZonas)(New OperarioCore.ListaZonas(lugarviejo.IDLugar))
                 End If

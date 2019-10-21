@@ -4,8 +4,6 @@ Imports Controladores
 Imports GMap.NET
 Imports GMap.NET.MapProviders
 
-
-
 Public Class panelInfoVehiculo
     Implements NotificacionLote
 
@@ -595,8 +593,12 @@ Public Class panelInfoVehiculo
         ElseIf estadoultimo IsNot Nothing AndAlso (estadoultimo.Equals(Trasporte.TIPO_ESTADO_PROSESO)) Then
             Dim link As String = Controladores.Fachada.getInstancia.linkTransportistaPortransporteIdvehiculo(vehiculo.IdVehiculo)
             If link IsNot Nothing Then
-                Dim ss As New Controladores.TiempoRealGooglePlex(link)
-                ss.ShowDialog()
+                If Controladores.Funciones_comunes.URLExist(link) Then
+                    Dim ss As New Controladores.TiempoRealGooglePlex(link)
+                    ss.ShowDialog()
+                Else
+                    MsgBox("La direcion URL no es valida", MsgBoxStyle.Critical)
+                End If
             Else
                 MsgBox("El transportista no tiene link de rastreo activo. No se puede mostrar su ubicacion", MsgBoxStyle.Critical)
             End If

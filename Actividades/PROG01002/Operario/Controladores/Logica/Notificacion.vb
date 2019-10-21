@@ -3,7 +3,6 @@
     Public Shared ReadOnly TIPO_NOTIFICACION_NUEVO_LUGAR = "NL"
     Public Shared ReadOnly TIPO_NOTIFICACION_NUEVO_MEDIO = "NM"
     Public Shared ReadOnly TIPO_NOTIFICACION_NUEVO_ALTA = "NA"
-    Public Shared ReadOnly TIPO_NOTIFICACION_INTENTO_ALTA_CON_MAL_VIN = "IA"
     Public Shared ReadOnly TIPO_NOTIFICACION_CAMBIO_DISTIBUCION_LUGAR = "CL"
     Public Shared ReadOnly TIPO_NOTIFICACION_NUEVA_ENTREGA = "NE"
     Public Shared ReadOnly TIPO_NOTIFICACION_NUEVO_PERDIDA = "NP"
@@ -12,6 +11,7 @@
     Public Shared ReadOnly TIPO_NOTIFICACION_NUEVO_PERMITE = "AM"
     Public Shared ReadOnly TIPO_NOTIFICACION_TRANSPORTE_FALLIDO = "TF"
     Public Shared ReadOnly TIPO_NOTIFICACION_GENERICO = "GEN"
+    Public Shared ReadOnly TIPO_NOTIFICACION_ANULACION_TRANSPORTE = "TCA"
 
 
     Private _tipo As String

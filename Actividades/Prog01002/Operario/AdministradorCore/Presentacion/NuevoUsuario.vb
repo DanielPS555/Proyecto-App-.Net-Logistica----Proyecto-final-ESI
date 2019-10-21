@@ -122,7 +122,7 @@ Public Class NuevoUsuario
             Controladores.Fachada.getInstancia.habilitadTodosLosMediosPorIdUsuario(iduser)
         End If
         Dim notifi As New Controladores.Notificacion(Controladores.Notificacion.TIPO_NOTIFICACION_NUEVO_USUARIO) With {.Ref1 = iduser}
-        Controladores.Fachada.getInstancia.NuevoNotificacion(notifi)
+        Controladores.Fachada.getInstancia.NuevaNotificacion(notifi)
         MsgBox("Usuario ingresado con exito", MsgBoxStyle.Information)
         Controladores.Marco.getInstancia.CargarPanel(Of ListarUsuario)(New ListarUsuario)
 

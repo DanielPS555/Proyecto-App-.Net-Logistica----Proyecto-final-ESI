@@ -166,7 +166,7 @@
         If MsgBox("Esta modificacion realizara grandes modificaciones en el sistema ¿Esta seguro que desea continuar?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
             Controladores.Fachada.getInstancia.ActualizarLugar(lugar_antigo, lugar_nuevo, posiciones)
             Dim n As New Controladores.Notificacion(Controladores.Notificacion.TIPO_NOTIFICACION_CAMBIO_DISTIBUCION_LUGAR) With {.Ref1 = lugar_antigo.IDLugar, .Ref2 = Controladores.Fachada.getInstancia.DevolverUsuarioActual.ID_usuario, .Fecha = DateTime.Now}
-            Controladores.Fachada.getInstancia.NuevoNotificacion(n)
+            Controladores.Fachada.getInstancia.NuevaNotificacion(n)
             MsgBox("Cambios realizados con exito", MsgBoxStyle.Information)
             Controladores.Marco.getInstancia.CargarPanel(Of OperarioCore.ListaZonas)(New OperarioCore.ListaZonas(lugar_antigo.IDLugar))
         End If

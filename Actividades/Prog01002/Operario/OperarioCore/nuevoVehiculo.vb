@@ -290,6 +290,9 @@ Public Class NuevoVehiculo
                                                   .IngresadoPor = Fachada.getInstancia.DevolverUsuarioActual,
                                                   .Desde = DateTime.Now,
                                                   .Vehiculo = Vehiculo}, False)
+        Dim noti As New Notificacion(Notificacion.TIPO_NOTIFICACION_NUEVO_ALTA) With {.Ref1 = Fachada.getInstancia.DevolverUsuarioActual.ID_usuario,
+                                                                                        .Ref2 = Vehiculo.IdVehiculo}
+        Controladores.Fachada.getInstancia.NuevaNotificacion(noti)
         Marco.getInstancia.CargarPanel(New ListaVehiculos)
         Me.Dispose()
     End Sub

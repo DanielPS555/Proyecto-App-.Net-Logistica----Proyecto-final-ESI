@@ -12,20 +12,22 @@
                 tiposElementos.Add(New Tuple(Of String, String)(Notificacion.TIPO_NOTIFICACION_NUEVO_TRABAJAEN, "Nueva lugar de trabajo para operario"))
             Case Usuario.TIPO_ROL_ADMINISTRADOR
                 tiposElementos.Add(New Tuple(Of String, String)(Notificacion.TIPO_NOTIFICACION_CAMBIO_DISTIBUCION_LUGAR, "Cambio de lugar"))
-                tiposElementos.Add(New Tuple(Of String, String)(Notificacion.TIPO_NOTIFICACION_NUEVO_TRABAJAEN, "Nueva lugar de trabajo para operario"))
+                tiposElementos.Add(New Tuple(Of String, String)(Notificacion.TIPO_NOTIFICACION_NUEVO_TRABAJAEN, "Nuevo lugar de trabajo para operario"))
                 tiposElementos.Add(New Tuple(Of String, String)(Notificacion.TIPO_NOTIFICACION_GENERICO, "Genericos"))
-                tiposElementos.Add(New Tuple(Of String, String)(Notificacion.TIPO_NOTIFICACION_INTENTO_ALTA_CON_MAL_VIN, "Intento fallido de alta"))
                 tiposElementos.Add(New Tuple(Of String, String)(Notificacion.TIPO_NOTIFICACION_NUEVA_ANULACION, "Nueva anulacion"))
                 tiposElementos.Add(New Tuple(Of String, String)(Notificacion.TIPO_NOTIFICACION_NUEVA_ENTREGA, "Nueva entrega"))
                 tiposElementos.Add(New Tuple(Of String, String)(Notificacion.TIPO_NOTIFICACION_NUEVO_ALTA, "Nueva alta"))
-                tiposElementos.Add(New Tuple(Of String, String)(Notificacion.TIPO_NOTIFICACION_NUEVO_LUGAR, "Nueva Lugar"))
-                tiposElementos.Add(New Tuple(Of String, String)(Notificacion.TIPO_NOTIFICACION_NUEVO_MEDIO, "Nueva Medio"))
+                tiposElementos.Add(New Tuple(Of String, String)(Notificacion.TIPO_NOTIFICACION_NUEVO_LUGAR, "Nuevo Lugar"))
+                tiposElementos.Add(New Tuple(Of String, String)(Notificacion.TIPO_NOTIFICACION_NUEVO_MEDIO, "Nuevo Medio"))
                 tiposElementos.Add(New Tuple(Of String, String)(Notificacion.TIPO_NOTIFICACION_NUEVO_PERDIDA, "Nueva Perdida"))
-                tiposElementos.Add(New Tuple(Of String, String)(Notificacion.TIPO_NOTIFICACION_NUEVO_USUARIO, "Nueva usuario"))
+                tiposElementos.Add(New Tuple(Of String, String)(Notificacion.TIPO_NOTIFICACION_NUEVO_USUARIO, "Nuevo usuario"))
+                tiposElementos.Add(New Tuple(Of String, String)(Notificacion.TIPO_NOTIFICACION_ANULACION_TRANSPORTE, "Anulacion transporte"))
                 tiposElementos.Add(New Tuple(Of String, String)(Notificacion.TIPO_NOTIFICACION_GENERICO, "Generica"))
+                tiposElementos.Add(New Tuple(Of String, String)(Notificacion.TIPO_NOTIFICACION_TRANSPORTE_FALLIDO, "Transporte fallidos"))
+                tiposElementos.Add(New Tuple(Of String, String)(Notificacion.TIPO_NOTIFICACION_NUEVO_PERMITE, "Nuevo Permite"))
             Case Usuario.TIPO_ROL_TRANSPORTISTA
                 tiposElementos.Add(New Tuple(Of String, String)(Notificacion.TIPO_NOTIFICACION_TRANSPORTE_FALLIDO, "Transporte fallidos"))
-                tiposElementos.Add(New Tuple(Of String, String)(Notificacion.TIPO_NOTIFICACION_NUEVO_PERMITE, "Nueva Permite"))
+                tiposElementos.Add(New Tuple(Of String, String)(Notificacion.TIPO_NOTIFICACION_NUEVO_PERMITE, "Nuevo Permite"))
         End Select
 
         For Each t In tiposElementos

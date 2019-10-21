@@ -35,6 +35,12 @@
         End If
 
         Controladores.Fachada.getInstancia.NuevoPermite(ListaMedios.Item(medios.SelectedIndex), usuario)
+
+        Dim noti As New Notificacion(Notificacion.TIPO_NOTIFICACION_NUEVO_PERMITE) With {.Ref1 = Fachada.getInstancia.DevolverUsuarioActual.ID_usuario,
+                                                                                        .Ref2 = ListaMedios.Item(medios.SelectedIndex).Tipo.ID,
+                                                                                        .Ref3 = ListaMedios.Item(medios.SelectedIndex).ID}
+        Fachada.getInstancia.NuevaNotificacion(noti)
+
         papa.actualizarPanel()
         MsgBox("Permite ingrezado con exito")
         Me.Close()

@@ -171,13 +171,19 @@ Public Class Lista_de_trasportes
         If lotesElegidos.Any(Function(x) x.Prioridad = Lote.TIPO_PRIORIDAD_ALTA) Then
             Dim loteFallido = lotes.First(Function(x) x.Prioridad = Lote.TIPO_PRIORIDAD_ALTA)
             Extenciones.MsgBoxI18N("Uno de sus lotes era un lote fallido, por ende se mostrará la posición actual del mismo")
-            Dim curPos = New TiempoRealGooglePlex(Fachada.getInstancia.TransporteFallido(loteFallido))
-            curPos.ShowDialog()
-        End If
+            Dim url = Fachada.getInstancia.TransporteFallido(loteFallido)
+            If Controladores.Funciones_comunes.URLExist(url) Then
+                Dim curPos = New TiempoRealGooglePlex(url)
+                curPos.ShowDialog()
+            Else
+                MsgBox("Link del transportista invalido, comuniquese con administrador para ubicar al transportista", MsgBoxStyle.Critical)
+            End If
 
-        If auto > medioSelecionado.CantAutos OrElse camion > medioSelecionado.CantCamiones OrElse van > medioSelecionado.CantVAN OrElse minivan > medioSelecionado.CantMiniVan OrElse suv > medioSelecionado.CantSUV Then
-            MsgBox("La capasidad del medio no es suficiente para el transporte de lotes selecionado", MsgBoxStyle.Critical)
-            Return
+            If auto > medioSelecionado.CantAutos OrElse camion > medioSelecionado.CantCamiones OrElse van > medioSelecionado.CantVAN OrElse minivan > medioSelecionado.CantMiniVan OrElse suv > medioSelecionado.CantSUV Then
+                MsgBox("La capasidad del medio no es suficiente para el transporte de lotes selecionado", MsgBoxStyle.Critical)
+                Return
+            End If
+
         End If
 
         'COMPROBACION 4: COMPROBAR QUE LOS LOTES SIGAN DISPONBLES

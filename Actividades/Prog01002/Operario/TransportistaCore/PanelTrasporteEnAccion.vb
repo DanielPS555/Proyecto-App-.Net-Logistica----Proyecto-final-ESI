@@ -19,6 +19,7 @@ Public Class PanelTrasporteEnAccion
         Marco.getInstancia.cerrarPanel(Of PanelTrasporteEnAccion)()
         CargarPanales()
         crearTransporte()
+        Timer2.Start()
     End Sub
 
     Private Sub crearTransporte()
@@ -45,6 +46,10 @@ Public Class PanelTrasporteEnAccion
     End Sub
 
     Private Sub ListaDestinos_ItemCheck(sender As Object, e As ItemCheckEventArgs) Handles ListaDestinos.ItemCheck
+        If verificarcancelacion() Then
+            Return
+        End If
+
         If e.CurrentValue = CheckState.Checked Then
             e.NewValue = CheckState.Checked
             MsgBox("Los lotes de dicho destino ya fueron entregados", MsgBoxStyle.Critical)
@@ -63,6 +68,8 @@ Public Class PanelTrasporteEnAccion
                     tiempo1.Stop()
                     Marco.getInstancia.Desbloquear()
                     MsgBox("Todos los lotes han sido entregados, entonces el transporte se da por finalizado")
+                    Dim noti As New Notificacion(Notificacion.TIPO_NOTIFICACION_NUEVA_ENTREGA) With {.Ref1 = transporte.ID, .Ref2 = Controladores.Fachada.getInstancia.DevolverUsuarioActual.ID_usuario}
+                    Controladores.Fachada.getInstancia.NuevaNotificacion(noti)
                     Marco.getInstancia.CargarPanel(Of Lista_de_trasportes)(New Lista_de_trasportes)
                     Me.Close()
                     Me.Dispose()
@@ -77,6 +84,10 @@ Public Class PanelTrasporteEnAccion
     End Sub
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click 'DevolverPosicionActual
+        If verificarcancelacion() Then
+            Return
+        End If
+
         Controladores.Fachada.getInstancia.comenzarTransporte(transporte)
         For Each su As ContenedorLote In listaDeSUBLote
             For Each l As Controladores.Lote In su.Lotes
@@ -95,6 +106,10 @@ Public Class PanelTrasporteEnAccion
 
     Private Sub Cancelar_Click(sender As Object, e As EventArgs) Handles cancelar.Click
         'CAMBIAR EL TEXTO A TERMINADO
+
+        If verificarcancelacion() Then
+            Return
+        End If
 
         If MsgBox("¿Esta seguro que desea cancelar el transporte?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
             For Each l As ContenedorLote In listaDeSUBLote
@@ -115,8 +130,7 @@ Public Class PanelTrasporteEnAccion
         End If
         Marco.getInstancia.CargarPanel(Of Lista_de_trasportes)(New Lista_de_trasportes)
         Marco.getInstancia.Desbloquear()
-        Me.Close()
-        Me.Dispose()
+
     End Sub
 
     Private Sub Tiempo1_Tick(sender As Object, e As EventArgs) Handles tiempo1.Tick
@@ -124,6 +138,10 @@ Public Class PanelTrasporteEnAccion
     End Sub
 
     Private Sub emergencia_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles emergencia.LinkClicked
+        If verificarcancelacion() Then
+            Return
+        End If
+
         If MsgBox("¿Esta seguro que desea reportar un fallo que imposibilite?, Si ingresa que si estos lotes seran publicados para demas transportitas. NO PODRA CANCELAR", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
 
             If Fachada.getInstancia.FalloTransporte(transporte) Then
@@ -135,6 +153,8 @@ Public Class PanelTrasporteEnAccion
                         Next
                     End If
                 Next
+                Dim noti As New Notificacion(Notificacion.TIPO_NOTIFICACION_TRANSPORTE_FALLIDO) With {.Ref2 = transporte.ID, .Ref1 = Controladores.Fachada.getInstancia.DevolverUsuarioActual.ID_usuario}
+                Controladores.Fachada.getInstancia.NuevaNotificacion(noti)
                 Dim d As New PanelDeFalloEstatus(lotes, transporte)
                 d.ShowDialog()
 
@@ -148,6 +168,22 @@ Public Class PanelTrasporteEnAccion
 
     End Sub
 
+    Private Sub Timer2_Tick(sender As Object, e As EventArgs) Handles Timer2.Tick
+        verificarcancelacion()
+    End Sub
+
+    Private Function verificarcancelacion()
+        If Controladores.Fachada.getInstancia.comprobarCancelacionTransporte(transporte.ID) Then
+            Timer2.Stop()
+            tiempo1.Stop()
+            MsgBox("Su transporte ha sido cancelado por un administrador", MsgBoxStyle.Critical)
+            Marco.getInstancia.CargarPanel(Of Lista_de_trasportes)(New Lista_de_trasportes)
+            Marco.getInstancia.Desbloquear()
+            Marco.getInstancia.cerrarPanel(Of PanelTrasporteEnAccion)()
+            Return True
+        End If
+        Return False
+    End Function
 
 End Class
 

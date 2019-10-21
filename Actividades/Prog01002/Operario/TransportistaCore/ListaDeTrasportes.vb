@@ -22,6 +22,6 @@ Public Class ListaDeTrasportes
         If e.RowIndex = -1 Then
             Return
         End If
-        Marco.getInstancia.CargarPanel(Of PanelTrasporte)(New PanelTrasporte(lista.Rows(e.RowIndex).Item(0)))
+        Marco.getInstancia.CargarPanel(Of PanelTrasporte)(New PanelTrasporte(trasportes.Rows(e.RowIndex).Cells(0).Value))
     End Sub
 End Class

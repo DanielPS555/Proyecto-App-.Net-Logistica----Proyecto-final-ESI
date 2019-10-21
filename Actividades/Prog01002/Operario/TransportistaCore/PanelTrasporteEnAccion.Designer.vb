@@ -35,6 +35,7 @@ Partial Class PanelTrasporteEnAccion
         Me.finalizacionEstimada = New System.Windows.Forms.Label()
         Me.ListaDestinos = New System.Windows.Forms.CheckedListBox()
         Me.tiempo1 = New System.Windows.Forms.Timer(Me.components)
+        Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
         Me.SuspendLayout()
         '
         'Label1
@@ -170,6 +171,10 @@ Partial Class PanelTrasporteEnAccion
         '
         Me.tiempo1.Interval = 500
         '
+        'Timer2
+        '
+        Me.Timer2.Interval = 10000
+        '
         'PanelTrasporteEnAccion
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(10.0!, 21.0!)
@@ -206,4 +211,5 @@ Partial Class PanelTrasporteEnAccion
     Friend WithEvents finalizacionEstimada As Label
     Friend WithEvents ListaDestinos As CheckedListBox
     Friend WithEvents tiempo1 As Timer
+    Friend WithEvents Timer2 As Timer
 End Class

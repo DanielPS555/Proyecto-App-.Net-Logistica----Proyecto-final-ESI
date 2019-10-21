@@ -143,9 +143,9 @@ Partial Class Lista_de_trasportes
         Me.Label3.Font = New System.Drawing.Font("Segoe UI Semilight", 24.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.Location = New System.Drawing.Point(12, -2)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(240, 45)
+        Me.Label3.Size = New System.Drawing.Size(261, 45)
         Me.Label3.TabIndex = 31
-        Me.Label3.Text = "Lista de clientes"
+        Me.Label3.Text = "Lotes disponibles"
         '
         'Lista_de_trasportes
         '

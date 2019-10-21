@@ -91,10 +91,11 @@ Public Class NuevoLugar
 
                 Dim lugar = Controladores.Fachada.getInstancia.CrearLugar(nombreBox.Text, position.Position, CType(TipoLugar.SelectedItem, String),
                                                           listTemp.ToArray,
-                                                          capacidad.Value, posicionesLugar.Zonas, If(TipoLugar.SelectedIndex = 0, clientes(dueños.SelectedIndex), Nothing))
+                                                          capacidad.Value, If(posicionesLugar IsNot Nothing, posicionesLugar.Zonas, Nothing), If(TipoLugar.SelectedIndex = 0, clientes(dueños.SelectedIndex), Nothing))
+                Dim noti As New Notificacion(Notificacion.TIPO_NOTIFICACION_NUEVO_LUGAR) With {.Ref1 = lugar.IDLugar, .Ref2 = Fachada.getInstancia.DevolverUsuarioActual.ID_usuario}
+                Controladores.Fachada.getInstancia.NuevaNotificacion(noti)
                 If lugar IsNot Nothing Then
                     Controladores.Marco.getInstancia.CargarPanel(New PanelLugar(lugar.IDLugar))
-                    Controladores.Marco.getInstancia.cerrarPanel(Of NuevoLugar)()
                 Else
                     MsgBoxI18N("No se pudo crear el lugar, por favor verifique la información")
                 End If

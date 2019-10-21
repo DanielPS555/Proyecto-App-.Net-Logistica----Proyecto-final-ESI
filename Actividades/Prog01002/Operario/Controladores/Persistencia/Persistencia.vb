@@ -1893,7 +1893,7 @@ order by fechaAgregado
         Return dt
     End Function
 
-    Public Function InsertNotificacion(jsonObj As Dictionary(Of String, Object), fecha As DateTime)
+    Public Function InsertEvento(jsonObj As Dictionary(Of String, Object), fecha As DateTime)
         Dim com As New OdbcCommand("insert into evento values (0,?::json,?);", Conexcion)
         Dim x = Newtonsoft.Json.JsonConvert.SerializeObject(jsonObj)
         com.CrearParametro(x)
@@ -2125,6 +2125,37 @@ where trabajaen.ID=?", Conexcion)
             Return -1
         End If
 
+    End Function
+
+    Public Function CancelarTodosLosTransportaPorIdTransporte(idtransporte As Integer)
+        Dim com As New OdbcCommand("update transporta set Estado='Cancelado' where transporteID=? and Estado='Proceso'", Conexcion)
+        com.CrearParametro(DbType.Int32, idtransporte)
+        Return com.ExecuteNonQuery
+    End Function
+
+    Public Function verificarAnulacionTransporte(idtransporte As Integer) As Integer
+        Dim com2 As New OdbcCommand("select count(*) from evento where bson_value_varchar(datos,'tipo')='TCA'
+                                    and bson_value_int(datos,'ref')=?", Conexcion)
+        com2.CrearParametro(DbType.Int32, idtransporte)
+        Return com2.ExecuteScalar
+    End Function
+
+    Public Function linkTransportistaPorIdTransporte(idtransporte As Integer) As String
+        Dim com As New OdbcCommand("select count(link) from transporte inner join link on link.transportista = transporte.usuario where transporteID=?", Conexcion)
+        com.CrearParametro(DbType.Int32, idtransporte)
+        If com.ExecuteScalar = 1 Then
+            Dim com2 As New OdbcCommand("select link from transporte inner join link on link.transportista = transporte.usuario where transporteID=?", Conexcion)
+            com2.CrearParametro(DbType.Int32, idtransporte)
+            Return com2.ExecuteScalar
+        Else
+            Return Nothing
+        End If
+    End Function
+
+    Public Function vinporidvehiculo(idvehiculo As Integer) As String
+        Dim com2 As New OdbcCommand("select vin from vehiculo where idvehiculo=?", Conexcion)
+        com2.CrearParametro(DbType.Int32, idvehiculo)
+        Return com2.ExecuteScalar
     End Function
 
 End Class
