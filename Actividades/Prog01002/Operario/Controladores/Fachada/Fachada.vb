@@ -1061,6 +1061,28 @@ Public Class Fachada
         Return lista
     End Function
 
+    Public Function ActualizarTipos(lugar As Lugar, listatiposHabilitados As List(Of TipoMedioTransporte))
+        For Each t As TipoMedioTransporte In Fachada.getInstancia.TodosLosTiposDeMediosDisponibles
+            If listatiposHabilitados.Contains(t) Then
+                If Not Persistencia.getInstancia.existenciaDelHabilitado(lugar.IDLugar, t.ID) Then
+                    Persistencia.getInstancia.insertHabilitado(lugar.IDLugar, t.ID)
+                End If
+            Else
+                If Persistencia.getInstancia.existenciaDelHabilitado(lugar.IDLugar, t.ID) Then
+                    Persistencia.getInstancia.eliminarHabilitado(lugar.IDLugar, t.ID)
+                End If
+            End If
+
+        Next
+
+
+    End Function
+
+    Public Function ExistenciaDelHabilitado(t As TipoMedioTransporte, l As Lugar)
+        Return Persistencia.getInstancia.existenciaDelHabilitado(l.IDLugar, t.ID)
+    End Function
+
+
     Public Function NuevoTransporteConSusLotes(tran As Controladores.Trasporte) As Integer
         Persistencia.getInstancia.Inserttransporte(tran.Trasportista.ID_usuario, tran.MedioDeTrasporte.Tipo.ID, tran.MedioDeTrasporte.ID, DateTime.Now)
         Dim idTransporte As Integer = Persistencia.getInstancia.devolverUltimoidTransportaPorIdUsuario(tran.Trasportista.ID_usuario)

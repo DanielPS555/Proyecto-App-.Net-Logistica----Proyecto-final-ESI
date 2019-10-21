@@ -1218,6 +1218,22 @@ order by fechaAgregado
         Return dt
     End Function
 
+    Public Function existenciaDelHabilitado(idlugar As Integer, idtipo As Integer) As Boolean
+        Dim com As New OdbcCommand("select count(*) from habilitado where idlugar=? and idtipo=?", Conexcion)
+        com.CrearParametro(DbType.Int32, idlugar)
+        com.CrearParametro(DbType.Int32, idtipo)
+        Return com.ExecuteScalar = 1
+    End Function
+
+
+    Public Function eliminarHabilitado(idlugar As Integer, idtipo As Integer)
+        Dim com As New OdbcCommand("delete from habilitado where idlugar=? and idtipo=?", Conexcion)
+        com.CrearParametro(DbType.Int32, idlugar)
+        com.CrearParametro(DbType.Int32, idtipo)
+        Return com.ExecuteNonQuery() > 0
+    End Function
+
+
     Friend Function ConexionesEntreLugares() As HashSet(Of Tuple(Of Integer, HashSet(Of String)))
         Dim com As New OdbcCommand("select h1.idtipo, l1.nombre, l2.nombre from lugar as l1 inner join habilitado as h1 on l1.idlugar = h1.idlugar inner join habilitado as h2 on h1.idtipo=h2.idtipo and h1.idlugar <> h2.idlugar inner join lugar as l2 on h2.idlugar=l2.idlugar", _con)
         Dim dt As New DataTable
@@ -2157,5 +2173,7 @@ where trabajaen.ID=?", Conexcion)
         com2.CrearParametro(DbType.Int32, idvehiculo)
         Return com2.ExecuteScalar
     End Function
+
+
 
 End Class
