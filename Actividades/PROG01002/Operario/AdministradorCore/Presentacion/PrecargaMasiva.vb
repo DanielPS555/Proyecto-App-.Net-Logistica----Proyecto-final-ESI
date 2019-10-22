@@ -87,8 +87,8 @@ Public Class PrecargaMasiva
             vehicleBox.Items.Add(nvehiculo)
         Next
         Dim preLen = Verify.Length
-        ReDim Preserve Me.Verify(vehicleBox.Items.Count - 1)
-        For i = preLen To Verify.Length - 1
+        ReDim Me.Verify(vehicleBox.Items.Count - 1)
+        For i = 0 To Verify.Length - 1
             Verify(i) = False
         Next
     End Sub
@@ -103,7 +103,7 @@ Public Class PrecargaMasiva
     End Sub
 
     Private Sub uploadPreloads_Click(sender As Object, e As EventArgs) Handles uploadPreloads.Click
-        If Verify.Length > 0 And Verify.Aggregate(True, Function(x, y) x And y) Then
+        If Verify.Length > 0 AndAlso Verify.All(Function(x) x) Then
             Fachada.getInstancia.CargarDataBaseDelUsuario()
             For Each v As Vehiculo In vehicleBox.Items
                 Fachada.getInstancia.nuevaPrecarga(v, Fachada.getInstancia.DevolverUsuarioActual)
