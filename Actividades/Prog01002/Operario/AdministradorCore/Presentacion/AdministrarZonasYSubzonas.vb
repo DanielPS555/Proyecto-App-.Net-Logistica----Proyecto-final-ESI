@@ -82,6 +82,11 @@
             Return
         End If
 
+        If Not Controladores.Funciones_comunes.sinCaracteresEspeciales(nombre.Text) Then
+            MsgBox("No se pueden insertar caracteres especiales", MsgBoxStyle.Critical)
+            Return
+        End If
+
         Dim suma As Integer = 0
         For Each z In lugar.Zonas
             suma += z.Capacidad
@@ -106,6 +111,11 @@
 
         If nombre.Text.Trim.Length = 0 Then
             MsgBox("El nombre no puede ser vacio", MsgBoxStyle.Critical)
+            Return
+        End If
+
+        If Not Controladores.Funciones_comunes.sinCaracteresEspeciales(nombre.Text) Then
+            MsgBox("No se pueden insertar caracteres especiales", MsgBoxStyle.Critical)
             Return
         End If
 

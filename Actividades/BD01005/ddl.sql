@@ -265,8 +265,8 @@ CREATE table
 
 create table
 	link(
-    link varchar(255) primary key,
-    transportista integer not null,
+    link varchar(255)  not null,
+    transportista integer primary key,
 	foreign key(transportista) references usuario(idusuario) ON DELETE CASCADE
 );
 

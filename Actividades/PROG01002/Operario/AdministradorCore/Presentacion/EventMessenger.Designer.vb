@@ -38,6 +38,8 @@ Partial Class EventMessenger
         '
         'RichTextBox1
         '
+        Me.RichTextBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RichTextBox1.Location = New System.Drawing.Point(202, 12)
         Me.RichTextBox1.Name = "RichTextBox1"
         Me.RichTextBox1.ReadOnly = True
@@ -47,6 +49,8 @@ Partial Class EventMessenger
         '
         'messageLine
         '
+        Me.messageLine.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.messageLine.Location = New System.Drawing.Point(202, 620)
         Me.messageLine.Name = "messageLine"
         Me.messageLine.Size = New System.Drawing.Size(542, 20)
@@ -54,9 +58,10 @@ Partial Class EventMessenger
         '
         'enviarBtn
         '
-        Me.enviarBtn.Location = New System.Drawing.Point(793, 618)
+        Me.enviarBtn.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.enviarBtn.Location = New System.Drawing.Point(750, 618)
         Me.enviarBtn.Name = "enviarBtn"
-        Me.enviarBtn.Size = New System.Drawing.Size(75, 23)
+        Me.enviarBtn.Size = New System.Drawing.Size(118, 23)
         Me.enviarBtn.TabIndex = 3
         Me.enviarBtn.Text = "Enviar"
         Me.enviarBtn.UseVisualStyleBackColor = True
