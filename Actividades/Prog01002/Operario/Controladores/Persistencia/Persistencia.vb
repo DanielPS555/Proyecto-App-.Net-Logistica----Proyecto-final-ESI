@@ -2082,7 +2082,7 @@ where trabajaen.ID=?", Conexcion)
           inner join transporta on lote.idlote = transporta.idlote
           inner join transporte on transporta.transporteID = transporte.transporteID
           where vehiculo.idvehiculo=?
-          order by transporte.FechaHoraCreacion desc", Conexcion)
+          order by transporta.transporteID desc", Conexcion)
         com2.CrearParametro(DbType.Int32, idvehiculo)
         Return com2.ExecuteScalar
     End Function
