@@ -751,7 +751,6 @@ Public Class Fachada
                 Else
                     lista.Add(lug)
                 End If
-
             End If
         Next
         Return lista
