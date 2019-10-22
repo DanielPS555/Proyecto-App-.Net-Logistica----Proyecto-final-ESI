@@ -69,7 +69,7 @@ Partial Class RegistroDeDañoPanel
         NuevaFotografia.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         NuevaFotografia.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         NuevaFotografia.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
-        NuevaFotografia.Location = New System.Drawing.Point(369, 555)
+        NuevaFotografia.Location = New System.Drawing.Point(369, 554)
         NuevaFotografia.Name = "NuevaFotografia"
         NuevaFotografia.Size = New System.Drawing.Size(104, 35)
         NuevaFotografia.TabIndex = 69
@@ -129,7 +129,7 @@ Partial Class RegistroDeDañoPanel
         Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Button1.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Button1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
-        Button1.Location = New System.Drawing.Point(490, 555)
+        Button1.Location = New System.Drawing.Point(489, 555)
         Button1.Name = "Button1"
         Button1.Size = New System.Drawing.Size(104, 35)
         Button1.TabIndex = 73
@@ -301,6 +301,7 @@ Partial Class RegistroDeDañoPanel
         '
         'Label9
         '
+        Me.Label9.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label9.AutoSize = True
         Me.Label9.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label9.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
@@ -312,6 +313,7 @@ Partial Class RegistroDeDañoPanel
         '
         'Panel1
         '
+        Me.Panel1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel1.Controls.Add(Me.panelFotografias)
         Me.Panel1.Location = New System.Drawing.Point(369, 185)
         Me.Panel1.Name = "Panel1"

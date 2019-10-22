@@ -185,7 +185,6 @@ Public Class RegistroDeDañoPanel
         End Select
         padre.DevolverRegistro(reg)
         imagenes = Nothing
-        Me.Dispose()
         Controladores.Marco.getInstancia.cerrarPanel(Of RegistroDeDañoPanel)()
     End Sub
 

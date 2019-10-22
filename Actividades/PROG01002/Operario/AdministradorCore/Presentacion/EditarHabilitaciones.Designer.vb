@@ -69,6 +69,7 @@ Partial Class EditarHabilitaciones
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.lista)
         Me.Name = "EditarHabilitaciones"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "EditarHabilitaciones"
         Me.ResumeLayout(False)
         Me.PerformLayout()

@@ -48,70 +48,83 @@ grant all on integra to administrativo;
 grant all on transporte to administrativo;
 grant all on transporta to administrativo;
 grant all on link to administrativo;
+grant all on evento to administrativo;
 
-grant select on link to transportista;
+/*TABLA USUARIO*/
+grant select, update on usuario to operario, transportista;
 
-grant select on usuario to operario, transportista;
-grant update on usuario to operario, transportista;
+/*TABLA CLIENTE*/
+grant select on cliente to operario,transportista;
 
-grant select on permite to operario;
+/*TABLA LUGAR*/
+grant select  on lugar to operario, transportista;
 
-grant select on mediotransporte to transportista;
+/*TABLA iNCLUYE*/
+grant select on incluye to operario;
+grant select on incluye to transportista;
 
-grant select on tipotransporte  to transportista;
+/*TABLA perteneceA*/
+grant select on pertenecea to operario;
 
-grant select on trabajaen to transportista, operario;
+/*TABLA trabajaEn*/
+grant select on trabajaen to operario;
 
-grant select on conexion to operario, transportista;
-grant update on conexion to operario, transportista;
-grant insert on conexion to operario, transportista;
+/*TABLA conexcion*/
+grant insert, select, update on conexion to operario, transportista;
 
-grant select on lugar to operario, transportista;
+/*TABLA vehiculo*/
+grant select, update on vehiculo to operario;
+grant select on vehiculo to transportista;
 
+/*TABLA VehiculoIngresa*/
+grant select, insert, update on vehiculoingresa to operario;
+
+/*TABLA InformeDanios*/
+grant select, insert, update on informedanios to operario;
+
+/*TABLA registroDanios*/
+grant select, insert, update,delete on registrodanios to operario;
+
+/*TABLA imagenregistro*/
+grant select, insert,update, delete on imagenregistro to operario;
+
+/*TABLA actualiza*/
+grant select, insert,update, delete on actualiza to operario;
+
+/*TABLA posicionado*/
+grant select, insert, update on posicionado to operario, transportista;
+
+/*TABLA tipotransporte*/
+grant select on tipotransporte to operario, transportista;
+
+/*TABLA habilitado*/
 grant select on habilitado to operario, transportista;
 
-grant select on incluye to operario, transportista;
+/*TABLA mediotransporte*/
+grant select on mediotransporte to operario, transportista;
 
-grant select on perteneceA to operario, transportista;
+/*TABLA permite*/
+grant select  on permite to operario, transportista;
 
-grant select on cliente to operario, transportista;
+/*TABLA lote*/
+grant select, insert, update on lote to operario;
+grant select,update on lote to transportista;
 
-grant select on posicionado to operario, transportista;
-grant update on posicionado to operario, transportista;
-grant insert on posicionado to operario, transportista;
+/*TABLA integra*/
+grant select,update, insert on integra to operario;
+grant select on integra to transportista;
 
-grant select on vehiculo to operario;
-grant update on vehiculo to operario;
+/*TABLA Transporte*/
+grant select on transporte to operario;
+grant select, insert, update on transporte to transportista;
 
-grant select on vehiculoingresa to operario;
-grant insert on vehiculoingresa to operario;
+/*TABLA Transporta*/
+grant select on transporta to operario;
+grant select, insert, update on transporta to transportista;
 
-grant select on informedanios to operario;
-grant update on informedanios to operario;
-grant insert on informedanios to operario;
+/*TABLA Link*/
+grant select on link to operario;
+grant select, insert, update on link to transportista;
 
-grant select on registrodanios to operario;
-grant update on registrodanios to operario;
-grant insert on registrodanios to operario;
-
-grant select on imagenregistro to operario;
-grant insert on imagenregistro to operario;
-
-grant select on actualiza to operario;
-grant insert on actualiza to operario;
-grant update on actualiza to operario;
-
-grant select on integra to operario, transportista;
-grant insert on integra to operario;
-grant update on integra to operario;
-
-grant select on lote to operario, transportista;
-grant insert on lote to operario;
-grant update on lote to operario;
-
-grant insert on transporta to transportista;
-grant update on transporta to transportista;
-
-grant select on transporte to transportista;
-grant update on transporte to transportista;
-grant insert on transporte to transportista;
+/*TABLA evento*/
+grant select, insert, update  on evento to operario,transportista;

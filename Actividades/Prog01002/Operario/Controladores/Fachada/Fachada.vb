@@ -148,6 +148,10 @@ Public Class Fachada
         Return True
     End Function
 
+    Public Sub invalidarLotesSinEvhciulosdelSistema()
+        Persistencia.getInstancia.InavilitarLotesSinVehiculo
+    End Sub
+
     Public Sub cambiarBajarProridadLote(idlote)
         Persistencia.getInstancia.updatePrioridadlote(idlote, "Normal")
     End Sub

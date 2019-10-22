@@ -1074,14 +1074,23 @@ order by fechaAgregado
         Return com.ExecuteNonQuery() > 0
     End Function
 
-
+    Public Function InavilitarLotesSinVehiculo()
+        Dim com As New OdbcCommand("update lote set invalido='t' where idlote in
+                                    (select idlote  from lote left join integra on lote.idlote=integra.lote and integra.invalidado='f'
+                                    group by idlote
+                                    having count(idvehiculo) = 0);", Conexcion)
+        Return com.ExecuteNonQuery() > 0
+    End Function
 
     Public Function anularAnteriorIntegra(idvehiculo As Integer) As Boolean
         Dim consultaPrevia As New OdbcCommand("select first 1 fecha
                                     from integra where idvehiculo=? and invalidado='f' order by fecha desc", Conexcion)
         consultaPrevia.CrearParametro(DbType.Int32, idvehiculo)
-
-        If Not consultaPrevia.ExecuteReader.HasRows Then
+        Dim consultaPrevia2 As New OdbcCommand("select first 1 fecha
+                                    from integra where idvehiculo=? and invalidado='f' order by fecha desc", Conexcion)
+        consultaPrevia2.CrearParametro(DbType.Int32, idvehiculo)
+        Dim pepe = consultaPrevia.ExecuteReader
+        If Not pepe.HasRows Then
             MsgBoxI18N("Grave error: se intentó anular integra de un vehículo que no tiene integra anterior. " &
                        "El sistema procederá ignorando ese aspecto, pero por favor reporte esto a los desarrolladores," &
                        " y si es posible repórtelo a su DBA y pídale que investigue cómo el sistema llegó a este estado", MsgBoxStyle.Critical)
@@ -1092,7 +1101,7 @@ order by fechaAgregado
                                     where idvehiculo=? and fecha=?", Conexcion)
         com.CrearParametro(DbType.Boolean, True)
         com.CrearParametro(DbType.Int32, idvehiculo)
-        com.CrearParametro(DbType.DateTime, consultaPrevia.ExecuteScalar)
+        com.CrearParametro(DbType.DateTime, consultaPrevia2.ExecuteScalar)
         Try
             Return com.ExecuteNonQuery() > 0
         Catch e As Exception
@@ -1324,7 +1333,8 @@ order by fechaAgregado
                                     from transporte inner join transporta on transporte.transporteID = transporta.transporteID
                                     inner join lote on transporta.idlote = lote.idlote
                                     where usuario=?
-                                    group by transporte.transporteID, IDLegal,FechaHoraCreacion,FechaHoraLlegadaReal, lote.origen", Conexcion)
+                                    group by transporte.transporteID, IDLegal,FechaHoraCreacion,FechaHoraLlegadaReal, lote.origen
+                                    order by transporte.transporteID", Conexcion)
         com.CrearParametro(DbType.String, idusuario)
         Dim dt As New DataTable
         dt.Load(com.ExecuteReader)
@@ -1336,7 +1346,8 @@ order by fechaAgregado
                                     count(transporte.transporteID) as Numero_Lotes, usuario.nombredeusuario as Transportista
                                     from transporte inner join transporta on transporte.transporteID = transporta.transporteID
                                     inner join lote on transporta.idlote = lote.idlote inner join usuario on usuario.idusuario = transporte.usuario
-                                    group by transporte.transporteID, IDLegal,FechaHoraCreacion,FechaHoraLlegadaReal, lote.origen,Transportista", Conexcion)
+                                    group by transporte.transporteID, IDLegal,FechaHoraCreacion,FechaHoraLlegadaReal, lote.origen,Transportista
+                                    order by transporte.transporteID", Conexcion)
         Dim dt As New DataTable
         dt.Load(com.ExecuteReader)
         Return dt

@@ -247,6 +247,6 @@ Public Class crearInformaDeDaños
         tipo.Width = (Me.Width / 3) - 20
         descipt.Width = (Me.Width / 3) - 20
         Registros.Location = New Point((Me.Width / 3) + 20, 88)
-        Registros.Width = (Me.Width / 3) * 2 - 65
+        Registros.Width = (Me.Width / 3) * 2 - 90
     End Sub
 End Class

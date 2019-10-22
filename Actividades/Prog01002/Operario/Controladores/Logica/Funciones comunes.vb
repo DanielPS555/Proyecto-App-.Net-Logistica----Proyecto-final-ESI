@@ -315,7 +315,7 @@ Public Class Funciones_comunes
 
     Public Shared Function sinCaracteresEspeciales(texto As String) As Boolean
         For Each c As Char In texto
-            If Not Char.IsNumber(c) AndAlso Not Char.IsLetter(c) Then
+            If Not Char.IsNumber(c) AndAlso Not Char.IsLetter(c) AndAlso c <> " " Then
                 Return False
             End If
         Next
