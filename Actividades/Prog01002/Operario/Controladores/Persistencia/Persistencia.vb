@@ -306,6 +306,12 @@ order by fechaAgregado
         Return selcmd.ExecuteScalar
     End Function
 
+    Public Function abrirLote(idlote As Integer)
+        Dim selcmd As New OdbcCommand("update lote set Estado='Abierto' where idlote=?;", _con)
+        selcmd.CrearParametro(DbType.Int32, idlote)
+        Return selcmd.ExecuteScalar
+    End Function
+
     Public Function PosicionesOcupadasEnLugar(idlugar As Integer) As Integer
         Dim selcmd As New OdbcCommand("execute function ocupacion_en_lugar(?::integer);", _con)
         selcmd.CrearParametro(idlugar)
@@ -1290,6 +1296,13 @@ order by fechaAgregado
                                      where idlegal=?
                                     order by FechaHoraCreacion desc", Conexcion)
         com.CrearParametro(DbType.String, idlegal)
+        Return Funciones_comunes.AutoNull(Of Object)(com.ExecuteScalar)
+    End Function
+
+    Public Function UltimoEstadoPorIdLote(idlote As Integer) As String
+        Dim com As New OdbcCommand("select first 1 estado from transporta
+                                    where idlote=? order by transporteid desc", Conexcion)
+        com.CrearParametro(DbType.Int32, idlote)
         Return Funciones_comunes.AutoNull(Of Object)(com.ExecuteScalar)
     End Function
 

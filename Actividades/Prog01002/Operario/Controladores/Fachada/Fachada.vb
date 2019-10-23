@@ -244,6 +244,10 @@ Public Class Fachada
         Return Persistencia.getInstancia.CerrarLote(idlote)
     End Function
 
+    Public Sub abirlote(idlote As Integer)
+        Persistencia.getInstancia.abrirLote(idlote)
+    End Sub
+
     Public Function LoteVehiculo(vin As String) As Lote
         Return InfoLote(ID:=Persistencia.getInstancia.IDLotePor_VINvehiculo(vin))
     End Function
@@ -1583,6 +1587,10 @@ Public Class Fachada
 
     Public Function UltimoEstadoTransportePorIdVehiculo(idvehiculo As Integer) As String
         Return Persistencia.getInstancia.estadoUltimoTransportePorIdvehiculo(idvehiculo)
+    End Function
+
+    Public Function UltimoEstadoLote(idlote As Integer) As String
+        Return Persistencia.getInstancia.UltimoEstadoPorIdLote(idlote)
     End Function
 
     Public Function UtimoEstadoTransportePorIdlote(idlote As Integer) As String

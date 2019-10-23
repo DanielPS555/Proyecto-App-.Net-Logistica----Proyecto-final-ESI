@@ -97,6 +97,7 @@ Partial Class PanelInfoLote
         Me.Button1.TabIndex = 5
         Me.Button1.Text = "Cerrar"
         Me.Button1.UseVisualStyleBackColor = True
+        Me.Button1.Visible = False
         '
         'Label5
         '
