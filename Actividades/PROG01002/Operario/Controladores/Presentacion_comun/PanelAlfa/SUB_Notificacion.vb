@@ -22,8 +22,8 @@ Public Class SUB_Notificacion
                 nom.Text = $"Nuevo Medio {n.Ref2}"
                 sec.Text = $"Tipo {Fachada.getInstancia.NombreTIpoMedioPorId(Integer.Parse(n.Ref1))}"
             Case Notificacion.TIPO_NOTIFICACION_NUEVO_ALTA
-                nom.Text = $"Nueva alta del Vin: {Controladores.Fachada.getInstancia.VinPorIdvehiculo(n.Ref1)}"
-                Dim user As Usuario = Controladores.Fachada.getInstancia.InformacionBasicaUsuario(Integer.Parse(n.Ref2))
+                nom.Text = $"Nueva alta del Vin: {Controladores.Fachada.getInstancia.VinPorIdvehiculo(n.Ref2)}"
+                Dim user As Usuario = Controladores.Fachada.getInstancia.InformacionBasicaUsuario(Integer.Parse(n.Ref1))
                 sec.Text = $"hecho por {user.NombreDeUsuario}"
             Case Notificacion.TIPO_NOTIFICACION_NUEVA_ENTREGA
                 nom.Text = $"Los lotes del transporte: {n.Ref1} fuero entregados"

@@ -97,6 +97,10 @@ Public Class NuevaPrecarga
     Private vehiculo As Controladores.Vehiculo
 
     Private Sub Ingresar_Click(sender As Object, e As EventArgs) Handles Guardar.Click
+        If Not VerifyVIN() Then
+            MsgBoxI18N("El VIN no es correcto!")
+            Return
+        End If
         If clientes.SelectedItem Is Nothing Then
             MsgBoxI18N("El cliente no puede ser nulo!")
             Return
@@ -162,28 +166,38 @@ Public Class NuevaPrecarga
     End Sub
 
     Private Sub Vin_TextChanged(sender As Object, e As EventArgs) Handles vin.TextChanged
+        VerifyVIN()
+    End Sub
+
+    Private Function VerifyVIN() As Boolean
+        Dim allowedChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
         If vin.Text.Length > 0 Then
             For Each c As Char In vin.Text
-                If c = " " Then
-                    estado.Text = Controladores.Funciones_comunes.I18N("No puede ingresar espacios en blanco", Controladores.Marco.Language)
+                If Not allowedChars.Contains(c) Then
+                    estado.Text = Controladores.Funciones_comunes.I18N("Sólo puede ingresar letras mayúsculas y números", Controladores.Marco.Language)
                     estado.ForeColor = Drawing.Color.FromArgb(180, 20, 20)
-                    Return
+                    Return False
                 End If
             Next
         End If
         If vin.Text.Length = 17 Then
             If Controladores.Fachada.getInstancia.verificarVinExistente(vin.Text) Then
                 estado.Text = Controladores.Funciones_comunes.I18N("Esta Vin ya fue ingresada", Controladores.Marco.Language)
+                Return False
             Else
+                Dim hasOneletter = False
                 For Each c As Char In vin.Text
                     If Char.IsLetter(c) Then
-                        estado.Text = Controladores.Funciones_comunes.I18N("Aceptado", Controladores.Marco.Language)
-                        estado.ForeColor = Drawing.Color.FromArgb(19, 176, 25)
-                        Return
+                        hasOneletter = True
                     End If
                 Next
-                estado.Text = Controladores.Funciones_comunes.I18N("Debe incluir al menos una letra", Controladores.Marco.Language)
-                estado.ForeColor = Drawing.Color.FromArgb(255, 0, 0)
+                If Not hasOneletter Then
+                    estado.Text = Controladores.Funciones_comunes.I18N("Debe incluir al menos una letra", Controladores.Marco.Language)
+                    estado.ForeColor = Drawing.Color.FromArgb(255, 0, 0)
+                    Return False
+                End If
+                estado.Text = Controladores.Funciones_comunes.I18N("Aceptado", Controladores.Marco.Language)
+                estado.ForeColor = Drawing.Color.FromArgb(19, 176, 25)
             End If
         Else
             If vin.Text.Length > 17 Then
@@ -191,13 +205,11 @@ Public Class NuevaPrecarga
             Else
                 estado.Text = $"Faltan {17 - vin.Text.Length} caracteres"
             End If
-
-
+            Return False
         End If
         estado.ForeColor = Drawing.Color.FromArgb(180, 20, 20)
-
-
-    End Sub
+        Return True
+    End Function
 
     Private Sub color_Click(sender As Object, e As EventArgs) Handles Seleccionarbtn.Click
         If ColorDialog1.ShowDialog <> Windows.Forms.DialogResult.Cancel Then

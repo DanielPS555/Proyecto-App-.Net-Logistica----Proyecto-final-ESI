@@ -1,4 +1,3 @@
-﻿
 	/*USUARIO*/
 insert into usuario values (0,"Felipe3","aaaagria","felip49@gmail.com", "27/8/1981", "09877745",
 "Felipe","Camacho", "Cual fue su primer juego", "lol", null, "20/3/2018" , 'M','A', null,'f');
