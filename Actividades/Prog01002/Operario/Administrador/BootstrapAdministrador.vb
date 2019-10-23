@@ -16,7 +16,7 @@
                   {"Chat", GetType(Controladores.ChatInterno)},
                   {"Lista lotes", GetType(OperarioCore.ListaLotes)},
                   {"Nuevo vehiculo", GetType(OperarioCore.NuevoVehiculo)},
-                  {"Transportar lotes", GetType(TransportistaCore.Lista_de_trasportes)},
+                  {"Lotes dispobibles", GetType(TransportistaCore.Lista_de_trasportes)},
                   {"Lista transportes", GetType(TransportistaCore.ListaDeTrasportes)}
                 }
                 Controladores.Marco.SetButtons(paneles)

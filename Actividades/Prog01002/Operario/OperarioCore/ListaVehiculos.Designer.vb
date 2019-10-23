@@ -23,7 +23,7 @@ Partial Class ListaVehiculos
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.buscar = New System.Windows.Forms.Button()
         Me.nuevo = New System.Windows.Forms.Button()
         Me.Panel1 = New System.Windows.Forms.Panel()
@@ -111,6 +111,7 @@ Partial Class ListaVehiculos
         '
         Me.criterios.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.criterios.BackColor = System.Drawing.Color.White
+        Me.criterios.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.criterios.FlatStyle = System.Windows.Forms.FlatStyle.System
         Me.criterios.Font = New System.Drawing.Font("Century Gothic", 15.0!)
         Me.criterios.FormattingEnabled = True
@@ -129,14 +130,14 @@ Partial Class ListaVehiculos
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.tabla.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.tabla.BackgroundColor = System.Drawing.Color.White
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Century Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.tabla.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Century Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.tabla.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.tabla.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.tabla.Location = New System.Drawing.Point(14, 112)
         Me.tabla.Name = "tabla"
@@ -147,6 +148,7 @@ Partial Class ListaVehiculos
         '
         'tiposListas
         '
+        Me.tiposListas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.tiposListas.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tiposListas.FormattingEnabled = True
         Me.tiposListas.Items.AddRange(New Object() {"Asignados", "No asignados", "En transporte", "Precargados", "Entregados", "Dañados", "Retirados"})
@@ -169,6 +171,7 @@ Partial Class ListaVehiculos
         '
         Me.LugaresBox.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.LugaresBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.LugaresBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!)
         Me.LugaresBox.FormattingEnabled = True
         Me.LugaresBox.ItemHeight = 25

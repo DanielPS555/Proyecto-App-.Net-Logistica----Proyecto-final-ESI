@@ -15,6 +15,7 @@ Public Class ListaDeMediosAutorizados
         Me.Controls.Add(alfa)
         alfa.Size = New Drawing.Size(855, 565)
         alfa.Location = New Drawing.Point(13, 75)
+        alfa.Anchor = (AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right)
         If Fachada.getInstancia.DevolverUsuarioActual.Rol = Usuario.TIPO_ROL_TRANSPORTISTA Then
             dataTabla = Controladores.Fachada.getInstancia.TablaDeMediosPorIDUsuario(Controladores.Fachada.getInstancia.DevolverUsuarioActual.ID_usuario)
         ElseIf Fachada.getInstancia.DevolverUsuarioActual.Rol = Usuario.TIPO_ROL_ADMINISTRADOR Then
@@ -22,7 +23,7 @@ Public Class ListaDeMediosAutorizados
         End If
         For Each r As DataRow In dataTabla.Rows
             Dim m As New Controladores.MedioDeTransporte() With {.ID = r.Item(0), .Nombre = r.Item(1), .Tipo = New Controladores.TipoMedioTransporte(r.Item(2))}
-            alfa.Nuevo(m, False)
+            alfa.Nuevo(m, False, True)
         Next
         alfa.render()
         Label2.Traducir

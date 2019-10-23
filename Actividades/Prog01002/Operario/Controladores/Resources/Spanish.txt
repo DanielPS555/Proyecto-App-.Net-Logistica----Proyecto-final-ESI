@@ -266,3 +266,5 @@ el nombre del lugar tiene caracteres no permitidos
 El nombre de usuario tiene caracteres no permitidos
 El nombre real del usuario tiene caracteres no permitidos
 El apellido real del usuario tiene caracteres no permitidos
+Lista transportes
+Lotes dispobibles

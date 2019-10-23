@@ -109,6 +109,7 @@ Partial Class TrasladoInterno
         '
         'haciaSubzona
         '
+        Me.haciaSubzona.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.haciaSubzona.Font = New System.Drawing.Font("Century Gothic", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.haciaSubzona.FormattingEnabled = True
         Me.haciaSubzona.Location = New System.Drawing.Point(242, 290)
@@ -118,6 +119,7 @@ Partial Class TrasladoInterno
         '
         'haciaPosicion
         '
+        Me.haciaPosicion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.haciaPosicion.Font = New System.Drawing.Font("Century Gothic", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.haciaPosicion.FormattingEnabled = True
         Me.haciaPosicion.Location = New System.Drawing.Point(242, 342)
@@ -176,6 +178,7 @@ Partial Class TrasladoInterno
         '
         'haciaZona
         '
+        Me.haciaZona.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.haciaZona.Font = New System.Drawing.Font("Century Gothic", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.haciaZona.FormattingEnabled = True
         Me.haciaZona.Location = New System.Drawing.Point(242, 242)

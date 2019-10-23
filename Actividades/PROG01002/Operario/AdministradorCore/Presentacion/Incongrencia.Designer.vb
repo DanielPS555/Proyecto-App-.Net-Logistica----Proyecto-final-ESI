@@ -60,7 +60,7 @@ Partial Class Incongrencia
         Me.Button1.Location = New System.Drawing.Point(12, 598)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(205, 40)
-        Me.Button1.TabIndex = 22
+        Me.Button1.TabIndex = 34
         Me.Button1.Text = "Cancelar"
         Me.Button1.UseVisualStyleBackColor = False
         '
@@ -75,7 +75,7 @@ Partial Class Incongrencia
         Me.aceptar.Location = New System.Drawing.Point(234, 598)
         Me.aceptar.Name = "aceptar"
         Me.aceptar.Size = New System.Drawing.Size(300, 40)
-        Me.aceptar.TabIndex = 21
+        Me.aceptar.TabIndex = 32
         Me.aceptar.Text = "Ingresar cambios del lugar "
         Me.aceptar.UseVisualStyleBackColor = False
         '
@@ -103,7 +103,7 @@ Partial Class Incongrencia
         DataGridViewCellStyle2.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.data.RowsDefaultCellStyle = DataGridViewCellStyle2
         Me.data.Size = New System.Drawing.Size(848, 364)
-        Me.data.TabIndex = 23
+        Me.data.TabIndex = 0
         '
         'Label2
         '
@@ -148,15 +148,17 @@ Partial Class Incongrencia
         Me.Button2.Location = New System.Drawing.Point(663, 9)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(205, 40)
-        Me.Button2.TabIndex = 27
+        Me.Button2.TabIndex = 35
         Me.Button2.Text = "Actualizar tabla"
         Me.Button2.UseVisualStyleBackColor = False
         '
         'zona_combo
         '
         Me.zona_combo.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.zona_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.zona_combo.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.zona_combo.FormattingEnabled = True
+        Me.zona_combo.ItemHeight = 21
         Me.zona_combo.Location = New System.Drawing.Point(127, 436)
         Me.zona_combo.Name = "zona_combo"
         Me.zona_combo.Size = New System.Drawing.Size(438, 29)
@@ -165,8 +167,10 @@ Partial Class Incongrencia
         'subzona_combo
         '
         Me.subzona_combo.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.subzona_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.subzona_combo.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.subzona_combo.FormattingEnabled = True
+        Me.subzona_combo.ItemHeight = 21
         Me.subzona_combo.Location = New System.Drawing.Point(127, 488)
         Me.subzona_combo.Name = "subzona_combo"
         Me.subzona_combo.Size = New System.Drawing.Size(438, 29)
@@ -175,8 +179,10 @@ Partial Class Incongrencia
         'posicones_combo
         '
         Me.posicones_combo.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.posicones_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.posicones_combo.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.posicones_combo.FormattingEnabled = True
+        Me.posicones_combo.ItemHeight = 21
         Me.posicones_combo.Location = New System.Drawing.Point(127, 537)
         Me.posicones_combo.Name = "posicones_combo"
         Me.posicones_combo.Size = New System.Drawing.Size(438, 29)

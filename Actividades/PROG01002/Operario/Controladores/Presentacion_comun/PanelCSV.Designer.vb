@@ -103,6 +103,8 @@ Partial Class PanelCSV
         Me.Controls.Add(Me.ColTable)
         Me.Controls.Add(Me.OpenBtn)
         Me.MaximizeBox = False
+        Me.MaximumSize = New System.Drawing.Size(455, 305)
+        Me.MinimumSize = New System.Drawing.Size(455, 305)
         Me.Name = "PanelCSV"
         Me.Text = "Importar CSV"
         CType(Me.ColTable, System.ComponentModel.ISupportInitialize).EndInit()

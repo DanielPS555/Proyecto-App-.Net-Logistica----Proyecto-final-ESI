@@ -59,7 +59,7 @@ Partial Class crearInformaDeDaños
         ingresarBtn.Location = New System.Drawing.Point(643, 603)
         ingresarBtn.Name = "ingresarBtn"
         ingresarBtn.Size = New System.Drawing.Size(174, 35)
-        ingresarBtn.TabIndex = 62
+        ingresarBtn.TabIndex = 6
         ingresarBtn.Text = "Ingrezar"
         ingresarBtn.UseVisualStyleBackColor = False
         AddHandler ingresarBtn.Click, AddressOf Me.ingresarBtn_Click
@@ -79,7 +79,7 @@ Partial Class crearInformaDeDaños
         Button1.Location = New System.Drawing.Point(449, 603)
         Button1.Name = "Button1"
         Button1.Size = New System.Drawing.Size(174, 35)
-        Button1.TabIndex = 63
+        Button1.TabIndex = 5
         Button1.Text = "Cancelar"
         Button1.UseVisualStyleBackColor = False
         AddHandler Button1.Click, AddressOf Me.Button1_Click
@@ -99,7 +99,7 @@ Partial Class crearInformaDeDaños
         nuevo.Location = New System.Drawing.Point(823, 78)
         nuevo.Name = "nuevo"
         nuevo.Size = New System.Drawing.Size(45, 35)
-        nuevo.TabIndex = 64
+        nuevo.TabIndex = 2
         nuevo.Text = "+"
         nuevo.UseVisualStyleBackColor = False
         AddHandler nuevo.Click, AddressOf Me.nuevo_Click
@@ -119,7 +119,7 @@ Partial Class crearInformaDeDaños
         Button2.Location = New System.Drawing.Point(823, 122)
         Button2.Name = "Button2"
         Button2.Size = New System.Drawing.Size(45, 35)
-        Button2.TabIndex = 68
+        Button2.TabIndex = 3
         Button2.Text = "-"
         Button2.UseVisualStyleBackColor = False
         AddHandler Button2.Click, AddressOf Me.Button2_Click
@@ -139,7 +139,7 @@ Partial Class crearInformaDeDaños
         Button3.Location = New System.Drawing.Point(823, 163)
         Button3.Name = "Button3"
         Button3.Size = New System.Drawing.Size(45, 35)
-        Button3.TabIndex = 69
+        Button3.TabIndex = 4
         Button3.Text = "E"
         Button3.UseVisualStyleBackColor = False
         AddHandler Button3.Click, AddressOf Me.Button3_Click
@@ -171,6 +171,7 @@ Partial Class crearInformaDeDaños
         Me.tipo.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.tipo.BackColor = System.Drawing.Color.White
+        Me.tipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.tipo.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tipo.FormattingEnabled = True
         Me.tipo.Items.AddRange(New Object() {"Parcial", "Total"})
@@ -198,7 +199,7 @@ Partial Class crearInformaDeDaños
         Me.descipt.Multiline = True
         Me.descipt.Name = "descipt"
         Me.descipt.Size = New System.Drawing.Size(284, 404)
-        Me.descipt.TabIndex = 35
+        Me.descipt.TabIndex = 1
         '
         'cp
         '

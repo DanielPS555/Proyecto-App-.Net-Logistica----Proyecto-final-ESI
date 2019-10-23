@@ -106,7 +106,7 @@ Partial Class CredencialesUsuario
         Me.Button2.Location = New System.Drawing.Point(548, 419)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(169, 44)
-        Me.Button2.TabIndex = 7
+        Me.Button2.TabIndex = 6
         Me.Button2.Text = "Ingresar"
         Me.Button2.UseVisualStyleBackColor = False
         '
@@ -119,7 +119,7 @@ Partial Class CredencialesUsuario
         Me.Button1.Location = New System.Drawing.Point(548, 182)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(169, 43)
-        Me.Button1.TabIndex = 8
+        Me.Button1.TabIndex = 3
         Me.Button1.Text = "Ingresar"
         Me.Button1.UseVisualStyleBackColor = False
         '
@@ -130,7 +130,7 @@ Partial Class CredencialesUsuario
         Me.contraseña.Name = "contraseña"
         Me.contraseña.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.contraseña.Size = New System.Drawing.Size(481, 33)
-        Me.contraseña.TabIndex = 9
+        Me.contraseña.TabIndex = 1
         '
         'contraseña2
         '
@@ -139,7 +139,7 @@ Partial Class CredencialesUsuario
         Me.contraseña2.Name = "contraseña2"
         Me.contraseña2.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.contraseña2.Size = New System.Drawing.Size(481, 33)
-        Me.contraseña2.TabIndex = 10
+        Me.contraseña2.TabIndex = 2
         '
         'pregunta
         '
@@ -147,7 +147,7 @@ Partial Class CredencialesUsuario
         Me.pregunta.Location = New System.Drawing.Point(236, 298)
         Me.pregunta.Name = "pregunta"
         Me.pregunta.Size = New System.Drawing.Size(481, 33)
-        Me.pregunta.TabIndex = 11
+        Me.pregunta.TabIndex = 4
         '
         'respuesta
         '
@@ -155,7 +155,7 @@ Partial Class CredencialesUsuario
         Me.respuesta.Location = New System.Drawing.Point(236, 358)
         Me.respuesta.Name = "respuesta"
         Me.respuesta.Size = New System.Drawing.Size(481, 33)
-        Me.respuesta.TabIndex = 12
+        Me.respuesta.TabIndex = 5
         '
         'Button3
         '
@@ -166,7 +166,7 @@ Partial Class CredencialesUsuario
         Me.Button3.Location = New System.Drawing.Point(17, 419)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(169, 44)
-        Me.Button3.TabIndex = 13
+        Me.Button3.TabIndex = 7
         Me.Button3.Text = "Salir "
         Me.Button3.UseVisualStyleBackColor = False
         Me.Button3.Visible = False
@@ -192,6 +192,8 @@ Partial Class CredencialesUsuario
         Me.Controls.Add(Me.Label1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.MaximizeBox = False
+        Me.MaximumSize = New System.Drawing.Size(753, 514)
+        Me.MinimumSize = New System.Drawing.Size(753, 514)
         Me.Name = "CredencialesUsuario"
         Me.Text = "CredencialesUsuario"
         Me.ResumeLayout(False)

@@ -34,7 +34,7 @@ Partial Class EditarHabilitaciones
         Me.lista.Location = New System.Drawing.Point(12, 46)
         Me.lista.Name = "lista"
         Me.lista.Size = New System.Drawing.Size(352, 396)
-        Me.lista.TabIndex = 0
+        Me.lista.TabIndex = 1
         '
         'Label1
         '

@@ -68,6 +68,8 @@ Public Class PanelTrasporte
         If ss IsNot Nothing AndAlso Controladores.Funciones_comunes.URLExist(ss) Then
             Dim pepe As New Controladores.TiempoRealGooglePlex(ss)
             pepe.ShowDialog()
+        Else
+            MsgBox("URL invalida")
         End If
     End Sub
 End Class

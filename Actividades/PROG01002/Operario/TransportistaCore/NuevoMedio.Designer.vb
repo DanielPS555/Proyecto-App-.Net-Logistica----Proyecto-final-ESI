@@ -109,6 +109,7 @@ Partial Class NuevoMedio
         '
         Me.tipo.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.tipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.tipo.FormattingEnabled = True
         Me.tipo.Location = New System.Drawing.Point(232, 200)
         Me.tipo.Name = "tipo"

@@ -174,6 +174,7 @@ Partial Class NuevoUsuario
         '
         'sexo
         '
+        Me.sexo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.sexo.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.sexo.FormattingEnabled = True
         Me.sexo.Items.AddRange(New Object() {"Masculino", "Femenino", "Otro"})
@@ -184,6 +185,7 @@ Partial Class NuevoUsuario
         '
         'rol
         '
+        Me.rol.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.rol.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.rol.FormattingEnabled = True
         Me.rol.Items.AddRange(New Object() {"Operario", "Transportista", "Administrador"})

@@ -53,6 +53,7 @@ Public Class crearInformaDeDaños
         _nuevo = True
         PanelDelVehiculo = padre
         tipo.SelectedIndex = 0
+        tipo.Enabled = False
     End Sub
 
     Public Sub New(informePrevio As Controladores.InformeDeDaños, subida As Boolean, papote As panelInfoVehiculo) 'FALSE PARA ENVIO POR ACTULIZACION, TRUE POR INSERCION TOTAL
@@ -120,6 +121,7 @@ Public Class crearInformaDeDaños
         Else
             tipo.SelectedIndex = 0
         End If
+        tipo.Enabled = False
 
     End Sub
 
@@ -236,8 +238,10 @@ Public Class crearInformaDeDaños
         If Registros.SelectedIndex = -1 Then
             MsgBox("Eliga un registro que eliminar")
         Else
-            Info.Registros.RemoveAt(Registros.SelectedIndex)
-            Registros.Items.RemoveAt(Registros.SelectedIndex)
+            If MsgBox("Esta seguro que desea eliminar este informe", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
+                Info.Registros.RemoveAt(Registros.SelectedIndex)
+                Registros.Items.RemoveAt(Registros.SelectedIndex)
+            End If
         End If
     End Sub
 

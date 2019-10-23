@@ -105,16 +105,16 @@ Partial Class ListaLotes
         Me.LugarCBox.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.LugarCBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LugarCBox.FormattingEnabled = True
-        Me.LugarCBox.Location = New System.Drawing.Point(595, 12)
+        Me.LugarCBox.Location = New System.Drawing.Point(458, 12)
         Me.LugarCBox.Name = "LugarCBox"
-        Me.LugarCBox.Size = New System.Drawing.Size(272, 33)
+        Me.LugarCBox.Size = New System.Drawing.Size(409, 33)
         Me.LugarCBox.TabIndex = 33
         '
         'Label1
         '
         Me.Label1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label1.Font = New System.Drawing.Font("Segoe UI", 13.0!)
-        Me.Label1.Location = New System.Drawing.Point(489, 12)
+        Me.Label1.Location = New System.Drawing.Point(352, 17)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(100, 33)
         Me.Label1.TabIndex = 34

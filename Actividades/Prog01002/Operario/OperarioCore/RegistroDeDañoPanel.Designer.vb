@@ -203,6 +203,7 @@ Partial Class RegistroDeDañoPanel
         '
         'tipo
         '
+        Me.tipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.tipo.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tipo.FormattingEnabled = True
         Me.tipo.Items.AddRange(New Object() {"Regular", "Anulacion", "Actualizacion"})
@@ -224,11 +225,12 @@ Partial Class RegistroDeDañoPanel
         '
         'infoOrigen
         '
+        Me.infoOrigen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.infoOrigen.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.infoOrigen.FormattingEnabled = True
-        Me.infoOrigen.Location = New System.Drawing.Point(168, 101)
+        Me.infoOrigen.Location = New System.Drawing.Point(180, 101)
         Me.infoOrigen.Name = "infoOrigen"
-        Me.infoOrigen.Size = New System.Drawing.Size(261, 30)
+        Me.infoOrigen.Size = New System.Drawing.Size(249, 30)
         Me.infoOrigen.TabIndex = 9
         Me.infoOrigen.Visible = False
         '
@@ -245,6 +247,7 @@ Partial Class RegistroDeDañoPanel
         '
         'registroOrigen
         '
+        Me.registroOrigen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.registroOrigen.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.registroOrigen.FormattingEnabled = True
         Me.registroOrigen.Location = New System.Drawing.Point(556, 104)

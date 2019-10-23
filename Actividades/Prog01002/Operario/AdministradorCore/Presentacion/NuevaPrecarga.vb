@@ -53,8 +53,7 @@ Public Class NuevaPrecarga
         l_cliente.Traducir
         Seleccionarbtn.Traducir
         marcaNoIngrezar.Traducir
-        modeloNoIngrezar.Text = Controladores.Funciones_comunes.I18N(modeloNoIngrezar.Text.Trim, Controladores.Marco.Language)
-        añoNoIngrezar.Text = Controladores.Funciones_comunes.I18N(añoNoIngrezar.Text.Trim, Controladores.Marco.Language)
+
         tipoNoIngrezar.Text = Controladores.Funciones_comunes.I18N(tipoNoIngrezar.Text.Trim, Controladores.Marco.Language)
         colorNoIngrezar.Text = Controladores.Funciones_comunes.I18N(colorNoIngrezar.Text.Trim, Controladores.Marco.Language)
 
@@ -187,8 +186,13 @@ Public Class NuevaPrecarga
                 estado.ForeColor = Drawing.Color.FromArgb(255, 0, 0)
             End If
         Else
-            ' estado.Text = $"Faltan {17 - vin.Text.Length} caracteres "
-            estado.Text = Controladores.Funciones_comunes.I18N($"Faltan {0} caracteres ", Controladores.Marco.Language).Format(17 - vin.Text.Length)
+            If vin.Text.Length > 17 Then
+                estado.Text = $"Sobran {vin.Text.Length - 17} caracteres"
+            Else
+                estado.Text = $"Faltan {17 - vin.Text.Length} caracteres"
+            End If
+
+
         End If
         estado.ForeColor = Drawing.Color.FromArgb(180, 20, 20)
 

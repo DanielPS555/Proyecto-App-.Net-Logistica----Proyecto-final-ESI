@@ -52,11 +52,12 @@ Partial Class NuevaPrecarga
         '
         Me.clientes.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.clientes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.clientes.Font = New System.Drawing.Font("Century Gothic", 15.0!)
         Me.clientes.FormattingEnabled = True
         Me.clientes.Location = New System.Drawing.Point(123, 487)
         Me.clientes.Name = "clientes"
-        Me.clientes.Size = New System.Drawing.Size(664, 31)
+        Me.clientes.Size = New System.Drawing.Size(630, 31)
         Me.clientes.TabIndex = 146
         '
         'muestra_color
@@ -69,6 +70,7 @@ Partial Class NuevaPrecarga
         '
         'Guardar
         '
+        Me.Guardar.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Guardar.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
         Me.Guardar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
         Me.Guardar.FlatAppearance.BorderSize = 0
@@ -78,7 +80,7 @@ Partial Class NuevaPrecarga
         Me.Guardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Guardar.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Guardar.ForeColor = System.Drawing.Color.White
-        Me.Guardar.Location = New System.Drawing.Point(24, 586)
+        Me.Guardar.Location = New System.Drawing.Point(596, 586)
         Me.Guardar.Name = "Guardar"
         Me.Guardar.Size = New System.Drawing.Size(272, 52)
         Me.Guardar.TabIndex = 143
@@ -107,6 +109,7 @@ Partial Class NuevaPrecarga
         '
         Me.tipo.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.tipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.tipo.Font = New System.Drawing.Font("Century Gothic", 15.0!)
         Me.tipo.FormattingEnabled = True
         Me.tipo.Items.AddRange(New Object() {"Auto", "Camion", "SUV", "Van", "MiniVan"})
@@ -149,6 +152,7 @@ Partial Class NuevaPrecarga
         '
         Me.anio.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.anio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.anio.Font = New System.Drawing.Font("Century Gothic", 15.0!)
         Me.anio.FormattingEnabled = True
         Me.anio.Location = New System.Drawing.Point(123, 217)
@@ -180,22 +184,22 @@ Partial Class NuevaPrecarga
         '
         Me.modelo.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.modelo.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.modelo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.modelo.Font = New System.Drawing.Font("Century Gothic", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.modelo.Location = New System.Drawing.Point(123, 151)
         Me.modelo.Name = "modelo"
-        Me.modelo.Size = New System.Drawing.Size(630, 25)
+        Me.modelo.Size = New System.Drawing.Size(630, 32)
         Me.modelo.TabIndex = 124
         '
         'marca
         '
         Me.marca.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.marca.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.marca.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.marca.Font = New System.Drawing.Font("Century Gothic", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.marca.Location = New System.Drawing.Point(123, 92)
         Me.marca.Name = "marca"
-        Me.marca.Size = New System.Drawing.Size(630, 25)
+        Me.marca.Size = New System.Drawing.Size(630, 32)
         Me.marca.TabIndex = 123
         '
         'l_marca
@@ -222,18 +226,18 @@ Partial Class NuevaPrecarga
         '
         Me.vin.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.vin.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.vin.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.vin.Font = New System.Drawing.Font("Century Gothic", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.vin.Location = New System.Drawing.Point(123, 33)
         Me.vin.Name = "vin"
-        Me.vin.Size = New System.Drawing.Size(630, 25)
+        Me.vin.Size = New System.Drawing.Size(630, 32)
         Me.vin.TabIndex = 148
         '
         'estado
         '
         Me.estado.AutoSize = True
         Me.estado.ForeColor = System.Drawing.Color.FromArgb(CType(CType(180, Byte), Integer), CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer))
-        Me.estado.Location = New System.Drawing.Point(120, 61)
+        Me.estado.Location = New System.Drawing.Point(120, 68)
         Me.estado.Name = "estado"
         Me.estado.Size = New System.Drawing.Size(107, 13)
         Me.estado.TabIndex = 151

@@ -64,6 +64,7 @@ Partial Class Lista_de_trasportes
         '
         Me.TiposDeMedioAutorizados.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TiposDeMedioAutorizados.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.TiposDeMedioAutorizados.FormattingEnabled = True
         Me.TiposDeMedioAutorizados.Location = New System.Drawing.Point(71, 542)
         Me.TiposDeMedioAutorizados.Name = "TiposDeMedioAutorizados"
@@ -103,6 +104,7 @@ Partial Class Lista_de_trasportes
         'mediosAutorizados
         '
         Me.mediosAutorizados.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.mediosAutorizados.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.mediosAutorizados.FormattingEnabled = True
         Me.mediosAutorizados.Location = New System.Drawing.Point(489, 542)
         Me.mediosAutorizados.Name = "mediosAutorizados"

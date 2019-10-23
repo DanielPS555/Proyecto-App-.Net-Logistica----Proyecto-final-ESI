@@ -7,8 +7,8 @@ Public Class BootstrapTransportista
         Funciones_comunes.Inter_test()
         Dim p = Controladores.Principal.CrearInstancia(Sub()
                                                            Dim paneles = New Dictionary(Of String, Type) From {
-                                                 {"Lista lotes", GetType(TransportistaCore.Lista_de_trasportes)},
-                                                 {"Lista de transportes", GetType(TransportistaCore.ListaDeTrasportes)},
+                                                 {"Lotes dispobibles", GetType(TransportistaCore.Lista_de_trasportes)},
+                                                 {"Lista transportes", GetType(TransportistaCore.ListaDeTrasportes)},
                                                  {"Lista de medios", GetType(TransportistaCore.ListaDeMediosAutorizados)}
                                              }
                                                            Controladores.Marco.SetButtons(paneles)

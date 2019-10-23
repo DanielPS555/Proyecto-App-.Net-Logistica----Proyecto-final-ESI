@@ -263,6 +263,8 @@ Partial Class PanelMedioDeTrasporte
         '
         'userA
         '
+        Me.userA.AllowUserToAddRows = False
+        Me.userA.AllowUserToDeleteRows = False
         Me.userA.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -271,6 +273,7 @@ Partial Class PanelMedioDeTrasporte
         Me.userA.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.userA.Location = New System.Drawing.Point(382, 451)
         Me.userA.Name = "userA"
+        Me.userA.ReadOnly = True
         Me.userA.Size = New System.Drawing.Size(486, 187)
         Me.userA.TabIndex = 26
         '

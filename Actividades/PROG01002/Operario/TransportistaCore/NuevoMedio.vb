@@ -36,6 +36,7 @@ Public Class NuevoMedio
         tipo.Items.Add(e.Nombre)
         tipo.SelectedIndex = 0
         nuevoTipo.Enabled = False
+        eliminar.Visible = True
     End Sub
 
     Private Sub CrearButton_Click(sender As Object, e As EventArgs) Handles CrearButton.Click
@@ -86,7 +87,7 @@ Public Class NuevoMedio
     Private Sub NuevoTipo_LinkClicked(sender As Object, e As Windows.Forms.LinkLabelLinkClickedEventArgs) Handles nuevoTipo.LinkClicked
         Dim s As New NuevoTipoDeMedio(Me)
         s.ShowDialog()
-        eliminar.Visible = True
+
     End Sub
 
     Private Sub Eliminar_LinkClicked(sender As Object, e As Windows.Forms.LinkLabelLinkClickedEventArgs) Handles eliminar.LinkClicked

@@ -73,9 +73,9 @@ Namespace My.Resources
         '''<summary>
         '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         '''</summary>
-        Friend ReadOnly Property Lista_de_transportes() As System.Drawing.Bitmap
+        Friend ReadOnly Property Lista_transportes() As System.Drawing.Bitmap
             Get
-                Dim obj As Object = ResourceManager.GetObject("Lista_de_transportes", resourceCulture)
+                Dim obj As Object = ResourceManager.GetObject("Lista_transportes", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
@@ -83,9 +83,9 @@ Namespace My.Resources
         '''<summary>
         '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         '''</summary>
-        Friend ReadOnly Property Lista_lotes() As System.Drawing.Bitmap
+        Friend ReadOnly Property Lotes_dispobibles() As System.Drawing.Bitmap
             Get
-                Dim obj As Object = ResourceManager.GetObject("Lista_lotes", resourceCulture)
+                Dim obj As Object = ResourceManager.GetObject("Lotes_dispobibles", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property

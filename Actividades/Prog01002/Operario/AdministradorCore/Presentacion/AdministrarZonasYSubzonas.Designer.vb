@@ -165,7 +165,7 @@ Partial Class AdministrarZonasYSubzonas
         Me.nombre.Location = New System.Drawing.Point(125, 513)
         Me.nombre.Name = "nombre"
         Me.nombre.Size = New System.Drawing.Size(312, 32)
-        Me.nombre.TabIndex = 12
+        Me.nombre.TabIndex = 1
         '
         'capacidad
         '
@@ -174,7 +174,7 @@ Partial Class AdministrarZonasYSubzonas
         Me.capacidad.Location = New System.Drawing.Point(125, 551)
         Me.capacidad.Name = "capacidad"
         Me.capacidad.Size = New System.Drawing.Size(312, 33)
-        Me.capacidad.TabIndex = 13
+        Me.capacidad.TabIndex = 2
         '
         'nuevazona
         '
@@ -185,7 +185,7 @@ Partial Class AdministrarZonasYSubzonas
         Me.nuevazona.Location = New System.Drawing.Point(451, 507)
         Me.nuevazona.Name = "nuevazona"
         Me.nuevazona.Size = New System.Drawing.Size(205, 40)
-        Me.nuevazona.TabIndex = 14
+        Me.nuevazona.TabIndex = 3
         Me.nuevazona.Text = "Agregar zona "
         Me.nuevazona.UseVisualStyleBackColor = True
         '
@@ -198,7 +198,7 @@ Partial Class AdministrarZonasYSubzonas
         Me.nuevasubzona.Location = New System.Drawing.Point(663, 507)
         Me.nuevasubzona.Name = "nuevasubzona"
         Me.nuevasubzona.Size = New System.Drawing.Size(205, 40)
-        Me.nuevasubzona.TabIndex = 15
+        Me.nuevasubzona.TabIndex = 4
         Me.nuevasubzona.Text = "Aregar subzona"
         Me.nuevasubzona.UseVisualStyleBackColor = True
         '
@@ -211,7 +211,7 @@ Partial Class AdministrarZonasYSubzonas
         Me.eliminar.Location = New System.Drawing.Point(663, 553)
         Me.eliminar.Name = "eliminar"
         Me.eliminar.Size = New System.Drawing.Size(205, 40)
-        Me.eliminar.TabIndex = 16
+        Me.eliminar.TabIndex = 6
         Me.eliminar.Text = "Eliminar subzona"
         Me.eliminar.UseVisualStyleBackColor = True
         '
@@ -226,7 +226,7 @@ Partial Class AdministrarZonasYSubzonas
         Me.aceptar.Location = New System.Drawing.Point(663, 599)
         Me.aceptar.Name = "aceptar"
         Me.aceptar.Size = New System.Drawing.Size(205, 40)
-        Me.aceptar.TabIndex = 17
+        Me.aceptar.TabIndex = 8
         Me.aceptar.Text = "Aceptar"
         Me.aceptar.UseVisualStyleBackColor = False
         '
@@ -239,7 +239,7 @@ Partial Class AdministrarZonasYSubzonas
         Me.Button5.Location = New System.Drawing.Point(452, 553)
         Me.Button5.Name = "Button5"
         Me.Button5.Size = New System.Drawing.Size(205, 40)
-        Me.Button5.TabIndex = 18
+        Me.Button5.TabIndex = 5
         Me.Button5.Text = "Eliminar zona"
         Me.Button5.UseVisualStyleBackColor = True
         '
@@ -264,7 +264,7 @@ Partial Class AdministrarZonasYSubzonas
         Me.Button1.Location = New System.Drawing.Point(451, 599)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(205, 40)
-        Me.Button1.TabIndex = 20
+        Me.Button1.TabIndex = 7
         Me.Button1.Text = "Cancelar"
         Me.Button1.UseVisualStyleBackColor = False
         '

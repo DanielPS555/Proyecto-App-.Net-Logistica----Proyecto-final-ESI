@@ -1930,8 +1930,9 @@ order by fechaAgregado
 
     Public Function devolverTodosLosEventosDelSistema()
         Dim com As New OdbcCommand("select distinct BSON_VALUE_VARCHAR(datos,'tipo') as Tipo,BSON_VALUE_VARCHAR(datos,'ref') as ref1,
-                                BSON_VALUE_VARCHAR(datos,'ref2') as ref2,BSON_VALUE_VARCHAR(datos,'ref3') as ref3,id, fechaAgregado
-                                from evento where not BSON_VALUE_VARCHAR(datos,'tipo') = 'mensaje'", Conexcion)
+                                    BSON_VALUE_VARCHAR(datos,'ref2') as ref2,BSON_VALUE_VARCHAR(datos,'ref3') as ref3,id, fechaAgregado
+                                    from evento where  BSON_VALUE_VARCHAR(datos,'tipo') 
+                                    in ('NU','NL','NM','NA','CL','NE','NP','NTE','AID','AM','TF','GEN','TCA')", Conexcion)
         Dim dt As New DataTable
         dt.Load(com.ExecuteReader)
         Return dt

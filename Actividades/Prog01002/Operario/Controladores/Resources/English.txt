@@ -266,3 +266,5 @@ the name of the place has characters not allowed
 Username has characters not allowed
 The real name of the user has characters not allowed
 The user's real last name has characters not allowed
+Transportation List
+Available lots

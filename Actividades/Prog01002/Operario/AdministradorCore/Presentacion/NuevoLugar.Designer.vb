@@ -134,6 +134,7 @@ Partial Class NuevoLugar
         '
         Me.TipoLugar.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TipoLugar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.TipoLugar.Font = New System.Drawing.Font("Segoe UI Semilight", 14.25!)
         Me.TipoLugar.FormattingEnabled = True
         Me.TipoLugar.Location = New System.Drawing.Point(117, 98)
@@ -269,6 +270,7 @@ Partial Class NuevoLugar
         '
         Me.dueños.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.dueños.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.dueños.Font = New System.Drawing.Font("Segoe UI Semilight", 14.25!)
         Me.dueños.FormattingEnabled = True
         Me.dueños.Location = New System.Drawing.Point(117, 188)

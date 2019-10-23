@@ -99,7 +99,9 @@ Partial Class NuevoTrabajaEn
         Me.Controls.Add(Me.Buscar)
         Me.Controls.Add(Me.lugar)
         Me.Controls.Add(Me.Label2)
+        Me.MaximumSize = New System.Drawing.Size(434, 290)
         Me.MinimizeBox = False
+        Me.MinimumSize = New System.Drawing.Size(434, 290)
         Me.Name = "NuevoTrabajaEn"
         Me.Text = "NuevoTrabajaEn"
         Me.ResumeLayout(False)

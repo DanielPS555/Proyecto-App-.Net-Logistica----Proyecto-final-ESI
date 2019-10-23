@@ -53,7 +53,7 @@ Partial Class NuevoLote
         ingresar.Location = New System.Drawing.Point(302, 507)
         ingresar.Name = "ingresar"
         ingresar.Size = New System.Drawing.Size(234, 35)
-        ingresar.TabIndex = 53
+        ingresar.TabIndex = 70
         ingresar.Text = "Aceptar"
         ingresar.UseVisualStyleBackColor = False
         AddHandler ingresar.Click, AddressOf Me.ingresar_Click
@@ -74,7 +74,7 @@ Partial Class NuevoLote
         Button1.Location = New System.Drawing.Point(17, 507)
         Button1.Name = "Button1"
         Button1.Size = New System.Drawing.Size(233, 35)
-        Button1.TabIndex = 54
+        Button1.TabIndex = 80
         Button1.Text = "Cancelar"
         Button1.UseVisualStyleBackColor = False
         AddHandler Button1.Click, AddressOf Me.Button1_Click
@@ -92,12 +92,15 @@ Partial Class NuevoLote
         Me.Panel1.Controls.Add(Me.Label1)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
+        Me.Panel1.MaximumSize = New System.Drawing.Size(548, 554)
+        Me.Panel1.MinimumSize = New System.Drawing.Size(548, 554)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(548, 554)
         Me.Panel1.TabIndex = 0
         '
         'destino
         '
+        Me.destino.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.destino.Font = New System.Drawing.Font("Century Gothic", 15.0!)
         Me.destino.FormattingEnabled = True
         Me.destino.Location = New System.Drawing.Point(107, 153)

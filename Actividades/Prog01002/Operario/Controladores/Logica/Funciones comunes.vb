@@ -324,6 +324,10 @@ Public Class Funciones_comunes
 
     Public Shared Function URLExist(url As String) As Boolean
         Try
+            If url Is Nothing Then
+                Return False
+            End If
+
             Dim req As WebRequest = WebRequest.Create(url)
 
             Dim res As WebResponse = req.GetResponse()

@@ -163,35 +163,43 @@ Public Class Marco
     End Sub
 
     Public Sub CargarPanel(sn As ScreenNode)
-        Dim obj = sn.Panel
-        obj.TopLevel = False
-        obj.FormBorderStyle = FormBorderStyle.None
-        obj.Dock = DockStyle.Fill
+        Try
+            Dim obj = sn.Panel
+            obj.TopLevel = False
+            obj.FormBorderStyle = FormBorderStyle.None
+            obj.Dock = DockStyle.Fill
 
-        If contenedor.Controls.Contains(obj) Then
-            contenedor.Controls.Remove(obj)
-        End If
+            If contenedor.Controls.Contains(obj) Then
+                contenedor.Controls.Remove(obj)
+            End If
 
-        contenedor.Controls.Add(obj)
-        obj.Show()
-        obj.BringToFront()
+            contenedor.Controls.Add(obj)
+            obj.Show()
+            obj.BringToFront()
 
-        CurrentPanel = sn
+            CurrentPanel = sn
+        Catch ex As Exception
+            MsgBox("No se puede volver para atras porque el anterior panel ya no es accesible")
+        End Try
     End Sub
 
     Public Function CargarPanel(Of T As {Form})(obj As T) As T
-        obj.TopLevel = False
-        obj.FormBorderStyle = FormBorderStyle.None
-        obj.Dock = DockStyle.Fill
+        Try
+            obj.TopLevel = False
+            obj.FormBorderStyle = FormBorderStyle.None
+            obj.Dock = DockStyle.Fill
 
-        contenedor.Controls.Add(obj)
-        obj.Show()
-        obj.BringToFront()
+            contenedor.Controls.Add(obj)
+            obj.Show()
+            obj.BringToFront()
 
-        Dim parent = If(Me.CurrentPanel Is Nothing, New Result(Of ScreenNode, Marco)(False, Me), New Result(Of ScreenNode, Marco)(True, CurrentPanel))
-        Dim panelNode = New ScreenNode(parent, obj)
-        CurrentPanel = panelNode
-        Return obj
+            Dim parent = If(Me.CurrentPanel Is Nothing, New Result(Of ScreenNode, Marco)(False, Me), New Result(Of ScreenNode, Marco)(True, CurrentPanel))
+            Dim panelNode = New ScreenNode(parent, obj)
+            CurrentPanel = panelNode
+            Return obj
+        Catch ex As Exception
+            MsgBox("No se puede volver para atras porque el anterior panel ya no es accesible")
+        End Try
     End Function
 
     Private Sub b10_Click(sender As Object, e As EventArgs) Handles b10.Click
@@ -199,9 +207,17 @@ Public Class Marco
     End Sub
 
     Private Sub atras_Click(sender As Object, e As EventArgs) Handles atras.Click
-        If CurrentPanel IsNot Nothing AndAlso CurrentPanel.Parent.Type Then
-            Me.CargarPanel(CurrentPanel.Parent.A)
-        End If
+        Try
+
+
+            If CurrentPanel IsNot Nothing AndAlso CurrentPanel.Parent.Type Then
+                Me.CargarPanel(CurrentPanel.Parent.A)
+
+            End If
+
+        Catch ex As Exception
+            MsgBox("No se puede cargar este panel")
+        End Try
     End Sub
 
     Private Sub sigiente_Click(sender As Object, e As EventArgs) Handles sigiente.Click

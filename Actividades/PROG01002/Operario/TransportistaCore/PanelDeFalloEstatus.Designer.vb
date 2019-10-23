@@ -137,6 +137,8 @@ Partial Class PanelDeFalloEstatus
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
         Me.MaximizeBox = False
+        Me.MaximumSize = New System.Drawing.Size(689, 530)
+        Me.MinimumSize = New System.Drawing.Size(689, 530)
         Me.Name = "PanelDeFalloEstatus"
         Me.Text = "PanelDeFalloEstatus"
         CType(Me.tabla, System.ComponentModel.ISupportInitialize).EndInit()

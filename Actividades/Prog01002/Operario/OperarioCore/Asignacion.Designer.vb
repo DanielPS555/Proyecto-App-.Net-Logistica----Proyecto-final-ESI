@@ -179,6 +179,7 @@ Partial Class Asignacion
         '
         'lote
         '
+        Me.lote.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.lote.Font = New System.Drawing.Font("Century Gothic", 15.0!)
         Me.lote.FormattingEnabled = True
         Me.lote.Location = New System.Drawing.Point(16, 34)

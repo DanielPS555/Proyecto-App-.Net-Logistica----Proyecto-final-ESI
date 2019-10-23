@@ -140,6 +140,7 @@ Partial Class NuevoVehiculo
         '
         'anio
         '
+        Me.anio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.anio.Enabled = False
         Me.anio.Font = New System.Drawing.Font("Century Gothic", 15.0!)
         Me.anio.FormattingEnabled = True
@@ -183,6 +184,7 @@ Partial Class NuevoVehiculo
         '
         Me.tipo.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.tipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.tipo.Enabled = False
         Me.tipo.Font = New System.Drawing.Font("Century Gothic", 15.0!)
         Me.tipo.FormattingEnabled = True
@@ -205,6 +207,7 @@ Partial Class NuevoVehiculo
         'subzonas
         '
         Me.subzonas.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.subzonas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.subzonas.Enabled = False
         Me.subzonas.Font = New System.Drawing.Font("Century Gothic", 15.0!)
         Me.subzonas.FormattingEnabled = True
@@ -237,6 +240,7 @@ Partial Class NuevoVehiculo
         'zonas
         '
         Me.zonas.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.zonas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.zonas.Enabled = False
         Me.zonas.Font = New System.Drawing.Font("Century Gothic", 15.0!)
         Me.zonas.FormattingEnabled = True
@@ -260,6 +264,7 @@ Partial Class NuevoVehiculo
         '
         Me.posDis.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.posDis.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.posDis.Enabled = False
         Me.posDis.Font = New System.Drawing.Font("Century Gothic", 15.0!)
         Me.posDis.FormattingEnabled = True
@@ -282,6 +287,7 @@ Partial Class NuevoVehiculo
         '
         Me.lote.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lote.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.lote.Enabled = False
         Me.lote.Font = New System.Drawing.Font("Century Gothic", 15.0!)
         Me.lote.FormattingEnabled = True
@@ -317,6 +323,7 @@ Partial Class NuevoVehiculo
         '
         Me.clientes.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.clientes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.clientes.Enabled = False
         Me.clientes.Font = New System.Drawing.Font("Century Gothic", 15.0!)
         Me.clientes.FormattingEnabled = True
@@ -500,6 +507,7 @@ Partial Class NuevoVehiculo
         '
         Me.lugar.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lugar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.lugar.Enabled = False
         Me.lugar.Font = New System.Drawing.Font("Century Gothic", 15.0!)
         Me.lugar.FormattingEnabled = True

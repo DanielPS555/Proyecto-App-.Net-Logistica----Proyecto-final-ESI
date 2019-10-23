@@ -9,6 +9,8 @@ Public Class NuevoUsuario
         fechaNac.MinDate = min
         sexo.SelectedIndex = 0
         rol.SelectedIndex = 0
+        fechaNac.MaxDate = New Date(DateTime.Now.Year - 18, DateTime.Now.Month, DateTime.Now.Day)
+        fechaNac.MinDate = New Date(DateTime.Now.Year - 88, DateTime.Now.Month, DateTime.Now.Day)
     End Sub
 
     Private Sub Ingresar_Click(sender As Object, e As EventArgs) Handles ingresar.Click

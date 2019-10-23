@@ -92,6 +92,10 @@
     Private wcTimer As Timer
 
     Private Sub sendPictureBox_Click(sender As Object, e As EventArgs) Handles sendPictureBox.Click
+        envio()
+    End Sub
+
+    Private Sub envio()
         If webcam Is Nothing Then
             webcam = New WebCam.WebCam
             AddHandler webcam.OnSnapshot, Sub(sdr, args)
@@ -137,4 +141,6 @@
             End If
         End If
     End Sub
+
+
 End Class

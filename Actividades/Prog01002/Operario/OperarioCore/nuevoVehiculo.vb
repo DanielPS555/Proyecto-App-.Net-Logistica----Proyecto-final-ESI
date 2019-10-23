@@ -145,7 +145,7 @@ Public Class NuevoVehiculo
     End Sub
 
     Private Sub habilitar(j As Boolean)
-        marca.Enabled = True
+        marca.Enabled = j
         modelo.Enabled = j
         anio.Enabled = j
         tipo.Enabled = j
@@ -157,6 +157,7 @@ Public Class NuevoVehiculo
         posDis.Enabled = j
         crearomodificarLote.Enabled = j
         ingresar.Enabled = j
+        lugar.Enabled = j
 
     End Sub
 
