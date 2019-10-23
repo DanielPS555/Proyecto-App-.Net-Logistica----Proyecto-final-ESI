@@ -588,13 +588,16 @@ Public Class Fachada
         Return lugar
     End Function
 
-    Public Function LotesEnLugar(lugar As Lugar) As List(Of Tuple(Of Lote, Integer, Boolean)) ' LOTE: IDLote, Nombre, Estado, TUPLE.2: Autos en Lote, TUPLE.3: Transportado?
+    Public Function LotesEnLugar(lugar As Lugar) As Tuple(Of List(Of Tuple(Of Lote, Integer, Boolean)), List(Of String)) ' LOTE: IDLote, Nombre, Estado, TUPLE.2: Autos en Lote, TUPLE.3: Transportado?
         Dim retval As New List(Of Tuple(Of Lote, Integer, Boolean))
-        For Each row As DataRow In Persistencia.getInstancia.DevolverTodosLosLotesPor_IdLugar(lugar.IDLugar).Rows
-            Dim lote As New Lote With {.IDLote = row.Item(0), .Nombre = row.Item(1), .Estado = row.Item(2), .Origen = lugar}
-            retval.Add(New Tuple(Of Lote, Integer, Boolean)(lote, row.Item(3), row.Item(4) > 0))
+        Dim table = Persistencia.getInstancia.DevolverTodosLosLotesPor_IdLugar(lugar.IDLugar)
+        For Each row As DataRow In table.Rows
+            Dim destino As New Lugar With {.Nombre = row.Item(4)}
+            Dim lote As New Lote With {.IDLote = row.Item(0), .Nombre = row.Item(1), .Estado = row.Item(2), .Origen = lugar, .Destino = destino}
+            retval.Add(New Tuple(Of Lote, Integer, Boolean)(lote, row.Item(3), row.Item(5)))
         Next
-        Return retval
+        Dim headerList = table.Columns.Cast(Of DataColumn).Select(Function(x) x.ColumnName).ToList
+        Return New Tuple(Of List(Of Tuple(Of Lote, Integer, Boolean)), List(Of String))(retval, headerList)
     End Function
 
     Public Function LotesDisponiblesPorLugarActual() As List(Of Lote)

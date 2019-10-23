@@ -54,7 +54,35 @@ Public Class AcercaDe
         RenderVoronoiMap()
     End Sub
 
+    Private richtextbox As RichTextBox
     Private Sub NumericUpDown2_ValueChanged(sender As Object, e As EventArgs) Handles NumericUpDown2.ValueChanged
+        If NumericUpDown2.Value = 0 Then
+            NumericUpDown2.Value = 3
+        End If
+        If NumericUpDown2.Value < 0 Then
+            richtextbox = New RichTextBox With {
+                .ReadOnly = True,
+                .Size = New Size(Label3.Size.Width - 40, Label3.Size.Height),
+                .Location = Label3.Location + New Point(40, 0)
+            }
+            Dim songlist = New ListBox With {
+                .Width = 40,
+                .Location = Label3.Location,
+                .Size = New Size(40, Label3.Size.Height)
+            }
+            songlist.Items.AddRange(New Object() {"criminal", "guacho", "mal de la cabeza", "denso", "cable pelado", "perkins", "urgay", "lmental", "cama bionica", "psicoterapeuta"})
+            AddHandler songlist.SelectedIndexChanged, Sub(x, ev)
+                                                          Dim song = CType(songlist.SelectedItem, String).Replace(" ", "")
+                                                          Dim letra = My.Resources.ResourceManager.GetString(song)
+                                                          richtextbox.Text = letra
+                                                          Audiobox.PlayAudio(song)
+                                                      End Sub
+            Label3.Hide()
+            Me.Controls.Add(richtextbox)
+            Me.Controls.Add(songlist)
+            NumericUpDown2.Value = 4
+            Return
+        End If
         pointCount = NumericUpDown2.Value
         RenderVoronoiMap()
     End Sub

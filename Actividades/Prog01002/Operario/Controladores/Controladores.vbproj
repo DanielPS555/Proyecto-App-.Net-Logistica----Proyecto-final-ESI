@@ -80,6 +80,9 @@
     <Reference Include="Microsoft.Msagl.GraphViewerGdi">
       <HintPath>..\Administrador\Microsoft.Msagl.GraphViewerGdi.dll</HintPath>
     </Reference>
+    <Reference Include="NAudio">
+      <HintPath>..\NAudio.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -94,6 +97,7 @@
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -118,6 +122,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Audiobox.vb" />
     <Compile Include="Fachada\Fachada.vb" />
     <Compile Include="Fachada\InvalidStateException.vb" />
     <Compile Include="Logica\Cliente.vb" />
@@ -427,6 +432,7 @@
     <Content Include="Persistencia\dql3.sql" />
     <Content Include="Persistencia\dql4.sql" />
     <Content Include="Resources\French.txt" />
+    <None Include="Resources\audio.zip" />
     <None Include="Resources\Inicio.png" />
     <None Include="Resources\iconoF.png" />
     <None Include="Resources\logoConCierto.png" />

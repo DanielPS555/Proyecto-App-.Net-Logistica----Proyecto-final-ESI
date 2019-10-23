@@ -42,8 +42,11 @@ Public Class ListaLotes
     Private Sub LugarCBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles LugarCBox.SelectedIndexChanged
         Dim r = Fachada.getInstancia.LotesEnLugar(LugarCBox.SelectedItem)
         lote.Rows.Clear()
-        For Each t In r
-            lote.Rows.Add(t.Item1.IDLote, t.Item1.Nombre, t.Item1.Estado, t.Item2, t.Item3)
+        For Each t In r.Item1
+            lote.Rows.Add(t.Item1.IDLote, t.Item1.Nombre, t.Item1.Estado, t.Item2, t.Item1.Destino.Nombre, t.Item3)
+        Next
+        For i = 0 To r.Item2.Count - 1
+            lote.Columns(i).HeaderText = r.Item2(i)
         Next
     End Sub
 

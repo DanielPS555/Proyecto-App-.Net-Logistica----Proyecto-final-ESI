@@ -238,7 +238,7 @@ Public Class crearInformaDeDaños
         If Registros.SelectedIndex = -1 Then
             MsgBox("Eliga un registro que eliminar")
         Else
-            If MsgBox("Esta seguro que desea eliminar este informe", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
+            If MsgBox("Esta seguro que desea eliminar este registro", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
                 Info.Registros.RemoveAt(Registros.SelectedIndex)
                 Registros.Items.RemoveAt(Registros.SelectedIndex)
             End If

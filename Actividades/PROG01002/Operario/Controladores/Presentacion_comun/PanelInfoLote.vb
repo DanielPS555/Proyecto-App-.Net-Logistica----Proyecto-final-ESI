@@ -28,7 +28,7 @@ Public Class PanelInfoLote
         'Label5.Traducir
         Label5.Text = $"{Label5.Text}: {lote.FechaCreacion}"
         idlote = lote.IDLote
-        Label7.Text = $"{Label7.Text}: {lote.Destino.Nombre}"
+        Label7.Text = $"{Label7.Text}: {lote.Origen.Nombre}"
         Label6.Text = $"{Label6.Text}: {lote.IDLote}"
         Dim vehiculos = Fachada.getInstancia.VehiculosEnLote(idlote)
         For Each i In vehiculos

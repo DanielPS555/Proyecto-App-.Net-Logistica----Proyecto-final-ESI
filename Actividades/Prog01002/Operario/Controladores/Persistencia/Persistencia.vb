@@ -783,9 +783,15 @@ order by fechaAgregado
             Return Nothing
         End If
         Dim com As New OdbcCommand("select lote.idlote, lote.nombre, lote.estado,
-                                  (select count(*) from integra where integra.lote=lote.idlote and integra.invalidado='f' and lote.invalido='f'),
-                                  (select count(*) from transporta  where transporta.IDLote=lote.IDLote and transporta.Estado='Exitoso')
-                                  from lote inner join lugar on lote.origen = lugar.idlugar where lugar.idlugar = ? and lote.invalido='f';", Conexcion)
+                                    (select count(*) from integra
+                                      where integra.lote=lote.idlote and integra.invalidado='f'
+                                      and lote.invalido='f') as vehiculos_en_lote,
+                                    lugar.nombre as destino,
+                                    (transporta.IDLote is not null) as transportado
+                                    from lote inner join lugar on lote.destino = lugar.idlugar
+                                    left join transporta on
+                                    transporta.IDLote=lote.IDLote and transporta.estado = 'Exitoso'
+                                    where lote.origen = ? and lote.invalido='f';", Conexcion)
         com.CrearParametro(DbType.Int32, id)
         Dim dt As New DataTable
         dt.Load(com.ExecuteReader)
@@ -793,11 +799,8 @@ order by fechaAgregado
         dt.Columns.Item(1).ColumnName = "Nombre del Lote"
         dt.Columns.Item(2).ColumnName = "Estado del Lote"
         dt.Columns.Item(3).ColumnName = "Autos en Lote"
-        dt.Columns.Add("Transportado", GetType(Boolean))
-        For Each i As DataRow In dt.Rows
-            i.Item(5) = CType(i.Item(4), Integer) > 0
-        Next
-        dt.Columns.RemoveAt(4)
+        dt.Columns.Item(4).ColumnName = "Destino del Lote"
+        dt.Columns.Item(5).ColumnName = "Transportado"
         Return dt
     End Function
 

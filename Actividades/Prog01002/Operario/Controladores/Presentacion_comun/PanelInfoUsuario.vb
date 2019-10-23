@@ -252,6 +252,15 @@ Public Class PanelInfoUsuario
                 MsgBoxI18N("Debe selecionar un sexo", MsgBoxStyle.Critical)
                 Return
             End If
+            If fechaNac.Value > Date.Now Then
+                MsgBoxI18N("No puede haber nacido en el futuro", MsgBoxStyle.Critical)
+                Return
+            End If
+            Dim edadUsuario = (Date.Now - fechaNac.Value).TotalDays / 365.0!
+            If edadUsuario < 18 OrElse edadUsuario > 55 Then ' Jubilación prematura y jornada laboral de 6 horas YA
+                MsgBoxI18N("No puede tener menos de 18 años o más de 55", MsgBoxStyle.Critical)
+                Return
+            End If
             user.Nombre = nombre.Text
             user.Email = email.Text
             user.Telefono = telefono.Text

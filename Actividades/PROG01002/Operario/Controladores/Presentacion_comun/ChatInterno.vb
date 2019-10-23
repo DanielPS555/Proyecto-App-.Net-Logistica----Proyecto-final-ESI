@@ -73,7 +73,10 @@
     End Sub
 
     Private Sub SendButton_Click(sender As Object, e As EventArgs) Handles SendButton.Click
-        If Fachada.getInstancia.MensajePara(DirectCast(UsuariosMensajeria.SelectedItem, Usuario), InputBox.Text) Then
+        If InputBox.Text.Length < 1 Then
+            Extenciones.MsgBoxI18N("No puede enviar un mensaje vacío", Marco.Language)
+            Return
+        ElseIf Fachada.getInstancia.MensajePara(DirectCast(UsuariosMensajeria.SelectedItem, Usuario), InputBox.Text) Then
             UpdateMessages()
             InputBox.Text = ""
         End If
