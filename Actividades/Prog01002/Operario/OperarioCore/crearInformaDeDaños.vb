@@ -175,30 +175,28 @@ Public Class crearInformaDeDaños
             Case 0
                 Info.Tipo = Controladores.InformeDeDaños.TIPO_INFORME_PARCIAL
             Case 1
-                Info.Tipo = Controladores.InformeDeDaños.TIPO_INFORME_PARCIAL
+                Info.Tipo = Controladores.InformeDeDaños.TIPO_INFORME_TOTAL
         End Select
         If PanelDelVehiculo Is Nothing Then
             If subida Then
                 Controladores.Fachada.getInstancia.nuevoInformeDeDaños(Info)
-                If Info.Tipo = Controladores.InformeDeDaños.TIPO_INFORME_TOTAL Then
-                    Controladores.Fachada.getInstancia.BajaVehiculo(Info.VehiculoPadre, Controladores.Vehiculo.TipoBajaVehiculo.Destrucción, Nothing)
-                End If
+
             Else
                 Controladores.Fachada.getInstancia.actualizarInforme(Info)
             End If
             panelVehiculo.ActualizarLotesExternos()
         Else
             Info.Descripcion = descipt.Text.Trim
-            Select Case tipo.SelectedIndex
-                Case 0
-                    Info.Tipo = Controladores.InformeDeDaños.TIPO_INFORME_PARCIAL
-                Case 1
-                    Info.Tipo = Controladores.InformeDeDaños.TIPO_INFORME_TOTAL
-            End Select
             Info.Fecha = DateTime.Now
             Info.Lugar = lugarOrigen
             Info.Creador = Controladores.Fachada.getInstancia.DevolverUsuarioActual
             PanelDelVehiculo.NotificarDeInforme(Info)
+        End If
+        If Info.Tipo = Controladores.InformeDeDaños.TIPO_INFORME_TOTAL Then
+            Dim loteid = Controladores.Persistencia.getInstancia.IDLotePor_VINvehiculo(Info.VehiculoPadre.VIN)
+            Controladores.Persistencia.getInstancia.anularAnteriorIntegra(Info.VehiculoPadre.IdVehiculo)
+            Controladores.Fachada.getInstancia.eliminarLoteSiNoTieneVehiculos(New Controladores.Lote() With {.IDLote = loteid})
+            Controladores.Fachada.getInstancia.BajaVehiculo(Info.VehiculoPadre, Controladores.Vehiculo.TipoBajaVehiculo.Destrucción, Nothing)
         End If
         Controladores.Marco.getInstancia.cerrarPanel(Of crearInformaDeDaños)()
     End Sub

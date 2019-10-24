@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -20,7 +21,23 @@ namespace Uninstaller
             InitializeComponent();
         }
 
-        private List<Point> UnKilledPoints;
+        private List<int> UnKilledLines;
+
+        private static void ForceDelete(string path)
+        {
+            try
+            {
+                Directory.Delete(path, true);
+            }
+            catch (IOException)
+            {
+                Directory.Delete(path, true);
+            }
+            catch (UnauthorizedAccessException)
+            {
+                Directory.Delete(path, true);
+            }
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -28,41 +45,40 @@ namespace Uninstaller
             {
                 try
                 {
-                    System.IO.Directory.Delete(ConexionLib.FachadaRegistro.RutaPrograma(), true);
-                    ConexionLib.FachadaRegistro.EliminarConfiguracion();
-                    ConexionLib.FachadaRegistro.DesregistrarPrograma();
-                    ConexionLib.FachadaRegistro.DesregistrarDesinstalador();
-                }
-                catch(Exception _e) {
-                    Console.WriteLine(_e);
-                }
+                    ForceDelete(ConexionLib.FachadaRegistro.RutaPrograma());
+                } catch (Exception)
+                {}
+                ConexionLib.FachadaRegistro.EliminarConfiguracion();
+                ConexionLib.FachadaRegistro.DesregistrarPrograma();
+                ConexionLib.FachadaRegistro.DesregistrarDesinstalador();
             });
             uninst.Start();
             Timer t = new System.Windows.Forms.Timer();
             t.Interval = 5;
-            UnKilledPoints = new List<Point>();
-            for (int x = 0; x < pictureBox1.Image.Width; x++)
-                for (int y = 0; y < pictureBox1.Image.Height; y++)
-                    UnKilledPoints.Add(new Point(x, y));
+            UnKilledLines = new List<int>();
+            for (int y = 0; y < pictureBox1.Image.Height; y++)
+                UnKilledLines.Add(y);
             Random r = new Random();
-            t.Tick += (a,b) =>
+            t.Tick += (a, b) =>
             {
-                for (int i = 0; i < 25; i++)
+                for (int i = 0; i < 12; i++)
                 {
-                    int idx = r.Next(UnKilledPoints.Count);
-                    var point = UnKilledPoints[idx];
-                    UnKilledPoints.RemoveAt(idx);
+                    int idx = r.Next(UnKilledLines.Count);
+                    var line = UnKilledLines[idx];
+                    UnKilledLines.RemoveAt(idx);
                     if (!(pictureBox1.Image is Bitmap bmp))
                     {
                         pictureBox1.Image = new Bitmap(pictureBox1.Image);
                         bmp = (Bitmap)pictureBox1.Image;
                     }
-                    bmp.SetPixel(point.X, point.Y, Color.Red);
+                    for (int x = 0; x < pictureBox1.Image.Width; x++)
+                        bmp.SetPixel(x, line, Color.Red);
                     pictureBox1.Image = bmp;
-                    if (UnKilledPoints.Count < 1)
+                    if (UnKilledLines.Count < 1)
                     {
                         t.Stop();
                         MessageBox.Show("Gracias por usar SLTA");
+                        uninst.Wait();
                         this.Close();
                         break;
                     }

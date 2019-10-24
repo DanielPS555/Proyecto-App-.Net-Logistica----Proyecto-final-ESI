@@ -32,7 +32,7 @@ Public Class Fachada
         End Select
         Dim posicion = Me.DevolverPosicionActual(vehiculo.IdVehiculo)
         If posicion IsNot Nothing Then jsonObj("idlugar") = posicion?.Subzona.ZonaPadre.LugarPadre.IDLugar
-        If msj IsNot Nothing And msj.Length > 0 Then jsonObj("mensaje") = msj
+        If msj IsNot Nothing AndAlso msj.Length > 0 Then jsonObj("mensaje") = msj
         CargarDataBaseDelUsuario()
         Me.AnularAnteriorPosicion(vehiculo.IdVehiculo)
         Persistencia.getInstancia.BajaVehiculo(vehiculo.IdVehiculo, jsonObj, DevolverUsuarioActual.ID_usuario)
@@ -427,9 +427,6 @@ Public Class Fachada
         Return lst
     End Function
 
-    Public Function AsignarLote(vin As String, lote As String) As Boolean ' FALTA IMPLEMENTAR
-        Return False
-    End Function
 
     Public Function VehiculosEnLote(IDlote As Integer) As List(Of Vehiculo)
         Dim dt = Persistencia.getInstancia.VehiculosEnLote(IDlote)

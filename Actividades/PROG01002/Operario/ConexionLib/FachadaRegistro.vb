@@ -95,14 +95,10 @@ Public Module FachadaRegistro
 
     Public Function DesregistrarPrograma() As Boolean
         If Not EstaRegistrado() Then Return False
-        Try
-            Dim sfwKey = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("Software")
-            Dim bitKey = sfwKey.OpenSubKey("Bit")
-            bitKey.DeleteSubKeyTree("SLTA")
-            Return True
-        Catch ex As Exception
-            Return False
-        End Try
+        Dim sfwKey = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("Software", True)
+        Dim bitKey = sfwKey.OpenSubKey("Bit", True)
+        bitKey.DeleteSubKeyTree("SLTA")
+        Return True
     End Function
     Public Function GuardarConfiguracion(cfg As ConfiguracionEnRed) As Boolean
         Try

@@ -4,7 +4,6 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ConexionLib;
 
@@ -105,83 +104,39 @@ namespace Instalador
         {
             if (packageBox.CheckedItems.Count == 0)
             {
-                MessageBox.Show("Debe selecionar un elemento a insltalar");
+                MessageBox.Show("Debe selecionar un elemento a instalar");
                 return;
             }
             string InstallPath = GetInstallPath();
+            if (MessageBox.Show($"El sistema se instalará en {InstallPath}, continuar?", "Confirmar", MessageBoxButtons.YesNo) != DialogResult.Yes) return;
+            InstallSLTA(InstallPath);
+        }
+
+        private void InstallSLTA(string InstallPath)
+        {
             if (!ConexionLib.FachadaRegistro.RegistrarPrograma(InstallPath))
             {
                 MessageBox.Show("No se pudo registrar el programa, asegúrese de tener permisos de administrador");
+                return;
             }
-            if (MessageBox.Show($"El sistema se instalará en {InstallPath}, continuar?", "Confirmar", MessageBoxButtons.YesNo) != DialogResult.Yes) return;
             System.IO.Directory.CreateDirectory(InstallPath);
             byte[] packageBytes = Properties.Resources.Paquetes;
-            string[] conditions;
+            string[] FileList;
             using (var packageStream = new System.IO.MemoryStream(packageBytes))
             {
                 using (var zipArchive = new System.IO.Compression.ZipArchive(packageStream))
                 {
-                    var conditionsEntry = zipArchive.GetEntry("Conditions.txt");
-                    using (var condition_stream = conditionsEntry.Open())
-                    {
-                        using (var streamReader = new System.IO.StreamReader(condition_stream))
-                        {
-                            conditions = streamReader.ReadToEnd().Split('\n');
-                        }
-                    }
-                    conditions = conditions.Where(file =>
-                    {
-                        var parts = file.Split(':');
-                        var appliesFor = parts[1].Contains('|') ? parts[1].Split('|') : new string[] { parts[1] };
-                        bool v = appliesFor.Any(f => packageBox.CheckedItems.Cast<string>().Any(i => i.Trim() == f.Trim()));
-                        return v;
-                    }).ToArray();
+                    FileList = GetFilesToInstall(zipArchive);
                     progressBar1.Visible = true;
-                    progressBar1.Maximum = conditions.Length;
+                    progressBar1.Maximum = FileList.Length;
                     progressBar1.Value = 0;
                     InstallList.Visible = true;
-                    foreach (var file in conditions)
-                    {
-                        var fileName = file.Split(':')[0];
-                        var fileEntry = zipArchive.GetEntry(fileName);
-                        var fileStream = fileEntry.Open();
-                        string path = System.IO.Path.Combine(InstallPath, fileName);
-                        var outputStream = new System.IO.FileStream(path, System.IO.FileMode.Create);
-                        using (var copyPromise = fileStream.CopyToAsync(outputStream))
-                            copyPromise.Wait();
-                        progressBar1.Value += 1;
-                        InstallList.Items.Add(path);
-                    }
-                    var uninstallerPath = System.IO.Path.Combine(InstallPath, "Uninstall.exe");
-                    var uninstallerBytes = Properties.Resources.Uninstaller;
-                    var uninstStream = new System.IO.FileStream(uninstallerPath, System.IO.FileMode.Create);
-                    using (var copyPromise = uninstStream.WriteAsync(uninstallerBytes, 0, uninstallerBytes.Length))
-                        copyPromise.Wait();
-                    try
-                    {
-                        FachadaRegistro.RegistrarDesinstalador(uninstallerPath);
-                    } catch(Exception e_)
-                    {
-                        MessageBox.Show(e_.ToString());
-                    }
+                    InstallFiles(InstallPath, FileList, zipArchive);
+                    PutUninstaller(InstallPath);
                     if (smCheck.Checked)
                     {
-                        var smPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonStartMenu);
-                        smPath = System.IO.Path.Combine(smPath, "Programs", "SLTA");
-                        System.IO.Directory.CreateDirectory(smPath);
-                        Type t = Type.GetTypeFromCLSID(new Guid("72C24DD5-D70A-438B-8A42-98424B88AFB8")); //Windows Script Host Shell Object
-                        dynamic wsh_shell = Activator.CreateInstance(t);
-                        try
-                        {
-                            foreach (var executable in conditions.Where(x => x.Split(':')[0].EndsWith(".exe")))
-                            {
-                                CreateLink(InstallPath, smPath, wsh_shell, executable);
-                            }
-                        }
-                        finally
-                        {
-                            Marshal.FinalReleaseComObject(wsh_shell);
-                        }
+                        var executableList = FileList.Where(x => x.Split(':')[0].EndsWith(".exe"));
+                        PutStartMenuIcons(InstallPath, executableList);
                     }
                     if (MessageBox.Show("Instalado con éxito! ¿Desea abrir la configuración de red?", "Configuración de red", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
@@ -189,6 +144,88 @@ namespace Instalador
                     }
                 }
             }
+        }
+
+        private void PutStartMenuIcons(string InstallPath, IEnumerable<string> executableList)
+        {
+            var smPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonStartMenu);
+            smPath = System.IO.Path.Combine(smPath, "Programs", "SLTA");
+            System.IO.Directory.CreateDirectory(smPath);
+            Type t = Type.GetTypeFromCLSID(new Guid("72C24DD5-D70A-438B-8A42-98424B88AFB8")); //Windows Script Host Shell Object
+            dynamic wsh_shell = Activator.CreateInstance(t);
+            try
+            {
+                foreach (var executable in executableList)
+                {
+                    CreateLink(InstallPath, smPath, wsh_shell, executable);
+                }
+            }
+            finally
+            {
+                Marshal.FinalReleaseComObject(wsh_shell);
+            }
+        }
+
+        private static void PutUninstaller(string InstallPath)
+        {
+            var uninstallerPath = System.IO.Path.Combine(InstallPath, "Uninstall.exe");
+            var uninstallerBytes = Properties.Resources.Uninstaller;
+            var uninstStream = new System.IO.FileStream(uninstallerPath, System.IO.FileMode.Create);
+            using (var copyPromise = uninstStream.WriteAsync(uninstallerBytes, 0, uninstallerBytes.Length))
+                copyPromise.Wait();
+            try
+            {
+                FachadaRegistro.RegistrarDesinstalador(uninstallerPath);
+            }
+            catch (Exception e_)
+            {
+                MessageBox.Show(e_.ToString());
+            }
+        }
+
+        private void InstallFiles(string InstallPath, string[] FileList, System.IO.Compression.ZipArchive zipArchive)
+        {
+            foreach (var file in FileList)
+            {
+                var fileName = file.Split(':')[0];
+                var fileEntry = zipArchive.GetEntry(fileName);
+                var fileStream = fileEntry.Open();
+                string path = System.IO.Path.Combine(InstallPath, fileName);
+                var outputStream = new System.IO.FileStream(path, System.IO.FileMode.Create);
+                using (var copyPromise = fileStream.CopyToAsync(outputStream))
+                    copyPromise.Wait();
+                progressBar1.Value += 1;
+                InstallList.Items.Add(path);
+            }
+        }
+
+        private string[] GetFilesToInstall(System.IO.Compression.ZipArchive zipArchive)
+        {
+            string[] conditions;
+            var conditionsEntry = zipArchive.GetEntry("Conditions.txt");
+            conditions = ReadConditions(conditionsEntry);
+            conditions = conditions.Where(file =>
+            {
+                var parts = file.Split(':');
+                var appliesFor = parts[1].Contains('|') ? parts[1].Split('|') : new string[] { parts[1] };
+                bool v = appliesFor.Any(f => packageBox.CheckedItems.Cast<string>().Any(i => i.Trim() == f.Trim()));
+                return v;
+            }).ToArray();
+            return conditions;
+        }
+
+        private static string[] ReadConditions(System.IO.Compression.ZipArchiveEntry conditionsEntry)
+        {
+            string[] conditions;
+            using (var condition_stream = conditionsEntry.Open())
+            {
+                using (var streamReader = new System.IO.StreamReader(condition_stream))
+                {
+                    conditions = streamReader.ReadToEnd().Split('\n');
+                }
+            }
+
+            return conditions;
         }
 
         private void CreateLink(string InstallPath, string smPath, dynamic shell, string f)
@@ -228,7 +265,5 @@ namespace Instalador
             }
 
         }
-
-
     }
 }
