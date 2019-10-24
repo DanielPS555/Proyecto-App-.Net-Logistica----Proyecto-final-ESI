@@ -77,7 +77,7 @@ grant select, update on vehiculo to operario;
 grant select on vehiculo to transportista;
 
 /*TABLA VehiculoIngresa*/
-grant select, insert, update on vehiculoingresa to operario;
+grant select, insert, update on vehiculoingresa to operario, transportista;
 
 /*TABLA InformeDanios*/
 grant select, insert, update on informedanios to operario;

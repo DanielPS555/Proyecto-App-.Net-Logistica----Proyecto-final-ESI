@@ -114,7 +114,7 @@ Public Class Lista_de_trasportes
         'COMPROBACION TOMAS: Todos los lotes elegidos no puede ya estar en transporte ni en fallo 
         For Each lloo As Controladores.Lote In lotesElegidos
             Dim estate As String = Controladores.Fachada.getInstancia.UltimoEstadoLote(lloo.IDLote)
-            If estate IsNot Nothing AndAlso (estate.Equals(Controladores.Trasporte.TIPO_ESTADO_PROSESO) OrElse (lloo.Prioridad.Equals(Controladores.Lote.TIPO_ESTADO_ABIERTO) AndAlso estate.Equals(Controladores.Trasporte.TIPO_ESTADO_FALLO))) Then
+            If estate IsNot Nothing AndAlso (estate.Equals(Controladores.Trasporte.TIPO_ESTADO_PROSESO) OrElse estate.Equals(Controladores.Trasporte.TIPO_ESTADO_EXISTOSO) OrElse (lloo.Prioridad.Equals(Controladores.Lote.TIPO_ESTADO_ABIERTO) AndAlso estate.Equals(Controladores.Trasporte.TIPO_ESTADO_FALLO))) Then
                 MsgBox($"El lote {lloo.Nombre} ya esta en ocupado. Lo lamento", MsgBoxStyle.Critical)
                 Return
             End If
