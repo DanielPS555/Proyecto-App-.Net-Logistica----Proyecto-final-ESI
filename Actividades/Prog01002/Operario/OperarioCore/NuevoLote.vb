@@ -57,6 +57,10 @@ Public Class NuevoLote
             l_nom.ForeColor = Color.FromArgb(35, 35, 35)
         End If
 
+        If Controladores.Fachada.getInstancia.ExistenciaNombreLote(nom.Text) Then
+            verif = 0
+            l_nom.ForeColor = Color.FromArgb(180, 20, 20)
+        End If
 
 
         If verif = 1 Then

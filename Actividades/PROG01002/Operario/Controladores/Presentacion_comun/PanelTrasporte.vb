@@ -35,11 +35,11 @@ Public Class PanelTrasporte
         Dim estimada As DateTime? = Controladores.Funciones_comunes.AutoNull(Of Object)(lotes.Rows(0).Item(7))
 
         For Each l As DataRow In lotes.Rows
-            If real IsNot Nothing AndAlso l.Item(6) > real Then
+            If real IsNot Nothing AndAlso Controladores.Funciones_comunes.AutoNull(Of Object)(l.Item(6)) IsNot Nothing AndAlso l.Item(6) > real Then
                 real = l.Item(6)
             End If
 
-            If estimada IsNot Nothing AndAlso l.Item(7) > estimada Then
+            If estimada IsNot Nothing AndAlso Controladores.Funciones_comunes.AutoNull(Of Object)(l.Item(7)) IsNot Nothing AndAlso l.Item(7) > estimada Then
                 estimada = l.Item(7)
             End If
         Next

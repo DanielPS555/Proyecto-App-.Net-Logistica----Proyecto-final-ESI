@@ -46,6 +46,10 @@ Public Class Fachada
         Return Persistencia.getInstancia.VehiculosEntregados()
     End Function
 
+    Public Function ExistenciaNombreLote(nombre As String) As Boolean
+        Return Persistencia.getInstancia.ExistenciaNombreDeLote(nombre)
+    End Function
+
     Public Function VehiculosPrecargados() As DataTable
         Return Persistencia.getInstancia.VehiculosPrecargados()
     End Function

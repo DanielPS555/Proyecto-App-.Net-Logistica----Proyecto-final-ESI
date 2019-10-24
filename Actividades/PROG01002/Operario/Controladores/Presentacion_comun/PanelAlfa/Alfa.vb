@@ -93,9 +93,9 @@
         Dim tamaño As Integer = 0
         For Each elemento As IAlfaInterface In lista
             Dim ele = elemento.dameForm
-            tamaño += ele.Height
+            tamaño += ele.Height + 12
         Next
-        contenedor.Height = tamaño + 81 'POR LAS DUDAS 
+        contenedor.Height = tamaño
         For Each epe As IAlfaInterface In lista
             epe.darAncho(Me.Width)
             Dim con As Form = epe.dameForm

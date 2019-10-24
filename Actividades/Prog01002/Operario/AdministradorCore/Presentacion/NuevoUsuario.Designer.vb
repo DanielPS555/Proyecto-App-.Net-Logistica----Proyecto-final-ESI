@@ -170,7 +170,7 @@ Partial Class NuevoUsuario
         Me.fechaNac.Location = New System.Drawing.Point(241, 397)
         Me.fechaNac.Name = "fechaNac"
         Me.fechaNac.Size = New System.Drawing.Size(628, 33)
-        Me.fechaNac.TabIndex = 13
+        Me.fechaNac.TabIndex = 14
         '
         'sexo
         '
@@ -181,7 +181,7 @@ Partial Class NuevoUsuario
         Me.sexo.Location = New System.Drawing.Point(241, 467)
         Me.sexo.Name = "sexo"
         Me.sexo.Size = New System.Drawing.Size(628, 32)
-        Me.sexo.TabIndex = 144
+        Me.sexo.TabIndex = 15
         '
         'rol
         '
@@ -192,7 +192,7 @@ Partial Class NuevoUsuario
         Me.rol.Location = New System.Drawing.Point(241, 535)
         Me.rol.Name = "rol"
         Me.rol.Size = New System.Drawing.Size(628, 32)
-        Me.rol.TabIndex = 145
+        Me.rol.TabIndex = 16
         '
         'ingresar
         '
@@ -231,7 +231,7 @@ Partial Class NuevoUsuario
         Me.Contraseña.Name = "Contraseña"
         Me.Contraseña.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.Contraseña.Size = New System.Drawing.Size(628, 31)
-        Me.Contraseña.TabIndex = 148
+        Me.Contraseña.TabIndex = 13
         '
         'NuevoUsuario
         '

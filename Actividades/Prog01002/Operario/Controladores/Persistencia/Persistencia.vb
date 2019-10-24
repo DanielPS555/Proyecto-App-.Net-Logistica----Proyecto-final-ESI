@@ -1358,15 +1358,21 @@ order by fechaAgregado
     End Function
 
     Public Function TrasportesRealizadosDelSistema() As DataTable
-        Dim com As New OdbcCommand("select transporte.transporteID, IDLegal,FechaHoraCreacion,FechaHoraLlegadaReal, lote.origen,
+        Dim com As New OdbcCommand("select transporte.transporteID, IDLegal,FechaHoraCreacion,max(FechaHoraLlegadaReal) as horaDeLlegada, lote.origen,
                                     count(transporte.transporteID) as Numero_Lotes, usuario.nombredeusuario as Transportista
                                     from transporte inner join transporta on transporte.transporteID = transporta.transporteID
                                     inner join lote on transporta.idlote = lote.idlote inner join usuario on usuario.idusuario = transporte.usuario
-                                    group by transporte.transporteID, IDLegal,FechaHoraCreacion,FechaHoraLlegadaReal, lote.origen,Transportista
+                                    group by transporte.transporteID, IDLegal,FechaHoraCreacion, lote.origen,Transportista
                                     order by transporte.transporteID", Conexcion)
         Dim dt As New DataTable
         dt.Load(com.ExecuteReader)
         Return dt
+    End Function
+
+    Public Function ExistenciaNombreDeLote(nombre As String) As Boolean
+        Dim com As New OdbcCommand("select count(*) from lote where nombre=? and invalido='f'", Conexcion)
+        com.CrearParametro(DbType.String, nombre)
+        Return com.ExecuteScalar = 1
     End Function
 
     Public Function InformacionBasicaDelTrasporte(idtrasporte As Integer) As DataRow

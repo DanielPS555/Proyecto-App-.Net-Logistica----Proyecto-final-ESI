@@ -247,7 +247,7 @@ Partial Class NuevoVehiculo
         Me.zonas.Location = New System.Drawing.Point(431, 340)
         Me.zonas.Name = "zonas"
         Me.zonas.Size = New System.Drawing.Size(160, 31)
-        Me.zonas.TabIndex = 42
+        Me.zonas.TabIndex = 43
         '
         'l_zona
         '
@@ -330,7 +330,7 @@ Partial Class NuevoVehiculo
         Me.clientes.Location = New System.Drawing.Point(92, 254)
         Me.clientes.Name = "clientes"
         Me.clientes.Size = New System.Drawing.Size(709, 31)
-        Me.clientes.TabIndex = 110
+        Me.clientes.TabIndex = 41
         '
         'QR
         '
@@ -386,7 +386,7 @@ Partial Class NuevoVehiculo
         Me.color.Location = New System.Drawing.Point(624, 191)
         Me.color.Name = "color"
         Me.color.Size = New System.Drawing.Size(130, 35)
-        Me.color.TabIndex = 48
+        Me.color.TabIndex = 40
         Me.color.Text = "Selecionar"
         Me.color.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.color.UseVisualStyleBackColor = False
@@ -514,7 +514,7 @@ Partial Class NuevoVehiculo
         Me.lugar.Location = New System.Drawing.Point(106, 340)
         Me.lugar.Name = "lugar"
         Me.lugar.Size = New System.Drawing.Size(257, 31)
-        Me.lugar.TabIndex = 117
+        Me.lugar.TabIndex = 42
         Me.lugar.TabStop = False
         '
         'NuevoVehiculo
