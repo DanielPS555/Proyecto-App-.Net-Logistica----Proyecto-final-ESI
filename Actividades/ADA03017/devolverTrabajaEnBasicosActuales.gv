@@ -5,6 +5,6 @@ digraph uwu2 {
 "Esta vacia la tabla de este usuario?" -> "Hay mas filas?" [label="F"];
 "Hay mas filas?" -> "Trabajaen tiene fin?" [label = "T"];
 "Hay mas filas?" -> "Devuelve la lista" [label = "F"];
-"Trabajaen tiene fin?" -> "lo agrega a la lista" [label = "F"] -> "Hay mas filas?";
+"Trabajaen tiene fin?" -> "lo agrega a la lista" [label = "F"] ;
 "Trabajaen tiene fin?" -> "Hay mas filas?" [label = "T"];
 }
