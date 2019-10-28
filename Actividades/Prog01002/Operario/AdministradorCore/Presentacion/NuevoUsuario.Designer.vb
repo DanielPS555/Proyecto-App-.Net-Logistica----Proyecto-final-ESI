@@ -126,6 +126,8 @@ Partial Class NuevoUsuario
         '
         'nombreDeUsuario
         '
+        Me.nombreDeUsuario.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.nombreDeUsuario.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.nombreDeUsuario.Location = New System.Drawing.Point(240, 19)
         Me.nombreDeUsuario.Name = "nombreDeUsuario"
@@ -134,6 +136,8 @@ Partial Class NuevoUsuario
         '
         'NombreReal
         '
+        Me.NombreReal.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.NombreReal.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.NombreReal.Location = New System.Drawing.Point(240, 75)
         Me.NombreReal.Name = "NombreReal"
@@ -142,6 +146,8 @@ Partial Class NuevoUsuario
         '
         'ApellidoReal
         '
+        Me.ApellidoReal.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.ApellidoReal.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ApellidoReal.Location = New System.Drawing.Point(240, 145)
         Me.ApellidoReal.Name = "ApellidoReal"
@@ -150,6 +156,8 @@ Partial Class NuevoUsuario
         '
         'Email
         '
+        Me.Email.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Email.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Email.Location = New System.Drawing.Point(240, 209)
         Me.Email.Name = "Email"
@@ -158,6 +166,8 @@ Partial Class NuevoUsuario
         '
         'Telefono
         '
+        Me.Telefono.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Telefono.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Telefono.Location = New System.Drawing.Point(240, 272)
         Me.Telefono.Name = "Telefono"
@@ -166,6 +176,8 @@ Partial Class NuevoUsuario
         '
         'fechaNac
         '
+        Me.fechaNac.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.fechaNac.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.fechaNac.Location = New System.Drawing.Point(241, 397)
         Me.fechaNac.Name = "fechaNac"
@@ -174,6 +186,8 @@ Partial Class NuevoUsuario
         '
         'sexo
         '
+        Me.sexo.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.sexo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.sexo.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.sexo.FormattingEnabled = True
@@ -185,6 +199,8 @@ Partial Class NuevoUsuario
         '
         'rol
         '
+        Me.rol.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.rol.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.rol.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.rol.FormattingEnabled = True
@@ -196,8 +212,7 @@ Partial Class NuevoUsuario
         '
         'ingresar
         '
-        Me.ingresar.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.ingresar.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.ingresar.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
         Me.ingresar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(196, Byte), Integer))
         Me.ingresar.FlatAppearance.BorderSize = 0
@@ -226,6 +241,8 @@ Partial Class NuevoUsuario
         '
         'Contraseña
         '
+        Me.Contraseña.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Contraseña.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Contraseña.Location = New System.Drawing.Point(240, 336)
         Me.Contraseña.Name = "Contraseña"

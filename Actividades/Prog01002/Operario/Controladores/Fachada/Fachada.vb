@@ -20,6 +20,11 @@ Public Class Fachada
         Return vehicles
     End Function
 
+    Public Function lugaridactualDelVehiculo(idvehiculo As Integer) As Lugar
+        Dim po As DataRow = Persistencia.getInstancia.PosicionActualVehiculo(idvehiculo)
+        Return MaximoAncestro(po.Item(3))
+    End Function
+
     Public Sub BajaVehiculo(vehiculo As Vehiculo, tipoBaja As Vehiculo.TipoBajaVehiculo, msj As String)
         Dim jsonObj As New Dictionary(Of String, String)
         Select Case tipoBaja
@@ -605,6 +610,10 @@ Public Class Fachada
         Return LotesDisponiblesPorLugar(Persistencia.getInstancia.TrabajaEn?.Lugar)
     End Function
 
+    Public Function LotesDisponiblesPorLugarActualYVevhciuloDeterminado(vin As String) As List(Of Lote)
+        Return LotesDisponiblesPorLugaryPorVin(Persistencia.getInstancia.TrabajaEn?.Lugar, vin)
+    End Function
+
     Public Function LotesDisponiblesPorLugar(lugar As Lugar) As List(Of Lote) ' ¿En qué parte del programa necesitamos ver solamente lotes abiertos?
         Dim lista As New List(Of Lote)
         For Each r1 As DataRow In Persistencia.getInstancia.DevolverTodosLosLotesPor_IdLugar_COPIA(lugar.IDLugar).Rows
@@ -614,6 +623,29 @@ Public Class Fachada
             End If
         Next
         Return lista
+    End Function
+
+
+
+    Public Function LotesDisponiblesPorLugaryPorVin(lugar As Lugar, vin As String) As List(Of Lote) ' ¿En qué parte del programa necesitamos ver solamente lotes abiertos?
+        Dim lista As New List(Of Lote)
+        For Each r1 As DataRow In Persistencia.getInstancia.DevolverTodosLosLotesPor_IdLugar_YVin(lugar.IDLugar, vin).Rows
+            Dim lote As New Lote With {.IDLote = r1.Item(0), .Nombre = r1.Item(1), .Estado = r1.Item(2)}
+            If lote.Estado = Lote.TIPO_ESTADO_ABIERTO And Not r1.Item(3) Then
+                lista.Add(lote)
+            End If
+        Next
+        Return lista
+    End Function
+
+    Public Function conformarvehiculoentregado(idvehiculo As Integer)
+        Dim dt As DataTable = Persistencia.getInstancia.VehiculosEntregados
+        For Each r As DataRow In dt.Rows
+            If r.Item(0) = idvehiculo Then
+                Return True
+            End If
+        Next
+        Return False
     End Function
 
     Public Function DevolverDatosBasicosPorVIN_Vehiculo(vin As String) As Vehiculo

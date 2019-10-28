@@ -93,18 +93,19 @@ order by 7", _con)
     End Function
 
     Friend Function VehiculosPrecargados() As DataTable
-        Dim selectCmd As New OdbcCommand("select vehiculo.idvehiculo as IDVehiculo, vin as VIN
-from vehiculo
-left join vehiculoIngresa on vehiculoIngresa.idvehiculo=vehiculo.idvehiculo and vehiculoIngresa.tipoIngreso='Alta'
-where vehiculoingresa.idvehiculo is null", _con)
+        Dim selectCmd As New OdbcCommand("select vehiculo.idvehiculo as IDVehiculo, vin As                                 VIN, Cliente.Nombre
+                                          From vehiculo
+                                            Left Join vehiculoIngresa on vehiculoIngresa.idvehiculo=vehiculo.idvehiculo And vehiculoIngresa.tipoIngreso='Alta'
+        inner Join cliente on vehiculo.cliente = cliente.idcliente
+where vehiculoingresa.idvehiculo Is null", _con)
         Dim dt As New DataTable
         dt.Load(selectCmd.ExecuteReader)
         Return dt
     End Function
 
     Friend Function VehiculosDañados() As DataTable
-        Dim selectCmd As New OdbcCommand("select vehiculo.idvehiculo as IDVehiculo, vin as VIN, lugar.nombre as Lugar, nvl(bson_value_lvarchar(detalle, 'mensaje'), 'Ninguno') as Mensaje
-from vehiculo inner join vehiculoIngresa on vehiculoIngresa.tipoIngreso='Baja' and vehiculoIngresa.idvehiculo=vehiculo.idvehiculo
+        Dim selectCmd As New OdbcCommand("Select vehiculo.idvehiculo As IDVehiculo, vin As VIN, Lugar.Nombre As Lugar, nvl(bson_value_lvarchar(detalle, 'mensaje'), 'Ninguno') as Mensaje
+From vehiculo inner Join vehiculoIngresa On vehiculoIngresa.tipoIngreso='Baja' and vehiculoIngresa.idvehiculo=vehiculo.idvehiculo
 and bson_value_lvarchar(detalle, 'tipo')='destruccion'
 left join lugar on lugar.idlugar=bson_value_int(detalle, 'idlugar')", _con)
         Dim dt As New DataTable
@@ -810,6 +811,31 @@ order by fechaAgregado
         End If
         Dim com As New OdbcCommand("select lote.idlote, lote.nombre, lote.estado, lote.invalido from lote inner join lugar on lote.origen = lugar.idlugar where lugar.idlugar = ?;", Conexcion)
         com.CrearParametro(DbType.Int32, id)
+        Dim dt As New DataTable
+        dt.Load(com.ExecuteReader)
+        Return dt
+    End Function
+
+    Public Function DevolverTodosLosLotesPor_IdLugar_YVin(id As Integer?,vin As string) As DataTable
+        If id Is Nothing Then
+            Return Nothing
+        End If
+        Dim com As New OdbcCommand("select lote.idlote, lote.nombre, lote.estado, lote.invalido
+                                    from lote inner join lugar on lote.origen = lugar.idlugar
+                                    inner join lugar lug2 on lug2.idlugar=lote.destino
+                                    where lugar.idlugar = ? and lote.invalido='f' and lug2.tipo in ('Patio', 'Puerto')
+                                      union
+                                    select lote.idlote, lote.nombre, lote.estado, lote.invalido
+                                    from vehiculo inner join cliente on vehiculo.cliente = idcliente
+                                    inner join pertenecea on cliente.idcliente = pertenecea.clienteid
+                                    inner join lugar lug1 on lug1.idlugar = pertenecea.idlugar
+                                    inner join lote on lote.destino = lug1.idlugar
+                                    inner join lugar lug3 on lug3.idlugar = lote.origen
+                                    where lug3.idlugar=? and vehiculo.vin=?
+                                     and lote.invalido='f'", Conexcion)
+        com.CrearParametro(DbType.Int32, id)
+        com.CrearParametro(DbType.Int32, id)
+        com.CrearParametro(DbType.String, vin)
         Dim dt As New DataTable
         dt.Load(com.ExecuteReader)
         Return dt

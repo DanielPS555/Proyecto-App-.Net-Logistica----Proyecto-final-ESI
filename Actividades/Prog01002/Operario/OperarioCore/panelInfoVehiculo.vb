@@ -18,7 +18,7 @@ Public Class panelInfoVehiculo
     Private loteActual As Controladores.Lote
     Private qrcode As Bitmap
     Private superpepe As Boolean
-    Public Sub New(VIN As String)
+    Public Sub New(VIN As String, Optional editarLotes As Boolean = True)
         ' Esta llamada es exigida por el diseñador.
         InitializeComponent()
         superpepe = False
@@ -63,6 +63,20 @@ Public Class panelInfoVehiculo
             Button2.Visible = False
             Button4.Visible = False
         End If
+
+        'If Controladores.Fachada.getInstancia.ExistenciaDevehiculoPrecargado(vehiculo.VIN) OrElse Controladores.Fachada.getInstancia.conformarvehiculoentregado(vehiculo.IdVehiculo) Then
+        '    vermasLote.Visible = False
+        '    cambiarGuardarLote.Visible = False
+        'ElseIf Controladores.Fachada.getInstancia.DevolverUsuarioActual.Rol.Equals(Usuario.TIPO_ROL_OPERARIO) AndAlso Not Controladores.Fachada.getInstancia.lugaridactualDelVehiculo(vehiculo.IdVehiculo).IDLugar.Equals(Fachada.getInstancia.TrabajaEnAcutual.Lugar.IDLugar) Then
+        '    vermasLote.Visible = False
+        '    cambiarGuardarLote.Visible = False
+        'End If
+
+        If Not editarLotes Then
+            vermasLote.Visible = False
+            cambiarGuardarLote.Visible = False
+        End If
+
     End Sub
 
     Private Sub TomarValores()
@@ -130,11 +144,7 @@ Public Class panelInfoVehiculo
     End Sub
 
     Public Sub CargarLotes()
-        If Fachada.getInstancia.DevolverUsuarioActual.Rol <> Usuario.TIPO_ROL_ADMINISTRADOR Then
-            todosLosLotesDisponibles = Controladores.Fachada.getInstancia.LotesDisponiblesPorLugarActual
-        Else
-            todosLosLotesDisponibles = Controladores.Fachada.getInstancia.DevolverLotesDisponblesCompletos
-        End If
+        todosLosLotesDisponibles = Controladores.Fachada.getInstancia.LotesDisponiblesPorLugaryPorVin(Controladores.Fachada.getInstancia.lugaridactualDelVehiculo(vehiculo.IdVehiculo), vehiculo.VIN)
         LoteCombo.Items.Clear()
         For Each l As Controladores.Lote In todosLosLotesDisponibles
             LoteCombo.Items.Add($"ID: {l.IDLote} / NOM: {l.Nombre}")

@@ -153,9 +153,14 @@ Public Class ListaVehiculos
             Case "No asignados"
                 Dim eleme As New Asignacion(tabla.Rows(e.RowIndex).Cells(1).Value, lugar)
                 eleme.ShowDialog()
+
+
+            Case "Asignados"
+                Dim row = tabla.Rows()(e.RowIndex)
+                Marco.getInstancia.CargarPanel(New panelInfoVehiculo(row.Cells(1).Value, If(tiposListas.SelectedItem.Equals("Asignados"), If(tabla.Rows(e.RowIndex).Cells(6).Value.Equals("En el lugar"), True, False), False))).Show()
             Case Else
                 Dim row = tabla.Rows()(e.RowIndex)
-                Marco.getInstancia.CargarPanel(New panelInfoVehiculo(row.Cells(1).Value)).Show()
+                Marco.getInstancia.CargarPanel(New panelInfoVehiculo(row.Cells(1).Value, False)).Show()
         End Select
         '
 
@@ -302,6 +307,10 @@ Public Class ListaVehiculos
             buscar.Enabled = True
 
         End If
+
+    End Sub
+
+    Private Sub tabla_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles tabla.CellContentClick
 
     End Sub
 End Class

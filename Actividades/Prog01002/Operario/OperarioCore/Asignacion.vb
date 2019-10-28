@@ -34,7 +34,7 @@ Public Class Asignacion
 
     Public Sub CargarLotes()
         lote.Items.Clear()
-        lotesDisponibles = Fachada.getInstancia.LotesDisponiblesPorLugar(lugarvehiculo)
+        lotesDisponibles = Fachada.getInstancia.LotesDisponiblesPorLugaryPorVin(lugarvehiculo, vehiculo.VIN)
         For Each l As Lote In lotesDisponibles
             lote.Items.Add(l)
         Next

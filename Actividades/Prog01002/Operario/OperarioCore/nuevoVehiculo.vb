@@ -79,16 +79,22 @@ Public Class NuevoVehiculo
     End Sub
 
     Private Sub loadLotes()
-        lote.Items.Clear()
-        todosLosLotes = Fachada.getInstancia.LotesDisponiblesPorLugar(lugaresCombo(lugar.SelectedIndex))
-        For Each l As Lote In todosLosLotes
-            lote.Items.Add(l)
-        Next
-        If lote.Items.Count > 0 Then
-            lote.SelectedIndex = 0
+        If Vehiculo.VIN Is Nothing Then
+            lote.Items.Clear()
+            lote.Items.Add("Ingrese un VIN para ver sus lotes posibles")
         Else
-            lote.Enabled = False
+            lote.Items.Clear()
+            todosLosLotes = Fachada.getInstancia.LotesDisponiblesPorLugaryPorVin(lugaresCombo(lugar.SelectedIndex), Vehiculo.VIN)
+            For Each l As Lote In todosLosLotes
+                lote.Items.Add(l)
+            Next
+            If lote.Items.Count > 0 Then
+                lote.SelectedIndex = 0
+            Else
+                lote.Enabled = False
+            End If
         End If
+
     End Sub
 
     Private Sub loadClientes()
@@ -135,6 +141,7 @@ Public Class NuevoVehiculo
             habilitar(True)
             cargarDatosDeLaPrecarga()
             ingresar.Enabled = True
+            loadLotes()
         Else
             EstadoBusqueda.Text = Controladores.Funciones_comunes.I18N("Vin sin precarga o no existe", Controladores.Marco.getInstancia.Language)
             EstadoBusqueda.ForeColor = Drawing.Color.FromArgb(180, 20, 20)
