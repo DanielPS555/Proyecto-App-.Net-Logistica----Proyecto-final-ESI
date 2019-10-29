@@ -7,18 +7,20 @@
 \usepackage{array}
 \usepackage[table, svgnames]{xcolor}
 
+\renewcommand\refname{Referencias}
+
 \title{\textbf{Bit SKV}}
 \author{Bit SRL\\
-		Equipo del SLTA-verse}
+		Equipo de desarrollo e investigación del SLTA-verse}
 \date{}
 
 \begin{document}
 \maketitle
 
 \section{Descripción}
-SKV es un método de rápida autenticación de claves de instalación utilizando multiplicación de matrices, utilizando 4 matrices (el formato de encodeo de las matrices todavía está por definirse).
+SKV es un método de autenticación trazable de claves de instalación utilizando multiplicación de matrices, utilizando 4 matrices.
 
-El cliente de SLTA tendrá (en algún formato no directamente visible) 4 matrices, $ A_{3}, B_{3}, C_{2}, D_{2} $ donde $ A \times B = M1$ y $ C \times D = M2 $, donde $M1_{3} y M2_{2}$ se describen en las siguientes secciones.
+El cliente de SLTA tendrá (en algún formato no directamente visible) 4 matrices, $ A_{3}, B_{3}, C_{2}, D_{2} $ donde $ A \times B = M1$ y $ C \times D = M2 $, donde $M1_{3} y M2_{2}$ se describen en las siguientes secciones. Aunque no es estrictamente necesario para el funcionamiento del SKV, se considera valiosa la posibilidad de utilizar información que permita identificar al usuario en A,C o B,D y despejar las otras matrices a partir de éstas, utilizando el método de ecuaciones matriciales por sistemas de ecuaciones\cite{gonzalez2019}.
 
 \section{M2}
 M2 es una matriz de tamaño $2\times2$ con los siguientes valores:
@@ -381,19 +383,20 @@ Bit SKV es un algoritmo para claves de autenticación de los productos de Bit SR
 
 Cada número se representa con 4 bytes, 2 para su numerador (firmado) y 2 para su denominador (no firmado).
 
-Los primeros 36 bytes representan los números de A, donde $R_{i} = A_{(i idiv 3)+1,(i mod 3)+1}$, o sea los números de la misma fila se almacenan conjuntamente. Visualmente, esto parece
+Los primeros 36 bytes representan los números de A, donde $R_{i} = A_{(i idiv 3)+1,(i mod 3)+1}$, esto es: los números se almacenan de manera ordenada por columna y luego por fila. En la memoria del sistema, esto puede ser visualizado como
 \begin{center}
-
-\begin{tabular}{|*{8}{p{0.7cm}|}}
+\begin{tabular}{|*{9}{p{1.1cm}|}}
+\hline
+16bits & 16bits & 16bits & 16bits & \dots & 16bits & 16bits \\
   \hline
-  \rowcolor{WhiteSmoke!60!Lavender}$A_{11}$& $A_{12}$ & $A_{13}$ & $A_{21}$ & $A_{22} $& \dots & $A_{32}$ &$A_{33}$\rule{0pt}{0.5cm} \\
+  \rowcolor{WhiteSmoke!60!Lavender}$A_{11Num}$&$A_{11Den}$&$A_{12Num}$&$A_{12Den}$& \dots & $A_{33Num}$ &$A_{33Den}$\rule{0pt}{0.5cm} \\
   \hline
 \end{tabular}
 \end{center}
 
 Los próximos 36 bytes representan los números de B del mismo modo. Los últimos 32 bytes representan los números de C y D del mismo modo.
 
-Estos 104 bytes son codificados mediante \textit{base64}, un sistema de codificación binaria que utiliza caracteres del abecedario + dígitos + algunos caracteres especiales para codificar de una manera legible información en formato binario. Por ejemplo, nuestros ABCD de ejemplo en formato b64 serían el string (sin rotura de líneas)
+Estos 104 bytes son codificados mediante \texttt{base64}, un sistema de codificación binaria que utiliza caracteres del abecedario + dígitos + algunos caracteres especiales para codificar de una manera legible información en formato binario. Por ejemplo, nuestros ABCD de ejemplo en formato b64 serían el string (sin rotura de líneas)
 \begin{lstlisting}
 AQABAAMAAQAAAAEABQABAAgAAQAMAAEACQABAAQAAQAKAAEAAQFnAOgAZwAXAmcA7/9nAD8C
 ZwDaAWcA2//OAHX9zgCH/M4ABQABAAwAAQAIAAEAAAABAAMAAgABAAgAFwAYAJsAYAA=
@@ -406,6 +409,8 @@ Un programa ejemplo, que encodea y decodea estas matrices (y muestra el resultad
 	language=[Visual]Basic,
 	numbers=left,
 	breaklines=true,
+	keywordstyle=\color{blue},
+	showspaces=false
 }
 
 \begin{lstlisting}
@@ -630,7 +635,7 @@ End Module
 \end{lstlisting}
 Al ejecutarlo con nuestro string, se da el siguiente resultado
 \begin{lstlisting}
->kouta@koutas-lair ~/matrix_mult (git)-[master] % dotnet run
+>kouta@koutas-lair ~/matrix_mult (git)-[master] $ dotnet run
 >AQABAAMAAQAAAAEABQABAAgAAQAMAAEACQABAAQAAQAKAAEAAQFnAOgAZwAXAmcA7/9nAD8CZwDaAWcA2//OAHX9zgCH/M4ABQABAAwAAQAIAAEAAAABAAMAAgABAAgAFwAYAJsAYAA=
 Matrix A:
 1	3	0/0	
@@ -659,4 +664,14 @@ Matrix M2:
 19	20	
 12	1	
 \end{lstlisting}
+\appendix
+\section{Bibliografía}
+\begin{thebibliography}{9}
+
+\bibitem{gonzalez2019}
+  Cristina Gonzalez,
+  Matrices, Multiplicación de matrices, Ecuaciones matriciales y Codificación por matrices,
+  Clases del 10 al 18 de octubre,
+  2019.
+\end{thebibliography}
 \end{document}
