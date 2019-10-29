@@ -193,9 +193,6 @@ Public Class crearInformaDeDaños
             PanelDelVehiculo.NotificarDeInforme(Info)
         End If
         If Info.Tipo = Controladores.InformeDeDaños.TIPO_INFORME_TOTAL Then
-            Dim loteid = Controladores.Persistencia.getInstancia.IDLotePor_VINvehiculo(Info.VehiculoPadre.VIN)
-            Controladores.Persistencia.getInstancia.anularAnteriorIntegra(Info.VehiculoPadre.IdVehiculo)
-            Controladores.Fachada.getInstancia.eliminarLoteSiNoTieneVehiculos(New Controladores.Lote() With {.IDLote = loteid})
             Controladores.Fachada.getInstancia.BajaVehiculo(Info.VehiculoPadre, Controladores.Vehiculo.TipoBajaVehiculo.Destrucción, Nothing)
         End If
         Controladores.Marco.getInstancia.cerrarPanel(Of crearInformaDeDaños)()

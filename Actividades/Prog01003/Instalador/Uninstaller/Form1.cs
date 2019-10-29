@@ -46,22 +46,48 @@ namespace Uninstaller
                 try
                 {
                     ForceDelete(ConexionLib.FachadaRegistro.RutaPrograma());
-                } catch (Exception)
-                {}
-                ConexionLib.FachadaRegistro.EliminarConfiguracion();
-                ConexionLib.FachadaRegistro.DesregistrarPrograma();
-                ConexionLib.FachadaRegistro.DesregistrarDesinstalador();
+                }
+                catch (Exception)
+                { }
+
+                try
+                {
+                    ConexionLib.FachadaRegistro.EliminarConfiguracion();
+                }
+                catch (Exception)
+                { }
+
+                try
+                {
+                    ConexionLib.FachadaRegistro.DesregistrarPrograma();
+                }
+                catch (Exception)
+                { }
+
+                try
+                {
+                    ConexionLib.FachadaRegistro.DesregistrarDesinstalador();
+                }
+                catch (Exception)
+                { }
             });
-            uninst.Start();
-            Timer t = new System.Windows.Forms.Timer();
-            t.Interval = 5;
+            Timer t = new System.Windows.Forms.Timer
+            {
+                Interval = 5
+            };
             UnKilledLines = new List<int>();
             for (int y = 0; y < pictureBox1.Image.Height; y++)
                 UnKilledLines.Add(y);
             Random r = new Random();
             t.Tick += (a, b) =>
             {
-                for (int i = 0; i < 12; i++)
+                if (UnKilledLines.Count < 1 && uninst.Status == TaskStatus.RanToCompletion)
+                {
+                    t.Stop();
+                    MessageBox.Show("Gracias por usar SLTA");
+                    this.Close();
+                }
+                if (UnKilledLines.Count > 0)
                 {
                     int idx = r.Next(UnKilledLines.Count);
                     var line = UnKilledLines[idx];
@@ -74,16 +100,9 @@ namespace Uninstaller
                     for (int x = 0; x < pictureBox1.Image.Width; x++)
                         bmp.SetPixel(x, line, Color.Red);
                     pictureBox1.Image = bmp;
-                    if (UnKilledLines.Count < 1)
-                    {
-                        t.Stop();
-                        MessageBox.Show("Gracias por usar SLTA");
-                        uninst.Wait();
-                        this.Close();
-                        break;
-                    }
                 }
             };
+            uninst.Start();
             t.Start();
         }
     }

@@ -113,6 +113,7 @@ Partial Class panelInfoVehiculo
         Me.Sublbl = New System.Windows.Forms.Label()
         Me.ClienteLbl = New System.Windows.Forms.Label()
         Me.RutaVehiculo = New System.Windows.Forms.TabControl()
+        Me.posicionEnMapa = New GMap.NET.WindowsForms.GMapControl()
         Me.TabPage4.SuspendLayout()
         CType(Me.lugares, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage3.SuspendLayout()
@@ -138,6 +139,7 @@ Partial Class panelInfoVehiculo
         'TabPage4
         '
         Me.TabPage4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TabPage4.Controls.Add(Me.posicionEnMapa)
         Me.TabPage4.Controls.Add(Me.lugares)
         Me.TabPage4.Location = New System.Drawing.Point(4, 31)
         Me.TabPage4.Name = "TabPage4"
@@ -185,7 +187,7 @@ Partial Class panelInfoVehiculo
         Me.lugares.ReadOnly = True
         Me.lugares.RowHeadersVisible = False
         Me.lugares.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.lugares.Size = New System.Drawing.Size(850, 592)
+        Me.lugares.Size = New System.Drawing.Size(834, 255)
         Me.lugares.TabIndex = 88
         '
         'nomLugar
@@ -1097,6 +1099,32 @@ Partial Class panelInfoVehiculo
         Me.RutaVehiculo.Size = New System.Drawing.Size(880, 650)
         Me.RutaVehiculo.TabIndex = 86
         '
+        'posicionEnMapa
+        '
+        Me.posicionEnMapa.Bearing = 0!
+        Me.posicionEnMapa.CanDragMap = True
+        Me.posicionEnMapa.EmptyTileColor = System.Drawing.Color.Navy
+        Me.posicionEnMapa.GrayScaleMode = False
+        Me.posicionEnMapa.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow
+        Me.posicionEnMapa.LevelsKeepInMemmory = 5
+        Me.posicionEnMapa.Location = New System.Drawing.Point(14, 276)
+        Me.posicionEnMapa.MarkersEnabled = True
+        Me.posicionEnMapa.MaxZoom = 2
+        Me.posicionEnMapa.MinZoom = 2
+        Me.posicionEnMapa.MouseWheelZoomEnabled = True
+        Me.posicionEnMapa.MouseWheelZoomType = GMap.NET.MouseWheelZoomType.MousePositionAndCenter
+        Me.posicionEnMapa.Name = "posicionEnMapa"
+        Me.posicionEnMapa.NegativeMode = False
+        Me.posicionEnMapa.PolygonsEnabled = True
+        Me.posicionEnMapa.RetryLoadTile = 0
+        Me.posicionEnMapa.RoutesEnabled = True
+        Me.posicionEnMapa.ScaleMode = GMap.NET.WindowsForms.ScaleModes.[Integer]
+        Me.posicionEnMapa.SelectedAreaFillColor = System.Drawing.Color.FromArgb(CType(CType(33, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(105, Byte), Integer), CType(CType(225, Byte), Integer))
+        Me.posicionEnMapa.ShowTileGridLines = False
+        Me.posicionEnMapa.Size = New System.Drawing.Size(834, 330)
+        Me.posicionEnMapa.TabIndex = 89
+        Me.posicionEnMapa.Zoom = 0R
+        '
         'panelInfoVehiculo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1212,4 +1240,5 @@ Partial Class panelInfoVehiculo
     Friend WithEvents Sublbl As Label
     Friend WithEvents ClienteLbl As Label
     Friend WithEvents RutaVehiculo As TabControl
+    Friend WithEvents posicionEnMapa As GMap.NET.WindowsForms.GMapControl
 End Class

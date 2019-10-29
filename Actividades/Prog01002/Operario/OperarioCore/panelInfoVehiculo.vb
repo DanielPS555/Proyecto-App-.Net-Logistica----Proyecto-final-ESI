@@ -166,7 +166,24 @@ Public Class panelInfoVehiculo
     Private Sub CargarLugares()
         lugares.Columns.Clear()
         lugares.DataSource = Controladores.Fachada.getInstancia.lugaresDelVehiculo(vin)
+        Dim datatable As DataTable = lugares.DataSource
         lugares.Columns.Cast(Of DataGridViewColumn).Last.HeaderText = "Transportado por"
+        posicionEnMapa.MapProvider = GMapProviders.GoogleMap
+        Dim mapOverlay As New WindowsForms.GMapOverlay("ubicaciones")
+        Dim prevLugar As DataRow = Nothing
+        For Each l As DataRow In datatable.Rows
+            mapOverlay.Markers.Add(New WindowsForms.Markers.GMarkerGoogle(New PointLatLng(l(2), l(3)), WindowsForms.Markers.GMarkerGoogleType.red) With {
+                .ToolTipText = l(0)
+            })
+            prevLugar = l
+        Next
+        If mapOverlay.Markers.Count > 0 Then
+            mapOverlay.Routes.Add(New WindowsForms.GMapRoute(mapOverlay.Markers.Select(Function(x) x.Position), "transito"))
+        End If
+        posicionEnMapa.Overlays.Add(mapOverlay)
+        posicionEnMapa.ZoomAndCenterMarkers("ubicaciones")
+        posicionEnMapa.MinZoom = 5
+        posicionEnMapa.MaxZoom = 20
     End Sub
 
     Private Sub CargarTraslados()

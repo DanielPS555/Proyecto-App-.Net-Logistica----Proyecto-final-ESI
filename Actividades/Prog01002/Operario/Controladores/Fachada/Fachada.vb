@@ -26,6 +26,11 @@ Public Class Fachada
     End Function
 
     Public Sub BajaVehiculo(vehiculo As Vehiculo, tipoBaja As Vehiculo.TipoBajaVehiculo, msj As String)
+        Dim loteid = Controladores.Persistencia.getInstancia.IDLotePor_VINvehiculo(vehiculo.VIN)
+        If loteid >= 0 Then
+            Controladores.Persistencia.getInstancia.anularAnteriorIntegra(vehiculo.IdVehiculo)
+            eliminarLoteSiNoTieneVehiculos(New Controladores.Lote() With {.IDLote = loteid})
+        End If
         Dim jsonObj As New Dictionary(Of String, String)
         Select Case tipoBaja
             Case Vehiculo.TipoBajaVehiculo.Destrucción

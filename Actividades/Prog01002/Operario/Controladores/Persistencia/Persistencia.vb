@@ -320,13 +320,13 @@ order by fechaAgregado
     End Function
 
     Public Function LugaresVehiculo(vin As String) As DataTable
-        Dim selcmd As New OdbcCommand("select nombre, tipo, desde, transportista from (select * from (select first 1 vehiculo.vin, lugar.nombre, lugar.tipo, posicionado.desde::datetime year to minute as desde, 'Llegada al país' as transportista from vehiculo
+        Dim selcmd As New OdbcCommand("select nombre, tipo, geox, geoy, desde, transportista from (select * from (select first 1 vehiculo.vin, lugar.nombre, lugar.tipo, lugar.geoX, lugar.geoY, posicionado.desde::datetime year to minute as desde, 'Llegada al país' as transportista from vehiculo
                                         inner join posicionado on posicionado.idvehiculo=vehiculo.idvehiculo
                                         inner join lugar on lugar.idlugar=maximo_ancestro(posicionado.idlugar)
                                         where vin = ?
                                         order by desde)
                                         union all
-                                        select vehiculo.vin, lugar.nombre, lugar.tipo, transporta.fechahorallegadareal::datetime year to minute as desde, usuario.nombredeusuario as transportista from vehiculo
+                                        select vehiculo.vin, lugar.nombre, lugar.tipo, lugar.geoX, lugar.geoY, transporta.fechahorallegadareal::datetime year to minute as desde, usuario.nombredeusuario as transportista from vehiculo
                                         inner join integra on vehiculo.idvehiculo=integra.idvehiculo and not integra.invalidado
                                         inner join lote on lote.idlote=integra.lote
                                         inner join transporta on transporta.idlote = lote.idlote and transporta.fechahorallegadareal is not null
