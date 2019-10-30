@@ -27,10 +27,13 @@ ConfiguracionDelAmbienteDeTrabajo() #Funcion encarga de la instalacion
 		git clone https://github.com/Daniel2242014/DataConfiguracionABMusuariosSO
 		unlink /sbin/bkupScript.sh 2> /dev/null
 		ln -s /var/DataConfiguracionABMusuariosSO/backup_script.sh /sbin/bkupScript.sh
-		chmod u+x /sbin/bkupScript.sh
+		ln -s /var/DataConfiguracionABMusuariosSO/updateULogs.sh /sbin/updateLogs.sh
+		chmod u+x /sbin/bkupScript.sh /sbin/updateLogs.sh
 		sed -i '/0 0 \* \* \* root bkupScript.sh/d' /etc/crontab
 		sed -i '/0 0 \* \* \* root logrotate.*/d' /etc/crontab
+		sed -i '/0 0 \* \* \* root updateLogs.sh/d' /etc/crontab
 		echo "0 * * * * root bkupScript.sh" >> /etc/crontab
+		echo "0 * * * * root updateLogs.sh" >> /etc/crontab
 		cat > /etc/logrot.cfg <<EOF
 /var/log/messages {
 	rotate 4

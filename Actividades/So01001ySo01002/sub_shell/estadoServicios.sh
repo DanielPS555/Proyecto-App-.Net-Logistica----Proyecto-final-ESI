@@ -1,8 +1,8 @@
 #!/bin/bash
-#VERCION 2.0 - 4/8 SEGUNDA ENTREGA desarrolado por Bit (3°BD 2019)
+#VERCION 3.0 - 1/11 TERCERA ENTREGA desarrolado por Bit (3°BD 2019)
 reinicioExterior()
 {
- if systemctl restart $1.service
+ if systemctl restart $1
     then
 	echo "Servicio reiniciado"
     else
@@ -12,7 +12,7 @@ reinicioExterior()
 
 function desactivarServicio()
 {
-    if systemctl disable $sname.service
+    if systemctl disable $nombre
     then
 	echo "Servicio desactivado"
     else
@@ -23,7 +23,7 @@ function desactivarServicio()
 
 function activarServicio()
 {
-    if systemctl enable $sname.service
+    if systemctl enable $nombre
     then
 	echo "Servicio activado"
     else
@@ -34,7 +34,7 @@ function activarServicio()
 
 function correrServicio()
 {
-    if systemctl start $sname.service
+    if systemctl start $nombre
     then
 	echo "Servicio iniciado"
     else
@@ -45,7 +45,7 @@ function correrServicio()
 
 function reiniciarServicio()
 {
-    if systemctl restart $sname.service
+    if systemctl restart $nombre
     then
 	echo "Servicio reiniciado"
     else
@@ -56,7 +56,7 @@ function reiniciarServicio()
 
 function pararServicio()
 {
-    if systemctl stop $sname.service
+    if systemctl stop $nombre
     then
 	echo "Servicio parado"
     else
@@ -69,84 +69,73 @@ function pararServicio()
 #automaticamente sale via less
 function mensajesServicio()
 {
-    journalctl -xe --unit=$sname.service
+    journalctl -xe --unit=$nombre
     read a
 }
 
 #buscar y afectar un servicio
-function buscarServicio()
+function buscarServicio() # Muestra y busca servicios 
 {
-    echo -n "Qué servicio quiere buscar? (ej: sshd, informix, network, et al) "
+conff=0
+while test $conff -eq 0
+do 
+    echo  "Ingrese el Id del servicio a buscar (ingrese 'help' para ver id de cada servicio). No ingrese nada para salir"
     read sname
-    if ! echo $sname | grep -E "^[a-zA-Z]+$" 2>/dev/null
-    then
-		echo "Nombre inválido"
-		read r
-		return
-    fi
-    j=1
-	serviciosActivados=($(systemctl list-unit-files --state=enabled | tail -n +2 | head -n -2 | cut -d' ' -f1 | grep -vE "target|@"))
-	for ine in $(seq 0 1 $[${#serviciosActivados[@]}-1])
-	do
-		if test $(echo ${serviciosActivados[$ine]}|grep -x "$sname.service"|wc -l) -eq 1
-		then
-			j=0
-		fi
-	done 
 
-	if test $j -eq 1
+	if test -z $sname
 	then
-		echo "El servicio no existe"
-		read fff
-		return
+	 return 	
 	fi
 
-    state=$(systemctl status $sname.service | grep "Loaded" | cut -d' ' -f7 | tr -d ';')
-    activ=$(systemctl status $sname.service | grep "Active" | cut -d' ' -f6 | tr -d '()')
-    echo "$sname": $state $activ
-    nombres_s1=("Activar", "Desactivar", "Correr", "Detener", "Ver_Mensajes" "Reiniciar")
-    direcciones_s1=(activarServicio desactivarServicio correrServicio pararServicio mensajesServicio reiniciarServicio)
-    menu "nombres_s1[@]" "direcciones_s1[@]"
+ 	if test $(echo $sname|grep -xi "help")
+	then
+	   vertodosLosservicios
+	fi
+
+	if  test $(echo $sname | grep -E "^[0-9]{1,9}$"|wc -l) -eq 0
+	then
+	    echo "Debe ser un número"
+
+	else
+		numero=$(systemctl list-unit-files --state=enabled,disabled | tail -n +2 | head -n -2 | cut -d' ' -f1 | grep -vE "target|@"|wc -l)
+		if test $sname -gt $numero || test $sname -lt 1
+		then 
+			echo "Id incorrecto"
+		else
+			nombre=$(systemctl list-unit-files --state=enabled,disabled | tail -n +2 | head -n -2 | cut -d' ' -f1 | grep -vE "target|@" | head -n$sname | tail -n1)
+			 state=$(systemctl status $nombre | grep "Loaded" | cut -d' ' -f7 | tr -d ';')
+			 activ=$(systemctl status $nombre | grep "Active" | cut -d' ' -f6 | tr -d '()')
+			 echo "$nombre": $state $activ
+			 nombres_s1=("Activar", "Desactivar", "Correr", "Detener", "Ver_Mensajes" "Reiniciar")
+			 direcciones_s1=(activarServicio desactivarServicio correrServicio pararServicio mensajesServicio reiniciarServicio)
+			 menu "nombres_s1[@]" "direcciones_s1[@]"
+			 conff=1
+
+		fi
+	fi
+
+
+
+   
+done
+}
+
+vertodosLosservicios()
+{
+	touch $carpetaBase/Temp/listar #Crea la lista temp 
+	cont=1        
+	systemctl list-unit-files --state=enabled,disabled | tail -n +2 | head -n -2 | cut -d' ' -f1 | grep -vE "target|@"| while read vart
+	do
+	echo "$cont)$vart" >> $carpetaBase/Temp/listar
+	cont=$[$cont+1]
+	done
+	echo "Ingrese 'q' para salir"
+	less $carpetaBase/Temp/listar #Muestra la lista temp 
+	rm -f $carpetaBase/Temp/listar #elimina la lista 
+
 }
 
 function estadoServicios()
 {
-    inp=-1
-    while [ $inp -lt 0 ]; do
-	serviciosActivados=($(systemctl list-unit-files --state=enabled | tail -n +2 | head -n -2 | cut -d' ' -f1 | grep -vE "target|@"))
-	for i in $(seq 0 $[${#serviciosActivados[@]} - 1]); do
-	#for ((i=0;i<${#serviciosActivados[@]};++i)); do
-	    echo $i")" ${serviciosActivados[$i]}
-	    state=($(systemctl status ${serviciosActivados[$i]} | grep Active:))
-	    #		echo $data;
-	    echo -n "Estado: ";
-	    echo ${state[1]} # | grep 'Active:' | cut -d' ' -f5
-	    if [ $[$i % 5] -eq 0 ]
-	    then
-		echo "Enter para continuar..."
-		read k
-	    fi
-	done
-        echo -n "Desea ver los mensajes de algún servicio? [0;${#serviciosActivados[@]}): "
-	read inp
-	if [ "$inp" == "" ]
-	then
-	    return
-	elif ! echo $inp | grep -E "^[0-9]{1,9}$" > /dev/null;
-	then
-	    echo "Debe ser un número"
-	    inp=-1
-	    read ff
-	elif [ \( $inp -lt 0 \) -o \( $inp -ge ${#serviciosActivados[@]} \) ]
-	then
-	    echo "Debe estar en [0;${#serviciosActivados[@]})"
-	    inp=-1
-	    read ff
-	else
-	    echo "Viendo mensajes de ${serviciosActivados[$inp]}"
-	    journalctl --unit=${serviciosActivados[$inp]}
-	    inp=-1
-	    read ff
-	fi
-    done
+    vertodosLosservicios
 }

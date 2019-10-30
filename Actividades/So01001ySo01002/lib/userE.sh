@@ -5,7 +5,7 @@ verifUser() #Esta funcion de encarga del correcto ingreso del nombre de un usuar
 	verifM=0
 	while test $verifM -eq 0
 	do
-		echo "Por favor ingrese el nombre del usuario que va a modificar, no ingrese nada para cancelar "  
+		echo "Por favor ingrese el nombre del usuario, no ingrese nada para cancelar "  
 		read dato
 		if ! test -z $dato
 			then
@@ -28,7 +28,7 @@ verifUserTODO() #Esta funcion de encarga del correcto ingreso del nombre de un u
 	verifM=0
 	while test $verifM -eq 0
 	do
-		echo "Por favor ingrese el nombre del usuario que va a modificar, no ingrese nada para cancelar "  
+		echo "Por favor ingrese el nombre del usuario, no ingrese nada para cancelar "  
 		read dato
 		if ! test -z $dato
 			then

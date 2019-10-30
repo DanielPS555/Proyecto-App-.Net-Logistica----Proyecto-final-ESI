@@ -15,10 +15,16 @@ MenuProsesos()
  menu "namaes[@]" "fnctns[@]"
 }
 
+listarSLTA()
+{
+ cat /var/SLTAUserLog
+ read i
+}
+
 MenuLog()
 {
- namaes=("Log_Exitoso" "Log_Fallido")
- fnctns=('listarWtmp' 'listarBtmp')
+ namaes=("Log_Exitoso" "Log_Fallido" "Logs_Usuarios")
+ fnctns=('listarWtmp' 'listarBtmp' 'listarSLTA')
  menu "namaes[@]" "fnctns[@]"
 }
 
@@ -31,7 +37,7 @@ menuBackUp()
 
 menuServicios()
 {
- namaes=('Estado_Servicios' 'Buscar_Servicio')
+ namaes=('Lista_serivicos' 'Buscar_Servicio')
  fnctns=('estadoServicios' 'buscarServicio')
  menu "namaes[@]" "fnctns[@]"
 }
