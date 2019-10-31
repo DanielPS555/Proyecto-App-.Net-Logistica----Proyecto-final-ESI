@@ -1,0 +1,53 @@
+# Mon Aug 19 08:08:21 UYT 2019
+# Replay feature output
+# ---------------------
+# This file was built by the Replay feature of InstallAnywhere.
+# It contains variables that were set by Panels, Consoles or Custom Code.
+
+
+
+#Indicate whether the license agreement been accepted
+#----------------------------------------------------
+LICENSE_ACCEPTED=TRUE
+
+#Installation Location
+#---------------------
+USER_INSTALL_DIR=/opt/informix
+
+#Installation or Distribution
+#----------------------------
+
+#Product Selection
+#-----------------
+CHOSEN_FEATURE_LIST=IDS,IDS-SVR,IDS-EXT,IDS-EXT-JAVA,IDS-EXT-OPT,IDS-EXT-CNV,IDS-EXT-XML,IDS-DEMO,IDS-ER,IDS-LOAD,IDS-LOAD-ONL,IDS-LOAD-DBL,IDS-LOAD-HPL,IDS-BAR,IDS-BAR-CHK,IDS-BAR-ONBAR,IDS-BAR-TSM,IDS-ADM,IDS-ADM-PERF,IDS-ADM-MON,IDS-ADM-ADT,IDS-ADM-IMPEXP,IDS-JSON,SDK,SDK-CPP,SDK-CPP-DEMO,SDK-ESQL,SDK-ESQL-DEMO,SDK-ESQL-ACM,SDK-LMI,SDK-ODBC,SDK-ODBC-DEMO,GLS,GLS-WEURAM,GLS-EEUR,GLS-JPN,GLS-KOR,GLS-CHN,GLS-OTH,JDBC
+CHOSEN_INSTALL_FEATURE_LIST=IDS,IDS-SVR,IDS-EXT,IDS-EXT-JAVA,IDS-EXT-OPT,IDS-EXT-CNV,IDS-EXT-XML,IDS-DEMO,IDS-ER,IDS-LOAD,IDS-LOAD-ONL,IDS-LOAD-DBL,IDS-LOAD-HPL,IDS-BAR,IDS-BAR-CHK,IDS-BAR-ONBAR,IDS-BAR-TSM,IDS-ADM,IDS-ADM-PERF,IDS-ADM-MON,IDS-ADM-ADT,IDS-ADM-IMPEXP,IDS-JSON,SDK,SDK-CPP,SDK-CPP-DEMO,SDK-ESQL,SDK-ESQL-DEMO,SDK-ESQL-ACM,SDK-LMI,SDK-ODBC,SDK-ODBC-DEMO,GLS,GLS-WEURAM,GLS-EEUR,GLS-JPN,GLS-KOR,GLS-CHN,GLS-OTH,JDBC
+CHOSEN_INSTALL_SET=Custom
+
+#Feature review
+#--------------
+
+#Get Role Separation choice
+#--------------------------
+
+#Server Instance
+#---------------
+
+#Install
+#-------
+
+#Non-Root installation
+#---------------------
+UNIX_INSTALLTYPE_SELECT=DEFAULT
+
+#Licensing
+#---------
+LICENSE_ACCEPTED=TRUE
+
+#Location and Features
+#---------------------
+USER_INSTALL_DIR=/opt/informix
+IDS_INSTALL_TYPE=CUSTOM
+
+#Password for user and instance creation
+#---------------------------------------
+IAD_PASSWORD=
